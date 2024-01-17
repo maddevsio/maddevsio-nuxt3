@@ -1,0 +1,243 @@
+.container_regular {
+  max-width: 817px;
+  padding: 0 90px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container_middle {
+  max-width: 1026px;
+  padding: 0 90px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container_full {
+  max-width: 100%;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+$spaces: (
+  '6': 6px,
+  '8': 8px,
+  '10': 10px,
+  '12': 12px,
+  '16': 16px,
+  '21': 21px,
+  '24': 24px,
+  '28': 28px,
+  '32': 32px,
+  '34': 34px,
+  '38': 38px,
+  '42': 42px,
+  '48': 48px,
+  '50': 50px,
+  '56': 56px,
+  '60': 60px,
+  '62': 62px,
+  '66': 66px,
+  '72': 72px,
+  '75': 75px,
+  '78': 78px,
+  '80': 80px,
+  '92': 92px,
+  '96': 96px,
+  '100': 100px,
+  '104': 104px,
+  '107': 107px,
+  '118': 118px,
+  '120': 120px,
+  '130': 130px
+);
+
+$spacesMedia: (
+  '0': 0,
+  '2': 2px,
+  '6': 6px,
+  '8': 8px,
+  '12': 12px,
+  '16': 16px,
+  '20': 20px,
+  '24': 24px,
+  '32': 32px,
+  '38': 38px,
+  '41': 41px,
+  '48': 48px,
+  '65': 65px,
+  '68': 68px,
+  '72': 72px,
+  '62': 62px,
+);
+
+$textColors: (
+  'silver': #f4f4f4,
+  'berry': #f55876,
+  'orange-dark': #FF5A00,
+  'yellow': #ffd31b,
+  'white': #ffffff,
+  'quick-silver': #a0a0a1,
+  'turquoise': #46A393,
+  'blue': #5159F6,
+  'lavender': #B36EFD,
+  'black-primary': #101113,
+  'gray': #404143,
+);
+
+$backgroundColors: (
+  'red': #ee6664,
+  'black': #111213,
+  'black-primary': #000000,
+  'black-section': #232323,
+  'black-primary-bg': #101113,
+  'turquoise': #46A393,
+  'silver': #f4f4f4,
+  'berry': #f55876,
+  'orange': #ff6900,
+  'orange-dark': #FF5A00,
+  'purple-light': #8C7BAD,
+  'purple-primary': #675290,
+  'purple-blue':#dbe5fa,
+  'purple-medium': #2D1956,
+  'purple-dark': #180839,
+  'purple-itc': #293470,
+  'pink': #dd0957,
+  'godee-black-card': rgba(64, 65, 67, 0.3),
+  'blue': #137bce,
+  'blue-light': #effaff,
+  'blue-itc': #4154b3,
+  'blue-itc-darken': #132e50,
+  'blue-darkened':#3a52d4,
+  'blue-dark':#23338b,
+  'blue-grey':#08537e,
+  'blue-white': #e5ebee,
+  'sky-blue':#00aeef,
+  'gray-lightened':#f3f3f3,
+  'gray': #404143,
+  'gray-light':#fbfbfb,
+  'gray-darken': #eaeaea,
+  'yellow': #ffd31b,
+  'yellow-dark':#fec21f,
+  'white':rgba(255, 255, 255, 0.2),
+  'outer-space': #323A45,
+  'prussian-blue': #073B4C,
+  'midnight-blue': #003f88,
+  'heat-wave': #ff7b00,
+  'rich-black': #000814,
+  'selective-yellow': #ffb700,
+  'maastricht-blue': #001D3D,
+  'button-blue': #1DA5FC,
+  'medium-turquoise': #3ACBD9,
+  'blue-sky': #26BBEE,
+  'scooter': #2EC7D6,
+  'picton-blue': #34C8E8,
+  'picton-blue-darker': #42B4F6,
+  'butterfly-blue': #3AADF0,
+  'ball-blue': #1DA5FC,
+  'light-coral': #EF7D80,
+  'begonia': #F87477,
+  'light-carmine-pink': #EF6265,
+  'fire-opal': #EA4F51,
+  'red-pigment': #EE252C,
+  'purple': #9963f6,
+  'lavender': #C07BCD,
+  'purple-plum': #A857B7,
+  'heliotrope-magenta': #9C1BB2,
+  'russian-violet': #27145A,
+  'russian-violet-dark': #231352,
+  'lavender-indigo': #8B44E1,
+  'jungle-green': #21A190,
+  'lavender-floral': #AF6EFD,
+  'lavender-indigo-light': #AA6EFD,
+  'heliotrope-approx': #A26FFC,
+  'indigo-purple': #9B62FF,
+  'thick-purple': #8B44E1,
+  'stargate-shimmer': #7373FC,
+  'byzantine-night-blue': #6873FB,
+  'ntsc-blue': #4876FB,
+  'lightish-blue': #4071FF,
+  'gentian-flower': #396CFF,
+  'cosmic-cobalt': #2C3887,
+  'han-blue': #4758CA,
+  'lighter-coral': #F4777C,
+  'cornflower-blue': #8090FF,
+  'violet-blue': #7380D1,
+  'toolbox-blue': #6571C0,
+  'liberty-blue': #5864B4,
+  'chinese-blue': #4450A0,
+  'chinese-blue-darker': #3D499A,
+  'blue-pigment': #354298,
+  'tulip': #FF898E,
+  'begonia-darker': #FF7177,
+  'pastel-red': #FF5D64,
+  'sunburnt-cyclops': #FF4A52,
+  'coral-red': #FF343D
+);
+
+// loop, to style Legends
+@each $name, $variable in $spaces {
+  // selector based on class name
+  .p-#{$name}_top {
+    padding-top: $variable;
+  }
+
+  .m-#{$name}_top {
+    margin-top: $variable;
+  }
+
+  .p-#{$name}_bottom {
+    padding-bottom: $variable;
+  }
+
+  .m-#{$name}_bottom {
+    margin-bottom: $variable;
+  }
+}
+
+// loop, to style Legends on small screen
+@each $name, $variable in $spacesMedia {
+  @media screen and (max-width: 768px) {
+    .media-p-#{$name}_top {
+      padding-top: $variable;
+    }
+
+    .media-m-#{$name}_top {
+      margin-top: $variable;
+    }
+
+    .media-p-#{$name}_bottom {
+      padding-bottom: $variable;
+    }
+
+    .media-m-#{$name}_bottom {
+      margin-bottom: $variable;
+    }
+  }
+}
+
+// loop, to style cards
+@each $name, $variable in $backgroundColors {
+  // selector based on class name
+  .background-color-#{$name} {
+    background-color: $variable;
+  }
+  @media screen and (max-width: 768px) {
+    .media-background-color-#{$name} {
+      background-color: $variable;
+    }
+  }
+}
+
+// loop, to style cards
+@each $name, $variable in $textColors {
+  // selector based on class name
+  .text-color-#{$name} {
+    color: $variable !important;
+  }
+}
+
+.m-auto {
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,413 @@
+{
+  "id": "start_screen",
+  "type": "SharedSlice",
+  "name": "StartScreen",
+  "description": "StartScreen",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StartScreen",
+      "primary": {
+        "background": {
+          "config": {
+            "label": "Slice background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "gradientColor": {
+          "config": {
+            "label": "Gradient color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "imageOpacity": {
+          "config": {
+            "label": "Image opacity",
+            "placeholder": "0.8"
+          },
+          "type": "Number"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "subtitle": {
+          "config": {
+            "label": "Subtitle",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "startScreenImageRightAndButton",
+      "name": "StartScreenImageRightAndButton",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StartScreen",
+      "primary": {
+        "background": {
+          "config": {
+            "label": "Slice background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "gradientColor": {
+          "config": {
+            "label": "Gradient color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "image": {
+          "config": {
+            "label": "Background Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "rightImage": {
+          "config": {
+            "label": "RIght Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "imageOpacity": {
+          "config": {
+            "label": "Image opacity",
+            "placeholder": "0.8"
+          },
+          "type": "Number"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong"
+          },
+          "type": "StructuredText"
+        },
+        "subtitle": {
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          },
+          "type": "StructuredText"
+        },
+        "btnText": {
+          "config": {
+            "label": "Button text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "btnLink": {
+          "config": {
+            "label": "Button Link (optional)",
+            "placeholder": "Button will be a link instead of a modal window",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "modal": {
+          "config": {
+            "label": "Modal window (optional)",
+            "placeholder": "Select modal window that will open",
+            "options": [
+              "download-pdf",
+              "contact-me",
+              "order-project"
+            ]
+          },
+          "type": "Select"
+        },
+        "ebookPath": {
+          "config": {
+            "label": "Ebook Path on AWS S3",
+            "placeholder": "Example: pdf/ebook-name.pdf"
+          },
+          "type": "Text"
+        },
+        "ebookName": {
+          "config": {
+            "label": "Book Name for Email",
+            "placeholder": "Like: Pricing Strategies"
+          },
+          "type": "Text"
+        },
+        "ebookImage": {
+          "config": {
+            "label": "Book Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "sendPulseTemplateId": {
+          "config": {
+            "label": "SendPulse Template ID",
+            "placeholder": "Numbers from SendPulse template URL"
+          },
+          "type": "Number"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "startScreenwithButton",
+      "name": "StartScreenwithButton",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StartScreen",
+      "primary": {
+        "background": {
+          "config": {
+            "label": "Slice background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "gradientColor": {
+          "config": {
+            "label": "Gradient color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "imageOpacity": {
+          "config": {
+            "label": "Image opacity",
+            "placeholder": "0.8"
+          },
+          "type": "Number"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "subtitle": {
+          "config": {
+            "label": "Subtitle",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "btnText": {
+          "config": {
+            "label": "Button text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "expertPage",
+      "name": "Expert Page",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StartScreen",
+      "primary": {
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "Your trusted IT partner"
+          },
+          "type": "Text"
+        },
+        "btnText": {
+          "config": {
+            "label": "btnText",
+            "placeholder": "(has default value \"SAVE CONTACT\")"
+          },
+          "type": "Text"
+        },
+        "author": {
+          "config": {
+            "label": "author",
+            "customtypes": [
+              "author"
+            ],
+            "select": "document"
+          },
+          "type": "Link"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "startScreenWithImage",
+      "name": "StartScreenWithImage",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StartScreen",
+      "primary": {
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Form Button Text",
+            "placeholder": "Default: Book a consultation"
+          },
+          "type": "Text"
+        },
+        "linkToPage": {
+          "config": {
+            "label": "Link to page",
+            "placeholder": "",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "expertRelation": {
+          "config": {
+            "label": "Expert Document",
+            "customtypes": [
+              "author"
+            ],
+            "select": "document"
+          },
+          "type": "Link"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "mainStartScreen",
+      "name": "MainStartScreen",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StartScreen",
+      "primary": {
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "subtitle": {
+          "config": {
+            "label": "Subtitle",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph"
+          },
+          "type": "StructuredText"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Button Text",
+            "placeholder": "default: Let’s Talk"
+          },
+          "type": "Text"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

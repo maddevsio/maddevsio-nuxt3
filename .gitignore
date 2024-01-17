@@ -1,0 +1,36 @@
+.DS_Store
+node_modules/
+.env
+
+# /dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/tests/unit/coverage/
+/tests/e2e/reports/
+/tests/e2e/screenshots/
+selenium-debug.log
+/coverage
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+db.json
+/server/storage/
+/client/assets/img/Home/png/copyright/mad_copy--dont_touche_big.png
+/client/assets/img/Home/png/copyright/mad_copy--dont_touche.png
+/client/static/eslint-report.json
+# Nuxt build
+.nuxt
+dist/
+.output/
+
+# Prismic slice machine directories and files
+.yo-rc.json
+.nuxt-storybook
+storybook-static
+customtypes

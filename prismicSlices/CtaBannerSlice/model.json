@@ -1,0 +1,304 @@
+{
+  "id": "cta_banner_slice",
+  "type": "SharedSlice",
+  "name": "CtaBannerSlice",
+  "description": "Cta Banner Slice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default Slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Cta Banner Slice",
+      "primary": {
+        "animation": {
+          "config": {
+            "label": "Animation list",
+            "placeholder": "Select aos animation",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-righ",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-up",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ]
+          },
+          "type": "Select"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": null
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "title": {
+          "config": {
+            "label": "Main Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Main Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "btnText": {
+          "config": {
+            "label": "Button text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "name": {
+          "config": {
+            "label": "Fullname",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "position": {
+          "config": {
+            "label": "Position",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "btnLink": {
+          "config": {
+            "label": "Button link (optional)",
+            "placeholder": "Button will be a link instead of a modal window",
+            "allowTargetBlank": true
+          },
+          "type": "Link"
+        },
+        "modal": {
+          "config": {
+            "label": "Modal window (optional)",
+            "placeholder": "Select modal window that will open",
+            "options": [
+              "contact-me",
+              "order-project"
+            ],
+            "default_value": "contact-me"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "ctaBannerWithBackgroundImage",
+      "name": "CtaBannerWithBackgroundImage",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Cta Banner Slice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ],
+            "default_value": "black"
+          },
+          "type": "Select"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "titleTag": {
+          "config": {
+            "label": "titleTag",
+            "placeholder": "",
+            "options": [
+              "h2",
+              "h3",
+              "h4",
+              "h5",
+              "h6"
+            ],
+            "default_value": "h2"
+          },
+          "type": "Select"
+        },
+        "description": {
+          "config": {
+            "label": "description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "backgroundImage": {
+          "config": {
+            "label": "Background Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "enableImageOverlay": {
+          "config": {
+            "label": "Enable Image Overlay",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "showButton": {
+          "config": {
+            "label": "Show Button",
+            "placeholder_false": "Hide",
+            "placeholder_true": "Show",
+            "default_value": true
+          },
+          "type": "Boolean"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "linkToPage": {
+          "config": {
+            "label": "Link To Page",
+            "placeholder": "if need link",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "expertCtaSlice",
+      "name": "ExpertCTASlice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Cta Banner Slice",
+      "primary": {},
+      "items": {
+        "image": {
+          "config": {
+            "label": "Expert Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "name": {
+          "config": {
+            "label": "Expert Name",
+            "placeholder": "like: Tony Fedorenko"
+          },
+          "type": "Text"
+        },
+        "position": {
+          "config": {
+            "label": "Expert Position",
+            "placeholder": "like: Head of HR Department"
+          },
+          "type": "Text"
+        },
+        "btnText": {
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "btnLinkUrl": {
+          "config": {
+            "label": "Button Link Url",
+            "placeholder": "like: /blog/"
+          },
+          "type": "Text"
+        }
+      }
+    },
+    {
+      "id": "checklistCtaBannerSlice",
+      "name": "Checklist CTA Banner Slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Cta Banner Slice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": null
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "btnText": {
+          "config": {
+            "label": "Button text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "btnLink": {
+          "config": {
+            "label": "Link",
+            "placeholder": "Button will be a link instead of a modal window",
+            "allowTargetBlank": true
+          },
+          "type": "Link"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

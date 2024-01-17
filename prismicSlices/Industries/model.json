@@ -1,0 +1,132 @@
+{
+  "id": "industries",
+  "type": "SharedSlice",
+  "name": "Industries",
+  "description": "Industries",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Industries",
+      "primary": {},
+      "items": {
+        "image": {
+          "config": {
+            "label": "Industry Icon",
+            "constraint": {
+              "width": 46,
+              "height": 46
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "name": {
+          "config": {
+            "label": "name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    },
+    {
+      "id": "industriesCardSlice",
+      "name": "IndustriesCardSlice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Industries",
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ],
+            "default_value": "black"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "Card Icon",
+            "constraint": {
+              "width": 40,
+              "height": 40
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "name": {
+          "config": {
+            "label": "Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "linkToIndustryPage": {
+          "config": {
+            "label": "Link To Industry Page",
+            "placeholder": "Like: /link-to-page/"
+          },
+          "type": "Text"
+        }
+      }
+    },
+    {
+      "id": "industriesCardDescription",
+      "name": "Industries Card Description",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Industries",
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "Card Icon",
+            "constraint": {
+              "width": 40,
+              "height": 40
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "linkToIndustryPage": {
+          "config": {
+            "label": "Link To Industry Page",
+            "placeholder": "Like: /link-to-page/"
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

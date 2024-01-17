@@ -1,0 +1,123 @@
+.case {
+  &_title_h2 {
+    @include title($text-color--black-oil, 41.5px, -0.04em);
+  }
+
+  &_title_h3 {
+    @include title($text-color--black-oil, 33.2px, -0.04em);
+  }
+
+  &_title_h4 {
+    @include title($text-color--black-oil, 26.56px, -0.03em);
+  }
+
+  &_title_h4-28 {
+    @include title($text-color--black-oil, 28px, -1px);
+  }
+
+  &_title_h5 {
+    @include title($text-color--black-oil, 21.25px, -0.02em);
+  }
+
+  &_link {
+    @include default-text($text-color--black-oil, 17px, 166%, -0.035em, normal);
+    text-decoration: underline;
+  }
+
+  &_full-screen-video,
+  &_full-screen-image,
+  &_gif {
+    max-width: 1440px;
+  }
+
+  &_full-screen-video,
+  &_gif {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &_gif,
+  &_img {
+    width: 100%;
+    height: 100%;
+  }
+
+  &_box-shadow {
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.05), 0px 5.47001px 41.35px rgba(0, 0, 0, 0.1);
+  }
+
+  &_text-align-center {
+    text-align: center;
+  }
+
+  &_animation_block {
+    height: 104px;
+  }
+
+  &_main-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &_header {
+    height: 100vh;
+    min-height: 568px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, .2);
+    }
+  }
+
+  &_header-title {
+    @include title($text-color--white, 51.88px, -2px);
+    text-align: center;
+    z-index: 1;
+  }
+
+  &_image-description {
+    text-align: center;
+    @include default-text($text-color--grey-img-description, 13px, 21.58px, -0.02em, normal);
+  }
+
+  &_red-text {
+    color: $text-color--red;
+  }
+
+  @media screen and (max-width: 768px) {
+    &_header-title {
+      @include title($text-color--white, 35px, -1px);
+    }
+
+    &_animation_block {
+      height: 0;
+    }
+  }
+
+  &_link-in-text {
+    color: $text-color--black-oil;
+    text-decoration: underline;
+  }
+
+  &-source-text {
+    font-size: 14px !important;
+    line-height: 166% !important;
+    color: $text-color--grey-opacity-40-percent !important;
+  }
+}

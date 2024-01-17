@@ -1,0 +1,80 @@
+{
+  "id": "customers_card_slice",
+  "type": "SharedSlice",
+  "name": "CustomersCardSlice",
+  "description": "CustomersCardSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CustomersCardSlice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "caseLogo": {
+          "config": {
+            "label": "Case Logo",
+            "constraint": {
+              "width": 170,
+              "height": 60
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "authorPhoto": {
+          "config": {
+            "label": "Author Photo",
+            "constraint": {
+              "width": 50,
+              "height": 50
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "authorName": {
+          "config": {
+            "label": "Author Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "authorCompany": {
+          "config": {
+            "label": "Author Company",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "linkToCaseStudy": {
+          "config": {
+            "label": "Link To Case Study",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

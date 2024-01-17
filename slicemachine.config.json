@@ -1,0 +1,11 @@
+{
+  "repositoryName": "superpupertest",
+  "adapter": {
+    "resolve": "@slicemachine/adapter-nuxt",
+    "options": {
+      "lazyLoadSlices": true
+    }
+  },
+  "libraries": ["./prismicSlices"],
+  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator"
+}

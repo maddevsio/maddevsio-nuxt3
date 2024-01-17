@@ -1,0 +1,151 @@
+{
+  "id": "title_and_description",
+  "type": "SharedSlice",
+  "name": "TitleAndDescription",
+  "description": "TitleAndDescription",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TitleAndDescription",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "Default: black",
+            "options": [
+              "black",
+              "white"
+            ],
+            "default_value": "black"
+          },
+          "type": "Select"
+        },
+        "sectionIdForToc": {
+          "config": {
+            "label": "Section ID For ToC",
+            "placeholder": "If need for horizontal ToC"
+          },
+          "type": "Text"
+        },
+        "textPosition": {
+          "config": {
+            "label": "Text Position",
+            "placeholder": "Default: Left",
+            "options": [
+              "left",
+              "center"
+            ],
+            "default_value": "left"
+          },
+          "type": "Select"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "titleTag": {
+          "config": {
+            "label": "Title Tag",
+            "placeholder": "default: h2",
+            "options": [
+              "h1",
+              "h2",
+              "h3",
+              "h4",
+              "h5",
+              "h6"
+            ]
+          },
+          "type": "Select"
+        },
+        "titleFontSize": {
+          "config": {
+            "label": "Title Font Size",
+            "placeholder": "Font size with PX. Default: 60px"
+          },
+          "type": "Text"
+        },
+        "titleFontSizeLaptop": {
+          "config": {
+            "label": "Title Font Size Laptop",
+            "placeholder": "in PX. Default: 45px"
+          },
+          "type": "Text"
+        },
+        "titleFontSizeTablet": {
+          "config": {
+            "label": "Title Font Size Tablet",
+            "placeholder": "in PX. Default: 31px"
+          },
+          "type": "Text"
+        },
+        "titleFontSizeMobile": {
+          "config": {
+            "label": "Title Font Size Mobile",
+            "placeholder": "in PX. Default: 31px"
+          },
+          "type": "Text"
+        },
+        "titleLineHeight": {
+          "config": {
+            "label": "Title Line Height",
+            "placeholder": "in PX or %. Default: 105%"
+          },
+          "type": "Text"
+        },
+        "titleTextColor": {
+          "config": {
+            "label": "Title Text Color",
+            "placeholder": "Required to choice. Default: white",
+            "options": [
+              "white",
+              "black",
+              "blue-gradient",
+              "purple-gradient",
+              "orange-gradient",
+              "green-gradient"
+            ]
+          },
+          "type": "Select"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "descriptionColor": {
+          "config": {
+            "label": "Description Color",
+            "placeholder": "Required to choice. Default: white",
+            "options": [
+              "white",
+              "black",
+              "white-with-opacity",
+              "black-with-opacity"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "descriptionLocation": {
+          "config": {
+            "label": "Description Location",
+            "placeholder_false": "Right",
+            "placeholder_true": "Bottom",
+            "default_value": false
+          },
+          "type": "Boolean"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

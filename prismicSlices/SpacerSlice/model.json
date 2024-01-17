@@ -1,0 +1,64 @@
+{
+  "id": "spacer_slice",
+  "type": "SharedSlice",
+  "name": "SpacerSlice",
+  "description": "SpacerSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "SpacerSlice",
+      "primary": {
+        "background": {
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ]
+          },
+          "type": "Select"
+        },
+        "height": {
+          "config": {
+            "label": "Height DEFAULT",
+            "placeholder": "Example: 100px or 10% or 100vh"
+          },
+          "type": "Text"
+        },
+        "height-xl": {
+          "config": {
+            "label": "Height XL",
+            "placeholder": "1024px - 1440px"
+          },
+          "type": "Text"
+        },
+        "height-lg": {
+          "config": {
+            "label": "Height LG",
+            "placeholder": "768px - 1024px"
+          },
+          "type": "Text"
+        },
+        "height-md": {
+          "config": {
+            "label": "Height MD",
+            "placeholder": "375px - 768px"
+          },
+          "type": "Text"
+        },
+        "height-sm": {
+          "config": {
+            "label": "Height SM",
+            "placeholder": "320px - 375px"
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

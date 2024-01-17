@@ -1,0 +1,115 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  transition: all .4s ease;
+  background-color: #111213;
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: 'zero' on, 'ordn' on, 'ss02' on, 'ss05' on; // todo need research a property and see if we need it
+  overflow-y: overlay; // removes the black line near scrollbar when Chrome browser is scaled > 100%
+}
+
+figure {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  font-feature-settings: normal; // for windows autofill
+}
+
+main {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &.ebook-page {
+    overflow: initial; // for correct working "sticky position" property
+  }
+}
+
+* {
+  outline: none !important;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility !important;
+
+  &::-moz-focus-outer,
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}
+
+// ------------ Styles for Lazy Load ------------- //
+.lazyLoad {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.isLoaded {
+  opacity: 1;
+}
+
+// ------------ END Styles for Lazy Load ------------- //
+
+// ---------- BASE COLORS ------------- //
+.green {
+  color: #14c94d;
+}
+
+.yellow {
+  color: #f7c744;
+}
+
+.red {
+  color: #dc251c;
+}
+
+.blue {
+  color: #5159f6;
+}
+
+// Smartphones Form Input Zoom Fixes
+@media screen and (max-width: 700px) {
+  select,
+  textarea,
+  input[type='text'],
+  input[type='password'],
+  input[type='datetime'],
+  input[type='datetime-local'],
+  input[type='date'],
+  input[type='month'],
+  input[type='time'],
+  input[type='week'],
+  input[type='number'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='url'] {
+    font-size: 16px !important;
+  }
+}

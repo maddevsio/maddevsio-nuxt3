@@ -1,0 +1,96 @@
+{
+  "id": "tabs_slice",
+  "type": "SharedSlice",
+  "name": "TabsSlice",
+  "description": "TabsSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TabsSlice",
+      "primary": {},
+      "items": {
+        "tabTextAndCheckmarkColor": {
+          "config": {
+            "label": "Tab Text And Checkmark Color",
+            "placeholder": "Required to choice.",
+            "options": [
+              "green-gradient",
+              "purple-gradient",
+              "pink-gradient",
+              "blue-gradient"
+            ],
+            "default_value": "green-gradient"
+          },
+          "type": "Select"
+        },
+        "tabName": {
+          "config": {
+            "label": "Tab Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "tabDescription": {
+          "config": {
+            "label": "Tab Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "tabListTitle": {
+          "config": {
+            "label": "Tab List Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "tabListItems": {
+          "config": {
+            "label": "Tab List Items",
+            "placeholder": "You can only create a list!!!",
+            "allowTargetBlank": true,
+            "single": "list-item"
+          },
+          "type": "StructuredText"
+        },
+        "showButton": {
+          "config": {
+            "label": "Show Button",
+            "placeholder_false": "Hide",
+            "placeholder_true": "Show",
+            "default_value": true
+          },
+          "type": "Boolean"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Button Text",
+            "placeholder": "default: Get Started"
+          },
+          "type": "Text"
+        },
+        "tabImage": {
+          "config": {
+            "label": "Tab Image",
+            "constraint": {
+              "width": null,
+              "height": null
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "tabImageIndentFromBottom": {
+          "config": {
+            "label": "Tab Image Indent From Bottom",
+            "placeholder": "In PX or %"
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}
