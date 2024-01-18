@@ -27,7 +27,7 @@ export interface ITitleAndDescription {
   getCssVars: () => ComputedRef<{ [key: string]: string }>
   reformatToHtml: (text: string, type: string) => string | string[]
   getContentClassNames: (options: { textPosition?: string; descriptionLocation?: 'row' | 'column' }) => any
-  initIntersectionObserverForSections: () => void
+  initIntersectionObserverForSections: (func: (anchor: string) => void, activeAnchor: Ref<string>) => void
   updateFontsLoaded: () => void
 }
 

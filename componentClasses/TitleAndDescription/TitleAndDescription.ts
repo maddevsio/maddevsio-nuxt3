@@ -1,4 +1,4 @@
-import { computed, markRaw, ref } from 'vue'
+import { computed, markRaw, type Ref, ref } from 'vue'
 import type {
   ITitleAndDescription,
   TitleAndDescriptionPropTypes,
@@ -126,16 +126,15 @@ export class TitleAndDescription implements ITitleAndDescription {
       ].filter(Boolean),
     )
 
-  initIntersectionObserverForSections() {
+  initIntersectionObserverForSections(updateActiveAnchor: (anchor: string) => void, activeAnchor: Ref<string>) {
     this.observer.value = new IntersectionObserver(entries => {
-      // eslint-disable-next-line
-      entries.forEach((entry) => {
-        // if (entry.isIntersecting) {
-        //   const targetId = entry.target.id ? entry.target.id.split('_')[0].toLowerCase() : ''
-        //   if (targetId && this.horizontalAnchorActiveGlobal.anchorActiveGlobal.value.toLowerCase() !== targetId) {
-        //     this.horizontalAnchorActiveGlobal.updateAnchorActiveGlobal(targetId)
-        //   }
-        // }
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const targetId = entry.target.id ? entry.target.id.split('_')[0].toLowerCase() : ''
+          if (targetId && activeAnchor.value !== targetId) {
+            updateActiveAnchor(targetId)
+          }
+        }
       })
     }, this.intersectionOptions)
     if (this.sectionRef.value) {

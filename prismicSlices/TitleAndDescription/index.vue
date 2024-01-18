@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { h } from 'vue'
+import { storeToRefs } from 'pinia'
 import { TitleAndDescription } from '~/componentClasses/TitleAndDescription/TitleAndDescription'
 
 const props = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 
 const titleAndDescription = new TitleAndDescription(props.slice)
+const horizontalToCStore = useHorizontalToCStore()
+const { activeAnchor } = storeToRefs(horizontalToCStore)
 
 const {
   observer,
@@ -25,7 +28,7 @@ const {
 
 onMounted(() => {
   fontsLoaded.value = true
-  initIntersectionObserverForSections()
+  initIntersectionObserverForSections(horizontalToCStore.updateActiveAnchor, activeAnchor)
 })
 
 onUnmounted(() => {

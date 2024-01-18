@@ -14,4 +14,5 @@ export const components = defineSliceZoneComponents({
   customer_rates_slice: defineAsyncComponent(() => import('./CustomerRatesSlice/index.vue')),
   key_metrics_slice: defineAsyncComponent(() => import('./KeyMetricsSlice/index.vue')),
   cta_banner_slice: defineAsyncComponent(() => import('./CtaBannerSlice/index.vue')),
+  horizontal_to_c: defineAsyncComponent(() => import('./HorizontalToC/index.vue')),
 })

@@ -100,6 +100,10 @@ export default defineNuxtConfig({
       },
     }],
     '@pinia/nuxt',
+    '@nuxtjs/device',
+    ['nuxt-delay-hydration', {
+      mode: 'mount',
+    }],
   ],
 
   nitro: {

@@ -11,14 +11,14 @@ const { reformattedDescription, reformattedSubtitle, buttonText, reformattedTitl
 
 <template>
   <section id="transparent-header-area" class="main-start-screen">
-    <img
-      v-if="image && image.url"
+    <SharedUIPictureFullScreen
       :src="image.url"
-      :srcset="`${image.url}&w=640 640w, ${image.url}&w=900 900w`"
-      sizes="(max-width: 640px) 640px, 900px"
+      :height="639"
+      :width="1800"
       :alt="image.alt || 'Start Screen Background'"
+      :lazy="false"
       class="main-start-screen__image"
-    >
+    />
     <div ref="sectionText" class="container">
       <div class="main-start-screen__text-content">
         <h1 class="main-start-screen__title" v-html="reformattedTitle" />

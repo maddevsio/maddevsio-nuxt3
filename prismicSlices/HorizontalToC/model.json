@@ -1,0 +1,32 @@
+{
+  "id": "horizontal_to_c",
+  "type": "SharedSlice",
+  "name": "HorizontalToC",
+  "description": "HorizontalToC",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HorizontalToC",
+      "primary": {},
+      "items": {
+        "label": {
+          "config": {
+            "label": "label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "sectionId": {
+          "config": {
+            "label": "sectionId",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

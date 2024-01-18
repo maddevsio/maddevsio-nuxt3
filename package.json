@@ -1,12 +1,18 @@
 {
-  "name": "nuxt-app",
+  "name": "maddevs",
+  "version": "4.0.0",
+  "description": "Mad Devs",
+  "author": "Mad Devs",
   "private": true,
-  "type": "module",
+  "engines": {
+    "node": "18.19.0"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs",
     "postinstall": "nuxt prepare",
     "slicemachine": "start-slicemachine",
     "lint": "eslint .",
@@ -33,12 +39,14 @@
   },
   "dependencies": {
     "@nuxt-modules/compression": "^0.1.0",
+    "@nuxtjs/device": "^3.1.1",
     "@nuxtjs/robots": "^3.0.0",
     "@pinia/nuxt": "^0.5.1",
     "@prismicio/vue": "^4.1.0",
     "dotenv": "^16.3.1",
     "h3-compression": "^0.3.2",
     "lottie-web": "^5.12.2",
+    "nuxt-delay-hydration": "^1.3.3",
     "pinia": "^2.1.7",
     "sass": "^1.69.5",
     "vue-awesome-swiper": "^5.0.1"
