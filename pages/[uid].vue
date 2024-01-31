@@ -5,19 +5,27 @@ import { fetchLinks } from '~/config/constants'
 const { client } = usePrismic()
 const route = useRoute()
 
-const { data: customPage } = await useAsyncData('home', () => client.getByUID('custom_page', route.params.uid.toString(), {
-  fetchLinks,
-}))
+const { data, error } = await useAsyncData(`customPage-${ route.params.uid }`, async () => {
+  try {
+    return await client.getByUID('custom_page', route.params.uid.toString(), {
+      fetchLinks,
+    })
+  } catch (e) {
+    showError({ message: 'Page not found', statusCode: 404 })
+  }
+})
 
-if (!customPage.value) {
+if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 </script>
 
 <template>
-  <div>
+  <div
+    v-if="data"
+  >
     <SliceZone
-      :slices="customPage.data.body"
+      :slices="data.data.body"
       :components="components"
     />
   </div>

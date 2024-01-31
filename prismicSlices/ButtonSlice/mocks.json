@@ -1,0 +1,155 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default-slice",
+		"primary": {
+			"fullWidth": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			},
+			"animation": {
+				"__TYPE__": "FieldContent",
+				"value": "fade-up",
+				"type": "Select"
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "black",
+				"type": "Select"
+			},
+			"alignment": {
+				"__TYPE__": "FieldContent",
+				"value": "left",
+				"type": "Select"
+			},
+			"text": {
+				"__TYPE__": "FieldContent",
+				"value": "star",
+				"type": "Text"
+			},
+			"link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev"
+				}
+			},
+			"maxWidth": {
+				"__TYPE__": "FieldContent",
+				"value": "best",
+				"type": "Text"
+			},
+			"target": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "outlinedButton",
+		"primary": {
+			"fullWidth": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			},
+			"animation": {
+				"__TYPE__": "FieldContent",
+				"value": "fade-up-right",
+				"type": "Select"
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "black",
+				"type": "Select"
+			},
+			"color": {
+				"__TYPE__": "FieldContent",
+				"value": "grey",
+				"type": "Select"
+			},
+			"alignment": {
+				"__TYPE__": "FieldContent",
+				"value": "left",
+				"type": "Select"
+			},
+			"text": {
+				"__TYPE__": "FieldContent",
+				"value": "usually",
+				"type": "Text"
+			},
+			"link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com"
+				}
+			},
+			"maxWidth": {
+				"__TYPE__": "FieldContent",
+				"value": "remove",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "outlinedLightButtonSlice",
+		"primary": {
+			"fullWidth": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			},
+			"background": {
+				"__TYPE__": "FieldContent",
+				"value": "white",
+				"type": "Select"
+			},
+			"typeLink": {
+				"__TYPE__": "FieldContent",
+				"value": "internal",
+				"type": "Select"
+			},
+			"text": {
+				"__TYPE__": "FieldContent",
+				"value": "replace",
+				"type": "Text"
+			},
+			"internalLink": {
+				"__TYPE__": "FieldContent",
+				"value": "desert",
+				"type": "Text"
+			},
+			"link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com"
+				}
+			},
+			"maxWidth": {
+				"__TYPE__": "FieldContent",
+				"value": "cause",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

@@ -3,10 +3,19 @@ import { components } from '~/prismicSlices'
 import { fetchLinks } from '~/config/constants'
 
 const { client } = usePrismic()
+const { data: home, error } = await useAsyncData('home', async () => {
+  try {
+    return await client.getByUID('custom_page', 'main-page', {
+      fetchLinks,
+    })
+  } catch (e) {
+    showError({ message: 'Page not found', statusCode: 404 })
+  }
+})
 
-const { data: home } = await useAsyncData('home', () => client.getByUID('custom_page', 'main-page', {
-  fetchLinks,
-}))
+if (error.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+}
 </script>
 
 <template>

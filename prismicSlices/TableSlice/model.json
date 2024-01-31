@@ -1,0 +1,70 @@
+{
+  "id": "table_slice",
+  "type": "SharedSlice",
+  "name": "TableSlice",
+  "description": "TableSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TableSlice",
+      "primary": {
+        "tableRich": {
+          "config": {
+            "label": "Insert Table HTML Rich",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          },
+          "type": "StructuredText"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "forCustomPage",
+      "name": "for custom page",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TableSlice",
+      "primary": {
+        "containerSize": {
+          "config": {
+            "label": "Container size",
+            "placeholder": "Select size in px",
+            "options": [
+              "1240",
+              "1026",
+              "816"
+            ]
+          },
+          "type": "Select"
+        },
+        "background": {
+          "config": {
+            "label": "Slice background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "tableRich": {
+          "config": {
+            "label": "Insert Table HTML Rich",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          },
+          "type": "StructuredText"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

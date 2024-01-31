@@ -1,0 +1,95 @@
+{
+  "id": "service_slice_with_lottie",
+  "type": "SharedSlice",
+  "name": "ServiceSliceWithLottie",
+  "description": "ServiceSliceWithLottie",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "ServiceSliceWithLottie",
+      "primary": {
+        "firstGroupButtonText": {
+          "config": {
+            "label": "First Group Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "secondGroupButtonText": {
+          "config": {
+            "label": "Second Group Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "thirdGroupButtonText": {
+          "config": {
+            "label": "Third Group Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "softwareDevelopmentLink": {
+          "config": {
+            "label": "Software Development Link",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        },
+        "hrPracticesLink": {
+          "config": {
+            "label": "HR Practices Link",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        },
+        "transparentStaffingLink": {
+          "config": {
+            "label": "Build-Operate-Transfer Link",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        },
+        "technicalAuditLink": {
+          "config": {
+            "label": "Technical Audit Link",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        },
+        "technicalInfrastructureLink": {
+          "config": {
+            "label": "Technical Infrastructure Link",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        },
+        "techMarketingLink": {
+          "config": {
+            "label": "Tech Marketing Link",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        },
+        "projectDiscoveryLink": {
+          "config": {
+            "label": "Project Discovery Link",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        },
+        "customSoftwareLink": {
+          "config": {
+            "label": "Custom Software Link",
+            "placeholder": "like: /link-to-page/"
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

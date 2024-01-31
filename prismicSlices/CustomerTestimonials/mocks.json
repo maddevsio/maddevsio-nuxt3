@@ -1,0 +1,19 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "clutchReviewsBlack",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "fifteen",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

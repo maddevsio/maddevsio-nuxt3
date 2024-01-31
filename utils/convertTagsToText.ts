@@ -1,4 +1,4 @@
-const convertTagsToText = (text = '', excludedTags = []) => {
+const convertTagsToText = (text: string | undefined, excludedTags = []) => {
   if (typeof text !== 'string') { return '' }
   // convert all html tags to text
   let formattedText = text

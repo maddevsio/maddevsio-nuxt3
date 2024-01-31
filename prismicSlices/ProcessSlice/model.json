@@ -1,0 +1,108 @@
+{
+  "id": "process_slice",
+  "type": "SharedSlice",
+  "name": "ProcessSlice",
+  "description": "ProcessSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "ProcessSlice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "tabName": {
+          "config": {
+            "label": "Tab Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "tabDescription": {
+          "config": {
+            "label": "Tab Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "tabIcon": {
+          "config": {
+            "label": "Tab Icon",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      }
+    },
+    {
+      "id": "processInlineSlice",
+      "name": "ProcessInlineSlice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "ProcessSlice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "Icon",
+            "constraint": {
+              "width": 50,
+              "height": 50
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "showBottomDivider": {
+          "config": {
+            "label": "Show Bottom Divider",
+            "placeholder_false": "Hide",
+            "placeholder_true": "Show",
+            "default_value": false
+          },
+          "type": "Boolean"
+        }
+      }
+    }
+  ]
+}

@@ -2,7 +2,6 @@
 // import { ref } from 'vue'
 // import { contactMeClickEvent } from '~/analytics/events.js'
 // import { useMediaFromS3 } from '~/composables/useMediaFromS3'
-import UIButtonPowerCustom from '~/components/shared/UIButtonPowerCustom.vue'
 
 defineProps({
   activeTab: {
@@ -85,7 +84,7 @@ const showModal = () => {
             </li>
           </ul>
           <div class="tabs-slice__tab-content-button">
-            <UIButtonPowerCustom
+            <LazySharedUIButtonPowerCustom
               v-if="tab.showButton"
               :label="tab.buttonText || 'Get Started'"
               have-border

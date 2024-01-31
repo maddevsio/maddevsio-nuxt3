@@ -1,9 +1,4 @@
 <script setup lang="ts">
-// import { ref } from 'vue'
-// import { contactMeClickEvent } from '~/analytics/events.js'
-// import { useMediaFromS3 } from '~/composables/useMediaFromS3'
-import UIButtonPowerCustom from '~/components/shared/UIButtonPowerCustom.vue'
-
 defineProps({
   activeTab: {
     type: String,
@@ -69,8 +64,11 @@ const showModal = () => {
       :key="`${tab.tabName.split(' ').join('-')}-${tabIndex + 1}`"
       class="tabs-slice__tab-content-wrapper"
     >
-      <transition name="fade" mode="out-in">
-        <div v-if="activeTab === tab.tabName" class="tabs-slice__tab-content">
+      <Transition name="fade" mode="out-in">
+        <div
+          v-if="activeTab === tab.tabName"
+          class="tabs-slice__tab-content"
+        >
           <p v-if="tab.tabDescription" class="tabs-slice__tab-content-description" v-html="tab.tabDescription" />
           <h3 v-if="tab.tabListTitle" class="tabs-slice__tab-content-list-title">
             {{ tab.tabListTitle }}
@@ -93,7 +91,7 @@ const showModal = () => {
             </li>
           </ul>
           <div class="tabs-slice__tab-content-button">
-            <UIButtonPowerCustom
+            <LazySharedUIButtonPowerCustom
               v-if="tab.showButton"
               :label="tab.buttonText || 'Get Started'"
               have-border
@@ -117,7 +115,7 @@ const showModal = () => {
             class="tabs-slice__tab-content-image"
           >
         </div>
-      </transition>
+      </Transition>
     </div>
     <!--		<ContactMeModal ref="modalContactMeRef" :location="'\'Let`s talk\' button, main start screen component'" />-->
   </div>
@@ -291,17 +289,11 @@ const showModal = () => {
 .fade-enter-active,
 .fade-leave-active {
   transition: 0.3s ease-in-out;
-  overflow: hidden;
 }
 
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-.fade-leave,
-.fade-enter-to {
-  opacity: 1;
 }
 
 .fade-leave-active {

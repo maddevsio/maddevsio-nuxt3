@@ -1,0 +1,37 @@
+{
+  "id": "divider_slice",
+  "type": "SharedSlice",
+  "name": "DividerSlice",
+  "description": "DividerSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "DividerSlice",
+      "primary": {
+        "background": {
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ],
+            "default_value": "black"
+          },
+          "type": "Select"
+        },
+        "dividerHeight": {
+          "config": {
+            "label": "Divider Height (in PX)",
+            "placeholder": "DEFAULT: 1px"
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

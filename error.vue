@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const error = useError()
 const { $getMediaFromS3 } = useMediaFromS3()
 const handleClearError = () => clearError({ redirect: '/' })
 </script>
@@ -9,7 +10,7 @@ const handleClearError = () => clearError({ redirect: '/' })
       id="404-code"
       class="case_lottie"
       height="170px"
-      :lottie-link="$getMediaFromS3(`/images/Cases/error/lottie/404.json`)"
+      :lottie-link="$getMediaFromS3(`/images/Cases/error/lottie/404.json`)!"
       :autoplay="true"
     />
     <h1 class="error-page_title">

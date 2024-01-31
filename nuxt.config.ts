@@ -82,11 +82,6 @@ export default defineNuxtConfig({
 
   devtools: { enabled: process.env.FF_ENVIRONMENT !== 'production' },
 
-  // routeRules: {
-  //   '/': { prerender: true },
-  //   '/**': { prerender: true },
-  // },
-
   experimental: {
     asyncEntry: true,
   },
@@ -103,6 +98,9 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     ['nuxt-delay-hydration', {
       mode: 'mount',
+    }],
+    ['nuxt-swiper', {
+      styleLang: 'scss',
     }],
   ],
 

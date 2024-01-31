@@ -17,5 +17,6 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
     'arrow-parens': ['error', 'as-needed'],
     'no-tabs': 'off',
+    'vue/no-v-text-v-html-on-component': 'off'
   },
 };

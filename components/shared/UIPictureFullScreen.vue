@@ -25,11 +25,13 @@ const props = defineProps({
 const { isMobile } = useDevice()
 useHead({
   link: [
-    {
-      rel: 'preload',
-      as: 'image',
-      href: `${ props.src.split('?')[0] }?auto=compress,format&w=650`,
-    },
+    isMobile
+      ? {
+        rel: 'preload',
+        as: 'image',
+        href: `${ props.src.split('?')[0] }?auto=compress,format&w=650`,
+      }
+      : {},
   ],
 })
 </script>
