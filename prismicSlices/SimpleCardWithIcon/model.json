@@ -1,0 +1,145 @@
+{
+  "id": "simple_card_with_icon",
+  "type": "SharedSlice",
+  "name": "SimpleCardWithIcon",
+  "description": "SimpleCardWithIcon",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "SimpleCardWithIcon",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "Card Icon",
+            "constraint": {
+              "width": 50,
+              "height": 50
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "title": {
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "titleTag": {
+          "config": {
+            "label": "Title Tag",
+            "placeholder": "Default: h3",
+            "options": [
+              "h3",
+              "h4",
+              "h5",
+              "h6"
+            ],
+            "default_value": "h3"
+          },
+          "type": "Select"
+        },
+        "titleColor": {
+          "config": {
+            "label": "Title Color",
+            "placeholder": "Default: blue-gradient",
+            "options": [
+              "blue-gradient",
+              "pink-gradient",
+              "purple-gradient",
+              "green-gradient",
+              "orange-gradient",
+              "white",
+              "black",
+              "yellow"
+            ],
+            "default_value": "blue-gradient"
+          },
+          "type": "Select"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "descriptionColor": {
+          "config": {
+            "label": "Description Color",
+            "placeholder": "Default: black",
+            "options": [
+              "black",
+              "white"
+            ],
+            "default_value": "black"
+          },
+          "type": "Select"
+        },
+        "bigCard": {
+          "config": {
+            "label": "Is It Big Card?",
+            "placeholder_false": "No",
+            "placeholder_true": "Yes",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "positionAtRow": {
+          "config": {
+            "label": "Is Big Card At Start Or End?",
+            "placeholder": "",
+            "options": [
+              "start",
+              "end"
+            ]
+          },
+          "type": "Select"
+        },
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "required choice",
+            "options": [
+              "white",
+              "black",
+              "red",
+              "blue",
+              "purple",
+              "orange",
+              "green"
+            ]
+          },
+          "type": "Select"
+        },
+        "link": {
+          "config": {
+            "label": "Link",
+            "placeholder": "like: /blog/"
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

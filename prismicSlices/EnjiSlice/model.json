@@ -1,0 +1,82 @@
+{
+  "id": "enji_slice",
+  "type": "SharedSlice",
+  "name": "EnjiSlice",
+  "description": "EnjiSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "EnjiSlice",
+      "primary": {
+        "mainTitle": {
+          "config": {
+            "label": "Main Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "mainDescription": {
+          "config": {
+            "label": "Main Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "enjiDescription": {
+          "config": {
+            "label": "Enji Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "linkText": {
+          "config": {
+            "label": "Link Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "link": {
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "buttonLink": {
+          "config": {
+            "label": "Button Link",
+            "placeholder": "",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": null,
+              "height": null
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

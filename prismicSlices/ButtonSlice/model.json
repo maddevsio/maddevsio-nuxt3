@@ -1,0 +1,287 @@
+{
+  "id": "button_slice",
+  "type": "SharedSlice",
+  "name": "ButtonSlice",
+  "description": "ButtonSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "ButtonSlice",
+      "primary": {
+        "fullWidth": {
+          "config": {
+            "label": "Full width",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "animation": {
+          "config": {
+            "label": "Animation list",
+            "placeholder": "Select aos animation",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-righ",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-up",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ]
+          },
+          "type": "Select"
+        },
+        "background": {
+          "config": {
+            "label": "Slice background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white",
+              "grey"
+            ],
+            "default_value": "black"
+          },
+          "type": "Select"
+        },
+        "alignment": {
+          "config": {
+            "label": "Alignment",
+            "placeholder": "",
+            "options": [
+              "left",
+              "center",
+              "right"
+            ],
+            "default_value": "left"
+          },
+          "type": "Select"
+        },
+        "text": {
+          "config": {
+            "label": "Button text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "link": {
+          "config": {
+            "label": "Button link",
+            "placeholder": "",
+            "select": "web",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "maxWidth": {
+          "config": {
+            "label": "Max width (px,% or vw)",
+            "placeholder": "300px"
+          },
+          "type": "Text"
+        },
+        "target": {
+          "config": {
+            "label": "Type",
+            "placeholder_false": "Internal",
+            "placeholder_true": "External",
+            "default_value": false
+          },
+          "type": "Boolean"
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "outlinedButton",
+      "name": "Outlined Button",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "ButtonSlice",
+      "primary": {
+        "fullWidth": {
+          "config": {
+            "label": "Full width",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "animation": {
+          "config": {
+            "label": "Animation list",
+            "placeholder": "Select aos animation",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-righ",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-up",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ]
+          },
+          "type": "Select"
+        },
+        "background": {
+          "config": {
+            "label": "Slice background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white",
+              "grey"
+            ],
+            "default_value": "black"
+          },
+          "type": "Select"
+        },
+        "color": {
+          "config": {
+            "label": "Button color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "black",
+              "red",
+              "blue"
+            ]
+          },
+          "type": "Select"
+        },
+        "alignment": {
+          "config": {
+            "label": "Alignment",
+            "placeholder": "",
+            "options": [
+              "left",
+              "center",
+              "right"
+            ],
+            "default_value": "left"
+          },
+          "type": "Select"
+        },
+        "text": {
+          "config": {
+            "label": "Button text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "link": {
+          "config": {
+            "label": "Button link",
+            "placeholder": "",
+            "select": "web",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "maxWidth": {
+          "config": {
+            "label": "Max width (px,% or vw)",
+            "placeholder": "300px"
+          },
+          "type": "Text"
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "outlinedLightButtonSlice",
+      "name": "OutlinedLightButtonSlice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "ButtonSlice",
+      "primary": {
+        "fullWidth": {
+          "config": {
+            "label": "Full width",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          },
+          "type": "Boolean"
+        },
+        "background": {
+          "config": {
+            "label": "Slice background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white",
+              "grey"
+            ],
+            "default_value": "black"
+          },
+          "type": "Select"
+        },
+        "typeLink": {
+          "config": {
+            "label": "Type of Link",
+            "placeholder": "",
+            "options": [
+              "internal",
+              "external"
+            ],
+            "default_value": "internal"
+          },
+          "type": "Select"
+        },
+        "text": {
+          "config": {
+            "label": "Button text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "internalLink": {
+          "config": {
+            "label": "Internal Link",
+            "placeholder": "like: /link-to-page/, withou domain"
+          },
+          "type": "Text"
+        },
+        "link": {
+          "config": {
+            "label": "External Link",
+            "placeholder": "NOT OUR PAGES",
+            "select": "web",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "maxWidth": {
+          "config": {
+            "label": "Max width (px,% or vw)",
+            "placeholder": "300px"
+          },
+          "type": "Text"
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}
