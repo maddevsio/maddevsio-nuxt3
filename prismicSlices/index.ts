@@ -26,4 +26,5 @@ export const components = defineSliceZoneComponents({
   card_with_colored_title: defineAsyncComponent(() => import('./CardWithColoredTitle/index.vue')),
   process_slice: defineAsyncComponent(() => import('./ProcessSlice/index.vue')),
   table_slice: defineAsyncComponent(() => import('./TableSlice/index.vue')),
+  case_list_slice: defineAsyncComponent(() => import('./CaseListSlice/index.vue')),
 })

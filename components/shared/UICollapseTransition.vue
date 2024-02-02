@@ -1,5 +1,21 @@
+<script setup lang="ts">
+const { animationType } = defineProps({
+  animationType: {
+    type: String,
+    default: 'collapse',
+  },
+})
+
+const transitionStart = (el: HTMLElement) => {
+  el.style.height = `${ el.scrollHeight }px`
+}
+
+const transitionEnd = (el: HTMLElement) => {
+  el.style.height = 'unset'
+}
+</script>
 <template>
-  <transition
+  <Transition
     :name="animationType"
     @enter="transitionStart"
     @after-enter="transitionEnd"
@@ -7,37 +23,8 @@
     @after-leave="transitionEnd"
   >
     <slot />
-  </transition>
+  </Transition>
 </template>
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'UICollapseTransition',
-
-  props: {
-    animationType: {
-      type: String,
-      default: 'collapse',
-    },
-  },
-
-  setup() {
-    const transitionStart = el => {
-      el.style.height = `${el.scrollHeight}px`
-    }
-
-    const transitionEnd = el => {
-      el.style.height = null
-    }
-
-    return {
-      transitionEnd,
-      transitionStart,
-    }
-  },
-})
-</script>
 <style lang="scss" scoped>
 .collapse-enter-active,
 .collapse-leave-active {
