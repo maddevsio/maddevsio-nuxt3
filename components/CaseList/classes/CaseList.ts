@@ -14,7 +14,6 @@ export class CaseList implements ICaseList {
   }
 
   transformToObjectLogoData = (caseItems: ICaseListItem[]) => caseItems.map(caseItem => {
-    console.log('CASE ITEM: ', caseItem)
     caseItem.logo = {
       width: caseItem.logoWidth,
       height: caseItem.logoHeight,

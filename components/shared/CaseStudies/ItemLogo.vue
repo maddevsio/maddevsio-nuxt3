@@ -12,8 +12,6 @@ const { logo } = defineProps({
   },
 })
 
-console.log(logo)
-
 const { $getMediaFromS3 } = useMediaFromS3()
 </script>
 <template>

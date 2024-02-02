@@ -12,6 +12,9 @@ export interface ICaseListItem {
   logoWidth: string
   logoHeight: string
   logoAlt: string
+  folder: string
+  file: string
+  alt: string
   logo: {
     width: string
     height: string
