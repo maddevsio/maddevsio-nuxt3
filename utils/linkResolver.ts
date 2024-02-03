@@ -1,4 +1,4 @@
-export const linkResolver = (doc: { isBroken: boolean, type: string, uid: string }) => {
+export const linkResolver = (doc: { isBroken?: boolean, type: string, uid: string }) => {
   const notFoundPage = '/not-found/'
   if (!doc) { return notFoundPage }
   if (doc.isBroken) { return '/not-found/' }

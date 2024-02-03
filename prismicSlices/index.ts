@@ -27,4 +27,5 @@ export const components = defineSliceZoneComponents({
   process_slice: defineAsyncComponent(() => import('./ProcessSlice/index.vue')),
   table_slice: defineAsyncComponent(() => import('./TableSlice/index.vue')),
   case_list_slice: defineAsyncComponent(() => import('./CaseListSlice/index.vue')),
+  posts_section_slice: defineAsyncComponent(() => import('./PostsSectionSlice/index.vue')),
 })

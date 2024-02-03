@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   src: {
     type: String,
     default: '',
@@ -23,34 +23,19 @@ const props = defineProps({
 })
 
 const { isMobile } = useDevice()
-useHead({
-  link: [
-    isMobile
-      ? {
-        rel: 'preload',
-        as: 'image',
-        href: `${ props.src.split('?')[0] }?auto=compress,format&w=650`,
-      }
-      : {},
-  ],
-})
 </script>
 
 <template>
-  <picture>
-    <source
-      :srcset="`${src.split('?')[0]}?auto=compress,format&w=650`"
-      media="(max-width: 450px)"
-    >
-    <img
-      :loading="lazy ? 'lazy' : 'eager'"
-      :src="src.replace('compress,', '')"
-      :width="isMobile ? 413 : width"
-      :height="isMobile ? 580 : height"
-      :alt="alt"
-      class="picture-image"
-    >
-  </picture>
+  <NuxtImg
+    provider="prismic"
+    preload
+    :src="src"
+    sizes="mobile:380px tablet:512px desktop:100vw"
+    :alt="alt"
+    :width="isMobile ? 413 : width"
+    :height="isMobile ? 580 : height"
+    class="picture-image"
+  />
 </template>
 <style scoped lang="scss">
 .picture-image {

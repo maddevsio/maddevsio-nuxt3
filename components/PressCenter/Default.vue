@@ -12,20 +12,6 @@ const props = defineProps({
 const pressCenter = new PressCenter(props.slice)
 const { isMobile } = useCheckMobile(pressCenter.triggerBreakpoint)
 const { $getMediaFromS3 } = useMediaFromS3()
-const { client, filter } = usePrismic()
-
-onMounted(() => {
-  client.get({
-    filters: [
-      filter.at('document.type', 'post'),
-    ],
-    orderings: {
-      field: 'my.post.date',
-      direction: 'desc',
-    },
-    pageSize: 100,
-  })
-})
 </script>
 <template>
   <section class="press-center-slice">
@@ -49,18 +35,19 @@ onMounted(() => {
               v-if="card.image && card.image.url"
               class="press-center-slice__card-header"
             >
-              <img
+              <NuxtImg
+                provider="prismic"
                 loading="lazy"
-                :src="card.image.url.replace('compress,', '')"
+                :src="card.image.url.replace(/\?.*/, '?auto=format')"
                 :alt="card.image.alt || 'Card image'"
-                width="294.96"
-                height="166.04"
+                :width="294.96"
+                :height="166.04"
                 class="press-center-slice__card-header-image"
-              >
+              />
               <img
                 v-if="card.linkedCompanyLogo && card.linkedCompanyLogo.url"
                 loading="lazy"
-                :src="card.linkedCompanyLogo.url.replace('compress,', '')"
+                :src="card.linkedCompanyLogo.url"
                 :alt="card.linkedCompanyLogo.alt || 'Card logo'"
                 :width="card.linkedCompanyLogo.dimensions.width"
                 :height="card.linkedCompanyLogo.dimensions.height"
