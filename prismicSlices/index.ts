@@ -30,4 +30,5 @@ export const components = defineSliceZoneComponents({
   posts_section_slice: defineAsyncComponent(() => import('./PostsSectionSlice/index.vue')),
   writeup_list_slice: defineAsyncComponent(() => import('./WriteupListSlice/index.vue')),
   accordion_slice: defineAsyncComponent(() => import('./AccordionSlice/index.vue')),
+  benefit_slice: defineAsyncComponent(() => import('./BenefitSlice/index.vue')),
 })
