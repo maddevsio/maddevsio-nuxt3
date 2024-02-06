@@ -65,12 +65,12 @@
   letter-spacing: $spacing;
 }
 
-@mixin list-item-box($backgroundColor, $padding, $borderRadius) {
+@mixin list-item-box($background-color, $padding, $border-radius) {
   position: relative;
   margin-bottom: 16px;
   padding: $padding;
-  border-radius: $borderRadius;
-  background-color: $backgroundColor;
+  border-radius: $border-radius;
+  background-color: $background-color;
   list-style-type: none;
 
   &:last-child {
@@ -78,19 +78,19 @@
   }
 }
 
-@mixin grid($columnsTemplate, $rowsTemplate, $columnGap, $rowGap) {
+@mixin grid($columns-template, $rows-template, $column-gap, $row-gap) {
   display: grid;
-  grid-template-columns: $columnsTemplate;
-  grid-template-rows: $rowsTemplate;
-  grid-column-gap: $columnGap;
-  grid-row-gap: $rowGap;
+  grid-template-columns: $columns-template;
+  grid-template-rows: $rows-template;
+  grid-column-gap: $column-gap;
+  grid-row-gap: $row-gap;
 }
 
-@mixin card($width, $height, $padding, $borderRadius) {
+@mixin card($width, $height, $padding, $border-radius) {
   width: $width;
   height: $height;
   padding: $padding;
-  border-radius: $borderRadius;
+  border-radius: $border-radius;
 }
 
 // CORE ICONS
@@ -121,7 +121,17 @@
   background-image: url('data:image/svg+xml, <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.36188 12.867C8.38459 12.4485 11 10.945 11 7.05769C11 3.52064 8.49394 1.16484 6.69124 0.0825359C6.292 -0.158125 5.82353 0.158077 5.82353 0.636056V1.85808C5.82353 2.82206 5.43141 4.58155 4.34176 5.31356C3.78529 5.68726 3.18353 5.12772 3.11624 4.44585L3.06059 3.88564C2.99588 3.23452 2.354 2.83944 1.85059 3.23653C0.945353 3.94848 0 5.19858 0 7.05702C0 11.8107 3.42229 13 5.13312 13C5.23276 13 5.33759 12.996 5.44629 12.99C4.60124 12.9158 3.23529 12.3743 3.23529 10.6228C3.23529 9.25238 4.20265 8.3265 4.93771 7.87526C5.13571 7.75493 5.36671 7.91203 5.36671 8.14935V8.54377C5.36671 8.84459 5.47994 9.31589 5.74847 9.6381C6.05259 10.0031 6.49841 9.62072 6.534 9.14074C6.54565 8.98966 6.69318 8.89339 6.82 8.9696C7.23477 9.22029 7.76471 9.75509 7.76471 10.6228C7.76471 11.9919 7.03418 12.6216 6.36188 12.867Z" fill="white"/></svg>');
 }
 
-@mixin arrow-in-circle($size, $arrowSize) {
+@mixin checkmark-red($width, $height) {
+  width: $width;
+  min-width: $width;
+  height: $height;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('data:image/svg+xml,%3Csvg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M7.5002 17.1854L2.3252 12.0104L4.68353 9.65202L7.5002 12.477L15.7335 4.23535L18.0919 6.59368L7.5002 17.1854Z" fill="%23EC1C24"/%3E%3C/svg%3E');
+}
+
+
+@mixin arrow-in-circle($size, $arrow-size, $color) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,18 +139,19 @@
   min-width: $size;
   width: $size;
   height: $size;
+  min-height: $size;
   border-radius: 50%;
-  border: 1px solid;
+  border: 1px solid $color;
   background: none;
   cursor: pointer;
 
   &::before {
     content: '';
-    width: $arrowSize;
-    min-width: $arrowSize;
-    height: $arrowSize;
-    border-top: 1px solid;
-    border-left: 1px solid;
+    width: $arrow-size;
+    min-width: $arrow-size;
+    height: $arrow-size;
+    border-top: 1px solid $color;
+    border-left: 1px solid $color;
     border-right: 1px solid transparent;
     border-bottom: 1px solid transparent;
     transform: rotate(135deg) translate(20%, 20%);
@@ -344,11 +355,11 @@
 
 @mixin laptop-media-query {
   @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1440px),
-  only screen and (   min--moz-device-pixel-ratio: 2) and (max-width: 1440px),
-  only screen and (     -o-min-device-pixel-ratio: 2/1) and (max-width: 1440px),
-  only screen and (        min-device-pixel-ratio: 2) and (max-width: 1440px),
-  only screen and (                min-resolution: 192dpi) and (max-width: 1440px),
-  only screen and (                min-resolution: 2dppx) and (max-width: 1440px),
+  only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1440px),
+  only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1440px),
+  only screen and (min-device-pixel-ratio: 2) and (max-width: 1440px),
+  only screen and (min-resolution: 192dpi) and (max-width: 1440px),
+  only screen and (min-resolution: 2dppx) and (max-width: 1440px),
   only screen and (max-width: 1280px) {
     @content;
   }
@@ -471,4 +482,11 @@
       @content;
     }
   }
+}
+
+@mixin centered-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

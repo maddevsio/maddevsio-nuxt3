@@ -19,7 +19,6 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 </script>
-
 <template>
   <div
     v-if="data"
@@ -30,7 +29,3 @@ if (error.value) {
     />
   </div>
 </template>
-
-<style scoped lang="scss">
-
-</style>
