@@ -182,7 +182,7 @@ export default defineNuxtConfig({
         const file = manifest[key]
         if (file.preload && file.prefetch) {
           file.preload = false
-          file.preload = false
+          file.prefetch = false
         }
 
         if (file.assets) {
