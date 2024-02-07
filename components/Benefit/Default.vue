@@ -44,9 +44,8 @@ const { background } = benefitCards
           </div>
           <p
             class="benefit-slice__description"
-          >
-            {{ benefit.description }}
-          </p>
+            v-html="benefit.description"
+          />
         </div>
       </div>
     </div>
