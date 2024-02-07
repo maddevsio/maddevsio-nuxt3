@@ -106,10 +106,18 @@ export interface Author {
   type: string
   uid: string
   data: {
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    company: string
+    email: string
+    location: string
     name: string
     position: string
     thumbnail_image: ImageField
-    image: ImageField
+    image: ImageField & {
+      header: ImageField
+    }
     meta_title: string
     meta_description: string
     noindex: boolean
