@@ -23,16 +23,15 @@ const {
         :key="i"
         class="cards-with-icons__card"
       >
-        <NuxtImg
+        <img
           v-if="card.iconImage.url"
-          provider="prismic"
           loading="lazy"
           :src="card.iconImage.url"
           width="54"
           height="54"
           :alt="card.iconImage.alt || 'Icon image'"
           class="cards-with-icons__card-icon"
-        />
+        >
         <div
           class="cards-with-icons__card-title"
           v-html="$prismic.asHTML(card.title)"
