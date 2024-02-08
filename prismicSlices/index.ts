@@ -32,4 +32,5 @@ export const components = defineSliceZoneComponents({
   accordion_slice: defineAsyncComponent(() => import('./AccordionSlice/index.vue')),
   benefit_slice: defineAsyncComponent(() => import('./BenefitSlice/index.vue')),
   title_and_paragraph_slice: defineAsyncComponent(() => import('./TitleAndParagraphSlice/index.vue')),
+  cards_with_icon: defineAsyncComponent(() => import('./CardsWithIcon/index.vue')),
 })
