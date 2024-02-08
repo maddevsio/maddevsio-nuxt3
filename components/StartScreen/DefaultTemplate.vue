@@ -7,7 +7,7 @@ interface Props {
   imageOpacity: number
   title: string
   subtitle: string
-  background: string
+  background?: string | null
 }
 
 defineProps<Props>()
@@ -19,7 +19,7 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
   <section
     id="transparent-header-area"
     class="start-screen-slice"
-    :style="{ background: gradient }"
+    :style="{ 'background': gradient }"
   >
     <SharedUIPictureFullScreen
       :src="image.url"

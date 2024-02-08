@@ -11,10 +11,7 @@ export interface ICardWithColoredTitleAndIconItem {
 }
 
 export interface CardWithColoredTitleAndIconProps {
-  items: {
-    title: string
-    titleColor: string
-  }[]
+  items: ICardWithColoredTitleAndIconItem[]
   primary: {
     backgroundColor: string
   }

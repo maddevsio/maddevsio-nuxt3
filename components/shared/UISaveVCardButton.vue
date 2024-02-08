@@ -9,6 +9,8 @@ interface Props {
 const { vcard } = defineProps<Props>()
 
 const socialLinksString = ref('')
+const vcardUrl = ref('')
+
 for (const [network, url] of Object.entries(vcard.socialNetworks)) {
   if (network.toLowerCase() !== 'email') {
     const socialLink = `URL:${ url }\n`
@@ -16,20 +18,23 @@ for (const [network, url] of Object.entries(vcard.socialNetworks)) {
   }
 }
 
-const vcardData = 'BEGIN:VCARD\n' +
-  'VERSION:3.0\n' +
-  `REV:${ new Date().toISOString() }\n` +
-  `N;CHARSET=utf-8:${ vcard.lastName };${ vcard.firstName };;;\n` +
-  `FN;CHARSET=utf-8:${ vcard.firstName }${ vcard.lastName }\n` +
-  `ORG;CHARSET=utf-8:${ vcard.company }\n` +
-  `TITLE;CHARSET=utf-8:${ vcard.position }\n` +
-  `EMAIL;INTERNET;PREF;WORK:${ vcard.email }\n` +
-  `ADR;WORK;POSTAL;CHARSET=utf-8:${ vcard.location };;;;;;\n` +
-  `TEL;TYPE=CELL:${ vcard.phoneNumber }\n` +
-  `${ socialLinksString.value }END:VCARD`
-
 const filename = `${ vcard.firstName }_${ vcard.lastName }.vcf`
-const vcardUrl = `data:text/vcard;charset=utf-8,${ encodeURIComponent(vcardData) }`
+
+onMounted(() => {
+  const vcardData = 'BEGIN:VCARD\n' +
+    'VERSION:3.0\n' +
+    `REV:${ new Date().toISOString() }\n` +
+    `N;CHARSET=utf-8:${ vcard.lastName };${ vcard.firstName };;;\n` +
+    `FN;CHARSET=utf-8:${ vcard.firstName }${ vcard.lastName }\n` +
+    `ORG;CHARSET=utf-8:${ vcard.company }\n` +
+    `TITLE;CHARSET=utf-8:${ vcard.position }\n` +
+    `EMAIL;INTERNET;PREF;WORK:${ vcard.email }\n` +
+    `ADR;WORK;POSTAL;CHARSET=utf-8:${ vcard.location };;;;;;\n` +
+    `TEL;TYPE=CELL:${ vcard.phoneNumber }\n` +
+    `${ socialLinksString.value }END:VCARD`
+
+  vcardUrl.value = `data:text/vcard;charset=utf-8,${ encodeURIComponent(vcardData) }`
+})
 </script>
 <template>
   <div>
