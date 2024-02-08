@@ -35,4 +35,5 @@ export const components = defineSliceZoneComponents({
   cards_with_icon: defineAsyncComponent(() => import('./CardsWithIcon/index.vue')),
   text_slice: defineAsyncComponent(() => import('./TextSlice/index.vue')),
   text_list: defineAsyncComponent(() => import('./TextList/index.vue')),
+  achievements_slice: defineAsyncComponent(() => import('./AchievementsSlice/index.vue')),
 })
