@@ -1,6 +1,7 @@
 import type {
   CardWithColoredTitleAndIconProps,
-  ICardWithColoredTitleAndIcon, ICardWithColoredTitleAndIconItem,
+  ICardWithColoredTitleAndIcon,
+  ICardWithColoredTitleAndIconItem,
 } from '~/components/CardWithColoredTitle/interfaces/ICardWithColoredTitleAndIcon'
 
 export class CardWithColoredTitleAndIcon implements ICardWithColoredTitleAndIcon {

@@ -5,7 +5,7 @@ import type {
 } from '~/components/StartScreen/interfaces/IStartScreenDefault'
 
 export class StartScreenDefault implements IStartScreenDefault {
-  imageOpacity: string
+  imageOpacity: number
   background: string | null
   gradient: string
   title: string
@@ -13,9 +13,9 @@ export class StartScreenDefault implements IStartScreenDefault {
   image: ImageField
 
   constructor(props: StartScreenDefaultProps) {
-    this.imageOpacity = props.primary.imageOpacity || 0.8
+    this.imageOpacity = Number(props.primary.imageOpacity) || 0.8
     this.image = props.primary.image
-    this.background = setSliceBackground(props.primary.background)
+    this.background = setSliceBackground(props.primary.background || 'black')
     this.gradient = setSliceGradient(props.primary.gradientColor)
     this.title = props.primary.title
     this.subtitle = props.primary.subtitle
