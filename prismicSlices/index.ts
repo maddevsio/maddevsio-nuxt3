@@ -42,4 +42,5 @@ export const components = defineSliceZoneComponents({
   certificates_slice: defineAsyncComponent(() => import('./CertificatesSlice/index.vue')),
   embed_slice: defineAsyncComponent(() => import('./EmbedSlice/index.vue')),
   nav_link_slice: defineAsyncComponent(() => import('./NavLinkSlice/index.vue')),
+  service_cards: defineAsyncComponent(() => import('./ServiceCards/index.vue')),
 })
