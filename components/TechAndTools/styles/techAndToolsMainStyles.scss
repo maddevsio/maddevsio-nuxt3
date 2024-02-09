@@ -1,0 +1,20 @@
+.technologies {
+  position: relative;
+
+  &--black {
+    background: $bgcolor--black;
+    color: $text-color--white-primary;
+  }
+
+  &--white {
+    background: $bgcolor--white-primary;
+    color: $text-color--black-lighter;
+  }
+
+  .container {
+    &--post {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
