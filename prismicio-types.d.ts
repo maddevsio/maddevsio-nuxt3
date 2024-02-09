@@ -1175,7 +1175,6 @@ type CustomPageDocumentDataBodySlice =
 	| ButtonSliceSlice
 	| CustomerLogoSliceSlice
 	| CreateProjectsSliceSlice
-	| CardGridSliceSlice
 	| KeyMetricsSliceSlice
 	| TechnologiesSliceSlice
 	| CustomerTestimonialsSlice
