@@ -1,0 +1,123 @@
+{
+  "id": "certificates_slice",
+  "type": "SharedSlice",
+  "name": "CertificatesSlice",
+  "description": "CertificatesSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CertificatesSlice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "requires choice",
+            "options": [
+              "white",
+              "black"
+            ]
+          },
+          "type": "Select"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "titleTag": {
+          "config": {
+            "label": "Title Tag",
+            "placeholder": "Default: h2",
+            "options": [
+              "h2",
+              "h3",
+              "h4",
+              "h5",
+              "h6"
+            ],
+            "default_value": "h2"
+          },
+          "type": "Select"
+        },
+        "titleColor": {
+          "config": {
+            "label": "Title Color",
+            "placeholder": "requires choice",
+            "options": [
+              "blue-gradient",
+              "pink-gradient",
+              "purple-gradient",
+              "green-gradient",
+              "orange-gradient",
+              "white",
+              "black"
+            ],
+            "default_value": "blue-gradient"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "image": {
+          "config": {
+            "label": "Certificate Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "title": {
+          "config": {
+            "label": "Certificate Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "titleTag": {
+          "config": {
+            "label": "Certificate Title Tag",
+            "placeholder": "Default: h3",
+            "options": [
+              "h3",
+              "h2",
+              "h4",
+              "h5",
+              "h6"
+            ],
+            "default_value": "h3"
+          },
+          "type": "Select"
+        },
+        "description": {
+          "config": {
+            "label": "Certificate Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "validationToken": {
+          "config": {
+            "label": "Certificate Validation Token",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "validationLink": {
+          "config": {
+            "label": "Link For Certificate Validation",
+            "placeholder": "",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        }
+      }
+    }
+  ]
+}

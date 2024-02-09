@@ -1,0 +1,131 @@
+.certificates-item {
+  &--black {
+    .certificates-item__title, .certificates-item__token {
+      color: $text-color--white-primary;
+    }
+
+    .certificates-item__description {
+      color: $text-color--grey-opacity-40-percent;
+    }
+  }
+
+  &--white {
+    .certificates-item__title, .certificates-item__token {
+      color: $text-color--chinese-black;
+    }
+
+    .certificates-item__description {
+      color: $text-color--quote-box;
+    }
+  }
+
+  &__img {
+    width: 157px;
+    min-width: 157px;
+    height: 157px;
+    object-fit: contain;
+    margin-right: 45px;
+  }
+
+  &__title {
+    @include font('Inter', 24px, 700);
+    line-height: 130%;
+  }
+
+  &__description {
+    @include font('Inter', 14px, 400);
+    line-height: 166%;
+
+    :deep(a) {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+
+  &__description, &__token {
+    margin-top: 4px;
+  }
+
+  &__token {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__token-label {
+    @include font('Inter', 16px, 600);
+    margin-right: 9px;
+  }
+
+  &__token-number {
+    position: relative;
+    @include font('Inter', 16px, 400);
+    text-transform: uppercase;
+  }
+
+  &__token-label, &__token-number {
+    line-height: 165%;
+  }
+
+  &__copy-btn {
+    position: absolute;
+    top: 0;
+    right: -28px;
+  }
+
+  &__validation-link {
+    @include font('Inter', 14px, 400);
+    display: block;
+    color: $text-color--venetian-red;
+    text-decoration: underline;
+    line-height: 166%;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .certificates-item{
+    &__img {
+      margin-right: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .certificates-item {
+    &__copy-btn {
+      right: -35px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .certificates-item {
+    &__img {
+      margin: 0 0 20px 0;
+    }
+
+    &__description {
+      margin-top: 12px;
+    }
+
+    &__token {
+      margin-top: 18px;
+    }
+
+    &__validation-link {
+      margin-top: 14px;
+    }
+
+    &__copy-btn {
+      right: -30px;
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .certificates-item {
+    &__title {
+      font-size: 18px;
+    }
+  }
+}
