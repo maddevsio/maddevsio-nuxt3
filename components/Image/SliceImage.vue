@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { ImageProps } from '~/components/Image/interfaces/IImage'
+import type { ImageSliceProps } from '~/components/Image/interfaces/IImage'
 import { ImageSlice } from '~/components/Image/classes/ImageSlice'
 
 interface Props {
-  slice: ImageProps
+  slice: ImageSliceProps
 }
 const { slice } = defineProps<Props>()
 const {
