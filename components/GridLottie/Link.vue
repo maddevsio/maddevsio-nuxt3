@@ -33,7 +33,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
           class="card-item__lottie"
           :style="{
             maxWidth: card.width ? `${card.width}px` : null,
-            height: card.height ? `${card.height}px` : null,
+            height: card.height ? `${card.height}px` : null
           }"
         >
           <LazySharedLottieMad
