@@ -47,4 +47,5 @@ export const components = defineSliceZoneComponents({
   writeup_list_slice: defineAsyncComponent(() => import('./WriteupListSlice/index.vue')),
   logo_slice: defineAsyncComponent(() => import('./LogoSlice/index.vue')),
   tech_and_tools_new_slice: defineAsyncComponent(() => import('./TechAndToolsNewSlice/index.vue')),
+  grid_lottie_slice: defineAsyncComponent(() => import('./GridLottieSlice/index.vue')),
 })

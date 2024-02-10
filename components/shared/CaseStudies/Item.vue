@@ -82,6 +82,10 @@ const mouseEventHandler = () => {
     }
   }
 }
+
+onMounted(() => {
+  lazyLoadVideo()
+})
 </script>
 <template>
   <NuxtLink

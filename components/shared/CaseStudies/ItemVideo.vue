@@ -36,11 +36,11 @@ defineExpose({
     playsinline
     width="100%"
     height="100%"
-    class="case-studies-video"
-    :poster="$getMediaFromS3(videoPosterLink)"
+    class="case-studies-video lazy"
+    :data-poster="$getMediaFromS3(videoPosterLink)"
   >
     <source
-      :src="$getMediaFromS3(videoLink)"
+      :data-src="$getMediaFromS3(videoLink)"
       type="video/mp4"
     >
     Your browser does not support the video tag.
