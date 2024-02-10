@@ -1,0 +1,204 @@
+{
+  "id": "team_cards",
+  "type": "SharedSlice",
+  "name": "TeamCards",
+  "description": "TeamCards",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TeamCards",
+      "primary": {
+        "animation": {
+          "config": {
+            "label": "Animation list",
+            "placeholder": "Select aos animation",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-righ",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-up",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "name": {
+          "config": {
+            "label": "Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "position": {
+          "config": {
+            "label": "Position",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "linkedin": {
+          "config": {
+            "label": "LinkedIn link",
+            "placeholder": "",
+            "select": "web",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "isHover": {
+          "config": {
+            "label": "Hover effect",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "hoverImage": {
+          "config": {
+            "label": "Hover image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      }
+    },
+    {
+      "id": "teamCardsWithRoundedPhoto",
+      "name": "TeamCardsWithRoundedPhoto",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TeamCards",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "name": {
+          "config": {
+            "label": "Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "position": {
+          "config": {
+            "label": "Position",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": 229,
+              "height": 229
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "link": {
+          "config": {
+            "label": "Link",
+            "placeholder": "External or Internal page",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        }
+      }
+    },
+    {
+      "id": "teamCardsCaseStudies",
+      "name": "TeamCardsCaseStudies",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TeamCards",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "requires choice",
+            "options": [
+              "white",
+              "black"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "containerSize": {
+          "config": {
+            "label": "Container Size",
+            "placeholder": "",
+            "options": [
+              "816",
+              "1240"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": null,
+              "height": null
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "name": {
+          "config": {
+            "label": "Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "position": {
+          "config": {
+            "label": "Position",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}
