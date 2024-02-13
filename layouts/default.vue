@@ -1,5 +1,9 @@
 <template>
   <div class="default-layout">
+    <NuxtLoadingIndicator
+      color="#ec1c24"
+      :height="2"
+    />
     <header>
       <NuxtLink to="/">
         Home
