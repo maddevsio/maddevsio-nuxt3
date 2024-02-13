@@ -111,7 +111,58 @@ export default defineNuxtConfig({
         desktop: 1200,
       },
     }],
+    ['nuxt-security', {
+      rateLimiter: {
+        tokensPerInterval: 200,
+        interval: 30 * 60 * 1000, // 30 minutes
+      },
+      headers: {
+        contentSecurityPolicy: false,
+        crossOriginEmbedderPolicy: false,
+        xFrameOptions: 'DENY',
+      },
+    }],
   ],
+
+  routeRules: {
+    '/api/leads': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 5,
+          interval: 15 * 60 * 1000, // 15 minutes
+          headers: true,
+        },
+      },
+    },
+    'api/send-email': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 5,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
+    'api/careers': {
+      security: {
+        xssValidator: false,
+        rateLimiter: {
+          tokensPerInterval: 10,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
+    'api/send-checklist': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 15,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
+  },
 
   nitro: {
     compressPublicAssets: true,
@@ -196,5 +247,9 @@ export default defineNuxtConfig({
         }
       }
     },
+  },
+  devServer: {
+    port: Number(process.env.PORT) || 3000,
+    host: process.env.HOST || '0',
   },
 })
