@@ -2,11 +2,11 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyPostsSectionDefault
+  <LazyPageBlocksPostsSectionDefault
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />
-  <LazyPostsSectionWithoutAuthor
+  <LazyPageBlocksPostsSectionWithoutAuthor
     v-if="slice.variation === 'ebookPostsSectionSlice'"
     :slice="slice"
   />

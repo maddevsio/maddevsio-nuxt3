@@ -1,4 +1,4 @@
-import type { HorizontalToC } from '~/components/TableOfContent/classes/HorizontalToC'
+import type { HorizontalToC } from '~/components/Widgets/TableOfContent/classes/HorizontalToC'
 
 export const useHorizontalToC = (instance: HorizontalToC) => {
   const { isMobile } = useCheckMobile(instance.triggerBreakpoint)

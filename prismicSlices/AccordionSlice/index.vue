@@ -2,11 +2,11 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyAccordionCustomPage
+  <LazyPageBlocksAccordionCustomPage
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />
-  <LazyAccordionForPost
+  <LazyPageBlocksAccordionForPost
     v-if="slice.variation === 'accordionForPost'"
     :slice="slice"
   />

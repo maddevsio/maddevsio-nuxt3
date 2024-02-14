@@ -3,15 +3,15 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
 </script>
 <template>
   <section class="industries-slice">
-    <IndustriesDefault
+    <LazyPageBlocksIndustriesDefault
       v-if="slice.variation === 'default-slice'"
       :slice="slice"
     />
-    <IndustriesCard
+    <LazyPageBlocksIndustriesCard
       v-else-if="slice.variation === 'industriesCardSlice'"
       :slice="slice"
     />
-    <IndustriesCardDescription
+    <LazyPageBlocksIndustriesCardDescription
       v-else-if="slice.variation === 'industriesCardDescription'"
       :slice="slice"
     />

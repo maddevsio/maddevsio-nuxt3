@@ -5,10 +5,10 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
   <section
     class="customers-logo-slice"
   >
-    <CustomersLogoWhite
+    <LazyPageBlocksCustomersLogoWhite
       v-if="slice.variation === 'default-slice'"
     />
-    <CustomersLogoBlack
+    <LazyPageBlocksCustomersLogoBlack
       v-else-if="slice.variation === 'customersSliceBlack'"
     />
   </section>

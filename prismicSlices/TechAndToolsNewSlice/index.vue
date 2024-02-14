@@ -2,19 +2,19 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyTechAndToolsFourBigCards
+  <LazyPageBlocksTechAndToolsFourBigCards
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />
-  <LazyTechAndToolsThreeBigCards
+  <LazyPageBlocksTechAndToolsThreeBigCards
     v-if="slice.variation === 'threeBigCards'"
     :slice="slice"
   />
-  <LazyTechAndToolsTwoBigCards
+  <LazyPageBlocksTechAndToolsTwoBigCards
     v-if="slice.variation === 'twoBigCards'"
     :slice="slice"
   />
-  <LazyTechAndToolsOneBigCard
+  <LazyPageBlocksTechAndToolsOneBigCard
     v-if="slice.variation === 'oneBigCard'"
     :slice="slice"
   />

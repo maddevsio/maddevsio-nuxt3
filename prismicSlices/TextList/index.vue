@@ -2,11 +2,11 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyTextListDefault
+  <LazyPageBlocksTextListDefault
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />
-  <LazyTextListTwoColumns
+  <LazyPageBlocksTextListTwoColumns
     v-if="slice.variation === 'twoColumnsList'"
     :slice="slice"
   />

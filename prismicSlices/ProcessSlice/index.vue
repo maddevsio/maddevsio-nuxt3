@@ -3,11 +3,11 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
 </script>
 <template>
   <section class="process-root-slice">
-    <LazyProcessTabsDefault
+    <LazyPageBlocksProcessTabsDefault
       v-if="slice.variation === 'default-slice'"
       :slice="slice"
     />
-    <LazyProcessInline
+    <LazyPageBlocksProcessInline
       v-else-if="slice.variation === 'processInlineSlice'"
       :slice="slice"
     />

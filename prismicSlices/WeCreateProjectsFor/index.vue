@@ -2,7 +2,7 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyWeCreateProjectsForWithMap
+  <LazyPageBlocksWeCreateProjectsForWithMap
     v-if="slice.variation === 'weCreateProjectsForWithMap'"
     :slice="slice"
   />

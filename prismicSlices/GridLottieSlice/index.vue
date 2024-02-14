@@ -2,15 +2,15 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyGridLottieLink
+  <LazyPageBlocksGridLottieLink
     v-if="slice.variation === 'gridLottieLink'"
     :slice="slice"
   />
-  <LazyGridLottieWithCaseStudy
+  <LazyPageBlocksGridLottieWithCaseStudy
     v-if="slice.variation === 'gridLottieWithCaseStudy'"
     :slice="slice"
   />
-  <LazyGridLottieWithAnimationOptions
+  <LazyPageBlocksGridLottieWithAnimationOptions
     v-if="slice.variation === 'gridWithAnimationOptionSlice'"
     :slice="slice"
   />
