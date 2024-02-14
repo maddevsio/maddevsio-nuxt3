@@ -11,6 +11,7 @@ export interface RadioButtonGroupProps {
 }
 
 export interface IRadioButtonGroup {
+  [key: string]: any
   objectKeyName: string
   elementId: string
   description: string

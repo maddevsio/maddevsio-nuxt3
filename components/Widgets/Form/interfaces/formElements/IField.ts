@@ -36,6 +36,7 @@ export interface FieldProps {
 }
 
 export interface IField {
+  [key: string]: any
   objectKeyName: string
   elementId: string
   type: string

@@ -32,7 +32,7 @@
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-vue": "^9.18.1",
-    "nuxt": "^3.8.1",
+    "nuxt": "^3.10.1",
     "nuxt-security": "^1.1.1",
     "prettier": "^3.1.0",
     "sass-lint": "^1.13.1",

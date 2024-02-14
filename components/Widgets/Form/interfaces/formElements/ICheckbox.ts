@@ -10,6 +10,7 @@ export interface CheckboxProps {
 }
 
 export interface ICheckbox {
+  [key: string]: any
   objectKeyName: string
   elementId: string
   label: string
