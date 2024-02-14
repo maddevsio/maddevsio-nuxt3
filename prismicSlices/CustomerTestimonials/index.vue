@@ -2,7 +2,7 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <CustomersReviewFromClutch
+  <LazyPageBlocksCustomersReviewFromClutch
     v-if="slice.variation === 'clutchReviewsBlack'"
     :slice="slice"
   />

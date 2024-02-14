@@ -2,7 +2,7 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyQuoteDefault
+  <LazyPageBlocksQuoteDefault
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />

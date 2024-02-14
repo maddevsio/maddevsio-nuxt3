@@ -7,11 +7,11 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
     <!--      v-if="props.slice.variation === 'default'"-->
     <!--      v-bind="props"-->
     <!--    />-->
-    <CtaBannerWithBackgroundImage
+    <LazyPageBlocksCtaBannerWithBackgroundImage
       v-if="slice.variation === 'ctaBannerWithBackgroundImage'"
       :slice="slice"
     />
-    <CtaBannerWithExperts
+    <LazyPageBlocksCtaBannerWithExperts
       v-if="slice.variation === 'expertCtaSlice'"
       :slice="slice"
     />

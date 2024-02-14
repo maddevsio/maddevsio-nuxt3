@@ -2,11 +2,11 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyCustomerLogoDefault
+  <LazyPageBlocksCustomerLogoDefault
     v-if="slice.variation === 'default'"
     :slice="slice"
   />
-  <LazyCustomerLogoInteractive
+  <LazyPageBlocksCustomerLogoInteractive
     v-if="slice.variation === 'customersLogoInteractive'"
     :slice="slice"
   />

@@ -2,7 +2,7 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyEmbedCustomPage
+  <LazyPageBlocksEmbedCustomPage
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />

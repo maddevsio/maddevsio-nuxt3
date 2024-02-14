@@ -2,7 +2,7 @@
 const props = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyPressCenterDefault
+  <LazyPageBlocksPressCenterDefault
     :slice="props.slice"
   />
 </template>

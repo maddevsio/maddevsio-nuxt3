@@ -9,31 +9,31 @@ const { slice } = defineProps(
 )
 </script>
 <template>
-  <LazyStartScreenMain
+  <LazyPageBlocksStartScreenMain
     v-if="slice.variation === 'mainStartScreen'"
     :slice="slice"
   />
-  <LazyStartScreenDefault
+  <LazyPageBlocksStartScreenDefault
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />
-  <LazyStartScreenWithButton
+  <LazyPageBlocksStartScreenWithButton
     v-if="slice.variation === 'startScreenwithButton'"
     :slice="slice"
   />
-  <LazyStartScreenImageRightAndButton
+  <LazyPageBlocksStartScreenImageRightAndButton
     v-if="slice.variation === 'startScreenImageRightAndButton'"
     :slice="slice"
   />
-  <LazyStartScreenExpert
+  <LazyPageBlocksStartScreenExpert
     v-if="slice.variation === 'expertPage'"
     :slice="slice"
   />
-  <LazyStartScreenCaseStudy
+  <LazyPageBlocksStartScreenCaseStudy
     v-if="slice.variation === 'caseStudyStartScreen'"
     :slice="slice"
   />
-  <LazyStartScreenChecklist
+  <LazyPageBlocksStartScreenChecklist
     v-if="slice.variation === 'checklistStartScreenSlice'"
     :slice="slice"
   />

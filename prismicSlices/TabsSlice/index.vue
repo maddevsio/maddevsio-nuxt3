@@ -2,5 +2,8 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <TabSliceComponentsDefault :slice="slice" />
+  <LazyPageBlocksTabSliceComponentsDefault
+    v-if="slice.variation === 'default-slice'"
+    :slice="slice"
+  />
 </template>
