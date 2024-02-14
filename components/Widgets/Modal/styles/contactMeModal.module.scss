@@ -1,0 +1,16 @@
+@import "./modalWindow.module";
+
+.contact-me-modal {
+  margin: 0;
+
+  .modal-window__body {
+    width: 686px;
+    max-width: 686px;
+    padding: 30px;
+
+    @media screen and (max-width: 768px) {
+      max-width: 327px;
+      padding: 24px;
+    }
+  }
+}

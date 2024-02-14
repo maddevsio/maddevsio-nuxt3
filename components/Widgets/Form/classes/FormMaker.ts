@@ -4,6 +4,7 @@ import { Checkbox } from '~/components/Widgets/Form/classes/formElements/Checkbo
 import { Button } from '~/components/Widgets/Form/classes/formElements/Button'
 import { RadioButtonGroup } from '~/components/Widgets/Form/classes/formElements/RadioButtonGroup'
 import { RadioButton } from '~/components/Widgets/Form/classes/formElements/RadioButton'
+import { ContactMeForm } from '~/components/Widgets/Form/classes/forms/ContactMeForm'
 
 export class FormMaker {
   formBuilder: IFormBuilder
@@ -14,74 +15,75 @@ export class FormMaker {
     this.options = options
   }
 
-  // contactMeFormMaker() {
-  //   return new ContactMeForm({
-  //     formTitle: 'Tell Us About Your Project',
-  //     formLocation: this.options.formLocation,
-  //     emailSubject: this.options.emailSubject,
-  //     formBuilder: this.formBuilder
-  //       .setFields([
-  //         new Field({
-  //           objectKeyName: 'fullName',
-  //           elementId: 'fullName',
-  //           type: 'text',
-  //           name: 'Full name',
-  //           placeholder: 'Full Name',
-  //           validationType: 'longText',
-  //           longTextLimit: 140,
-  //           required: true,
-  //         }),
-  //         new Field({
-  //           objectKeyName: 'email',
-  //           elementId: 'email',
-  //           type: 'email',
-  //           name: 'Business Email',
-  //           placeholder: 'Business Email',
-  //           validationType: 'businessEmail',
-  //           required: true,
-  //         }),
-  //         new Field({
-  //           objectKeyName: 'phoneNumber',
-  //           elementId: 'phoneNumber',
-  //           type: 'text',
-  //           name: 'phoneNumber',
-  //           placeholder: 'Phone Number',
-  //           validationType: 'phone',
-  //           required: false,
-  //         }),
-  //       ])
-  //       .addTextarea(
-  //         new Field({
-  //           objectKeyName: 'description',
-  //           elementId: 'description',
-  //           type: 'textarea',
-  //           name: 'description',
-  //           placeholder: 'How we can help you?',
-  //           validationType: 'longText',
-  //           longTextLimit: 2500,
-  //           required: true,
-  //         }),
-  //       )
-  //       .addCheckBoxes([
-  //         new Checkbox({
-  //           objectKeyName: 'newsLetter',
-  //           elementId: 'newsLetter',
-  //           label: 'I agree to get Mad Devs’ discount offers and other marketing communications.',
-  //           name: 'Newsletter agreement',
-  //           defaultValue: true,
-  //         }),
-  //       ])
-  //       .addButton(
-  //         new Button({
-  //           objectKeyName: 'submitButton',
-  //           elementId: 'submitButton',
-  //           label: 'Send',
-  //           type: 'submit',
-  //         }),
-  //       )
-  //       .build(),
-  //   })
-  // }
+  contactMeFormMaker() {
+    return new ContactMeForm({
+      formTitle: 'Tell Us About Your Project',
+      formLocation: this.options.formLocation,
+      emailSubject: this.options.emailSubject,
+      reCaptchaSiteKey: this.options.reCaptchaSiteKey,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'fullName',
+            elementId: 'fullName',
+            type: 'text',
+            name: 'Full name',
+            placeholder: 'Full Name',
+            validationType: 'longText',
+            longTextLimit: 140,
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'email',
+            elementId: 'email',
+            type: 'email',
+            name: 'Business Email',
+            placeholder: 'Business Email',
+            validationType: 'businessEmail',
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'phoneNumber',
+            elementId: 'phoneNumber',
+            type: 'text',
+            name: 'phoneNumber',
+            placeholder: 'Phone Number',
+            validationType: 'phone',
+            required: false,
+          }),
+        ])
+        .addTextarea(
+          new Field({
+            objectKeyName: 'description',
+            elementId: 'description',
+            type: 'textarea',
+            name: 'description',
+            placeholder: 'How we can help you?',
+            validationType: 'longText',
+            longTextLimit: 2500,
+            required: true,
+          }),
+        )
+        .addCheckBoxes([
+          new Checkbox({
+            objectKeyName: 'newsLetter',
+            elementId: 'newsLetter',
+            label: 'I agree to get Mad Devs’ discount offers and other marketing communications.',
+            name: 'Newsletter agreement',
+            defaultValue: true,
+          }),
+        ])
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            label: 'Send',
+            type: 'submit',
+          }),
+        )
+        .build(),
+    })
+  }
   //
   // checklistFormMaker() {
   //   return new ChecklistForm({

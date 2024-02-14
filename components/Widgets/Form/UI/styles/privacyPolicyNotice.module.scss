@@ -1,0 +1,10 @@
+.form-privacy-notice {
+  @include font('Inter', 10px, 400);
+  line-height: 150%;
+  color: $text-color--quote-box;
+
+  &__link {
+    color: $text-color--red;
+    text-decoration: underline;
+  }
+}

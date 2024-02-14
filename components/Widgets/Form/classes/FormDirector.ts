@@ -1,7 +1,12 @@
 import type { IFormBuilder } from '~/components/Widgets/Form/interfaces/IFormBuilder'
 import { FormMaker } from '~/components/Widgets/Form/classes/FormMaker'
 
-export class FormDirector {
+interface IFormDirector {
+  formBuilder: IFormBuilder
+  [key: string]: any
+}
+
+export class FormDirector implements IFormDirector {
   formBuilder: IFormBuilder
 
   constructor(builder: IFormBuilder) {
@@ -10,7 +15,9 @@ export class FormDirector {
 
   // makeServiceFormWithPrismic = (options: any) => new FormMaker(this.formBuilder, options).serviceFormWithPrismicMaker()
   //
-  // makeContactMeForm = (options: any) => new FormMaker(this.formBuilder, options).contactMeFormMaker()
+  makeContactMeForm(options: any) {
+    return new FormMaker(this.formBuilder, options).contactMeFormMaker()
+  }
   //
   // makeContactUsFooterForm = (options: any) => new FormMaker(this.formBuilder, options).contactUsFooterFormMaker()
   //

@@ -1,0 +1,69 @@
+<script setup lang="ts">
+import type { PropType } from 'vue'
+import { VueRecaptcha } from 'vue-recaptcha'
+import type { FormTypes } from '~/components/Widgets/Form/interfaces/forms/FormTypes'
+
+const {
+  formId,
+  form,
+} = defineProps({
+  formId: {
+    type: String,
+    required: true,
+  },
+
+  styles: {
+    type: Object,
+    default: () => ({}),
+  },
+
+  form: {
+    type: Object as PropType<FormTypes>,
+    required: true,
+  },
+})
+
+const router = useRouter()
+const route = useRoute()
+const $eventBus = useEventBus()
+const requestRecaptcha = () => form.requestRecaptcha()
+const onSubmitVerifiedForm = (token: string) => {
+  form.onSubmitVerifiedForm({
+    token,
+    router,
+    route,
+    $eventBus,
+  })
+}
+const onError = (err: string) => form.onError(err)
+const onExpired = () => form.onExpired()
+const {
+  successMessage,
+  recaptchaRef,
+  reCaptchaSiteKey,
+} = form
+
+const showSuccessMessage = successMessage.show
+const showSuccessFullMessage = successMessage.showSuccessfulMessage
+</script>
+<template>
+  <form
+    :id="formId"
+    @submit.prevent="requestRecaptcha"
+  >
+    <slot v-if="!showSuccessMessage" />
+    <LazyWidgetsFormUISuccessMessage
+      v-if="showSuccessMessage && showSuccessFullMessage"
+      :success-message="successMessage"
+    />
+    <VueRecaptcha
+      ref="recaptchaRef"
+      :sitekey="reCaptchaSiteKey"
+      size="invisible"
+      badge="bottomleft"
+      @verify="onSubmitVerifiedForm"
+      @expired="onExpired"
+      @error="onError"
+    />
+  </form>
+</template>

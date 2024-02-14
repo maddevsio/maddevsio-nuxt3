@@ -8,6 +8,7 @@ export interface RadioButtonProps {
 }
 
 export interface IRadioButton {
+  type: string
   objectKeyName: string
   elementId: string
   label: string
