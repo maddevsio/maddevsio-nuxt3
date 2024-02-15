@@ -63,13 +63,10 @@ defineExpose({
 <template>
   <Transition
     name="fade"
-    appear
     :enter-active-class="styles['fade-enter-active']"
     :leave-active-class="styles['fade-leave-active']"
-    :enter-class="styles['fade-enter']"
+    :enter-from-class="styles['fade-enter-from']"
     :leave-to-class="styles['fade-leave-to']"
-    :enter-to-class="styles['fade-enter-to']"
-    :leave-class="styles['fade-leave']"
   >
     <div
       v-if="isShowModal"
