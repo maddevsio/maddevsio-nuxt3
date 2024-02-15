@@ -13,7 +13,7 @@ export class MainStartScreen implements IMainStartScreen {
   public buttonText
 
   constructor(props: IMainStartScreenPropTypes) {
-    this.modalContactMeRef = ref(null)
+    this.modalContactMeRef = ref<{ show(): void } | null>(null)
     this.reformattedDescription = this.reformatToHtml(props.primary?.description[0]?.text)
     this.reformattedTitle = this.reformatToHtml(props.primary?.title)
     this.reformattedSubtitle = this.reformatToHtml(props.primary?.subtitle)
@@ -27,7 +27,6 @@ export class MainStartScreen implements IMainStartScreen {
   }
 
   showModal() {
-    console.log('Modal Opened')
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef?.value?.show()
     // contactMeClickEvent.send('Main start screen component');

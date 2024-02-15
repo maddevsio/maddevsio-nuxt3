@@ -20,8 +20,6 @@ const {
 const modalContactMeRef = ref<{ show(): void } | null>(null)
 // const { emailSubjectGlobal } = inject('emailSubjectGlobal')
 const showModal = () => {
-  console.log('Click show modal') // TODO: Needs finishing contact me form
-  console.log(modalContactMeRef.value)
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef?.value.show()
   // contactMeClickEvent.send('Start Screen Lets talk button')

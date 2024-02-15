@@ -22,7 +22,7 @@ const {
   backgroundColor,
   backgroundImage,
   enableImageOverlay,
-  // modalContactMeRef,
+  modalContactMeRef,
   linkToPage,
 } = ctaBanner
 
@@ -80,11 +80,15 @@ const VNodeTitle = () => h(titleTag, { innerHTML: title })
         >
       </div>
     </div>
-    <!--    <ContactMeModal-->
-    <!--      ref="modalContactMeRef"-->
-    <!--      :location="'\'Let`s talk\' button, main start screen component'"-->
-    <!--      :email-subject="emailSubjectGlobal"-->
-    <!--    />-->
+    <LazyClientOnly>
+      <Teleport to="body">
+        <LazyWidgetsModalContactMe
+          ref="modalContactMeRef"
+          :location="'CtaBanner button'"
+          email-subject="Placeholder"
+        />
+      </Teleport>
+    </LazyClientOnly>
   </div>
 </template>
 <style scoped lang="scss">
