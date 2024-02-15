@@ -38,7 +38,7 @@ export class BaseForm implements IBaseForm {
 
   baseEmailTitle = 'New Lead from MD website'
 
-  constructor({ emailTitle, reCaptchaSiteKey }: { emailTitle?: string, recaptchaSiteKey: string } = {}) {
+  constructor({ emailTitle, reCaptchaSiteKey }: { emailTitle?: string, reCaptchaSiteKey: string }) {
     this.reCaptchaSiteKey = reCaptchaSiteKey
     this.emailTitle = emailTitle || this.emailTitle
     this.onError = this.onError.bind(this)
@@ -75,8 +75,8 @@ export class BaseForm implements IBaseForm {
           agreeToGetMadDevsDiscountOffers: variables?.agreeToGetMadDevsDiscountOffers ? 'Yes' : 'No',
           agreeWithPrivacyPolicy: variables?.agreeWithPrivacyPolicy ? 'Yes' : 'No',
           consent_to_mailing: variables?.consent_to_mailing || variables?.newsLetter,
-          formLocation: variables?.formLocation!,
-          interest: variables?.interest!,
+          formLocation: variables?.formLocation,
+          interest: variables?.interest,
           pageUrl: (window && `${ window.location.origin }${ window.location.pathname }`) || 'Unknown',
           userBrowser,
           userOS,

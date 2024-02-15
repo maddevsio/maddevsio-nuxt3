@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import type { Router } from 'vue-router'
+// @ts-ignore
 import type { PrismicPluginClient } from '@prismicio/vue/src/types'
 import type { IWriteupList, WriteupListProps, TransformedWriteup } from '~/components/Writeup/interfaces/IWriteupList'
 import { Writeup } from '~/components/Writeup/classes/Writeup'

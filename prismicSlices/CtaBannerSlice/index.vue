@@ -3,10 +3,10 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
 </script>
 <template>
   <section class="cta-banner-slice">
-    <!--    <CtaBannerSliceDefault-->
-    <!--      v-if="props.slice.variation === 'default'"-->
-    <!--      v-bind="props"-->
-    <!--    />-->
+    <LazyPageBlocksCtaBannerDefault
+      v-if="slice.variation === 'default'"
+      :slice="slice"
+    />
     <LazyPageBlocksCtaBannerWithBackgroundImage
       v-if="slice.variation === 'ctaBannerWithBackgroundImage'"
       :slice="slice"
@@ -15,9 +15,9 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
       v-if="slice.variation === 'expertCtaSlice'"
       :slice="slice"
     />
-    <!--    <ChecklistCtaBannerSlice-->
-    <!--      v-if="props.slice.variation === 'checklistCtaBannerSlice'"-->
-    <!--      v-bind="props"-->
-    <!--    />-->
+    <LazyPageBlocksCtaBannerChecklist
+      v-if="slice.variation === 'checklistCtaBannerSlice'"
+      :slice="slice"
+    />
   </section>
 </template>

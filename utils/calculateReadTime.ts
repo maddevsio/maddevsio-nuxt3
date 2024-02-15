@@ -1,4 +1,5 @@
-import type { PrismicPluginHelpers } from '@prismicio/vue/src/types'
+// @ts-ignore
+import type { PrismicPluginHelpers } from '@prismicio/vue/dist/types'
 import type { BlogPost } from '~/interfaces/common/commonInterfaces'
 
 interface Reducer {
