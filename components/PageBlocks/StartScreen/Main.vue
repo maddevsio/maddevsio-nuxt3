@@ -13,7 +13,14 @@ const props = defineProps({
 const mainStartScreen = new MainStartScreen(props.slice)
 
 const showModal = () => mainStartScreen.showModal()
-const { reformattedDescription, reformattedSubtitle, buttonText, reformattedTitle, image } = mainStartScreen
+const {
+  reformattedDescription,
+  reformattedSubtitle,
+  buttonText,
+  reformattedTitle,
+  image,
+  modalContactMeRef,
+} = mainStartScreen
 </script>
 
 <template>
@@ -46,6 +53,15 @@ const { reformattedDescription, reformattedSubtitle, buttonText, reformattedTitl
         </LazySharedUIAnimatedButton>
       </div>
     </div>
+    <LazyClientOnly>
+      <Teleport to="body">
+        <WidgetsModalContactMe
+          ref="modalContactMeRef"
+          :location="'\'Let`s talk\' button, main start screen component'"
+          email-subject="Placeholder"
+        />
+      </Teleport>
+    </LazyClientOnly>
   </section>
 </template>
 <style scoped lang="scss">

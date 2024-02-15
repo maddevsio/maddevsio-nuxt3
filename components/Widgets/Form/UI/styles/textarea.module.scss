@@ -1,0 +1,40 @@
+@import "./formInput.module";
+
+.form-field-textarea {
+  margin: 0;
+  padding-top: 23px;
+
+  &__field {
+    resize: none;
+    margin-top: 0;
+    grid-area: 1 / 1 / 2 / 2;
+    overflow: hidden;
+
+    &-wrapper {
+      display: grid;
+      max-height: 150px;
+      overflow-y: auto;
+
+      &::after {
+        content: attr(data-replicated-value) " ";
+        white-space: pre-wrap;
+        visibility: hidden;
+        @include font('Inter', 13px, 500);
+        grid-area: 1 / 1 / 2 / 2;
+      }
+    }
+
+    &:focus ~ .form-field__label {
+      top: 10px;
+    }
+  }
+
+  .form-field__label {
+    top: 10px;
+  }
+
+  .form-field__checkmark {
+    top: 10px;
+    transform: translateY(0);
+  }
+}

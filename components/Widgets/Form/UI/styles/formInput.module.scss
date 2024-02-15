@@ -1,0 +1,87 @@
+.form-field {
+  @include font('Inter', 13px, 500);
+  width: 100%;
+  border: none;
+  outline: 0;
+  padding: 0;
+  margin-top: 5px;
+  background: transparent;
+
+  &:-webkit-autofill {
+    @include font('Inter', 13px, 500);
+    -webkit-background-clip: text;
+  }
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &:placeholder-shown ~ .form-field__label {
+    @include font('Inter', 13px, 400);
+    color: $text-color--grey-pale;
+    cursor: text;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__label-not-required {
+    @include font('Inter', 10px, 400);
+    color: $text-color--grey-opacity-40-percent;
+  }
+
+  &__label,
+  &:focus ~ .form-field__label {
+    @include font('Inter', 8px, 400);
+    color: $text-color--grey-pale;
+    position: absolute;
+    top: 5px;
+    display: block;
+    transition: 0.2s ease-in-out;
+  }
+
+  &:focus ~ .form-field__label-not-required {
+    font-size: 8px;
+  }
+
+  &__wrapper {
+    width: 100%;
+    position: relative;
+    border: 1px solid #CFCFD0;
+    border-radius: 4px;
+    padding: 11px 33px 5px 10px;
+    transition: 0.2s ease-in-out;
+    cursor: text;
+
+    &:focus-within {
+      border-color: #5159F6;
+    }
+
+    &--error {
+      border-color: #EC1C24;
+    }
+  }
+
+  &__checkmark {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  &--error {
+    @include font('Inter', 9px, 400);
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    color: $text-color--red;
+  }
+}

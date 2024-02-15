@@ -1,0 +1,17 @@
+.form-button {
+  @include font('Inter', 16px, 400);
+  line-height: 26px;
+  text-align: center;
+  color: $text-color--white-primary;
+  width: 100%;
+  padding: 9px;
+  background-color: $bgcolor--red;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}

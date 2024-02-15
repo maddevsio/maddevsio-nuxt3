@@ -2,8 +2,8 @@ import type { Ref } from 'vue'
 import type { Router } from 'vue-router'
 import axios from 'axios'
 import type { BaseFormPayload, IBaseForm, SubmitLeadProps } from '~/components/Widgets/Form/interfaces/forms/IBaseForm'
-import type { ICheckbox, IField, IRadioButtonGroup } from '~/components/Widgets/Form/interfaces/formElements'
 import { parseUserAgentForLeads } from '~/components/Widgets/Form/helpers/parseUserAgentForLeads'
+import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
 
 export class BaseForm implements IBaseForm {
   private token = ref('')
@@ -16,7 +16,7 @@ export class BaseForm implements IBaseForm {
 
   formID: string = ''
   payload: BaseFormPayload = {}
-  reCaptchaSiteKey: string = process.env.reCaptchaSiteKey!
+  reCaptchaSiteKey: string
   templateId: number = 686633
   formType: string = 'Software development'
   emailTitle: string = 'Contact Me form'
@@ -30,15 +30,16 @@ export class BaseForm implements IBaseForm {
   }
 
   error: Ref<string> = ref('')
-  fields?: IField
-  radioButtonGroups?: IRadioButtonGroup
-  checkBoxes?: ICheckbox
-  textarea?: IField
+  fields?: FormBuilderReturnProps['fields']
+  radioButtonGroups?: FormBuilderReturnProps['radioButtonGroups']
+  checkBoxes?: FormBuilderReturnProps['checkBoxes']
+  textarea?: FormBuilderReturnProps['textarea']
   formSends: Ref<boolean> = ref(false)
 
   baseEmailTitle = 'New Lead from MD website'
 
-  constructor({ emailTitle }: { emailTitle?: string } = {}) {
+  constructor({ emailTitle, reCaptchaSiteKey }: { emailTitle?: string, recaptchaSiteKey: string } = {}) {
+    this.reCaptchaSiteKey = reCaptchaSiteKey
     this.emailTitle = emailTitle || this.emailTitle
     this.onError = this.onError.bind(this)
     this.onExpired = this.onExpired.bind(this)
@@ -156,7 +157,15 @@ export class BaseForm implements IBaseForm {
   }
 
   collectData() {
-    const defaultData = {
+    const defaultData: {
+      interest: string
+      formLocation: string
+      agreeWithPrivacyPolicy: boolean
+      addressBooksId: number
+      token: string
+      page: string
+      [key: string]: any
+    } = {
       interest: this.formType,
       formLocation: document?.title,
       agreeWithPrivacyPolicy: true,

@@ -24,14 +24,13 @@ defineProps({
   },
 })
 
-// const modalContactMeRef = ref(null)
+const modalContactMeRef = ref<{ show(): void } | null>(null)
 const { $getMediaFromS3 } = useMediaFromS3()
 const showModal = () => {
-  console.log('Hello')
-  // if (!modalContactMeRef?.value.show) {
-  //   return
-  // }
-  // modalContactMeRef.value.show()
+  if (!modalContactMeRef.value && !modalContactMeRef.value!.show) {
+    return
+  }
+  modalContactMeRef.value!.show()
   // contactMeClickEvent.send('Tabs Slice component')
 }
 </script>
@@ -108,7 +107,15 @@ const showModal = () => {
         </div>
       </div>
     </div>
-    <!--		<ContactMeModal ref="modalContactMeRef" :location="'\'Let`s talk\' button, main start screen component'" />-->
+    <LazyClientOnly>
+      <Teleport to="body">
+        <LazyWidgetsModalContactMe
+          ref="modalContactMeRef"
+          :location="'TabSlice mobile button'"
+          email-subject="Placeholder"
+        />
+      </Teleport>
+    </LazyClientOnly>
   </div>
 </template>
 <style scoped lang="scss">

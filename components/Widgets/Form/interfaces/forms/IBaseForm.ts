@@ -1,25 +1,24 @@
 import type { Ref } from 'vue'
 import type { Router } from 'vue-router'
-import type { ICheckbox, IField, IRadioButtonGroup } from '~/components/Widgets/Form/interfaces/formElements'
+import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
 
 export interface BaseFormPayload {
   templateId?: number
   type?: string
   token?: string
   variables?: {
-    subject: string
-    modalTitle: string
-    projectDescriber: string
-    agreeToGetMadDevsDiscountOffers: string
-    agreeWithPrivacyPolicy: string
-    consent_to_mailing: string
-    formLocation: string
-    interest: string
-    pageUrl: string
-    userBrowser: string
-    userOS: string
-    userPlatform: string
-    page?: string
+    subject?: string
+    modalTitle?: string
+    projectDescriber?: string
+    agreeToGetMadDevsDiscountOffers?: boolean | string
+    agreeWithPrivacyPolicy?: boolean | string
+    consent_to_mailing?: string
+    formLocation?: string
+    interest?: string
+    pageUrl?: string
+    userBrowser?: string
+    userOS?: string
+    userPlatform?: string
     [key: string]: any
   }
   [key: string]: any
@@ -49,10 +48,10 @@ export interface IBaseForm {
     showSuccessfulMessage: boolean
   }
   error: Ref<string>
-  fields?: IField
-  radioButtonGroups?: IRadioButtonGroup
-  checkBoxes?: ICheckbox
-  textarea?: IField
+  fields?: FormBuilderReturnProps['fields']
+  radioButtonGroups?: FormBuilderReturnProps['radioButtonGroups']
+  checkBoxes?: FormBuilderReturnProps['checkBoxes']
+  textarea?: FormBuilderReturnProps['textarea']
   formSends: Ref<boolean>
   onError(err: string): void
   onExpired(): void

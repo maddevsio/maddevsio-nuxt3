@@ -1,0 +1,84 @@
+.form-radio-component {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__description {
+    @include font('Inter', 13px, 400);
+    line-height: 24px;
+    letter-spacing: -0.013em;
+    color: $text-color--quote-box;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__label {
+    @include font('Inter', 13px, 400);
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    color: $text-color--grey-pale;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  &__checkmark {
+    width: 16px;
+    height: 16px;
+    display: block;
+    border-radius: 50%;
+    border: 1px solid $border-color--grey-20-percent;
+    transition: 0.2s ease-in-out;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: $bgcolor--red;
+      border-radius: 50%;
+      transition: 0.2s ease-in-out;
+    }
+
+    &--error {
+      border-color: $border-color--red;
+    }
+  }
+
+  &__input {
+    &:checked {
+      & ~ .form-radio-component__label .form-radio-component__checkmark {
+        border-color: $bgcolor--red;
+
+        &::before {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      & ~ .form-radio-component__label {
+        color: $text-color--red;
+      }
+    }
+  }
+
+  &--error {
+    @include font('Inter', 9px, 400);
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    color: $text-color--red;
+  }
+}

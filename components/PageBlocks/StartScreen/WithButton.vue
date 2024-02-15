@@ -17,12 +17,11 @@ const {
   background,
 } = new StartScreenWithButton(slice)
 
-// const modalContactMe = ref(null)
+const modalContactMeRef = ref<{ show(): void } | null>(null)
 // const { emailSubjectGlobal } = inject('emailSubjectGlobal')
 const showModal = () => {
-  console.log('Click show modal') // TODO: Needs finishing contact me form
-  // if (!modalContactMe?.value?.show) return
-  // modalContactMe?.value.show()
+  if (!modalContactMeRef?.value?.show) { return }
+  modalContactMeRef?.value.show()
   // contactMeClickEvent.send('Start Screen Lets talk button')
 }
 </script>
@@ -44,14 +43,16 @@ const showModal = () => {
         </span>
       </LazySharedUIAnimatedButton>
     </template>
-    <!--    <template #modal>-->
-    <!--      <ContactMeModal-->
-    <!--        ref="modalContactMe"-->
-    <!--        :location="'\'Let`s talk\' button, start screen component'"-->
-    <!--        :email-subject="emailSubject"-->
-    <!--      />-->
-    <!--    </template>-->
   </LazyPageBlocksStartScreenDefaultTemplate>
+  <LazyClientOnly>
+    <Teleport to="body">
+      <LazyWidgetsModalContactMe
+        ref="modalContactMeRef"
+        :location="'\'Let`s talk\' button, start screen component'"
+        email-subject="Placeholder"
+      />
+    </Teleport>
+  </LazyClientOnly>
 </template>
 <style lang="scss" scoped>
 :deep(.start-screen-slice__subtitle) {

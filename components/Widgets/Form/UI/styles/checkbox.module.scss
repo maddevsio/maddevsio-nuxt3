@@ -1,0 +1,62 @@
+.form-checkbox-component {
+  margin-bottom: 24px;
+
+  &__input {
+    display: none;
+  }
+
+  &__checkmark {
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    margin-right: 7px;
+    border: 1px solid $text-color--grey-opacity-20-percent;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      display: block;
+      background: url('https://maddevsio.s3.eu-west-1.amazonaws.com/images/core/forms/checkmark.svg') no-repeat;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: 0.2s ease-in-out;
+    }
+
+    &--error {
+      border-color: $border-color--red;
+    }
+  }
+
+  &__label {
+    @include font('Inter', 10px, 400);
+    line-height: 150%;
+    color: $text-color--quote-box;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    &:checked {
+      & ~ .form-checkbox-component__label .form-checkbox-component__checkmark {
+        &::before {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    }
+  }
+
+  &--error {
+    @include font('Inter', 9px, 400);
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    color: $text-color--red;
+  }
+}
