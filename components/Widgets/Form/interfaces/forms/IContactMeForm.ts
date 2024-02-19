@@ -7,14 +7,13 @@ export interface ContactMeFromProps {
   formBuilder: IFormBuilder['props']
   formLocation: string
   emailSubject: string
-  recaptchaSiteKey: string
 }
 
 export interface OnSubmitFromProps {
   token: string
-  router: Router
-  route: any
-  $eventBus: any
+  router?: Router
+  route?: any
+  $eventBus?: any
 }
 
 export interface IContactMeForm extends IBaseForm {

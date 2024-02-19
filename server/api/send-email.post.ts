@@ -1,7 +1,6 @@
 export default defineEventHandler(async event => {
-  // const reqBody = await readBody(event) // TODO: need finishing when ebooks finish
-  const parsedReq = parseRequest(event.node.req)
-  if (checkIncludeRequiredText(parsedReq.body.email.variables.subject)) {
+  const reqBody = await readBody(event)
+  if (checkIncludeRequiredText(reqBody.body.email.variables.subject)) {
     throw createError({
       statusCode: 400,
       statusMessage: 'Invalid Subject',
@@ -9,16 +8,16 @@ export default defineEventHandler(async event => {
   }
 
   try {
-    if (checkExistPathOnS3(parsedReq.body.email.variables)) {
+    if (checkExistPathOnS3(reqBody.body.email.variables)) {
       const params = {
         region: 'eu-west-1',
         bucket: 'maddevsio',
-        file: getPdfFilePath(parsedReq.body.email.variables),
+        file: getPdfFilePath(reqBody.body.email.variables),
         expiresIn: 86400, // sec -> 24h
       }
-      parsedReq.body.email.variables.pdfUrl = await getLinkWithLifeTime(params)
+      reqBody.body.email.variables.pdfUrl = await getLinkWithLifeTime(params)
     }
-    const emailReq = buildRequest(parsedReq, 'email')
+    const emailReq = buildRequest(reqBody, 'email')
 
     const emailRes = await new EmailService().sendMailFromVariables(emailReq.body)
 

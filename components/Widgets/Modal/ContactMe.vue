@@ -27,16 +27,16 @@ defineExpose({
 })
 </script>
 <template>
-  <WidgetsModalBase
+  <LazyWidgetsModalBase
     ref="modalWindow"
     :class="styles['contact-me-modal']"
   >
-    <WidgetsFormContactMe
+    <LazyWidgetsFormContactMe
       :form-location="location"
       :form-uid="formUid"
       :email-subject="emailSubject"
     />
-  </WidgetsModalBase>
+  </LazyWidgetsModalBase>
 </template>
 <style module lang="scss">
 @import "./styles/contactMeModal.module";

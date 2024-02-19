@@ -1,4 +1,4 @@
-export default function uid() {
+export const uid = () => {
   const a = new Uint32Array(3)
   window.crypto.getRandomValues(a)
 

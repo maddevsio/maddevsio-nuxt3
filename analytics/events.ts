@@ -1,5 +1,5 @@
-import { AnalyticsEvent } from './Event.js'
-import { EVENT_CATEGORIES } from './constants.js'
+import { AnalyticsEvent } from '~/analytics/Event'
+import { EVENT_CATEGORIES } from '~/analytics/constants'
 
 export const emailClickEvent = new AnalyticsEvent('email_click').setCategory(EVENT_CATEGORIES.CLICK)
 

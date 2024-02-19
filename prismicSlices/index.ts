@@ -50,4 +50,6 @@ export const components = defineSliceZoneComponents({
   grid_lottie_slice: defineAsyncComponent(() => import('./GridLottieSlice/index.vue')),
   team_cards: defineAsyncComponent(() => import('./TeamCards/index.vue')),
   image_slice: defineAsyncComponent(() => import('./ImageSlice/index.vue')),
+  form_slice: defineAsyncComponent(() => import('./FormSlice/index.vue')),
+  image_with_caption: defineAsyncComponent(() => import('./ImageWithCaption/index.vue')),
 })

@@ -1,25 +1,32 @@
 /* eslint-disable no-console */
-// import { CONTENT_GROUPS } from './constants'
-// import { isMatchMainDomain } from '~/utils/isMatchMainDomain.js'
-// import { getUserType, getUserUID, setUserType } from '~/utils/analyticsUserDataService.js'
+import { CONTENT_GROUPS } from './constants'
 
-export const addUserType = type => {
+export const addUserType = (type: string) => {
   // TYPE: 'hr_candidate' | 'lead' | 'download_ebook' | undefined
   setUserType(type)
 }
 
 export class AnalyticsEvent {
-  constructor(action, strict = true) {
-    if (!action) {
-      throw new Error(`Event action is missing for ${ this.action }, please add an action for object`)
-    }
+  action: string
+  strict: boolean
+  properties: {
+    user_custom_id?: string
+    user_type?: string
+    event_category?: string
+    path?: string
+    from_page?: string
+    event_location?: string
+    [key: string]: any
+  }
+
+  constructor(action: string, strict = true) {
     this.strict = strict
     this.action = action
     this.properties = {}
     this._applyUser()
   }
 
-  _getNameByPath = (contentGroups, path) => {
+  _getNameByPath = (contentGroups: Array<{ url: string[], name: string }>, path: string) => {
     if (path === '/') {
       return 'home_page'
     }
@@ -38,18 +45,18 @@ export class AnalyticsEvent {
   }
 
   _applyUser() {
-    if ('window' in global) {
+    if (window) {
       this.properties.user_custom_id = getUserUID()
       this.properties.user_type = getUserType()
     }
   }
 
-  _handleError(message) {
+  _handleError(message: string) {
     if (this.strict) { throw new Error(message) }
     console.error(message)
   }
 
-  setCategory(category) {
+  setCategory(category: string) {
     if (!category) {
       this._handleError('Event category is required')
     }
@@ -57,7 +64,7 @@ export class AnalyticsEvent {
     return this
   }
 
-  setField(name, value) {
+  setField(name: string, value: string) {
     if (!name || !(value !== undefined && value !== null)) {
       this._handleError('AnalyticsEvent.setField() method is failed. Please add name or values params')
     }
@@ -70,14 +77,14 @@ export class AnalyticsEvent {
   }
 
   _collectGoogleAnalyticsKeys() {
-    const keys =
-			window.dataLayer
-			  ?.filter(dataLayerValue => dataLayerValue[0] === 'config' && dataLayerValue.length >= 3)
-			  .map(dataLayerValue => dataLayerValue[1]) || []
-    return [...new Set(keys)]
+    if ('dataLayer' in window) {
+      const keys =
+        (window?.dataLayer as string[]).filter((dataLayerValue: any) => dataLayerValue[0] === 'config' && dataLayerValue.length >= 3).map((dataLayerValue: any) => dataLayerValue[1]) || []
+      return [...new Set(keys)]
+    }
   }
 
-  _log(analyticsKeys) {
+  _log(analyticsKeys: any) {
     const msg = [
       '<------- GOOGLE ANALYTICS EVENT SENDING -------->',
       `EVENT: ${ this.action }`,
@@ -87,36 +94,40 @@ export class AnalyticsEvent {
     console.log(msg.join('\n'))
   }
 
-  _setClickLocation(location, fromUrl) {
+  _setClickLocation(location: string, fromUrl: string) {
     this.properties.from_page = fromUrl || window.location.pathname
     this.properties.event_location = location || 'Page'
   }
 
   send(location = '', fromUrl = '') {
-    console.log(location, fromUrl)
-    // if (isMatchMainDomain(window.location.origin)) {
-    //   this._setPath()
-    //   this._applyUser()
-    //   this._setClickLocation(location, fromUrl)
-    //   const analyticsKeys = this._collectGoogleAnalyticsKeys()
-    //
-    //   if (process.env.NODE_ENV !== 'production') {
-    //     this._log(analyticsKeys)
-    //   }
-    //
-    //   const nameByPath = this._getNameByPath(CONTENT_GROUPS, window.location.href)
-    //   analyticsKeys.forEach(analyticsId => {
-    //     const properties = {
-    //       ...this.properties,
-    //       send_to: analyticsId,
-    //       content_group: nameByPath || '',
-    //     }
-    //     try {
-    //       window.gtag('event', this.action, properties)
-    //     } catch (error) {
-    //       this._handleError(error)
-    //     }
-    //   })
-    // }
+    if (isMatchMainDomain(window.location.origin)) {
+      this._setPath()
+      this._applyUser()
+      this._setClickLocation(location, fromUrl)
+      const analyticsKeys = this._collectGoogleAnalyticsKeys()
+
+      if (process.env.NODE_ENV !== 'production') {
+        this._log(analyticsKeys)
+      }
+
+      const nameByPath = this._getNameByPath(CONTENT_GROUPS, window.location.href)
+      if (analyticsKeys) {
+        analyticsKeys.forEach(analyticsId => {
+          const properties = {
+            ...this.properties,
+            send_to: analyticsId,
+            content_group: nameByPath || '',
+          }
+          try {
+            if ('gtag' in window) {
+              // @ts-ignore
+              window.gtag('event', this.action, properties)
+            }
+          } catch (error: any) {
+            this._handleError(error)
+          }
+        })
+      }
+    }
   }
 }

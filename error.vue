@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const error = useError()
+import type { NuxtError } from '#app'
+
+defineProps({
+  // eslint-disable-next-line vue/require-default-prop
+  error: Object as () => NuxtError,
+})
 const { $getMediaFromS3 } = useMediaFromS3()
 const handleClearError = () => clearError({ redirect: '/' })
 </script>
@@ -7,6 +12,7 @@ const handleClearError = () => clearError({ redirect: '/' })
 <template>
   <div class="error-page container">
     <LazySharedLottieMad
+      v-if="error?.statusCode === 404"
       id="404-code"
       class="case_lottie"
       height="170px"
@@ -14,7 +20,7 @@ const handleClearError = () => clearError({ redirect: '/' })
       :autoplay="true"
     />
     <h1 class="error-page_title">
-      The page you were looking for doesn’t exist.
+      {{ error.statusCode === 404 ? 'The page you were looking for doesn’t exist.' : error.statusMessage }}
     </h1>
     <button
       class="error-page_link"

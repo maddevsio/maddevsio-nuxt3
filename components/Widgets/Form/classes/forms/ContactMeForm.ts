@@ -1,24 +1,29 @@
+import type { RuntimeConfig } from 'nuxt/schema'
 import { BaseForm } from '~/components/Widgets/Form/classes/forms/BaseForm'
-import type { FormBuilderReturnProps, IFormBuilder } from '~/components/Widgets/Form/interfaces/IFormBuilder'
+import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
 import type {
   ContactMeFromProps,
   IContactMeForm,
   OnSubmitFromProps,
 } from '~/components/Widgets/Form/interfaces/forms/IContactMeForm'
+import { addUserType } from '~/analytics/Event'
+import { contactMeSubmitEvent } from '~/analytics/events'
+import { smartlookSubmitContactMe } from '~/analytics/smartlookEvents'
 
 export class ContactMeForm extends BaseForm implements IContactMeForm {
   formTitle: string
   buttons: FormBuilderReturnProps['buttons']
   formLocation: string
+  config: RuntimeConfig
 
   constructor({
     formTitle = '',
     formBuilder,
     formLocation,
     emailSubject,
-    reCaptchaSiteKey,
   }: ContactMeFromProps) {
-    super({ emailTitle: emailSubject, reCaptchaSiteKey })
+    super({ emailTitle: emailSubject })
+    this.config = useRuntimeConfig()
     this.formID = 'contact-me'
     this.formTitle = formTitle
     this.fields = formBuilder.fields
@@ -27,7 +32,7 @@ export class ContactMeForm extends BaseForm implements IContactMeForm {
     this.radioButtonGroups = formBuilder.radioButtonGroups
     this.checkBoxes = formBuilder.checkBoxes
     this.formLocation = formLocation
-    this.addressBookId = Number(process.env.sendPulseAddressBooksId)
+    this.addressBookId = Number(this.config.public.sendPulseAddressBooksId)
     this.successMessage = {
       ...this.successMessage,
       title: 'Thank you!',
@@ -56,17 +61,16 @@ export class ContactMeForm extends BaseForm implements IContactMeForm {
       })
       this.submitNewsletterSubscriptionToAnalytics(location)
       this.submitToAnalytics(location)
-      $eventBus.$emit('modal-close')
-      await this.redirectToSuccessAndFaq(router, route)
+      $eventBus.$emit('modal-close', this.resetRecaptcha)
+      await this.redirectToSuccessAndFaq(router!, route)
     } catch (e: any) {
       this.error.value = e
     }
   }
 
   submitToAnalytics(location: string) {
-    console.log(location)
-    // addUserType('lead')
-    // contactMeSubmitEvent.send(location)
-    // smartlookSubmitContactMe.send({ location })
+    addUserType('lead')
+    contactMeSubmitEvent.send(location)
+    smartlookSubmitContactMe.send({ location })
   }
 }

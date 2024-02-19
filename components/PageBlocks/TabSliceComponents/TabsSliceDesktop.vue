@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { contactMeClickEvent } from '~/analytics/events'
+
 defineProps({
   activeTab: {
     type: String,
@@ -29,7 +31,7 @@ const showModal = () => {
     return
   }
   modalContactMeRef.value.show()
-  // contactMeClickEvent.send('Tabs Slice component')
+  contactMeClickEvent.send('Tabs Slice component')
 }
 </script>
 <template>

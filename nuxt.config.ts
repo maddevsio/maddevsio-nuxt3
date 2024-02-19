@@ -112,15 +112,14 @@ export default defineNuxtConfig({
       },
     }],
     ['nuxt-security', {
-      rateLimiter: {
-        tokensPerInterval: 200,
-        interval: 30 * 60 * 1000, // 30 minutes
-      },
+      rateLimiter: false,
       headers: {
         contentSecurityPolicy: false,
         crossOriginEmbedderPolicy: false,
         xFrameOptions: 'DENY',
+        permissionsPolicy: false,
       },
+      xssValidator: false,
     }],
   ],
 

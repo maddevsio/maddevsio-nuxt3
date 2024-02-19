@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import Simplebar from 'simplebar-vue';
 import { manageScrollOnBody } from '~/utils/manageScrollOnBody'
 import 'simplebar-vue/dist/simplebar.min.css';
 
@@ -19,11 +18,18 @@ const props = defineProps({
 
 const { styles } = useStyleFormElement()
 const route = useRoute()
-const $eventBus = useEventBus()
+const { $eventBus } = useNuxtApp()
 const isShowModal = ref(false)
+
+const keyboardHandler = (event: KeyboardEvent) => {
+  if (event.key === 'Esc' || event.key === 'Escape') {
+    close()
+  }
+}
 const show = () => {
   isShowModal.value = true
   manageScrollOnBody.disableScrollOnBody()
+  document.addEventListener('keyup', keyboardHandler)
 }
 
 const close = () => {
@@ -38,16 +44,18 @@ const close = () => {
   }
 }
 const closeEventListener = () => {
-  $eventBus.$on('modal-close', () => {
+  $eventBus.$on('modal-close', (cb: any) => {
     close()
+    cb()
     $eventBus.$off('modal-close')
   })
 }
 
 closeEventListener()
 
-onUpdated(() => {
+onUnmounted(() => {
   closeEventListener()
+  document.removeEventListener('keyup', keyboardHandler)
 })
 
 watch(route, newRoute => {
@@ -61,13 +69,7 @@ defineExpose({
 })
 </script>
 <template>
-  <Transition
-    name="fade"
-    :enter-active-class="styles['fade-enter-active']"
-    :leave-active-class="styles['fade-leave-active']"
-    :enter-from-class="styles['fade-enter-from']"
-    :leave-to-class="styles['fade-leave-to']"
-  >
+  <LazySharedUITransitionFade>
     <div
       v-if="isShowModal"
       :class="styles['modal-window']"
@@ -94,7 +96,7 @@ defineExpose({
         </Simplebar>
       </div>
     </div>
-  </Transition>
+  </LazySharedUITransitionFade>
 </template>
 <style module lang="scss">
 @import './styles/modalWindow.module';

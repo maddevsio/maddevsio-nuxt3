@@ -25,7 +25,7 @@ const {
 
 const router = useRouter()
 const route = useRoute()
-const $eventBus = useEventBus()
+const { $eventBus } = useNuxtApp()
 const requestRecaptcha = () => form.requestRecaptcha()
 const onSubmitVerifiedForm = (token: string) => {
   form.onSubmitVerifiedForm({
@@ -41,6 +41,7 @@ const {
   successMessage,
   recaptchaRef,
   reCaptchaSiteKey,
+  error,
 } = form
 
 const showSuccessMessage = successMessage.show
@@ -51,10 +52,14 @@ const showSuccessFullMessage = successMessage.showSuccessfulMessage
     :id="formId"
     @submit.prevent="requestRecaptcha"
   >
-    <slot v-if="!showSuccessMessage" />
+    <slot v-if="!showSuccessMessage && !error" />
     <LazyWidgetsFormUISuccessMessage
-      v-if="showSuccessMessage && showSuccessFullMessage"
+      v-if="showSuccessMessage && showSuccessFullMessage && !error"
       :success-message="successMessage"
+    />
+    <LazySharedUIError
+      v-if="error"
+      :error="error.toString()"
     />
     <VueRecaptcha
       ref="recaptchaRef"

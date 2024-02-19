@@ -1,0 +1,14 @@
+@import "./modalWindow.module";
+
+.zoom-image-modal {
+  margin: 0;
+
+  .modal-window__body {
+    width: 98vw;
+  }
+
+  .modal-window__close {
+    top: 0;
+    right: 0;
+  }
+}

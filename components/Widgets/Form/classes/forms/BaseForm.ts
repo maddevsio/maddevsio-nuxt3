@@ -1,9 +1,12 @@
 import type { Ref } from 'vue'
 import type { Router } from 'vue-router'
 import axios from 'axios'
+import type { RuntimeConfig } from 'nuxt/schema'
 import type { BaseFormPayload, IBaseForm, SubmitLeadProps } from '~/components/Widgets/Form/interfaces/forms/IBaseForm'
 import { parseUserAgentForLeads } from '~/components/Widgets/Form/helpers/parseUserAgentForLeads'
 import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
+import { submitNewsletterSubscription } from '~/analytics/events'
+import { smartlookSubmitNewsletter } from '~/analytics/smartlookEvents'
 
 export class BaseForm implements IBaseForm {
   private token = ref('')
@@ -27,6 +30,9 @@ export class BaseForm implements IBaseForm {
     title: '',
     description: '', // It could contain HTML elements, but it should be inline ones (like <br>, <span>, <em> etc.). That's because parent element is <p>.
     showSuccessfulMessage: true,
+    showImage: false,
+    imagePath: '',
+    imageAlt: '',
   }
 
   error: Ref<string> = ref('')
@@ -35,11 +41,13 @@ export class BaseForm implements IBaseForm {
   checkBoxes?: FormBuilderReturnProps['checkBoxes']
   textarea?: FormBuilderReturnProps['textarea']
   formSends: Ref<boolean> = ref(false)
+  config: RuntimeConfig
 
   baseEmailTitle = 'New Lead from MD website'
 
-  constructor({ emailTitle, reCaptchaSiteKey }: { emailTitle?: string, reCaptchaSiteKey: string }) {
-    this.reCaptchaSiteKey = reCaptchaSiteKey
+  constructor({ emailTitle }: { emailTitle?: string }) {
+    this.config = useRuntimeConfig()
+    this.reCaptchaSiteKey = this.config.public.reCaptchaSiteKey!
     this.emailTitle = emailTitle || this.emailTitle
     this.onError = this.onError.bind(this)
     this.onExpired = this.onExpired.bind(this)
@@ -60,6 +68,7 @@ export class BaseForm implements IBaseForm {
     variables,
   }: SubmitLeadProps) {
     if (!templateId) { throw new Error('Template ID was not provided') }
+    if (this.error.value) { return }
 
     try {
       this.formSends.value = true
@@ -129,10 +138,10 @@ export class BaseForm implements IBaseForm {
 
   getArrayFormElements() { // Collect all form elements in one array, to work with them (validation, etc.)
     return [
-      ...Object.keys(this.fields!).map(field => this.fields![field]),
-      ...Object.keys(this.radioButtonGroups!).map(radioGroup => this.radioButtonGroups![radioGroup]),
-      ...Object.keys(this.checkBoxes!).map(checkbox => this.checkBoxes![checkbox]),
-      ...Object.keys(this.textarea!).map(textarea => this.textarea![textarea]),
+      ...(this.fields ? Object.values(this.fields) : []),
+      ...(this.radioButtonGroups ? Object.values(this.radioButtonGroups) : []),
+      ...(this.checkBoxes ? Object.values(this.checkBoxes) : []),
+      ...(this.textarea ? Object.values(this.textarea) : []),
     ]
   }
 
@@ -210,7 +219,7 @@ export class BaseForm implements IBaseForm {
   }
 
   async redirectToSuccessAndFaq(router: Router, route: any) {
-    if (!router || route.value.path === '/success-and-faq/') { return }
+    if (!router || route.path === '/success-and-faq/') { return }
     sessionStorage.setItem('canSeeSuccessAndFaqPage', 'yes')
     await delay(this.sleepTimer)
     await router.push('/success-and-faq/')
@@ -233,10 +242,9 @@ export class BaseForm implements IBaseForm {
   }
 
   submitNewsletterSubscriptionToAnalytics(location: string) {
-    console.log(location)
-    // if (this.checkBoxes.newsLetter.checkboxValue.value) {
-    //   submitNewsletterSubscription.send(location)
-    //   smartlookSubmitNewsletter.send({ location })
-    // }
+    if (this.checkBoxes && this.checkBoxes.newsLetter.checkboxValue.value) {
+      submitNewsletterSubscription.send(location)
+      smartlookSubmitNewsletter.send({ location })
+    }
   }
 }
