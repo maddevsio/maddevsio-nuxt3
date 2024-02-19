@@ -2,20 +2,13 @@ import axios from 'axios'
 import { BaseForm } from '~/components/Widgets/Form/classes/forms/BaseForm'
 import {
   type EbookFormProps,
-  EbookTemplateIDs,
-  type IEbookForm,
 } from '~/components/Widgets/Form/interfaces/forms/IEbookForm'
 import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
 import type { OnSubmitFromProps } from '~/components/Widgets/Form/interfaces/forms/IContactMeForm'
 import type { SendEmailPayload } from '~/components/Widgets/Form/interfaces/forms/FormTypes'
 import { addUserType } from '~/analytics/Event'
-import {
-  approachDPEbookSubmitFormEvent, engineeringsHandbookSubmitFormEvent,
-  pricingStrategiesEbookSubmitFormEvent,
-  submitNewsletterSubscription,
-  transparentRelationshipsHandbookSubmitFormEvent,
-} from '~/analytics/events'
-import { smartlookSubmitEbookForm, smartlookSubmitNewsletter } from '~/analytics/smartlookEvents'
+import { submitNewsletterSubscription } from '~/analytics/events'
+import { smartlookSubmitNewsletter } from '~/analytics/smartlookEvents'
 import { sendEbookSubmitToAnalytics } from '~/components/Widgets/Form/helpers/sendEbookSubmitToAnalytics'
 
 export class EbookForm extends BaseForm implements IEbookForm {

@@ -3,6 +3,9 @@ import { BaseForm } from '~/components/Widgets/Form/classes/forms/BaseForm'
 import type { IServiceForm, ServiceFormProps } from '~/components/Widgets/Form/interfaces/forms/IServiceForm'
 import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
 import type { OnSubmitFromProps } from '~/components/Widgets/Form/interfaces/forms/IContactMeForm'
+import { submitNewsletterSubscription, submitPostForm } from '~/analytics/events'
+import { smartlookSubmitNewsletter, smartlookSubmitPostForm } from '~/analytics/smartlookEvents'
+import { addUserType } from '~/analytics/Event'
 
 export class ServiceForm extends BaseForm implements IServiceForm {
   config: RuntimeConfig
@@ -48,12 +51,12 @@ export class ServiceForm extends BaseForm implements IServiceForm {
         variables: this.collectData(),
       })
       if (this.checkBoxes!.newsLetter.checkboxValue.value) {
-        // submitNewsletterSubscription.send(location)
-        // smartlookSubmitNewsletter.send({ location })
+        submitNewsletterSubscription.send(location)
+        smartlookSubmitNewsletter.send({ location })
       }
-      // addUserType('lead')
-      // submitPostForm.send(location)
-      // smartlookSubmitPostForm.send({ location })
+      addUserType('lead')
+      submitPostForm.send(location)
+      smartlookSubmitPostForm.send({ location })
     } catch (e: any) {
       this.error.value = e
     }
