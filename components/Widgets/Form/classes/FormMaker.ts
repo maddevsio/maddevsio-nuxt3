@@ -5,12 +5,25 @@ import { Button } from '~/components/Widgets/Form/classes/formElements/Button'
 import { RadioButtonGroup } from '~/components/Widgets/Form/classes/formElements/RadioButtonGroup'
 import { RadioButton } from '~/components/Widgets/Form/classes/formElements/RadioButton'
 import { ContactMeForm } from '~/components/Widgets/Form/classes/forms/ContactMeForm'
+import { ServiceForm } from '~/components/Widgets/Form/classes/forms/ServiceForm'
+import { EbookForm } from '~/components/Widgets/Form/classes/forms/EbookForm'
+
+interface FormMakerOptions {
+  formLocation?: string
+  emailSubject?: string
+  sendPulseTemplateId?: number
+  ebookPath?: string
+  ebookName?: string
+  templateId?: number
+  lineBreakForSuccess?: boolean
+  [key: string]: any
+}
 
 export class FormMaker {
   formBuilder: IFormBuilder
-  options: any
+  options: FormMakerOptions
 
-  constructor(formBuilder: IFormBuilder, options: any) {
+  constructor(formBuilder: IFormBuilder, options: FormMakerOptions) {
     this.formBuilder = formBuilder
     this.options = options
   }
@@ -18,9 +31,8 @@ export class FormMaker {
   contactMeFormMaker() {
     return new ContactMeForm({
       formTitle: 'Tell Us About Your Project',
-      formLocation: this.options.formLocation,
-      emailSubject: this.options.emailSubject,
-      reCaptchaSiteKey: this.options.reCaptchaSiteKey,
+      formLocation: this.options.formLocation!,
+      emailSubject: this.options.emailSubject!,
       formBuilder: this.formBuilder
         .setFields([
           new Field({
@@ -84,6 +96,7 @@ export class FormMaker {
         .build(),
     })
   }
+
   //
   // checklistFormMaker() {
   //   return new ChecklistForm({
@@ -192,128 +205,128 @@ export class FormMaker {
   //   })
   // }
   //
-  // ebookFormMaker() {
-  //   return new EbookForm({
-  //     formTitle: '',
-  //     formLocation: this.options.formLocation,
-  //     sendPulseTemplateId: this.options.sendPulseTemplateId,
-  //     ebookPath: this.options.ebookPath,
-  //     ebookName: this.options.ebookName,
-  //     formBuilder: this.formBuilder
-  //       .setFields([
-  //         new Field({
-  //           objectKeyName: 'fullName',
-  //           elementId: 'fullName',
-  //           type: 'text',
-  //           name: 'Full name',
-  //           placeholder: 'Full Name',
-  //           validationType: 'longText',
-  //           longTextLimit: 140,
-  //           required: true,
-  //         }),
-  //         new Field({
-  //           objectKeyName: 'email',
-  //           elementId: 'email',
-  //           type: 'email',
-  //           name: 'Email',
-  //           placeholder: 'Email',
-  //           validationType: 'email',
-  //           required: true,
-  //         }),
-  //       ])
-  //       .addCheckBoxes([
-  //         new Checkbox({
-  //           objectKeyName: 'newsLetter',
-  //           elementId: 'newsLetter',
-  //           label: 'I agree to receive the monthly newsletter from Mad Devs.',
-  //           name: 'Newsletter agreement',
-  //           defaultValue: true,
-  //         }),
-  //       ])
-  //       .addButton(
-  //         new Button({
-  //           objectKeyName: 'submitButton',
-  //           elementId: 'submitButton',
-  //           label: 'Send me the ebook',
-  //           type: 'submit',
-  //         }),
-  //       )
-  //       .build(),
-  //   })
-  // }
-  //
-  // serviceFormWithPrismicMaker() {
-  //   return new ServiceForm({
-  //     formTitle: this.options.$prismic.asText(this.options.slice.primary.title),
-  //     formDescription: this.options.slice.primary.description,
-  //     formBuilder: this.formBuilder
-  //       .setFields([
-  //         new Field({
-  //           objectKeyName: 'fullName',
-  //           elementId: 'fullName',
-  //           type: 'text',
-  //           name: 'Full name',
-  //           placeholder: this.options.slice.primary.fieldNamePlaceholder || 'Full Name',
-  //           validationType: 'longText',
-  //           longTextLimit: 140,
-  //           required: true,
-  //         }),
-  //         new Field({
-  //           objectKeyName: 'email',
-  //           elementId: 'email',
-  //           type: 'email',
-  //           name: 'Business Email',
-  //           placeholder: this.options.slice.primary.fieldEmailPlaceholder || 'Business Email',
-  //           validationType: 'businessEmail',
-  //           required: true,
-  //         }),
-  //         new Field({
-  //           objectKeyName: 'phoneNumber',
-  //           elementId: 'phoneNumber',
-  //           type: 'text',
-  //           name: 'phoneNumber',
-  //           placeholder: this.options.slice.primary.fieldPhonePlaceholder || 'Phone Number',
-  //           validationType: 'phone',
-  //           required: false,
-  //         }),
-  //       ])
-  //       .addButton(
-  //         new Button({
-  //           objectKeyName: 'submitButton',
-  //           elementId: 'submitButton',
-  //           label: this.options.slice.primary.buttonText || 'Get Started',
-  //           type: 'submit',
-  //         }),
-  //       )
-  //       .addRadioButtonGroup(
-  //         new RadioButtonGroup({
-  //           objectKeyName: 'serviceFormRadioGroup',
-  //           elementId: 'serviceFormRadioGroup',
-  //           description: this.options.slice.primary.radioButtonGroupDescription || '',
-  //           required: true,
-  //           radioButtons: this.options.slice.items.map((radio: {
-  //             radioButtonLabel: string
-  //             radioButtonGroupName: string
-  //           }) => new RadioButton({
-  //             objectKeyName: radio.radioButtonLabel,
-  //             elementId: radio.radioButtonLabel,
-  //             label: radio.radioButtonLabel,
-  //             name: radio.radioButtonGroupName || this.options.slice.primary.radioButtonGroupDescription,
-  //           })),
-  //         }),
-  //       )
-  //       .addCheckBoxes([
-  //         new Checkbox({
-  //           objectKeyName: 'newsLetter',
-  //           elementId: 'newsLetter',
-  //           label: 'I agree to get Mad Devs’ discount offers and other marketing communications.',
-  //           name: 'Newsletter agreement',
-  //           defaultValue: true,
-  //         }),
-  //       ])
-  //       .build(),
-  //   })
-  // }
+  ebookFormMaker() {
+    return new EbookForm({
+      formTitle: '',
+      formLocation: this.options.formLocation!,
+      sendPulseTemplateId: this.options.sendPulseTemplateId!,
+      ebookPath: this.options.ebookPath!,
+      ebookName: this.options.ebookName!,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'fullName',
+            elementId: 'fullName',
+            type: 'text',
+            name: 'Full name',
+            placeholder: 'Full Name',
+            validationType: 'longText',
+            longTextLimit: 140,
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'email',
+            elementId: 'email',
+            type: 'email',
+            name: 'Email',
+            placeholder: 'Email',
+            validationType: 'email',
+            required: true,
+          }),
+        ])
+        .addCheckBoxes([
+          new Checkbox({
+            objectKeyName: 'newsLetter',
+            elementId: 'newsLetter',
+            label: 'I agree to receive the monthly newsletter from Mad Devs.',
+            name: 'Newsletter agreement',
+            defaultValue: true,
+          }),
+        ])
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            label: 'Send me the ebook',
+            type: 'submit',
+          }),
+        )
+        .build(),
+    })
+  }
+
+  serviceFormWithPrismicMaker() {
+    return new ServiceForm({
+      formTitle: this.options.$prismic.asText(this.options.slice.primary.title),
+      formDescription: this.options.slice.primary.description,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'fullName',
+            elementId: 'fullName',
+            type: 'text',
+            name: 'Full name',
+            placeholder: this.options.slice.primary.fieldNamePlaceholder || 'Full Name',
+            validationType: 'longText',
+            longTextLimit: 140,
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'email',
+            elementId: 'email',
+            type: 'email',
+            name: 'Business Email',
+            placeholder: this.options.slice.primary.fieldEmailPlaceholder || 'Business Email',
+            validationType: 'businessEmail',
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'phoneNumber',
+            elementId: 'phoneNumber',
+            type: 'text',
+            name: 'phoneNumber',
+            placeholder: this.options.slice.primary.fieldPhonePlaceholder || 'Phone Number',
+            validationType: 'phone',
+            required: false,
+          }),
+        ])
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            label: this.options.slice.primary.buttonText || 'Get Started',
+            type: 'submit',
+          }),
+        )
+        .addRadioButtonGroup(
+          new RadioButtonGroup({
+            objectKeyName: 'serviceFormRadioGroup',
+            elementId: 'serviceFormRadioGroup',
+            description: this.options.slice.primary.radioButtonGroupDescription || '',
+            required: true,
+            radioButtons: this.options.slice.items.map((radio: {
+              radioButtonLabel: string
+              radioButtonGroupName: string
+            }) => new RadioButton({
+              objectKeyName: radio.radioButtonLabel,
+              elementId: radio.radioButtonLabel,
+              label: radio.radioButtonLabel,
+              name: radio.radioButtonGroupName || this.options.slice.primary.radioButtonGroupDescription,
+            })),
+          }),
+        )
+        .addCheckBoxes([
+          new Checkbox({
+            objectKeyName: 'newsLetter',
+            elementId: 'newsLetter',
+            label: 'I agree to get Mad Devs’ discount offers and other marketing communications.',
+            name: 'Newsletter agreement',
+            defaultValue: true,
+          }),
+        ])
+        .build(),
+    })
+  }
   //
   // subscribeFormMaker() {
   //   return new SubscribeForm({

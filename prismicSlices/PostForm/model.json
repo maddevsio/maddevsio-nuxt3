@@ -1,0 +1,99 @@
+{
+  "id": "post_form",
+  "type": "SharedSlice",
+  "name": "PostForm",
+  "description": "PostForm",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "PostForm",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1",
+            "label": "Title",
+            "placeholder": "This is where it all begins..."
+          }
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "fieldNamePlaceholder": {
+          "config": {
+            "label": "Field Name Placeholder Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "fieldCompanyPlaceholder": {
+          "config": {
+            "label": "Field Company Placeholder Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "fieldEmailPlaceholder": {
+          "config": {
+            "label": "Field Email Placeholder Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "fieldPhonePlaceholder": {
+          "config": {
+            "label": "Field Phone Placeholder Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "fieldTextareaPlaceholder": {
+          "config": {
+            "label": "Field Textarea Placeholder Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "radioButtonGroupDescription": {
+          "config": {
+            "label": "Radio Button Group Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {
+        "radioButtonLabel": {
+          "config": {
+            "label": "Radio Button Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "radioButtonGroupName": {
+          "config": {
+            "label": "Radio Button Group Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

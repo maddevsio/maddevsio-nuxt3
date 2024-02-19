@@ -66,6 +66,7 @@
     "sass": "^1.69.5",
     "sendpulse-api": "^1.1.6",
     "simplebar-vue": "^2.3.3",
+    "vue-gtag-next": "^1.14.0",
     "vue-recaptcha": "^2.0.3"
   }
 }

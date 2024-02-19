@@ -25,6 +25,8 @@ export interface BaseFormPayload {
 }
 
 export interface SubmitLeadProps {
+  type?: string
+  formLocation?: string
   templateId: number
   title?: string
   subject?: string
@@ -46,6 +48,9 @@ export interface IBaseForm {
     title: string
     description: string
     showSuccessfulMessage: boolean
+    showImage?: boolean
+    imagePath?: string
+    imageAlt?: string
   }
   error: Ref<string>
   fields?: FormBuilderReturnProps['fields']

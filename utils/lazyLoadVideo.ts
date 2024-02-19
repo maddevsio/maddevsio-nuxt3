@@ -8,7 +8,9 @@ export const lazyLoadVideo = () => {
           const target = video.target as HTMLVideoElement
           for (const source in target.children) {
             const videoSource = target.children[source] as HTMLVideoElement;
-            target.poster = target.dataset.poster!
+            if (target.dataset.poster) {
+              target.poster = target.dataset.poster!
+            }
             if (videoSource.tagName === 'SOURCE') {
               videoSource.src = videoSource.dataset.src!
             }

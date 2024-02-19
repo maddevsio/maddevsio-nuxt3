@@ -1,23 +1,29 @@
 /* eslint-disable no-console */
-import { isMatchMainDomain } from '~/client/utils/isMatchMainDomain.ts'
-
 export class SmartlookEvent {
-  constructor(action, strict = true) {
-    if (!action) {
-      throw new Error(`Event action is missing for ${ this.action }, please add an action for object`)
-    }
+  action: string
+  strict: boolean
+  properties: {
+    user_custom_id?: string
+    user_type?: string
+    event_category?: string
+    path?: string
+    from_page?: string
+    event_location?: string
+    [key: string]: any
+  }
 
+  constructor(action: string, strict = true) {
     this.strict = strict
     this.action = action
     this.properties = {}
   }
 
-  _handleError(message) {
+  _handleError(message: string) {
     if (this.strict) { throw new Error(message) }
     console.error(message)
   }
 
-  setCategory(category) {
+  setCategory(category: string) {
     if (!category) {
       this._handleError('Event category is required')
     }
@@ -40,7 +46,7 @@ export class SmartlookEvent {
     console.log(msg.join('\n'))
   }
 
-  _setField(props = {}) {
+  _setField(props: { [key: string]: string } = {}) {
     if (!Object.keys(props).length) { return }
 
     Object.keys(props).forEach(key => {
@@ -62,11 +68,13 @@ export class SmartlookEvent {
     if (
       isMatchMainDomain(window.location.origin) &&
 			process.env.NODE_ENV === 'production' &&
-			window.location.origin !== 'https://maddevs.co'
+			window.location.origin !== 'https://maddevs.co' &&
+      'smartlook' in window
     ) {
       try {
+        // @ts-ignore
         window.smartlook('track', this.action, this.properties)
-      } catch (error) {
+      } catch (error: any) {
         this._handleError(error)
       }
     }

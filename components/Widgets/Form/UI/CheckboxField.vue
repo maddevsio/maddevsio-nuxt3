@@ -25,7 +25,6 @@ const {
   label,
   name,
   checkboxValue,
-  required,
   error,
 } = props.checkboxInstance
 </script>

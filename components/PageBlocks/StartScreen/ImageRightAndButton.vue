@@ -18,21 +18,19 @@ const {
   subtitle,
   image,
   rightImage,
-  // ebookImage,
-  // ebookName,
-  // ebookPath,
+  ebookImage,
+  ebookName,
+  ebookPath,
   modal,
-  // btnLink,
-  // sendPulseTemplateId,
+  sendPulseTemplateId,
 } = new StartScreenImageRightAndButton(slice)
 
 const sectionText = ref(null)
-// const modalEbook = ref(null)
+const modalEbook = ref<{ show(): void } | null>(null)
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
-const showModalEbook = () => { // TODO: Needs finishing ebook modal form
-  console.log('Click to show modal ebook')
-  // if (!modalEbook.value.show) return
-  // modalEbook.value.show()
+const showModalEbook = () => {
+  if (!modalEbook.value && !modalEbook.value!.show) { return }
+  modalEbook.value?.show()
 }
 </script>
 <template>
@@ -105,15 +103,20 @@ const showModalEbook = () => { // TODO: Needs finishing ebook modal form
         </div>
       </div>
     </div>
-    <!--    <ModalEbook-->
-    <!--      id="sent-ebook"-->
-    <!--      ref="modalEbook"-->
-    <!--      :ebook-sub-title="title"-->
-    <!--      :ebook-path="ebookPath"-->
-    <!--      :ebook-name="ebookName"-->
-    <!--      :ebook-image="ebookImage"-->
-    <!--      :send-pulse-template-id="sendPulseTemplateId"-->
-    <!--    />-->
+    <ClientOnly>
+      <Teleport to="body">
+        <LazyWidgetsModalEbook
+          ref="modalEbook"
+          :send-pulse-template-id="sendPulseTemplateId"
+          :ebook-title="ebookName"
+          :ebook-sub-title="title"
+          :ebook-path="ebookPath"
+          :ebook-name="ebookName"
+          :ebook-image="ebookImage"
+          location="Start screen component"
+        />
+      </Teleport>
+    </ClientOnly>
   </section>
 </template>
 <style lang="scss" scoped>

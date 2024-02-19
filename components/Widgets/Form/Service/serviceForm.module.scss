@@ -1,0 +1,46 @@
+@import "../UI/styles/styleFormElements.module";
+
+.service-form {
+  background: $bgcolor--cultured;
+  padding: 30px 25.5px;
+  display: flex;
+  flex-direction: column;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  &__field {
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    @include font('Inter', 24px, 700);
+    line-height: 130%;
+    color: $text-color--chinese-black;
+    margin-bottom: 21px;
+  }
+
+  &__description {
+    @include font('Inter', 16px, 400);
+    line-height: 130%;
+    color: $text-color--chinese-black;
+    margin-bottom: 21px;
+     a {
+       color: inherit;
+       text-decoration: underline;
+     }
+  }
+
+  .form-privacy-notice {
+    margin: 24px 0 12px;
+  }
+
+  @media screen and (max-width: 1087px) {
+    padding: 27px;
+
+    &__title {
+      font-size: 20px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
-import { SmartlookEvent } from 'analytics/SmartlookEvent.js'
-import { SMARTLOOK_EVENTS, SMARTLOOK_EVENT_CATEGORIES } from 'analytics/constants.js'
+import { SmartlookEvent } from '~/analytics/SmartlookEvent'
+import { SMARTLOOK_EVENT_CATEGORIES, SMARTLOOK_EVENTS } from '~/analytics/constants'
 
 export const smartlookSubmitContactMe = new SmartlookEvent(SMARTLOOK_EVENTS.submitContactMe).setCategory(
   SMARTLOOK_EVENT_CATEGORIES.SUBMIT,

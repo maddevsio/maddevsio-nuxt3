@@ -16,14 +16,12 @@ const props = defineProps({
   },
 })
 
-const config = useRuntimeConfig()
 const { form, styles } = useForm({
   methodName: 'makeContactMeForm',
   options: {
     formUid: props.formUid,
     formLocation: props.formLocation,
     emailSubject: props.emailSubject,
-    reCaptchaSiteKey: config.public.reCaptchaSiteKey,
   },
 })
 const {

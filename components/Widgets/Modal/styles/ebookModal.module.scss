@@ -1,0 +1,46 @@
+@import "./modalWindow.module";
+
+.ebook-form-modal {
+  margin: 0;
+
+  .modal-window__body {
+    width: 998px;
+    max-width: 998px;
+    padding: 0;
+
+    @media screen and (max-width: 1025px) {
+      width: 97vw;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 43px;
+    padding: 42px 48px;
+
+    @media screen and (max-width: 845px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @media screen and (max-width: 600px) {
+      padding: 20px;
+      gap: 21px;
+    }
+  }
+
+  &__ebook-image {
+    width: 100%;
+    max-width: 249px;
+    height: auto;
+
+    @media screen and (max-width: 600px) {
+      max-width: 78px;
+    }
+  }
+
+  .ebook-form {
+    width: 100%;
+  }
+}
