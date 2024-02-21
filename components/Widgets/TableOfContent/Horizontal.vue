@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import type { PropType } from 'vue'
 import { HorizontalToC } from '~/components/Widgets/TableOfContent/classes/HorizontalToC'
 import type { HorizontalToCProps } from '~/components/Widgets/TableOfContent/interfaces/IHorizontalToC'
@@ -13,14 +12,29 @@ const props = defineProps({
 
 const horizontalToCStore = useHorizontalToCStore()
 const { activeAnchor } = storeToRefs(horizontalToCStore)
-const horizontalToC = new HorizontalToC({ items: props.slice.items, activeAnchor })
-const { isMobile } = useHorizontalToC(horizontalToC)
+const { headerHeight } = storeToRefs(useHeaderStore())
+const horizontalToC = new HorizontalToC({ items: props.slice.items, activeAnchor }, headerHeight)
+const { isMobile } = useCheckMobile(horizontalToC.triggerBreakpoint)
+
 const {
   anchors,
   horizontalTocRef,
   isIntersection,
-  stickyTopFromHeader, // eslint-disable
+  stickyTopFromHeader,
+  getDistanceFromHeader,
 } = horizontalToC
+
+onMounted(() => {
+  if (!isMobile.value) {
+    window.addEventListener('scroll', getDistanceFromHeader)
+  }
+})
+
+onUnmounted(() => {
+  if (!isMobile.value && horizontalTocRef.value) {
+    window.removeEventListener('scroll', getDistanceFromHeader)
+  }
+})
 </script>
 <template>
   <section
@@ -29,6 +43,7 @@ const {
     ref="horizontalTocRef"
     class="horizontal-toc"
     :class="{ 'horizontal-toc--sticky': isIntersection}"
+    :style="stickyTopFromHeader"
   >
     <div class="container">
       <nav
@@ -59,7 +74,7 @@ const {
 <style scoped lang="scss">
 .horizontal-toc {
   position: sticky;
-  top: v-bind('stickyTopFromHeader');
+  top: var(--stickyTop);
   left: 0;
   z-index: 5;
   padding: 8px 0;

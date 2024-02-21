@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 
 export interface ToCAnchor {
   sectionId: string
@@ -15,8 +15,8 @@ export interface IHorizontalToC {
   horizontalTocRef: Ref<Element | null>
   isIntersection: Ref<boolean>
   anchors: ToCAnchor[]
-  // headerHeightGlobal: number
+  headerHeightGlobal: Ref<number>
   horizontalAnchorActiveGlobal: any
-  stickyTopFromHeader: string
+  stickyTopFromHeader: ComputedRef<{ '--stickyTop': string }>
   getDistanceFromHeader: () => void
 }

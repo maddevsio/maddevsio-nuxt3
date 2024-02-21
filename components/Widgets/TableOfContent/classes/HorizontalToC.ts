@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import type {
   HorizontalToCProps,
   IHorizontalToC,
@@ -10,28 +10,33 @@ export class HorizontalToC implements IHorizontalToC {
   horizontalTocRef: Ref<Element | null>
   isIntersection: Ref<boolean>
   anchors: ToCAnchor[]
-  // headerHeightGlobal: number
+  headerHeightGlobal: Ref<number>
   horizontalAnchorActiveGlobal: any
-  stickyTopFromHeader: string
+  stickyTopFromHeader: ComputedRef<{ '--stickyTop': string }>
 
-  constructor(props: HorizontalToCProps) {
+  constructor(props: HorizontalToCProps, headerHeight: Ref<number>) {
     this.horizontalTocRef = ref(null)
     this.isIntersection = ref(false)
     this.anchors = props.items
-    // this.headerHeightGlobal = inject('headerHeightGlobal').headerHeightGlobal
+    this.headerHeightGlobal = headerHeight
     this.horizontalAnchorActiveGlobal = props.activeAnchor
-    this.stickyTopFromHeader = '20px'
-    // this.stickyTopFromHeader = computed(() => ({
-    //   '--stickyTop': `${this.headerHeightGlobal.value - 1}px`,
-    // }))
+    this.stickyTopFromHeader = computed(() => ({
+      '--stickyTop': `${ this.headerHeightGlobal.value - 1 }px`,
+    }))
     this.getDistanceFromHeader = this.getDistanceFromHeader.bind(this)
 
     markRaw(this)
   }
 
   getDistanceFromHeader() {
-    // const headerDistanceScrollTop = document.getElementById('header').getBoundingClientRect().top
-    const tocDistanceScrollTop = this.horizontalTocRef.value?.getBoundingClientRect().top
-    this.isIntersection.value = tocDistanceScrollTop ? tocDistanceScrollTop < 130 : false
+    const header = document.getElementById('header')
+    if (header) {
+      const headerDistanceScrollTop = document.getElementById('header')?.getBoundingClientRect().top
+      if (headerDistanceScrollTop !== undefined && this.horizontalTocRef.value) {
+        const tocDistanceScrollTop = this.horizontalTocRef.value.getBoundingClientRect().top
+        const distance = tocDistanceScrollTop - headerDistanceScrollTop
+        this.isIntersection.value = distance < 130
+      }
+    }
   }
 }
