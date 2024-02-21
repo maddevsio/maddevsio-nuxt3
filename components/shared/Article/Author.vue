@@ -3,13 +3,13 @@ import type { ImageField } from '@prismicio/types'
 
 interface Props {
   uid: string
-  disabled: boolean
+  disabled?: boolean
   name: string
   position: string
   date: string
   image: ImageField | undefined
   theme: string
-  readTime: string
+  readTime?: string
 }
 
 const { uid, name } = withDefaults(defineProps<Props>(), {

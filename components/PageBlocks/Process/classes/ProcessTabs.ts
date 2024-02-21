@@ -115,7 +115,7 @@ export class ProcessTabs implements IProcessTabs {
   }
 
   checkWidthToInit() {
-    if (process.client && window.innerWidth < this.mobileBreakpoint) {
+    if (window.innerWidth < this.mobileBreakpoint) {
       this.enabledAutoplay.value = false
       clearInterval(this.intervalId.value)
       this.intervalId.value = undefined

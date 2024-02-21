@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
   tag: string
-  disabled: boolean
+  disabled?: boolean
   theme: string
 }
 
