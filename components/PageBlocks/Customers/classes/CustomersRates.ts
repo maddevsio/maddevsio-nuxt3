@@ -12,6 +12,6 @@ export class CustomersRates implements ICustomersRates {
   constructor(props: CustomersRatesProps) {
     this.cards = props.items || []
     this.backgroundColor = setSliceBackground(props.primary.background || 'black')
-    this.backgroundInText = props.primary.background || 'white'
+    this.backgroundInText = props.primary.background || 'black'
   }
 }
