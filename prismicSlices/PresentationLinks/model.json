@@ -1,0 +1,33 @@
+{
+  "id": "presentation_links",
+  "type": "SharedSlice",
+  "name": "PresentationLinks",
+  "description": "PresentationLinks",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "PresentationLinks",
+      "primary": {},
+      "items": {
+        "name": {
+          "config": {
+            "label": "Presentation File Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "link": {
+          "config": {
+            "label": "Presentation File Link",
+            "placeholder": "",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        }
+      }
+    }
+  ]
+}

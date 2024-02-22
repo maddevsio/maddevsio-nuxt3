@@ -23,7 +23,7 @@ export class BaseForm implements IBaseForm {
   templateId: number = 686633
   formType: string = 'Software development'
   emailTitle: string = 'Contact Me form'
-  addressBookId: number = Number(process.env.sendPulseAddressBooksId)
+  addressBookId: number
   recaptchaRef: Ref<any> = ref(null)
   successMessage = {
     show: ref(false),
@@ -47,7 +47,8 @@ export class BaseForm implements IBaseForm {
 
   constructor({ emailTitle }: { emailTitle?: string }) {
     this.config = useRuntimeConfig()
-    this.reCaptchaSiteKey = this.config.public.reCaptchaSiteKey!
+    this.reCaptchaSiteKey = this.config.public.reCaptchaSiteKey
+    this.addressBookId = Number(this.config.public.sendPulseAddressBooksId)
     this.emailTitle = emailTitle || this.emailTitle
     this.onError = this.onError.bind(this)
     this.onExpired = this.onExpired.bind(this)

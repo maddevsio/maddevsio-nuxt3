@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { fetchHeader } from '~/components/Widgets/Header/helpers/fetchHeader'
 import { Header } from '~/components/Widgets/Header/classes/Header'
 import { HeaderMenu } from '~/components/Widgets/Header/classes/HeaderMenu'
 import { transformationHeaderData } from '~/components/Widgets/Header/helpers/transformationHeaderData'
+import { fetchHeader } from '~/components/Widgets/Header/helpers/fetchHeader'
 
 const { data } = await useAsyncData('header', () => fetchHeader())
 const header = new Header(new HeaderMenu(transformationHeaderData(data.value)))

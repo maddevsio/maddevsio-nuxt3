@@ -4,6 +4,7 @@ import { fetchLinks } from '~/config/constants'
 
 const { client } = usePrismic()
 const route = useRoute()
+const { updateFooterVisible } = useFooterStore()
 
 const { data, error } = await useAsyncData(`customPage-${ route.params.uid }`, async () => {
   try {
@@ -17,6 +18,14 @@ const { data, error } = await useAsyncData(`customPage-${ route.params.uid }`, a
 
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+}
+
+onBeforeRouteLeave(() => {
+  updateFooterVisible(true)
+})
+
+if (data.value?.data) {
+  updateFooterVisible(data.value.data.show_footer)
 }
 </script>
 <template>

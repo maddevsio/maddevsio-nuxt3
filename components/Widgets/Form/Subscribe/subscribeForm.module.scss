@@ -1,0 +1,76 @@
+@import "../UI/styles/styleFormElements.module";
+
+.subscribe-form {
+  * {
+    box-sizing: border-box;
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__input {
+
+    &--black {
+      color: $text-color--white-primary;
+    }
+
+    &-white {
+      color: $text-color--quote-box;
+    }
+
+    &--digest {
+      width: 60%;
+    }
+
+    &--default {
+      width: 78%;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    max-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+
+    &--default {
+      width: 23%;
+    }
+
+    &--digest {
+      width: 41%
+    }
+
+    &-content {
+      @include font('Inter', 16px, 400);
+      line-height: 26px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0;
+
+      @media screen and (max-width: 450px) {
+        font-size: 14px;
+        line-height: 150%;
+        letter-spacing: -0.4px;
+      }
+
+      @media screen and (max-width: 360px) {
+        font-size: 12px;
+      }
+    }
+
+    &-icon {
+      display: block;
+      width: 14px;
+      height: 14px;
+    }
+  }
+}

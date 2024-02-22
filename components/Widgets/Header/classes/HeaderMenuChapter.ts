@@ -1,11 +1,11 @@
 import type { IHeaderMenuChapter } from '~/components/Widgets/Header/interfaces/IHeaderMenuChapter'
-import type { IHeaderMenuLink } from '~/components/Widgets/Header/interfaces/IHeaderMenuLink'
+import type { IMenuLink } from '~/components/Widgets/shared/interfaces/IMenuLink'
 
 export class HeaderMenuChapter implements IHeaderMenuChapter {
   title: string
-  menus: IHeaderMenuLink[]
+  menus: IMenuLink[]
 
-  constructor(title: string, menus: IHeaderMenuLink[]) {
+  constructor(title: string, menus: IMenuLink[]) {
     this.title = title
     this.menus = menus
   }

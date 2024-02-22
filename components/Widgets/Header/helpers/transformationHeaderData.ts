@@ -1,6 +1,6 @@
 import type { FilledLinkToWebField } from '@prismicio/types'
 import { HeaderMenuChapter } from '~/components/Widgets/Header/classes/HeaderMenuChapter'
-import { HeaderMenuLink } from '~/components/Widgets/Header/classes/HeaderMenuLink'
+import { MenuLink } from '~/components/Widgets/shared/classes/MenuLink'
 import type { IHeaderMenuItem } from '~/components/Widgets/Header/interfaces/IHeaderMenuItem'
 import { HeaderMenuItem } from '~/components/Widgets/Header/classes/HeaderMenuItem'
 import { HeaderMenuPost } from '~/components/Widgets/Header/classes/HeaderMenuPost'
@@ -29,7 +29,7 @@ export const transformationHeaderData = (data: any) => {
               new HeaderMenuChapter(
                 menuItem.primary.name,
                 menuItem.items
-                  .map((menuLink: Link) => new HeaderMenuLink(
+                  .map((menuLink: Link) => new MenuLink(
                     menuLink.label,
                     `${ menuLink.link.url.replace(/^https?:\/\/[^/]*/, '') }`,
                   )),
@@ -43,7 +43,7 @@ export const transformationHeaderData = (data: any) => {
       if (acc.length && acc[acc.length - 1].mainNav.name === menuItem.primary.nav_section) { return acc }
       acc.push(
         new HeaderMenuItem(
-          new HeaderMenuLink(
+          new MenuLink(
             menuItem.primary.nav_section,
             menuItem.primary.link.length ? menuItem.primary.link[0].text : '',
             menuItem.primary?.show_icon || false,
