@@ -3,6 +3,7 @@ import { components } from '~/prismicSlices'
 import { fetchLinks } from '~/config/constants'
 
 const { client } = usePrismic()
+const { updateFooterVisible } = useFooterStore()
 const { data: home, error } = await useAsyncData('home', async () => {
   try {
     return await client.getByUID('custom_page', 'main-page', {
@@ -15,6 +16,14 @@ const { data: home, error } = await useAsyncData('home', async () => {
 
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+}
+
+onBeforeRouteLeave(() => {
+  updateFooterVisible(true)
+})
+
+if (home.value?.data) {
+  updateFooterVisible(home.value.data.show_footer)
 }
 </script>
 

@@ -7,6 +7,7 @@ import { RadioButton } from '~/components/Widgets/Form/classes/formElements/Radi
 import { ContactMeForm } from '~/components/Widgets/Form/classes/forms/ContactMeForm'
 import { ServiceForm } from '~/components/Widgets/Form/classes/forms/ServiceForm'
 import { EbookForm } from '~/components/Widgets/Form/classes/forms/EbookForm'
+import { SubscribeForm } from '~/components/Widgets/Form/classes/forms/SubscribeForm'
 
 interface FormMakerOptions {
   formLocation?: string
@@ -327,34 +328,34 @@ export class FormMaker {
         .build(),
     })
   }
-  //
-  // subscribeFormMaker() {
-  //   return new SubscribeForm({
-  //     templateId: this.options.templateId,
-  //     formTitle: '',
-  //     formLocation: this.options.formLocation,
-  //     lineBreakForSuccess: this.options.lineBreakForSuccess,
-  //     formBuilder: this.formBuilder
-  //       .setFields([
-  //         new Field({
-  //           objectKeyName: 'email',
-  //           elementId: this.options.elementId,
-  //           type: 'email',
-  //           name: 'Subscribe Email',
-  //           placeholder: 'Email',
-  //           validationType: 'existingEmail',
-  //           required: true,
-  //         }),
-  //       ])
-  //       .addButton(
-  //         new Button({
-  //           objectKeyName: 'submitButton',
-  //           elementId: 'submitButton',
-  //           label: '',
-  //           type: 'submit',
-  //         }),
-  //       )
-  //       .build(),
-  //   })
-  // }
+
+  subscribeFormMaker() {
+    return new SubscribeForm({
+      templateId: Number(this.options.templateId),
+      formTitle: '',
+      formLocation: this.options.formLocation!,
+      lineBreakForSuccess: this.options.lineBreakForSuccess!,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'email',
+            elementId: this.options.elementId,
+            type: 'email',
+            name: 'Subscribe Email',
+            placeholder: 'Email',
+            validationType: 'existingEmail',
+            required: true,
+          }),
+        ])
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            label: '',
+            type: 'submit',
+          }),
+        )
+        .build(),
+    })
+  }
 }

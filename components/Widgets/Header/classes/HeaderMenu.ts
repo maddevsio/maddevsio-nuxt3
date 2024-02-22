@@ -39,11 +39,9 @@ export class HeaderMenu implements IHeaderMenu<IHeaderMenuItem[]> {
     return this.navigationList
       .find(menuItem => menuItem.chapters
         .find(chapter => chapter.menus
-          .find(menuLink => route.path ? route.path.includes(menuLink.url) : route.includes(menuLink.url)))) ||
-      this.navigationList.find(menuItem => route.path === menuItem.mainNav.url || route === menuItem.mainNav.url) ||
-      this.navigationList.find(menuItem => route.path
-        ? route.path.split('/').filter(Boolean).includes(menuItem.mainNav.url.replaceAll('/', ''))
-        : route.split('/').filter(Boolean).includes(menuItem.mainNav.url.replaceAll('/', '')))
+          .find(menuLink => route.includes(menuLink.url)))) ||
+      this.navigationList.find(menuItem => route === menuItem.mainNav.url) ||
+      this.navigationList.find(menuItem => route.split('/').filter(Boolean).includes(menuItem.mainNav.url.replaceAll('/', '')))
   }
 
   setCurrentRoute(currentRoute: any) {

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { BaseForm } from '~/components/Widgets/Form/classes/forms/BaseForm'
 import {
-  type EbookFormProps,
+  type EbookFormProps, type IEbookForm,
 } from '~/components/Widgets/Form/interfaces/forms/IEbookForm'
 import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
 import type { OnSubmitFromProps } from '~/components/Widgets/Form/interfaces/forms/IContactMeForm'

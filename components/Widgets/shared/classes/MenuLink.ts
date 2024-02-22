@@ -1,9 +1,8 @@
 import type { ImageField } from '@prismicio/client'
-import NuxtLink from '#app/components/nuxt-link'
-import type { IHeaderMenuLink } from '~/components/Widgets/Header/interfaces/IHeaderMenuLink'
+import type { IMenuLink } from '~/components/Widgets/shared/interfaces/IMenuLink'
 import { careersClickEvent, contactsClickEvent } from '~/analytics/events'
 
-export class HeaderMenuLink implements IHeaderMenuLink {
+export class MenuLink implements IMenuLink {
   name: string
   url: string
   showIcon?: boolean

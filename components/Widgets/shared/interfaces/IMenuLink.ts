@@ -1,6 +1,6 @@
 import type { ImageField } from '@prismicio/client'
 
-export interface IHeaderMenuLink {
+export interface IMenuLink {
   name: string
   url: string
   showIcon?: boolean
