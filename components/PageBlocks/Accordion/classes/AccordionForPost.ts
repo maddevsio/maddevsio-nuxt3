@@ -22,8 +22,8 @@ export class AccordionForPost implements IAccordionForPost {
     }
   }
 
-  transformationQuestions(items) {
-    return items.map(item => ({
+  transformationQuestions(items: any) {
+    return items.map((item: any) => ({
       ...item,
       questionTag: this.getTag(item.question[0].type),
       answerTag: this.getTag(item.answer[0].type),
