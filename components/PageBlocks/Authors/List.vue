@@ -158,6 +158,8 @@ onMounted(async () => {
     width: 120px;
     height: 120px;
     border-radius: 10px;
+    object-fit: cover;
+
     @media screen and (max-width: 1024px) {
       width: 110px;
       height: 110px;
