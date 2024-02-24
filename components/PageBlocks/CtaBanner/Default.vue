@@ -24,6 +24,7 @@ const {
   sendCareersLinkClickEvent,
 } = new CtaBannerDefault(slice)
 const route = useRoute()
+const { $getMediaFromS3 } = useMediaFromS3()
 const sendCareersClickEvent = () => sendCareersLinkClickEvent(route)
 </script>
 <template>
@@ -49,9 +50,10 @@ const sendCareersClickEvent = () => sendCareersLinkClickEvent(route)
           >
             {{ buttonText }}
             <img
+              loading="lazy"
               width="20"
               height="20"
-              src="@/assets/img/common/arrow-up-right.svg"
+              :src="$getMediaFromS3('images/core/common/arrow-up-right.svg')"
               alt="arrow"
             >
           </LazySharedUIButton>

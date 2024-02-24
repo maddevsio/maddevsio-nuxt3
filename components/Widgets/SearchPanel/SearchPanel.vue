@@ -176,13 +176,9 @@ const searchQuery = async (value: string) => {
   left: 0;
 }
 
-.slide-right-enter /* .fade-leave-active was before 2.1.8 version */
-{
-  width: 0;
-  opacity: 0;
-}
-
+.slide-right-enter-from,
 .slide-right-leave-to {
+  width: 0;
   opacity: 0;
 }
 </style>

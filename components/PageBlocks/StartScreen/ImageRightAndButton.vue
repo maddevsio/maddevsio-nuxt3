@@ -28,6 +28,7 @@ const {
 const sectionText = ref(null)
 const modalEbook = ref<{ show(): void } | null>(null)
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
+const { $getMediaFromS3 } = useMediaFromS3()
 const showModalEbook = () => {
   if (!modalEbook.value && !modalEbook.value!.show) { return }
   modalEbook.value?.show()
@@ -85,7 +86,7 @@ const showModalEbook = () => {
               <img
                 width="20"
                 height="20"
-                src="@/assets/img/common/arrow-up-right.svg"
+                :src="$getMediaFromS3('images/core/common/arrow-up-right.svg')"
                 alt="Arrow"
               >
             </LazySharedUIButton>
