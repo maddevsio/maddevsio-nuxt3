@@ -1,0 +1,105 @@
+<script setup lang="ts">
+defineProps({
+  showMeta: {
+    type: Boolean,
+    default: true,
+  },
+
+  showAuthor: {
+    type: Boolean,
+    default: true,
+  },
+})
+</script>
+<template>
+  <div class="blog-post">
+    <div class="blog-post__cover-image background-grey" />
+    <div>
+      <h2 class="blog-post__title animated background-grey" />
+      <p class="blog-post__paragraph background-grey" />
+      <div
+        v-if="showMeta"
+        class="blog-post__meta"
+      >
+        <span class="created-at background-grey" />
+        <span class="tag background-grey" />
+      </div>
+      <div
+        v-if="showAuthor"
+        class="blog-post__author"
+      >
+        <div class="blog-post__none-image background-grey" />
+        <div class="blog-post__author-info background-grey">
+          <p class="blog-post__author-name background-grey" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<style lang="scss" scoped>
+.background-grey {
+  background-color: $bgcolor--silver;
+  background-image: $bgcolor--skeleton-gradient-light;
+  background-position: center;
+}
+
+.blog-post {
+  color: $text-color--black;
+  text-decoration: none;
+
+  &__cover-image {
+    height: 220px;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    height: 56px;
+    background-color: $bgcolor--silver;
+    border-radius: 7px;
+  }
+
+  &__paragraph {
+    margin-top: 15px;
+    height: 90px;
+  }
+
+  &__author {
+    display: flex;
+  }
+
+  &__none-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+
+  &__author-name {
+    height: 20px;
+    width: 140px;
+  }
+
+  &__meta {
+    @include font('Inter', 16px, 400);
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+
+    .created-at {
+      margin-right: 40px;
+      color: $text-color--grey;
+      width: 75px;
+      height: 28px;
+      animation: none;
+    }
+
+    .tag {
+      background-color: $bgcolor--silver;
+      padding: 4px 16px;
+      transition: 0.2s;
+      width: 140px;
+      height: 20px;
+    }
+  }
+}
+</style>

@@ -1,43 +1,55 @@
 <script setup lang="ts">
-interface Props {
-  maxVisibleButtons?: number
-  totalPages: number
-  perPage?: number
-  currentPage: number
-  where?: string
-}
-
-const {
-  maxVisibleButtons,
-  totalPages,
-  currentPage,
-  where,
-} = withDefaults(defineProps<Props>(), {
-  maxVisibleButtons: 3,
-  perPage: 6,
-  where: 'page',
+const props = defineProps({
+  maxVisibleButtons: {
+    type: Number,
+    default: 3,
+  },
+  totalPages: {
+    type: Number,
+    default: 0,
+  },
+  perPage: {
+    type: Number,
+    default: 6,
+  },
+  currentPage: {
+    type: Number,
+    default: 1,
+  },
+  where: {
+    type: String,
+    default: 'page',
+  },
 })
 
 const emit = defineEmits(['page-changed'])
 const route = useRoute()
 
-const activePage = ref(currentPage)
+const activePage = ref(1)
+const activePageComputed = computed({
+  get() {
+    return props.currentPage
+  },
+  set(newVal) {
+    activePage.value = newVal
+  },
+})
 const firstPage = ref(1)
 const showFirstPageIfCurrentMoreThan = ref(2)
 const showDotsIfCurrentPageMoreThan = ref(3)
-const visibleButtons = computed(() => totalPages > 5 ? maxVisibleButtons : totalPages)
+const visibleButtons = computed(() => props.totalPages > 5 ? props.maxVisibleButtons : props.totalPages)
 const startPage = computed(() => {
   if (activePage.value === 1) { return 1 }
-  if (activePage.value === totalPages && totalPages >= visibleButtons.value) {
-    return totalPages - visibleButtons.value + 1
+  if (activePage.value === props.totalPages && props.totalPages >= visibleButtons.value) {
+    return props.totalPages - visibleButtons.value + 1
   }
-  if (totalPages === visibleButtons.value) { return 1 }
+  if (props.totalPages === visibleButtons.value) { return 1 }
   return activePage.value - 1
 })
 const pages = computed(() => {
   const range = []
 
-  if (totalPages > visibleButtons.value) {
+  if (props.totalPages > visibleButtons.value) {
     for (let i = startPage.value;
       countOfIterationsToCreateThreeVisiblePages(i);
       i += 1) {
@@ -47,7 +59,7 @@ const pages = computed(() => {
       })
     }
   } else {
-    for (let i = startPage.value; i <= totalPages && i > 0; i += 1) {
+    for (let i = startPage.value; i <= props.totalPages && i > 0; i += 1) {
       range.push({
         name: i,
         isDisabled: i === activePage.value,
@@ -59,43 +71,45 @@ const pages = computed(() => {
 
 const isInFirstPage = computed(() => activePage.value === 1)
 
-const isInLastPage = computed(() => activePage.value === totalPages)
+const isInLastPage = computed(() => activePage.value === props.totalPages)
 
 watch(activePage, newPage => {
   emit('page-changed', newPage)
 })
 
-watch(route, ({ query }) => {
-  if (where in query) {
-    if (Number(query[where]) !== activePage.value) {
-      activePage.value = Number(query[where])
+watch(() => route.query, query => {
+  if (props.where in query) {
+    if (Number(query[props.where]) !== activePage.value) {
+      activePageComputed.value = Number(query[props.where])
     }
   }
 }, { deep: true, immediate: true })
 
 const onClickPreviousPage = () => {
-  activePage.value -= 1
+  activePageComputed.value -= 1
 }
 
 const onClickPage = (page: number) => {
-  activePage.value = page
+  activePageComputed.value = page
 }
 
 const onClickNextPage = () => {
-  activePage.value += 1
+  activePageComputed.value += 1
 }
 
 const isPageActive = (page: number) => activePage.value === page
 
-const isTotalPagesMoreThanVisibleButtons = () => totalPages > visibleButtons.value
+const isTotalPagesMoreThanVisibleButtons = () => {
+  return props.totalPages > visibleButtons.value
+}
 
 const showFirstPageOrDots = (currentPageIsBiggerThanWhat: number) => activePage.value > currentPageIsBiggerThanWhat && isTotalPagesMoreThanVisibleButtons()
 
-const showLastDotsIfTotalPagesBiggerVisiblePages = () => totalPages - 1 > activePage.value + 1 && isTotalPagesMoreThanVisibleButtons()
+const showLastDotsIfTotalPagesBiggerVisiblePages = () => props.totalPages - 1 > activePage.value + 1 && isTotalPagesMoreThanVisibleButtons()
 
-const showLastPageIfTotalPagesBiggerOrEqualVisiblePages = () => totalPages - 1 >= activePage.value + 1 && isTotalPagesMoreThanVisibleButtons()
+const showLastPageIfTotalPagesBiggerOrEqualVisiblePages = () => props.totalPages - 1 >= activePage.value + 1 && isTotalPagesMoreThanVisibleButtons()
 
-const countOfIterationsToCreateThreeVisiblePages = (currentIteration: number) => currentIteration <= Math.min(startPage.value + visibleButtons.value - 1, totalPages)
+const countOfIterationsToCreateThreeVisiblePages = (currentIteration: number) => currentIteration <= Math.min(startPage.value + visibleButtons.value - 1, props.totalPages)
 </script>
 <template>
   <div class="pagination">

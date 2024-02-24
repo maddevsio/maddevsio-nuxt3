@@ -3,12 +3,13 @@ interface Props {
   author: string
 }
 defineProps<Props>()
+const { $getMediaFromS3 } = useMediaFromS3()
 </script>
 <template>
   <div class="case_quote-wrap">
     <img
       loading="lazy"
-      src="@/assets/img/Studies/svg/qmark.svg"
+      :src="$getMediaFromS3('images/core/Studies/svg/qmark.svg')"
       width="50"
       height="50"
       alt="blockquote"

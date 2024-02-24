@@ -1,4 +1,5 @@
-import type { ImageField, RichTextField } from '@prismicio/types'
+import type { ImageField } from '@prismicio/types'
+import type { RichTextField } from '@prismicio/client'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -68,23 +69,6 @@ interface OrderedList {
 
 interface Repeatable extends Embed, TechAndTools, OrderedList {}
 
-export interface BlogPost {
-  data?: {
-    body?: {
-      slice_type: string
-      slice_variation?: string
-      primary: {
-        text?: RichTextField
-        quote?: RichTextField
-        tableRich?: RichTextField
-      }
-      items: Repeatable[]
-    }[]
-    featured_image: ImageField
-    title: string | RichTextField
-  }
-}
-
 export interface SchemaOrgSnippet {
   singleSnippet: {
     text: string
@@ -130,4 +114,45 @@ export interface Author {
     }
     header_plate_background_color: string
   }
+}
+
+export interface BlogPost {
+  data?: {
+    body?: {
+      slice_type?: string
+      slice_variation?: string
+      primary: {
+        text?: RichTextField
+        quote?: RichTextField
+        tableRich?: RichTextField
+      }
+      items?: Repeatable[]
+    }[]
+    featured_image?: ImageField
+    title?: RichTextField
+    date?: string
+    header_plate_background_color?: string
+    header_plate_button_text?: string
+    header_plate_link?: string
+    header_plate_text?: string
+    introduction_paragraph?: RichTextField
+    meta_description?: RichTextField
+    meta_title?: RichTextField
+    post_author?: Author
+    post_coauthor?: Author
+    post_with_form?: boolean
+    schema_org_snippets?: SchemaOrgSnippet[]
+    subtitle?: RichTextField
+    updated_date?: string
+  }
+  uid?: string
+  first_publication_date?: string
+  last_publication_date?: string
+  id?: string
+  tags?: string[]
+  type?: string
+  isBroken?: boolean | undefined
+  description?: string
+  formattedDate?: string
+  readTime?: string
 }

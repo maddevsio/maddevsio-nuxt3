@@ -19,6 +19,8 @@ const {
   btnText,
   colorClassNames,
 } = new CtaBannerChecklist(slice)
+
+const { $getMediaFromS3 } = useMediaFromS3()
 </script>
 <template>
   <section :class="`checklist-cta ${colorClassNames.sliceBackground}`">
@@ -45,7 +47,7 @@ const {
             <img
               width="20"
               height="20"
-              src="@/assets/img/common/arrow-up-right.svg"
+              :src="$getMediaFromS3('images/core/common/arrow-up-right.svg')"
               alt="Arrow"
             >
           </LazySharedUIButton>

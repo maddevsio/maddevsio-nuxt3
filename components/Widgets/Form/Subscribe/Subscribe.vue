@@ -113,6 +113,10 @@ const {
     }
   }
 
+  :deep(.form-field__wrapper) {
+    max-height: 38px;
+  }
+
   &--digest {
     :deep(p) {
       font-size: 12px;

@@ -8,12 +8,25 @@ defineProps({
     type: String,
     default: 'ease-in-out',
   },
+  mode: {
+    type: String,
+    default: '',
+  },
 })
 </script>
 
 <template>
   <Transition
+    v-if="!mode"
     name="fade"
+    appear
+  >
+    <slot />
+  </Transition>
+  <Transition
+    v-else
+    name="fade"
+    :mode="mode"
     appear
   >
     <slot />

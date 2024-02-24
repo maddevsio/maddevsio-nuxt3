@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { tag, text } = defineProps<Props>()
+const { $getMediaFromS3 } = useMediaFromS3()
 const VNodeTitle = () => h(tag, { innerHTML: text })
 </script>
 <template>
@@ -24,7 +25,7 @@ const VNodeTitle = () => h(tag, { innerHTML: text })
         @click="useCopyAnchorLink"
       >
         <img
-          src="~/assets/img/common/anchor.svg"
+          :src="$getMediaFromS3('images/core/common/anchor.svg')"
           alt="Anchor"
           width="16"
           height="16"

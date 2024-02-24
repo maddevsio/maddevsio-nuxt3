@@ -12,6 +12,8 @@ const {
   toggleImage,
   toggleImageHandler,
 } = new TeamCardsDefault(slice)
+
+const { $getMediaFromS3 } = useMediaFromS3()
 </script>
 <template>
   <section
@@ -50,7 +52,7 @@ const {
           <img
             v-if="expert.linkedin.url"
             loading="lazy"
-            src="@/assets/img/Home/svg/team/linkedin.svg"
+            :src="$getMediaFromS3('images/core/socialIcons/linkedin-fullfilled.svg')"
             width="24"
             height="24"
             alt="Linkedin"
