@@ -1,35 +1,35 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { PressCenter } from '~/components/PageBlocks/PressCenter/classes/PressCenter'
-import type { PressCenterProps } from '~/components/PageBlocks/PressCenter/interfaces/IPressCenter'
+import { PressCenter } from '~/components/PageBlocks/PressCenter/classes/PressCenter';
+import type { PressCenterProps } from '~/components/PageBlocks/PressCenter/interfaces/IPressCenter';
 
 const props = defineProps({
   slice: {
     type: Object as PropType<PressCenterProps>,
+
     default: () => ({}),
   },
 })
 const pressCenter = new PressCenter(props.slice)
-const { isMobile } = useCheckMobile(pressCenter.triggerBreakpoint)
 const { $getMediaFromS3 } = useMediaFromS3()
 </script>
 <template>
-  <section class="press-center-slice">
+  <section :class="`press-center-slice ${colorConverterToClass('slice-bg', pressCenter.colorTheme)}`">
     <div class="container">
       <Swiper
         v-bind="pressCenter.swiperOptions"
         class="press-center-slice__cards"
       >
         <SwiperSlide
-          v-for="(card, cardIndex) in pressCenter.cards.value"
-          :key="`press-center-${cardIndex}`"
+          v-for="card in pressCenter.cards.value"
+          :key="`press-center-${card.title}`"
         >
-          <Component
-            :is="!isMobile ? 'a' : 'div'"
-            :href="!isMobile && card.link.url"
-            :target="setTargetForLinks(card.link.url)"
-            rel="noopener"
-            class="press-center-slice__card"
+          <NuxtLink
+            :to="card.link.url"
+            :external="card.external"
+            :no-rel="card.external"
+            :target="card.target"
+            :class="`press-center-slice__card ${colorConverterToClass('bg', pressCenter.colorTheme)}`"
           >
             <div
               v-if="card.image && card.image.url"
@@ -63,13 +63,13 @@ const { $getMediaFromS3 } = useMediaFromS3()
               </span>
               <h3
                 v-if="card.title"
-                class="press-center-slice__card-body-title"
+                :class="`press-center-slice__card-body-title press-center-slice__card-body-title--${pressCenter.colorTheme}`"
               >
                 {{ card.title }}
               </h3>
               <p
                 v-if="card.description"
-                class="press-center-slice__card-body-description"
+                :class="`press-center-slice__card-body-description press-center-slice__card-body-description--${pressCenter.colorTheme}`"
               >
                 {{ card.description }}
               </p>
@@ -78,11 +78,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
               v-if="card.link.url"
               class="press-center-slice__card-footer"
             >
-              <Component
-                :is="isMobile ? 'a' : 'button'"
-                :href="isMobile && card.link.url"
-                :target="setTargetForLinks(card.link.url)"
-                rel="noopener"
+              <button
                 class="press-center-slice__card-footer-link"
               >
                 <img
@@ -94,9 +90,9 @@ const { $getMediaFromS3 } = useMediaFromS3()
                   class="press-center-slice__card-footer-link-arrow"
                 >
                 {{ card.linkLabel }}
-              </Component>
+              </button>
             </div>
-          </Component>
+          </NuxtLink>
         </SwiperSlide>
         <div
           class="press-center-slice__navigation-buttons"
@@ -109,18 +105,21 @@ const { $getMediaFromS3 } = useMediaFromS3()
     </div>
   </section>
 </template>
+
 <style lang="scss" scoped>
+@import '@/assets/styles/colorClasses/colors.scss';
+
 .press-center-slice {
-  background-color: $bgcolor--white-primary;
 
   &__cards {
-    :deep(.swiper-slide) {
-      height: initial;
+    ::v-deep {
+      .swiper-slide {
+        height: initial;
+      }
     }
   }
 
   &__card {
-    background: $bgcolor--cultured;
     border-radius: 9px;
     overflow: hidden;
     display: flex;
@@ -169,6 +168,8 @@ const { $getMediaFromS3 } = useMediaFromS3()
     }
 
     &-body {
+      display: flex;
+      flex-direction: column;
       flex-grow: 1;
 
       &-date {
@@ -178,21 +179,38 @@ const { $getMediaFromS3 } = useMediaFromS3()
 
       &-title {
         @include font('Inter', 18px, 700);
-        line-height: 130%;
-        color: $text-color--chinese-black;
-        margin-top: 11px;
-      }
-
-      &-description {
-        @include font('Inter', 14px, 400);
-        color: $text-color--black-lighter;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
+        line-height: 130%;
+        margin: 11px 0 16px;
+        &--black {
+          color: $text-color--white-primary;
+        }
+
+        &--white {
+          color: $text-color--chinese-black;
+        }
+      }
+
+      &-description {
+        @include font('Inter', 14px, 400);
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
         line-height: 22.836px;
-        margin-top: 21px;
+        margin-top: auto;
+        &--black {
+          color: $text-color--grey-20-percent;
+        }
+
+        &--white {
+          color: $text-color--black-lighter;
+        }
       }
 
       @media screen and (max-width: 1280px), screen and (max-width: 1500px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -202,13 +220,18 @@ const { $getMediaFromS3 } = useMediaFromS3()
 
         &-title {
           font-size: 15px;
-          margin-top: 10px;
+          margin: 10px 0;
         }
 
         &-description {
           font-size: 12px;
-          margin-top: 16px;
           line-height: 20px;
+        }
+      }
+
+      @media screen and (max-width: 550px) {
+        &-description {
+          margin-top: 6px;
         }
       }
     }
@@ -247,14 +270,16 @@ const { $getMediaFromS3 } = useMediaFromS3()
     align-items: center;
     margin: 48px auto 0;
 
-    :deep(.digest-footer__navigations-divider) {
-      height: 15px;
-      background-color: $border-color--grey-20-percent;
-    }
+    ::v-deep {
+      .digest-footer__navigations-divider {
+        height: 15px;
+        background-color: $border-color--grey-20-percent;
+      }
 
-    :deep(.digest-footer__navigations-buttons-wrapper) {
-      width: auto;
-      min-width: unset;
+      .digest-footer__navigations-buttons-wrapper {
+        width: auto;
+        min-width: unset;
+      }
     }
 
     @media screen and (max-width: 1280px), screen and (max-width: 1500px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -262,12 +287,13 @@ const { $getMediaFromS3 } = useMediaFromS3()
     }
 
     @media screen and (max-width: 670px) {
-      :deep(.digest-footer__navigations-buttons-wrapper) {
-        width: 100%;
-      }
-
-      :deep(.digest-footer__navigations-buttons) {
-        gap: 18px;
+      ::v-deep {
+        .digest-footer__navigations-buttons-wrapper {
+          width: 100%;
+        }
+        .digest-footer__navigations-buttons {
+          gap: 18px;
+        }
       }
     }
 

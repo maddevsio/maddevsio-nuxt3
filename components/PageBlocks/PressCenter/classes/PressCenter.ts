@@ -43,13 +43,23 @@ export class PressCenter implements IPressCenter {
   }
 
   triggerBreakpoint = 768
+  colorTheme: string
   cards: ComputedRef<PressCenterCard[]>
 
   constructor(props: PressCenterProps) {
+    this.colorTheme = props.primary?.colorTheme || 'white'
     this.cards = computed(() => {
-      const sortedCards = [...props.items]
+      const transformedCards = props.items.map(item => ({
+        ...item,
+        link: {
+          ...item.link,
+          url: checkAndExtractDomain(item.link.url).ourDomain ? new URL(item.link.url).pathname : item.link.url,
+        },
+        target: setTargetForLinks(item.link.url),
+        external: !checkAndExtractDomain(item.link.url).ourDomain,
+      }))
       // @ts-ignore
-      return sortedCards.sort((cardA, cardB) => new Date(cardB.date) - new Date(cardA.date))
+      return [...transformedCards].sort((cardA, cardB) => new Date(cardB.date) - new Date(cardA.date))
     })
   }
 }
