@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { PressCenter } from '~/components/PageBlocks/PressCenter/classes/PressCenter';
-import type { PressCenterProps } from '~/components/PageBlocks/PressCenter/interfaces/IPressCenter';
+import { PressCenter } from '~/components/PageBlocks/PressCenter/classes/PressCenter'
+import type { PressCenterProps } from '~/components/PageBlocks/PressCenter/interfaces/IPressCenter'
 
 const props = defineProps({
   slice: {
