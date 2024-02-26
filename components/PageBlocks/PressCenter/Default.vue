@@ -6,30 +6,31 @@ import type { PressCenterProps } from '~/components/PageBlocks/PressCenter/inter
 const props = defineProps({
   slice: {
     type: Object as PropType<PressCenterProps>,
-
     default: () => ({}),
   },
 })
-const pressCenter = new PressCenter(props.slice)
+
+const { swiperOptions, cards, colorClassesNames } = new PressCenter(props.slice)
 const { $getMediaFromS3 } = useMediaFromS3()
 </script>
 <template>
-  <section :class="`press-center-slice ${colorConverterToClass('slice-bg', pressCenter.colorTheme)}`">
+  <section :class="`press-center-slice ${colorClassesNames.backgroundColorClass}`">
     <div class="container">
       <Swiper
-        v-bind="pressCenter.swiperOptions"
+        v-bind="swiperOptions"
         class="press-center-slice__cards"
       >
         <SwiperSlide
-          v-for="card in pressCenter.cards.value"
+          v-for="card in cards"
           :key="`press-center-${card.title}`"
         >
           <NuxtLink
+            v-if="card.link.url"
             :to="card.link.url"
             :external="card.external"
             :no-rel="card.external"
             :target="card.target"
-            :class="`press-center-slice__card ${colorConverterToClass('bg', pressCenter.colorTheme)}`"
+            :class="`press-center-slice__card ${colorClassesNames.cardBackgroundColorClass}`"
           >
             <div
               v-if="card.image && card.image.url"
@@ -63,13 +64,13 @@ const { $getMediaFromS3 } = useMediaFromS3()
               </span>
               <h3
                 v-if="card.title"
-                :class="`press-center-slice__card-body-title press-center-slice__card-body-title--${pressCenter.colorTheme}`"
+                :class="`press-center-slice__card-body-title ${colorClassesNames.titleColorClass}`"
               >
                 {{ card.title }}
               </h3>
               <p
                 v-if="card.description"
-                :class="`press-center-slice__card-body-description press-center-slice__card-body-description--${pressCenter.colorTheme}`"
+                :class="`press-center-slice__card-body-description ${colorClassesNames.descriptionColorClass}`"
               >
                 {{ card.description }}
               </p>
@@ -112,10 +113,8 @@ const { $getMediaFromS3 } = useMediaFromS3()
 .press-center-slice {
 
   &__cards {
-    ::v-deep {
-      .swiper-slide {
-        height: initial;
-      }
+    :deep(.swiper-slide) {
+      height: initial;
     }
   }
 
@@ -270,16 +269,14 @@ const { $getMediaFromS3 } = useMediaFromS3()
     align-items: center;
     margin: 48px auto 0;
 
-    ::v-deep {
-      .digest-footer__navigations-divider {
-        height: 15px;
-        background-color: $border-color--grey-20-percent;
-      }
+    :deep(.digest-footer__navigations-divider) {
+      height: 15px;
+      background-color: $border-color--grey-20-percent;
+    }
 
-      .digest-footer__navigations-buttons-wrapper {
-        width: auto;
-        min-width: unset;
-      }
+    :deep(.digest-footer__navigations-buttons-wrapper) {
+      width: auto;
+      min-width: unset;
     }
 
     @media screen and (max-width: 1280px), screen and (max-width: 1500px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -287,13 +284,12 @@ const { $getMediaFromS3 } = useMediaFromS3()
     }
 
     @media screen and (max-width: 670px) {
-      ::v-deep {
-        .digest-footer__navigations-buttons-wrapper {
-          width: 100%;
-        }
-        .digest-footer__navigations-buttons {
-          gap: 18px;
-        }
+      :deep(.digest-footer__navigations-buttons-wrapper) {
+        width: 100%;
+      }
+
+      :deep(.digest-footer__navigations-buttons) {
+        gap: 18px;
       }
     }
 

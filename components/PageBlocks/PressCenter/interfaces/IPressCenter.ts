@@ -23,6 +23,13 @@ export interface PressCenterProps {
   items: PressCenterCard[]
 }
 
+export interface IPressCenterColorClasses {
+  backgroundColorClass: string
+  cardBackgroundColorClass: string
+  titleColorClass: string
+  descriptionColorClass: string
+}
+
 export interface IPressCenter {
   swiperOptions: ISwiperOptions
   triggerBreakpoint: number
