@@ -111,7 +111,6 @@ const { $getMediaFromS3 } = useMediaFromS3()
 @import '@/assets/styles/colorClasses/colors.scss';
 
 .press-center-slice {
-
   &__cards {
     :deep(.swiper-slide) {
       height: initial;
@@ -139,11 +138,17 @@ const { $getMediaFromS3 } = useMediaFromS3()
     &-header {
       position: relative;
       overflow: hidden;
+      padding: 0 0 58% 0;
 
       &-image {
-        width: 100%;
-        max-height: 166.036px;
         display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
       }
 
@@ -152,12 +157,6 @@ const { $getMediaFromS3 } = useMediaFromS3()
         bottom: 16px;
         right: 16px;
         max-width: 100px;
-      }
-
-      @media screen and (max-width: 1280px), screen and (max-width: 1500px) and (-webkit-min-device-pixel-ratio: 2) {
-        &-image {
-          max-height: 150px;
-        }
       }
     }
 
