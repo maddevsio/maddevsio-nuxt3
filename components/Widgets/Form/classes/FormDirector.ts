@@ -18,8 +18,8 @@ export class FormDirector implements IFormDirector {
   makeContactMeForm(options: any) {
     return new FormMaker(this.formBuilder, options).contactMeFormMaker()
   }
-  //
-  // makeContactUsFooterForm = (options: any) => new FormMaker(this.formBuilder, options).contactUsFooterFormMaker()
+
+  makeContactUsFooterForm = (options: any) => new FormMaker(this.formBuilder, options).contactUsFooterFormMaker()
 
   makeEbookForm(options: any) {
     return new FormMaker(this.formBuilder, options).ebookFormMaker()
