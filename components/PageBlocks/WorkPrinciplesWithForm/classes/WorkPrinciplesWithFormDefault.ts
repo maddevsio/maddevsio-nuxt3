@@ -6,7 +6,7 @@ export class WorkPrinciplesWithFormDefault implements IWorkPrinciplesWithFormDef
   colorTheme: string
   formTitle: string
   formButtonText: string
-  listTitle: string[]
+  listTitle: string
   listItems: WorkPrinciplesWithFormListItem[]
   backgroundColorClass: string
 
@@ -14,7 +14,7 @@ export class WorkPrinciplesWithFormDefault implements IWorkPrinciplesWithFormDef
     this.colorTheme = props.primary?.colorTheme
     this.formTitle = props.primary?.formTitle
     this.formButtonText = props.primary?.buttonText
-    this.listTitle = props.primary?.listTitle.split('\n')
+    this.listTitle = replaceLineSeparatorToBr(props.primary?.listTitle || '')
     this.listItems = props.items
     this.backgroundColorClass = `work-principles-with-form--${ this.colorTheme }`
   }

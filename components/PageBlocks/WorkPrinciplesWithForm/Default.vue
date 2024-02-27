@@ -14,7 +14,13 @@ const props = defineProps({
   },
 })
 
-const { listTitle, listItems, formTitle, formButtonText, backgroundColorClass } = new WorkPrinciplesWithFormDefault(props.slice)
+const {
+  listTitle,
+  listItems,
+  formTitle,
+  formButtonText,
+  backgroundColorClass,
+} = new WorkPrinciplesWithFormDefault(props.slice)
 </script>
 
 <template>
@@ -22,18 +28,15 @@ const { listTitle, listItems, formTitle, formButtonText, backgroundColorClass } 
     <div class="work-principles-with-form__container container">
       <div class="work-principles-with-form__list">
         <h2
-          v-if="listTitle.length"
+          v-if="listTitle"
           class="work-principles-with-form__title"
-        >
-          <span
-            v-for="item in listTitle"
-            :key="item"
-          >{{ item }}</span>
-        </h2>
+          v-html="listTitle"
+        />
         <LazyPageBlocksWorkPrinciplesWithFormUIListItem
           v-for="(item, i) in listItems"
           :key="`work-principle-item-${i}`"
-          v-bind="item"
+          :icon="item.icon"
+          :description="item.description"
         />
       </div>
       <LazyWidgetsFormContactUsFooter
@@ -72,9 +75,6 @@ const { listTitle, listItems, formTitle, formButtonText, backgroundColorClass } 
     line-height: 125%;
     margin-bottom: 75px;
     color: inherit;
-    span {
-      display: block;
-    }
   }
 
   @media screen and (max-width: 1500px) {

@@ -13,19 +13,25 @@ export class FormDirector implements IFormDirector {
     this.formBuilder = builder
   }
 
-  makeServiceFormWithPrismic = (options: any) => new FormMaker(this.formBuilder, options).serviceFormWithPrismicMaker()
-  //
+  makeServiceFormWithPrismic(options: any) {
+    return new FormMaker(this.formBuilder, options).serviceFormWithPrismicMaker()
+  }
+
   makeContactMeForm(options: any) {
     return new FormMaker(this.formBuilder, options).contactMeFormMaker()
   }
 
-  makeContactUsFooterForm = (options: any) => new FormMaker(this.formBuilder, options).contactUsFooterFormMaker()
+  makeContactUsFooterForm (options: any) {
+    return new FormMaker(this.formBuilder, options).contactUsFooterFormMaker()
+  }
 
   makeEbookForm(options: any) {
     return new FormMaker(this.formBuilder, options).ebookFormMaker()
   }
-  //
-  // makeChecklistForm = (options: any) => new FormMaker(this.formBuilder, options).checklistFormMaker()
+
+  // makeChecklistForm (options: any) {
+  //   return new FormMaker(this.formBuilder, options).checklistFormMaker()
+  // }
 
   makeSubscribeForm(options: any) {
     return new FormMaker(this.formBuilder, options).subscribeFormMaker()

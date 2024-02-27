@@ -19,7 +19,7 @@ export interface IWorkPrinciplesWithFormDefault {
   colorTheme: string
   formTitle: string
   formButtonText: string
-  listTitle: string[]
+  listTitle: string
   listItems: WorkPrinciplesWithFormListItem[]
   backgroundColorClass: string
 }

@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import type {
-  WorkPrinciplesWithFormListItem,
-} from '~/components/PageBlocks/WorkPrinciplesWithForm/interfaces/IWorkPrinciplesWithFormDefault'
+import type { PropType } from 'vue'
+import type { ImageField } from '@prismicio/types'
 
-defineProps<WorkPrinciplesWithFormListItem>()
+defineProps({
+  icon: {
+    type: Object as PropType<ImageField>,
+    required: true,
+    default: () => ({}),
+  },
+
+  description: {
+    type: String,
+    required: true,
+    default: '',
+  },
+})
 </script>
 
 <template>
