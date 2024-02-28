@@ -1,6 +1,7 @@
 import type { PrismicPlugin } from '@prismicio/vue'
 import { fetchLinks } from '~/config/constants'
 import type { BlogPost } from '~/interfaces/common/commonInterfaces'
+import type { CuMasterDocument } from '~/prismicio-types'
 
 export interface PostResponse {
   total_results_size: number,
@@ -51,7 +52,7 @@ export class BlogService {
     }
   }
 
-  async getCUMaster(prismic: PrismicPlugin) {
+  async getCUSection(prismic: PrismicPlugin) {
     try {
       const { data } = await prismic.client.getSingle('cu_section', {
         fetchLinks: ['customer_university.featured_image'],
@@ -59,6 +60,39 @@ export class BlogService {
       return data.body
     } catch (e) {
       return e as ReturnType<typeof Error>
+    }
+  }
+
+  async getPostByUID(prismic: PrismicPlugin, uid: string, type: 'post' | 'customer_university') {
+    try {
+      return await prismic.client.getByUID(type, uid, {
+        fetchLinks,
+      })
+    } catch (e: any) {
+      return e
+    }
+  }
+
+  async fetchPostsByTag(prismic: PrismicPlugin, tags: string[], pageSize: number) {
+    try {
+      return await prismic.client.get({
+        filters: [
+          prismic.filter.at('document.type', 'post'),
+          prismic.filter.at('document.tags', tags),
+        ],
+        pageSize,
+        fetchLinks,
+      })
+    } catch (e: any) {
+      return e
+    }
+  }
+
+  async fetchCUMaster(prismic: PrismicPlugin) {
+    try {
+      return await prismic.client.getSingle('cu_master') as CuMasterDocument
+    } catch (e) {
+      return e
     }
   }
 }
