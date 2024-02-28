@@ -1,6 +1,5 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
 import type { RichTextField } from '@prismicio/client'
-import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
