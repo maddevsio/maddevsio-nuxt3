@@ -55,4 +55,5 @@ export const components = defineSliceZoneComponents({
   presentation_links: defineAsyncComponent(() => import('./PresentationLinks/index.vue')),
   social_networks: defineAsyncComponent(() => import('./SocialNetworks/index.vue')),
   authors_list_slice: defineAsyncComponent(() => import('./AuthorsListSlice/index.vue')),
+  work_principles_with_form_slice: defineAsyncComponent(() => import('./WorkPrinciplesWithFormSlice/index.vue')),
 })
