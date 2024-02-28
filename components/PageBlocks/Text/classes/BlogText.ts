@@ -1,6 +1,6 @@
 import type { RichTextField } from '@prismicio/client'
 import type { Ref } from 'vue'
-import type { BlogTextProps, IBlogText } from '~/components/Blog/Slices/interfaces/IBlogText'
+import type { BlogTextProps, IBlogText } from '~/components/PageBlocks/Text/interfaces/IBlogText'
 
 export class BlogText implements IBlogText {
   text: RichTextField

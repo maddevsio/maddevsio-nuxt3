@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { BlogTextProps } from '~/components/Blog/Slices/interfaces/IBlogText'
-import { BlogText } from '~/components/Blog/Slices/classes/BlogText'
+import type { BlogTextProps } from '~/components/PageBlocks/Text/interfaces/IBlogText'
+import { BlogText } from '~/components/PageBlocks/Text/classes/BlogText'
 
 const { slice } = defineProps({
   slice: {
