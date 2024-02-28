@@ -1,62 +1,50 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { FooterSocialNetwork } from '~/components/Widgets/Footer/interfaces/ISocialNetworks'
+import { type ISocialNetworks } from '~/components/Widgets/SocialNetworks/interfaces/ISocialNetworks'
+import { SocialNetworks } from '~/components/Widgets/SocialNetworks/classes/SocialNetworks'
 
-defineProps({
-  socialNetworks: {
-    type: Array as PropType<FooterSocialNetwork[]>,
-    default: () => [],
+const props = defineProps({
+  slice: {
+    type: Object as PropType<ISocialNetworks>,
+    default: () => ({}),
   },
 })
-</script>
-<template>
-  <ul class="social-networks">
-    <li
-      v-for="(network, index) in socialNetworks"
-      :key="`network-${index}`"
-      class="social-networks__link-wrapper"
-    >
-      <a
-        :href="network.link && network.link.url ? network.link.url : ''"
-        class="social-networks__link"
-        target="_blank"
-        rel="noopener"
-      >
-        <img
-          v-if="network.icon.url"
-          loading="lazy"
-          class="social-networks__icon"
-          :src="network.icon.url"
-          :alt="network.icon.alt || 'Image'"
-          width="42"
-          height="42"
-        >
-      </a>
-    </li>
-  </ul>
-</template>
-<style lang="scss" scoped>
-@mixin social-network-list-grid {
-  .social-networks {
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
 
-    &__link-wrapper {
-      margin: 0 -8px;
+const { items } = new SocialNetworks(props.slice.items)
+</script>
+
+<template>
+  <div class="social-networks-slice">
+    <div class="container">
+      <LazyWidgetsSocialNetworks
+        :social-networks="items"
+      />
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.social-networks-slice {
+  overflow: hidden;
+  :deep(.social-networks) {
+    justify-content: flex-start;
+    gap: 66px;
+
+    @media screen and (max-width: 768px) {
+      gap: 42px;
     }
   }
-}
 
-.social-networks {
-  display: flex;
-  justify-content: space-between;
+  @media screen and (max-width: 500px) {
+    :deep(.social-networks) {
+      gap: 13px 42px;
+    }
 
-  &__icon {
-    display: block;
+    :deep(.social-networks__icon) {
+      width: 35px;
+      min-width: 35px;
+      height: 35px;
+    }
   }
-}
-
-@media screen and (max-width: 640px) {
-  @include social-network-list-grid;
 }
 </style>

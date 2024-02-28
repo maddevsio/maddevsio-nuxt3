@@ -1,5 +1,9 @@
+<script setup lang="ts">
+const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
+</script>
 <template>
-  <h3 style="font-size: 60px; color: red;">
-    DO NOT USE THIS SLICE IN PAGES
-  </h3>
+  <LazyPageBlocksSocialNetworksDefault
+    v-if="slice.variation === 'default-slice'"
+    :slice="slice"
+  />
 </template>
