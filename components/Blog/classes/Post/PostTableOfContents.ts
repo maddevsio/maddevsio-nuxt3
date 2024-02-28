@@ -3,7 +3,7 @@ import type {
   IPostTableOfContents,
   PostTableOfContentsProps,
 } from '~/components/Blog/interfaces/Post/IPostTableOfContents'
-import type { IntersectionObserverInstance, TableOfContent } from '~/interfaces/common/commonInterfaces'
+import type { TableOfContent } from '~/interfaces/common/commonInterfaces'
 import { PostTableOfContentsItem } from '~/components/Blog/classes/Post/PostTableOfContentsItem'
 
 export class PostTableOfContents implements IPostTableOfContents {

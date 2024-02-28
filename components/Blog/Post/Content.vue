@@ -15,7 +15,7 @@ const {
   postAuthor,
   postCoAuthor,
   recommendedPosts,
-  exploreChapters,
+  // exploreChapters,
   postSidebar,
   openGraphUrl,
   metaTitle,
