@@ -20,7 +20,7 @@ if (blogHome.value) {
 }
 </script>
 <template>
-  <main class="blog-home">
+  <div class="blog-home">
     <LazyBlogMainPage />
-  </main>
+  </div>
 </template>

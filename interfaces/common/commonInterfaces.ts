@@ -1,4 +1,4 @@
-import type { ImageField } from '@prismicio/types'
+import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
 import type { RichTextField } from '@prismicio/client'
 
 export interface IntersectionObserverInstance {
@@ -101,6 +101,7 @@ export interface Author {
     thumbnail_image: ImageField
     image: ImageField & {
       header: ImageField
+      thumbnail: ImageField
     }
     meta_title: string
     meta_description: string
@@ -145,14 +146,55 @@ export interface BlogPost {
     subtitle?: RichTextField
     updated_date?: string
   }
-  uid?: string
+  uid: string
   first_publication_date?: string
   last_publication_date?: string
-  id?: string
-  tags?: string[]
-  type?: string
+  id: string
+  tags: string[]
+  type: string
   isBroken?: boolean | undefined
   description?: string
   formattedDate?: string
   readTime?: string
+  recommendedPosts?: any[]
+  chapter_name?: any[]
+  cu_post?: {
+    id: string
+    uid: string
+  }
+}
+
+export interface TableOfContent {
+  primary: {
+    color_theme: string
+  }
+  items: {
+    lable: RichTextField
+  }[]
+  slice_type: string
+}
+
+export interface Ebook {
+  variation: string
+  version: string
+  items: any[]
+  primary: {
+    background: string
+    gradientColor: string
+    image: ImageField
+    rightImage: ImageField
+    imageOpacity: string | null | boolean,
+    title: RichTextField
+    subtitle: RichTextField,
+    btnText: string
+    btnLink: FilledLinkToWebField
+    modal: string
+    ebookPath: string
+    ebookName: string
+    ebookImage: ImageField
+    sendPulseTemplateId: number
+  },
+  id: string
+  slice_type: string
+  slice_label: string | null
 }

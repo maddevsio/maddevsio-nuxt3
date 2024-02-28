@@ -1,0 +1,124 @@
+@import '../UI/styles/styleFormElements.module';
+
+.contact-us-footer-form {
+  background: $bgcolor--cultured;
+  border-radius: 10px;
+  padding: 44px 25px;
+
+  @media screen and (max-width: 768px) {
+    padding: 44px 90px;
+  }
+
+  @media screen and (max-width: 650px) {
+    padding: 32px 20px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  &__title {
+    @include font('Inter', 24px, 700);
+    line-height: 191%;
+    color: $text-color--chinese-black;
+    letter-spacing: -1.3px;
+    margin-bottom: 21px;
+  }
+
+  &__input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__input-field {
+    width: 100%;
+    margin-bottom: 12px;
+    .form-field__wrapper {
+      padding: 14px 33px 14px 10px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    input:placeholder-shown ~ label {
+      top: 50% !important;
+      transform: translateY(-50%);
+    }
+
+    input:focus ~ label {
+      top: 5px !important;
+      transform: translateY(0%);
+    }
+
+    textarea {
+      margin-top: 7px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__agreement {
+    flex: 0 1 auto;
+    margin-bottom: 20px;
+  }
+
+  .form-privacy-notice {
+    margin-bottom: 20px;
+  }
+
+  .form-checkbox-component {
+    margin-bottom: 0;
+  }
+
+  .form-button {
+    width: auto;
+    flex: 1 1 auto;
+    padding: 17px 9px;
+  }
+
+  @media screen and (max-width: 650px) {
+    &__title {
+      margin-bottom: 13px;
+    }
+
+    &__input-group {
+      margin-bottom: 12px;
+    }
+
+    &__input-field {
+      .form-field__wrapper {
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    &__title {
+      font-size: 20px;
+      line-height: 125%;
+    }
+
+    &__input-field {
+      .form-field__wrapper {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+
+    .form-button {
+      padding: 13px;
+    }
+  }
+}
+
+
+

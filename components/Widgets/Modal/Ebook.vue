@@ -9,7 +9,7 @@ defineProps({
   },
 
   ebookSubTitle: {
-    type: Array,
+    type: [Array, String],
     default: () => [],
   },
 
@@ -66,10 +66,12 @@ const {
   show,
   styles,
   modalWindow,
+  isShowModal,
 } = useModalData()
 
 defineExpose({
   show,
+  isShowModal,
 })
 </script>
 

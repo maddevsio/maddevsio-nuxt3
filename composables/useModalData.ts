@@ -1,5 +1,7 @@
+import type Ebook from '~/components/Widgets/Modal/Ebook.vue'
+
 export const useModalData = () => {
-  const modalWindow = ref<{ show(): void, close(): void } | null>(null)
+  const modalWindow = ref<InstanceType<typeof Ebook> | null>(null)
   const styles = useCssModule()
   provide('styles', styles)
   const show = () => {
@@ -14,6 +16,7 @@ export const useModalData = () => {
   return {
     show,
     close,
+    isShowModal: modalWindow.value?.isShowModal,
     styles,
     modalWindow,
   }

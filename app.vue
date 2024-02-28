@@ -10,8 +10,10 @@ onMounted(() => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         showFooter.value = true
-        observer.unobserve(entry.target)
+        observer.disconnect()
       }
+    }, {
+      threshold: 1,
     })
   })
 
@@ -27,12 +29,10 @@ onMounted(() => {
       :height="2"
     />
     <WidgetsHeader />
-    <NuxtLayout>
-      <main class="main-section">
-        <NuxtPage />
-      </main>
-    </NuxtLayout>
-    <div ref="footerRef" />
+    <main class="main-section">
+      <NuxtPage />
+    </main>
+    <div ref="footerRef" class="intersecting-element" />
     <ClientOnly>
       <LazyWidgetsFooter
         v-if="showFooter && footerVisible"
@@ -49,5 +49,9 @@ onMounted(() => {
   margin-top: -66px !important;
   position: relative;
   z-index: 1;
+}
+
+.intersecting-element {
+  height: 1px;
 }
 </style>

@@ -139,73 +139,74 @@ export class FormMaker {
   //   })
   // }
   //
-  // contactUsFooterFormMaker() {
-  //   return new ContactMeForm({
-  //     formTitle: 'Tell Us About Your Project',
-  //     formLocation: this.options.formLocation,
-  //     formBuilder: this.formBuilder
-  //       .setFields([
-  //         new Field({
-  //           objectKeyName: 'fullName',
-  //           elementId: 'fullName',
-  //           type: 'text',
-  //           name: 'Full name',
-  //           placeholder: 'Full Name',
-  //           validationType: 'longText',
-  //           longTextLimit: 140,
-  //           required: true,
-  //         }),
-  //         new Field({
-  //           objectKeyName: 'email',
-  //           elementId: 'email',
-  //           type: 'email',
-  //           name: 'Business Email',
-  //           placeholder: 'Business Email',
-  //           validationType: 'businessEmail',
-  //           required: true,
-  //         }),
-  //         new Field({
-  //           objectKeyName: 'phoneNumber',
-  //           elementId: 'phoneNumber',
-  //           type: 'text',
-  //           name: 'phoneNumber',
-  //           placeholder: 'Phone Number',
-  //           validationType: 'phone',
-  //           required: false,
-  //         }),
-  //       ])
-  //       .addTextarea(
-  //         new Field({
-  //           objectKeyName: 'description',
-  //           elementId: 'description',
-  //           type: 'textarea',
-  //           name: 'description',
-  //           placeholder: 'How we can help you?',
-  //           validationType: 'longText',
-  //           longTextLimit: 2500,
-  //           required: true,
-  //         }),
-  //       )
-  //       .addCheckBoxes([
-  //         new Checkbox({
-  //           objectKeyName: 'newsLetter',
-  //           elementId: 'newsLetter',
-  //           label: 'I agree to get Mad Devs’ discount offers and other marketing communications.',
-  //           name: 'Newsletter agreement',
-  //           defaultValue: true,
-  //         }),
-  //       ])
-  //       .addButton(
-  //         new Button({
-  //           objectKeyName: 'submitButton',
-  //           elementId: 'submitButton',
-  //           type: 'submit',
-  //         }),
-  //       )
-  //       .build(),
-  //   })
-  // }
-  //
+  contactUsFooterFormMaker() {
+    return new ContactMeForm({
+      formTitle: this.options.formTitle,
+      formLocation: this.options.formLocation!,
+      emailSubject: this.options.emailSubject!,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'fullName',
+            elementId: 'fullName',
+            type: 'text',
+            name: 'Full name',
+            placeholder: 'Full Name',
+            validationType: 'longText',
+            longTextLimit: 140,
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'email',
+            elementId: 'email',
+            type: 'email',
+            name: 'Business Email',
+            placeholder: 'Business Email',
+            validationType: 'businessEmail',
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'phoneNumber',
+            elementId: 'phoneNumber',
+            type: 'text',
+            name: 'phoneNumber',
+            placeholder: 'Phone Number',
+            validationType: 'phone',
+            required: false,
+          }),
+        ])
+        .addTextarea(
+          new Field({
+            objectKeyName: 'description',
+            elementId: 'description',
+            type: 'textarea',
+            name: 'description',
+            placeholder: 'How we can help you?',
+            validationType: 'longText',
+            longTextLimit: 2500,
+            required: true,
+          }),
+        )
+        .addCheckBoxes([
+          new Checkbox({
+            objectKeyName: 'newsLetter',
+            elementId: 'newsLetter',
+            label: 'I agree to get Mad Devs’ discount offers and other marketing communications.',
+            name: 'Newsletter agreement',
+            defaultValue: true,
+          }),
+        ])
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            type: 'submit',
+          }),
+        )
+        .build(),
+    })
+  }
+
   ebookFormMaker() {
     return new EbookForm({
       formTitle: '',

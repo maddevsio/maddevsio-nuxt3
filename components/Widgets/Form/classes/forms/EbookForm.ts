@@ -67,6 +67,7 @@ export class EbookForm extends BaseForm implements IEbookForm {
   async onSubmitVerifiedForm({
     token,
     route,
+    $eventBus,
   }: OnSubmitFromProps) {
     if (!this.validationBeforeSend(token)) { return }
     const location = this.formLocation
@@ -102,6 +103,7 @@ export class EbookForm extends BaseForm implements IEbookForm {
       })
 
       this.submitEbookEventToAnalytics(location, route)
+      $eventBus.$emit('ebook-send', this.sendPulseTemplateId)
     } catch (e: any) {
       this.error.value = e
     }
