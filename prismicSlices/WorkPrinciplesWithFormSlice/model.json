@@ -1,0 +1,66 @@
+{
+  "id": "work_principles_with_form_slice",
+  "type": "SharedSlice",
+  "name": "WorkPrinciplesWithFormSlice",
+  "description": "WorkPrinciplesWithFormSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "WorkPrinciplesWithFormSlice",
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ]
+          },
+          "type": "Select"
+        },
+        "formTitle": {
+          "config": {
+            "label": "Form Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Form Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "listTitle": {
+          "config": {
+            "label": "List Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "List Item Icon",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "description": {
+          "config": {
+            "label": "List Item Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

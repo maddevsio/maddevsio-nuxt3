@@ -1,6 +1,6 @@
 import type { ComputedRef } from 'vue'
 import type {
-  IPressCenter,
+  IPressCenter, IPressCenterColorClasses,
   PressCenterCard,
   PressCenterProps,
 } from '~/components/PageBlocks/PressCenter/interfaces/IPressCenter'
@@ -43,13 +43,31 @@ export class PressCenter implements IPressCenter {
   }
 
   triggerBreakpoint = 768
+  colorTheme: string
   cards: ComputedRef<PressCenterCard[]>
+  colorClassesNames: IPressCenterColorClasses
 
   constructor(props: PressCenterProps) {
+    this.colorTheme = props.primary?.colorTheme || 'white'
     this.cards = computed(() => {
-      const sortedCards = [...props.items]
+      const transformedCards = props.items.map(item => ({
+        ...item,
+        link: {
+          ...item.link,
+          url: checkAndExtractDomain(item.link.url).ourDomain ? new URL(item.link.url).pathname : item.link.url,
+        },
+        target: setTargetForLinks(item.link.url),
+        external: !checkAndExtractDomain(item.link.url).ourDomain,
+      }))
       // @ts-ignore
-      return sortedCards.sort((cardA, cardB) => new Date(cardB.date) - new Date(cardA.date))
+      return [...transformedCards].sort((cardA, cardB) => new Date(cardB.date) - new Date(cardA.date))
     })
+
+    this.colorClassesNames = {
+      backgroundColorClass: colorConverterToClass('slice-bg', this.colorTheme),
+      cardBackgroundColorClass: colorConverterToClass('bg', this.colorTheme),
+      titleColorClass: `press-center-slice__card-body-title--${ this.colorTheme }`,
+      descriptionColorClass: `press-center-slice__card-body-description--${ this.colorTheme }`,
+    }
   }
 }

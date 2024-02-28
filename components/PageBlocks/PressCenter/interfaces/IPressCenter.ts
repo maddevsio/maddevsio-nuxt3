@@ -12,14 +12,27 @@ export interface PressCenterCard {
   title: string
   description: string
   linkLabel: string
+  external: boolean
+  target: string
 }
 
 export interface PressCenterProps {
+  primary: {
+    colorTheme: string
+  },
   items: PressCenterCard[]
+}
+
+export interface IPressCenterColorClasses {
+  backgroundColorClass: string
+  cardBackgroundColorClass: string
+  titleColorClass: string
+  descriptionColorClass: string
 }
 
 export interface IPressCenter {
   swiperOptions: ISwiperOptions
   triggerBreakpoint: number
+  colorTheme: string
   cards: ComputedRef<PressCenterCard[]>
 }
