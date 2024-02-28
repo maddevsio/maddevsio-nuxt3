@@ -12,8 +12,8 @@ defineProps({
 <template>
   <ul class="social-networks">
     <li
-      v-for="(network, index) in socialNetworks"
-      :key="`network-${index}`"
+      v-for="network in socialNetworks"
+      :key="`network-${network.link.url.split('/').filter(Boolean).join('-')}`"
       class="social-networks__link-wrapper"
     >
       <a
