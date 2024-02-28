@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { RichTextField } from '@prismicio/types'
+import type { RichTextField, SelectField } from '@prismicio/types'
 
 interface Question {
   question: string
+  questionTag: SelectField
   answer: RichTextField
 }
 
@@ -37,7 +38,7 @@ const showAnswer = (question: string) => {
       class="accordion"
     >
       <div class="accordion__question-wrapper">
-        <h4>
+        <Component :is="item.questionTag || 'h4'">
           <button
             :id="item.question.split(' ').join('-')"
             ref="accordionQuestionRef"
@@ -70,7 +71,7 @@ const showAnswer = (question: string) => {
               </svg>
             </span>
           </button>
-        </h4>
+        </Component>
       </div>
       <LazySharedUITransitionHeight :duration="200">
         <div
