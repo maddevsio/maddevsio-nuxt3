@@ -7,8 +7,7 @@ export class PostContentLocker implements IPostContentLocker {
   timeOutID: Ref<ReturnType<typeof setTimeout> | undefined>
   modalContentLocker: Ref<InstanceType<typeof Ebook> | null>
 
-  TIME_TO_LOCK_CONTENT = 2000
-  // TIME_TO_LOCK_CONTENT = 15000
+  TIME_TO_LOCK_CONTENT = 15000
 
   EVENT_NAME = 'scroll'
 

@@ -20,7 +20,7 @@ const {
     <div class="table">
       <PrismicRichText
         :field="tableRich"
-        :html-serializer="prismicHtmlSerializer"
+        :html-serializer="tableHtmlSerializer"
         class="table__item"
       />
     </div>

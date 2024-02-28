@@ -1,0 +1,106 @@
+{
+  "id": "post_authors_slice",
+  "type": "SharedSlice",
+  "name": "PostAuthorsSlice",
+  "description": "PostAuthorsSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "PostAuthorsSlice",
+      "primary": {
+        "author": {
+          "config": {
+            "label": "Author",
+            "customtypes": [
+              "author"
+            ],
+            "select": "document"
+          },
+          "type": "Link"
+        },
+        "coAuthor": {
+          "config": {
+            "label": "coAuthor",
+            "customtypes": [
+              "author"
+            ],
+            "select": "document"
+          },
+          "type": "Link"
+        }
+      },
+      "items": {
+        "contributorImage": {
+          "config": {
+            "label": "contributorImage",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "contributorLink": {
+          "config": {
+            "label": "contributorLink",
+            "placeholder": "",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        }
+      }
+    },
+    {
+      "id": "customizableAuthorsSlice",
+      "name": "CustomizableAuthorsSlice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "PostAuthorsSlice",
+      "primary": {
+        "author": {
+          "config": {
+            "label": "Author",
+            "customtypes": [
+              "author"
+            ],
+            "select": "document"
+          },
+          "type": "Link"
+        },
+        "coAuthor": {
+          "config": {
+            "label": "coAuthor",
+            "customtypes": [
+              "author"
+            ],
+            "select": "document"
+          },
+          "type": "Link"
+        },
+        "showTopDivider": {
+          "config": {
+            "label": "Show Top Divider",
+            "placeholder_false": "hide",
+            "placeholder_true": "show",
+            "default_value": true
+          },
+          "type": "Boolean"
+        },
+        "colorTheme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "Default: Dark",
+            "options": [
+              "dark",
+              "light"
+            ],
+            "default_value": "dark"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {}
+    }
+  ]
+}
