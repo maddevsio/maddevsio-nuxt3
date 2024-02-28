@@ -211,7 +211,7 @@ const {
   transition: all 0.3s ease-in-out;
 }
 
-.button-enter,
+.button-enter-from,
 .button-leave-to {
   transform: translateX(-100%);
   opacity: 0;
@@ -222,7 +222,7 @@ const {
   transition: all 0.3s ease-in-out;
 }
 
-.email-enter,
+.email-enter-from,
 .email-leave-to {
   transform: translateX(100%);
   opacity: 0;

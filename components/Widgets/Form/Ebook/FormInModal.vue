@@ -24,7 +24,7 @@ const props = defineProps({
   },
 
   ebookSubTitle: {
-    type: Array,
+    type: [Array, String],
     default: () => [],
   },
 
@@ -71,10 +71,10 @@ const {
       {{ ebookTitle }}
     </h2>
     <p
-      v-if="$prismic.asText(ebookSubTitle)"
+      v-if="ebookSubTitle || (Array.isArray(ebookSubTitle) && $prismic.asText(ebookSubTitle))"
       :class="styles['ebook-form__subtitle']"
     >
-      Get your copy of “ {{ $prismic.asText(ebookSubTitle) }}”
+      Get your copy of “ {{ Array.isArray(ebookSubTitle) ? $prismic.asText(ebookSubTitle) : ebookSubTitle }}”
     </p>
     <div :class="styles['ebook-form__input-group']">
       <LazyWidgetsFormUIInputField

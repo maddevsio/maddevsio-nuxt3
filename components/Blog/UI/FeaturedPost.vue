@@ -19,7 +19,7 @@ const props = defineProps({
   },
 
   author: {
-    type: Object as PropType<Author>,
+    type: Object as PropType<Author['data'] & { uid: string }>,
     required: true,
   },
 })
@@ -57,7 +57,10 @@ const { isMobile } = useDevice()
       </NuxtLink>
       <div class="featured-post__meta">
         <LazySharedArticleAuthor
-          v-bind="author"
+          :position="author.position"
+          :image="author.image.thumbnail"
+          :name="author.name"
+          :uid="author.uid"
           :theme="theme"
           :date="formattedDate"
           :read-time="readTime"

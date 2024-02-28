@@ -5,7 +5,7 @@ const prismic = usePrismic()
 const { $getMediaFromS3 } = useMediaFromS3()
 const { data: cuSection, error } = await useAsyncData('cuSection', async () => {
   try {
-    return await new BlogService().getCUMaster(prismic)
+    return await new BlogService().getCUSection(prismic)
   } catch {
     showError({ statusMessage: 'Page not found', statusCode: 404 })
   }

@@ -16,6 +16,7 @@ interface Props {
   disableAuthorLink?: boolean
   formattedDate?: string
   readTime?: string
+  colorTheme?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -32,6 +33,7 @@ withDefaults(defineProps<Props>(), {
   disableAuthorLink: false,
   formattedDate: '',
   readTime: '',
+  colorTheme: 'light',
 })
 </script>
 <template>
@@ -62,7 +64,7 @@ withDefaults(defineProps<Props>(), {
         v-if="isShowTag"
         :tag="tag"
         :disabled="disableTagLink"
-        theme="light"
+        :theme="colorTheme"
       />
       <LazySharedArticleAuthor
         v-if="isShowAuthor"
