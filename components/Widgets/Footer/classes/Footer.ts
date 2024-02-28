@@ -2,11 +2,11 @@ import type { Router } from 'vue-router'
 import type { Ref } from 'vue'
 import type { FooterProps, IFooter } from '~/components/Widgets/Footer/interfaces/IFooter'
 import type { IFooterContacts } from '~/components/Widgets/Footer/interfaces/IFooterContacts'
-import type { ISocialNetworks } from '~/components/Widgets/Footer/interfaces/ISocialNetworks'
 import type { IPresentationLinks } from '~/components/Widgets/Footer/interfaces/IPresentationLinks'
 import type { IFooterNavbarColumn } from '~/components/Widgets/Footer/interfaces/IFooterNavbarColumn'
 import type { ISubscribeFormBlock } from '~/components/Widgets/Form/interfaces/forms/ISubscribeFormBlock'
 import { SubscribeFormBlock } from '~/components/Widgets/Form/classes/forms/SubscribeFormBlock'
+import type { ISocialNetworks } from '~/components/Widgets/SocialNetworks/interfaces/ISocialNetworks'
 
 export class Footer implements IFooter {
   contacts: IFooterContacts
