@@ -1,8 +1,9 @@
-import type { RichTextField } from '@prismicio/types'
+import type { RichTextField, SelectField } from '@prismicio/types'
 
 export interface AccordionCustomPageProps {
   items: {
     question: string
+    questionTag: SelectField
     answer: RichTextField
   }[]
   primary: {
