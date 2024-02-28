@@ -1,5 +1,6 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
 import type { RichTextField } from '@prismicio/client'
+import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -115,6 +116,36 @@ export interface Author {
     }
     header_plate_background_color: string
   }
+}
+
+export interface TransformedAuthorSocialNetwork {
+  key: string
+  title: string
+  link: FilledLinkToWebField
+}
+
+export interface TransformedAuthor {
+  type: string
+  id: string
+  uid: string
+  name: string
+  position: string
+  thumbnailImage: ImageField
+  image: ImageField & {
+    thumbnail: ImageField
+  }
+  metaTitle: string
+  metaDescription: string
+  noindex: boolean
+  schemaOrgSnippet: SchemaOrgSnippet[]
+  personalPageLink: string
+  headerPlate: {
+    text?: string
+    btnText?: string
+    btnLink?: string
+    backgroundColor?: string
+  },
+  socialNetworks: TransformedAuthorSocialNetwork[],
 }
 
 export interface BlogPost {

@@ -7,4 +7,7 @@ export const blogComponents = defineSliceZoneComponents({
   text: defineAsyncComponent(() => import('../../PageBlocks/Text/Text.vue')),
   image_with_caption: defineAsyncComponent(() => import('../../PageBlocks/Image/CaptonBlog.vue')),
   table_slice: defineAsyncComponent(() => import('../../PageBlocks/Table/Blog.vue')),
+  ordered_list: defineAsyncComponent(() => import('../../PageBlocks/OrderedList/Default.vue')),
+  embed: defineAsyncComponent(() => import('../../PageBlocks/Embed/Blog.vue')),
+  post_authors_slice: defineAsyncComponent(() => import('../../PageBlocks/Authors/Post.vue')),
 })

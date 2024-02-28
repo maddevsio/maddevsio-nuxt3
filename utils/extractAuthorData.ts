@@ -1,7 +1,7 @@
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
-import type { Author } from '~/interfaces/common/commonInterfaces'
+import type { Author, TransformedAuthor } from '~/interfaces/common/commonInterfaces'
 
-export const extractAuthorData = (author: Author) => {
+export const extractAuthorData = (author: Author): TransformedAuthor | {} => {
   if (!author.data) { return {} }
 
   const socialNetworks = author.data.social_networks
