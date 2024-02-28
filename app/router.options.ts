@@ -24,8 +24,12 @@ export default <RouterConfig> {
     {
       name: 'blog-main',
       path: '/blog',
-      // @ts-ignore
       component: () => import('~/pages/blog/index.vue').then(r => r.default || r),
+    },
+    {
+      name: 'blog-uid',
+      path: '/blog/:uid',
+      component: () => import('~/pages/blog/[uid].vue').then(r => r.default || r),
     },
   ],
 }

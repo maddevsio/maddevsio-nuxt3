@@ -39,8 +39,9 @@ const shortName = name.substr(0, 100)
       class="post-author__image"
     >
       <NuxtImg
+        provider="prismic"
         loading="lazy"
-        :src="image.url!.replace('compress,', '')"
+        :src="image.url"
         :alt="image.alt || 'Image'"
         width="70"
         height="70"
