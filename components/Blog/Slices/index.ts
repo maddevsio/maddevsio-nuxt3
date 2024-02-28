@@ -4,5 +4,7 @@ import { defineAsyncComponent } from 'vue'
 import { defineSliceZoneComponents } from '@prismicio/vue'
 
 export const blogComponents = defineSliceZoneComponents({
-  text: defineAsyncComponent(() => import('./BlogText.vue')),
+  text: defineAsyncComponent(() => import('../../PageBlocks/Text/Text.vue')),
+  image_with_caption: defineAsyncComponent(() => import('../../PageBlocks/Image/CaptonBlog.vue')),
+  table_slice: defineAsyncComponent(() => import('../../PageBlocks/Table/Blog.vue')),
 })
