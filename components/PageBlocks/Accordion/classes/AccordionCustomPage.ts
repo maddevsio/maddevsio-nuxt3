@@ -1,4 +1,4 @@
-import type { RichTextField, SelectField } from '@prismicio/types'
+import type { RichTextField, SelectField } from '@prismicio/client'
 import type {
   AccordionCustomPageProps,
   IAccordion,

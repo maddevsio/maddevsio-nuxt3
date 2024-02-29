@@ -36,60 +36,20 @@ const {
         :class="`block-quotation ${colorTheme.textColor}`"
         v-html="$prismic.asHTML(quote)"
       />
-      <div
-        v-if="portraitAuthor.url || authorName"
-        :class="`p-${quotationDesign || 'border'}`"
-        class="author"
-      >
-        <div
-          v-if="portraitAuthor.url"
-          class="author__image"
-        >
-          <NuxtImg
-            v-if="portraitAuthor.url"
-            provider="prismic"
-            loading="lazy"
-            :src="portraitAuthor.url.replace('compress,', '')"
-            :alt="portraitAuthor.alt || authorName"
-            width="40"
-            height="40"
-          />
-        </div>
-        <div class="author__info">
-          <div
-            v-if="$prismic.asText(authorName)"
-            :class="`author__name ${colorTheme.textColor}`"
-          >
-            {{ $prismic.asText(authorName) }}
-          </div>
-          <hr
-            v-if="email || linkedinLink"
-            class="author__divider"
-          >
-          <LazySharedUIAuthorSocialList
-            :email="email"
-            :linkedin-link="linkedinLink"
-          />
-        </div>
-      </div>
+      <LazyPageBlocksQuoteUIAuthor
+        :author-name="$prismic.asText(authorName)"
+        :email="email"
+        :linkedin-link="linkedinLink"
+        :portrait-author="portraitAuthor"
+        :quotation-design="quotationDesign"
+        :color-theme="colorTheme"
+      />
     </div>
   </section>
 </template>
 <style scoped lang="scss">
 @import '@/assets/styles/slices/quteslice';
 @import '@/assets/styles/colorClasses/colors';
-
-.text--gray {
-  :deep(p) {
-    color: $text-color--grey-opacity-40-percent;
-  }
-}
-
-.author__name {
-  &.text--gray {
-    color: $border-color--grey-20-percent;
-  }
-}
 
 .post-quote {
   &.text--gray {
