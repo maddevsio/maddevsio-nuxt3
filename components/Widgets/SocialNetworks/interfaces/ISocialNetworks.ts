@@ -1,11 +1,11 @@
 import type { FilledLinkToWebField } from '@prismicio/types'
 import type { ImageField } from '@prismicio/client'
 
-export interface FooterSocialNetwork {
+export interface SocialNetwork {
   link: FilledLinkToWebField
   icon: ImageField
 }
 
 export interface ISocialNetworks {
-  socialNetworks: FooterSocialNetwork[]
+  items: SocialNetwork[]
 }

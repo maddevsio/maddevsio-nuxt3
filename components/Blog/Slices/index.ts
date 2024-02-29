@@ -10,4 +10,8 @@ export const blogComponents = defineSliceZoneComponents({
   ordered_list: defineAsyncComponent(() => import('../../PageBlocks/OrderedList/Default.vue')),
   embed: defineAsyncComponent(() => import('../../PageBlocks/Embed/Blog.vue')),
   post_authors_slice: defineAsyncComponent(() => import('../../PageBlocks/Authors/Post.vue')),
+  divider: defineAsyncComponent(() => import('../../PageBlocks/Divider/Blog.vue')),
+  accordion_slice: defineAsyncComponent(() => import('../../PageBlocks/Accordion/ForPost.vue')),
+  quote: defineAsyncComponent(() => import('../../PageBlocks/Quote/Blog.vue')),
+  author: defineAsyncComponent(() => import('../../PageBlocks/Authors/PostOld.vue')),
 })

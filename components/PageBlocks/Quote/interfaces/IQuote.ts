@@ -1,4 +1,4 @@
-import type { ImageField, RichTextField } from '@prismicio/types'
+import type { ImageField, RichTextField } from '@prismicio/client'
 
 export interface QuoteProps {
   primary: {

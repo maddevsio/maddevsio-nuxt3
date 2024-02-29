@@ -1,4 +1,4 @@
-import type { ImageField, RichTextField } from '@prismicio/types'
+import type { ImageField, RichTextField } from '@prismicio/client'
 import type { IQuote, QuoteProps } from '~/components/PageBlocks/Quote/interfaces/IQuote'
 
 export class Quote implements IQuote {

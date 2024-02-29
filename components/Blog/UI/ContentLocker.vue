@@ -46,7 +46,6 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <div>hello</div>
   <LazyWidgetsModalEbook
     ref="modalContentLocker"
     :send-pulse-template-id="ebook.primary.sendPulseTemplateId"

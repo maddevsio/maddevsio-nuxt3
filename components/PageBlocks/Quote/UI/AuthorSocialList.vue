@@ -1,11 +1,18 @@
 <script setup lang="ts">
-interface Props {
-  email: string
-  linkedinLink: string
-}
-defineProps<Props>()
-const showEmail = ref(false)
+defineProps({
+  email: {
+    type: String,
+    default: '',
+  },
+
+  linkedinLink: {
+    type: String,
+    default: '',
+  },
+})
+
 const { $getMediaFromS3 } = useMediaFromS3()
+const showEmail = ref(false)
 
 onMounted(() => {
   showEmail.value = true
@@ -13,7 +20,6 @@ onMounted(() => {
 </script>
 <template>
   <ul
-    v-if="linkedinLink || email"
     class="author-social-list"
   >
     <li

@@ -1,4 +1,4 @@
-import type { RichTextField } from '@prismicio/types'
+import type { RichTextField, SelectField } from '@prismicio/client'
 import type {
   AccordionCustomPageProps,
   IAccordion,
@@ -7,6 +7,7 @@ import type {
 export class AccordionCustomPage implements IAccordion {
   questions: {
     question: string
+    questionTag: SelectField
     answer: RichTextField
   }[]
 
