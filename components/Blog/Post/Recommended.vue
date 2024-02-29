@@ -71,6 +71,20 @@ defineProps({
       flex-direction: column;
     }
 
+    :deep(.article-card__body) {
+      height: 100%;
+    }
+
+    :deep(.article-card__body-content) {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+
+      .article-card__description {
+        margin-top: auto;
+      }
+    }
+
     :deep(.post-tag) {
       background-color: $bgcolor--white-primary;
     }
