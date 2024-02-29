@@ -16,4 +16,5 @@ export const blogComponents = defineSliceZoneComponents({
   author: defineAsyncComponent(() => import('../../PageBlocks/Authors/PostOld.vue')),
   github_gist: defineAsyncComponent(() => import('../../PageBlocks/GithubGist/Default.vue')),
   image_with_attributes: defineAsyncComponent(() => import('../../PageBlocks/Image/WithAttributes.vue')),
+  codeblock: defineAsyncComponent(() => import('../../PageBlocks/CodeBlock/CodeBlock.vue')),
 })
