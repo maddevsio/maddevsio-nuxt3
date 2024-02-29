@@ -14,4 +14,6 @@ export const blogComponents = defineSliceZoneComponents({
   accordion_slice: defineAsyncComponent(() => import('../../PageBlocks/Accordion/ForPost.vue')),
   quote: defineAsyncComponent(() => import('../../PageBlocks/Quote/Blog.vue')),
   author: defineAsyncComponent(() => import('../../PageBlocks/Authors/PostOld.vue')),
+  github_gist: defineAsyncComponent(() => import('../../PageBlocks/GithubGist/Default.vue')),
+  image_with_attributes: defineAsyncComponent(() => import('../../PageBlocks/Image/WithAttributes.vue')),
 })
