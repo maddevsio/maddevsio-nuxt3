@@ -13,4 +13,5 @@ export const blogComponents = defineSliceZoneComponents({
   divider: defineAsyncComponent(() => import('../../PageBlocks/Divider/Blog.vue')),
   accordion_slice: defineAsyncComponent(() => import('../../PageBlocks/Accordion/ForPost.vue')),
   quote: defineAsyncComponent(() => import('../../PageBlocks/Quote/Blog.vue')),
+  author: defineAsyncComponent(() => import('../../PageBlocks/Authors/PostOld.vue')),
 })
