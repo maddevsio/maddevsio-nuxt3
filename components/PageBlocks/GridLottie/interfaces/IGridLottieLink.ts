@@ -1,4 +1,4 @@
-import type { FilledLinkToWebField, RichTextField } from '@prismicio/types'
+import type { FilledLinkToWebField, RichTextField } from '@prismicio/client'
 
 export interface GridLottieLinkCard {
   alignText: string

@@ -17,8 +17,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
     class="container"
   >
     <div class="grid-lottie__grid">
-      <Component
-        :is="card.element"
+      <NuxtLink
         v-for="(card, cardIndex) in cards"
         :key="`${card['lottie-animation']}-${cardIndex}`"
         :to="card.linkParams.url"
@@ -51,7 +50,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
           v-if="card.link && card.link.url"
           class="card-item__button"
         />
-      </Component>
+      </NuxtLink>
     </div>
   </div>
 </template>
