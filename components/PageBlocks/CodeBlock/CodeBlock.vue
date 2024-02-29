@@ -3,6 +3,7 @@ import type { PropType } from 'vue'
 import { PrismEditor } from 'vue-prism-editor'
 import 'vue-prism-editor/dist/prismeditor.min.css'
 import Prism from 'prismjs'
+import 'prismjs/themes/prism.min.css'
 import type { CodeBlockProps } from '~/components/PageBlocks/CodeBlock/interfaces/ICodeBlock'
 import { CodeBlock } from '~/components/PageBlocks/CodeBlock/classes/CodeBlock'
 
