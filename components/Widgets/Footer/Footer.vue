@@ -90,9 +90,9 @@ useCurrentRoute(setCurrentRoute)
             v-if="contacts && contacts.emailTitle && contacts.email"
             :contacts="contacts"
           />
-          <LazyPageBlocksSocialNetworksDefault
-            v-if="socials.socialNetworks && socials.socialNetworks.length"
-            :social-networks="socials.socialNetworks"
+          <LazyWidgetsSocialNetworks
+            v-if="socials.items && socials.items.length"
+            :social-networks="socials.items"
             class="footer__social-networks"
           />
           <div class="footer__content-subscribe-form">
@@ -115,6 +115,10 @@ useCurrentRoute(setCurrentRoute)
   @media screen and (max-width: 991px) {
     padding-top: 48px;
     padding-bottom: 46px;
+  }
+
+  :deep(.social-networks) {
+      margin: 0 -8px;
   }
 
   &__container {

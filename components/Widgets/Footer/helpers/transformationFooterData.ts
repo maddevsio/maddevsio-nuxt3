@@ -5,12 +5,12 @@ import { FooterNavbarSection } from '~/components/Widgets/Footer/classes/FooterN
 import { FooterNavbarColumn } from '~/components/Widgets/Footer/classes/FooterNavbarColumn'
 import { MenuLink } from '~/components/Widgets/shared/classes/MenuLink'
 import { FooterContacts } from '~/components/Widgets/Footer/classes/FooterContacts'
-import { SocialNetworks } from '~/components/Widgets/Footer/classes/SocialNetworks'
 import { PresentationLinks } from '~/components/Widgets/Footer/classes/PresentationLinks'
-import type { FooterSocialNetwork } from '~/components/Widgets/Footer/interfaces/ISocialNetworks'
+import { SocialNetworks } from '~/components/Widgets/SocialNetworks/classes/SocialNetworks'
 import type { PresentationLink } from '~/components/Widgets/Footer/interfaces/IPresentationLinks'
 import type { IFooterNavbarSection } from '~/components/Widgets/Footer/interfaces/IFooterNavbarSection'
 import type { IFooterNavbarMenu } from '~/components/Widgets/Footer/interfaces/IFooterNavbarMenu'
+import type { SocialNetwork } from '~/components/Widgets/SocialNetworks/interfaces/ISocialNetworks'
 
 interface FooterPrismicDataBodyItem {
   slice_type: string
@@ -18,7 +18,7 @@ interface FooterPrismicDataBodyItem {
     column_number: string
     nav_section: string
   }
-  items: FooterSocialNetwork[] | PresentationLink[]
+  items: SocialNetwork[] | PresentationLink[]
 }
 
 export interface FooterPrismicData {
@@ -34,7 +34,7 @@ export const transformationFooterData = (rawData: FooterPrismicData) => {
   try {
     if (!rawData.body.length && !Object.keys(rawData).length) { return [] }
     const sortedDataByColumns: { [key: string]: any } = {}
-    let socialNetworks: FooterSocialNetwork[] = []
+    let socialNetworks: SocialNetwork[] = []
     let presentationLinks: PresentationLink[] = []
     rawData.body.forEach(item => {
       if (item.slice_type === 'navigation_list') {
@@ -44,7 +44,7 @@ export const transformationFooterData = (rawData: FooterPrismicData) => {
       }
 
       if (item.slice_type === 'social_networks') {
-        socialNetworks = item.items as FooterSocialNetwork[]
+        socialNetworks = item.items as SocialNetwork[]
       }
       if (item.slice_type === 'presentation_links') {
         presentationLinks = item.items as PresentationLink[]
