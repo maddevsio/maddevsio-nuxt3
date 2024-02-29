@@ -1,4 +1,4 @@
-import type { RichTextField } from '@prismicio/types'
+import type { RichTextField } from '@prismicio/client'
 import type { IAccordionForPost, AccordionForPostProps, IQuestion } from '~/components/PageBlocks/Accordion/interfaces/IAccordion'
 
 export class AccordionForPost implements IAccordionForPost {
