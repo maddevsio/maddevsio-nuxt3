@@ -22,7 +22,11 @@ const { contacts, contactsClassFor3Items, sendEvent } = new ContactsDefault(slic
         <LazyPageBlocksContactsUIField
           v-for="item in contacts"
           :key="item.content"
-          v-bind="item"
+          :icon="item.icon"
+          :label="item.label"
+          :content="item.content"
+          :type="item.type"
+          :href="item.href"
           @click-contact="sendEvent"
         />
       </div>
