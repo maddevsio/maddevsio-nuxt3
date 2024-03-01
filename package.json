@@ -51,7 +51,6 @@
     "@pinia/nuxt": "^0.5.1",
     "@prismicio/helpers": "^2.3.9",
     "@prismicio/vue": "^4.1.0",
-    "@types/vue-select": "^3.16.8",
     "awesome-phonenumber": "^6.4.0",
     "axios": "^1.6.5",
     "bowser": "^2.11.0",
@@ -73,7 +72,5 @@
     "vue-gtag-next": "^1.14.0",
     "vue-prism-editor": "^2.0.0-alpha.2",
     "vue-recaptcha": "^2.0.3"
-    "vue-recaptcha": "^2.0.3",
-    "vue-select": "^4.0.0-beta.6"
   }
 }

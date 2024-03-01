@@ -29,7 +29,6 @@ const { pending } = await useAsyncData(() => digests.fetchDigests({ prismic, yea
           <ClientOnly>
             <LazyDigestSelect
               class="digest-main-page-content__selector"
-              :set-all-digests-options="true"
               @change-year="digests.handleChangeYear"
             />
             <LazyDigestCards
@@ -66,13 +65,6 @@ const { pending } = await useAsyncData(() => digests.fetchDigests({ prismic, yea
 
   &__selector, &__title {
     margin-bottom: 48px;
-  }
-
-  &__selector {
-    :deep(.v-select) {
-      width: 20%;
-      min-width: 235px;
-    }
   }
 
   :deep(.pagination ) {

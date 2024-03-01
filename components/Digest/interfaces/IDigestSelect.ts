@@ -4,9 +4,8 @@ import type { DigestSelectOption } from '~/components/Digest/interfaces/IDigests
 
 export interface IDigestSelect {
   prismic: PrismicPlugin
-  setAllDigestsOptions: boolean
   currentOption: Ref<DigestSelectOption>
-  selectDigestOptions: Ref<UnwrapRef<(false | { year: string; label: string })[]>>
+  selectDigestOptions: Ref<UnwrapRef<({ year: string; label: string })[]>>
   createSelectOption(date: string):DigestSelectOption
   createSelectOptionsList():Promise<void>
 }

@@ -6,7 +6,7 @@ interface SelectOption {
   uid: string
 }
 
-defineProps({
+const props = defineProps({
   colorTheme: {
     type: String,
     default: 'black',
@@ -16,11 +16,16 @@ defineProps({
     type: Array as PropType<SelectOption[]>,
     default: () => [],
   },
+
+  selectTitle: {
+    type: String,
+    default: 'Explore the chapters',
+  },
 })
 
 const emit = defineEmits(['option:selected'])
 const isDropdownOpen = ref(false)
-const selectedOption = ref<SelectOption>({ label: 'Explore the chapters', uid: '' })
+const selectedOption = ref<SelectOption>({ label: props.selectTitle, uid: '' })
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value
 }
