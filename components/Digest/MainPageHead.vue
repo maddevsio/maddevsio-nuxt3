@@ -24,9 +24,13 @@ const { $getMediaFromS3 } = useMediaFromS3()
       >
         Check out the previous digest by Mad Devs and join for free to receive the 5-minute monthly newsletter.
       </p>
-      <div style="height: 50px">
-        SUBSCRIBE FORM
-      </div>
+      <LazyWidgetsFormSubscribe
+        form-uid="digest-page-head"
+        color-theme="white"
+        form-location="Digest home"
+        slice-variation="subscribeFormDigest"
+        class="digest-main-page-head__form"
+      />
     </div>
   </section>
 </template>
@@ -37,6 +41,14 @@ const { $getMediaFromS3 } = useMediaFromS3()
   max-height: 582px;
   overflow: hidden;
   padding: 188px 0 96px;
+
+  &__form {
+    max-width: 65%;
+    :deep(p) {
+      color: $text-color--white-primary !important;
+      font-size: 16px !important;
+    }
+  }
 
   &__image {
     position: absolute;
@@ -80,14 +92,8 @@ const { $getMediaFromS3 } = useMediaFromS3()
     margin-bottom: 48px;
   }
 
-  &__subscribe-form :deep(.simple-subscribe-form__controllers), &__subtitle {
+  &__subtitle {
     max-width: 60%;
-  }
-
-  &__subscribe-form {
-    :deep(.simple-subscribe-form__controllers)  {
-      height: 44px;
-    }
   }
 
   @media screen and (max-width: 1280px) {
@@ -98,7 +104,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
   }
 
   @media screen and (max-width: 1080px) {
-    &__subscribe-form :deep(.simple-subscribe-form__controllers), &__subtitle {
+    &__form, &__subtitle {
       max-width: 100%;
     }
   }
