@@ -1,5 +1,4 @@
 import type { Router } from 'vue-router'
-import type SelectOpenIndicator from '~/components/shared/DropdownSelector/SelectOpenIndicator.vue'
 
 export interface CuSelectorProps {
   uid: string
