@@ -31,5 +31,15 @@ export default <RouterConfig> {
       path: '/blog/:uid',
       component: () => import('~/pages/blog/[uid].vue').then(r => r.default || r),
     },
+    {
+      name: 'digest',
+      path: '/digest',
+      component: () => import('~/pages/digest/index.vue').then(r => r.default || r),
+    },
+    {
+      name: 'dynamic-digest',
+      path: '/digest/:uid',
+      component: () => import('~/pages/digest/[uid].vue').then(r => r.default || r),
+    },
   ],
 }
