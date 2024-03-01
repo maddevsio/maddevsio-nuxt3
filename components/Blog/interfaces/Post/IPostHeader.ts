@@ -21,7 +21,7 @@ export interface PostHeaderProps {
 
 export interface IPostHeader {
   postMetaInfo: IPostMetaInfo
-  cuNavigation: ICuNavigation
+  cuNavigation: ICuNavigation | null
   postType: string
   title: RichTextField
   subtitle: RichTextField

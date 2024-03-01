@@ -32,6 +32,11 @@ export default <RouterConfig> {
       component: () => import('~/pages/blog/[uid].vue').then(r => r.default || r),
     },
     {
+      name: 'customer-university-uid',
+      path: '/customer-university/:uid',
+      component: () => import('~/pages/customer-university/[uid].vue').then(r => r.default || r),
+    },
+    {
       name: 'digest',
       path: '/digest',
       component: () => import('~/pages/digest/index.vue').then(r => r.default || r),

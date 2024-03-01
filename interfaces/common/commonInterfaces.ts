@@ -192,6 +192,7 @@ export interface BlogPost {
     id: string
     uid: string
   }
+  clusterData?: any
 }
 
 export interface TableOfContent {
