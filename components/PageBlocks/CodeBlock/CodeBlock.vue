@@ -19,7 +19,7 @@ const {
   highlighter,
 } = new CodeBlock(slice)
 
-const highlight = code => highlighter(code, Prism)
+const highlight = (code: any) => highlighter(code, Prism)
 </script>
 <template>
   <div class="post-part single">

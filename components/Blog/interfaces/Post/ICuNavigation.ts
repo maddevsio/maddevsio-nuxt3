@@ -3,9 +3,15 @@ import type { ICuNavigationButtons } from '~/components/Blog/interfaces/Post/ICu
 import type { BlogPost } from '~/interfaces/common/commonInterfaces'
 
 export interface CuNavigationProps {
+  clusterData: {
+    primary: {
+      cluster_name: {
+        text: string
+      }[]
+    }
+    items: BlogPost[]
+  }
   uid: string
-  clusterName: string
-  cuPosts: BlogPost[]
 }
 
 export interface ICuNavigation {

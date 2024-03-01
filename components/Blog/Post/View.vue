@@ -29,6 +29,7 @@ const {
 onMounted(async () => {
   await getEbooksFromPrismic(prismic)
   takeRandomEbook()
+  // console.log(postComponents.postHeader.cuNavigation)
 })
 provide('postId', id)
 </script>
@@ -45,14 +46,14 @@ provide('postId', id)
           :post-meta-info="postComponents.postHeader.postMetaInfo"
         />
       </template>
-      <!--      <template-->
-      <!--        v-if="post.postType === 'customer_university'"-->
-      <!--        #cuNav-->
-      <!--      >-->
-      <!--        <BlogUIPostCuNavigation-->
-      <!--          :cu-navigation="post.postComponents.postHeader.cuNavigation"-->
-      <!--        />-->
-      <!--      </template>-->
+      <template
+        v-if="postType === 'customer_university'"
+        #cuNav
+      >
+        <BlogUIPostCuNavigation
+          :cu-navigation="postComponents.postHeader.cuNavigation"
+        />
+      </template>
     </BlogPostHeader>
     <LazyBlogPostContent
       v-if="!postComponents.postServiceContent.servicePost"

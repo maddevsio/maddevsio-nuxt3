@@ -4,8 +4,8 @@ import type { TechAndToolsBigCard } from '~/components/PageBlocks/TechAndTools/i
 
 interface Props {
   icon: ImageField
-  title: string
-  description: string
+  title?: string
+  description?: string
   splittedDescription: string[]
   classNames: TechAndToolsBigCard['classNames']
 }

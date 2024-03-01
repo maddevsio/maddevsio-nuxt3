@@ -17,4 +17,5 @@ export const blogComponents = defineSliceZoneComponents({
   github_gist: defineAsyncComponent(() => import('../../PageBlocks/GithubGist/Default.vue')),
   image_with_attributes: defineAsyncComponent(() => import('../../PageBlocks/Image/WithAttributes.vue')),
   codeblock: defineAsyncComponent(() => import('../../PageBlocks/CodeBlock/CodeBlock.vue')),
+  tech_and_tools_new_slice: defineAsyncComponent(() => import('../../../prismicSlices/TechAndToolsNewSlice/index.vue')),
 })

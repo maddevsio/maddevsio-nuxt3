@@ -38,7 +38,7 @@ export const calculateReadTime = (post: BlogPost, $prismic: PrismicPluginHelpers
       }
     }
 
-    if (item.slice_type === 'embed' && item.items.length && item.items[0]!.embed!.type === 'link') {
+    if (item.slice_type === 'embed' && item.items && item.items.length && item.items[0]!.embed!.type === 'link') {
       const getTextFromEmbed = stripTags(item.items[0].embed!.html!)
       acc.text.push(getTextFromEmbed)
       if (item.items[0].embed!.thumbnail_url) { acc.images += 1 }
@@ -66,14 +66,14 @@ export const calculateReadTime = (post: BlogPost, $prismic: PrismicPluginHelpers
 
     if (item.slice_type === 'tech_and_tools_new_slice') {
       acc.images += 1
-      item.items.forEach(itemTech => {
+      item.items?.forEach(itemTech => {
         if (itemTech.title) { acc.text.push(itemTech.title) }
         if (itemTech.description) { acc.text.push(itemTech.description) }
       })
     }
 
     if (item.slice_type === 'ordered_list') {
-      item.items.forEach(listItem => {
+      item.items?.forEach(listItem => {
         // @ts-ignore
         acc.text.push($prismic.asText(listItem.list_item!.text))
       })
@@ -81,7 +81,7 @@ export const calculateReadTime = (post: BlogPost, $prismic: PrismicPluginHelpers
     return acc
   }, { text: [], images: 0 })
 
-  readContent.images += post.data!.featured_image.url ? 1 : 0
+  readContent.images += post.data?.featured_image?.url ? 1 : 0
   // @ts-ignore
   readContent.text.push($prismic.asText(post.data!.title))
 
