@@ -9,7 +9,7 @@ const cleanUp = () => {
   close()
 }
 
-const listenKeys = event => {
+const listenKeys = (event: KeyboardEvent) => {
   if (event.keyCode === 27) { cleanUp() }
 }
 
@@ -21,7 +21,7 @@ onUnmounted(() => {
   document.removeEventListener('keyup', listenKeys)
 })
 
-watch(route, () => close())
+watch(() => route.path, () => close())
 </script>
 <template>
   <section

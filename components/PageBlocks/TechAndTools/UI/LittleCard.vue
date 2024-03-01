@@ -4,14 +4,14 @@ import type { TechAndToolsLittleCard } from '~/components/PageBlocks/TechAndTool
 
 interface Props {
   icon: ImageField
-  title: string
+  title?: string
   className: TechAndToolsLittleCard['className']
 }
 
 const { title } = defineProps<Props>()
 const maxLettersLength = 9
 const scaleTextIfLarge = computed(() => {
-  if (title.length >= maxLettersLength && !title.includes(' ')) { return { fontSize: '11px', width: '100%' } }
+  if (title && title.length >= maxLettersLength && !title.includes(' ')) { return { fontSize: '11px', width: '100%' } }
   return null
 })
 </script>

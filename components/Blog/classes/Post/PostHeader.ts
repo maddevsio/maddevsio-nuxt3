@@ -8,7 +8,7 @@ import { CuNavigation } from '~/components/Blog/classes/Post/CuNavigation'
 
 export class PostHeader implements IPostHeader {
   postMetaInfo: IPostMetaInfo
-  cuNavigation: ICuNavigation
+  cuNavigation: ICuNavigation | null
   postType: string
   title: RichTextField
   subtitle: RichTextField
@@ -40,11 +40,7 @@ export class PostHeader implements IPostHeader {
       readTime,
       updatedDate,
     )
-    this.cuNavigation = clusterData && new CuNavigation({
-      uid,
-      clusterName: clusterData.primary.cluster_name[0].text,
-      cuPosts: clusterData.items,
-    })
+    this.cuNavigation = clusterData ? new CuNavigation({ uid, clusterData }) : null
     this.postType = type
     this.title = title
     this.subtitle = subtitle

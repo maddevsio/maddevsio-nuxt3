@@ -11,15 +11,13 @@ export class CuNavigation implements ICuNavigation {
   cuSelector: ICUSelector
   cuNavigationButtons: ICuNavigationButtons
 
-  constructor({
-    uid,
-    clusterName,
-    cuPosts,
-  }: CuNavigationProps) {
-    this.uid = uid
-    this.clusterName = clusterName
-    this.cuSelector = new CuSelector({ uid, cuPosts: this.transformCuPosts(cuPosts) })
-    this.cuNavigationButtons = new CuNavigationButtons({ uid, cuPosts: this.transformCuPosts(cuPosts) })
+  constructor(props: CuNavigationProps) {
+    this.uid = props.uid
+    this.clusterName = props.clusterData.primary.cluster_name[0].text
+    this.cuSelector = new CuSelector({ uid: props.uid, cuPosts: this.transformCuPosts(props.clusterData.items) })
+    this.cuNavigationButtons = new CuNavigationButtons({ uid: props.uid, cuPosts: this.transformCuPosts(props.clusterData.items) })
+
+    this.transformCuPosts = this.transformCuPosts.bind(this)
   }
 
   transformCuPosts(cuPosts: BlogPost[]) {

@@ -10,25 +10,28 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
   const blogService = new BlogService()
 
   const schemaOrgSnippet = ref<any>()
-  const clusterData = ref<any>(null)
   const post = ref<BlogPost>()
+  const readTime = ref('')
 
   const openGraphUrl = `${ config.public.domain }/${ type === 'customer_university' ? 'customer-university' : 'blog' }/${ route.params?.uid }/`
 
   const { data: blogContentResponseData } = await useAsyncData('blogContentResponseData', async () => {
     try {
       const postResponse = await blogService.getPostByUID(prismic, route.params.uid as string, type) as BlogPost
-      const recommendedPosts = await blogService.fetchPostsByTag(prismic, [postResponse.tags[0]], 4)
-      postResponse.recommendedPosts = recommendedPosts.results
-        .filter((recommendedPost: any) => recommendedPost.uid !== postResponse.uid && Boolean(recommendedPost.data?.post_author?.id))
-        .slice(0, 3)
+
+      if (type === 'post') {
+        const recommendedPosts = await blogService.fetchPostsByTag(prismic, [postResponse.tags[0]], 4)
+        postResponse.recommendedPosts = recommendedPosts.results
+          .filter((recommendedPost: any) => recommendedPost.uid !== postResponse.uid && Boolean(recommendedPost.data?.post_author?.id))
+          .slice(0, 3)
+      }
 
       if (type === 'customer_university') {
         const cuMaster = await blogService.fetchCUMaster(prismic) as CuMasterDocument
-        clusterData.value = cuMaster.data.body
+        postResponse.clusterData = cuMaster.data.body
           .find(cluster => cluster.items
           // @ts-ignore
-            .find(clusterItem => clusterItem.cu_post.id === post.id) !== undefined) || null
+            .find(clusterItem => clusterItem.cu_post.id === postResponse.id) !== undefined) || null
       }
 
       return postResponse
@@ -39,7 +42,9 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
 
   post.value = blogContentResponseData.value as BlogPost
 
-  const { readTime } = calculateReadTime(post.value, prismic)
+  if (type === 'post') {
+    readTime.value = calculateReadTime(post.value, prismic).readTime
+  }
   // Schema org snippet
   schemaOrgSnippet.value = extractSchemaOrg(post.value?.data?.schema_org_snippets as SchemaOrgSnippet[])
 
@@ -51,7 +56,7 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
       title: prismic.asText(post.value?.data?.title),
       subtitle: prismic.asText(post.value?.data?.subtitle),
       featuredImage: post.value?.data?.featured_image,
-      recommendedPosts: post.value.recommendedPosts,
+      recommendedPosts: post.value?.recommendedPosts,
       postAuthor: post.value?.data?.post_author,
       postCoAuthor: post.value?.data?.post_coauthor || null,
       tableOfContents: post.value?.data?.body?.find(slice => slice.slice_type === 'table_of_contents'),
@@ -64,10 +69,10 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
       metaTitle: prismic.asText(post.value?.data?.meta_title) || post.value?.data?.title[0].text,
       metaDescription: prismic.asText(post.value?.data?.meta_description),
       withForm: post.value?.data?.post_with_form,
-      readTime,
+      readTime: readTime.value,
       openGraphUrl,
       schemaOrgSnippet,
-      clusterData,
+      clusterData: post.value?.clusterData,
     },
     openGraphUrl,
     schemaOrgSnippet,

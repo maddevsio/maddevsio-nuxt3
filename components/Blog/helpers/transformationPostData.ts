@@ -19,7 +19,7 @@ export const transformationPostData = (post: any) => {
         postAuthor: post.postAuthor,
         postCoAuthor: post.postCoAuthor,
         tags: post.tags,
-        clusterData: post.clusterData.value,
+        clusterData: post.clusterData,
         servicePost: post.withForm,
       }),
       postContent: new PostContent({
