@@ -13,7 +13,7 @@ export interface AccordionCustomPageProps {
 }
 
 export interface IQuestion {
-  question: RichTextField | string
+  question: RichTextField
   answer: RichTextField
 }
 

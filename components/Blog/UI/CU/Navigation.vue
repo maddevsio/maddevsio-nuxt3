@@ -23,10 +23,10 @@ const {
     >
       {{ clusterName }}
     </div>
-    <LazyBlogUICuSelector
+    <LazyBlogUICUSelector
       :cu-selector="cuSelector"
     />
-    <LazyBlogUICuPageNavigations
+    <LazyBlogUICUPageNavigations
       :cu-navigation-buttons-instance="cuNavigationButtons"
     />
   </div>

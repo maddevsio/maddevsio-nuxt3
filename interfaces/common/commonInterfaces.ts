@@ -193,6 +193,10 @@ export interface BlogPost {
     uid: string
   }
   clusterData?: any
+  title?: string
+  articleLink?: string
+  cover?: ImageField
+  author?: TransformedAuthor
 }
 
 export interface TableOfContent {

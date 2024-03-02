@@ -1,14 +1,15 @@
+import type { RichTextField } from '@prismicio/client'
 import type { IPostsSectionDefault } from '~/components/PageBlocks/PostsSection/interfaces/IPostsSectionDefault'
 
 export interface PostsSectionWithoutAuthorProps {
   primary: {
-    title: string
+    title: RichTextField
     containerSize: string
   }
   items: []
 }
 
 export interface IPostsSectionWithoutAuthor extends IPostsSectionDefault {
-  title: string
+  title: RichTextField
   containerSize: string
 }
