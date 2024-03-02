@@ -51,7 +51,7 @@ if (error.value) {
         product because they aren’t aware of many processes and have more questions than replies.
         If you are one of them, here you can find information about the main software development processes.
       </p>
-      <LazyBlogUICustomerUniversityCards
+      <LazyBlogCustomerUniversityCards
         :cu-section-cards="cuSection"
       />
     </div>

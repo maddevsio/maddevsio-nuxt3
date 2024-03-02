@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { IPostContent } from '~/components/Blog/interfaces/Post/IPostContent'
+import type { IPostServiceContent } from '~/components/Blog/interfaces/Post/IPostServiceContent'
 
 const props = defineProps({
   postContent: {
-    type: Object as PropType<IPostContent>,
+    type: Object as PropType<IPostServiceContent>,
     default: () => ({}),
   },
 })
 
 const {
+  mobilePoint,
   slices,
-  type: postType,
+  postSidebar,
   postAuthor,
   postCoAuthor,
   recommendedPosts,
-  exploreChapters,
-  postSidebar,
+  postForm,
   openGraphUrl,
   metaTitle,
 } = props.postContent
@@ -25,44 +25,61 @@ provide('postAuthor', postAuthor)
 provide('postCoAuthor', postCoAuthor)
 provide('openGraphUrl', openGraphUrl)
 provide('metaTitle', metaTitle)
+
+const { isMobile } = useCheckMobile(mobilePoint)
 </script>
 <template>
-  <section class="post-content">
-    <div class="post-content__container">
+  <section class="post-service-content">
+    <div class="post-service-content__container">
+      <LazyBlogSlicesComponents
+        :slices="slices"
+        class="post-service-content__slices"
+      />
       <ClientOnly>
         <LazyBlogPostSidebar
           :post-sidebar-instance="postSidebar"
+          class="post-service-content__sidebar"
         />
       </ClientOnly>
-      <LazyBlogSlicesComponents
-        :slices="slices"
-      />
     </div>
     <LazyBlogPostRecommended
-      v-if="postType === 'post'"
       :recommended-posts="recommendedPosts"
     />
-    <LazyBlogCustomerUniversityAllPosts
-      v-if="postType === 'customer_university'"
-      :customer-university-posts="exploreChapters"
+    <LazyBlogUIPostMobileServiceForm
+      v-if="isMobile"
+      :post-form="postForm"
     />
   </section>
 </template>
 <style lang="scss" scoped>
-.post-content {
+.post-service-content {
   background-color: $bgcolor--white-primary;
 
   &__container {
-    max-width: 680px;
-    margin: 0 auto;
-    column-gap: 72px;
+    max-width: 1032px;
+    margin-inline: auto;
     display: flex;
     justify-content: space-between;
   }
 
-  @media screen and (max-width: 1185px) {
+  :deep(.post-slices) {
+    max-width: 620px;
+  }
+
+  &__sidebar {
+    max-width: 350px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 1087px) {
     &__container {
       flex-direction: column;
+      justify-content: center;
+    }
+
+    :deep(.post-slices) {
+      max-width: 680px;
+      margin-inline: auto;
     }
   }
 

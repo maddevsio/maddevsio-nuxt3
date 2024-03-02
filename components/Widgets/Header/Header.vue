@@ -24,9 +24,9 @@ const {
 const route = useRoute()
 const headerRef = ref<Element | null>(null)
 const isBlogPage = computed(
-  () => route.name!.includes('blog-uid') ||
-    route.name!.includes('blog-search-result') ||
-    route.name!.includes('customer-university-uid'),
+  () => (route.name as string).includes('blog-uid') ||
+    (route.name as string).includes('blog-search-result') ||
+    (route.name as string).includes('customer-university-uid'),
 )
 provide('resetState', resetState)
 
