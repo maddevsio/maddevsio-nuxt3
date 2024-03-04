@@ -47,22 +47,4 @@ export class DigestAPI {
       return error
     }
   }
-
-  async getBlogArticle(prismic: PrismicPlugin): Promise<any> {
-    try {
-      return await prismic.client.get({
-        filters: [
-          prismic.filter.any('document.type', ['post', 'customer_university']),
-          prismic.filter.any('document.tags', ['Featured post']),
-        ],
-        orderings: {
-          field: 'my.post.date',
-          direction: 'desc',
-        },
-        pageSize: 1,
-      })
-    } catch (error) {
-      return error
-    }
-  }
 }
