@@ -65,7 +65,7 @@ const toggleSound = () => {
         width="100%"
         height="100%"
         :controls="false"
-        autoplay="true"
+        autoplay
         muted
         playsinline
         loop

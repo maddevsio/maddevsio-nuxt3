@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   folder: {
     type: String,
     default: '',
@@ -87,7 +87,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
 }
 
 .box-shadow {
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05), 0px 5.47001px 41.35px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05), 0 5.47001px 41.35px rgba(0, 0, 0, 0.1);
 }
 
 .border-radius {
