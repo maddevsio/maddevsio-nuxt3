@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   folder: {
     type: String,
     default: '',
@@ -52,21 +52,14 @@ defineProps({
 })
 
 const { $getMediaFromS3 } = useMediaFromS3()
-
-// const onImageLoad = (event: Event) => {
-//   const target = event.target as HTMLElement
-//   if (target.classList.contains('grey-background')) {
-//     target.classList.remove('grey-background')
-//   }
-// }
 </script>
 <template>
   <picture>
     <source
       :class="{ 'box-shadow': shadow, 'border-radius': radius, 'grey-background': background }"
       :srcset="[
-        $getMediaFromS3(`/images/Cases/${folder}/webp/${file}.webp`) + ' ',
-        $getMediaFromS3(`/images/Cases/${folder}/webp/${file}@2x.webp 2x`)]
+        $getMediaFromS3(`/images/Cases/${folder}/webp/${file}.webp`),
+        $getMediaFromS3(`/images/Cases/${folder}/webp/${file}@2x.webp 2x`)].join(', ')
       "
       class="image"
       type="image/webp"
