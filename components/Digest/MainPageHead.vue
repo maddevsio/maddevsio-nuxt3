@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 const { isMobile } = useDevice()
 const { $getMediaFromS3 } = useMediaFromS3()
 // TODO: Needs add background images of different sizes and create component for this

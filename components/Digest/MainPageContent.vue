@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { DigestMainPageContent } from '~/components/Digest/classes/DigestMainPageContent'
 import { Digests } from '~/components/Digest/classes/Digests'
 
@@ -50,14 +50,14 @@ const { pending } = await useAsyncData(() => fetchDigests({
               @change-year="handleChangeYear"
             />
             <LazyDigestCards
-              v-if="digestsData.digestList.length"
-              :digest-list="digestsData.digestList"
+              v-if="digestsData!.digestList.length"
+              :digest-list="digestsData!.digestList"
               class="digest-main-page-content__cards"
             />
             <LazySharedUIPagination
-              v-if="digestsData.nextPage || digestsData.prevPage"
+              v-if="digestsData!.nextPage || digestsData!.prevPage"
               :current-page="pageRef"
-              :total-pages="digestsData.totalPages"
+              :total-pages="digestsData!.totalPages"
               class="digest-main-page-content__pagination"
               @page-changed="changePage"
             />
