@@ -19,7 +19,7 @@ export class DigestMainPageCTA implements IDigestMainPageCTA {
     this.teleportBlogBtn = this.teleportBlogBtn.bind(this)
   }
 
-  async fetchArticle(prismic: PrismicPlugin): Promise<void> {
+  async fetchArticle(prismic: PrismicPlugin) {
     const response = await new DigestAPI().getBlogArticle(prismic)
     this.article.value = response.results[0]
   }

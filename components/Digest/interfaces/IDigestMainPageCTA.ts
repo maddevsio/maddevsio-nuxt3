@@ -13,6 +13,6 @@ export interface IDigestMainPageCTA {
   blogBtnRef: Ref<HTMLElement & {$el: HTMLElement} | null>
   contentRef: Ref<HTMLElement | null>
   contentTextRef: Ref<HTMLElement | null>
-  fetchArticle(prismic: PrismicPlugin):Promise<void>
-  teleportBlogBtn(isMobile: boolean):void
+  fetchArticle(prismic: PrismicPlugin): Promise<void>
+  teleportBlogBtn(isMobile: boolean): void
 }

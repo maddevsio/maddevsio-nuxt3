@@ -13,6 +13,6 @@ export interface IDigestSelect {
   prismic: PrismicPlugin
   currentOption: Ref<DigestSelectOption>
   selectDigestOptions: Ref<UnwrapRef<({ year: string; label: string })[]>>
-  createSelectOption<T extends DigestSelectDate>(date: DigestSelectDate):DigestSelectOption
-  createSelectOptionsList():Promise<void>
+  createSelectOption<T extends DigestSelectDate>(date: DigestSelectDate): DigestSelectOption
+  createSelectOptionsList(): Promise<void>
 }

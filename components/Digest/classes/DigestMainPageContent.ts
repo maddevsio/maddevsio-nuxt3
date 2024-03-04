@@ -4,6 +4,7 @@ import type { PrismicPlugin } from '@prismicio/vue'
 import type { IDigestMainPageContent } from '~/components/Digest/interfaces/IDigestMainPageContent'
 import type { DigestSelectOption } from '~/components/Digest/interfaces/IDigestSelect'
 import type { IDigests } from '~/components/Digest/interfaces/IDigests'
+
 export class DigestMainPageContent implements IDigestMainPageContent {
   digestTitleRef: Ref<HTMLElement | null>
   pageRef: Ref<number>

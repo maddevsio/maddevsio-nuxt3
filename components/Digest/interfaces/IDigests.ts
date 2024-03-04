@@ -54,7 +54,7 @@ export interface IDigests {
   uid: string
   date: Date
   prismic: PrismicPlugin
-  filterDigests(response: DigestResponse, prismic: PrismicPlugin):TransformedDigestsData
-  fetchDigests(props: FetchDigestsProps):Promise<void>
-  handleChangeYear(option: DigestSelectOption):Promise<void>
+  filterDigests(response: DigestResponse, prismic: PrismicPlugin): TransformedDigestsData
+  fetchDigests(props: FetchDigestsProps): Promise<void>
+  handleChangeYear(option: DigestSelectOption): Promise<void>
 }

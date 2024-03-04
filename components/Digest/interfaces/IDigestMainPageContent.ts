@@ -11,6 +11,6 @@ export interface IDigestMainPageContent {
   route: any
   prismic: PrismicPlugin
   fetchDigests: IDigests['fetchDigests']
-  changePage(page: number):Promise<void>
-  setTitle(currentOption: DigestSelectOption):string
+  changePage(page: number): Promise<void>
+  setTitle(currentOption: DigestSelectOption): string
 }

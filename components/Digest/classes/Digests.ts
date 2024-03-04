@@ -29,7 +29,7 @@ export class Digests implements IDigests {
     markRaw(this)
   }
 
-  filterDigests(response: DigestResponse, prismic: PrismicPlugin) :TransformedDigestsData {
+  filterDigests(response: DigestResponse, prismic: PrismicPlugin): TransformedDigestsData {
     const digests = transformationDigestsData(response, prismic)
     return {
       ...digests,
