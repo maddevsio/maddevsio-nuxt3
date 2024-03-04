@@ -166,7 +166,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
   filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.1));
 }
 
-:deep(.swiper.gallery-thumbs .swiper-slide-active) {
+:deep(.swiper.gallery-thumbs .swiper-slide-thumb-active) {
   opacity: 1;
 }
 </style>
