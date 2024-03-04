@@ -1,4 +1,5 @@
 import type { PrismicPlugin } from '@prismicio/vue'
+import type { RichTextField } from '@prismicio/client'
 import type {
   IPostsSectionWithoutAuthor,
   PostsSectionWithoutAuthorProps,
@@ -38,7 +39,7 @@ export class PostsSectionWithoutAuthor implements IPostsSectionWithoutAuthor {
 
   triggerBreakpoint: number = 959
   posts: IPostItem[]
-  title: string
+  title: RichTextField
   containerSize: string
 
   constructor(props: PostsSectionWithoutAuthorProps, prismic: PrismicPlugin) {

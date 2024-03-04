@@ -126,7 +126,7 @@ const photo = props.authorImage.thumbnail.url && props.authorImage.thumbnail.url
   }
 
   &__name {
-    @include font('Poppins', 21px, 600);
+    @include font('Inter', 21px, 600);
     line-height: 130%;
     letter-spacing: -0.02px;
     color: $text-color--black-oil;

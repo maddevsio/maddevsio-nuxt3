@@ -13,9 +13,7 @@ export class HeaderSearchPanel implements IHeaderSearchPanel {
     if (this.isActiveModalSearch.value) {
       manageScrollOnBody.disableScrollOnBody()
     } else {
-      setTimeout(() => {
-        manageScrollOnBody.enableScrollOnBody()
-      }, 300)
+      manageScrollOnBody.enableScrollOnBody()
     }
   }
 }

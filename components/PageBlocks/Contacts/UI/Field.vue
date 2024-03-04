@@ -110,7 +110,7 @@ const clickContact = (type: SelectField, content: string) => {
   }
 
   &__value {
-    @include font('Poppins', 34px, 600);
+    @include font('Inter', 34px, 600);
     line-height: 100%;
     letter-spacing: -1px;
     display: block;

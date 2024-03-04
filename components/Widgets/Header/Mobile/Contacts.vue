@@ -45,7 +45,7 @@ const sendEmailEvent = () => headerContacts.sendEmailEvent(mailLink)
     }
   }
   &__email-link {
-    @include font('Poppins', 28px, 600);
+    @include font('Inter', 28px, 600);
     letter-spacing: -1px;
     display: inline-block;
     text-decoration: none;

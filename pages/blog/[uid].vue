@@ -1,9 +1,23 @@
 <script setup lang="ts">
+import { buildHead } from '~/SEO/buildMetaTags'
+
 const {
   post,
-  // schemaOrgSnippet,
-  // openGraphUrl,
 } = await useBlogContentData('post')
+
+const imageWithoutCrop = () => {
+  return post.featuredImage?.url?.split('?auto')[0]
+}
+
+// @ts-ignore
+useHead(buildHead({
+  title: post.metaTitle || '',
+  metaTitle: post.metaTitle || '',
+  description: post.metaDescription || '',
+  url: post.openGraphUrl,
+  jsonLd: post.schemaOrgSnippet.value,
+  image: imageWithoutCrop() ? imageWithoutCrop() : '/favicon.ico',
+}))
 </script>
 
 <template>
@@ -13,7 +27,3 @@ const {
     />
   </div>
 </template>
-
-<style scoped lang="scss">
-
-</style>

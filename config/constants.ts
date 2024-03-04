@@ -28,4 +28,10 @@ export const fetchLinks: string[] = [
   'customer_university.title',
   'customer_university.date',
   'customer_university.post_author',
+  'cu_post.body',
+  'cu_post.meta_title',
+  'cu_post.featured_image',
+  'cu_post.title',
+  'cu_post.date',
+  'cu_post.post_author',
 ]

@@ -3,6 +3,10 @@ import { HeaderSearchPanel } from '~/components/Widgets/Header/classes/HeaderSea
 
 const searchPanel = new HeaderSearchPanel()
 const { $getMediaFromS3 } = useMediaFromS3()
+
+onUnmounted(() => {
+  searchPanel.openModalSearch()
+})
 </script>
 <template>
   <div class="header-search-panel">

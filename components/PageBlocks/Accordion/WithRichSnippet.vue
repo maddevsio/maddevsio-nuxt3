@@ -1,19 +1,43 @@
 <script setup lang="ts">
-import type { RichTextField } from '@prismicio/types'
+import type { RichTextField } from '@prismicio/client'
+import type { PropType } from 'vue'
 import type { ITransformedQuestion } from '~/components/PageBlocks/Accordion/interfaces/IAccordion'
 
-interface Props {
-  questions: ITransformedQuestion[]
-}
-
-defineProps<Props>()
-const { asText } = usePrismic()
-const getID = (text: RichTextField | string) => asText(text)!
+const props = defineProps({
+  questions: {
+    type: Array as PropType<ITransformedQuestion[]>,
+    default: () => [],
+  },
+})
+const prismic = usePrismic()
+const getID = (text: RichTextField) => prismic.asText(text)
   .replace(/ /g, '-')
   .toLowerCase()
+
+const replaceHtmlEntities = (text: string) => text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+
+const schemaOrg = `
+&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [${ props.questions.map(item => `
+    {
+    "@type": "Question",
+    "name": "${ prismic.asText(item.question) }",
+    "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "${ prismic.asText(item.answer) }"
+      }
+    }
+  `) }
+  ]
+}
+&lt;/script&gt;`
 </script>
 <template>
   <div>
+    <div v-html="replaceHtmlEntities(schemaOrg)" />
     <LazySharedUIAccordion
       v-for="(faq, faqIndex) in questions"
       :key="`${getID(faq.question)}-${faqIndex}`"
@@ -25,16 +49,12 @@ const getID = (text: RichTextField | string) => asText(text)!
       >
         <div
           class="accordion-for-post__wrapper"
-          itemprop="mainEntity"
-          itemscope
-          itemtype="https://schema.org/Question"
         >
           <Component
             :is="faq.questionTag"
             :id="getID(faq.question)"
             :class="{ 'accordion-for-post__question--active': expanded === $prismic.asText(faq.question) }"
             class="accordion-for-post__question"
-            itemprop="name"
             @click="showAnswer($prismic.asText(faq.question))"
           >
             <span class="accordion-for-post__question-text">{{ $prismic.asText(faq.question) }}</span>
@@ -64,14 +84,10 @@ const getID = (text: RichTextField | string) => asText(text)!
             <div
               v-show="expanded"
               class="accordion-for-post__answer-wrapper"
-              itemprop="acceptedAnswer"
-              itemscope
-              itemtype="https://schema.org/Answer"
             >
               <div
                 :id="getID(faq.answer)"
                 class="accordion-for-post__answer"
-                itemprop="text"
                 v-html="$prismic.asHTML(faq.answer)"
               />
             </div>

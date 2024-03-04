@@ -1,7 +1,7 @@
 import type { PrismicPlugin } from '@prismicio/vue'
 import type { Ref } from 'vue'
 import type { DigestBlogArticle, IDigestMainPageCTA } from '~/components/Digest/interfaces/IDigestMainPageCTA'
-import { DigestAPI } from '~/components/Digest/classes/DigestAPI'
+import { BlogService } from '~/components/Blog/classes/BlogService'
 
 export class DigestMainPageCTA implements IDigestMainPageCTA {
   article: Ref<DigestBlogArticle | null>
@@ -19,8 +19,8 @@ export class DigestMainPageCTA implements IDigestMainPageCTA {
     this.teleportBlogBtn = this.teleportBlogBtn.bind(this)
   }
 
-  async fetchArticle(prismic: PrismicPlugin): Promise<void> {
-    const response = await new DigestAPI().getBlogArticle(prismic)
+  async fetchArticle(prismic: PrismicPlugin) {
+    const response = await new BlogService().getPostsByTag(prismic, [], 1)
     this.article.value = response.results[0]
   }
 

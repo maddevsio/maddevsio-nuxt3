@@ -58,12 +58,12 @@ const {
       <LazyWidgetsFormUIInputField
         v-if="fields"
         :form-field-instance="fields.email"
-        :class="[styles['subscribe-form__input'], styles[`subscribe-form__input--${colorTheme}`], styles[`subscribe-form__input--${sliceType}`]]"
+        :class="['subscribe-form__input', styles['subscribe-form__input'], styles[`subscribe-form__input--${colorTheme}`], styles[`subscribe-form__input--${sliceType}`]]"
       />
       <LazyWidgetsFormUIButtonField
         v-if="buttons"
         :button-instance="buttons.submitButton"
-        :class="[styles['subscribe-form__btn'], styles[`subscribe-form__btn--${sliceType}`]]"
+        :class="['subscribe-form__btn', styles['subscribe-form__btn'], styles[`subscribe-form__btn--${sliceType}`]]"
       >
         <span
           v-if="sliceVariation === 'subscribeFormDigest'"

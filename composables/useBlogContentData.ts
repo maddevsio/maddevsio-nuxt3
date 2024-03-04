@@ -32,6 +32,7 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
           .find(cluster => cluster.items
           // @ts-ignore
             .find(clusterItem => clusterItem.cu_post.id === postResponse.id) !== undefined) || null
+        postResponse.clusterData.items = extractCUPost(postResponse.clusterData.items, prismic)
       }
 
       return postResponse
@@ -61,7 +62,7 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
       postCoAuthor: post.value?.data?.post_coauthor || null,
       tableOfContents: post.value?.data?.body?.find(slice => slice.slice_type === 'table_of_contents'),
       postForm: post.value?.data?.body?.find(slice => slice.slice_type === 'post_form'),
-      slices: post.value?.data?.body?.filter(slice => slice.slice_type !== 'table_of_contents'),
+      slices: post.value?.data?.body?.filter(slice => slice.slice_type !== 'table_of_contents' && slice.slice_type !== 'post_form'),
       tags: post.value.tags,
       date: formatDate(post.value?.data?.date),
       updatedDate: post.value?.data?.updated_date ? formatDate(post.value?.data?.updated_date) : '',

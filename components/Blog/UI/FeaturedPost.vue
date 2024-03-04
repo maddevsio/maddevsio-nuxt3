@@ -126,7 +126,7 @@ const { isMobile } = useDevice()
   }
 
   &__title {
-    @include font('Poppins', 32px, 700);
+    @include font('Inter', 32px, 700);
     line-height: 120%;
     display: -webkit-box;
     -webkit-line-clamp: 2;

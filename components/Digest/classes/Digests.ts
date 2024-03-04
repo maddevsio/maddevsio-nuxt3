@@ -3,21 +3,21 @@ import type { PrismicPlugin } from '@prismicio/vue'
 import { DigestAPI } from './DigestAPI'
 import type {
   DigestResponse,
-  DigestSelectOption,
   FetchDigestsProps,
   IDigests,
   IDigestsProps,
   TransformedDigestsData,
 } from '~/components/Digest/interfaces/IDigests'
 import { transformationDigestsData } from '~/components/Digest/helpers/transformationDigestsData'
+import type { DigestSelectOption } from '~/components/Digest/interfaces/IDigestSelect'
 export class Digests implements IDigests {
-  digestsData: Ref<TransformedDigestsData | {}>
+  digestsData: Ref<TransformedDigestsData | null>
   digestOption: Ref<DigestSelectOption>
   uid: string
   date: Date
   prismic: PrismicPlugin
   constructor(props: IDigestsProps, prismic: PrismicPlugin) {
-    this.digestsData = ref({})
+    this.digestsData = ref(null)
     this.digestOption = ref({ label: '', year: '' })
     this.uid = props.uid
     this.date = props.date
@@ -29,11 +29,11 @@ export class Digests implements IDigests {
     markRaw(this)
   }
 
-  filterDigests(response: DigestResponse, prismic: PrismicPlugin) :TransformedDigestsData {
+  filterDigests(response: DigestResponse, prismic: PrismicPlugin): TransformedDigestsData {
     const digests = transformationDigestsData(response, prismic)
     return {
       ...digests,
-      ...digests.digestList.filter(digest => digest.uid !== this.uid),
+      ...digests?.digestList.filter(digest => digest.uid !== this.uid),
     }
   }
 

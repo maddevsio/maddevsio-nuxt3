@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 const { isMobile } = useDevice()
 const { $getMediaFromS3 } = useMediaFromS3()
 // TODO: Needs add background images of different sizes and create component for this
@@ -47,6 +47,14 @@ const { $getMediaFromS3 } = useMediaFromS3()
     :deep(p) {
       color: $text-color--white-primary !important;
       font-size: 16px !important;
+    }
+
+    :deep(.subscribe-form__input) {
+      width: 78%;
+    }
+
+    :deep(.subscribe-form__btn) {
+      width: 23%;
     }
   }
 

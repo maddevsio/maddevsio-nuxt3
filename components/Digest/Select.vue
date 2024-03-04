@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { DigestSelect } from '~/components/Digest/classes/DigestSelect'
 
 const emit = defineEmits(['changeYear'])
@@ -26,7 +26,7 @@ const handleOptionChangeYear = (option: object) => emit('changeYear', option)
   </div>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .digest-select-wrapper {
   width: 20%;
   min-width: 300px;
