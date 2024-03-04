@@ -85,7 +85,7 @@ defineProps({
   padding: 60px 0 71px;
 
   &__title {
-    @include font('Poppins', 32px, 600);
+    @include font('Inter', 32px, 600);
     text-align: center;
     line-height: 130%;
     letter-spacing: -0.04em;

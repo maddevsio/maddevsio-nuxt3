@@ -1,6 +1,6 @@
 .form-success-message {
   &__title {
-    @include font('Poppins', 24px, 700);
+    @include font('Inter', 24px, 700);
     line-height: 130%;
     color: $text-color--chinese-black;
     margin-bottom: 12px;

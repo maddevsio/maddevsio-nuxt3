@@ -179,7 +179,7 @@ const articleLink = linkResolver(props.post as { isBroken?: boolean, type: strin
   }
 
   &__result-title {
-    @include font('Poppins', 15px, 700);
+    @include font('Inter', 15px, 700);
     line-height: 125%;
     color: $text-color--chinese-black;
     display: -webkit-box;

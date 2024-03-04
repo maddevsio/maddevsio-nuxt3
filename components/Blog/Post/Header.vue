@@ -116,7 +116,7 @@ const { isMobile } = useDevice()
   }
 
   &__title {
-    @include font('Poppins', 52px, 400);
+    @include font('Inter', 52px, 400);
     line-height: 67px;
     letter-spacing: -2px;
     color: $text-color--white;

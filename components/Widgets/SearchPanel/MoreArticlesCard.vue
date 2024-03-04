@@ -43,7 +43,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
     }
 
     &-description {
-      @include font('Poppins', 14px, 400);
+      @include font('Inter', 14px, 400);
       line-height: 130%;
       color: $text-color--chinese-black;
       max-width: 160px;

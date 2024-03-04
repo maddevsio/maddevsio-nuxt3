@@ -5,4 +5,6 @@
   overflow-y: auto;
   background: #fff;
   font-feature-settings: 'zero' off, 'ordn' off, 'ss02' off, 'ss05' off;
+  position: relative;
+  z-index: 1;
 }

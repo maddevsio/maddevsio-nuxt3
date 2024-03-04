@@ -1,5 +1,6 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
-import type { RichTextField } from '@prismicio/client'
+import type { KeyTextField, NumberField, RichTextField } from '@prismicio/client'
+import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -232,4 +233,35 @@ export interface Ebook {
   id: string
   slice_type: string
   slice_label: string | null
+}
+
+export interface TransformedCaseStudy {
+  uid: string
+  url: string
+  metaTitle: string
+  metaDescription: string
+  ogImage: string
+  schemaOrg: any[]
+  slices: any[]
+  tagCloud: any
+  released: boolean
+  title: string
+  description: string
+  image: ImageField
+  headerPlate: {
+    text: string
+    btnText: string
+    btnLink: string
+    backgroundColor: string
+  }
+}
+export interface TransformedCaseStudyCard {
+  uid: string
+  title: KeyTextField
+  description: KeyTextField
+  logotype: ImageField
+  posterLink: KeyTextField
+  videoLink: KeyTextField
+  tags: string[]
+  height: NumberField
 }
