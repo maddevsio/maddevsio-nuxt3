@@ -1,7 +1,11 @@
 <script setup lang="ts">
-const route = useRoute()
+const {
+  digest,
+  // schemaOrgSnippet,
+  // openGraphUrl,
+} = await useDigestContentData()
 </script>
 
 <template>
-  <div>{{ route.params.uid }}</div>
+  <div>{{ digest }}</div>
 </template>
