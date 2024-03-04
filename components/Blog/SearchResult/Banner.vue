@@ -37,7 +37,7 @@ const searchQuery = computed(() => {
   &__title {
     line-height: 130%;
     letter-spacing: -2px;
-    @include font('Poppins', 52px, 600);
+    @include font('Inter', 52px, 600);
   }
 
   @media only screen and (max-width: 991px) {

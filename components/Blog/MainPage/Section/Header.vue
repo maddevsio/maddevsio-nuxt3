@@ -89,7 +89,7 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
   }
 
   &__title {
-    @include font('Poppins', 60px, 700);
+    @include font('Inter', 60px, 700);
     line-height: 125%;
     color: $text-color--white-primary;
     margin-bottom: 64px;

@@ -3,7 +3,7 @@ interface BuildHeadData {
   title: string
   description: string
   url: string
-  jsonLd: string
+  jsonLd: string | ({ type: string; innerHTML: string; } | null)[]
   image?: string
   metaTitle: string
   noindex?: boolean

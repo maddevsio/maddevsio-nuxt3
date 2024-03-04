@@ -282,7 +282,7 @@ onUpdated(() => {
     }
 
     &-title {
-      @include font('Poppins', 24px, 700);
+      @include font('Inter', 24px, 700);
       line-height: 130%;
       color: $text-color--white-primary;
       margin-bottom: 18px;
