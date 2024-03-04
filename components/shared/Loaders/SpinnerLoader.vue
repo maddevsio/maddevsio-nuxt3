@@ -16,6 +16,7 @@ defineProps({
   border-radius: 50%;
   position: relative;
   animation: rotate 1.2s linear infinite;
+  margin: 50px auto;
   &::before {
     content: "";
     box-sizing: border-box;
