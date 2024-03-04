@@ -1,8 +1,8 @@
 import type { Ref, UnwrapRef } from 'vue'
 import dayjs from 'dayjs'
 import type { PrismicPlugin } from '@prismicio/vue'
-import type { IDigestSelect } from '~/components/Digest/interfaces/IDigestSelect'
-import type { Digest, DigestSelectOption } from '~/components/Digest/interfaces/IDigests'
+import type { DigestSelectDate, DigestSelectOption, IDigestSelect } from '~/components/Digest/interfaces/IDigestSelect'
+import type { Digest } from '~/components/Digest/interfaces/IDigests'
 import { DigestAPI } from '~/components/Digest/classes/DigestAPI'
 
 export class DigestSelect implements IDigestSelect {
@@ -17,10 +17,10 @@ export class DigestSelect implements IDigestSelect {
     this.createSelectOptionsList = this.createSelectOptionsList.bind(this)
   }
 
-  createSelectOption(date: string) {
+  createSelectOption(date: DigestSelectDate) {
     return {
-      label: `Digest of the ${ date ? dayjs(new Date(date)).year() : date || 'Year' }`,
-      year: date ? (dayjs(new Date(date)).year()).toString() : date,
+      label: `Digest of the ${ date ? dayjs(new Date(date)).year() : 'Digest of the Year' }`,
+      year: date ? (dayjs(new Date(date)).year()).toString() : '',
     }
   }
 
@@ -29,12 +29,12 @@ export class DigestSelect implements IDigestSelect {
 
     this.selectDigestOptions.value = [...this.selectDigestOptions.value, ...response.results.reduce((acc: DigestSelectOption[], result: Digest) => {
       if (!acc.length) {
-        acc.push(this.createSelectOption(result.data.date))
+        acc.push(this.createSelectOption(result.data?.date))
       } else {
-        if (acc.find((item :DigestSelectOption) => item.year === dayjs(new Date(result.data.date)).year().toString())) {
+        if (acc.find((item :DigestSelectOption) => item.year === dayjs(result.data.date).year().toString())) {
           return acc
         }
-        acc.push(this.createSelectOption(result.data.date))
+        acc.push(this.createSelectOption(result.data?.date))
       }
 
       return acc

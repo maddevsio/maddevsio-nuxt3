@@ -1,6 +1,7 @@
 import type { Ref } from 'vue'
 import type { PrismicPlugin } from '@prismicio/vue'
-import type { RichTextField } from '@prismicio/types'
+import type { DateField, RichTextField } from '@prismicio/client'
+import type { DigestSelectOption } from '~/components/Digest/interfaces/IDigestSelect'
 
 export interface IDigestsProps {
   uid: string
@@ -12,7 +13,7 @@ export interface Digest {
   data: {
     title: RichTextField
     subtitle: RichTextField
-    date: string
+    date: DateField
   }
 }
 
@@ -22,11 +23,6 @@ export interface TransformedDigest {
   subtitle: string
   orderNumber: string
   date: string
-}
-
-export interface DigestSelectOption {
-  label: string
-  year: string
 }
 
 export interface FetchDigestsProps {
@@ -53,7 +49,7 @@ export interface TransformedDigestsData {
 }
 
 export interface IDigests {
-  digestsData: Ref<TransformedDigestsData | {}>
+  digestsData: Ref<TransformedDigestsData | null>
   digestOption: Ref<DigestSelectOption>
   uid: string
   date: Date

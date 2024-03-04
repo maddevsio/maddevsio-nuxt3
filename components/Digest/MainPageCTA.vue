@@ -4,7 +4,14 @@ import { DigestMainPageCTA } from '~/components/Digest/classes/DigestMainPageCTA
 const { isMobile } = useCheckMobile(1024)
 const { $getMediaFromS3 } = useMediaFromS3()
 const prismic = usePrismic()
-const { article, blogBtnRef, contentRef, contentTextRef, fetchArticle, teleportBlogBtn } = new DigestMainPageCTA()
+const {
+  article,
+  blogBtnRef,
+  contentRef,
+  contentTextRef,
+  fetchArticle,
+  teleportBlogBtn,
+} = new DigestMainPageCTA()
 await useAsyncData(() => fetchArticle(prismic), {
   server: false,
   lazy: true,
@@ -23,15 +30,13 @@ watch(isMobile, newValue => {
         ref="contentRef"
         class="digest-main-page-cta__content"
       >
-        <NuxtImg
-          preload
+        <img
           :src="$getMediaFromS3('images/Digest/webp/cta-bg.webp')"
-          sizes="mobile:380px tablet:512px desktop:100vw"
           :alt="'Read more Insights background'"
           :width="isMobile ? 414 : 1240"
           :height="isMobile ? 445 : 371"
           class="digest-main-page-cta__image"
-        />
+        >
         <div
           ref="contentTextRef"
           class="digest-main-page-cta__content-text"

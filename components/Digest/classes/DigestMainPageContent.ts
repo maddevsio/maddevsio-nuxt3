@@ -2,21 +2,25 @@ import type { Ref } from 'vue'
 import type { Router } from 'vue-router'
 import type { PrismicPlugin } from '@prismicio/vue'
 import type { IDigestMainPageContent } from '~/components/Digest/interfaces/IDigestMainPageContent'
-import type { DigestSelectOption, IDigests } from '~/components/Digest/interfaces/IDigests'
+import type { DigestSelectOption } from '~/components/Digest/interfaces/IDigestSelect'
 export class DigestMainPageContent implements IDigestMainPageContent {
-  digests: IDigests
   digestTitleRef: Ref<HTMLElement | null>
   pageRef: Ref<number>
   router: Router
   route: any
   prismic: PrismicPlugin
-  constructor(router: Router, route: any, prismic: PrismicPlugin, digests: IDigests) {
+  fetchDigests: Function
+  constructor(
+    router: Router,
+    route: any,
+    prismic: PrismicPlugin,
+    fetchDigests: Function) {
     this.digestTitleRef = ref(null)
     this.pageRef = ref(1)
     this.router = router
     this.route = route
     this.prismic = prismic
-    this.digests = digests
+    this.fetchDigests = fetchDigests
 
     this.setTitle = this.setTitle.bind(this)
     this.changePage = this.changePage.bind(this)
@@ -29,7 +33,7 @@ export class DigestMainPageContent implements IDigestMainPageContent {
 
   async changePage (page: number) {
     this.pageRef.value = page
-    await this.digests.fetchDigests({ prismic: this.prismic, year: '', filter: false, date: new Date(), page: this.pageRef.value, pageSize: 12 })
+    await this.fetchDigests({ prismic: this.prismic, year: '', filter: false, date: new Date(), page: this.pageRef.value, pageSize: 12 })
     await this.router.push({
       path: this.route.path,
       query: {

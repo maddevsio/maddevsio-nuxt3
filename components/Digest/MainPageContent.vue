@@ -5,10 +5,28 @@ import { Digests } from '~/components/Digest/classes/Digests'
 const prismic = usePrismic()
 const router = useRouter()
 const route = useRoute()
-const digests = new Digests({ uid: '', date: new Date() }, prismic)
-const digestMainPageContent = new DigestMainPageContent(router, route, prismic, digests)
+const {
+  digestOption,
+  digestsData,
+  handleChangeYear,
+  fetchDigests,
+} = new Digests({ uid: '', date: new Date() }, prismic)
 
-const { pending } = await useAsyncData(() => digests.fetchDigests({ prismic, year: '', filter: false, date: new Date(), page: Number(route.query.page || digestMainPageContent.pageRef.value), pageSize: 12 }), {
+const {
+  digestTitleRef,
+  pageRef,
+  changePage,
+  setTitle,
+} = new DigestMainPageContent(router, route, prismic, fetchDigests)
+
+const { pending } = await useAsyncData(() => fetchDigests({
+  prismic,
+  year: '',
+  filter: false,
+  date: new Date(),
+  page: Number(route.query.page || pageRef.value),
+  pageSize: 12,
+}), {
   server: false,
   lazy: true,
 })
@@ -18,10 +36,10 @@ const { pending } = await useAsyncData(() => digests.fetchDigests({ prismic, yea
   <section class="digest-main-page-content">
     <div class="digest-main-page-content__container container">
       <h2
-        :ref="digestMainPageContent.digestTitleRef"
+        ref="digestTitleRef"
         class="digest-main-page-content__title"
       >
-        {{ digestMainPageContent.setTitle(digests.digestOption.value) }}
+        {{ setTitle(digestOption) }}
       </h2>
       <div>
         <LazySharedLoadersSpinnerLoader v-if="pending" color-theme="white" class="digest-main-page-content__loader" />
@@ -29,19 +47,19 @@ const { pending } = await useAsyncData(() => digests.fetchDigests({ prismic, yea
           <ClientOnly>
             <LazyDigestSelect
               class="digest-main-page-content__selector"
-              @change-year="digests.handleChangeYear"
+              @change-year="handleChangeYear"
             />
             <LazyDigestCards
-              v-if="digests.digestsData.value.digestList.length"
-              :digest-list="digests.digestsData.value.digestList"
+              v-if="digestsData.digestList.length"
+              :digest-list="digestsData.digestList"
               class="digest-main-page-content__cards"
             />
             <LazySharedUIPagination
-              v-if="digests.digestsData.value.nextPage || digests.digestsData.value.prevPage"
-              :current-page="digestMainPageContent.pageRef.value"
-              :total-pages="digests.digestsData.value.totalPages"
+              v-if="digestsData.nextPage || digestsData.prevPage"
+              :current-page="pageRef"
+              :total-pages="digestsData.totalPages"
               class="digest-main-page-content__pagination"
-              @page-changed="digestMainPageContent.changePage"
+              @page-changed="changePage"
             />
           </ClientOnly>
         </div>

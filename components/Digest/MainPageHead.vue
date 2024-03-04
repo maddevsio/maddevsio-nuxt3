@@ -48,6 +48,14 @@ const { $getMediaFromS3 } = useMediaFromS3()
       color: $text-color--white-primary !important;
       font-size: 16px !important;
     }
+
+    :deep(.subscribe-form__input) {
+      width: 78%;
+    }
+
+    :deep(.subscribe-form__btn) {
+      width: 23%;
+    }
   }
 
   &__image {
