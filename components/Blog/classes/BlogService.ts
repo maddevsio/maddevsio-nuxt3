@@ -90,9 +90,20 @@ export class BlogService {
 
   async fetchCUMaster(prismic: PrismicPlugin) {
     try {
-      return await prismic.client.getSingle('cu_master') as CuMasterDocument
+      return await prismic.client.getSingle('cu_master', { fetchLinks }) as CuMasterDocument
     } catch (e) {
       return e
     }
+  }
+
+  async getPostsFromPrismic(prismic: PrismicPlugin, type: 'post' | 'customer_university', query: string) {
+    const { results } = await prismic.client.get({
+      filters: [
+        prismic.filter.any('document.type', [type]),
+        prismic.filter.fulltext(`my.${ type }.title`, query),
+      ],
+      fetchLinks,
+    })
+    return results
   }
 }

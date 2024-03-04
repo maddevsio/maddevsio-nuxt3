@@ -15,7 +15,7 @@ const {
   postAuthor,
   postCoAuthor,
   recommendedPosts,
-  // exploreChapters,
+  exploreChapters,
   postSidebar,
   openGraphUrl,
   metaTitle,
@@ -42,10 +42,10 @@ provide('metaTitle', metaTitle)
       v-if="postType === 'post'"
       :recommended-posts="recommendedPosts"
     />
-    <!--    <CustomerUniversityAllPosts-->
-    <!--      v-if="postType === 'customer_university'"-->
-    <!--      :customer-university-posts="exploreChapters"-->
-    <!--    />-->
+    <LazyBlogCustomerUniversityAllPosts
+      v-if="postType === 'customer_university'"
+      :customer-university-posts="exploreChapters"
+    />
   </section>
 </template>
 <style lang="scss" scoped>

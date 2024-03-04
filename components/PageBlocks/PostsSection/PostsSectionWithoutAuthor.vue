@@ -30,10 +30,6 @@ const { isMobile } = useCheckMobile(postsSection.triggerBreakpoint)
         <Swiper
           ref="cuCards"
           v-bind="postsSection.swiperOptions"
-          :auto-update="true"
-          :auto-destroy="true"
-          :delete-instance-on-destroy="true"
-          :cleanup-styles-on-destroy="true"
           class="ebook-posts__cards"
         >
           <SwiperSlide

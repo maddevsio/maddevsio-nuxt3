@@ -12,6 +12,11 @@ const {
     type: String,
     default: '',
   },
+
+  lazy: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const {
@@ -28,6 +33,7 @@ defineExpose({
 </script>
 <template>
   <video
+    v-if="lazy"
     ref="videoRef"
     preload="none"
     :controls="false"
@@ -41,6 +47,25 @@ defineExpose({
   >
     <source
       :data-src="$getMediaFromS3(videoLink)"
+      type="video/mp4"
+    >
+    Your browser does not support the video tag.
+  </video>
+  <video
+    v-else
+    ref="videoRef"
+    preload="none"
+    :controls="false"
+    muted
+    loop
+    playsinline
+    width="100%"
+    height="100%"
+    class="case-studies-video"
+    :poster="$getMediaFromS3(videoPosterLink)"
+  >
+    <source
+      :src="$getMediaFromS3(videoLink)"
       type="video/mp4"
     >
     Your browser does not support the video tag.

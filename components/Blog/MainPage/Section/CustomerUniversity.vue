@@ -51,7 +51,7 @@ if (error.value) {
         product because they aren’t aware of many processes and have more questions than replies.
         If you are one of them, here you can find information about the main software development processes.
       </p>
-      <LazyBlogUICustomerUniversityCards
+      <LazyBlogCustomerUniversityCards
         :cu-section-cards="cuSection"
       />
     </div>
@@ -74,7 +74,7 @@ if (error.value) {
   }
 
   &__title {
-    @include font('Poppins', 60px, 700);
+    @include font('Inter', 60px, 700);
     line-height: 125%;
     color: $text-color--white-primary;
     margin-bottom: 48px;

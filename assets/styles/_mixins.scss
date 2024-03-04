@@ -6,7 +6,7 @@
 }
 
 @mixin h2-title {
-  @include font('Poppins', 62px, 700);
+  @include font('Inter', 62px, 700);
   line-height: 120%;
   letter-spacing: -1px;
   padding-top: 96px;
@@ -23,7 +23,7 @@
 }
 
 @mixin h3-title {
-  @include font('Poppins', 40px, 700);
+  @include font('Inter', 40px, 700);
   line-height: 120%;
   letter-spacing: -1px;
   padding-top: 102px;
@@ -40,7 +40,7 @@
 }
 
 @mixin title($color, $size, $spacing) {
-  @include font('Poppins', $size, 600);
+  @include font('Inter', $size, 600);
   font-style: normal;
   font-feature-settings: 'zero' on, 'ordn' on, 'ss02' on, 'ss05' on;
   color: $color;
