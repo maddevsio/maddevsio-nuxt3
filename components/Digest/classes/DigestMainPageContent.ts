@@ -3,18 +3,19 @@ import type { Router } from 'vue-router'
 import type { PrismicPlugin } from '@prismicio/vue'
 import type { IDigestMainPageContent } from '~/components/Digest/interfaces/IDigestMainPageContent'
 import type { DigestSelectOption } from '~/components/Digest/interfaces/IDigestSelect'
+import type { IDigests } from '~/components/Digest/interfaces/IDigests'
 export class DigestMainPageContent implements IDigestMainPageContent {
   digestTitleRef: Ref<HTMLElement | null>
   pageRef: Ref<number>
   router: Router
   route: any
   prismic: PrismicPlugin
-  fetchDigests: Function
+  fetchDigests: IDigests['fetchDigests']
   constructor(
     router: Router,
     route: any,
     prismic: PrismicPlugin,
-    fetchDigests: Function) {
+    fetchDigests: IDigests['fetchDigests']) {
     this.digestTitleRef = ref(null)
     this.pageRef = ref(1)
     this.router = router
