@@ -12,8 +12,8 @@ export class CaseStudiesService {
     this.prismic = prismic
   }
 
-  async getCaseStudiesPageContent() {
-    return await this.prismic.client.getByUID('case-studies', 'case-studies', { fetchLinks })
+  async getCaseStudiesPageContent(uid: string) {
+    return await this.prismic.client.getByUID('case-studies', uid, { fetchLinks })
   }
 
   extractCaseStudiesHomePageData(caseStudiesPageData: CaseStudiesDocument, domain: string) {
