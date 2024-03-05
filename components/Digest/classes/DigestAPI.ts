@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import type { PrismicPlugin } from '@prismicio/vue'
+import { Axios } from 'axios'
 import type { FetchDigestsProps } from '~/components/Digest/interfaces/IDigests'
 import { fetchLinks } from '~/config/constants'
 
@@ -54,7 +55,6 @@ export class DigestAPI {
       const response = await prismic.client.getByUID('digest', uid, {
         fetchLinks,
       })
-      console.log(response)
       return response
     } catch (error) {
       return error

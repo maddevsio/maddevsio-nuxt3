@@ -7,5 +7,7 @@ const {
 </script>
 
 <template>
-  <div>{{ digest }}</div>
+  <DigestPostView
+    :digest="digest"
+  />
 </template>

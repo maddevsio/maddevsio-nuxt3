@@ -1,11 +1,12 @@
 import type { PrismicPlugin } from '@prismicio/vue'
 import type { Ref } from 'vue'
+import type { ImageField } from '@prismicio/client'
 
 export interface DigestBlogArticle {
   uid: string
   data: {
     title: string
-    featured_image: object
+    featured_image: ImageField
   }
 }
 export interface IDigestMainPageCTA {

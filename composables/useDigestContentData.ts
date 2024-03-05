@@ -9,7 +9,7 @@ export const useDigestContentData = async() => {
   const prismic = usePrismic()
 
   const schemaOrgSnippet = ref<any>()
-  const digest = ref<DigestPost>()
+  // const digest = ref<DigestPost>()
   const digestAPI = new DigestAPI()
   const openGraphUrl = `${ config.public.domain }/digest/${ route.params?.uid }/`
   const { data: digestContentResponseData } = await useAsyncData(`digest-${ route.params?.uid }`, async () => {
@@ -36,25 +36,25 @@ export const useDigestContentData = async() => {
     }
   })
 
-  digest.value = digestContentResponseData.value as DigestPost
-  schemaOrgSnippet.value = extractSchemaOrg(digest.value?.data?.schemaOrgSnippets as SchemaOrgSnippet[])
+  // digest.value = digestContentResponseData.value as DigestPost
+  schemaOrgSnippet.value = extractSchemaOrg(digestContentResponseData.value?.data?.schemaOrgSnippets as SchemaOrgSnippet[])
 
   return {
     openGraphUrl,
     schemaOrgSnippet,
     digest: {
-      id: digest.value.id,
-      uid: digest.value.uid,
-      title: prismic.asText(digest.value.data.title),
-      subtitle: prismic.asText(digest.value.data.subtitle),
-      featuredImage: digest.value.data.featuredImage,
-      tableOfContents: digest.value.data.body.find(slice => slice.slice_type === 'table_of_contents'),
-      slices: digest.value.data.body,
-      date: formatDate(digest.value.data.date),
-      updatedDate: digest.value.data.updated_date ? formatDate(digest.value.data.updated_date) : '',
-      metaTitle: prismic.asText(digest.value.data.metaTitle),
-      metaDescription: prismic.asText(digest.value.data.metaDescription),
-      digestsList: digest.value?.digestsList,
+      id: digestContentResponseData.value?.id,
+      uid: digestContentResponseData.value?.uid,
+      title: prismic.asText(digestContentResponseData.value?.data.title),
+      subtitle: prismic.asText(digestContentResponseData.value?.data.subtitle),
+      featuredImage: digestContentResponseData.value?.data.featuredImage,
+      tableOfContents: digestContentResponseData.value?.data.body.find(slice => slice.slice_type === 'table_of_contents'),
+      slices: digestContentResponseData.value?.data.body.filter(slice => slice.slice_type !== 'table_of_contents'),
+      date: formatDate(digestContentResponseData.value?.data.date),
+      updatedDate: digestContentResponseData.value?.data.updated_date ? formatDate(digestContentResponseData.value.data.updated_date) : '',
+      metaTitle: prismic.asText(digestContentResponseData.value?.data.metaTitle),
+      metaDescription: prismic.asText(digestContentResponseData.value?.data.metaDescription),
+      digestsList: digestContentResponseData.value?.digestsList,
       openGraphUrl,
     },
   }
