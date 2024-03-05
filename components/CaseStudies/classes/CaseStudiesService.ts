@@ -1,5 +1,5 @@
 import type { PrismicPlugin } from '@prismicio/vue'
-import type { ImageField, Query } from '@prismicio/client'
+import type { Query } from '@prismicio/client'
 import { fetchLinks } from '~/config/constants'
 import type { CaseStudiesDocument } from '~/prismicio-types'
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
