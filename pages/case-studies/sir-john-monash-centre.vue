@@ -89,7 +89,7 @@ const openFullscreen = () => {
         >
       </template>
       Namba Food <br>
-      Top Delivery Service in <br class="case_mobile-break-namba-food">
+      Top Delivery Service in
       Central Asia
     </LazyCaseStudiesUIFooter>
   </div>

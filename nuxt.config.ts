@@ -121,7 +121,54 @@ export default defineNuxtConfig({
       },
       xssValidator: false,
     }],
+    '@nuxtjs/sitemap',
   ],
+
+  sitemap: {
+    cacheMaxAgeSeconds: 10 * 3600000,
+    autoLastmod: true,
+    sitemaps: {
+      main: {
+        sources: [
+          '/api/__sitemap__/main',
+        ],
+      },
+      blog: {
+        sources: [
+          '/api/__sitemap__/blog',
+        ],
+      },
+      careers: {
+        sources: [
+          '/api/__sitemap__/careers',
+        ],
+      },
+      cases: {
+        sources: [
+          '/api/__sitemap__/cases',
+        ],
+      },
+      insights: {
+        sources: [
+          '/api/__sitemap__/insights',
+        ],
+      },
+      services: {
+        sources: [
+          '/api/__sitemap__/services',
+        ],
+      },
+      authors: {
+        sources: [
+          '/api/__sitemap__/authors',
+        ],
+      },
+    },
+  },
+
+  site: {
+    trailingSlash: true,
+  },
 
   routeRules: {
     '/api/leads': {

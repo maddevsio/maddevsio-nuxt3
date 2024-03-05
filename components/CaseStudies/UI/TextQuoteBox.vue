@@ -30,7 +30,7 @@ defineProps({
     border-left: 2px solid $border-color--red;
     @include italic-text($text-color--quote-box, 17px, 166%, -0.035em);
 
-    &_text-modificator {
+    :slotted(.case_blockquote-box_text-modificator) {
       color: $text-color--red;
     }
   }

@@ -13,18 +13,6 @@ const { $getMediaFromS3 } = useMediaFromS3()
         In digital marketing, “contextual advertising” refers to a method of targeting ads based on what content users access. Advertisers use keywords to make sure that the users who see certain ads can actually be interested in buying the product.
       </LazyCaseStudiesUITextParagraph>
     </div>
-    <div
-      class="case_iframe-wrapper m-48_bottom m-auto"
-    >
-      <iframe
-        src="https://www.youtube.com/embed/RYAUgOba-wg"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        class="case_iframe"
-      />
-    </div>
     <div class="container_regular">
       <h3 class="case_title_h4 m-24_bottom media-m-12_bottom">
         Here’s how Peklo Tool increases the efficacy of contextual advertising:

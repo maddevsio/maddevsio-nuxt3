@@ -1,0 +1,47 @@
+<template>
+  <section
+    class="container_full p-104_top p-100_bottom media-p-41_top media-p-24_bottom background-color-black-primary-bg"
+  >
+    <section class="container_regular case_real-time-eta">
+      <div class="case_real-time-eta-text-content">
+        <h2 class="case_title_h2 m-24_bottom media-m-8_bottom case_real-time-eta-title">
+          Real-time ETA
+        </h2>
+        <LazyCaseStudiesUITextParagraph
+          class="m-24_bottom media-m-12_bottom"
+          color="#a0a0a1"
+        >
+          In addition, Pifia shows in real time the approximate late/early departures.
+        </LazyCaseStudiesUITextParagraph>
+        <LazyCaseStudiesUITextParagraph
+          class="m-24_bottom media-m-12_bottom"
+          color="#a0a0a1"
+        >
+          Thus passengers who are waiting for the ride always know whether the bus is coming late and how long it
+          will take.
+        </LazyCaseStudiesUITextParagraph>
+        <LazyCaseStudiesUITextParagraph color="#a0a0a1">
+          The information is displayed on their mobile application.
+        </LazyCaseStudiesUITextParagraph>
+        <NuxtLink
+          to="/blog/how-to-make-three-paid-eta-services-one-free/"
+          class="case_real-time-eta-more-button"
+        >
+          Find out more
+        </NuxtLink>
+      </div>
+      <div class="case_phone-wrapper-eta-section">
+        <LazyCaseStudiesUIPicture
+          :shadow="false"
+          :width="358.96"
+          :height="694.62"
+          :background="false"
+          folder="godee"
+          file="real-time-eta-phone"
+          extension="png"
+          alt="GoDee: Bus Transit App in Vietnam."
+        />
+      </div>
+    </section>
+  </section>
+</template>
