@@ -1,7 +1,5 @@
 import type { ImageField, RichTextField } from '@prismicio/types'
 import type { ComputedRef } from 'vue'
-import type { Digest } from '~/components/Digest/interfaces/IDigests'
-import { DigestPostHeader } from '~/components/Digest/classes/Post/DigestPostHeader'
 
 export interface DigestPostHeaderProps {
   uid: string

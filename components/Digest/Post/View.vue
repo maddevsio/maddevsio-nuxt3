@@ -13,7 +13,6 @@ const props = defineProps({
 
 const { postComponents } = new DigestPostView(transformationDigestPostData(props.digest) as DigestPostComponents)
 const { digestPostHeader, digestPostContent, digestPostFooter } = postComponents
-console.log(digestPostHeader)
 </script>
 
 <template>

@@ -1,6 +1,4 @@
-import type { IDigests, IDigestsProps } from '~/components/Digest/interfaces/IDigests'
-import { Digests } from '~/components/Digest/classes/Digests'
-
+import type { IDigestsProps } from '~/components/Digest/interfaces/IDigests'
 export class DigestPostFooter {
   uid: string
   date: Date

@@ -59,7 +59,6 @@ defineProps({
     padding: 8px 0;
     max-height: 44px;
     margin-top: 32px;
-    text-decoration: none;
     transition: 0.3s;
 
     :deep(svg) {

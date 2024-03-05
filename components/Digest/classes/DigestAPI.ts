@@ -1,6 +1,5 @@
 import dayjs from 'dayjs'
 import type { PrismicPlugin } from '@prismicio/vue'
-import { Axios } from 'axios'
 import type { FetchDigestsProps } from '~/components/Digest/interfaces/IDigests'
 import { fetchLinks } from '~/config/constants'
 
