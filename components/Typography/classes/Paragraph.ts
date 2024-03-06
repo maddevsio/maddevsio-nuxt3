@@ -14,7 +14,7 @@ export class Paragraph implements IParagraph {
     this.text = props.primary.text || ''
     this.maxWidth = props.primary.maxWidth || ''
     this.background = setSliceBackground(props.primary.colorTheme || 'black')
-    this.position = props.primary.position || 'center'
+    this.position = props.primary.position || 'left'
     this.themeColorClass = getThemeColorClass('paragraph-text', props.primary.colorTheme || 'black')
     this.paragraphType = props.primary.type || 'default'
     this.textSizesClassnames = getTextClassNames(getTextSizes(props.primary), 'paragraph')
