@@ -1,8 +1,11 @@
 import type { IDigestPostSidebar } from '~/components/Digest/interfaces/Post/IDigestPostSidebar'
 import type { IPostTableOfContents } from '~/components/Blog/interfaces/Post/IPostTableOfContents'
+import type { TableOfContent } from '~/interfaces/common/commonInterfaces'
 
 export interface DigestPostContentProps {
-  tableOfContents: IPostTableOfContents
+  openGraphUrl: string
+  metaTitle: string
+  tableOfContents: TableOfContent
   slices: any[]
 }
 

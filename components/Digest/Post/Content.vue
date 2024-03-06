@@ -1,18 +1,38 @@
 <script setup lang="ts">
-defineProps({
+const { digestPostSidebar } = defineProps({
   slices: {
     type: Array,
+    required: true,
     default: () => [],
   },
+
+  digestPostSidebar: {
+    type: Object,
+    required: true,
+    default: () => ({}),
+  },
 })
+
+const {
+  postTableOfContentsInstance,
+  subscribeFormBlock,
+  openGraphUrl,
+  metaTitle,
+} = digestPostSidebar
 </script>
 
 <template>
   <section class="digest-content">
-    <div class="digest-content__container">
-      <!--      <DigestPostSidebar />-->
+    <div class="digest-content__container container">
+      <DigestPostSidebar
+        :post-table-of-contents-instance="postTableOfContentsInstance"
+        :subscribe-form-block-instance="subscribeFormBlock"
+        :open-graph-url="openGraphUrl"
+        :meta-title="metaTitle"
+      />
       <LazyDigestSlicesComponents
         :slices="slices"
+        class="digest-content__main"
       />
     </div>
   </section>
@@ -23,34 +43,23 @@ defineProps({
   background-color: $bgcolor--white-primary;
 
   &__container {
-    max-width: 610px;
-    margin: 0 auto;
-    column-gap: 72px;
     display: flex;
-    justify-content: space-between;
-
-    @media screen and (max-width: 1024px) {
-      padding: 0 24px;
-    }
   }
 
-  &__sidebar {
-    position: sticky;
-    top: 130px;
-    left: 0;
-    align-self: flex-start;
-    margin-left: -272px;
-    margin-bottom: 64px;
-
-    @media screen and (max-width: 1185px) {
-      display: none;
-    }
+  &__main {
+    max-width: 610px;
   }
 
   &__subscribe-form-block {
     :deep(.subscribe-form-block__link-wrapper) {
       margin-bottom: 14px;
       line-height: 19px;
+    }
+  }
+
+  @media screen and (max-width: 1185px) {
+    &__main {
+      max-width: 100%;
     }
   }
 }

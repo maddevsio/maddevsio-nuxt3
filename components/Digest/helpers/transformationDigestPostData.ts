@@ -16,6 +16,8 @@ export const transformationDigestPostData = (digest: any) => {
       digestPostContent: new DigestPostContent({
         slices: digest.slices,
         tableOfContents: digest.tableOfContents,
+        metaTitle: digest.metaTitle,
+        openGraphUrl: digest.openGraphUrl,
       }),
       digestPostFooter: new DigestPostFooter({
         uid: digest.uid,

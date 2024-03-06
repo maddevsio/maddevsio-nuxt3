@@ -26,6 +26,7 @@ const { digestPostHeader, digestPostContent, digestPostFooter } = postComponents
     />
     <DigestPostContent
       :slices="digestPostContent.slices"
+      :digest-post-sidebar="digestPostContent.digestPostSidebar"
     />
     <!--        <DigestFooter-->
     <!--          v-if="uid"-->
