@@ -15,8 +15,6 @@ const { data, error } = await useAsyncData(`customPage-${ route.params.uid }`, a
       fetchLinks,
     })
 
-    console.log(response)
-
     const customPage = extractCustomPageData(response) as TransformedCustomType
 
     if (
