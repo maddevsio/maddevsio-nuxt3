@@ -11,6 +11,7 @@ export class HeaderSearchPanel implements IHeaderSearchPanel {
   openModalSearch() {
     this.isActiveModalSearch.value = !this.isActiveModalSearch.value
     if (this.isActiveModalSearch.value) {
+      console.log('HERE HEADER')
       manageScrollOnBody.disableScrollOnBody()
     } else {
       manageScrollOnBody.enableScrollOnBody()

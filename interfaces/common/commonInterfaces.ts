@@ -285,3 +285,23 @@ export interface TransformedChecklist {
     backgroundColor: KeyTextField
   }
 }
+
+export interface TransformedCustomType {
+  id: string
+  uid: string
+  routePrefix: string
+  released: boolean
+  showFooter: boolean
+  slices: any[]
+  metaTitle: KeyTextField
+  metaDescription: KeyTextField
+  ogImage: string
+  schemaOrgSnippet: ({ type: string; innerHTML: string; } | null)[] | null
+  emailSubject: KeyTextField
+  headerPlate: {
+    text: KeyTextField
+    btnText: KeyTextField
+    btnLink: KeyTextField
+    backgroundColor: KeyTextField
+  }
+}

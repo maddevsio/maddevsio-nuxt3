@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { buildHead, getMetadata } from '~/SEO/buildMetaTags'
 
 const prismic = usePrismic()
 const { data: blogHome, error } = await useAsyncData('blogHome', async () => {
@@ -18,6 +19,14 @@ if (blogHome.value) {
   provide('blogHeaderBackgroundImage', blogHome.value.image)
   provide('tags', structuredTags(blogHome.value.categories, prismic))
 }
+
+// @ts-ignore
+useHead(buildHead({
+  ...getMetadata('blog', prismic.asText(blogHome.value!.headline), prismic.asText(blogHome.value!.description)),
+  description: prismic.asText(blogHome.value!.description) || '',
+  title: prismic.asText(blogHome.value!.headline) || 'Mad Devs: Software & Mobile App Development Company | Blog',
+  image: 'https://maddevs.io/md-blog.png',
+}))
 </script>
 <template>
   <div class="blog-home">
