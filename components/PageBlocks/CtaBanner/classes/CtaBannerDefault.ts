@@ -4,6 +4,7 @@ import type {
   CtaBannerDefaultProps,
   ICtaBannerDefault,
 } from '~/components/PageBlocks/CtaBanner/interfaces/ICtaBannerDefault'
+import { careersClickEvent, contactMeClickEvent } from '~/analytics/events'
 
 export class CtaBannerDefault implements ICtaBannerDefault {
   fullName: string
@@ -34,11 +35,10 @@ export class CtaBannerDefault implements ICtaBannerDefault {
   showModal() {
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef?.value?.show()
-    // contactMeClickEvent.send(`CTA Banner in ${route.value.path} page`)
+    contactMeClickEvent.send('CTA Banner')
   }
 
   sendCareersLinkClickEvent(route: any) {
-    console.log(route)
-    // if (this.buttonLink?.url?.includes('/careers/')) { careersClickEvent.send(`Click from ${ route.path } page`) }
+    if (this.buttonLink?.url?.includes('/careers/')) { careersClickEvent.send(`Click from ${ route.path } page`) }
   }
 }

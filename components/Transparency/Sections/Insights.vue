@@ -3,7 +3,6 @@ import type { Query } from '@prismicio/client'
 import { fetchLinks } from '~/config/constants'
 import type { PostDocument } from '~/prismicio-types'
 import type { Author, BlogPost } from '~/interfaces/common/commonInterfaces'
-import { ButtonOutline } from '~/components/PageBlocks/ButtonSlice/classes/ButtonOutline'
 import type { IButtonOutline } from '~/components/PageBlocks/ButtonSlice/interfaces/IButtonOutline'
 
 const buttonProps = {

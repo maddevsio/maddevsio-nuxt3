@@ -1,4 +1,4 @@
-import bowser from 'bowser'
+import { parse } from 'bowser'
 
 export const parseUserAgentForLeads = () => {
   let userBrowser = 'Unknown'
@@ -6,7 +6,7 @@ export const parseUserAgentForLeads = () => {
   let userPlatform = 'Unknown'
 
   if (window && window.navigator && window.navigator.userAgent) {
-    const { browser, os, platform } = bowser.parse(window.navigator.userAgent)
+    const { browser, os, platform } = parse(window.navigator.userAgent)
     const { name: browserName = 'Unknown', version: browserVersion = 'Unknown' } = browser
     const { name: osName = 'Unknown', version: osVersion = 'Unknown', versionName: osVersionName = 'Unknown' } = os
     const { type: platformType = 'Unknown', vendor: platformVendor = 'Unknown' } = platform

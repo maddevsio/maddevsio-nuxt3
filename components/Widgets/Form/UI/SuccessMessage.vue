@@ -7,7 +7,6 @@ const props = defineProps({
 })
 
 const {
-  show,
   title,
   description,
   showImage,
