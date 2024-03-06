@@ -29,9 +29,9 @@ export class FormDirector implements IFormDirector {
     return new FormMaker(this.formBuilder, options).ebookFormMaker()
   }
 
-  // makeChecklistForm (options: any) {
-  //   return new FormMaker(this.formBuilder, options).checklistFormMaker()
-  // }
+  makeChecklistForm (options: any) {
+    return new FormMaker(this.formBuilder, options).checklistFormMaker()
+  }
 
   makeSubscribeForm(options: any) {
     return new FormMaker(this.formBuilder, options).subscribeFormMaker()

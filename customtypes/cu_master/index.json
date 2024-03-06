@@ -1,0 +1,103 @@
+{
+  "id": "cu_master",
+  "label": "CU master",
+  "repeatable": false,
+  "json": {
+    "Main": {
+      "headline": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading1",
+          "label": "Headline",
+          "placeholder": "Main title..."
+        }
+      },
+      "featured_cu": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "customer_university"
+          ],
+          "label": "Featured CU"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {
+            "single_cluster": [
+              {
+                "name": "single_cluster",
+                "display": "single cluster"
+              }
+            ]
+          },
+          "choices": {
+            "single_cluster": {
+              "type": "Slice",
+              "fieldset": "Single cluster",
+              "description": "Cluster which includes relations to CU posts",
+              "icon": "account_balance",
+              "display": "list",
+              "non-repeat": {
+                "cluster_name": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+                    "label": "Cluster name"
+                  }
+                },
+                "cover_image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {},
+                    "thumbnails": [],
+                    "label": "Cover image"
+                  }
+                },
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                    "label": "Description"
+                  }
+                },
+                "read_more_text": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Read more text"
+                  }
+                }
+              },
+              "repeat": {
+                "chapter_name": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+                    "label": "Chapter name"
+                  }
+                },
+                "cu_post": {
+                  "type": "Link",
+                  "config": {
+                    "select": "document",
+                    "customtypes": [
+                      "customer_university"
+                    ],
+                    "label": "CU Post"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "hash": "02e3cf80bb645f2b09fe33bfe73c4a48",
+  "status": true,
+  "format": "custom"
+}

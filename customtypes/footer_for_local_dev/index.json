@@ -1,0 +1,10 @@
+{
+  "id": "footer_for_local_dev",
+  "label": "Footer for local dev",
+  "repeatable": false,
+  "json": {
+    "Main": {}
+  },
+  "status": false,
+  "format": "custom"
+}

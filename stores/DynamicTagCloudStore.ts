@@ -9,7 +9,7 @@ export const useDynamicTagCloudStore = defineStore('DynamicTagCloudStore', () =>
   const activeTag = reactive<ActiveTag>({
     caseStudies: '',
     writeUps: '',
-    checklists: '',
+    checklists: 'Checklist',
   })
 
   const updateActiveTag = (tag: string, type: string) => {

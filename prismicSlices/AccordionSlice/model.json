@@ -41,6 +41,21 @@
           },
           "type": "Text"
         },
+        "questionTag": {
+          "config": {
+            "label": "Question Title Tag",
+            "placeholder": "",
+            "options": [
+              "h3",
+              "h2",
+              "h4",
+              "h5",
+              "h6"
+            ],
+            "default_value": "h3"
+          },
+          "type": "Select"
+        },
         "answer": {
           "config": {
             "label": "Answer",
