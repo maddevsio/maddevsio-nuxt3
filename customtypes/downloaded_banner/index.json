@@ -1,0 +1,43 @@
+{
+  "id": "downloaded_banner",
+  "label": "Downloaded Banner",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "link": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "hyperlink": {
+              "type": "Link",
+              "config": {
+                "allowTargetBlank": true,
+                "label": "hyperlink",
+                "select": null
+              }
+            },
+            "rel": {
+              "type": "Select",
+              "config": {
+                "options": [
+                  "nofollow",
+                  "download"
+                ],
+                "label": "rel"
+              }
+            },
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "label"
+              }
+            }
+          },
+          "label": "link"
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

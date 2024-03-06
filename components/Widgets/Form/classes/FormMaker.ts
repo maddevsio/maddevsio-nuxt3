@@ -8,15 +8,20 @@ import { ContactMeForm } from '~/components/Widgets/Form/classes/forms/ContactMe
 import { ServiceForm } from '~/components/Widgets/Form/classes/forms/ServiceForm'
 import { EbookForm } from '~/components/Widgets/Form/classes/forms/EbookForm'
 import { SubscribeForm } from '~/components/Widgets/Form/classes/forms/SubscribeForm'
+import { ChecklistForm } from '~/components/Widgets/Form/classes/forms/ChecklistForm'
 
 interface FormMakerOptions {
   formLocation?: string
   emailSubject?: string
   sendPulseTemplateId?: number
+  sendpulseTemplateID?: number
   ebookPath?: string
   ebookName?: string
   templateId?: number
   lineBreakForSuccess?: boolean
+  isModalChecklist?: boolean
+  checklistName?: string
+  checklistPathOnS3?: string
   [key: string]: any
 }
 
@@ -98,47 +103,47 @@ export class FormMaker {
     })
   }
 
-  //
-  // checklistFormMaker() {
-  //   return new ChecklistForm({
-  //     formLocation: this.options.formLocation,
-  //     sendpulseTemplateID: this.options.sendpulseTemplateID,
-  //     checklistName: this.options.checklistName,
-  //     checklistPathOnS3: this.options.checklistPathOnS3,
-  //     formBuilder: this.formBuilder
-  //       .setFields([
-  //         new Field({
-  //           objectKeyName: 'fullName',
-  //           elementId: 'fullName',
-  //           type: 'text',
-  //           name: 'Full name',
-  //           placeholder: 'Full Name',
-  //           validationType: 'longText',
-  //           longTextLimit: 140,
-  //           required: true,
-  //         }),
-  //         new Field({
-  //           objectKeyName: 'email',
-  //           elementId: 'email',
-  //           type: 'email',
-  //           name: 'Email',
-  //           placeholder: 'Email',
-  //           validationType: 'email',
-  //           required: true,
-  //         }),
-  //       ])
-  //       .addButton(
-  //         new Button({
-  //           objectKeyName: 'submitButton',
-  //           elementId: 'submitButton',
-  //           label: this.options.buttonText || 'Send me the checklist',
-  //           type: 'submit',
-  //         }),
-  //       )
-  //       .build(),
-  //   })
-  // }
-  //
+  checklistFormMaker() {
+    return new ChecklistForm({
+      formLocation: this.options.formLocation!,
+      sendpulseTemplateID: this.options.sendpulseTemplateID!,
+      checklistName: this.options.checklistName!,
+      checklistPathOnS3: this.options.checklistPathOnS3!,
+      isModalChecklist: this.options.isModalChecklist!,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'fullName',
+            elementId: 'fullName',
+            type: 'text',
+            name: 'Full name',
+            placeholder: 'Full Name',
+            validationType: 'longText',
+            longTextLimit: 140,
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'email',
+            elementId: 'email',
+            type: 'email',
+            name: 'Email',
+            placeholder: 'Email',
+            validationType: 'email',
+            required: true,
+          }),
+        ])
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            label: this.options.buttonText || 'Send me the checklist',
+            type: 'submit',
+          }),
+        )
+        .build(),
+    })
+  }
+
   contactUsFooterFormMaker() {
     return new ContactMeForm({
       formTitle: this.options.formTitle,

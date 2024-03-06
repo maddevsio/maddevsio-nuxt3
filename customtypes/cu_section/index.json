@@ -1,0 +1,70 @@
+{
+  "id": "cu_section",
+  "label": "CU Section",
+  "repeatable": false,
+  "json": {
+    "Main": {
+      "custom_type_description": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+          "label": "Custom Type Description"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": null,
+          "choices": {
+            "blog_cu_card": {
+              "type": "Slice",
+              "fieldset": "Blog CU Card",
+              "description": "Slice for CU cards on the blog page",
+              "icon": "filter",
+              "display": "list",
+              "non-repeat": {
+                "title": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Title"
+                  }
+                },
+                "description": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Description"
+                  }
+                },
+                "sub_description": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Sub description"
+                  }
+                },
+                "link_url": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Link for See more button",
+                    "placeholder": "/ebooks/pricing-strategies/"
+                  }
+                }
+              },
+              "repeat": {
+                "article": {
+                  "type": "Link",
+                  "config": {
+                    "label": "Article",
+                    "select": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

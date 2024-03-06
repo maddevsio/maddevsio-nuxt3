@@ -1,0 +1,299 @@
+{
+  "id": "glossary",
+  "label": "Glossary",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "word_title": {
+        "type": "Text",
+        "config": {
+          "label": "Word Title For Card"
+        }
+      },
+      "word_page_title": {
+        "type": "Text",
+        "config": {
+          "label": "Word Page Title",
+          "placeholder": "Title for word content"
+        }
+      },
+      "word_page_description": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph,strong,em,hyperlink",
+          "allowTargetBlank": true,
+          "label": "Word Page Description",
+          "placeholder": "Description for word content"
+        }
+      },
+      "created_date": {
+        "type": "Date",
+        "config": {
+          "label": "Created Date"
+        }
+      },
+      "updated_integrated_date": {
+        "type": "IntegrationFields",
+        "config": {
+          "catalog": "superpupertest--glossary_updated_date",
+          "label": "Updated Integrated Date"
+        }
+      },
+      "updated_date": {
+        "type": "Date",
+        "config": {
+          "label": "Updated Date"
+        }
+      },
+      "author": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "author"
+          ],
+          "label": "Author",
+          "placeholder": "Choose author"
+        }
+      },
+      "co_author": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "author"
+          ],
+          "label": "Co-Author",
+          "placeholder": "Choose co-author"
+        }
+      },
+      "released": {
+        "type": "Boolean",
+        "config": {
+          "placeholder_false": "Стейджинге",
+          "placeholder_true": "Продакшине",
+          "default_value": false,
+          "label": "Страница доступна на"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {},
+          "choices": {
+            "table_of_contents": {
+              "type": "Slice",
+              "fieldset": "Table of Contents",
+              "description": "Navigation menu for post",
+              "icon": "format_list_bulleted",
+              "display": "list",
+              "non-repeat": {
+                "color_theme": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "white",
+                      "black"
+                    ],
+                    "default_value": "white",
+                    "label": "Color Theme"
+                  }
+                }
+              },
+              "repeat": {
+                "lable": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+                    "label": "lable"
+                  }
+                }
+              }
+            },
+            "text": {
+              "type": "Slice",
+              "fieldset": "Text",
+              "description": "A rich text section",
+              "icon": "ac_unit",
+              "non-repeat": {
+                "color": {
+                  "type": "Color",
+                  "config": {
+                    "label": "Color"
+                  }
+                },
+                "text": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
+                    "label": "Text",
+                    "placeholder": "Post text...",
+                    "allowTargetBlank": true
+                  }
+                }
+              },
+              "repeat": {},
+              "display": "grid"
+            },
+            "image_with_caption": {
+              "type": "Slice",
+              "fieldset": "Image with Caption",
+              "description": "An image with an optional caption",
+              "icon": "image",
+              "non-repeat": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": null
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                },
+                "caption": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading3",
+                    "label": "Caption",
+                    "placeholder": "Image Caption..."
+                  }
+                },
+                "enablezoom": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "enable",
+                      "disable"
+                    ],
+                    "default_value": "enable",
+                    "label": "Enable zoom"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "key_takeaways_slice": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description"
+        }
+      },
+      "og_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {
+            "width": 1200,
+            "height": 630
+          },
+          "thumbnails": [],
+          "label": "OG Image"
+        }
+      },
+      "schema_org_snippets": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "single_snippet": {
+              "type": "StructuredText",
+              "config": {
+                "multi": "preformatted",
+                "label": "Single Snippet"
+              }
+            }
+          },
+          "label": "schema.org snippets"
+        }
+      }
+    },
+    "Header Plate": {
+      "header_plate_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Text"
+        }
+      },
+      "header_plate_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Button Text"
+        }
+      },
+      "header_plate_link": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Link",
+          "placeholder": "like: /blog/"
+        }
+      },
+      "header_plate_background_color": {
+        "type": "Select",
+        "config": {
+          "options": [
+            "blue",
+            "purple",
+            "orange",
+            "green",
+            "blue-green"
+          ],
+          "label": "Header Plate Background Color",
+          "placeholder": "requires choice"
+        }
+      }
+    },
+    "Start Screen Data": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Start Screen Title",
+          "placeholder": "Fill it in if it's needed"
+        }
+      },
+      "subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Start Screen Pre Title",
+          "placeholder": "Fill it in if it's needed"
+        }
+      },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Start Screen Description",
+          "placeholder": "Fill it in if it's needed"
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Start Screen Image"
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

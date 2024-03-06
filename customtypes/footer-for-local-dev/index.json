@@ -1,0 +1,136 @@
+{
+  "id": "footer-for-local-dev",
+  "label": "Footer for local dev",
+  "repeatable": false,
+  "json": {
+    "Main": {
+      "emailTitle": {
+        "config": {
+          "label": "emailTitle",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "email": {
+        "config": {
+          "label": "email",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "phoneNumberTitle": {
+        "config": {
+          "label": "phoneNumberTitle",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "phoneNumber": {
+        "config": {
+          "label": "phoneNumber",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "column_icons": {
+        "config": {
+          "label": "Column Icons",
+          "fields": {
+            "icon": {
+              "config": {
+                "label": "Icon",
+                "constraint": {},
+                "thumbnails": []
+              },
+              "type": "Image"
+            }
+          }
+        },
+        "type": "Group"
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {},
+          "choices": {
+            "social_networks": {
+              "type": "SharedSlice"
+            },
+            "presentation_links": {
+              "type": "SharedSlice"
+            },
+            "navigation_list": {
+              "type": "Slice",
+              "fieldset": "Navigation list",
+              "description": "List of links for site navigation",
+              "icon": "view_list",
+              "non-repeat": {
+                "name": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Navigation list name"
+                  }
+                },
+                "link": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                    "label": "Link",
+                    "placeholder": "Example: /about/ or /blog/"
+                  }
+                },
+                "nav_section": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "Company",
+                      "Services",
+                      "Expertise",
+                      "Industries",
+                      "Clients",
+                      "Insights"
+                    ],
+                    "default_value": "Company",
+                    "label": "Navigation section"
+                  }
+                },
+                "column_number": {
+                  "type": "Number",
+                  "config": {
+                    "label": "Column Number",
+                    "placeholder": "like: 1"
+                  }
+                }
+              },
+              "repeat": {
+                "label": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Navigation item label"
+                  }
+                },
+                "link": {
+                  "type": "Link",
+                  "config": {
+                    "allowTargetBlank": true,
+                    "label": "Navigation item link",
+                    "select": null
+                  }
+                }
+              }
+            },
+            "contacts_slice": {
+              "type": "SharedSlice"
+            },
+            "paragraph_slice": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

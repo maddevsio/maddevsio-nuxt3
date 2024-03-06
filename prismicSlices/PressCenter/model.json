@@ -10,7 +10,19 @@
       "docURL": "...",
       "version": "sktwi1xtmkfgx8626",
       "description": "PressCenter",
-      "primary": {},
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ]
+          },
+          "type": "Select"
+        }
+      },
       "items": {
         "image": {
           "config": {

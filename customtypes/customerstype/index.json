@@ -1,0 +1,61 @@
+{
+  "id": "customerstype",
+  "label": "Customers",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "uid"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": null,
+          "choices": {
+            "image_gallery": {
+              "type": "Slice",
+              "fieldset": "Customer list",
+              "description": "List of customer images",
+              "icon": "photo_library",
+              "display": "grid",
+              "non-repeat": {},
+              "repeat": {
+                "image_captions": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph",
+                    "label": "Image captions",
+                    "placeholder": "Images captions"
+                  }
+                },
+                "gallery_image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": null,
+                      "height": null
+                    },
+                    "thumbnails": [
+                      {
+                        "name": "Mobile",
+                        "width": 73,
+                        "height": 40
+                      }
+                    ],
+                    "label": "Gallery Image"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

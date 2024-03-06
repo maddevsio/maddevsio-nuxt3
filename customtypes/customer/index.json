@@ -1,0 +1,116 @@
+{
+  "id": "customer",
+  "label": "Customer",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {},
+          "choices": {
+            "customers_slice": {
+              "type": "SharedSlice"
+            },
+            "image_with_attributes": {
+              "type": "Slice",
+              "fieldset": "Image with Attributes",
+              "description": "An image with an attributes",
+              "icon": "image",
+              "non-repeat": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 1200
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                },
+                "target": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "_blank",
+                      "_self",
+                      "_parent",
+                      "_top"
+                    ],
+                    "default_value": "_self",
+                    "label": "Target attribute"
+                  }
+                },
+                "title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Title attribute",
+                    "placeholder": "title"
+                  }
+                },
+                "url": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "URL",
+                    "placeholder": "https://"
+                  }
+                },
+                "enable_zoom": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "enable",
+                      "disable"
+                    ],
+                    "default_value": "disable",
+                    "label": "Enable zoom"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "image_gallery": {
+              "type": "Slice",
+              "fieldset": "Image Gallery",
+              "description": "Image Gallery with a title and a caption for each image",
+              "icon": "photo_library",
+              "non-repeat": {},
+              "repeat": {
+                "image_captions": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph",
+                    "label": "Image captions",
+                    "placeholder": "Images captions"
+                  }
+                },
+                "gallery_image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": null,
+                      "height": null
+                    },
+                    "thumbnails": [
+                      {
+                        "name": "Mobile",
+                        "width": 73,
+                        "height": 40
+                      }
+                    ],
+                    "label": "Gallery Image"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "status": false,
+  "format": "custom"
+}

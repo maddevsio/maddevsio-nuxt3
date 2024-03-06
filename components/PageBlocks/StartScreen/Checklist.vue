@@ -12,21 +12,20 @@ const {
   checklistImage,
   title,
   buttonText,
-  // checklistPdfPath,
-  // sendpulseTemplateID,
-  // checklistName,
-  // checklistFormUID,
+  checklistPdfPath,
+  sendpulseTemplateID,
+  checklistName,
+  checklistFormUID,
 } = new StartScreenChecklist(slice)
 
 const { isMobile } = useDevice()
 const { $getMediaFromS3 } = useMediaFromS3()
 const sectionText = ref<HTMLElement | null>(null)
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
-// const modalChecklistRef = ref(null)
-const showModal = () => { // TODO: Needs finishing checklist modal
-  console.log('Slick show modal')
-  // if (!modalChecklistRef?.value?.show) return
-  // modalChecklistRef?.value?.show()
+const modalChecklistRef = ref<{ show(): void } | null>()
+const showModal = () => {
+  if (!modalChecklistRef?.value?.show) { return }
+  modalChecklistRef?.value?.show()
 }
 </script>
 <template>
@@ -77,18 +76,20 @@ const showModal = () => { // TODO: Needs finishing checklist modal
         class="checklist-start-screen__checklist-image"
       />
     </div>
-    <!--    <client-only>-->
-    <!--      <ChecklistModal-->
-    <!--        ref="modalChecklistRef"-->
-    <!--        :location="`Form in '${title}' page`"-->
-    <!--        :sendpulse-template-i-d="sendpulseTemplateID"-->
-    <!--        :checklist-path-on-s3="checklistPdfPath"-->
-    <!--        :checklist-name="checklistName"-->
-    <!--        :form-uid="checklistFormUID"-->
-    <!--        :email-subject="`${checklistName} by Mad Devs`"-->
-    <!--        :image="checklistImage"-->
-    <!--      />-->
-    <!--    </client-only>-->
+    <ClientOnly>
+      <Teleport to="body">
+        <LazyWidgetsModalChecklist
+          ref="modalChecklistRef"
+          :location="`Form in '${title}' page`"
+          :sendpulse-template-i-d="sendpulseTemplateID"
+          :checklist-path-on-s3="checklistPdfPath"
+          :checklist-name="checklistName"
+          :form-uid="checklistFormUID"
+          :email-subject="`${checklistName} by Mad Devs`"
+          :image="checklistImage"
+        />
+      </Teleport>
+    </ClientOnly>
   </section>
 </template>
 <style scoped lang="scss">

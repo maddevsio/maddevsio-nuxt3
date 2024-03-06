@@ -106,6 +106,17 @@ interface AuthorDocumentData {
 	lastName: prismic.KeyTextField
 
 	/**
+	 * Description field in *Author*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: author.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+
+	/**
 	 * phoneNumber field in *Author*
 	 *
 	 * - **Field Type**: Text
@@ -192,18 +203,6 @@ interface AuthorDocumentData {
 	meta_description: prismic.KeyTextField
 
 	/**
-	 * noindex field in *Author*
-	 *
-	 * - **Field Type**: Boolean
-	 * - **Placeholder**: *None*
-	 * - **Default Value**: false
-	 * - **API ID Path**: author.noindex
-	 * - **Tab**: Meta data
-	 * - **Documentation**: https://prismic.io/docs/field#boolean
-	 */
-	noindex: prismic.BooleanField
-
-	/**
 	 * schema.org snippets field in *Author*
 	 *
 	 * - **Field Type**: Group
@@ -212,49 +211,7 @@ interface AuthorDocumentData {
 	 * - **Tab**: Meta data
 	 * - **Documentation**: https://prismic.io/docs/field#group
 	 */
-	schema_org_snippets: prismic.GroupField<Simplify<AuthorDocumentDataSchemaOrgSnippetsItem>> /**
-	 * Header Plate Text field in *Author*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: author.header_plate_text
-	 * - **Tab**: Header Plate
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	header_plate_text: prismic.KeyTextField
-
-	/**
-	 * Header Plate Button Text field in *Author*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: author.header_plate_button_text
-	 * - **Tab**: Header Plate
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	header_plate_button_text: prismic.KeyTextField
-
-	/**
-	 * Header Plate Link field in *Author*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: /blog/
-	 * - **API ID Path**: author.header_plate_link
-	 * - **Tab**: Header Plate
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	header_plate_link: prismic.KeyTextField
-
-	/**
-	 * Header Plate Background Color field in *Author*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: requires choice
-	 * - **API ID Path**: author.header_plate_background_color
-	 * - **Tab**: Header Plate
-	 * - **Documentation**: https://prismic.io/docs/field#select
-	 */
-	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'>
+	schema_org_snippets: prismic.GroupField<Simplify<AuthorDocumentDataSchemaOrgSnippetsItem>>
 }
 
 /**
@@ -693,6 +650,15 @@ type CaseStudiesDocumentDataBodySlice =
 	| CustomersCardSliceSlice
 	| CtaBannerSliceSlice
 	| TagCloudSliceSlice
+	| StartScreenSlice
+	| TitleAndParagraphSliceSlice
+	| ImageWithCaptionSlice
+	| TechAndToolsNewSliceSlice
+	| ProcessSliceSlice
+	| TextListSlice
+	| QuoteSliceSlice
+	| TeamCardsSlice
+	| AccordionSliceSlice
 
 /**
  * Item in *Case Studies → schema.org snippets*
@@ -919,6 +885,249 @@ interface CaseStudiesDocumentData {
 export type CaseStudiesDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
 	Simplify<CaseStudiesDocumentData>,
 	'case-studies',
+	Lang
+>
+
+type ChecklistsDocumentDataBodySlice =
+	| TagCloudSliceSlice
+	| TitleAndDescriptionSlice
+	| CtaBannerSliceSlice
+	| WriteupListSliceSlice
+	| StartScreenSlice
+	| SpacerSliceSlice
+	| ProcessSliceSlice
+	| CardWithColoredTitleSlice
+	| PostsSectionSliceSlice
+	| ButtonSliceSlice
+	| FormSliceSlice
+
+/**
+ * Item in *Checklists → schema.org snippets*
+ */
+export interface ChecklistsDocumentDataSchemaOrgSnippetsItem {
+	/**
+	 * Single snippet field in *Checklists → schema.org snippets*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.schema_org_snippets[].single_snippet
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	single_snippet: prismic.RichTextField
+}
+
+/**
+ * Content for Checklists documents
+ */
+interface ChecklistsDocumentData {
+	/**
+	 * publish_date field in *Checklists*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.publish_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	publish_date: prismic.DateField
+
+	/**
+	 * Страница доступна на field in *Checklists*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: checklists.released
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	released: prismic.BooleanField
+
+	/**
+	 * Slice Zone field in *Checklists*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.body[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	body: prismic.SliceZone<ChecklistsDocumentDataBodySlice> /**
+	 * Meta Title field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.meta_title
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_title: prismic.KeyTextField
+
+	/**
+	 * Meta Description field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.meta_description
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField
+
+	/**
+	 * OG Image field in *Checklists*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.og_image
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	og_image: prismic.ImageField<never>
+
+	/**
+	 * schema.org snippets field in *Checklists*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.schema_org_snippets[]
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	schema_org_snippets: prismic.GroupField<Simplify<ChecklistsDocumentDataSchemaOrgSnippetsItem>> /**
+	 * Header Plate Text field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.header_plate_text
+	 * - **Tab**: Header Plate
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	header_plate_text: prismic.KeyTextField
+
+	/**
+	 * Header Plate Button Text field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.header_plate_button_text
+	 * - **Tab**: Header Plate
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	header_plate_button_text: prismic.KeyTextField
+
+	/**
+	 * Header Plate Link field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: /blog/
+	 * - **API ID Path**: checklists.header_plate_link
+	 * - **Tab**: Header Plate
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	header_plate_link: prismic.KeyTextField
+
+	/**
+	 * Header Plate Background Color field in *Checklists*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: requires choice
+	 * - **API ID Path**: checklists.header_plate_background_color
+	 * - **Tab**: Header Plate
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'> /**
+	 * Title field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.title
+	 * - **Tab**: Main Page Data
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.description
+	 * - **Tab**: Main Page Data
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+
+	/**
+	 * Background Image field in *Checklists*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.background_image
+	 * - **Tab**: Main Page Data
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	background_image: prismic.ImageField<never> /**
+	 * Card Title field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.card_title
+	 * - **Tab**: Card in Main Page Data
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	card_title: prismic.KeyTextField
+
+	/**
+	 * Card Description field in *Checklists*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.card_description
+	 * - **Tab**: Card in Main Page Data
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	card_description: prismic.KeyTextField
+
+	/**
+	 * Card color in main page field in *Checklists*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: default: yellow
+	 * - **Default Value**: yellow
+	 * - **API ID Path**: checklists.card_color_in_main_page
+	 * - **Tab**: Card in Main Page Data
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	card_color_in_main_page: prismic.SelectField<
+		'yellow' | 'white' | 'black' | 'red' | 'purple' | 'orange' | 'green' | 'blue',
+		'filled'
+	>
+
+	/**
+	 * Card Image field in *Checklists*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: checklists.card_image
+	 * - **Tab**: Card in Main Page Data
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	card_image: prismic.ImageField<never>
+}
+
+/**
+ * Checklists document from Prismic
+ *
+ * - **API ID**: `checklists`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ChecklistsDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<ChecklistsDocumentData>,
+	'checklists',
 	Lang
 >
 
@@ -1175,6 +1384,7 @@ type CustomPageDocumentDataBodySlice =
 	| ButtonSliceSlice
 	| CustomerLogoSliceSlice
 	| CreateProjectsSliceSlice
+	| CardGridSliceSlice
 	| KeyMetricsSliceSlice
 	| TechnologiesSliceSlice
 	| CustomerTestimonialsSlice
@@ -1211,10 +1421,10 @@ type CustomPageDocumentDataBodySlice =
 	| BuildAndRisksSliceSlice
 	| CustomersSliceSlice
 	| WeCreateProjectsForSlice
-	| SubscribeFormSliceSlice
 	| AchievementsSliceSlice
 	| TableSliceSlice
 	| QuoteSliceSlice
+	| BulletSliceSlice
 	| HorizontalToCSlice
 	| TitleAndDescriptionSlice
 	| TabsSliceSlice
@@ -1231,6 +1441,8 @@ type CustomPageDocumentDataBodySlice =
 	| ServiceCardsSlice
 	| LogoSliceSlice
 	| CertificatesSliceSlice
+	| WorkPrinciplesWithFormSliceSlice
+	| SocialNetworksSlice
 
 /**
  * Item in *Custom page → schema.org snippets*
@@ -2212,6 +2424,7 @@ type CustomerUniversityDocumentDataBodySlice =
 	| CustomerUniversityDocumentDataBodyAuthorSlice
 	| CustomerUniversityDocumentDataBodyTableOfContentsSlice
 	| SpacerSliceSlice
+	| AccordionSliceSlice
 
 /**
  * Content for Customer University documents
@@ -3406,6 +3619,403 @@ interface FooterForLocalDevDocumentData {}
 export type FooterForLocalDevDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
 	Simplify<FooterForLocalDevDocumentData>,
 	'footer_for_local_dev',
+	Lang
+>
+
+/**
+ * Primary content in *Glossary → Slice zone → Table of Contents → Primary*
+ */
+export interface GlossaryDocumentDataBodyTableOfContentsSlicePrimary {
+	/**
+	 * Color Theme field in *Glossary → Slice zone → Table of Contents → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: white
+	 * - **API ID Path**: glossary.body[].table_of_contents.primary.color_theme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	color_theme: prismic.SelectField<'white' | 'black', 'filled'>
+}
+
+/**
+ * Item content in *Glossary → Slice zone → Table of Contents → Items*
+ */
+export interface GlossaryDocumentDataBodyTableOfContentsSliceItem {
+	/**
+	 * lable field in *Glossary → Slice zone → Table of Contents → Items*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.body[].table_of_contents.items.lable
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	lable: prismic.TitleField
+}
+
+/**
+ * Slice for *Glossary → Slice zone*
+ */
+export type GlossaryDocumentDataBodyTableOfContentsSlice = prismic.Slice<
+	'table_of_contents',
+	Simplify<GlossaryDocumentDataBodyTableOfContentsSlicePrimary>,
+	Simplify<GlossaryDocumentDataBodyTableOfContentsSliceItem>
+>
+
+/**
+ * Primary content in *Glossary → Slice zone → Text → Primary*
+ */
+export interface GlossaryDocumentDataBodyTextSlicePrimary {
+	/**
+	 * Color field in *Glossary → Slice zone → Text → Primary*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.body[].text.primary.color
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	color: prismic.ColorField
+
+	/**
+	 * Text field in *Glossary → Slice zone → Text → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Post text...
+	 * - **API ID Path**: glossary.body[].text.primary.text
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	text: prismic.RichTextField
+}
+
+/**
+ * Slice for *Glossary → Slice zone*
+ */
+export type GlossaryDocumentDataBodyTextSlice = prismic.Slice<
+	'text',
+	Simplify<GlossaryDocumentDataBodyTextSlicePrimary>,
+	never
+>
+
+/**
+ * Primary content in *Glossary → Slice zone → Image with Caption → Primary*
+ */
+export interface GlossaryDocumentDataBodyImageWithCaptionSlicePrimary {
+	/**
+	 * Image field in *Glossary → Slice zone → Image with Caption → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.body[].image_with_caption.primary.image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Caption field in *Glossary → Slice zone → Image with Caption → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: Image Caption...
+	 * - **API ID Path**: glossary.body[].image_with_caption.primary.caption
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	caption: prismic.TitleField
+
+	/**
+	 * Enable zoom field in *Glossary → Slice zone → Image with Caption → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: enable
+	 * - **API ID Path**: glossary.body[].image_with_caption.primary.enablezoom
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	enablezoom: prismic.SelectField<'enable' | 'disable', 'filled'>
+}
+
+/**
+ * Slice for *Glossary → Slice zone*
+ */
+export type GlossaryDocumentDataBodyImageWithCaptionSlice = prismic.Slice<
+	'image_with_caption',
+	Simplify<GlossaryDocumentDataBodyImageWithCaptionSlicePrimary>,
+	never
+>
+
+type GlossaryDocumentDataBodySlice =
+	| GlossaryDocumentDataBodyTableOfContentsSlice
+	| GlossaryDocumentDataBodyTextSlice
+	| GlossaryDocumentDataBodyImageWithCaptionSlice
+	| KeyTakeawaysSliceSlice
+
+/**
+ * Item in *Glossary → schema.org snippets*
+ */
+export interface GlossaryDocumentDataSchemaOrgSnippetsItem {
+	/**
+	 * Single Snippet field in *Glossary → schema.org snippets*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.schema_org_snippets[].single_snippet
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	single_snippet: prismic.RichTextField
+}
+
+/**
+ * Content for Glossary documents
+ */
+interface GlossaryDocumentData {
+	/**
+	 * Word Title For Card field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.word_title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	word_title: prismic.KeyTextField
+
+	/**
+	 * Word Page Title field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Title for word content
+	 * - **API ID Path**: glossary.word_page_title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	word_page_title: prismic.KeyTextField
+
+	/**
+	 * Word Page Description field in *Glossary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Description for word content
+	 * - **API ID Path**: glossary.word_page_description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	word_page_description: prismic.RichTextField
+
+	/**
+	 * Created Date field in *Glossary*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.created_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	created_date: prismic.DateField
+
+	/**
+	 * Updated Integrated Date field in *Glossary*
+	 *
+	 * - **Field Type**: Integration Fields (Catalog: `superpupertest--glossary_updated_date`)
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.updated_integrated_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#integration
+	 */
+	updated_integrated_date: prismic.IntegrationField
+
+	/**
+	 * Updated Date field in *Glossary*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.updated_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	updated_date: prismic.DateField
+
+	/**
+	 * Author field in *Glossary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: Choose author
+	 * - **API ID Path**: glossary.author
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	author: prismic.ContentRelationshipField<'author'>
+
+	/**
+	 * Co-Author field in *Glossary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: Choose co-author
+	 * - **API ID Path**: glossary.co_author
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	co_author: prismic.ContentRelationshipField<'author'>
+
+	/**
+	 * Страница доступна на field in *Glossary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: glossary.released
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	released: prismic.BooleanField
+
+	/**
+	 * Slice zone field in *Glossary*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.body[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	body: prismic.SliceZone<GlossaryDocumentDataBodySlice> /**
+	 * Meta Title field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.meta_title
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_title: prismic.KeyTextField
+
+	/**
+	 * Meta Description field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.meta_description
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField
+
+	/**
+	 * OG Image field in *Glossary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.og_image
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	og_image: prismic.ImageField<never>
+
+	/**
+	 * schema.org snippets field in *Glossary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.schema_org_snippets[]
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	schema_org_snippets: prismic.GroupField<Simplify<GlossaryDocumentDataSchemaOrgSnippetsItem>> /**
+	 * Header Plate Text field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.header_plate_text
+	 * - **Tab**: Header Plate
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	header_plate_text: prismic.KeyTextField
+
+	/**
+	 * Header Plate Button Text field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.header_plate_button_text
+	 * - **Tab**: Header Plate
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	header_plate_button_text: prismic.KeyTextField
+
+	/**
+	 * Header Plate Link field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: like: /blog/
+	 * - **API ID Path**: glossary.header_plate_link
+	 * - **Tab**: Header Plate
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	header_plate_link: prismic.KeyTextField
+
+	/**
+	 * Header Plate Background Color field in *Glossary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: requires choice
+	 * - **API ID Path**: glossary.header_plate_background_color
+	 * - **Tab**: Header Plate
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'> /**
+	 * Start Screen Title field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Fill it in if it's needed
+	 * - **API ID Path**: glossary.title
+	 * - **Tab**: Start Screen Data
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Start Screen Pre Title field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Fill it in if it's needed
+	 * - **API ID Path**: glossary.subtitle
+	 * - **Tab**: Start Screen Data
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	subtitle: prismic.KeyTextField
+
+	/**
+	 * Start Screen Description field in *Glossary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Fill it in if it's needed
+	 * - **API ID Path**: glossary.description
+	 * - **Tab**: Start Screen Data
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+
+	/**
+	 * Start Screen Image field in *Glossary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: glossary.image
+	 * - **Tab**: Start Screen Data
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+}
+
+/**
+ * Glossary document from Prismic
+ *
+ * - **API ID**: `glossary`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type GlossaryDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<GlossaryDocumentData>,
+	'glossary',
 	Lang
 >
 
@@ -5105,6 +5715,18 @@ interface VacancyDocumentData {
 	date: prismic.DateField
 
 	/**
+	 * Released field in *Vacancy*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: vacancy.released
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	released: prismic.BooleanField
+
+	/**
 	 * Slice zone field in *Vacancy*
 	 *
 	 * - **Field Type**: Slice Zone
@@ -5463,6 +6085,7 @@ export type AllDocumentTypes =
 	| BlogHomeDocument
 	| CareersHomeDocument
 	| CaseStudiesDocument
+	| ChecklistsDocument
 	| CuMasterDocument
 	| CuSectionDocument
 	| CustomPageDocument
@@ -5476,6 +6099,7 @@ export type AllDocumentTypes =
 	| FooterDocument
 	| FooterForLocalDevDocument
 	| FooterForLocalDevDocument
+	| GlossaryDocument
 	| HeaderDocument
 	| HeaderForLocalDevDocument
 	| MainMenuDocument
@@ -5524,6 +6148,17 @@ export interface AccordionSliceSliceDefaultSliceItem {
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
 	question: prismic.KeyTextField
+
+	/**
+	 * Question Title Tag field in *AccordionSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: h3
+	 * - **API ID Path**: accordion_slice.items[].questionTag
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	questionTag: prismic.SelectField<'h3' | 'h2' | 'h4' | 'h5' | 'h6', 'filled'>
 
 	/**
 	 * Answer field in *AccordionSlice → Items*
@@ -5687,6 +6322,61 @@ type AchievementsSliceSliceVariation = AchievementsSliceSliceDefaultSlice
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type AchievementsSliceSlice = prismic.SharedSlice<'achievements_slice', AchievementsSliceSliceVariation>
+
+/**
+ * Primary content in *AuthorsListSlice → Primary*
+ */
+export interface AuthorsListSliceSliceDefaultSlicePrimary {
+	/**
+	 * Animation list field in *AuthorsListSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: authors_list_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+	>
+}
+
+/**
+ * Default slice variation for AuthorsListSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: AuthorsListSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AuthorsListSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<AuthorsListSliceSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Slice variation for *AuthorsListSlice*
+ */
+type AuthorsListSliceSliceVariation = AuthorsListSliceSliceDefaultSlice
+
+/**
+ * AuthorsListSlice Shared Slice
+ *
+ * - **API ID**: `authors_list_slice`
+ * - **Description**: AuthorsListSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AuthorsListSliceSlice = prismic.SharedSlice<'authors_list_slice', AuthorsListSliceSliceVariation>
 
 /**
  * Primary content in *AwardsSlice → Primary*
@@ -7191,6 +7881,107 @@ type CertificatesSliceSliceVariation = CertificatesSliceSliceDefaultSlice
 export type CertificatesSliceSlice = prismic.SharedSlice<'certificates_slice', CertificatesSliceSliceVariation>
 
 /**
+ * Primary content in *ContactsSlice → Primary*
+ */
+export interface ContactsSliceSliceDefaultSlicePrimary {
+	/**
+	 * Animation list field in *ContactsSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: contacts_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+}
+
+/**
+ * Primary content in *ContactsSlice → Items*
+ */
+export interface ContactsSliceSliceDefaultSliceItem {
+	/**
+	 * Contact Icon field in *ContactsSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contacts_slice.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	icon: prismic.ImageField<never>
+
+	/**
+	 *  Contact Label field in *ContactsSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contacts_slice.items[].label
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	label: prismic.KeyTextField
+
+	/**
+	 * Contact Content field in *ContactsSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contacts_slice.items[].content
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	content: prismic.KeyTextField
+
+	/**
+	 * Contact Type field in *ContactsSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Choose contact type
+	 * - **API ID Path**: contacts_slice.items[].type
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	type: prismic.SelectField<'address' | 'phone' | 'email'>
+}
+
+/**
+ * Default slice variation for ContactsSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: ContactsSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactsSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<ContactsSliceSliceDefaultSlicePrimary>,
+	Simplify<ContactsSliceSliceDefaultSliceItem>
+>
+
+/**
+ * Slice variation for *ContactsSlice*
+ */
+type ContactsSliceSliceVariation = ContactsSliceSliceDefaultSlice
+
+/**
+ * ContactsSlice Shared Slice
+ *
+ * - **API ID**: `contacts_slice`
+ * - **Description**: ContactsSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactsSliceSlice = prismic.SharedSlice<'contacts_slice', ContactsSliceSliceVariation>
+
+/**
  * Primary content in *CtaBannerSlice → Primary*
  */
 export interface CtaBannerSliceSliceDefaultPrimary {
@@ -8400,6 +9191,955 @@ type EnjiSliceSliceVariation = EnjiSliceSliceDefaultSlice
 export type EnjiSliceSlice = prismic.SharedSlice<'enji_slice', EnjiSliceSliceVariation>
 
 /**
+ * Primary content in *FormSlice → Primary*
+ */
+export interface FormSliceSliceDefaultSlicePrimary {
+	/**
+	 * Title field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: This is where it all begins...
+	 * - **API ID Path**: form_slice.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField
+
+	/**
+	 * Container size field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: 1026
+	 * - **API ID Path**: form_slice.primary.containerSize
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	containerSize: prismic.SelectField<'1026' | '1240', 'filled'>
+
+	/**
+	 * Animation List field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: fade-up
+	 * - **API ID Path**: form_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-right'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-down'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none',
+		'filled'
+	>
+
+	/**
+	 * Book image field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.primary.image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Ebook Path on AWS S3 field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Example: pdf/ebook-name.pdf
+	 * - **API ID Path**: form_slice.primary.ebookPath
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	ebookPath: prismic.KeyTextField
+
+	/**
+	 * Book Name For Email field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Like: Pricing Strategies
+	 * - **API ID Path**: form_slice.primary.ebookName
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	ebookName: prismic.KeyTextField
+
+	/**
+	 * SendPulse Template ID field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: Numbers from SendPulse template URL
+	 * - **API ID Path**: form_slice.primary.sendPulseTemplateId
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	sendPulseTemplateId: prismic.NumberField
+}
+
+/**
+ * Default slice variation for FormSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: FormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FormSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<FormSliceSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Primary content in *FormSlice → Primary*
+ */
+export interface FormSliceSliceChecklistFormPrimary {
+	/**
+	 * Title field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Button Text field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.primary.buttonText
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	buttonText: prismic.KeyTextField
+
+	/**
+	 * Checklist PDF Path field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.primary.checklistPdfPath
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	checklistPdfPath: prismic.KeyTextField
+
+	/**
+	 * Checklist Name field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.primary.checklistName
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	checklistName: prismic.KeyTextField
+
+	/**
+	 * SendPulse Template ID field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: Numbers from SendPulse template URL
+	 * - **API ID Path**: form_slice.primary.sendPulseTemplateID
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	sendPulseTemplateID: prismic.NumberField
+
+	/**
+	 * Checklist Image field in *FormSlice → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.primary.checklistImage
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	checklistImage: prismic.ImageField<never>
+}
+
+/**
+ * Checklist Form variation for FormSlice Slice
+ *
+ * - **API ID**: `checklistForm`
+ * - **Description**: FormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FormSliceSliceChecklistForm = prismic.SharedSliceVariation<
+	'checklistForm',
+	Simplify<FormSliceSliceChecklistFormPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *FormSlice*
+ */
+type FormSliceSliceVariation = FormSliceSliceDefaultSlice | FormSliceSliceChecklistForm
+
+/**
+ * FormSlice Shared Slice
+ *
+ * - **API ID**: `form_slice`
+ * - **Description**: FormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FormSliceSlice = prismic.SharedSlice<'form_slice', FormSliceSliceVariation>
+
+/**
+ * Primary content in *GridLottieSlice → Primary*
+ */
+export interface GridLottieSliceSliceDefaultSlicePrimary {
+	/**
+	 * Animations List field in *GridLottieSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: grid_lottie_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+}
+
+/**
+ * Primary content in *GridLottieSlice → Items*
+ */
+export interface GridLottieSliceSliceDefaultSliceItem {
+	/**
+	 * Full width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: grid_lottie_slice.items[].fullWidth
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	fullWidth: prismic.BooleanField
+
+	/**
+	 * Background field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].background
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	background: prismic.ColorField
+
+	/**
+	 * Title field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Title Tag field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: h3
+	 * - **API ID Path**: grid_lottie_slice.items[].titleTag
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	titleTag: prismic.SelectField<'h3' | 'h2' | 'h4' | 'h5' | 'h6', 'filled'>
+
+	/**
+	 * Content field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].content
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	content: prismic.RichTextField
+
+	/**
+	 * Content Alignment field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: left
+	 * - **API ID Path**: grid_lottie_slice.items[].alignText
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	alignText: prismic.SelectField<'left' | 'center', 'filled'>
+
+	/**
+	 * Lottie Animation field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: devops-audit
+	 * - **API ID Path**: grid_lottie_slice.items[].lottie-animation
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	'lottie-animation': prismic.KeyTextField
+
+	/**
+	 * Lottie Position field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: top
+	 * - **API ID Path**: grid_lottie_slice.items[].lottiePosition
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	lottiePosition: prismic.SelectField<'top' | 'bottom', 'filled'>
+
+	/**
+	 * Width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].width
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	width: prismic.KeyTextField
+
+	/**
+	 * Height field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].height
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	height: prismic.KeyTextField
+}
+
+/**
+ * Default slice variation for GridLottieSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: GridLottieSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GridLottieSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<GridLottieSliceSliceDefaultSlicePrimary>,
+	Simplify<GridLottieSliceSliceDefaultSliceItem>
+>
+
+/**
+ * Primary content in *GridLottieSlice → Primary*
+ */
+export interface GridLottieSliceSliceGridLottieLinkPrimary {
+	/**
+	 * Animations List field in *GridLottieSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: grid_lottie_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+}
+
+/**
+ * Primary content in *GridLottieSlice → Items*
+ */
+export interface GridLottieSliceSliceGridLottieLinkItem {
+	/**
+	 * Link field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField
+
+	/**
+	 * Full width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: grid_lottie_slice.items[].fullWidth
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	fullWidth: prismic.BooleanField
+
+	/**
+	 * Background field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].background
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	background: prismic.ColorField
+
+	/**
+	 * Content field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].content
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	content: prismic.RichTextField
+
+	/**
+	 * Content Alignment field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: left
+	 * - **API ID Path**: grid_lottie_slice.items[].alignText
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	alignText: prismic.SelectField<'left' | 'center', 'filled'>
+
+	/**
+	 * Lottie Animation Name field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: about-consulting
+	 * - **API ID Path**: grid_lottie_slice.items[].lottie-animation
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	'lottie-animation': prismic.KeyTextField
+
+	/**
+	 * Lottie path on S3 field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: custom/about/
+	 * - **API ID Path**: grid_lottie_slice.items[].lottie-S3-path
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	'lottie-S3-path': prismic.KeyTextField
+
+	/**
+	 * Lottie height field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: 100px
+	 * - **API ID Path**: grid_lottie_slice.items[].lottieHeight
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	lottieHeight: prismic.KeyTextField
+
+	/**
+	 * Lottie Position field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: top
+	 * - **API ID Path**: grid_lottie_slice.items[].lottiePosition
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	lottiePosition: prismic.SelectField<'top' | 'bottom', 'filled'>
+
+	/**
+	 * Width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].width
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	width: prismic.KeyTextField
+
+	/**
+	 * Height field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].height
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	height: prismic.KeyTextField
+}
+
+/**
+ * GridLottieLink variation for GridLottieSlice Slice
+ *
+ * - **API ID**: `gridLottieLink`
+ * - **Description**: GridLottieSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GridLottieSliceSliceGridLottieLink = prismic.SharedSliceVariation<
+	'gridLottieLink',
+	Simplify<GridLottieSliceSliceGridLottieLinkPrimary>,
+	Simplify<GridLottieSliceSliceGridLottieLinkItem>
+>
+
+/**
+ * Primary content in *GridLottieSlice → Primary*
+ */
+export interface GridLottieSliceSliceGridWithAnimationOptionSlicePrimary {
+	/**
+	 * Animations List field in *GridLottieSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: grid_lottie_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+}
+
+/**
+ * Primary content in *GridLottieSlice → Items*
+ */
+export interface GridLottieSliceSliceGridWithAnimationOptionSliceItem {
+	/**
+	 * Full width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: grid_lottie_slice.items[].fullWidth
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	fullWidth: prismic.BooleanField
+
+	/**
+	 * Background field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].background
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	background: prismic.ColorField
+
+	/**
+	 * Title field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Title Tag field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: h3
+	 * - **API ID Path**: grid_lottie_slice.items[].titleTag
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	titleTag: prismic.SelectField<'h3' | 'h2' | 'h4' | 'h5' | 'h6', 'filled'>
+
+	/**
+	 * Content field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].content
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	content: prismic.RichTextField
+
+	/**
+	 * Content Alignment field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: left
+	 * - **API ID Path**: grid_lottie_slice.items[].alignText
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	alignText: prismic.SelectField<'left' | 'center', 'filled'>
+
+	/**
+	 * Link to Lottie Animation on S3 field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Like: images/custom/lottie.json
+	 * - **API ID Path**: grid_lottie_slice.items[].lottieAnimation
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	lottieAnimation: prismic.KeyTextField
+
+	/**
+	 * Lottie height field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: default 395px
+	 * - **API ID Path**: grid_lottie_slice.items[].lottieHeight
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	lottieHeight: prismic.KeyTextField
+
+	/**
+	 * Lottie Position field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: top
+	 * - **API ID Path**: grid_lottie_slice.items[].lottiePosition
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	lottiePosition: prismic.SelectField<'top' | 'bottom', 'filled'>
+
+	/**
+	 * Width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].width
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	width: prismic.KeyTextField
+
+	/**
+	 * Height field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].height
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	height: prismic.KeyTextField
+}
+
+/**
+ * GridWithAnimationOptionSlice variation for GridLottieSlice Slice
+ *
+ * - **API ID**: `gridWithAnimationOptionSlice`
+ * - **Description**: GridLottieSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GridLottieSliceSliceGridWithAnimationOptionSlice = prismic.SharedSliceVariation<
+	'gridWithAnimationOptionSlice',
+	Simplify<GridLottieSliceSliceGridWithAnimationOptionSlicePrimary>,
+	Simplify<GridLottieSliceSliceGridWithAnimationOptionSliceItem>
+>
+
+/**
+ * Primary content in *GridLottieSlice → Primary*
+ */
+export interface GridLottieSliceSliceGridLottieWithCaseStudyPrimary {
+	/**
+	 * Animations List field in *GridLottieSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: grid_lottie_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+}
+
+/**
+ * Primary content in *GridLottieSlice → Items*
+ */
+export interface GridLottieSliceSliceGridLottieWithCaseStudyItem {
+	/**
+	 * Card type field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: grid_lottie_slice.items[].cardType
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	cardType: prismic.BooleanField
+
+	/**
+	 * Case or Solution: Full width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: grid_lottie_slice.items[].fullWidth
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	fullWidth: prismic.BooleanField
+
+	/**
+	 * Case or Solution: Title field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Case or Solution: Title Tag field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: h3
+	 * - **API ID Path**: grid_lottie_slice.items[].titleTag
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	titleTag: prismic.SelectField<'h3' | 'h2' | 'h4' | 'h5' | 'h6', 'filled'>
+
+	/**
+	 * Case or Solution: Description field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+
+	/**
+	 * Solution: Background field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].background
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	background: prismic.ColorField
+
+	/**
+	 * Solution: Content Alignment field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: left
+	 * - **API ID Path**: grid_lottie_slice.items[].alignText
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	alignText: prismic.SelectField<'left' | 'center', 'filled'>
+
+	/**
+	 * Solution: Link to Lottie Anim on S3 field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Like: images/custom/lottie.json
+	 * - **API ID Path**: grid_lottie_slice.items[].lottieAnimation
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	lottieAnimation: prismic.KeyTextField
+
+	/**
+	 * Solution: Lottie height field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: default 395px
+	 * - **API ID Path**: grid_lottie_slice.items[].lottieHeight
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	lottieHeight: prismic.KeyTextField
+
+	/**
+	 * Solution: Lottie Position field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: top
+	 * - **API ID Path**: grid_lottie_slice.items[].lottiePosition
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	lottiePosition: prismic.SelectField<'top' | 'bottom', 'filled'>
+
+	/**
+	 * Solution: Width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].width
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	width: prismic.KeyTextField
+
+	/**
+	 * Solution: Height field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].height
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	height: prismic.KeyTextField
+
+	/**
+	 * Case Study: Subtitle field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].subtitle
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	subtitle: prismic.KeyTextField
+
+	/**
+	 * Case Study: Video file name field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].video
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	video: prismic.KeyTextField
+
+	/**
+	 * Case Study: Poster field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].poster
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	poster: prismic.KeyTextField
+
+	/**
+	 * Case Study: Link field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].link
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	link: prismic.KeyTextField
+
+	/**
+	 * Case  Study: Folder field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].folder
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	folder: prismic.KeyTextField
+
+	/**
+	 * Case Study: File name field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].file
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	file: prismic.KeyTextField
+
+	/**
+	 * Case Study: Logo width field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].logoWidth
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	logoWidth: prismic.KeyTextField
+
+	/**
+	 * Case Study: Logo height field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].logoHeight
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	logoHeight: prismic.KeyTextField
+
+	/**
+	 * Case Study: Logo alt field in *GridLottieSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: grid_lottie_slice.items[].logoAlt
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	logoAlt: prismic.KeyTextField
+}
+
+/**
+ * GridLottieWithCaseStudy variation for GridLottieSlice Slice
+ *
+ * - **API ID**: `gridLottieWithCaseStudy`
+ * - **Description**: GridLottieSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GridLottieSliceSliceGridLottieWithCaseStudy = prismic.SharedSliceVariation<
+	'gridLottieWithCaseStudy',
+	Simplify<GridLottieSliceSliceGridLottieWithCaseStudyPrimary>,
+	Simplify<GridLottieSliceSliceGridLottieWithCaseStudyItem>
+>
+
+/**
+ * Slice variation for *GridLottieSlice*
+ */
+type GridLottieSliceSliceVariation =
+	| GridLottieSliceSliceDefaultSlice
+	| GridLottieSliceSliceGridLottieLink
+	| GridLottieSliceSliceGridWithAnimationOptionSlice
+	| GridLottieSliceSliceGridLottieWithCaseStudy
+
+/**
+ * GridLottieSlice Shared Slice
+ *
+ * - **API ID**: `grid_lottie_slice`
+ * - **Description**: GridLottieSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GridLottieSliceSlice = prismic.SharedSlice<'grid_lottie_slice', GridLottieSliceSliceVariation>
+
+/**
  * Primary content in *HorizontalToC → Items*
  */
 export interface HorizontalToCSliceDefaultSliceItem {
@@ -8450,6 +10190,187 @@ type HorizontalToCSliceVariation = HorizontalToCSliceDefaultSlice
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HorizontalToCSlice = prismic.SharedSlice<'horizontal_to_c', HorizontalToCSliceVariation>
+
+/**
+ * Primary content in *ImageSlice → Primary*
+ */
+export interface ImageSliceSliceDefaultSlicePrimary {
+	/**
+	 * Image field in *ImageSlice → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_slice.primary.image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Background field in *ImageSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_slice.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'white' | 'black' | 'grey'>
+
+	/**
+	 * Animation list field in *ImageSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: image_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+}
+
+/**
+ * Default slice variation for ImageSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: ImageSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<ImageSliceSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Slice variation for *ImageSlice*
+ */
+type ImageSliceSliceVariation = ImageSliceSliceDefaultSlice
+
+/**
+ * ImageSlice Shared Slice
+ *
+ * - **API ID**: `image_slice`
+ * - **Description**: ImageSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSliceSlice = prismic.SharedSlice<'image_slice', ImageSliceSliceVariation>
+
+/**
+ * Primary content in *ImageWithCaption → Primary*
+ */
+export interface ImageWithCaptionSliceDefaultSlicePrimary {
+	/**
+	 * Image field in *ImageWithCaption → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_with_caption.primary.image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Caption field in *ImageWithCaption → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Image Caption...
+	 * - **API ID Path**: image_with_caption.primary.caption
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	caption: prismic.KeyTextField
+
+	/**
+	 * Enable zoom field in *ImageWithCaption → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: enable
+	 * - **API ID Path**: image_with_caption.primary.enablezoom
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	enablezoom: prismic.SelectField<'enable' | 'disable', 'filled'>
+
+	/**
+	 * Background Color field in *ImageWithCaption → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Default: White
+	 * - **Default Value**: white
+	 * - **API ID Path**: image_with_caption.primary.backgroundColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	backgroundColor: prismic.SelectField<'white' | 'black', 'filled'>
+
+	/**
+	 * Container Size field in *ImageWithCaption → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Default: 816
+	 * - **Default Value**: 816
+	 * - **API ID Path**: image_with_caption.primary.containerSize
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	containerSize: prismic.SelectField<'816' | '1240', 'filled'>
+
+	/**
+	 * Link To Video field in *ImageWithCaption → Primary*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_with_caption.primary.linkToVideo
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	linkToVideo: prismic.LinkToMediaField
+
+	/**
+	 * Video Speed field in *ImageWithCaption → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: Default: 1
+	 * - **API ID Path**: image_with_caption.primary.videoSpeed
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	videoSpeed: prismic.NumberField
+}
+
+/**
+ * Default slice variation for ImageWithCaption Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: ImageWithCaption
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageWithCaptionSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<ImageWithCaptionSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Slice variation for *ImageWithCaption*
+ */
+type ImageWithCaptionSliceVariation = ImageWithCaptionSliceDefaultSlice
+
+/**
+ * ImageWithCaption Shared Slice
+ *
+ * - **API ID**: `image_with_caption`
+ * - **Description**: ImageWithCaption
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageWithCaptionSlice = prismic.SharedSlice<'image_with_caption', ImageWithCaptionSliceVariation>
 
 /**
  * Primary content in *Industries → Items*
@@ -8953,6 +10874,74 @@ type KeyMetricsSliceSliceVariation =
 export type KeyMetricsSliceSlice = prismic.SharedSlice<'key_metrics_slice', KeyMetricsSliceSliceVariation>
 
 /**
+ * Primary content in *LogoSlice → Primary*
+ */
+export interface LogoSliceSliceDefaultSlicePrimary {
+	/**
+	 * Background Color field in *LogoSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: black
+	 * - **API ID Path**: logo_slice.primary.backgroundColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	backgroundColor: prismic.SelectField<'black' | 'white', 'filled'>
+}
+
+/**
+ * Primary content in *LogoSlice → Items*
+ */
+export interface LogoSliceSliceDefaultSliceItem {
+	/**
+	 * Image field in *LogoSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: logo_slice.items[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Link field in *LogoSlice → Items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: External or internal
+	 * - **API ID Path**: logo_slice.items[].link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField
+}
+
+/**
+ * Default slice variation for LogoSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: LogoSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LogoSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<LogoSliceSliceDefaultSlicePrimary>,
+	Simplify<LogoSliceSliceDefaultSliceItem>
+>
+
+/**
+ * Slice variation for *LogoSlice*
+ */
+type LogoSliceSliceVariation = LogoSliceSliceDefaultSlice
+
+/**
+ * LogoSlice Shared Slice
+ *
+ * - **API ID**: `logo_slice`
+ * - **Description**: LogoSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LogoSliceSlice = prismic.SharedSlice<'logo_slice', LogoSliceSliceVariation>
+
+/**
  * Primary content in *NavLinkSlice → Primary*
  */
 export interface NavLinkSliceSliceDefaultSlicePrimary {
@@ -9078,6 +11067,290 @@ type NavLinkSliceSliceVariation = NavLinkSliceSliceDefaultSlice
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type NavLinkSliceSlice = prismic.SharedSlice<'nav_link_slice', NavLinkSliceSliceVariation>
+
+/**
+ * Primary content in *PostAuthorsSlice → Primary*
+ */
+export interface PostAuthorsSliceSliceDefaultSlicePrimary {
+	/**
+	 * Author field in *PostAuthorsSlice → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_authors_slice.primary.author
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	author: prismic.ContentRelationshipField<'author'>
+
+	/**
+	 * coAuthor field in *PostAuthorsSlice → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_authors_slice.primary.coAuthor
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	coAuthor: prismic.ContentRelationshipField<'author'>
+}
+
+/**
+ * Primary content in *PostAuthorsSlice → Items*
+ */
+export interface PostAuthorsSliceSliceDefaultSliceItem {
+	/**
+	 * contributorImage field in *PostAuthorsSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_authors_slice.items[].contributorImage
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	contributorImage: prismic.ImageField<never>
+
+	/**
+	 * contributorLink field in *PostAuthorsSlice → Items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_authors_slice.items[].contributorLink
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	contributorLink: prismic.LinkField
+}
+
+/**
+ * Default slice variation for PostAuthorsSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: PostAuthorsSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostAuthorsSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<PostAuthorsSliceSliceDefaultSlicePrimary>,
+	Simplify<PostAuthorsSliceSliceDefaultSliceItem>
+>
+
+/**
+ * Primary content in *PostAuthorsSlice → Primary*
+ */
+export interface PostAuthorsSliceSliceCustomizableAuthorsSlicePrimary {
+	/**
+	 * Author field in *PostAuthorsSlice → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_authors_slice.primary.author
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	author: prismic.ContentRelationshipField<'author'>
+
+	/**
+	 * coAuthor field in *PostAuthorsSlice → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_authors_slice.primary.coAuthor
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	coAuthor: prismic.ContentRelationshipField<'author'>
+
+	/**
+	 * Show Top Divider field in *PostAuthorsSlice → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: post_authors_slice.primary.showTopDivider
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	showTopDivider: prismic.BooleanField
+
+	/**
+	 * Color Theme field in *PostAuthorsSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Default: Dark
+	 * - **Default Value**: dark
+	 * - **API ID Path**: post_authors_slice.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'dark' | 'light', 'filled'>
+}
+
+/**
+ * CustomizableAuthorsSlice variation for PostAuthorsSlice Slice
+ *
+ * - **API ID**: `customizableAuthorsSlice`
+ * - **Description**: PostAuthorsSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostAuthorsSliceSliceCustomizableAuthorsSlice = prismic.SharedSliceVariation<
+	'customizableAuthorsSlice',
+	Simplify<PostAuthorsSliceSliceCustomizableAuthorsSlicePrimary>,
+	never
+>
+
+/**
+ * Slice variation for *PostAuthorsSlice*
+ */
+type PostAuthorsSliceSliceVariation = PostAuthorsSliceSliceDefaultSlice | PostAuthorsSliceSliceCustomizableAuthorsSlice
+
+/**
+ * PostAuthorsSlice Shared Slice
+ *
+ * - **API ID**: `post_authors_slice`
+ * - **Description**: PostAuthorsSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostAuthorsSliceSlice = prismic.SharedSlice<'post_authors_slice', PostAuthorsSliceSliceVariation>
+
+/**
+ * Primary content in *PostForm → Primary*
+ */
+export interface PostFormSliceDefaultSlicePrimary {
+	/**
+	 * Title field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: This is where it all begins...
+	 * - **API ID Path**: post_form.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField
+
+	/**
+	 * Description field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField
+
+	/**
+	 * Button Text field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.primary.buttonText
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	buttonText: prismic.KeyTextField
+
+	/**
+	 * Field Name Placeholder Text field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.primary.fieldNamePlaceholder
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	fieldNamePlaceholder: prismic.KeyTextField
+
+	/**
+	 * Field Company Placeholder Text field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.primary.fieldCompanyPlaceholder
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	fieldCompanyPlaceholder: prismic.KeyTextField
+
+	/**
+	 * Field Email Placeholder Text field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.primary.fieldEmailPlaceholder
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	fieldEmailPlaceholder: prismic.KeyTextField
+
+	/**
+	 * Field Phone Placeholder Text field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.primary.fieldPhonePlaceholder
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	fieldPhonePlaceholder: prismic.KeyTextField
+
+	/**
+	 * Field Textarea Placeholder Text field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.primary.fieldTextareaPlaceholder
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	fieldTextareaPlaceholder: prismic.KeyTextField
+
+	/**
+	 * Radio Button Group Description field in *PostForm → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.primary.radioButtonGroupDescription
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	radioButtonGroupDescription: prismic.KeyTextField
+}
+
+/**
+ * Primary content in *PostForm → Items*
+ */
+export interface PostFormSliceDefaultSliceItem {
+	/**
+	 * Radio Button Label field in *PostForm → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.items[].radioButtonLabel
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	radioButtonLabel: prismic.KeyTextField
+
+	/**
+	 * Radio Button Group Name field in *PostForm → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post_form.items[].radioButtonGroupName
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	radioButtonGroupName: prismic.KeyTextField
+}
+
+/**
+ * Default slice variation for PostForm Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: PostForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostFormSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<PostFormSliceDefaultSlicePrimary>,
+	Simplify<PostFormSliceDefaultSliceItem>
+>
+
+/**
+ * Slice variation for *PostForm*
+ */
+type PostFormSliceVariation = PostFormSliceDefaultSlice
+
+/**
+ * PostForm Shared Slice
+ *
+ * - **API ID**: `post_form`
+ * - **Description**: PostForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PostFormSlice = prismic.SharedSlice<'post_form', PostFormSliceVariation>
 
 /**
  * Primary content in *PostsSectionSlice → Primary*
@@ -9255,6 +11528,73 @@ type PostsSectionSliceSliceVariation = PostsSectionSliceSliceDefaultSlice | Post
 export type PostsSectionSliceSlice = prismic.SharedSlice<'posts_section_slice', PostsSectionSliceSliceVariation>
 
 /**
+ * Primary content in *PresentationLinks → Items*
+ */
+export interface PresentationLinksSliceDefaultSliceItem {
+	/**
+	 * Presentation File Name field in *PresentationLinks → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: presentation_links.items[].name
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	name: prismic.KeyTextField
+
+	/**
+	 * Presentation File Link field in *PresentationLinks → Items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: presentation_links.items[].link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField
+}
+
+/**
+ * Default slice variation for PresentationLinks Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: PresentationLinks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PresentationLinksSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Record<string, never>,
+	Simplify<PresentationLinksSliceDefaultSliceItem>
+>
+
+/**
+ * Slice variation for *PresentationLinks*
+ */
+type PresentationLinksSliceVariation = PresentationLinksSliceDefaultSlice
+
+/**
+ * PresentationLinks Shared Slice
+ *
+ * - **API ID**: `presentation_links`
+ * - **Description**: PresentationLinks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PresentationLinksSlice = prismic.SharedSlice<'presentation_links', PresentationLinksSliceVariation>
+
+/**
+ * Primary content in *PressCenter → Primary*
+ */
+export interface PressCenterSliceDefaultSlicePrimary {
+	/**
+	 * Color Theme field in *PressCenter → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: press_center.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'white' | 'black'>
+}
+
+/**
  * Primary content in *PressCenter → Items*
  */
 export interface PressCenterSliceDefaultSliceItem {
@@ -9338,7 +11678,7 @@ export interface PressCenterSliceDefaultSliceItem {
  */
 export type PressCenterSliceDefaultSlice = prismic.SharedSliceVariation<
 	'default-slice',
-	Record<string, never>,
+	Simplify<PressCenterSliceDefaultSlicePrimary>,
 	Simplify<PressCenterSliceDefaultSliceItem>
 >
 
@@ -10028,6 +12368,58 @@ type SimpleCardWithIconSliceVariation = SimpleCardWithIconSliceDefaultSlice
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type SimpleCardWithIconSlice = prismic.SharedSlice<'simple_card_with_icon', SimpleCardWithIconSliceVariation>
+
+/**
+ * Primary content in *SocialNetworks → Items*
+ */
+export interface SocialNetworksSliceDefaultSliceItem {
+	/**
+	 * Social Icon field in *SocialNetworks → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: social_networks.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	icon: prismic.ImageField<never>
+
+	/**
+	 * Social Link field in *SocialNetworks → Items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: social_networks.items[].link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField
+}
+
+/**
+ * Default slice variation for SocialNetworks Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: SocialNetworks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialNetworksSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Record<string, never>,
+	Simplify<SocialNetworksSliceDefaultSliceItem>
+>
+
+/**
+ * Slice variation for *SocialNetworks*
+ */
+type SocialNetworksSliceVariation = SocialNetworksSliceDefaultSlice
+
+/**
+ * SocialNetworks Shared Slice
+ *
+ * - **API ID**: `social_networks`
+ * - **Description**: SocialNetworks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialNetworksSlice = prismic.SharedSlice<'social_networks', SocialNetworksSliceVariation>
 
 /**
  * Primary content in *SpacerSlice → Primary*
@@ -10875,6 +13267,818 @@ type TabsSliceSliceVariation = TabsSliceSliceDefaultSlice
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type TabsSliceSlice = prismic.SharedSlice<'tabs_slice', TabsSliceSliceVariation>
+
+/**
+ * Primary content in *TagCloudSlice → Items*
+ */
+export interface TagCloudSliceSliceDefaultSliceItem {
+	/**
+	 * Tag Icon field in *TagCloudSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tag_cloud_slice.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	icon: prismic.ImageField<never>
+
+	/**
+	 * Tag Name field in *TagCloudSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tag_cloud_slice.items[].name
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	name: prismic.KeyTextField
+}
+
+/**
+ * Default slice variation for TagCloudSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: TagCloudSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TagCloudSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Record<string, never>,
+	Simplify<TagCloudSliceSliceDefaultSliceItem>
+>
+
+/**
+ * Slice variation for *TagCloudSlice*
+ */
+type TagCloudSliceSliceVariation = TagCloudSliceSliceDefaultSlice
+
+/**
+ * TagCloudSlice Shared Slice
+ *
+ * - **API ID**: `tag_cloud_slice`
+ * - **Description**: TagCloudSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TagCloudSliceSlice = prismic.SharedSlice<'tag_cloud_slice', TagCloudSliceSliceVariation>
+
+/**
+ * Primary content in *TeamCards → Primary*
+ */
+export interface TeamCardsSliceDefaultSlicePrimary {
+	/**
+	 * Animation list field in *TeamCards → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: team_cards.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+}
+
+/**
+ * Primary content in *TeamCards → Items*
+ */
+export interface TeamCardsSliceDefaultSliceItem {
+	/**
+	 * Name field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].name
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	name: prismic.KeyTextField
+
+	/**
+	 * Position field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].position
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	position: prismic.KeyTextField
+
+	/**
+	 * LinkedIn link field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].linkedin
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	linkedin: prismic.LinkField
+
+	/**
+	 * Image field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Hover effect field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: team_cards.items[].isHover
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	isHover: prismic.BooleanField
+
+	/**
+	 * Hover image field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].hoverImage
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	hoverImage: prismic.ImageField<never>
+}
+
+/**
+ * Default slice variation for TeamCards Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: TeamCards
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamCardsSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<TeamCardsSliceDefaultSlicePrimary>,
+	Simplify<TeamCardsSliceDefaultSliceItem>
+>
+
+/**
+ * Primary content in *TeamCards → Primary*
+ */
+export interface TeamCardsSliceTeamCardsWithRoundedPhotoPrimary {
+	/**
+	 * Background Color field in *TeamCards → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: white
+	 * - **API ID Path**: team_cards.primary.backgroundColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	backgroundColor: prismic.SelectField<'white' | 'black', 'filled'>
+}
+
+/**
+ * Primary content in *TeamCards → Items*
+ */
+export interface TeamCardsSliceTeamCardsWithRoundedPhotoItem {
+	/**
+	 * Name field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].name
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	name: prismic.KeyTextField
+
+	/**
+	 * Position field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].position
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	position: prismic.KeyTextField
+
+	/**
+	 * Image field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Link field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: External or Internal page
+	 * - **API ID Path**: team_cards.items[].link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField
+}
+
+/**
+ * TeamCardsWithRoundedPhoto variation for TeamCards Slice
+ *
+ * - **API ID**: `teamCardsWithRoundedPhoto`
+ * - **Description**: TeamCards
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamCardsSliceTeamCardsWithRoundedPhoto = prismic.SharedSliceVariation<
+	'teamCardsWithRoundedPhoto',
+	Simplify<TeamCardsSliceTeamCardsWithRoundedPhotoPrimary>,
+	Simplify<TeamCardsSliceTeamCardsWithRoundedPhotoItem>
+>
+
+/**
+ * Primary content in *TeamCards → Primary*
+ */
+export interface TeamCardsSliceTeamCardsCaseStudiesPrimary {
+	/**
+	 * Background Color field in *TeamCards → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: requires choice
+	 * - **Default Value**: white
+	 * - **API ID Path**: team_cards.primary.backgroundColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	backgroundColor: prismic.SelectField<'white' | 'black', 'filled'>
+
+	/**
+	 * Container Size field in *TeamCards → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.primary.containerSize
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	containerSize: prismic.SelectField<'816' | '1240'>
+}
+
+/**
+ * Primary content in *TeamCards → Items*
+ */
+export interface TeamCardsSliceTeamCardsCaseStudiesItem {
+	/**
+	 * Image field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Name field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].name
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	name: prismic.KeyTextField
+
+	/**
+	 * Position field in *TeamCards → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: team_cards.items[].position
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	position: prismic.KeyTextField
+}
+
+/**
+ * TeamCardsCaseStudies variation for TeamCards Slice
+ *
+ * - **API ID**: `teamCardsCaseStudies`
+ * - **Description**: TeamCards
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamCardsSliceTeamCardsCaseStudies = prismic.SharedSliceVariation<
+	'teamCardsCaseStudies',
+	Simplify<TeamCardsSliceTeamCardsCaseStudiesPrimary>,
+	Simplify<TeamCardsSliceTeamCardsCaseStudiesItem>
+>
+
+/**
+ * Slice variation for *TeamCards*
+ */
+type TeamCardsSliceVariation =
+	| TeamCardsSliceDefaultSlice
+	| TeamCardsSliceTeamCardsWithRoundedPhoto
+	| TeamCardsSliceTeamCardsCaseStudies
+
+/**
+ * TeamCards Shared Slice
+ *
+ * - **API ID**: `team_cards`
+ * - **Description**: TeamCards
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamCardsSlice = prismic.SharedSlice<'team_cards', TeamCardsSliceVariation>
+
+/**
+ * Primary content in *TechAndToolsNewSlice → Primary*
+ */
+export interface TechAndToolsNewSliceSliceDefaultSlicePrimary {
+	/**
+	 * Animation field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: fade-up
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-right'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-down'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none',
+		'filled'
+	>
+
+	/**
+	 * Add Border To Icons? field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.addBorder
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	addBorder: prismic.BooleanField
+
+	/**
+	 * Color Theme field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: requires choice
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.theme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	theme: prismic.SelectField<'white' | 'black'>
+}
+
+/**
+ * Primary content in *TechAndToolsNewSlice → Items*
+ */
+export interface TechAndToolsNewSliceSliceDefaultSliceItem {
+	/**
+	 * SVG Icon field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	icon: prismic.ImageField<never>
+
+	/**
+	 * Big card? field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].isBig
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	isBig: prismic.BooleanField
+
+	/**
+	 * Title field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: if little card don`t filled
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+}
+
+/**
+ * Default slice variation for TechAndToolsNewSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: TechAndToolsNewSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TechAndToolsNewSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<TechAndToolsNewSliceSliceDefaultSlicePrimary>,
+	Simplify<TechAndToolsNewSliceSliceDefaultSliceItem>
+>
+
+/**
+ * Primary content in *TechAndToolsNewSlice → Primary*
+ */
+export interface TechAndToolsNewSliceSliceThreeBigCardsPrimary {
+	/**
+	 * Animation field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: fade-up
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-right'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-down'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none',
+		'filled'
+	>
+
+	/**
+	 * Add Border To Icons? field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.addBorder
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	addBorder: prismic.BooleanField
+
+	/**
+	 * Color Theme field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: requires choice
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.theme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	theme: prismic.SelectField<'white' | 'black'>
+}
+
+/**
+ * Primary content in *TechAndToolsNewSlice → Items*
+ */
+export interface TechAndToolsNewSliceSliceThreeBigCardsItem {
+	/**
+	 * SVG Icon field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	icon: prismic.ImageField<never>
+
+	/**
+	 * Big card? field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].isBig
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	isBig: prismic.BooleanField
+
+	/**
+	 * Title field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: if little card don`t filled
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+}
+
+/**
+ * ThreeBigCards variation for TechAndToolsNewSlice Slice
+ *
+ * - **API ID**: `threeBigCards`
+ * - **Description**: TechAndToolsNewSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TechAndToolsNewSliceSliceThreeBigCards = prismic.SharedSliceVariation<
+	'threeBigCards',
+	Simplify<TechAndToolsNewSliceSliceThreeBigCardsPrimary>,
+	Simplify<TechAndToolsNewSliceSliceThreeBigCardsItem>
+>
+
+/**
+ * Primary content in *TechAndToolsNewSlice → Primary*
+ */
+export interface TechAndToolsNewSliceSliceTwoBigCardsPrimary {
+	/**
+	 * Animation field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: fade-up
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-right'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-down'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none',
+		'filled'
+	>
+
+	/**
+	 * Custom Page or Post field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.isPostPage
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	isPostPage: prismic.BooleanField
+
+	/**
+	 * Add Border To Icons? field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.addBorder
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	addBorder: prismic.BooleanField
+
+	/**
+	 * Color Theme field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.theme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	theme: prismic.SelectField<'black' | 'white'>
+}
+
+/**
+ * Primary content in *TechAndToolsNewSlice → Items*
+ */
+export interface TechAndToolsNewSliceSliceTwoBigCardsItem {
+	/**
+	 * SVG Icon field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	icon: prismic.ImageField<never>
+
+	/**
+	 * Big card? field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].isBig
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	isBig: prismic.BooleanField
+
+	/**
+	 * Title field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: if little card don`t filled
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+}
+
+/**
+ * TwoBigCards variation for TechAndToolsNewSlice Slice
+ *
+ * - **API ID**: `twoBigCards`
+ * - **Description**: TechAndToolsNewSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TechAndToolsNewSliceSliceTwoBigCards = prismic.SharedSliceVariation<
+	'twoBigCards',
+	Simplify<TechAndToolsNewSliceSliceTwoBigCardsPrimary>,
+	Simplify<TechAndToolsNewSliceSliceTwoBigCardsItem>
+>
+
+/**
+ * Primary content in *TechAndToolsNewSlice → Primary*
+ */
+export interface TechAndToolsNewSliceSliceOneBigCardPrimary {
+	/**
+	 * Animation field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: fade-up
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-right'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-down'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none',
+		'filled'
+	>
+
+	/**
+	 * Custom Page or Post field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.isPostPage
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	isPostPage: prismic.BooleanField
+
+	/**
+	 * Add Border To Icons? field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.addBorder
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	addBorder: prismic.BooleanField
+
+	/**
+	 * Color Theme field in *TechAndToolsNewSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.primary.theme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	theme: prismic.SelectField<'black' | 'white'>
+}
+
+/**
+ * Primary content in *TechAndToolsNewSlice → Items*
+ */
+export interface TechAndToolsNewSliceSliceOneBigCardItem {
+	/**
+	 * SVG Icon field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	icon: prismic.ImageField<never>
+
+	/**
+	 * Big card? field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].isBig
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	isBig: prismic.BooleanField
+
+	/**
+	 * Title field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *TechAndToolsNewSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: if little card don`t filled
+	 * - **API ID Path**: tech_and_tools_new_slice.items[].description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+}
+
+/**
+ * OneBigCard variation for TechAndToolsNewSlice Slice
+ *
+ * - **API ID**: `oneBigCard`
+ * - **Description**: TechAndToolsNewSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TechAndToolsNewSliceSliceOneBigCard = prismic.SharedSliceVariation<
+	'oneBigCard',
+	Simplify<TechAndToolsNewSliceSliceOneBigCardPrimary>,
+	Simplify<TechAndToolsNewSliceSliceOneBigCardItem>
+>
+
+/**
+ * Slice variation for *TechAndToolsNewSlice*
+ */
+type TechAndToolsNewSliceSliceVariation =
+	| TechAndToolsNewSliceSliceDefaultSlice
+	| TechAndToolsNewSliceSliceThreeBigCards
+	| TechAndToolsNewSliceSliceTwoBigCards
+	| TechAndToolsNewSliceSliceOneBigCard
+
+/**
+ * TechAndToolsNewSlice Shared Slice
+ *
+ * - **API ID**: `tech_and_tools_new_slice`
+ * - **Description**: TechAndToolsNewSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TechAndToolsNewSliceSlice = prismic.SharedSlice<
+	'tech_and_tools_new_slice',
+	TechAndToolsNewSliceSliceVariation
+>
 
 /**
  * Primary content in *TextList → Primary*
@@ -12105,6 +15309,106 @@ type WeCreateProjectsForSliceVariation =
 export type WeCreateProjectsForSlice = prismic.SharedSlice<'we_create_projects_for', WeCreateProjectsForSliceVariation>
 
 /**
+ * Primary content in *WorkPrinciplesWithFormSlice → Primary*
+ */
+export interface WorkPrinciplesWithFormSliceSliceDefaultSlicePrimary {
+	/**
+	 * Color Theme field in *WorkPrinciplesWithFormSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_principles_with_form_slice.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'black' | 'white'>
+
+	/**
+	 * Form Title field in *WorkPrinciplesWithFormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_principles_with_form_slice.primary.formTitle
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	formTitle: prismic.KeyTextField
+
+	/**
+	 * Form Button Text field in *WorkPrinciplesWithFormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_principles_with_form_slice.primary.buttonText
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	buttonText: prismic.KeyTextField
+
+	/**
+	 * List Title field in *WorkPrinciplesWithFormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_principles_with_form_slice.primary.listTitle
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	listTitle: prismic.KeyTextField
+}
+
+/**
+ * Primary content in *WorkPrinciplesWithFormSlice → Items*
+ */
+export interface WorkPrinciplesWithFormSliceSliceDefaultSliceItem {
+	/**
+	 * List Item Icon field in *WorkPrinciplesWithFormSlice → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_principles_with_form_slice.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	icon: prismic.ImageField<never>
+
+	/**
+	 * List Item Description field in *WorkPrinciplesWithFormSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_principles_with_form_slice.items[].description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+}
+
+/**
+ * Default slice variation for WorkPrinciplesWithFormSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: WorkPrinciplesWithFormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WorkPrinciplesWithFormSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<WorkPrinciplesWithFormSliceSliceDefaultSlicePrimary>,
+	Simplify<WorkPrinciplesWithFormSliceSliceDefaultSliceItem>
+>
+
+/**
+ * Slice variation for *WorkPrinciplesWithFormSlice*
+ */
+type WorkPrinciplesWithFormSliceSliceVariation = WorkPrinciplesWithFormSliceSliceDefaultSlice
+
+/**
+ * WorkPrinciplesWithFormSlice Shared Slice
+ *
+ * - **API ID**: `work_principles_with_form_slice`
+ * - **Description**: WorkPrinciplesWithFormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WorkPrinciplesWithFormSliceSlice = prismic.SharedSlice<
+	'work_principles_with_form_slice',
+	WorkPrinciplesWithFormSliceSliceVariation
+>
+
+/**
  * Primary content in *WriteupListSlice → Primary*
  */
 export interface WriteupListSliceSliceDefaultSlicePrimary {
@@ -12186,6 +15490,10 @@ declare module '@prismicio/client' {
 			CaseStudiesDocumentData,
 			CaseStudiesDocumentDataBodySlice,
 			CaseStudiesDocumentDataSchemaOrgSnippetsItem,
+			ChecklistsDocument,
+			ChecklistsDocumentData,
+			ChecklistsDocumentDataBodySlice,
+			ChecklistsDocumentDataSchemaOrgSnippetsItem,
 			CuMasterDocument,
 			CuMasterDocumentData,
 			CuMasterDocumentDataBodySingleClusterSlicePrimary,
@@ -12264,6 +15572,14 @@ declare module '@prismicio/client' {
 			FooterForLocalDevDocumentDataBodySlice,
 			FooterForLocalDevDocument,
 			FooterForLocalDevDocumentData,
+			GlossaryDocument,
+			GlossaryDocumentData,
+			GlossaryDocumentDataBodyTableOfContentsSlicePrimary,
+			GlossaryDocumentDataBodyTableOfContentsSliceItem,
+			GlossaryDocumentDataBodyTextSlicePrimary,
+			GlossaryDocumentDataBodyImageWithCaptionSlicePrimary,
+			GlossaryDocumentDataBodySlice,
+			GlossaryDocumentDataSchemaOrgSnippetsItem,
 			HeaderDocument,
 			HeaderDocumentData,
 			HeaderDocumentDataBodyNavigationListSlicePrimary,
@@ -12334,6 +15650,10 @@ declare module '@prismicio/client' {
 			AchievementsSliceSliceDefaultSliceItem,
 			AchievementsSliceSliceVariation,
 			AchievementsSliceSliceDefaultSlice,
+			AuthorsListSliceSlice,
+			AuthorsListSliceSliceDefaultSlicePrimary,
+			AuthorsListSliceSliceVariation,
+			AuthorsListSliceSliceDefaultSlice,
 			AwardsSliceSlice,
 			AwardsSliceSliceDefaultSlicePrimary,
 			AwardsSliceSliceDefaultSliceItem,
@@ -12386,6 +15706,11 @@ declare module '@prismicio/client' {
 			CertificatesSliceSliceDefaultSliceItem,
 			CertificatesSliceSliceVariation,
 			CertificatesSliceSliceDefaultSlice,
+			ContactsSliceSlice,
+			ContactsSliceSliceDefaultSlicePrimary,
+			ContactsSliceSliceDefaultSliceItem,
+			ContactsSliceSliceVariation,
+			ContactsSliceSliceDefaultSlice,
 			CtaBannerSliceSlice,
 			CtaBannerSliceSliceDefaultPrimary,
 			CtaBannerSliceSliceCtaBannerWithBackgroundImagePrimary,
@@ -12435,10 +15760,38 @@ declare module '@prismicio/client' {
 			EnjiSliceSliceDefaultSlicePrimary,
 			EnjiSliceSliceVariation,
 			EnjiSliceSliceDefaultSlice,
+			FormSliceSlice,
+			FormSliceSliceDefaultSlicePrimary,
+			FormSliceSliceChecklistFormPrimary,
+			FormSliceSliceVariation,
+			FormSliceSliceDefaultSlice,
+			FormSliceSliceChecklistForm,
+			GridLottieSliceSlice,
+			GridLottieSliceSliceDefaultSlicePrimary,
+			GridLottieSliceSliceDefaultSliceItem,
+			GridLottieSliceSliceGridLottieLinkPrimary,
+			GridLottieSliceSliceGridLottieLinkItem,
+			GridLottieSliceSliceGridWithAnimationOptionSlicePrimary,
+			GridLottieSliceSliceGridWithAnimationOptionSliceItem,
+			GridLottieSliceSliceGridLottieWithCaseStudyPrimary,
+			GridLottieSliceSliceGridLottieWithCaseStudyItem,
+			GridLottieSliceSliceVariation,
+			GridLottieSliceSliceDefaultSlice,
+			GridLottieSliceSliceGridLottieLink,
+			GridLottieSliceSliceGridWithAnimationOptionSlice,
+			GridLottieSliceSliceGridLottieWithCaseStudy,
 			HorizontalToCSlice,
 			HorizontalToCSliceDefaultSliceItem,
 			HorizontalToCSliceVariation,
 			HorizontalToCSliceDefaultSlice,
+			ImageSliceSlice,
+			ImageSliceSliceDefaultSlicePrimary,
+			ImageSliceSliceVariation,
+			ImageSliceSliceDefaultSlice,
+			ImageWithCaptionSlice,
+			ImageWithCaptionSliceDefaultSlicePrimary,
+			ImageWithCaptionSliceVariation,
+			ImageWithCaptionSliceDefaultSlice,
 			IndustriesSlice,
 			IndustriesSliceDefaultSliceItem,
 			IndustriesSliceIndustriesCardSlicePrimary,
@@ -12460,10 +15813,27 @@ declare module '@prismicio/client' {
 			KeyMetricsSliceSliceDefaultSlice,
 			KeyMetricsSliceSliceSecondVariation,
 			KeyMetricsSliceSliceThirdVariation,
+			LogoSliceSlice,
+			LogoSliceSliceDefaultSlicePrimary,
+			LogoSliceSliceDefaultSliceItem,
+			LogoSliceSliceVariation,
+			LogoSliceSliceDefaultSlice,
 			NavLinkSliceSlice,
 			NavLinkSliceSliceDefaultSlicePrimary,
 			NavLinkSliceSliceVariation,
 			NavLinkSliceSliceDefaultSlice,
+			PostAuthorsSliceSlice,
+			PostAuthorsSliceSliceDefaultSlicePrimary,
+			PostAuthorsSliceSliceDefaultSliceItem,
+			PostAuthorsSliceSliceCustomizableAuthorsSlicePrimary,
+			PostAuthorsSliceSliceVariation,
+			PostAuthorsSliceSliceDefaultSlice,
+			PostAuthorsSliceSliceCustomizableAuthorsSlice,
+			PostFormSlice,
+			PostFormSliceDefaultSlicePrimary,
+			PostFormSliceDefaultSliceItem,
+			PostFormSliceVariation,
+			PostFormSliceDefaultSlice,
 			PostsSectionSliceSlice,
 			PostsSectionSliceSliceDefaultSlicePrimary,
 			PostsSectionSliceSliceDefaultSliceItem,
@@ -12472,7 +15842,12 @@ declare module '@prismicio/client' {
 			PostsSectionSliceSliceVariation,
 			PostsSectionSliceSliceDefaultSlice,
 			PostsSectionSliceSliceEbookPostsSectionSlice,
+			PresentationLinksSlice,
+			PresentationLinksSliceDefaultSliceItem,
+			PresentationLinksSliceVariation,
+			PresentationLinksSliceDefaultSlice,
 			PressCenterSlice,
+			PressCenterSliceDefaultSlicePrimary,
 			PressCenterSliceDefaultSliceItem,
 			PressCenterSliceVariation,
 			PressCenterSliceDefaultSlice,
@@ -12502,6 +15877,10 @@ declare module '@prismicio/client' {
 			SimpleCardWithIconSliceDefaultSliceItem,
 			SimpleCardWithIconSliceVariation,
 			SimpleCardWithIconSliceDefaultSlice,
+			SocialNetworksSlice,
+			SocialNetworksSliceDefaultSliceItem,
+			SocialNetworksSliceVariation,
+			SocialNetworksSliceDefaultSlice,
 			SpacerSliceSlice,
 			SpacerSliceSliceDefaultSlicePrimary,
 			SpacerSliceSliceVariation,
@@ -12530,6 +15909,35 @@ declare module '@prismicio/client' {
 			TabsSliceSliceDefaultSliceItem,
 			TabsSliceSliceVariation,
 			TabsSliceSliceDefaultSlice,
+			TagCloudSliceSlice,
+			TagCloudSliceSliceDefaultSliceItem,
+			TagCloudSliceSliceVariation,
+			TagCloudSliceSliceDefaultSlice,
+			TeamCardsSlice,
+			TeamCardsSliceDefaultSlicePrimary,
+			TeamCardsSliceDefaultSliceItem,
+			TeamCardsSliceTeamCardsWithRoundedPhotoPrimary,
+			TeamCardsSliceTeamCardsWithRoundedPhotoItem,
+			TeamCardsSliceTeamCardsCaseStudiesPrimary,
+			TeamCardsSliceTeamCardsCaseStudiesItem,
+			TeamCardsSliceVariation,
+			TeamCardsSliceDefaultSlice,
+			TeamCardsSliceTeamCardsWithRoundedPhoto,
+			TeamCardsSliceTeamCardsCaseStudies,
+			TechAndToolsNewSliceSlice,
+			TechAndToolsNewSliceSliceDefaultSlicePrimary,
+			TechAndToolsNewSliceSliceDefaultSliceItem,
+			TechAndToolsNewSliceSliceThreeBigCardsPrimary,
+			TechAndToolsNewSliceSliceThreeBigCardsItem,
+			TechAndToolsNewSliceSliceTwoBigCardsPrimary,
+			TechAndToolsNewSliceSliceTwoBigCardsItem,
+			TechAndToolsNewSliceSliceOneBigCardPrimary,
+			TechAndToolsNewSliceSliceOneBigCardItem,
+			TechAndToolsNewSliceSliceVariation,
+			TechAndToolsNewSliceSliceDefaultSlice,
+			TechAndToolsNewSliceSliceThreeBigCards,
+			TechAndToolsNewSliceSliceTwoBigCards,
+			TechAndToolsNewSliceSliceOneBigCard,
 			TextListSlice,
 			TextListSliceDefaultSlicePrimary,
 			TextListSliceDefaultSliceItem,
@@ -12566,6 +15974,11 @@ declare module '@prismicio/client' {
 			WeCreateProjectsForSliceVariation,
 			WeCreateProjectsForSliceDefaultSlice,
 			WeCreateProjectsForSliceWeCreateProjectsForWithMap,
+			WorkPrinciplesWithFormSliceSlice,
+			WorkPrinciplesWithFormSliceSliceDefaultSlicePrimary,
+			WorkPrinciplesWithFormSliceSliceDefaultSliceItem,
+			WorkPrinciplesWithFormSliceSliceVariation,
+			WorkPrinciplesWithFormSliceSliceDefaultSlice,
 			WriteupListSliceSlice,
 			WriteupListSliceSliceDefaultSlicePrimary,
 			WriteupListSliceSliceDefaultSliceItem,
