@@ -7,7 +7,7 @@ import type {
 } from '~/components/Widgets/Form/interfaces/forms/ISubscribeFormBlock'
 
 export class SubscribeFormBlock implements ISubscribeFormBlock {
-  colorTheme: string | SelectField
+  colorTheme: string
   isActive: Ref<boolean>
   formLocation: string
   formMaxWidth: string

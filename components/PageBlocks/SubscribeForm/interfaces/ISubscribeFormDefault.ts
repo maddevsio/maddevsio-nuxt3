@@ -4,11 +4,11 @@ import type { ISubscribeFormBlock } from '~/components/Widgets/Form/interfaces/f
 
 export interface SubscribeFormDefaultProps {
   primary: {
-    backgroundColor: SelectField
+    backgroundColor: string
   }
 }
 export interface ISubscribeFormDefault {
-  backgroundColor: SelectField
+  backgroundColor: string
   subscribeFormBlock: ISubscribeFormBlock
   sliceClasses: ComputedRef<string>
   formContentClasses: ComputedRef<string>

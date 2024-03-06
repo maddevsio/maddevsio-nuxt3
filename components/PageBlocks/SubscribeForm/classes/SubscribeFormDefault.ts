@@ -8,13 +8,13 @@ import type { ISubscribeFormBlock } from '~/components/Widgets/Form/interfaces/f
 import { SubscribeFormBlock } from '~/components/Widgets/Form/classes/forms/SubscribeFormBlock'
 
 export class SubscribeFormDefault implements ISubscribeFormDefault {
-  backgroundColor: SelectField
+  backgroundColor: string
   subscribeFormBlock: ISubscribeFormBlock
   sliceClasses: ComputedRef<string>
   formContentClasses: ComputedRef<string>
 
   constructor(props: SubscribeFormDefaultProps) {
-    this.backgroundColor = props.primary?.backgroundColor
+    this.backgroundColor = props.primary?.backgroundColor || 'white'
 
     this.subscribeFormBlock = new SubscribeFormBlock({
       colorTheme: this.backgroundColor,
