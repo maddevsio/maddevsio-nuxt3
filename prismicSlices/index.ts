@@ -59,4 +59,5 @@ export const components = defineSliceZoneComponents({
   work_principles_with_form_slice: defineAsyncComponent(() => import('./WorkPrinciplesWithFormSlice/index.vue')),
   post_authors_slice: defineAsyncComponent(() => import('./PostAuthorsSlice/index.vue')),
   tag_cloud_slice: defineAsyncComponent(() => import('./TagCloudSlice/index.vue')),
+  ebooks_with_filter_slice: defineAsyncComponent(() => import('./EbooksWithFilterSlice/index.vue')),
 })

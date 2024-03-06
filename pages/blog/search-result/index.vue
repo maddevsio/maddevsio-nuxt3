@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { BlogService } from '~/components/Blog/classes/BlogService'
+import { buildHead } from '~/SEO/buildMetaTags'
 
 const prismic = usePrismic()
 const route = useRoute()
@@ -43,6 +44,15 @@ onMounted(async () => {
     await getSearchingArticles(searchValue as string)
   }
 })
+
+// @ts-ignore
+useHead(buildHead({
+  title: 'Mad Devs: Blog search result',
+  metaTitle: 'Blog',
+  description: 'Page for search result',
+  url: 'https://maddevs.io/blog/search-result/?searchBy=Mad/',
+  image: 'https://maddevs.io/md-blog.png',
+}))
 </script>
 <template>
   <section class="search-result">
