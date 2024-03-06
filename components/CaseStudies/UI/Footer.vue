@@ -91,7 +91,7 @@ defineProps({
   }
 
   // --------- SJMC footer styles --------- //
-  &_logotype-sjmc {
+  :slotted(.case_logotype-sjmc) {
     width: 253px;
     height: 113px;
     display: block;

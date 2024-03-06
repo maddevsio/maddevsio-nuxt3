@@ -52,21 +52,14 @@ defineProps({
 })
 
 const { $getMediaFromS3 } = useMediaFromS3()
-
-// const onImageLoad = (event: Event) => {
-//   const target = event.target as HTMLElement
-//   if (target.classList.contains('grey-background')) {
-//     target.classList.remove('grey-background')
-//   }
-// }
 </script>
 <template>
   <picture>
     <source
       :class="{ 'box-shadow': shadow, 'border-radius': radius, 'grey-background': background }"
       :srcset="[
-        $getMediaFromS3(`/images/Cases/${folder}/webp/${file}.webp`) + ' ',
-        $getMediaFromS3(`/images/Cases/${folder}/webp/${file}@2x.webp 2x`)]
+        $getMediaFromS3(`/images/Cases/${folder}/webp/${file}.webp`),
+        $getMediaFromS3(`/images/Cases/${folder}/webp/${file}@2x.webp 2x`)].join(', ')
       "
       class="image"
       type="image/webp"
@@ -94,7 +87,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
 }
 
 .box-shadow {
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05), 0px 5.47001px 41.35px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05), 0 5.47001px 41.35px rgba(0, 0, 0, 0.1);
 }
 
 .border-radius {

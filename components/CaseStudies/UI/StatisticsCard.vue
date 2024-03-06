@@ -21,7 +21,7 @@ const props = defineProps({
   },
 
   number: {
-    type: Number,
+    type: [Number, String],
     default: 0,
   },
 
@@ -80,12 +80,12 @@ const props = defineProps({
 
   section: {
     type: String,
-    required: true,
+    default: '',
   },
 
   index: {
     type: Number,
-    required: true,
+    default: 0,
   },
 
   textAfterIcon: {

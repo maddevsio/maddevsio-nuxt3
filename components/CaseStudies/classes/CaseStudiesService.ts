@@ -1,5 +1,5 @@
 import type { PrismicPlugin } from '@prismicio/vue'
-import type { ImageField, Query } from '@prismicio/client'
+import type { Query } from '@prismicio/client'
 import { fetchLinks } from '~/config/constants'
 import type { CaseStudiesDocument } from '~/prismicio-types'
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
@@ -12,8 +12,8 @@ export class CaseStudiesService {
     this.prismic = prismic
   }
 
-  async getCaseStudiesPageContent() {
-    return await this.prismic.client.getByUID('case-studies', 'case-studies', { fetchLinks })
+  async getCaseStudiesPageContent(uid: string) {
+    return await this.prismic.client.getByUID('case-studies', uid, { fetchLinks })
   }
 
   extractCaseStudiesHomePageData(caseStudiesPageData: CaseStudiesDocument, domain: string) {

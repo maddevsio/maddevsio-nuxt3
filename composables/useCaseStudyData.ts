@@ -1,11 +1,10 @@
-import { getMetadata, buildHead } from '~/SEO/buildMetaTags'
+import { getMetadata } from '~/SEO/buildMetaTags'
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import type { SchemaOrgSnippet } from '~/interfaces/common/commonInterfaces'
 
 export const useCaseStudyData = async ({
   caseName = '',
   defaultOgImage = 'https://maddevs.io/Open-Graph.png',
-  scripts = [],
 }) => {
   const prismic = usePrismic()
   const config = useRuntimeConfig()
@@ -58,6 +57,5 @@ export const useCaseStudyData = async ({
     throw createError({ statusCode: 404, statusMessage: 'Page not found' })
   }
 
-  console.log(caseStudyData.value?.caseStudyMeta)
   return caseStudyData
 }

@@ -9,7 +9,7 @@ export const tableHtmlSerializer = (type, element, content, children) => {
       text = element.text
       text = convertTagsToText(text, ['br'])
     } else {
-      text = text.replace(/`(.*?)`/g, (_, inlineCode) => {
+      text = text.replace(/`(.*?)`/g, (_, inlineCode: any) => {
         const formattedCode = convertTagsToText(inlineCode, ['strong', 'em', 'a'])
         return `<code class="inline-code">${ formattedCode }</code>`
       })
