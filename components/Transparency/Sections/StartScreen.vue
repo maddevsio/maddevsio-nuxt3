@@ -3,6 +3,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
 </script>
 <template>
   <section
+    id="#no-text-logo"
     class="transparency-start-screen"
   >
     <img
