@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+import type { SelectField } from '@prismicio/client'
 import type {
   ISubscribeFormBlock,
   SubscribeFormBlockProps,
@@ -6,7 +7,7 @@ import type {
 } from '~/components/Widgets/Form/interfaces/forms/ISubscribeFormBlock'
 
 export class SubscribeFormBlock implements ISubscribeFormBlock {
-  colorTheme: string
+  colorTheme: string | SelectField
   isActive: Ref<boolean>
   formLocation: string
   formMaxWidth: string

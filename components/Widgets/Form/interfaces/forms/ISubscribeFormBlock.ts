@@ -1,9 +1,10 @@
 import type { Ref } from 'vue'
+import type { SelectField } from '@prismicio/client'
 
 export type TitleClass = string | { [className: string]: boolean };
 
 export interface SubscribeFormBlockProps {
-  colorTheme: string
+  colorTheme: string | SelectField
   options: {
     formLocation?: string
     formMaxWidth?: string
@@ -19,7 +20,7 @@ export interface SubscribeFormBlockProps {
 
 export interface ISubscribeFormBlock {
   title: string
-  colorTheme: string
+  colorTheme: string | SelectField
   isActive: Ref<boolean>
   formLocation: string
   formMaxWidth: string
