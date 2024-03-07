@@ -55,6 +55,7 @@ onUnmounted(() => {
     class="embed"
   >
     <PrismicEmbed
+      v-if="embedFieldData"
       :field="embedFieldData"
       :class="`embed__${item.embed.type}-content`"
     />

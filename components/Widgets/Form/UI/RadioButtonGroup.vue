@@ -13,7 +13,6 @@ const { styles } = useStyleFormElement()
 const formUid = inject('formUid')
 const {
   radioButtons,
-  required,
   description,
   elementId,
   error,
