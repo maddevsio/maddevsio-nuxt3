@@ -229,7 +229,7 @@ export default defineNuxtConfig({
     families: {
       'IBM+Plex+Mono': true,
       Inter: {
-        wght: [300, 400, 600, 700, 800],
+        wght: [300, 400, 500, 600, 700, 800],
       },
       Poppins: {
         wght: [300, 500, 600, 700],
