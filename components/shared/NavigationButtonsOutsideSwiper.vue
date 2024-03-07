@@ -1,4 +1,32 @@
 <script setup lang="ts">
+defineProps({
+  isEnd: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+
+  isBeginning: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+
+  prevLabel: {
+    type: String,
+    default: 'Previous',
+  },
+
+  classPrefixPrev: {
+    type: String,
+    default: '',
+  },
+
+  classPrefixNext: {
+    type: String,
+    default: '',
+  },
+})
 const emit = defineEmits(['clickNext', 'clickPrev'])
 const clickPrev = () => emit('clickPrev')
 const clickNext = () => emit('clickNext')
@@ -10,15 +38,19 @@ const clickNext = () => emit('clickNext')
   >
     <div class="digest-footer__navigations-buttons">
       <button
-        class="digest-footer__navigations-button digest-posts-prev-next-buttons__button--prev"
+        class="digest-footer__navigations-button"
+        :class="`${classPrefixPrev ? `${classPrefixPrev}-prev-next-buttons__button--prev` : ''} ${isBeginning ? 'disabled' : ''}`"
+        :disabled="isBeginning"
         @click="clickPrev"
       >
         <span class="arrow prev" />
-        Prev
+        {{ prevLabel }}
       </button>
       <span class="digest-footer__navigations-button digest-footer__navigations-divider" />
       <button
-        class="digest-footer__navigations-button digest-posts-prev-next-buttons__button--next"
+        class="digest-footer__navigations-button"
+        :class="`${classPrefixNext ? `${classPrefixNext}-prev-next-buttons__button--next` : ''} ${isEnd ? 'disabled' : ''}`"
+        :disabled="isEnd"
         @click="clickNext"
       >
         Next

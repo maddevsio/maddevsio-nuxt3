@@ -83,6 +83,11 @@ const onSwiper = (swiperInstance: any) => {
         />
         <SharedNavigationButtonsOutsideSwiper
           v-if="!pending"
+          prev-label="Prev"
+          class-prefix-next="digest-posts"
+          class-prefix-prev="digest-posts"
+          :is-beginning="swiper?.isBeginning"
+          :is-end="swiper?.isEnd"
           @click-prev="prev"
           @click-next="next"
         />
@@ -90,12 +95,7 @@ const onSwiper = (swiperInstance: any) => {
         <Swiper
           v-if="!pending"
           v-bind="swiperOptions"
-          :modules="[SwiperNavigation]"
           class="digest-footer__cards"
-          :auto-update="true"
-          :auto-destroy="true"
-          :delete-instance-on-destroy="true"
-          :cleanup-styles-on-destroy="true"
           @swiper="onSwiper"
         >
           <SwiperSlide
