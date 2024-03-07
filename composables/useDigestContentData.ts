@@ -9,7 +9,6 @@ export const useDigestContentData = async() => {
   const prismic = usePrismic()
 
   const schemaOrgSnippet = ref<any>()
-  // const digest = ref<DigestPost>()
   const digestAPI = new DigestAPI()
   const openGraphUrl = `${ config.public.domain }/digest/${ route.params?.uid }/`
   const { data: digestContentResponseData } = await useAsyncData(`digest-${ route.params?.uid }`, async () => {
@@ -30,13 +29,14 @@ export const useDigestContentData = async() => {
         return slice
       })
 
+      digestPost.ogImageUrl = digestPost.data.featuredImage?.url?.split('?auto')[0]
+
       return digestPost
     } catch (e) {
       showError({ message: 'Page not found', statusCode: 404 })
     }
   })
 
-  // digest.value = digestContentResponseData.value as DigestPost
   schemaOrgSnippet.value = extractSchemaOrg(digestContentResponseData.value?.data?.schemaOrgSnippets as SchemaOrgSnippet[])
 
   return {
@@ -55,6 +55,7 @@ export const useDigestContentData = async() => {
       metaTitle: prismic.asText(digestContentResponseData.value?.data.metaTitle),
       metaDescription: prismic.asText(digestContentResponseData.value?.data.metaDescription),
       digestsList: digestContentResponseData.value?.digestsList,
+      ogImageUrl: digestContentResponseData.value?.ogImageUrl,
       openGraphUrl,
     },
   }

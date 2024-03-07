@@ -343,4 +343,5 @@ export interface DigestPost {
   id: string
   type: string
   digestsList: string[]
+  ogImageUrl: string | undefined
 }
