@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { components } from '~/prismicSlices'
 import { fetchLinks } from '~/config/constants'
+import { buildHead } from '~/SEO/buildMetaTags'
+import type { TransformedCustomType } from '~/interfaces/common/commonInterfaces'
 
 const { client } = usePrismic()
 const { updateFooterVisible } = useFooterStore()
+const config = useRuntimeConfig()
 const { data: home, error } = await useAsyncData('home', async () => {
   try {
-    return await client.getByUID('custom_page', 'main-page', {
+    const response = await client.getByUID('custom_page', 'main-page', {
       fetchLinks,
     })
-  } catch (e) {
-    showError({ message: 'Page not found', statusCode: 404 })
+    return extractCustomPageData(response) as TransformedCustomType
+  } catch (e: any) {
+    showError({ statusMessage: e.toString(), statusCode: 404 })
   }
 })
 
@@ -22,15 +26,24 @@ onBeforeRouteLeave(() => {
   updateFooterVisible(true)
 })
 
-if (home.value?.data) {
-  updateFooterVisible(home.value.data.show_footer)
+if (home.value?.uid) {
+  updateFooterVisible(home.value.showFooter)
 }
+// @ts-ignore
+useHead(buildHead({
+  url: `${ config.public.domain }/`,
+  title: home.value?.metaTitle || '',
+  description: home.value?.metaDescription || '',
+  jsonLd: home.value!.schemaOrgSnippet!,
+  image: home.value!.ogImage!,
+}))
 </script>
 
 <template>
   <div>
     <SliceZone
-      :slices="home?.data.body"
+      v-if="home"
+      :slices="home.slices"
       :components="components"
     />
   </div>

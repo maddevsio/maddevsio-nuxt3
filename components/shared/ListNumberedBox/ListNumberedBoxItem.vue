@@ -11,6 +11,7 @@ defineProps({
     class="case_list-numbered_item"
     :class="{'not-numbered': unorderedList}"
   >
+    <span><slot name="bold" /></span>
     <slot />
   </li>
 </template>
@@ -29,6 +30,10 @@ defineProps({
       position: absolute;
       left: 16px;
     }
+  }
+
+  span {
+    font-weight: 700
   }
 
   :deep(p) {

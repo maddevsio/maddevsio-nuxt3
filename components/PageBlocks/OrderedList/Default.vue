@@ -17,14 +17,32 @@ const {
   unorderedList,
   listIntroduction,
   hasListIntroduction,
+  addEventListeners,
+  observeTitles,
+  removeEventListeners,
+  unObserveTitles,
+  richTextRef,
 } = new OrderedList(slice)
+
+const { updateActiveTitle } = useTableOfContentStore()
+
+onMounted(() => {
+  addEventListeners()
+  observeTitles(updateActiveTitle)
+})
+
+onUnmounted(() => {
+  removeEventListeners()
+  unObserveTitles()
+})
 </script>
 <template>
   <div class="ordered-list-slice">
     <PrismicRichText
       v-if="hasListIntroduction"
+      ref="richTextRef"
       :field="listIntroduction"
-      :html-serializer="prismicHtmlSerializer"
+      :html-serializer="blogHtmlSerializer"
     />
     <LazySharedListNumberedBox :unordered-list="unorderedList">
       <LazySharedListNumberedBoxItem

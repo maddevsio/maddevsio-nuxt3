@@ -126,38 +126,36 @@ const { $getMediaFromS3 } = useMediaFromS3()
 
   &--lottie-bottom {
     padding-bottom: 0;
-    :deep(.card-item) {
-      .card-item__content {
-        order: 1;
-        font-size: 40px;
-        line-height: 51px;
-        @media screen and (max-width: 1260px) {
-          font-size: 35px;
-          line-height: 45px;
-        }
-        @media screen and (max-width: 1024px) {
-          font-size: 30px;
-          line-height: 37px;
-        }
-
-        @media screen and (max-width: 430px) {
-          font-size: 22px;
-          line-height: 26.63px;
-        }
+    & .card-item__content {
+      order: 1;
+      font-size: 40px;
+      line-height: 51px;
+      @media screen and (max-width: 1260px) {
+        font-size: 35px;
+        line-height: 45px;
       }
-      .card-item__button {
-        order: 2;
+      @media screen and (max-width: 1024px) {
+        font-size: 30px;
+        line-height: 37px;
       }
-      .card-item__lottie {
-        order: 3;
-        margin: 0 auto;
-        @media screen and (max-width: 1024px) {
-          margin-top: 56px;
-        }
 
-        @media screen and (max-width: 430px) {
-          margin-top: 24px;
-        }
+      @media screen and (max-width: 430px) {
+        font-size: 22px;
+        line-height: 26.63px;
+      }
+    }
+    & .card-item__button {
+      order: 2;
+    }
+    & .card-item__lottie {
+      order: 3;
+      margin: 0 auto;
+      @media screen and (max-width: 1024px) {
+        margin-top: 56px;
+      }
+
+      @media screen and (max-width: 430px) {
+        margin-top: 24px;
       }
     }
   }

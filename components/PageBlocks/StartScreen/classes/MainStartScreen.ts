@@ -3,6 +3,7 @@ import {
   type IMainStartScreen,
   type IMainStartScreenPropTypes,
 } from '~/components/PageBlocks/StartScreen/interfaces/IMainStartScreen'
+import { contactMeClickEvent } from '~/analytics/events'
 
 export class MainStartScreen implements IMainStartScreen {
   public modalContactMeRef
@@ -29,7 +30,7 @@ export class MainStartScreen implements IMainStartScreen {
   showModal() {
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef?.value?.show()
-    // contactMeClickEvent.send('Main start screen component');
+    contactMeClickEvent.send('Main start screen component');
   }
 
   reformatToHtml = (text: string) => text && text.replace(/\n/g, '<br />')

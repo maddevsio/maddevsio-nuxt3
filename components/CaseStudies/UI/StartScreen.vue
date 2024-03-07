@@ -228,16 +228,6 @@ onMounted(() => {
     background-color: $bgcolor--red;
   }
 
-  &__title {
-    @include title($text-color--white, 67.88px, -2px);
-    line-height: 112%;
-    margin-bottom: 26px;
-  }
-
-  &__description {
-    @include default-text($text-color--white, 17px, 166%, -0.035em, normal);
-  }
-
   &__logo {
     width: var(--logoWidth);
     height: var(--logoHeight);
@@ -269,5 +259,15 @@ onMounted(() => {
       margin-bottom: 12px;
     }
   }
+}
+
+:slotted(.case-header__title) {
+  @include title($text-color--white, 67.88px, -2px);
+  line-height: 112%;
+  margin-bottom: 26px;
+}
+
+:slotted(.case-header__description) {
+  @include default-text($text-color--white, 17px, 166%, -0.035em, normal);
 }
 </style>

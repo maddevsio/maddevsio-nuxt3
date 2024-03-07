@@ -21,7 +21,6 @@ const {
   onBlurField,
   styles,
   elementId,
-  type,
   name,
   value,
   required,

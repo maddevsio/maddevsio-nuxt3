@@ -1,18 +1,54 @@
+<script setup lang="ts">
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'Title',
+  },
+
+  text: {
+    type: String,
+    default: '',
+  },
+
+  image: {
+    type: String,
+    default: '',
+  },
+
+  imageAltText: {
+    type: String,
+    default: '',
+  },
+
+  manName: {
+    type: String,
+    default: '',
+  },
+
+  manPosition: {
+    type: String,
+    default: '',
+  },
+})
+
+const VTitle = () => h('h2', { innerHTML: props.title })
+const VParagraph = () => h('p', { innerHTML: props.text })
+</script>
 <template>
   <section class="cta-banner">
     <div class="cta-banner__info">
-      <h2 v-html="title" />
-      <p v-html="text" />
+      <VTitle />
+      <VParagraph />
       <!-- Child elements start -->
       <slot />
       <!-- Child elements end -->
     </div>
     <img
-      v-lazy-load
+      loading="lazy"
       width="395"
       height="490"
       class="cta-banner__image"
-      :data-src="image"
+      :src="image"
       :alt="imageAltText || 'Image'"
     >
     <div class="cta-banner__man">
@@ -21,44 +57,6 @@
     </div>
   </section>
 </template>
-
-<script>
-export default {
-  name: 'UIBanner',
-  props: {
-    title: {
-      type: String,
-      default: 'Title',
-    },
-
-    text: {
-      type: String,
-      default: '',
-    },
-
-    image: {
-      type: String,
-      default: '',
-    },
-
-    imageAltText: {
-      type: String,
-      default: '',
-    },
-
-    manName: {
-      type: String,
-      default: '',
-    },
-
-    manPosition: {
-      type: String,
-      default: '',
-    },
-  },
-}
-</script>
-
 <style lang="scss" scoped>
 .cta-banner {
   box-sizing: border-box;
@@ -81,7 +79,7 @@ export default {
     padding: 40px 32px 0;
   }
 
-  h2 {
+  :deep(h2) {
     @include font('Inter', 60px, 900);
     max-width: 590px;
     line-height: 65px;
@@ -112,7 +110,7 @@ export default {
     }
   }
 
-  p {
+  :deep(p) {
     font-weight: normal;
     font-size: 20px;
     line-height: 29px;

@@ -91,12 +91,14 @@ withDefaults(defineProps<Props>(), {
 
   &__cover-wrapper {
     margin-bottom: 16px;
+    max-height: 218px;
   }
 
   &__cover {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
   }
 
   &__body {

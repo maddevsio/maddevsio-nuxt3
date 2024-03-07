@@ -1,0 +1,67 @@
+{
+  "id": "careers_home",
+  "label": "Careers Home",
+  "repeatable": false,
+  "json": {
+    "Main": {
+      "vacancy_categories": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "category_title": {
+              "type": "Text",
+              "config": {
+                "label": "Category name",
+                "placeholder": "Category name"
+              }
+            },
+            "tags": {
+              "type": "Text",
+              "config": {
+                "label": "Tags"
+              }
+            }
+          },
+          "label": "\"Open positions\" section filter"
+        }
+      }
+    },
+    "Header Plate": {
+      "header_plate_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Text"
+        }
+      },
+      "header_plate_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Button Text"
+        }
+      },
+      "header_plate_link": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Link"
+        }
+      },
+      "header_plate_background_color": {
+        "type": "Select",
+        "config": {
+          "options": [
+            "blue",
+            "purple",
+            "orange",
+            "green",
+            "blue-green"
+          ],
+          "label": "Header Plate Background Color",
+          "placeholder": "requires choice"
+        }
+      }
+    }
+  },
+  "hash": "5b29803503a6f3802922edd913cee0bc",
+  "status": true,
+  "format": "custom"
+}

@@ -2,12 +2,13 @@
 import type { PropType } from 'vue'
 import type { NuxtError } from '#app'
 
-defineProps({
+const { error } = defineProps({
   // eslint-disable-next-line vue/require-default-prop
   error: Object as PropType<NuxtError>,
 })
 const { $getMediaFromS3 } = useMediaFromS3()
 const handleClearError = () => clearError({ redirect: '/' })
+console.log(error)
 </script>
 
 <template>

@@ -12,7 +12,7 @@ export class TeamCardsCaseStudies implements ITeamCardsCaseStudies {
   containerSize: string
 
   constructor(props: TeamCardsCaseStudiesProps) {
-    this.backgroundColor = props.primary?.backgroundColor || 'white'
+    this.backgroundColor = colorConverterToClass('slice-bg', props.primary?.backgroundColor || 'white')
     this.containerSize = props.primary?.containerSize || '1240'
     this.teamList = new SimpleTeamList({ cards: this.transformDataForTeamList(props?.items) })
 

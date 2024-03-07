@@ -1,0 +1,41 @@
+@import "../UI/styles/styleFormElements.module";
+
+.checklist-form {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  &__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+  }
+
+  @media screen and (max-width: 950px) {
+    gap: 14px;
+
+    &__input-group {
+      gap: 14px;
+    }
+  }
+
+  &__error {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    background: $bgcolor--white-primary;
+    color: $text-color--black-pale;
+    display: flex;
+    place-items: center;
+    place-content: center;
+    text-align: center;
+    padding-inline: 20px;
+  }
+}

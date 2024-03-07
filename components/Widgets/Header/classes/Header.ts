@@ -107,6 +107,7 @@ export class Header implements IHeader {
     manageScrollOnBody.disableScrollOnBody()
     nextTick(() => {
       document.addEventListener('scroll', this.handleMobileMenuScroll, true)
+      // eslint-disable-next-line
     }).catch(console.error)
   }
 

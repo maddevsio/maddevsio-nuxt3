@@ -271,6 +271,47 @@ export interface TransformedCaseStudyCard {
   height: NumberField
 }
 
+export interface TransformedChecklist {
+  uid: string
+  url: string
+  metaTitle: KeyTextField
+  metaDescription: KeyTextField
+  ogImage: string
+  schemaOrg: ({ type: string; innerHTML: string; } | null)[] | null
+  slices: any[]
+  tagCloud: any
+  released: boolean
+  title: KeyTextField
+  description: KeyTextField
+  image: ImageField
+  headerPlate: {
+    text: KeyTextField
+    btnText: KeyTextField
+    btnLink: KeyTextField
+    backgroundColor: KeyTextField
+  }
+}
+
+export interface TransformedCustomType {
+  id: string
+  uid: string
+  routePrefix: string
+  released: boolean
+  showFooter: boolean
+  slices: any[]
+  metaTitle: KeyTextField
+  metaDescription: KeyTextField
+  ogImage: string
+  schemaOrgSnippet: ({ type: string; innerHTML: string; } | null)[] | null
+  emailSubject: KeyTextField
+  headerPlate: {
+    text: KeyTextField
+    btnText: KeyTextField
+    btnLink: KeyTextField
+    backgroundColor: KeyTextField
+  }
+}
+
 export interface DigestPost {
   data: {
     body: {

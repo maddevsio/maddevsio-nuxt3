@@ -1,3 +1,62 @@
+<script setup lang="ts">
+const props = defineProps({
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+
+  isLink: {
+    type: Boolean,
+    default: false,
+  },
+
+  to: {
+    type: String,
+    default: '/',
+  },
+
+  fullWidth: {
+    type: Boolean,
+    default: false,
+  },
+
+  small: {
+    type: Boolean,
+    default: false,
+  },
+
+  colorType: {
+    type: String,
+    default: 'transparent',
+  },
+
+  animationType: {
+    type: String,
+    default: 'blink',
+  },
+})
+
+const emit = defineEmits(['click-emit'])
+
+const isTag = computed(() => {
+  if (props.isLink) { return 'a' }
+  return 'button'
+})
+
+const linkTo = computed(() => {
+  if (props.isLink) { return props.to }
+  return null
+})
+
+const handleClick = () => {
+  if (!props.disabled) { emit('click-emit') }
+}
+</script>
 <template>
   <Component
     :is="isTag"
@@ -19,79 +78,6 @@
     />
   </Component>
 </template>
-
-<script>
-
-// import WaveAnimation from '~/directives/WaveAnimation'
-
-export default {
-  name: 'UIButton',
-  // directives: {
-  //   WaveAnimation,
-  // },
-
-  props: {
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-
-    isLink: {
-      type: Boolean,
-      default: false,
-    },
-
-    to: {
-      type: String,
-      default: '/',
-    },
-
-    fullWidth: {
-      type: Boolean,
-      default: false,
-    },
-
-    small: {
-      type: Boolean,
-      default: false,
-    },
-
-    colorType: {
-      type: String,
-      default: 'transparent',
-    },
-
-    animationType: {
-      type: String,
-      default: 'blink',
-    },
-  },
-
-  computed: {
-    isTag() {
-      if (this.isLink) return 'a'
-      return 'button'
-    },
-
-    linkTo() {
-      if (this.isLink) return this.to
-      return null
-    },
-  },
-
-  methods: {
-    handleClick() {
-      if (!this.disabled) this.$emit('click-emit')
-    },
-  },
-}
-</script>
-
 <style lang="scss" scoped>
 .animation {
   &--blink {

@@ -1,5 +1,4 @@
 import type { ImageField } from '@prismicio/client'
-import type { FilledLinkToWebField } from '@prismicio/types'
 import type { IHeaderMenuPost } from '~/components/Widgets/Header/interfaces/IHeaderMenuPost'
 import type { Author } from '~/interfaces/common/commonInterfaces'
 

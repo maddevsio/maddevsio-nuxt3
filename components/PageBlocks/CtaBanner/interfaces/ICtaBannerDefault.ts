@@ -24,6 +24,6 @@ export interface ICtaBannerDefault {
   buttonText: string
   modalType: string
   modalContactMeRef: Ref<{ show(): void } | null>
-  showModal(): void
+  showModal(route: any): void
   sendCareersLinkClickEvent(route: any): void
 }

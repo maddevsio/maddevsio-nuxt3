@@ -10,7 +10,7 @@ const config = useRuntimeConfig()
 
 const { data: caseStudiesMainPage, error } = await useAsyncData('caseStudiesMainPage', async () => {
   try {
-    const caseStudiesPageData = await caseStudiesService.getCaseStudiesPageContent()
+    const caseStudiesPageData = await caseStudiesService.getCaseStudiesPageContent('case-studies')
     const pageContent = caseStudiesService.extractCaseStudiesHomePageData(caseStudiesPageData, config.public.domain)
 
     let pageSize

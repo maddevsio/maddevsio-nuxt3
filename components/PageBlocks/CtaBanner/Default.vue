@@ -26,6 +26,7 @@ const {
 const route = useRoute()
 const { $getMediaFromS3 } = useMediaFromS3()
 const sendCareersClickEvent = () => sendCareersLinkClickEvent(route)
+const modalShow = () => showModal(route)
 </script>
 <template>
   <section class="cta-banner">
@@ -59,7 +60,7 @@ const sendCareersClickEvent = () => sendCareersLinkClickEvent(route)
           </LazySharedUIButton>
           <LazySharedUIButton
             v-else
-            @click="showModal"
+            @click="modalShow"
           >
             {{ buttonText }}
           </LazySharedUIButton>

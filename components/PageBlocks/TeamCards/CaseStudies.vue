@@ -26,5 +26,5 @@ const {
   </div>
 </template>
 <style lang="scss" scoped>
-@import 'assets/styles/colorClasses/colors';
+@import '@/assets/styles/colorClasses/colors.scss';
 </style>

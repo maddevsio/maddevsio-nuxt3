@@ -121,7 +121,54 @@ export default defineNuxtConfig({
       },
       xssValidator: false,
     }],
+    '@nuxtjs/sitemap',
   ],
+
+  sitemap: {
+    cacheMaxAgeSeconds: 10 * 3600000,
+    autoLastmod: true,
+    sitemaps: {
+      main: {
+        sources: [
+          '/api/__sitemap__/main',
+        ],
+      },
+      blog: {
+        sources: [
+          '/api/__sitemap__/blog',
+        ],
+      },
+      careers: {
+        sources: [
+          '/api/__sitemap__/careers',
+        ],
+      },
+      cases: {
+        sources: [
+          '/api/__sitemap__/cases',
+        ],
+      },
+      insights: {
+        sources: [
+          '/api/__sitemap__/insights',
+        ],
+      },
+      services: {
+        sources: [
+          '/api/__sitemap__/services',
+        ],
+      },
+      authors: {
+        sources: [
+          '/api/__sitemap__/authors',
+        ],
+      },
+    },
+  },
+
+  site: {
+    trailingSlash: true,
+  },
 
   routeRules: {
     '/api/leads': {
@@ -182,7 +229,7 @@ export default defineNuxtConfig({
     families: {
       'IBM+Plex+Mono': true,
       Inter: {
-        wght: [300, 400, 600, 700, 800],
+        wght: [300, 400, 500, 600, 700, 800],
       },
       Poppins: {
         wght: [300, 500, 600, 700],

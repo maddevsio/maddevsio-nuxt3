@@ -19,31 +19,30 @@ const { isMobile } = useCheckMobile(postsSection.triggerBreakpoint)
     class="tag-posts"
   >
     <div class="container">
-      <template v-if="postsSection.posts.length">
-        <Swiper
-          ref="cuCards"
-          v-bind="postsSection.swiperOptions"
-          class="tag-posts__cards"
+      <Swiper
+        v-bind="postsSection.swiperOptions"
+        class="tag-posts__cards"
+      >
+        <SwiperSlide
+          v-for="(post, postIndex) in postsSection.posts"
+          :key="`${post.uid}-${postIndex}`"
         >
-          <SwiperSlide
-            v-for="(post, postIndex) in postsSection.posts"
-            :key="`${post.uid}-${postIndex}`"
-          >
-            <LazySharedArticleCard
-              :uid="post.uid"
-              :article-link="post.articleLink"
-              :title="post.title"
-              :description="post.description"
-              :author="post.author"
-              :tag="post.tag"
-              is-show-author
-              is-show-tag
-              :formatted-date="post.formattedDate"
-              :read-time="post.readTime"
-              :cover="post.cover"
-              class="tag-posts__list-item"
-            />
-          </SwiperSlide>
+          <LazySharedArticleCard
+            :uid="post.uid"
+            :article-link="post.articleLink"
+            :title="post.title"
+            :description="post.description"
+            :author="post.author"
+            :tag="post.tag"
+            is-show-author
+            is-show-tag
+            :formatted-date="post.formattedDate"
+            :read-time="post.readTime"
+            :cover="post.cover"
+            class="tag-posts__list-item"
+          />
+        </SwiperSlide>
+        <ClientOnly>
           <div
             v-show="postsSection.posts.length > 3 || isMobile"
             class="tag-posts__navigation-buttons"
@@ -54,17 +53,8 @@ const { isMobile } = useCheckMobile(postsSection.triggerBreakpoint)
               class-prefix-prev="tag-posts"
             />
           </div>
-        </Swiper>
-      </template>
-      <div
-        v-else
-        class="tag-posts__skeleton-cards"
-      >
-        <LazySharedSkeletonsPostBlog
-          v-for="(item) in 3"
-          :key="item"
-        />
-      </div>
+        </ClientOnly>
+      </Swiper>
     </div>
   </div>
 </template>
@@ -79,6 +69,12 @@ const { isMobile } = useCheckMobile(postsSection.triggerBreakpoint)
 
     :deep(.article-card__body-content) {
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    :deep(.article-card__description) {
+      margin-top: auto;
     }
 
     :deep(.article-card__body) {

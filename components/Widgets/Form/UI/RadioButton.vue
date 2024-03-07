@@ -30,7 +30,6 @@ const {
   type,
   label,
   name,
-  required,
 } = props.radioButtonInstance
 </script>
 <template>
