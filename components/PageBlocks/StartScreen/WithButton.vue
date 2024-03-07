@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { StartScreenWithButtonProps } from '~/components/PageBlocks/StartScreen/interfaces/IStartScreenWithButton'
 import { StartScreenWithButton } from '~/components/PageBlocks/StartScreen/classes/StartScreenWithButton'
+import { contactMeClickEvent } from '~/analytics/events'
 
 interface Props {
   slice: StartScreenWithButtonProps
@@ -22,7 +23,7 @@ const modalContactMeRef = ref<{ show(): void } | null>(null)
 const showModal = () => {
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef?.value.show()
-  // contactMeClickEvent.send('Start Screen Lets talk button')
+  contactMeClickEvent.send('Start Screen Lets talk button')
 }
 </script>
 <template>

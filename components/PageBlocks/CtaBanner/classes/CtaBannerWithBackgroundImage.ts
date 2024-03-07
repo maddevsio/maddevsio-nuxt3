@@ -4,6 +4,7 @@ import type {
   ICtaBannerWithBackgroundImage,
 } from '~/components/PageBlocks/CtaBanner/interfaces/ICtaBannerWithBackgroundImage'
 import { transformLineSeparator } from '~/utils/transformLineSeparator'
+import { contactMeClickEvent } from '~/analytics/events'
 
 export class CtaBannerWithBackgroundImage implements ICtaBannerWithBackgroundImage {
   title
@@ -45,6 +46,6 @@ export class CtaBannerWithBackgroundImage implements ICtaBannerWithBackgroundIma
   showModal() {
     if (!this.modalContactMeRef.value?.show) { return }
     this.modalContactMeRef.value.show()
-    // contactMeClickEvent.send('CTA Banner with background image component')
+    contactMeClickEvent.send('CTA Banner with background image component')
   }
 }

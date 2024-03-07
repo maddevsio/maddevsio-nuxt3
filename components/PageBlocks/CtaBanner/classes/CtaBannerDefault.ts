@@ -32,10 +32,10 @@ export class CtaBannerDefault implements ICtaBannerDefault {
     this.sendCareersLinkClickEvent = this.sendCareersLinkClickEvent.bind(this)
   }
 
-  showModal() {
+  showModal(route: any) {
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef?.value?.show()
-    contactMeClickEvent.send('CTA Banner')
+    contactMeClickEvent.send(`CTA Banner from ${ route.path }`)
   }
 
   sendCareersLinkClickEvent(route: any) {

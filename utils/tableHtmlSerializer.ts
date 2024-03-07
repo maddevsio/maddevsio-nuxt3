@@ -1,6 +1,6 @@
 import * as prismicH from '@prismicio/helpers'
 
-export const tableHtmlSerializer = (type, element, content, children) => {
+export const tableHtmlSerializer = (type: any, element: any, content: any, children: any) => {
   try {
     const Element = prismicH.Element
     let text = children
@@ -9,7 +9,7 @@ export const tableHtmlSerializer = (type, element, content, children) => {
       text = element.text
       text = convertTagsToText(text, ['br'])
     } else {
-      text = text.replace(/`(.*?)`/g, (_, inlineCode: any) => {
+      text = text.replace(/`(.*?)`/g, (_: any, inlineCode: any) => {
         const formattedCode = convertTagsToText(inlineCode, ['strong', 'em', 'a'])
         return `<code class="inline-code">${ formattedCode }</code>`
       })
@@ -56,11 +56,11 @@ export const tableHtmlSerializer = (type, element, content, children) => {
     case Element.hyperlink:
       /* eslint-disable */
         const url = prismicH.asLink(element.data, linkResolver)
-        const targetType = setTargetForLinks(url)
+        const targetType = setTargetForLinks(url!)
         const setRelAttributes = `rel="noopener"`
         const target = `target="${targetType}" ${targetType === '_blank' ? setRelAttributes : ''}`
         const textContent = text.replace('remove-attributes', '')
-        const isOurDomain = checkAndExtractDomain(url).ourDomain
+        const isOurDomain = checkAndExtractDomain(url!).ourDomain
         return `<a ${target} href="${url}" ${isOurDomain ? 'data-nuxt-link' : ''}>${textContent}</a>`
       /* eslint-enable */
     case Element.label:
