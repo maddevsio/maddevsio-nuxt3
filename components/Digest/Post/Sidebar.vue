@@ -38,11 +38,13 @@ defineProps({
       :open-graph-url="openGraphUrl"
       :meta-title="metaTitle"
     />
-    <LazyWidgetsFormSubscribeFormBlock
-      :subscribe-form-block-instance="subscribeFormBlockInstance"
-      form-uid="digest-sidebar"
-      class="digest-content__subscribe-form-block"
-    />
+    <ClientOnly>
+      <LazyWidgetsFormSubscribeFormBlock
+        :subscribe-form-block-instance="subscribeFormBlockInstance"
+        form-uid="digest-sidebar"
+        class="digest-content__subscribe-form-block"
+      />
+    </ClientOnly>
   </div>
 </template>
 

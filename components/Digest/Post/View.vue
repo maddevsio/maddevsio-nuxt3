@@ -24,15 +24,16 @@ const { digestPostHeader, digestPostContent, digestPostFooter } = postComponents
       :prev-digest-url="digestPostHeader.prevDigestUrl"
       :next-digest-url="digestPostHeader.nextDigestUrl"
     />
-    <DigestPostContent
+    <LazyDigestPostContent
       :slices="digestPostContent.slices"
       :digest-post-sidebar="digestPostContent.digestPostSidebar"
     />
-    <!--        <DigestFooter-->
-    <!--          v-if="uid"-->
-    <!--          :uid="uid"-->
-    <!--          :date="date"-->
-    <!--        />-->
+    <DigestPostFooter
+      v-if="digestPostFooter.uid"
+      :uid="digestPostFooter.uid"
+      :date="digestPostFooter.date"
+      :swiper-options="digestPostFooter.swiperOptions"
+    />
   </div>
 </template>
 

@@ -58,8 +58,12 @@ const {
   }
 
   @media screen and (max-width: 1185px) {
+    &__container {
+      padding: 0 24px;
+    }
+
     &__main {
-      max-width: 100%;
+      margin: 0 auto;
     }
   }
 }

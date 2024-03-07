@@ -16,7 +16,7 @@ export class DigestPostCardDefault implements IDigestPostCardDefault {
   type: string
   uid: string
   postId: string
-  articleRate: Ref<string>
+  articleRate: Ref<number>
 
   constructor(props: DigestPostCardDefaultProps) {
     this.title = props.primary?.post?.data?.title
@@ -28,7 +28,7 @@ export class DigestPostCardDefault implements IDigestPostCardDefault {
     this.type = props.primary?.post?.type
     this.uid = props.primary?.post?.uid
     this.postId = props?.primary?.post?.id
-    this.articleRate = ref('')
+    this.articleRate = ref(0)
 
     this.fetchPostRating = this.fetchPostRating.bind(this)
   }
@@ -38,7 +38,7 @@ export class DigestPostCardDefault implements IDigestPostCardDefault {
       const response = await axios.get(`/api/rating/?pageId=${ this.postId }`)
       this.articleRate.value = response.data.toFixed(1)
     } catch {
-      this.articleRate.value = '0'
+      this.articleRate.value = 0
     }
   }
 }

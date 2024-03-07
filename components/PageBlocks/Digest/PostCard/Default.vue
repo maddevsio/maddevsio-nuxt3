@@ -2,6 +2,7 @@
 import type { PropType } from 'vue'
 import type { DigestPostCardDefaultProps } from '~/components/PageBlocks/Digest/interfaces/IDigestPostCardDefault'
 import { DigestPostCardDefault } from '~/components/PageBlocks/Digest/classes/DigestPostCardDefault'
+
 const { slice } = defineProps({
   slice: {
     type: Object as PropType<DigestPostCardDefaultProps>,

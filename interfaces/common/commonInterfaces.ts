@@ -1,9 +1,5 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
 import type { KeyTextField, NumberField, RichTextField } from '@prismicio/client'
-import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
-import type { RichTextField } from '@prismicio/client'
-import type { WebLink } from '@prismicio/types-internal/lib/import'
-import type { Digest } from '~/components/Digest/interfaces/IDigests'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -30,6 +26,12 @@ export interface ISwiperOptions {
       spaceBetween: number
       slidesPerView: number
       slidesPerGroup: number
+    },
+
+    640?: {
+      spaceBetween: number,
+      slidesPerView: number,
+      slidesPerGroup: number,
     },
 
     900?: {

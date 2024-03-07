@@ -46,10 +46,12 @@ const {
           height="168"
         >
       </div>
-      <LazyWidgetsFormSubscribeFormBlock
-        :subscribe-form-block-instance="subscribeFormBlock"
-        form-uid="blog-post"
-      />
+      <ClientOnly>
+        <LazyWidgetsFormSubscribeFormBlock
+          :subscribe-form-block-instance="subscribeFormBlock"
+          form-uid="blog-post"
+        />
+      </ClientOnly>
     </div>
   </section>
 </template>

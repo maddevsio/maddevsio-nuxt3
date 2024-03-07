@@ -29,6 +29,6 @@ export interface IDigestPostCardDefault {
   type: string
   uid: string
   postId: string
-  articleRate: Ref<string>
+  articleRate: Ref<number>
   fetchPostRating(): Promise<void>
 }
