@@ -6,7 +6,7 @@ interface Props {
   disabled?: boolean
   name: string
   position: string
-  date: string
+  date?: string
   image: ImageField | undefined
   theme: string
   readTime?: string

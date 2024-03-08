@@ -305,3 +305,33 @@ export interface TransformedCustomType {
     backgroundColor: KeyTextField
   }
 }
+
+export interface WriteupPost {
+  data?: {
+    body?: {
+      slice_type?: string
+      slice_variation?: string
+      primary: {
+        text?: RichTextField
+      }
+    }[]
+    title?: RichTextField
+    date?: string
+    header_plate_background_color?: string
+    header_plate_button_text?: string
+    header_plate_link?: string
+    header_plate_text?: string
+    meta_description?: string
+    meta_title?: string
+    author?: Author
+    schema_org_snippets?: SchemaOrgSnippet[]
+    updated_date?: string
+    created_date?: string
+    released: boolean
+    og_image: ImageField
+  }
+  uid: string
+  first_publication_date?: string
+  last_publication_date?: string
+  tags: []
+}
