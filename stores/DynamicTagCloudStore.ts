@@ -1,4 +1,4 @@
-interface ActiveTag {
+export interface ActiveTag {
   [key: string]: string
   caseStudies: string
   writeUps: string

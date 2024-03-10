@@ -37,4 +37,46 @@ export class Writeup {
   async getWriteupPage(prismic: PrismicPlugin, uid: string) {
     return await prismic.client.getByUID('writeup', uid, { fetchLinks })
   }
+
+  async loadWriteupPagesData(prismic: PrismicPlugin, pageSize = 5, route: any) {
+    const checkedTag = checkTagCloudName(route.query.tag)
+    let allWriteups
+    if ('page' in route.query && !('tag' in route.query)) {
+      allWriteups = await this.getWriteupPages(
+        prismic,
+        ['Writeup'],
+        pageSize,
+        Number(route.query.page),
+      )
+    }
+
+    if ('page' in route.query && 'tag' in route.query) {
+      allWriteups = await this.getWriteupPages(
+        prismic,
+        [checkedTag],
+        pageSize,
+        Number(route.query.page),
+      )
+    }
+
+    if ('tag' in route.query && !('page' in route.query)) {
+      allWriteups = await this.getWriteupPages(
+        prismic,
+        [checkedTag],
+        pageSize,
+        1,
+      )
+    }
+
+    if (!('tag' in route.query) && !('page' in route.query)) {
+      allWriteups = await this.getWriteupPages(
+        prismic,
+        ['Writeup'],
+        pageSize,
+        1,
+      )
+    }
+
+    return allWriteups
+  }
 }

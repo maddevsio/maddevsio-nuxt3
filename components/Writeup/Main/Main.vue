@@ -2,7 +2,11 @@
 defineProps({
   pageContent: {
     type: Object,
-    default: () => ({}),
+    default: () => ({
+      title: '',
+      description: '',
+      image: {},
+    }),
   },
 
   tags: {
@@ -10,16 +14,15 @@ defineProps({
     default: () => [],
   },
 })
-const { tagChangedFromQuery, tagChangedHandler, activeTag } = useTagChanged('checklistPage', 'checklists')
-
+const { tagChangedFromQuery, tagChangedHandler, activeTag } = useTagChanged('page', 'writeUps')
 </script>
 
 <template>
-  <section>
+  <div>
     <LazySharedHeadStartScreen
-      :title="pageContent.title"
-      :description="pageContent.description"
-      :image="pageContent.image"
+      :title="pageContent?.title"
+      :description="pageContent?.description"
+      :image="pageContent?.image"
     >
       <LazySharedDynamicTagCloud
         :tags="tags"
@@ -27,9 +30,6 @@ const { tagChangedFromQuery, tagChangedHandler, activeTag } = useTagChanged('che
         @change-tag-from-query-params="tagChangedFromQuery"
       />
     </LazySharedHeadStartScreen>
-  </section>
+    <LazyWriteupMainContent />
+  </div>
 </template>
-
-<style lang="scss" scoped>
-
-</style>

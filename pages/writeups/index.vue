@@ -2,6 +2,8 @@
 import { buildHead } from '~/SEO/buildMetaTags'
 import { Writeup } from '~/components/Writeup/classes/Writeup'
 import { extractWriteupsHomePageData } from '~/components/Writeup/helpers/extractWriteupsHomePageData'
+import { transformationWriteupListData } from '~/components/Writeup/helpers/transformationWriteupListData'
+import type { Writeups } from '~/components/Writeup/interfaces/IWriteupList'
 
 const prismic = usePrismic()
 const route = useRoute()
@@ -14,6 +16,10 @@ const { data: writeupData, error } = await useAsyncData('writeupData', async () 
   try {
     const writeupPageData = await writeupService.getWriteupPage(prismic, 'writeups')
     const pageContent = extractWriteupsHomePageData(writeupPageData)
+
+    const allWriteups = await writeupService.loadWriteupPagesData(prismic, 5, route) as Writeups
+
+    const transformedWriteupsData = transformationWriteupListData(allWriteups)
 
     const { tagCloud } = pageContent
 
@@ -31,6 +37,7 @@ const { data: writeupData, error } = await useAsyncData('writeupData', async () 
 
     return {
       pageContent,
+      transformedWriteupsData,
       tags,
     }
   } catch {
@@ -41,6 +48,8 @@ const { data: writeupData, error } = await useAsyncData('writeupData', async () 
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
+
+provide('transformedWriteupsData', writeupData.value?.transformedWriteupsData)
 
 onBeforeRouteLeave(() => {
   updateFooterVisible(true)
