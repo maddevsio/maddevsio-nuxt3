@@ -3,8 +3,9 @@ import type { IServiceForm } from '~/components/Widgets/Form/interfaces/forms/IS
 import type { IEbookForm } from '~/components/Widgets/Form/interfaces/forms/IEbookForm'
 import type { ISubscribeForm } from '~/components/Widgets/Form/interfaces/forms/ISubscribeForm'
 import type { IChecklistForm } from '~/components/Widgets/Form/interfaces/forms/IChecklistForm'
+import type { ICareersForm } from '~/components/Widgets/Form/interfaces/forms/ICareersForm'
 
-export type FormTypes = IContactMeForm | IServiceForm | IEbookForm | ISubscribeForm | IChecklistForm
+export type FormTypes = IContactMeForm | IServiceForm | IEbookForm | ISubscribeForm | IChecklistForm | ICareersForm
 
 export interface SendEmailPayload {
   body: {

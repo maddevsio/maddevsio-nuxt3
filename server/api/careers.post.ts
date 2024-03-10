@@ -38,7 +38,7 @@ export default defineEventHandler(async event => {
     file = event.node.req.file
   }
   // @ts-ignore
-  const { body: data } = JSON.parse(event.node.req.body.payload)
+  const data = JSON.parse(event.node.req.body.payload)
 
   if (data.email.variables.fullName === 'Test Testovich') {
     throw createError({
@@ -111,15 +111,15 @@ export default defineEventHandler(async event => {
   try {
     const hrEmailResponse = await emailService.sendMailFromVariables(emailReq.body)
     const userEmailResponse = await emailService.sendCVResponseMail(emailReq.body)
-    const createdIssue = await jiraService.createJiraIssue(emailReq.body)
-    if (file && createdIssue?.key && formData) {
-      await jiraService.attachFileToIssue(createdIssue.key, formData)
-    }
+    // const createdIssue = await jiraService.createJiraIssue(emailReq.body)
+    // if (file && createdIssue?.key && formData) {
+    //   await jiraService.attachFileToIssue(createdIssue.key, formData)
+    // }
 
     return {
       email: hrEmailResponse,
       userEmail: userEmailResponse,
-      jira: createdIssue?.key && 'created',
+      // jira: createdIssue?.key && 'created',
     }
   } catch (error: any) {
     if (error?.response && error?.response?.data) {

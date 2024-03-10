@@ -5,6 +5,7 @@ export interface RadioButtonProps {
   name: string
   defaultValue?: string
   required?: boolean
+  prechecked?: boolean
 }
 
 export interface IRadioButton {
@@ -15,6 +16,7 @@ export interface IRadioButton {
   name: string
   radioValue: string
   required: boolean
+  prechecked: boolean
   onChangeState(event: InputEvent, emit: any): void
   convertGroupName(name: string): string
 }

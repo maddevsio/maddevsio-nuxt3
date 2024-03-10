@@ -20,7 +20,8 @@ export interface IRadioButtonGroup {
   error: Ref<string>
   required: boolean
   validationType: string
-  onChangeRadioState(value: string): void
+  onChangeRadioState(value: string, $eventBus: any): void
   validationOnSubmit(): void
   checkRadioButtonsOnHaveValue(radioButtons: IRadioButton[]): IRadioButton[]
+  checkPrechekedRadioButtons(radioButtons: IRadioButton[], $eventBus: any): void
 }

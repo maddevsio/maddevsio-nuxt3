@@ -128,9 +128,7 @@ export class BaseForm implements IBaseForm {
   }
 
   requestRecaptcha() {
-    if (this.validationFormElementsBeforeSend()) {
-      if (this.recaptchaRef.value) { this.recaptchaRef.value.execute() }
-    }
+    if (this.recaptchaRef.value) { this.recaptchaRef.value.execute() }
   }
 
   resetRecaptcha() {
