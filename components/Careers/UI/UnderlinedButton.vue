@@ -17,7 +17,7 @@ const handleClick = (event: Event) => {
   cursor: pointer;
   outline: none;
   padding: 0;
-  border: 0px solid;
+  border: 0 solid;
   background-color: transparent;
   text-decoration: underline;
   display: inline-block;

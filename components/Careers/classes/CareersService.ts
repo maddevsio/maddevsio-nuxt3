@@ -18,7 +18,7 @@ export class CareersService {
   }
 
   async getVacancies() {
-    const response = await this.prismic.client.get({
+    return await this.prismic.client.get({
       filters: [
         this.prismic.filter.at('document.type', 'vacancy'),
       ],
@@ -28,8 +28,6 @@ export class CareersService {
       },
       pageSize: 100,
     }) as Query<VacancyDocument>
-
-    return response
   }
 
   async getVacancy(uid: string) {
