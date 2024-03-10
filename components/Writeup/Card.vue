@@ -105,6 +105,10 @@ const showLabel = computed(() => index === 0 &&
 </template>
 <style lang="scss" scoped>
 .writeup-list {
+  * {
+    box-sizing: border-box;
+  }
+
   &__item {
     position: relative;
     display: flex;
