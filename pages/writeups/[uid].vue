@@ -2,6 +2,7 @@
 import { buildHead } from '~/SEO/buildMetaTags'
 import { Writeup } from '~/components/Writeup/classes/Writeup'
 import { extractWriteupData } from '~/components/Writeup/helpers/extractWriteupData'
+import 'prismjs/themes/prism-tomorrow.min.css'
 
 const prismic = usePrismic()
 const route = useRoute()
@@ -48,7 +49,27 @@ useHead(buildHead({
   description: writeupData.value?.pageContent.metaDescription || '',
   jsonLd: writeupData.value!.pageContent.schemaOrg!,
   image: writeupData.value?.pageContent.ogImage,
-}))
+},
+[
+  {
+    hid: 'highlight-script',
+    src: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js',
+    body: true,
+    defer: true,
+    callback: () => {
+      setTimeout(() => {
+        const autoloader = document.createElement('script')
+        autoloader.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js'
+        autoloader.defer = true
+        autoloader.onload = () => {
+          // eslint-disable-next-line
+            if (window.Prism) window.Prism.highlightAll()
+        }
+        document.body.appendChild(autoloader)
+      }, 100)
+    },
+  },
+]))
 </script>
 
 <template>
