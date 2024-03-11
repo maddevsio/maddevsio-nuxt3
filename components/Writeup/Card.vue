@@ -44,7 +44,7 @@ const tagName = computed(() => {
 const showLabel = computed(() => index === 0 &&
   currentPage === 1 &&
   (activeTag.value.writeUps === 'Writeup' || activeTag.value.writeUps === '') &&
-  !route.path.includes('authors'))
+  route.path.includes('writeups'))
 
 </script>
 <template>
@@ -72,8 +72,8 @@ const showLabel = computed(() => index === 0 &&
           :src="author.image.url"
           :alt="author.name"
           class="writeup-list__info-img"
-          width="30"
-          height="30"
+          width="60"
+          height="60"
         />
         <p class="writeup-list__info-author-name">
           {{ author.name }}
@@ -326,6 +326,7 @@ const showLabel = computed(() => index === 0 &&
 
   &__info {
     &-img {
+      width: 30px;
       min-width: 30px;
       max-width: 100%;
       height: 30px;

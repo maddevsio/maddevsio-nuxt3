@@ -12,12 +12,12 @@ withDefaults(defineProps<Props>(), {
   currentPage: 1,
 })
 
-const headerHeightGlobal = 63 // TODO: Need to add dynamic header height
+const { headerHeight } = storeToRefs(useHeaderStore())
 </script>
 <template>
   <div
     class="writeup-list"
-    :style="`scroll-margin-top: ${(headerHeightGlobal ? headerHeightGlobal : 63) + 60}px`"
+    :style="`scroll-margin-top: ${(headerHeight ? headerHeight : 63) + 60}px`"
   >
     <WriteupCard
       v-for="(writeup, index) in writeups"
