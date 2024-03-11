@@ -24,7 +24,7 @@ if ('page' in route.query) {
 
 watch(() => route.query, async () => {
   if ('tag' in route.query && ('page' in route.query && Number(route.query.page) === 1)) {
-    await getWriteups(currentPage.value, [activeTag.value.writeUps])
+    await getWriteups(1, [activeTag.value.writeUps])
   }
 }, { immediate: true })
 </script>

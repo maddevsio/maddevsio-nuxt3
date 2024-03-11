@@ -100,7 +100,7 @@ export class WriteupMainContent implements IWriteupMainContent {
     }
 
     const tagsFromRoute = this.route.query.tag === 'All Write-ups' ? ['Writeup'] : [this.route.query.tag]
-    if (tagsFromRoute.every(tag => tag)) {
+    if (tagsFromRoute.length && tagsFromRoute.every(tag => tag)) {
       await this.getWriteups(this.currentPage.value, tagsFromRoute)
     } else {
       await this.getWriteups(this.currentPage.value, ['Writeup' || this.activeTag?.writeUps])
