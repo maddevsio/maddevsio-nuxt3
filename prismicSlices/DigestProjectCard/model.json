@@ -1,0 +1,70 @@
+{
+  "id": "digest_project_card",
+  "type": "SharedSlice",
+  "name": "DigestProjectCard",
+  "description": "DigestProjectCard",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "DigestProjectCard",
+      "primary": {
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": null,
+              "height": null
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,hyperlink,strong"
+          },
+          "type": "StructuredText"
+        },
+        "external": {
+          "config": {
+            "label": "Link is external?",
+            "placeholder_false": "No",
+            "placeholder_true": "Yes",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Button text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "url": {
+          "config": {
+            "label": "Url to page",
+            "placeholder": "If url internal should be: \"/blog/\""
+          },
+          "type": "Text"
+        },
+        "showBorderBottom": {
+          "config": {
+            "label": "Show Border Bottom",
+            "placeholder_false": "No",
+            "placeholder_true": "Yes",
+            "default_value": false
+          },
+          "type": "Boolean"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

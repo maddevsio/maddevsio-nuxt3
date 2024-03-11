@@ -14,7 +14,7 @@ export class Digests implements IDigests {
   digestsData: Ref<TransformedDigestsData | null>
   digestOption: Ref<DigestSelectOption>
   uid: string
-  date: Date
+  date: Date | string
   prismic: PrismicPlugin
   constructor(props: IDigestsProps, prismic: PrismicPlugin) {
     this.digestsData = ref(null)
@@ -25,15 +25,14 @@ export class Digests implements IDigests {
 
     this.handleChangeYear = this.handleChangeYear.bind(this)
     this.fetchDigests = this.fetchDigests.bind(this)
-
-    markRaw(this)
   }
 
   filterDigests(response: DigestResponse, prismic: PrismicPlugin): TransformedDigestsData {
     const digests = transformationDigestsData(response, prismic)
+
     return {
       ...digests,
-      ...digests?.digestList.filter(digest => digest.uid !== this.uid),
+      digestList: digests?.digestList.filter(digest => digest.uid !== this.uid),
     }
   }
 
@@ -50,7 +49,7 @@ export class Digests implements IDigests {
   }
 
   async handleChangeYear(option: DigestSelectOption) {
-    await this.fetchDigests({ prismic: this.prismic, year: option.year, filter: true, date: this.date })
+    await this.fetchDigests({ prismic: this.prismic, year: option.year, filter: true, date: new Date(this.date) })
     this.digestOption.value = option
   }
 }

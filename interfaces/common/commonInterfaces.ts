@@ -28,6 +28,12 @@ export interface ISwiperOptions {
       slidesPerGroup: number
     },
 
+    640?: {
+      spaceBetween: number,
+      slidesPerView: number,
+      slidesPerGroup: number,
+    },
+
     900?: {
       spaceBetween: number
       slidesPerView: number
@@ -304,4 +310,38 @@ export interface TransformedCustomType {
     btnLink: KeyTextField
     backgroundColor: KeyTextField
   }
+}
+
+export interface DigestPost {
+  data: {
+    body: {
+      slice_type?: string
+      slice_variation?: string
+      primary: {
+        text?: RichTextField | undefined
+        post?: BlogPost | undefined
+        readTime?: string | undefined
+      }
+      items?: Repeatable[]
+    }[]
+    featuredImage?: ImageField
+    title?: RichTextField
+    subtitle?: RichTextField
+    date?: string
+    header_plate_background_color?: string
+    header_plate_button_text?: string
+    header_plate_link?: string
+    header_plate_text?: string
+    metaTitle?: RichTextField
+    metaDescription?: RichTextField
+    schemaOrgSnippets?: SchemaOrgSnippet[]
+    updated_date?: string
+  }
+  uid: string
+  first_publication_date?: string
+  last_publication_date?: string
+  id: string
+  type: string
+  digestsList: string[]
+  ogImageUrl: string | undefined
 }

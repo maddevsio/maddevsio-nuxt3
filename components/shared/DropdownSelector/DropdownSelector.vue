@@ -106,7 +106,7 @@ onUnmounted(() => {
   }
 
   &--white {
-    background: $bgcolor--white;
+    background: $bgcolor--grey-light;
   }
 
   * {
@@ -156,7 +156,7 @@ onUnmounted(() => {
     }
 
     &--white {
-      background: $bgcolor--white;
+      background: $bgcolor--grey-light;
     }
   }
 

@@ -8,11 +8,11 @@ import { DigestAPI } from '~/components/Digest/classes/DigestAPI'
 export class DigestSelect implements IDigestSelect {
   prismic: PrismicPlugin
   currentOption: Ref<DigestSelectOption>
-  selectDigestOptions: Ref<UnwrapRef<({ year: string; label: string })[]>>
-  constructor(prismic: PrismicPlugin) {
+  selectDigestOptions: Ref<UnwrapRef<(false | { year: string; label: string })[]>>
+  constructor(prismic: PrismicPlugin, setAllDigestsOption: boolean) {
     this.prismic = prismic
     this.currentOption = ref({ label: 'Digests of the Year', year: '' })
-    this.selectDigestOptions = ref([{ label: 'All digests', year: '' }].filter(Boolean))
+    this.selectDigestOptions = ref([setAllDigestsOption && { label: 'All digests', year: '' }].filter(Boolean))
 
     this.createSelectOptionsList = this.createSelectOptionsList.bind(this)
   }
