@@ -5,4 +5,5 @@ export interface IWriteupMainContent extends IWriteupList {
   activeTag: ActiveTag
   scrollToStart(): void
   getWriteups(page: number, tags?: string[]): Promise<void>
+  changePage(page: number): Promise<void>
 }

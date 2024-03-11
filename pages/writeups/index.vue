@@ -67,7 +67,7 @@ useHead(buildHead({
 
 <template>
   <div class="writeup-main-page">
-    <LazyWriteupMain :page-content="writeupData!.pageContent" :tags="writeupData!.tags" />
+    <LazyWriteupMain :page-content="writeupData?.pageContent" :tags="writeupData?.tags" />
     <LazyWriteupSlicesComponent
       :slices="writeupData?.pageContent?.slices"
     />
