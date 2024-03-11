@@ -1,4 +1,3 @@
-import type { ContentRelationshipField } from '@prismicio/types'
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import type { SchemaOrgSnippet } from '~/interfaces/common/commonInterfaces'
 import type { WriteupDocument } from '~/prismicio-types'

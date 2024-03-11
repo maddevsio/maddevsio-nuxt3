@@ -7,7 +7,6 @@ import type { Writeups } from '~/components/Writeup/interfaces/IWriteupList'
 
 const prismic = usePrismic()
 const route = useRoute()
-const config = useRuntimeConfig()
 const { updateFooterVisible } = useFooterStore()
 
 const writeupService = new Writeup()
