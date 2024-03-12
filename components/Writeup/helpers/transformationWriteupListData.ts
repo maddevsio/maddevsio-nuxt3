@@ -1,4 +1,5 @@
 import type { TransformedWriteup, Writeups } from '~/components/Writeup/interfaces/IWriteupList'
+import { transformationWriteupItems } from '~/components/Writeup/helpers/transformationWriteupItems'
 
 interface TransformedData {
   totalPages: number
@@ -8,20 +9,7 @@ interface TransformedData {
 }
 
 export const transformationWriteupListData = (writeups: Writeups): TransformedData => {
-  const writeupList = writeups.results && writeups.results.length
-    ? writeups.results.map(writeup => ({
-      uid: writeup.uid,
-      date: formatDate(writeup.data.created_date, true),
-      title: writeup.data.title,
-      tags: writeup.tags.filter(tag => tag !== 'Writeup'),
-      author: {
-        name: writeup?.data?.author?.data?.name,
-        position: writeup?.data?.author?.data?.position,
-        uid: writeup?.data?.author?.data?.uid,
-        image: writeup?.data?.author?.data?.image,
-      },
-    }))
-    : []
+  const writeupList = transformationWriteupItems(writeups.results)
 
   return {
     totalPages: writeups?.total_pages,
