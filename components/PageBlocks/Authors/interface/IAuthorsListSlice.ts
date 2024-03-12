@@ -5,7 +5,9 @@ import type { AuthorDocument } from '~/prismicio-types'
 
 export interface AuthorItem {
   data: {
-    image: ImageField
+    image: ImageField & {
+      thumbnail: ImageField
+    }
     name: string
     position: string
     uid: string

@@ -9,6 +9,7 @@ import { ServiceForm } from '~/components/Widgets/Form/classes/forms/ServiceForm
 import { EbookForm } from '~/components/Widgets/Form/classes/forms/EbookForm'
 import { SubscribeForm } from '~/components/Widgets/Form/classes/forms/SubscribeForm'
 import { ChecklistForm } from '~/components/Widgets/Form/classes/forms/ChecklistForm'
+import { CareersForm } from '~/components/Widgets/Form/classes/forms/CareersForm'
 
 interface FormMakerOptions {
   formLocation?: string
@@ -358,6 +359,96 @@ export class FormMaker {
             objectKeyName: 'submitButton',
             elementId: 'submitButton',
             label: '',
+            type: 'submit',
+          }),
+        )
+        .build(),
+    })
+  }
+
+  careersFormWithPrismicMaker() {
+    return new CareersForm({
+      vacancyPosition: this.options.vacancyPosition,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'fullName',
+            elementId: 'fullName',
+            type: 'text',
+            name: 'Full name',
+            placeholder: 'Your name',
+            validationType: 'longText',
+            longTextLimit: 140,
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'email',
+            elementId: 'email',
+            type: 'email',
+            name: 'Email',
+            placeholder: 'Email',
+            validationType: 'email',
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'phoneNumber',
+            elementId: 'phoneNumber',
+            type: 'text',
+            name: 'phoneNumber',
+            placeholder: 'Phone Number',
+            validationType: 'phone',
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'cvFile',
+            elementId: 'cvFile-input',
+            type: 'file',
+            name: 'cvFile',
+            placeholder: 'Choose a file',
+            validationType: 'file',
+            required: true,
+            $eventBus: this.options.$eventBus,
+          }),
+          new Field({
+            objectKeyName: 'linkedin',
+            elementId: 'linkedin-input',
+            type: 'text',
+            name: 'linkedin',
+            placeholder: 'LinkedIn link',
+            validationType: 'linkedin',
+            required: true,
+            $eventBus: this.options.$eventBus,
+          }),
+        ])
+        .addRadioButtonGroup(
+          new RadioButtonGroup({
+            objectKeyName: 'careersRadioGroup',
+            elementId: 'careersRadioGroup',
+            description: '',
+            required: true,
+            radioButtons: [
+              new RadioButton({
+                objectKeyName: 'cvFileRadio',
+                elementId: 'cvFile-radio',
+                label: 'File containing resume',
+                name: 'resumeType',
+                prechecked: true,
+                defaultValue: 'File containing resume',
+              }),
+              new RadioButton({
+                objectKeyName: 'linkedinRadio',
+                elementId: 'linkedin-link-radio',
+                label: 'Link to LinkedIn',
+                name: 'resumeType',
+              }),
+            ],
+          }),
+        )
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            label: 'I want to work for Mad Devs!',
             type: 'submit',
           }),
         )

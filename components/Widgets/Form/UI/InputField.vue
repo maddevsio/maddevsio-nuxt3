@@ -29,6 +29,12 @@ const {
   formSends,
 } = useFormField(props)
 const { $getMediaFromS3 } = useMediaFromS3()
+
+onMounted(() => {
+  if (elementId !== 'linkedin-input') {
+    value.value = ''
+  }
+})
 </script>
 <template>
   <div>

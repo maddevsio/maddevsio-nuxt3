@@ -3,8 +3,8 @@ import type { TransformedWriteup } from '~/components/Writeup/interfaces/IWriteu
 
 interface Props {
   writeups: TransformedWriteup[]
-  colorTheme: string
-  currentPage: number
+  colorTheme?: string
+  currentPage?: number
 }
 
 withDefaults(defineProps<Props>(), {

@@ -4,8 +4,9 @@ import { DigestSelect } from '~/components/Digest/classes/DigestSelect'
 const emit = defineEmits(['changeYear'])
 
 const prismic = usePrismic()
+const route = useRoute()
 
-const { selectDigestOptions, createSelectOptionsList } = new DigestSelect(prismic)
+const { selectDigestOptions, createSelectOptionsList } = new DigestSelect(prismic, !route.params.uid)
 
 await useAsyncData(() => createSelectOptionsList(), {
   server: false,

@@ -1,10 +1,11 @@
 import type { PrismicPlugin } from '@prismicio/vue'
 import type { Ref } from 'vue'
-import type { DigestBlogArticle, IDigestMainPageCTA } from '~/components/Digest/interfaces/IDigestMainPageCTA'
-import { BlogService } from '~/components/Blog/classes/BlogService'
+import type { IDigestMainPageCTA } from '~/components/Digest/interfaces/IDigestMainPageCTA'
+import { BlogService, type PostResponse } from '~/components/Blog/classes/BlogService'
+import type { BlogPost } from '~/interfaces/common/commonInterfaces'
 
 export class DigestMainPageCTA implements IDigestMainPageCTA {
-  article: Ref<DigestBlogArticle | null>
+  article: Ref<BlogPost | null>
   blogBtnRef: Ref<HTMLElement & {$el: HTMLElement}| null>
   contentRef: Ref<HTMLElement | null>
   contentTextRef: Ref<HTMLElement | null>
@@ -20,7 +21,7 @@ export class DigestMainPageCTA implements IDigestMainPageCTA {
   }
 
   async fetchArticle(prismic: PrismicPlugin) {
-    const response = await new BlogService().getPostsByTag(prismic, [], 1)
+    const response = await new BlogService().getPostsByTag(prismic, [], 1) as PostResponse
     this.article.value = response.results[0]
   }
 

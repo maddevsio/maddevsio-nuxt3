@@ -74,7 +74,7 @@ const {
           Subscribe
         </button>
       </Transition>
-      <transition
+      <Transition
         name="email"
         appear
       >
@@ -90,7 +90,7 @@ const {
             :form-location="formLocation"
           />
         </div>
-      </transition>
+      </Transition>
     </div>
     <LazySharedSubscribeFormBackgroundImage
       v-if="showBackgroundImage"

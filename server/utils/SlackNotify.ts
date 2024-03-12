@@ -57,7 +57,7 @@ export class SlackNotify {
       }
       return await axios.post(this.slackWebhook, payload)
     } catch (e: any) {
-      console.error(e.response.data) // eslint-disable-line
+      console.error(e) // eslint-disable-line
       return e
     }
   }

@@ -1,5 +1,6 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
 import type { KeyTextField, NumberField, RichTextField } from '@prismicio/client'
+import type { VacancyDocumentDataBodySlice } from '~/prismicio-types'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -26,6 +27,12 @@ export interface ISwiperOptions {
       spaceBetween: number
       slidesPerView: number
       slidesPerGroup: number
+    },
+
+    640?: {
+      spaceBetween: number,
+      slidesPerView: number,
+      slidesPerGroup: number,
     },
 
     900?: {
@@ -98,6 +105,7 @@ export interface Author {
     location: string
     name: string
     position: string
+    description: string
     thumbnail_image: ImageField
     image: ImageField & {
       header: ImageField
@@ -129,6 +137,7 @@ export interface TransformedAuthor {
   uid: string
   name: string
   position: string
+  description: string
   thumbnailImage: ImageField
   image: ImageField & {
     thumbnail: ImageField
@@ -304,6 +313,61 @@ export interface TransformedCustomType {
     btnLink: KeyTextField
     backgroundColor: KeyTextField
   }
+}
+
+export interface DigestPost {
+  data: {
+    body: {
+      slice_type?: string
+      slice_variation?: string
+      primary: {
+        text?: RichTextField | undefined
+        post?: BlogPost | undefined
+        readTime?: string | undefined
+      }
+      items?: Repeatable[]
+    }[]
+    featuredImage?: ImageField
+    title?: RichTextField
+    subtitle?: RichTextField
+    date?: string
+    header_plate_background_color?: string
+    header_plate_button_text?: string
+    header_plate_link?: string
+    header_plate_text?: string
+    metaTitle?: RichTextField
+    metaDescription?: RichTextField
+    schemaOrgSnippets?: SchemaOrgSnippet[]
+    updated_date?: string
+  }
+  uid: string
+  first_publication_date?: string
+  last_publication_date?: string
+  id: string
+  type: string
+  digestsList: string[]
+  ogImageUrl: string | undefined
+}
+
+export interface TransformedVacancy {
+  type: string
+  id: string
+  uid: string
+  huntflowVacancyId: KeyTextField
+  position: KeyTextField
+  title: KeyTextField
+  subtitle: KeyTextField
+  labels: {
+    remote: boolean
+    relocation: boolean
+  }
+  tags: string[]
+  slices: VacancyDocumentDataBodySlice[]
+  metaTitle: KeyTextField
+  metaDescription: KeyTextField
+  date: KeyTextField
+  schemaOrgSnippet: ({ type: string; innerHTML: string; } | null)[] | null
+  released: boolean
 }
 
 export interface WriteupPost {

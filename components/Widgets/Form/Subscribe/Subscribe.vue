@@ -100,12 +100,13 @@ const {
     </div>
   </LazyWidgetsFormFactory>
 </template>
+
 <style lang="scss" module>
 @import "subscribeForm.module";
 </style>
+
 <style lang="scss" scoped>
 .subscribe-form {
-
   &--default {
     :deep(p) {
       font-size: 10px;
@@ -131,7 +132,7 @@ const {
 
   :deep(input) {
     color: inherit;
-    font-size: 11px;
+    font-size: 11px !important;
   }
 
   &--black {
