@@ -16,7 +16,9 @@ const {
   imageUrl,
   location,
   vcardData,
+  generateSocialNetworks,
 } = new StartScreenExpert(slice)
+generateSocialNetworks()
 </script>
 <template>
   <div>
@@ -82,10 +84,7 @@ const {
     flex-wrap: wrap;
     gap: 18.5px 25.5px;
     margin-bottom: 22px;
-
-    @media screen and (min-width: 475px) {
-      align-items: center;
-    }
+    align-items: center;
 
     @media screen and (min-width: 845px) {
       width: 75%;
