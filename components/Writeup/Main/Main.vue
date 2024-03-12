@@ -22,7 +22,7 @@ defineProps({
     default: () => [],
   },
 })
-const { tagChangedFromQuery, tagChangedHandler, activeTag } = useTagChanged('page', 'writeUps')
+const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('page', 'writeUps')
 </script>
 
 <template>

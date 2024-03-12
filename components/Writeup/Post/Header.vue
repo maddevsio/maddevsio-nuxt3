@@ -2,7 +2,7 @@
 import type { PropType } from 'vue'
 import type { Author } from '~/interfaces/common/commonInterfaces'
 
-const props = defineProps({
+defineProps({
   author: {
     type: Object as PropType<Author['data'] & { uid: string }>,
     default: () => ({
@@ -33,8 +33,6 @@ const props = defineProps({
     default: '',
   },
 })
-
-console.log(props.author)
 </script>
 
 <template>

@@ -6,7 +6,6 @@ import 'prismjs/themes/prism-tomorrow.min.css'
 
 const prismic = usePrismic()
 const route = useRoute()
-const config = useRuntimeConfig()
 const { updateFooterVisible } = useFooterStore()
 
 const writeupService = new Writeup()
@@ -58,16 +57,14 @@ useHead(buildHead({
     body: true,
     defer: true,
     callback: () => {
-      setTimeout(() => {
-        const autoloader = document.createElement('script')
-        autoloader.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js'
-        autoloader.defer = true
-        autoloader.onload = () => {
-          // eslint-disable-next-line
-            if (window.Prism) window.Prism.highlightAll()
-        }
-        document.body.appendChild(autoloader)
-      }, 100)
+      const autoloader = document.createElement('script')
+      autoloader.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js'
+      autoloader.defer = true
+      autoloader.onload = () => {
+        // eslint-disable-next-line
+          if (window.Prism) window.Prism.highlightAll()
+      }
+      document.body.appendChild(autoloader)
     },
   },
 ]))
