@@ -7,6 +7,7 @@ export class RadioButton implements IRadioButton {
   name: string
   radioValue: string
   required: boolean
+  prechecked: boolean
 
   type = 'radio'
 
@@ -16,6 +17,7 @@ export class RadioButton implements IRadioButton {
     label,
     name = 'radio',
     defaultValue = '',
+    prechecked = false,
     required = true,
   }: RadioButtonProps) {
     this.objectKeyName = objectKeyName
@@ -24,6 +26,7 @@ export class RadioButton implements IRadioButton {
     this.name = this.convertGroupName(name)
     this.radioValue = defaultValue
     this.required = required
+    this.prechecked = prechecked
 
     this.onChangeState = this.onChangeState.bind(this)
     this.convertGroupName = this.convertGroupName.bind(this)

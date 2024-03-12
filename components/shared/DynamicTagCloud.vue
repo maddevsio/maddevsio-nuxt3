@@ -7,6 +7,10 @@ const props = defineProps({
     type: Array as PropType<{ name: string, icon: ImageField }[]>,
     default: () => [],
   },
+  colorTheme: {
+    type: String,
+    default: 'black',
+  },
 })
 
 const emit = defineEmits(['changed', 'changeTagFromQueryParams'])
@@ -39,7 +43,7 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <div class="tag-cloud">
+  <div :class="`tag-cloud tag-cloud--${colorTheme}`">
     <ul class="tag-cloud__list">
       <li
         v-for="tag in tags"
@@ -80,6 +84,22 @@ onUnmounted(() => {
   }
 
   margin-top: 48px;
+
+  &--black {
+    .tag-cloud__item-label {
+      color: $text-color--grey-pale;
+      background-color: $bgcolor--white-primary;
+      border: 1px solid $border-color--white;
+    }
+  }
+
+  &--white {
+    .tag-cloud__item-label {
+      color: $text-color--quote-box;
+      background-color: $bgcolor--silver;
+      border: 1px solid $border-color--grey-20-percent;
+    }
+  }
 
   &__list {
     display: flex;

@@ -74,6 +74,20 @@ defineProps({
     }
   }
 
+  :deep(.article-card__body) {
+    height: 100%;
+  }
+
+  :deep(.article-card__body-content) {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    .article-card__description {
+      margin-top: auto;
+    }
+  }
+
   &__banner {
     display: block;
     max-width: 100%;

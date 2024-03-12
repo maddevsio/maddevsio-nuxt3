@@ -64,8 +64,8 @@ onMounted(async () => {
                 <div class="author__image-wrapper">
                   <img
                     class="author__image"
-                    :src="author.data.image.url"
-                    :alt="author.data.image.alt"
+                    :src="`${clearImageParamsFromPrismic(author.data.image.thumbnail.url!)}&w=180&h=180`"
+                    :alt="author.data.image.thumbnail.alt"
                   >
                 </div>
                 <div class="author-info">
@@ -159,6 +159,7 @@ onMounted(async () => {
     height: 120px;
     border-radius: 10px;
     object-fit: cover;
+    object-position: top;
 
     @media screen and (max-width: 1024px) {
       width: 110px;

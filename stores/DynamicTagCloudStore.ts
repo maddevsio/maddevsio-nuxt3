@@ -3,6 +3,7 @@ interface ActiveTag {
   caseStudies: string
   writeUps: string
   checklists: string
+  allContent: string
 }
 
 export const useDynamicTagCloudStore = defineStore('DynamicTagCloudStore', () => {
@@ -10,6 +11,7 @@ export const useDynamicTagCloudStore = defineStore('DynamicTagCloudStore', () =>
     caseStudies: '',
     writeUps: '',
     checklists: 'Checklist',
+    allContent: '',
   })
 
   const updateActiveTag = (tag: string, type: string) => {

@@ -39,11 +39,13 @@ export class RadioButtonGroup implements IRadioButtonGroup {
     this.onChangeRadioState = this.onChangeRadioState.bind(this)
     this.validationOnSubmit = this.validationOnSubmit.bind(this)
     this.checkRadioButtonsOnHaveValue = this.checkRadioButtonsOnHaveValue.bind(this)
+    this.checkPrechekedRadioButtons = this.checkPrechekedRadioButtons.bind(this)
   }
 
-  onChangeRadioState(value: string) {
+  onChangeRadioState(value: string, $eventBus: any) {
     this.radioButtonValue.value = value
     this.error.value = ''
+    $eventBus.$emit('resume-type', value)
   }
 
   validationOnSubmit() {
@@ -52,5 +54,14 @@ export class RadioButtonGroup implements IRadioButtonGroup {
 
   checkRadioButtonsOnHaveValue(radioButtons: IRadioButton[]) {
     return radioButtons.filter(radioButton => Boolean(radioButton.objectKeyName))
+  }
+
+  checkPrechekedRadioButtons(radioButtons: IRadioButton[], $eventBus: any) {
+    radioButtons.forEach(radioButton => {
+      if (radioButton.prechecked) {
+        this.radioButtonValue.value = radioButton.label
+        $eventBus.$emit('resume-type', radioButton.label)
+      }
+    })
   }
 }

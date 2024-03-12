@@ -8,7 +8,9 @@ const props = defineProps({
     required: true,
   },
 })
-const onChangeRadioState = (value: string) => props.radioButtonGroupInstance.onChangeRadioState(value)
+
+const { $eventBus } = useNuxtApp()
+const onChangeRadioState = (value: string) => props.radioButtonGroupInstance.onChangeRadioState(value, $eventBus)
 const { styles } = useStyleFormElement()
 const formUid = inject('formUid')
 const {
@@ -16,7 +18,12 @@ const {
   description,
   elementId,
   error,
+  checkPrechekedRadioButtons,
 } = props.radioButtonGroupInstance
+
+onMounted(() => {
+  checkPrechekedRadioButtons(radioButtons, $eventBus)
+})
 </script>
 <template>
   <div
@@ -25,6 +32,7 @@ const {
     :class="styles['form-radio-component']"
   >
     <p
+      v-if="description"
       :class="styles['form-radio-component__description']"
     >
       {{ description }}

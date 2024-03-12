@@ -36,4 +36,8 @@ export class FormDirector implements IFormDirector {
   makeSubscribeForm(options: any) {
     return new FormMaker(this.formBuilder, options).subscribeFormMaker()
   }
+
+  makeCareersForm(options: any) {
+    return new FormMaker(this.formBuilder, options).careersFormWithPrismicMaker()
+  }
 }
