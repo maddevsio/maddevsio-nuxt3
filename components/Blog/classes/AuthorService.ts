@@ -1,5 +1,4 @@
 import type { PrismicPlugin } from '@prismicio/vue'
-import { isFilled } from '@prismicio/helpers'
 import { fetchLinks } from '~/config/constants'
 import type { GlossaryDocument, PostDocument, WriteupDocument } from '~/prismicio-types'
 import type { TransformedWriteup, Writeup } from '~/components/Writeup/interfaces/IWriteupList'
