@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import type { PropType } from 'vue'
+import type { ImageField } from '@prismicio/client'
+
+interface PageContent {
+  title: string
+  description: string
+  image: ImageField
+}
 defineProps({
   pageContent: {
-    type: Object,
+    type: Object as PropType<PageContent>,
     default: () => ({
       title: '',
       description: '',

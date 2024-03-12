@@ -14,6 +14,7 @@ const writeupService = new Writeup()
 const { data: writeupData, error } = await useAsyncData('caseData', async () => {
   try {
     const writeupPageData = await writeupService.getWriteupPage(prismic, route.params.uid as string)
+    // @ts-ignore
     const pageContent = extractWriteupData(writeupPageData)
 
     // const { headerPlate } = pageContent

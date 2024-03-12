@@ -4,6 +4,7 @@ import type { WriteupDocument } from '~/prismicio-types'
 
 export const extractWriteupData = (writeupData: WriteupDocument) => {
   const ogImageWithoutCrop = writeupData?.data?.og_image?.url?.replace('compress,', '')
+  // @ts-ignore
   return {
     uid: writeupData?.uid,
     metaTitle: writeupData?.data?.meta_title,
@@ -18,9 +19,13 @@ export const extractWriteupData = (writeupData: WriteupDocument) => {
     updatedDate: writeupData?.data?.updated_date ? formatDate(writeupData.data?.updated_date) : '',
     tag: writeupData.tags.filter(tag => tag !== 'Writeup')[0],
     author: {
+      // @ts-ignore
       name: writeupData?.data?.author?.data?.name,
+      // @ts-ignore
       position: writeupData?.data?.author?.data?.position,
+      // @ts-ignore
       uid: writeupData?.data?.author?.uid,
+      // @ts-ignore
       image: writeupData?.data?.author?.data?.image,
     },
     headerPlate: {
