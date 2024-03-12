@@ -1,7 +1,7 @@
 import type { ImageField } from '@prismicio/types'
 import type { Ref } from 'vue'
 import type { Router } from 'vue-router'
-import type { PrismicPluginClient } from '@prismicio/vue/src/types'
+import type { PrismicPlugin } from '@prismicio/vue'
 
 export interface Writeup {
   uid: string
@@ -59,7 +59,7 @@ export interface IWriteupList {
   writeupListRef: Ref<any>
   currentPage: Ref<number>
   pageSize: number
-  prismic: PrismicPluginClient
+  prismic: PrismicPlugin
   router: Router
   getWriteups(page: number): Promise<void>
   changePage(page: number): Promise<void>

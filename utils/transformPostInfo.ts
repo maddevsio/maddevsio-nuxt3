@@ -1,6 +1,7 @@
 import type { PrismicPlugin } from '@prismicio/vue'
 
 export const transformPostInfo = (posts: any, $prismic: PrismicPlugin) => {
+  console.log(posts)
   return posts.map((postItem: any) => {
     if (!postItem && !postItem.data && !postItem.data.uid) { return null }
     return {

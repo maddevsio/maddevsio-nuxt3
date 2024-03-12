@@ -7,7 +7,7 @@ export const extractAuthorData = (author: Author): TransformedAuthor | {} => {
   const socialNetworks = author.data.social_networks
     .filter(item => item.network && item.link.url)
     .map(item => ({
-      key: item.network.toLowerCase(),
+      key: item.network?.toLowerCase(),
       title: item.network,
       link: item.link,
     }))
@@ -18,6 +18,7 @@ export const extractAuthorData = (author: Author): TransformedAuthor | {} => {
     uid: author.uid,
     name: author.data.name,
     position: author.data.position,
+    description: author.data?.description,
     thumbnailImage: author.data.thumbnail_image,
     image: author.data.image,
     metaTitle: author.data.meta_title,

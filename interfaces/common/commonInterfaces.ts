@@ -99,6 +99,7 @@ export interface Author {
     location: string
     name: string
     position: string
+    description: string
     thumbnail_image: ImageField
     image: ImageField & {
       header: ImageField
@@ -130,6 +131,7 @@ export interface TransformedAuthor {
   uid: string
   name: string
   position: string
+  description: string
   thumbnailImage: ImageField
   image: ImageField & {
     thumbnail: ImageField

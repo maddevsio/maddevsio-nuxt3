@@ -1,9 +1,9 @@
-import type { PrismicPluginClient } from '@prismicio/vue/src/types'
+import type { PrismicPlugin } from '@prismicio/vue'
 import { transformationWriteupListData } from '~/components/Writeup/helpers/transformationWriteupListData'
 import type { Writeups } from '~/components/Writeup/interfaces/IWriteupList'
 
 export class Writeup {
-  async getWriteupPages(prismic: PrismicPluginClient, tags: string[], pageSize = 5, page = 1) {
+  async getWriteupPages(prismic: PrismicPlugin, tags: string[], pageSize = 5, page = 1) {
     return await prismic.client.get({
       filters: [
         prismic.filter.any('document.type', ['writeup']),
