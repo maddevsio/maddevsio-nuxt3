@@ -5,7 +5,7 @@ interface BuildHeadData {
   title: string
   description: string
   url: string
-  jsonLd: string | ({ type: string; innerHTML: string; } | null)[] | SchemaOrgSnippet[]
+  jsonLd?: string | ({ type: string; innerHTML: string; } | null)[] | SchemaOrgSnippet[]
   image?: string
   metaTitle: string
   noindex?: boolean
