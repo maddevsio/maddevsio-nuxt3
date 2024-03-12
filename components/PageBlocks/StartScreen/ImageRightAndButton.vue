@@ -259,12 +259,15 @@ const showModalEbook = () => {
       align-items: center;
       padding: 14px 132.5px;
       margin-right: 32px;
-      @media screen and (max-width: 580px) {
-        padding: 14px 24px;
-      }
 
       @media screen and (max-width: 880px) {
         padding: 14px 100px;
+      }
+
+      @media screen and (max-width: 580px) {
+        width: 100%;
+        padding: 14px 24px;
+        margin-right: 0;
       }
 
       img {
