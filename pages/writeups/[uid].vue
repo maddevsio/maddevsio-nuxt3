@@ -56,7 +56,7 @@ useHead(buildHead({
     src: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js',
     body: true,
     defer: true,
-    callback: () => {
+    onload: () => {
       const autoloader = document.createElement('script')
       autoloader.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js'
       autoloader.defer = true
@@ -67,7 +67,8 @@ useHead(buildHead({
       document.body.appendChild(autoloader)
     },
   },
-]))
+],
+))
 </script>
 
 <template>
