@@ -17,6 +17,7 @@ export const transformationDigestListData = (results: Digest[], $prismic: Prismi
       uid: item?.uid,
       title: $prismic.asText(item.data?.title),
       subtitle: $prismic.asText(item.data?.subtitle),
+      featuredImage: item.data?.featuredImage,
       orderNumber: extractOrderNumber($prismic.asText(item.data?.title)),
       date: formatDate(item?.data?.date, true),
     }

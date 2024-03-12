@@ -1,0 +1,38 @@
+{
+  "id": "digest_post_card",
+  "type": "SharedSlice",
+  "name": "DigestPostCard",
+  "description": "DigestPostCard",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "DigestPostCard",
+      "primary": {
+        "post": {
+          "config": {
+            "label": "Blog post",
+            "customtypes": [
+              "post",
+              "customer_university"
+            ],
+            "select": "document"
+          },
+          "type": "Link"
+        },
+        "description": {
+          "config": {
+            "label": "description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        }
+      },
+      "items": {}
+    }
+  ]
+}
