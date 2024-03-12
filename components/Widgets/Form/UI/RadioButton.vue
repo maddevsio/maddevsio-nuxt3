@@ -30,6 +30,7 @@ const {
   type,
   label,
   name,
+  prechecked,
 } = props.radioButtonInstance
 </script>
 <template>
@@ -40,6 +41,7 @@ const {
       :type="type"
       :name="name"
       :value="label"
+      :checked="prechecked"
       :class="styles[`form-radio-component__input`]"
       @change="onChangeState($event)"
     >

@@ -1,5 +1,6 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
 import type { KeyTextField, NumberField, RichTextField } from '@prismicio/client'
+import type { VacancyDocumentDataBodySlice } from '~/prismicio-types'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -104,6 +105,7 @@ export interface Author {
     location: string
     name: string
     position: string
+    description: string
     thumbnail_image: ImageField
     image: ImageField & {
       header: ImageField
@@ -135,6 +137,7 @@ export interface TransformedAuthor {
   uid: string
   name: string
   position: string
+  description: string
   thumbnailImage: ImageField
   image: ImageField & {
     thumbnail: ImageField
@@ -344,4 +347,25 @@ export interface DigestPost {
   type: string
   digestsList: string[]
   ogImageUrl: string | undefined
+}
+
+export interface TransformedVacancy {
+  type: string
+  id: string
+  uid: string
+  huntflowVacancyId: KeyTextField
+  position: KeyTextField
+  title: KeyTextField
+  subtitle: KeyTextField
+  labels: {
+    remote: boolean
+    relocation: boolean
+  }
+  tags: string[]
+  slices: VacancyDocumentDataBodySlice[]
+  metaTitle: KeyTextField
+  metaDescription: KeyTextField
+  date: KeyTextField
+  schemaOrgSnippet: ({ type: string; innerHTML: string; } | null)[] | null
+  released: boolean
 }

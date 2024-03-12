@@ -14,10 +14,12 @@ export class Field implements IField {
     correctEmail: 'Please, type correct email.',
     correctBusinessEmail: 'Please, type correct business email.',
     longText: (size: number) => `Maximum length ${ size } characters.`,
-    phoneNumber: 'Please, type correct phone number.',
+    phoneNumber: 'Please, type correct phone number including country code.',
     xss: 'Please, type correct value.',
     requiredField: 'This field is required.',
     emailExists: 'Your email already exists.',
+    fileSize: 'File size must be less than 5MB',
+    fileExtensions: 'File extension must be PDF, DOC or DOCX',
   }
 
   private readonly validationTypes: Record<string, ValidationTypes> = {
@@ -26,6 +28,8 @@ export class Field implements IField {
     longText: ValidationTypes.LONG_TEXT,
     email: ValidationTypes.EMAIL,
     existingEmail: ValidationTypes.EXISTING_EMAIL,
+    file: ValidationTypes.FILE,
+    linkedinLink: ValidationTypes.LINKEDIN_LINK,
   }
 
   private readonly ignoreEmailDomains = [
@@ -56,6 +60,7 @@ export class Field implements IField {
   error: Ref<string | boolean>
   showCheckMark: Ref<boolean>
   verifiedSuccess: Ref<boolean>
+  $eventBus: any
 
   constructor({
     objectKeyName = '',
@@ -66,6 +71,7 @@ export class Field implements IField {
     validationType = '',
     longTextLimit = 2500,
     required = false,
+    $eventBus,
   }: FieldProps) {
     this.objectKeyName = objectKeyName
     this.elementId = elementId
@@ -79,6 +85,7 @@ export class Field implements IField {
     this.error = ref('')
     this.showCheckMark = ref(false)
     this.verifiedSuccess = ref(false)
+    this.$eventBus = $eventBus
     this.onChangeValue = this.onChangeValue.bind(this)
     this.realTimeValidation = this.realTimeValidation.bind(this)
     this.validationOnSubmit = this.validationOnSubmit.bind(this)
@@ -143,6 +150,22 @@ export class Field implements IField {
     }
   }
 
+  fileValidation() {
+    if (this.fieldValue.value) {
+      // @ts-ignore
+      if (this.fieldValue.value.size > 5000000) {
+        return this.errorMessages.fileSize
+      }
+      const re = /(\.pdf|\.doc|\.docx)$/i
+      // @ts-ignore
+      if (!re.exec(this.fieldValue.value.name)) {
+        return this.errorMessages.fileExtensions
+      }
+    }
+
+    return ''
+  }
+
   realTimeValidation() {
     this.error.value = ''
     if (this.xssValidation()) { return this.xssValidation() }
@@ -154,6 +177,8 @@ export class Field implements IField {
       this.longTextValidation()) { return this.longTextValidation() }
     if (this.validationType === this.validationTypes.phone &&
       this.phoneValidation()) { return this.phoneValidation() }
+    if (this.validationType === this.validationTypes.file &&
+    this.fileValidation()) { return this.fileValidation() }
 
     return ''
   }
@@ -206,6 +231,16 @@ export class Field implements IField {
     this.error.value = this.realTimeValidation()
     this.verifiedSuccess.value = !this.error.value
     this.resetEmptyPhoneField()
+    this.showCheckMark.value = !(!this.fieldValue.value && !this.error.value)
+  }
+
+  handleFileSelect(event: Event) {
+    const target = event.target as HTMLInputElement
+    const [file] = target.files as FileList
+    // @ts-ignore
+    this.fieldValue.value = file
+    this.error.value = this.realTimeValidation()
+    this.verifiedSuccess.value = !this.error.value
     this.showCheckMark.value = !(!this.fieldValue.value && !this.error.value)
   }
 }

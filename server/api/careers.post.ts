@@ -38,7 +38,7 @@ export default defineEventHandler(async event => {
     file = event.node.req.file
   }
   // @ts-ignore
-  const { body: data } = JSON.parse(event.node.req.body.payload)
+  const data = JSON.parse(event.node.req.body.payload)
 
   if (data.email.variables.fullName === 'Test Testovich') {
     throw createError({

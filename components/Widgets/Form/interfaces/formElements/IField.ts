@@ -22,6 +22,8 @@ export enum ValidationTypes {
   LONG_TEXT = 'longText',
   EMAIL = 'email',
   EXISTING_EMAIL = 'existingEmail',
+  FILE = 'file',
+  LINKEDIN_LINK = 'linkedinLink',
 }
 
 export interface FieldProps {
@@ -33,6 +35,7 @@ export interface FieldProps {
   validationType: string
   longTextLimit?: number
   required: boolean
+  $eventBus?: any
 }
 
 export interface IField {
@@ -63,4 +66,5 @@ export interface IField {
   onFocusInput(): void
   phoneNumberFormat(event: InputEvent): void
   checkEmailInLocalStorage(): void
+  handleFileSelect(event: Event): void
 }

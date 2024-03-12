@@ -1,17 +1,20 @@
 <script setup lang="ts">
-interface Props {
-  tag: string
-  disabled?: boolean
-  theme: string
-}
-
-const { tag } = withDefaults(defineProps<Props>(), {
-  tag: '',
-  disabled: false,
-  theme: 'light',
+const props = defineProps({
+  tag: {
+    type: String,
+    default: '',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  theme: {
+    type: String,
+    default: 'light',
+  },
 })
 
-const link = linkResolver({ type: 'tag', uid: convertStringToSlug(tag) })
+const link = linkResolver({ type: 'tag', uid: convertStringToSlug(props.tag) })
 </script>
 <template>
   <NuxtLink

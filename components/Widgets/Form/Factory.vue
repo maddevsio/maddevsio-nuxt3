@@ -21,6 +21,11 @@ const {
     type: Object as PropType<FormTypes>,
     required: true,
   },
+
+  customError: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const router = useRouter()
@@ -58,7 +63,7 @@ const showSuccessFullMessage = successMessage.showSuccessfulMessage
       :success-message="successMessage"
     />
     <LazySharedUIError
-      v-if="error"
+      v-if="error && !customError"
       :error="error.toString()"
     />
     <VueRecaptcha
