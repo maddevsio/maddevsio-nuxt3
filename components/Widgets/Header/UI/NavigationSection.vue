@@ -183,7 +183,7 @@ const headerVar = computed(() => ({
     }
 
     &--active {
-      color: $text-color--red !important;
+      color: $text-color--red;
 
       &::before {
         opacity: 1;

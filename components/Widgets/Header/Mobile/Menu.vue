@@ -21,6 +21,7 @@ defineProps({
 })
 
 defineEmits(['set-active-chapter'])
+const route = useRoute()
 </script>
 <template>
   <div
@@ -49,6 +50,7 @@ defineEmits(['set-active-chapter'])
           <NuxtLink
             :to="subMenuItem.url"
             class="header-mobile-menu__page"
+            :class="{ 'header-mobile-menu__page--active': route.path.includes(subMenuItem.url) }"
             @click.prevent="resetState"
           >
             {{ subMenuItem.name }}
@@ -85,6 +87,14 @@ defineEmits(['set-active-chapter'])
         padding: 18px 0;
         color: $text-color--grey-opacity-20-percent;
         transition: all .15s ease;
+
+        &--active {
+          color: $text-color--red;
+
+          &::before {
+            opacity: 1;
+          }
+        }
 
         &.router-link-active {
           color: $text-color--red;
