@@ -30,7 +30,7 @@ const {
   >
     <div class="container">
       <NuxtLink
-        :to="'https://google.com'"
+        :to="url"
         :external="!ourDomain"
         :target="ourDomain ? '' : '_blank'"
         class="ui-outlined-button"

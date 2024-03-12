@@ -22,7 +22,7 @@ const setClassnames = (elemName = '') => (platform
     <NuxtImg
       provider="prismic"
       :class="setClassnames()"
-      :src="imageUrl.replace(/\?.*/, '?auto=compress,format')"
+      :src="imageUrl"
       :alt="imageAlt || 'Expert photo'"
       width="281"
       height="281"
