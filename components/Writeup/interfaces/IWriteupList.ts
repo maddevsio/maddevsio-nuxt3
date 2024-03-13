@@ -22,10 +22,10 @@ export interface Writeup {
 
 export interface TransformedWriteup {
   uid: string
-  date: string
-  title: string
+  date?: string
+  title?: string
   tags: string[]
-  author: {
+  author?: {
     name: string
     position: string
     uid: string
@@ -40,6 +40,13 @@ export interface Writeups {
   prev_page: string | null
 }
 
+export interface TransformedWriteups {
+  writeupList: Writeup[]
+  totalPages: number
+  nextPage: string | null
+  prevPage: string | null
+}
+
 export interface WriteupListProps {
   primary: {
     backgroundColor: string
@@ -50,8 +57,8 @@ export interface WriteupListProps {
 }
 
 export interface IWriteupList {
-  sliceBackgroundColor: string
-  tags: string[]
+  sliceBackgroundColor?: string
+  tags?: string[]
   writeups: Ref<TransformedWriteup[]>
   totalPages: Ref<number>
   nextPage: Ref<string | null>
