@@ -152,8 +152,8 @@ export interface TransformedAuthor {
     btnText?: string
     btnLink?: string
     backgroundColor?: string
-  },
-  socialNetworks: TransformedAuthorSocialNetwork[],
+  } | null
+  socialNetworks: TransformedAuthorSocialNetwork[]
 }
 
 export interface BlogPost {
@@ -292,7 +292,7 @@ export interface TransformedChecklist {
     btnText: KeyTextField
     btnLink: KeyTextField
     backgroundColor: KeyTextField
-  }
+  } | null
 }
 
 export interface TransformedCustomType {
@@ -368,4 +368,10 @@ export interface TransformedVacancy {
   date: KeyTextField
   schemaOrgSnippet: ({ type: string; innerHTML: string; } | null)[] | null
   released: boolean
+  headerPlate: {
+    text: KeyTextField
+    btnText: KeyTextField
+    btnLink: KeyTextField
+    backgroundColor: KeyTextField
+  } | null
 }

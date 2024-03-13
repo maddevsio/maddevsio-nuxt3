@@ -85,6 +85,7 @@ export const ANALYTICS_IDS = {
 
 export const SMARTLOOK_EVENT_CATEGORIES = {
   SUBMIT: 'submit_form',
+  CLICK: 'click',
 }
 
 export const SMARTLOOK_EVENTS = {
@@ -94,4 +95,5 @@ export const SMARTLOOK_EVENTS = {
   submitEbookForm: 'submit_ebook_form',
   submitCv: 'submit_cv',
   submitNewsletter: 'submit_newsletter',
+  clickHeaderCta: 'click_header_cta',
 }

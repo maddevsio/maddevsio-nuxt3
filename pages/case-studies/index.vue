@@ -7,6 +7,8 @@ const route = useRoute()
 const { isDesktop, isTablet, isMobile } = useDevice()
 const caseStudiesService = new CaseStudiesService(prismic)
 const config = useRuntimeConfig()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: caseStudiesMainPage, error } = await useAsyncData('caseStudiesMainPage', async () => {
   try {
@@ -24,13 +26,13 @@ const { data: caseStudiesMainPage, error } = await useAsyncData('caseStudiesMain
 
     const allCasesPagesData = await caseStudiesService.loadCasesPagesData(pageSize, route, config.public.ffEnvironment)
 
-    const { tagCloud } = pageContent
+    const { tagCloud, headerPlate } = pageContent
 
     const tags = tagCloud.length ? tagCloud[0].items : []
 
-    // if (!$cookies.get(`seenArticlePlate_${route.path}`)) {
-    //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
-    // }
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(headerPlate)
+    }
 
     if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({
@@ -59,6 +61,8 @@ const { data: caseStudiesMainPage, error } = await useAsyncData('caseStudiesMain
 if (error.value) {
   throw createError({ statusMessage: 'Page not found', statusCode: 404 })
 }
+
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead({

@@ -31,12 +31,14 @@ export class CaseStudiesService {
       title: caseStudiesPageData.data?.title,
       description: caseStudiesPageData.data?.description,
       image: caseStudiesPageData.data?.image,
-      headerPlate: {
-        text: caseStudiesPageData.data?.header_plate_text,
-        btnText: caseStudiesPageData.data?.header_plate_button_text,
-        btnLink: caseStudiesPageData.data?.header_plate_link,
-        backgroundColor: caseStudiesPageData.data?.header_plate_background_color,
-      },
+      headerPlate: caseStudiesPageData.data?.header_plate_text
+        ? {
+          text: caseStudiesPageData.data?.header_plate_text,
+          btnText: caseStudiesPageData.data?.header_plate_button_text,
+          btnLink: caseStudiesPageData.data?.header_plate_link,
+          backgroundColor: caseStudiesPageData.data?.header_plate_background_color,
+        }
+        : null,
     }
   }
 

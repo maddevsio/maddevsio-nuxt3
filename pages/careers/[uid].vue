@@ -8,6 +8,8 @@ const config = useRuntimeConfig()
 const route = useRoute()
 const careersService = new CareersService(prismic, config.public.domain)
 const openGraphUrl = `${ config.public.domain }/careers/${ route.params.uid }/`
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: vacancyData, error } = await useAsyncData('vacancyData', async () => {
   try {
@@ -18,6 +20,10 @@ const { data: vacancyData, error } = await useAsyncData('vacancyData', async () 
       navigateTo('/careers/', {
         redirectCode: 303,
       })
+    }
+
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(vacancy.headerPlate)
     }
 
     return vacancy
@@ -33,6 +39,8 @@ if (error.value) {
     redirectCode: 303,
   })
 }
+
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead({

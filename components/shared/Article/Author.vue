@@ -38,14 +38,13 @@ const shortName = name.substr(0, 100)
       v-if="image"
       class="post-author__image"
     >
-      <NuxtImg
-        provider="prismic"
+      <img
         loading="lazy"
         :src="image.url"
         :alt="image.alt || 'Image'"
         width="70"
         height="70"
-      />
+      >
     </div>
     <div
       v-else

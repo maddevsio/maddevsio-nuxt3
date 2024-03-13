@@ -8,6 +8,8 @@ import { components } from '~/prismicSlices'
 const route = useRoute()
 const prismic = usePrismic()
 const config = useRuntimeConfig()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: expertData, error } = await useAsyncData('expertData', async () => {
   try {
@@ -22,6 +24,19 @@ const { data: expertData, error } = await useAsyncData('expertData', async () =>
       // @ts-ignore
       expert?.data?.schemaOrgSnippets[0]?.singleSnippet[0]?.text) {
       schemaOrgSnippet = extractSchemaOrg(expert.data.schemaOrgSnippets as SchemaOrgSnippet[])
+    }
+
+    const headerPlate = expert.data?.header_plate_text
+      ? {
+        text: expert.data?.header_plate_text,
+        btnText: expert.data?.header_plate_button_text,
+        btnLink: expert.data?.header_plate_link,
+        backgroundColor: expert.data?.header_plate_background_color,
+      }
+      : null
+
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(headerPlate)
     }
 
     return {

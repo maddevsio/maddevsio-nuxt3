@@ -26,12 +26,14 @@ export const extractAuthorData = (author: Author): TransformedAuthor | {} => {
     noindex: author.data.noindex,
     schemaOrgSnippet: extractSchemaOrg(author.data.schema_org_snippets),
     personalPageLink: linkResolver({ type: 'author', uid: author.uid }),
-    headerPlate: {
-      text: author.data?.header_plate_text,
-      btnText: author.data?.header_plate_button_text,
-      btnLink: author.data?.header_plate_link,
-      backgroundColor: author.data?.header_plate_background_color,
-    },
+    headerPlate: author.data?.header_plate_text
+      ? {
+        text: author.data?.header_plate_text,
+        btnText: author.data?.header_plate_button_text,
+        btnLink: author.data?.header_plate_link,
+        backgroundColor: author.data?.header_plate_background_color,
+      }
+      : null,
     socialNetworks,
   }
 }
