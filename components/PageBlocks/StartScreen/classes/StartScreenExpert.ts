@@ -40,6 +40,8 @@ export class StartScreenExpert implements IStartScreenExpert {
       location: this.authorData.location || '',
       socialNetworks: this.socialNetworksObj.value,
     })
+
+    this.generateSocialNetworks = this.generateSocialNetworks.bind(this)
   }
 
   generateSocialNetworks() {
