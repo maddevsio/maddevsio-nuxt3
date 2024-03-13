@@ -1,8 +1,7 @@
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
-import type { SchemaOrgSnippet } from '~/interfaces/common/commonInterfaces'
-import type { WriteupDocument } from '~/prismicio-types'
+import type { SchemaOrgSnippet, WriteupPost } from '~/interfaces/common/commonInterfaces'
 
-export const extractWriteupData = (writeupData: WriteupDocument) => {
+export const extractWriteupData = (writeupData: WriteupPost) => {
   const ogImageWithoutCrop = writeupData?.data?.og_image?.url?.replace('compress,', '')
   // @ts-ignore
   return {
@@ -19,13 +18,9 @@ export const extractWriteupData = (writeupData: WriteupDocument) => {
     updatedDate: writeupData?.data?.updated_date ? formatDate(writeupData.data?.updated_date) : '',
     tag: writeupData.tags.filter(tag => tag !== 'Writeup')[0],
     author: {
-      // @ts-ignore
       name: writeupData?.data?.author?.data?.name,
-      // @ts-ignore
       position: writeupData?.data?.author?.data?.position,
-      // @ts-ignore
       uid: writeupData?.data?.author?.uid,
-      // @ts-ignore
       image: writeupData?.data?.author?.data?.image,
     },
     headerPlate: {

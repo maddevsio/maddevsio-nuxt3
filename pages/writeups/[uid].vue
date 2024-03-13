@@ -3,17 +3,18 @@ import { buildHead } from '~/SEO/buildMetaTags'
 import { Writeup } from '~/components/Writeup/classes/Writeup'
 import { extractWriteupData } from '~/components/Writeup/helpers/extractWriteupData'
 import 'prismjs/themes/prism-tomorrow.min.css'
+import type { WriteupPost } from '~/interfaces/common/commonInterfaces'
 
 const prismic = usePrismic()
 const route = useRoute()
+const config = useRuntimeConfig()
 const { updateFooterVisible } = useFooterStore()
 
 const writeupService = new Writeup()
 
 const { data: writeupData, error } = await useAsyncData('caseData', async () => {
   try {
-    const writeupPageData = await writeupService.getWriteupPage(prismic, route.params.uid as string)
-    // @ts-ignore
+    const writeupPageData = await writeupService.getWriteupPage(prismic, route.params.uid as string) as WriteupPost
     const pageContent = extractWriteupData(writeupPageData)
 
     // const { headerPlate } = pageContent
@@ -22,7 +23,7 @@ const { data: writeupData, error } = await useAsyncData('caseData', async () => 
     //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
     // }
 
-    if (!pageContent.released && process.env.ffEnvironment === 'production') {
+    if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })
     }
 

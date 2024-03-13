@@ -7,6 +7,7 @@ import type { Writeups } from '~/components/Writeup/interfaces/IWriteupList'
 
 const prismic = usePrismic()
 const route = useRoute()
+const config = useRuntimeConfig()
 const { updateFooterVisible } = useFooterStore()
 
 const writeupService = new Writeup()
@@ -30,7 +31,7 @@ const { data: writeupData, error } = await useAsyncData('writeupData', async () 
     //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
     // }
 
-    if (!pageContent.released && process.env.ffEnvironment === 'production') {
+    if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })
     }
 
