@@ -54,7 +54,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
     }
 
     :deep(.subscribe-form__btn) {
-      width: 23%;
+      width: 22.5%;
     }
   }
 
@@ -129,7 +129,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     padding: 125px 0 64px;
 
     &__title {
@@ -138,6 +138,16 @@ const { $getMediaFromS3 } = useMediaFromS3()
 
     &__subtitle {
       margin-bottom: 32px;
+    }
+
+    &__form {
+      :deep(.subscribe-form__input) {
+        width: 60%;
+      }
+
+      :deep(.subscribe-form__btn) {
+        width: 41%;
+      }
     }
   }
 }

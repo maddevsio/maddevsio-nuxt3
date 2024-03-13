@@ -33,6 +33,8 @@ const linkClickEvent = (event: Event, cb: Function, path: string) => {
   resetState(path)
 }
 
+const route = useRoute()
+
 const headerVar = computed(() => ({
   '--headerHeight': `${ headerStore.headerHeight - (headerStore.headerHeight - sectionPaddingTop) }px`,
 }))
@@ -65,6 +67,7 @@ const headerVar = computed(() => ({
               <NuxtLink
                 :to="navItem.url"
                 class="header-navigation-section__menu-list-link"
+                :class="{ 'header-navigation-section__menu-list-link--active': route.path.includes(navItem.url) }"
                 @click="linkClickEvent($event, navItem.sendAnalyticsEvent, navItem.url)"
               >
                 {{ navItem.name }}
@@ -173,6 +176,14 @@ const headerVar = computed(() => ({
       & {
         color: $text-color--red;
       }
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &--active {
+      color: $text-color--red;
 
       &::before {
         opacity: 1;

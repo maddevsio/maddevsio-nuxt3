@@ -1,5 +1,5 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
-import type { KeyTextField, NumberField, RichTextField } from '@prismicio/client'
+import type { BooleanField, DateField, KeyTextField, NumberField, RichTextField, SelectField } from '@prismicio/client'
 import type { VacancyDocumentDataBodySlice } from '~/prismicio-types'
 
 export interface IntersectionObserverInstance {
@@ -374,4 +374,34 @@ export interface TransformedVacancy {
     btnLink: KeyTextField
     backgroundColor: KeyTextField
   } | null
+}
+
+export interface WriteupPost {
+  uid: string
+  data?: {
+    body?: {
+      slice_type?: string
+      slice_variation?: string
+      primary: {
+        text?: RichTextField
+      }
+    }[]
+    title?: KeyTextField
+    date?: string
+    header_plate_background_color?: SelectField
+    header_plate_button_text?: KeyTextField
+    header_plate_link: KeyTextField
+    header_plate_text: KeyTextField
+    meta_description: KeyTextField
+    meta_title?: KeyTextField
+    author?: Author
+    schema_org_snippets: SchemaOrgSnippet[]
+    updated_date?: DateField
+    created_date?: DateField
+    released: BooleanField
+    og_image: ImageField
+  }
+  first_publication_date?: string
+  last_publication_date?: string
+  tags: string[]
 }

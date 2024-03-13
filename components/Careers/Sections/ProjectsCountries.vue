@@ -63,7 +63,6 @@ const { $getMediaFromS3 } = useMediaFromS3()
   }
 
   &_img-wrap {
-    min-width: 481px;
     position: relative;
     left: 50%;
     transform: translateX(-50%);

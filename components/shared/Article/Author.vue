@@ -6,7 +6,7 @@ interface Props {
   disabled?: boolean
   name: string
   position: string
-  date: string
+  date?: string
   image: ImageField | undefined
   theme: string
   readTime?: string
@@ -38,13 +38,14 @@ const shortName = name.substr(0, 100)
       v-if="image"
       class="post-author__image"
     >
-      <img
+      <NuxtImg
+        provider="prismic"
         loading="lazy"
         :src="image.url"
         :alt="image.alt || 'Image'"
         width="70"
         height="70"
-      >
+      />
     </div>
     <div
       v-else
@@ -115,6 +116,7 @@ const shortName = name.substr(0, 100)
       min-width: 70px;
       height: 70px;
       border-radius: 9.4px;
+      object-fit: contain;
     }
   }
 
