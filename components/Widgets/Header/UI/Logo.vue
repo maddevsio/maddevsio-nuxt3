@@ -25,8 +25,8 @@ watch(showTextLogo, () => {
   showText.value = showTextLogo.value
 }, { immediate: true })
 
-watch(route, newVal => {
-  showTextLogoInTransparency.value = newVal.path !== '/transparency/'
+watch(() => route.path, newValue => {
+  showTextLogoInTransparency.value = newValue !== '/transparency/'
 }, { immediate: true })
 
 const activateLogo = (element: HTMLElement) => {
