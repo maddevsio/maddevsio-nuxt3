@@ -2,9 +2,27 @@
 import { buildHead, getMetadata } from '~/SEO/buildMetaTags'
 
 const prismic = usePrismic()
+const route = useRoute()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
+
 const { data: blogHome, error } = await useAsyncData('blogHome', async () => {
   try {
     const { data } = await prismic.client.getSingle('blog_home')
+
+    if (!cookiePlate.value) {
+      const headerPlate = data.header_plate_text
+        ? {
+          text: data.header_plate_text,
+          btnText: data.header_plate_button_text,
+          btnLink: data.header_plate_link,
+          backgroundColor: data.header_plate_background_color,
+        }
+        : null
+
+      updateHeaderPlateData(headerPlate)
+    }
+
     return data
   } catch (e) {
     showError({ message: 'Page not found', statusCode: 404 })
@@ -19,6 +37,8 @@ if (blogHome.value) {
   provide('blogHeaderBackgroundImage', blogHome.value.image)
   provide('tags', structuredTags(blogHome.value.categories, prismic))
 }
+
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead({

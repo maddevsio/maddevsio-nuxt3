@@ -95,6 +95,7 @@ export default defineNuxtConfig({
       },
     }],
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/device',
     ['nuxt-delay-hydration', {
       mode: 'mount',
@@ -171,6 +172,16 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
+    '/open-source/': { prerender: true },
+    '/careers/': { prerender: true },
+    '/delivery-models/': { prerender: true },
+    '/delivery-models/**': { prerender: true },
+    '/transparency/': { prerender: true },
+    '/our-philosophy/': { prerender: true },
+    '/nda/': { prerender: true },
+    '/gdpr/': { prerender: true },
+    '/blog/': { prerender: true },
+    '/digest/': { prerender: true },
     '/api/leads': {
       security: {
         rateLimiter: {

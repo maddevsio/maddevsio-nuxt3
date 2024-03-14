@@ -6,18 +6,19 @@ const prismic = usePrismic()
 const route = useRoute()
 const caseStudiesService = new CaseStudiesService(prismic)
 const config = useRuntimeConfig()
-const { updateFooterVisible } = useFooterStore()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: caseData, error } = await useAsyncData('caseData', async () => {
   try {
     const caseStudiesPageData = await caseStudiesService.getCaseStudiesPageContent(route.params.uid as string)
     const pageContent = caseStudiesService.extractCaseStudiesHomePageData(caseStudiesPageData, config.public.domain)
 
-    // const { headerPlate } = pageContent
-    //
-    // if (!$cookies.get(`seenArticlePlate_${route.path}`)) {
-    //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
-    // }
+    const { headerPlate } = pageContent
+
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(headerPlate)
+    }
 
     if (!pageContent.released && process.env.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })
@@ -35,9 +36,7 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-onBeforeRouteLeave(() => {
-  updateFooterVisible(true)
-})
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead({

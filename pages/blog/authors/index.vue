@@ -5,14 +5,25 @@ import { buildHead } from '~/SEO/buildMetaTags'
 import type { TransformedCustomType } from '~/interfaces/common/commonInterfaces'
 
 const { client } = usePrismic()
-const { updateFooterVisible } = useFooterStore()
+const route = useRoute()
 const config = useRuntimeConfig()
+const { updateFooterVisible } = useFooterStore()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
+
 const { data: authorsHome, error } = await useAsyncData('authorsHome', async () => {
   try {
     const response = await client.getByUID('custom_page', 'authors', {
       fetchLinks,
     })
-    return extractCustomPageData(response) as TransformedCustomType
+
+    const authorPage = extractCustomPageData(response) as TransformedCustomType
+
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(authorPage.headerPlate)
+    }
+
+    return authorPage
   } catch (e: any) {
     showError({ statusMessage: e.toString(), statusCode: 404 })
   }
@@ -22,13 +33,12 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-onBeforeRouteLeave(() => {
-  updateFooterVisible(true)
-})
+useClearStoresBeforeRouteLeave()
 
 if (authorsHome.value?.uid) {
   updateFooterVisible(authorsHome.value.showFooter)
 }
+
 // @ts-ignore
 useHead(buildHead({
   url: `${ config.public.domain }/authors/`,

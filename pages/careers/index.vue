@@ -5,9 +5,13 @@ import { buildHead, getMetadata } from '~/SEO/buildMetaTags'
 const prismic = usePrismic()
 const config = useRuntimeConfig()
 const careersService = new CareersService(prismic, config.public.domain)
+const route = useRoute()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: careersHome, error } = await useAsyncData('careersHome', async () => {
   try {
+    let headerPlate = null
     const careersHome = await careersService.getCareersHome()
     const vacancyCategories = careersHome.data.vacancy_categories.map(category => ({
       title: category.category_title,
@@ -15,6 +19,21 @@ const { data: careersHome, error } = await useAsyncData('careersHome', async () 
     }))
     const response = await careersService.getVacancies()
     const vacancies = response.results.map(vacancy => careersService.extractVacancyData(vacancy))
+
+    if (careersHome.data.header_plate_text) {
+      headerPlate = careersHome.data.header_plate_text
+        ? {
+          text: careersHome.data.header_plate_text,
+          btnText: careersHome.data.header_plate_button_text,
+          btnLink: careersHome.data.header_plate_link,
+          backgroundColor: careersHome.data.header_plate_background_color,
+        }
+        : null
+    }
+
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(headerPlate)
+    }
 
     return {
       vacancyCategories,
@@ -31,6 +50,8 @@ if (error.value) {
 
 provide('vacancyCategories', careersHome.value?.vacancyCategories)
 provide('vacancies', careersHome.value?.vacancies)
+
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead(

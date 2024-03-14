@@ -6,18 +6,19 @@ const prismic = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
 const checklistService = new ChecklistService(prismic, config.public.domain)
-const { updateFooterVisible } = useFooterStore()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: checklist, error } = await useAsyncData('checklist', async () => {
   try {
     const checklistMainPageData = await checklistService.getChecklistsPageContent(route.params.uid as string)
     const checklistPageContent = checklistService.extractChecklistMainPageData(checklistMainPageData)
 
-    // const { headerPlate } = checklistPageContent
-    //
-    // if (!$cookies.get(`seenArticlePlate_${route.path}`)) {
-    //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
-    // }
+    const { headerPlate } = checklistPageContent
+
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(headerPlate)
+    }
 
     if (!checklistPageContent.released && config.public.ffEnvironment === 'production') {
       showError({
@@ -41,9 +42,7 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-onBeforeRouteLeave(() => {
-  updateFooterVisible(true)
-})
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead({
