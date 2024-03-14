@@ -43,6 +43,7 @@ const shortName = name.substr(0, 100)
         loading="lazy"
         :src="image.url"
         :alt="image.alt || 'Image'"
+        sizes="mobile:180px tablet:180px desktop:180px"
         width="70"
         height="70"
       />

@@ -7,6 +7,7 @@ import type { TransformedCustomType } from '~/interfaces/common/commonInterfaces
 const { client } = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
+const { updateFooterVisible } = useFooterStore()
 const { updateHeaderPlateData } = useHeaderPlateStore()
 const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
@@ -32,13 +33,12 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-onBeforeRouteLeave(() => {
-  updateFooterVisible(true)
-})
+useClearStoresBeforeRouteLeave()
 
 if (authorsHome.value?.uid) {
   updateFooterVisible(authorsHome.value.showFooter)
 }
+
 // @ts-ignore
 useHead(buildHead({
   url: `${ config.public.domain }/authors/`,
