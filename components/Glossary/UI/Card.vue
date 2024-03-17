@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-
-interface Word {
-  wordUID: string
-  wordTitle: string
-}
+import type { IGlossaryWord } from '~/components/Glossary/interfaces/IGlossaryWord'
 
 defineProps({
   word: {
-    type: Object as PropType<Word>,
+    type: Object as PropType<IGlossaryWord>,
     default: () => ({}),
   },
 
