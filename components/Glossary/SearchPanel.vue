@@ -1,5 +1,12 @@
 <script setup lang="ts">
-
+const { isMobile } = useCheckMobile(680)
+const glossaryStore = useGlossaryStore()
+const { searchIsActive, searchValue } = storeToRefs(glossaryStore)
+const {
+  openSearchPanel,
+  closeSearchPanel,
+  searchQuery,
+} = glossaryStore
 </script>
 
 <template>
@@ -28,7 +35,7 @@
         />
       </svg>
     </label>
-    <transition name="slide-right">
+    <Transition name="slide-right">
       <div
         v-show="searchIsActive || isMobile"
         class="glossary-search-panel__input-wrapper"
@@ -62,7 +69,7 @@
           </svg>
         </button>
       </div>
-    </transition>
+    </Transition>
   </div>
 </template>
 

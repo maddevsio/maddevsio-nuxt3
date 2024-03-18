@@ -1,11 +1,10 @@
 import type { GlossaryWord, IGlossaryNewestWords } from '~/components/Glossary/interfaces/IGlossaryNewestWords'
-import type { GlossaryPost } from '~/interfaces/common/commonInterfaces'
-import { transformGlossaryWords } from '~/components/Glossary/helpers/transformGlossaryWords'
+import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
 
 export class GlossaryNewestWords implements IGlossaryNewestWords {
   lastWords: GlossaryWord[]
 
-  constructor(wordsData: GlossaryPost[]) {
+  constructor(wordsData: GlossaryPage[]) {
     this.lastWords = transformGlossaryWords(wordsData)
   }
 }

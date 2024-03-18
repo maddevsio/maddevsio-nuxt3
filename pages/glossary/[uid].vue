@@ -2,9 +2,11 @@
 import { buildHead } from '~/SEO/buildMetaTags'
 import { GlossaryService } from '~/components/Glossary/classes/GlossaryService'
 import { extractGlossaryPostData } from '~/components/Glossary/helpers/extractGlossaryPostData'
-import type { GlossaryPost } from '~/interfaces/common/commonInterfaces'
+import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
 import { extractGlossaryStartScreenData } from '~/components/Glossary/helpers/extractGlossaryStartScreenData'
 import { filterLastGlossaryWords } from '~/components/Glossary/helpers/filterLastGlossaryWords'
+import { extractGlossaryPageData } from '~/components/Glossary/helpers/extractGlossaryPageData'
+import type { IGlossaryService } from '~/components/Glossary/interfaces/IGlossaryService'
 
 const prismic = usePrismic()
 const route = useRoute()
@@ -14,8 +16,9 @@ const { updateFooterVisible } = useFooterStore()
 
 const { data: glossaryData, error } = await useAsyncData('glossaryPost', async () => {
   try {
-    const glossaryPostData = await glossaryService.getGlossaryPostContent(route.params.uid as string) as GlossaryPost
-    const glossaryPostContent = extractGlossaryPostData(glossaryPostData, config.public.domain)
+    const glossaryPostData = await glossaryService.getGlossaryPageContent(route.params.uid as string) as GlossaryPage
+    const glossaryPostContent = extractGlossaryPostData(glossaryPostData)
+    const glossaryPageData = extractGlossaryPageData(glossaryPostData, config.public.domain)
     const glossaryStartScreenData = extractGlossaryStartScreenData(glossaryPostData)
 
     const currentPageWordTitle = glossaryStartScreenData?.wordTitle
@@ -28,7 +31,7 @@ const { data: glossaryData, error } = await useAsyncData('glossaryPost', async (
       [tagForSubtitle],
       { field: 'my.glossary.word_title', direction: 'desc' })
 
-    const lastNewestFilteredWords = filterLastGlossaryWords(lastNewestGlossaryPages.results as GlossaryPost[], currentPageWordTitle)
+    const lastNewestFilteredWords = filterLastGlossaryWords(lastNewestGlossaryPages.results as GlossaryPage[], currentPageWordTitle)
 
     // const { headerPlate } = glossaryPostContent
     //
@@ -36,7 +39,7 @@ const { data: glossaryData, error } = await useAsyncData('glossaryPost', async (
     //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
     // }
 
-    if (!glossaryPostContent?.released && config.public.ffEnvironment === 'production') {
+    if (!glossaryPageData?.released && config.public.ffEnvironment === 'production') {
       showError({
         statusCode: 404,
         statusMessage: 'Page not found',
@@ -45,6 +48,7 @@ const { data: glossaryData, error } = await useAsyncData('glossaryPost', async (
 
     return {
       glossaryPostContent,
+      glossaryPageData,
       glossaryStartScreenData,
       lastNewestFilteredWords,
       tagForSubtitle,
@@ -66,20 +70,22 @@ onBeforeRouteLeave(() => {
   updateFooterVisible(true)
 })
 
+provide('glossaryService', glossaryService)
+
 // @ts-ignore
 useHead(buildHead({
-  url: glossaryData.value?.glossaryPostContent.url || '',
-  title: glossaryData.value?.glossaryPostContent?.metaTitle || '',
-  description: glossaryData.value?.glossaryPostContent?.metaDescription || '',
-  jsonLd: glossaryData?.value?.glossaryPostContent?.schemaOrg,
-  image: glossaryData.value?.glossaryPostContent?.ogImage,
+  url: glossaryData.value?.glossaryPageData.url || '',
+  title: glossaryData.value?.glossaryPageData?.metaTitle || '',
+  description: glossaryData.value?.glossaryPageData?.metaDescription || '',
+  jsonLd: glossaryData?.value?.glossaryPageData?.schemaOrg,
+  image: glossaryData.value?.glossaryPageData?.ogImage,
 }))
 </script>
 
 <template>
   <div class="glossary-page-content">
     <LazyGlossaryPageStartScreen class="glossary-start-screen" :start-screen-data="glossaryData?.glossaryStartScreenData" />
-    <LazyGlossaryToolBar :active-letter="glossaryData?.activeLetter" :get-all-glossary-pages="glossaryService.getAllGlossaryPages" />
+    <LazyGlossaryToolBar :active-letter-prop="glossaryData?.activeLetter" />
     <LazyGlossaryPostView :glossary-post-content="glossaryData?.glossaryPostContent" />
     <LazyGlossaryNewestWords :last-newest-filtered-words="glossaryData?.lastNewestFilteredWords" :tag="glossaryData?.tagForSubtitle" />
   </div>
@@ -95,7 +101,6 @@ useHead(buildHead({
 
       @media screen and (max-width: 600px) {
         font-size: 31px;
-
       }
     }
   }

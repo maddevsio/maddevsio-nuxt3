@@ -1,62 +1,93 @@
 <script setup lang="ts">
 import { GlossaryToolBar } from '~/components/Glossary/classes/GlossaryToolBar'
-
-const { getAllGlossaryPages, activeLetter } = defineProps({
-  getAllGlossaryPages: {
-    type: Function,
-    default: () => ({}),
-  },
-
-  activeLetter: {
+import type { IGlossaryService } from '~/components/Glossary/interfaces/IGlossaryService'
+const props = defineProps({
+  activeLetterProp: {
     type: String,
-    default: '',
+    default: 'A',
   },
 })
-
 const route = useRoute()
 const router = useRouter()
 
+const glossaryService = inject('glossaryService') as IGlossaryService
+const glossaryStore = useGlossaryStore()
+const { searchIsActive, activeLetter, navIsOpened } = storeToRefs(glossaryStore)
+const { setActiveLetter, toggleNavPanel } = glossaryStore
+const { headerHeight } = storeToRefs(useHeaderStore())
+const { isMobile } = useCheckMobile(680)
+
+onMounted(async () => {
+  setInitialNavOffset()
+  setActiveLetter(route.hash ? route.hash.replace('#', '') : props.activeLetterProp)
+  window.addEventListener('scroll', updateIsScrolling)
+  await getLettersForFilter()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateIsScrolling)
+})
+
+const buttonClickHandler = (letter: string, e: Event) => {
+  if (route.path === '/glossary/') {
+    setActiveLetter(letter)
+  } else {
+    e.preventDefault()
+    navigateToHomePage(letter)
+  }
+}
+
 const {
-  withoutSearch,
-  hideNavButtons,
-  showNavButtons,
-  searchIsActive,
+  homePage,
+  isScrolling,
+  updateIsScrolling,
+  setInitialNavOffset,
+  glossaryFilterRef,
   alphabetArray,
   addClassesToLetter,
   checkWordsForLetter,
   getLettersForFilter,
-  filterWordsByLetter,
-} = new GlossaryToolBar(route, router, getAllGlossaryPages, activeLetter)
-
-onMounted(async () => {
-  await getLettersForFilter()
-})
+  navigateToHomePage,
+} = new GlossaryToolBar(route, router, headerHeight.value, glossaryService.getAllGlossaryPages, activeLetter)
 </script>
 
 <template>
   <div
-    class="glossary-words-filter"
+    ref="glossaryFilterRef"
+    :class="['glossary-words-filter',
+             {'glossary-words-filter--sticky': homePage},
+             {'glossary-words-filter--transparent': isScrolling}]"
+    :style="`top: ${headerHeight}px`"
   >
     <div class="glossary-words-filter__container container">
-      <div :class="['glossary-words-filter__nav', {'glossary-words-filter__nav--without-search': withoutSearch}]">
-        <!--        <LazyGlossarySearchPanel-->
-        <!--          v-if="!withoutSearch"-->
-        <!--          :class="['glossary-words-filter__nav-search', {'glossary-words-filter__nav-search&#45;&#45;active': searchIsActive}]"-->
-        <!--          @open-panel="hideNavButtons"-->
-        <!--          @close-panel="showNavButtons"-->
-        <!--        />-->
-        <div
-          :class="['glossary-words-filter__nav-buttons', {'glossary-words-filter__nav-buttons--hidden': searchIsActive}]"
-        >
-          <button
-            v-for="(letter, i) in alphabetArray"
-            :key="`glossary-filter-letter-${i}`"
-            :class="addClassesToLetter(letter)"
-            :disabled="!checkWordsForLetter(letter)"
-            @click="filterWordsByLetter(letter)"
+      <div
+        :class="['glossary-words-filter__nav',
+                 {'glossary-words-filter__nav--without-search': !homePage,
+                  'glossary-words-filter__nav--opened': navIsOpened}]"
+      >
+        <LazyGlossarySearchPanel
+          v-if="homePage"
+          :class="['glossary-words-filter__nav-search', {'glossary-words-filter__nav-search--active': searchIsActive}]"
+        />
+        <div class="glossary-words-filter__nav-panel">
+          <div
+            :class="['glossary-words-filter__nav-buttons', {'glossary-words-filter__nav-buttons--hidden': searchIsActive}]"
           >
-            {{ letter }}
-          </button>
+            <a
+              v-for="(letter, i) in alphabetArray"
+              :key="`glossary-filter-letter-${i}`"
+              :href="checkWordsForLetter(letter) & homePage ? `#${letter}` : ''"
+              :class="[addClassesToLetter(letter), {'glossary-words-filter__button--active': activeLetter === letter}]"
+              @click="buttonClickHandler(letter, $event)"
+            >
+              {{ letter }}
+            </a>
+          </div>
+          <button
+            v-if="isMobile && homePage"
+            :class="['glossary-words-filter__btn-arrow', {'glossary-words-filter__btn-arrow--opened': navIsOpened}]"
+            @click="toggleNavPanel"
+          />
         </div>
       </div>
     </div>
@@ -68,6 +99,17 @@ onMounted(async () => {
   width: 100%;
   margin-bottom: 103px;
   overflow: hidden;
+
+  &--sticky {
+    position: sticky;
+  }
+
+  &--transparent {
+    background-color: #1d1d1fcc;
+    .glossary-words-filter__nav {
+      background-color: transparent;
+    }
+  }
 
   &__container {
     * {
@@ -88,7 +130,7 @@ onMounted(async () => {
     &--without-search {
       padding-left: 30px;
 
-      .glossary-words-filter__nav-buttons {
+      .glossary-words-filter__nav-panel {
         margin-left: 0;
       }
     }
@@ -106,6 +148,12 @@ onMounted(async () => {
     }
   }
 
+  &__nav-panel {
+    width: 100%;
+    margin-left: 60px;
+    margin-bottom: -16px;
+  }
+
   &__nav-buttons {
     position: relative;
     z-index: 1;
@@ -113,9 +161,6 @@ onMounted(async () => {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    margin-left: 60px;
-    margin-bottom: -16px;
     opacity: 1;
     visibility: visible;
     transition: opacity 0.2s ease 0.4s, visibility 0.2s ease 0.4s, margin-top 0.2s ease 0.4s;
@@ -127,6 +172,24 @@ onMounted(async () => {
     }
   }
 
+  &__btn-arrow, &__button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__btn-arrow {
+    @include arrow-in-circle(16px, 4px, $bgcolor--grey-opacity-40-percent);
+    align-self: flex-start;
+    transform: rotate(90deg);
+    transition: transform 0.5s ease-in-out;
+    margin-left: 5px;
+    &--opened {
+      transform: rotate(270deg);
+    }
+  }
+
   &__button {
     @include font('Inter', 24px, 600);
     flex: 1 0 38px;
@@ -134,13 +197,11 @@ onMounted(async () => {
     line-height: 108%;
     margin-bottom: 16px;
     color: $text-color--white-primary;
-    background: none;
-    border: 0;
-    padding: 0;
-    cursor: pointer;
+    text-align: center;
 
     &--disabled {
       color: $text-color--grey-pale;
+      pointer-events: none;
     }
 
     &--active {
@@ -158,13 +219,13 @@ onMounted(async () => {
       padding-bottom: 13px;
 
       &--without-search {
-        .glossary-words-filter__nav-buttons {
+        .glossary-words-filter__nav-panel {
           margin-left: 0;
         }
       }
     }
 
-    &__nav-buttons {
+    &__nav-panel {
       margin-left: 46px;
       margin-bottom: -20px;
     }
@@ -175,16 +236,34 @@ onMounted(async () => {
   }
 
   @media screen and (max-width: 680px) {
+    &__container {
+      padding: 0;
+    }
+
+    &__nav-buttons {
+      width: 100%;
+      margin-left: -18px;
+    }
+
     &__nav {
       flex-direction: column-reverse;
       padding: 13px 18px 16px;
+      max-height: 50px;
+      transition: max-height 0.5s ease-in-out;
+      &--opened {
+        max-height: 350px;
+      }
 
       &--without-search {
-        .glossary-words-filter__nav-buttons {
+        .glossary-words-filter__nav-panel {
           padding-top: 0;
           margin-top: 0;
           margin-bottom: -20px;
           transition: none;
+        }
+
+        .glossary-words-filter__nav-buttons {
+          margin-left: 0;
         }
       }
     }
@@ -197,7 +276,9 @@ onMounted(async () => {
       width: 100%;
     }
 
-    &__nav-buttons {
+    &__nav-panel {
+      display: flex;
+      align-items: flex-start;
       margin-left: 0;
       margin-bottom: 8px;
       padding-top: 50px;

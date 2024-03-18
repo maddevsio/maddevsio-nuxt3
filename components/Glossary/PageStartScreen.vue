@@ -13,7 +13,7 @@ const { startScreenData } = defineProps({
 })
 
 const { $getMediaFromS3 } = useMediaFromS3()
-const { backgroundImage, subtitleText, titleText, titleTag, description } = new GlossaryPageStartScreen(startScreenData, $getMediaFromS3)
+const { uid, backgroundImage, subtitleText, titleText, titleTag, description } = new GlossaryPageStartScreen(startScreenData, $getMediaFromS3)
 </script>
 
 <template>

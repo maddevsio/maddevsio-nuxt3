@@ -370,7 +370,7 @@ export interface TransformedVacancy {
   released: boolean
 }
 
-export interface GlossaryPost {
+export interface GlossaryPage {
   uid: string
   data: {
     body: {
@@ -396,8 +396,8 @@ export interface GlossaryPost {
     author: Author
     co_author: Author
     schema_org_snippets: SchemaOrgSnippet[]
-    updated_date: DateField
-    created_date: DateField
+    updated_date?: DateField
+    created_date?: DateField
     released: BooleanField
     og_image: ImageField
   }
@@ -408,6 +408,19 @@ export interface GlossaryPost {
 
 export interface TransformedGlossaryPost {
   uid: string
+  wordTitle: KeyTextField
+  wordPageTitle: KeyTextField
+  wordPageDescription: RichTextField
+  slices: any[]
+  tableOfContents?: TableOfContent
+  createdDate?: string
+  updatedDate?: string
+  author?: Author
+  coAuthor?: Author
+}
+
+export interface TransformedGlossaryPageData {
+  uid: string
   url: string
   metaTitle: KeyTextField
   metaDescription: KeyTextField
@@ -416,16 +429,7 @@ export interface TransformedGlossaryPost {
     type: string
     innerHTML: string
   } | null)[] | null
-  wordTitle: KeyTextField
-  wordPageTitle: KeyTextField
-  wordPageDescription: RichTextField
-  slices: any[]
-  tableOfContents: TableOfContent
-  createdDate: string
-  updatedDate: string
   released: boolean
-  author: Author
-  coAuthor: Author
   headerPlate: {
     text: KeyTextField
     btnText: KeyTextField

@@ -1,15 +1,15 @@
-import type { GlossaryPost } from '~/interfaces/common/commonInterfaces'
+import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
 
-export const extractGlossaryStartScreenData = (glossaryPostData: GlossaryPost) => {
+export const extractGlossaryStartScreenData = (glossaryPageData: GlossaryPage) => {
   try {
     return {
-      uid: glossaryPostData.uid,
-      title: glossaryPostData?.data?.title,
-      subtitle: glossaryPostData?.data?.subtitle,
-      description: glossaryPostData?.data?.description,
-      wordTitle: glossaryPostData?.data?.word_title,
-      tagForSubtitle: glossaryPostData?.tags.filter(tag => !tag.includes('Glossary') && !tag.includes('Words'))[0] || '',
-      image: glossaryPostData?.data?.image,
+      uid: glossaryPageData.uid,
+      title: glossaryPageData?.data?.title,
+      subtitle: glossaryPageData?.data?.subtitle,
+      description: glossaryPageData?.data?.description,
+      wordTitle: glossaryPageData?.data?.word_title,
+      tagForSubtitle: glossaryPageData?.tags.filter(tag => !tag.includes('Glossary') && !tag.includes('Words'))[0] || '',
+      image: glossaryPageData?.data?.image,
     }
   } catch (e: any) {
     // eslint-disable-next-line no-console
