@@ -17,8 +17,9 @@ export class WriteupList implements IWriteupList {
   prismic: PrismicPlugin
   router: Router
   route: any
+  ffEnvironment: string
 
-  constructor(props: WriteupListProps, prismic: PrismicPlugin, router: Router, route: any) {
+  constructor(props: WriteupListProps, prismic: PrismicPlugin, router: Router, route: any, ffEnvironment: string) {
     this.sliceBackgroundColor = props.primary.backgroundColor || 'white'
     this.tags = props?.items.filter(item => item.writeupTag).map(item => item.writeupTag)
     this.writeups = ref([])
@@ -31,6 +32,7 @@ export class WriteupList implements IWriteupList {
     this.prismic = prismic
     this.router = router
     this.route = route
+    this.ffEnvironment = ffEnvironment
 
     this.getWriteups = this.getWriteups.bind(this)
     this.changePage = this.changePage.bind(this)
@@ -40,7 +42,7 @@ export class WriteupList implements IWriteupList {
 
   async getWriteups(page: number) {
     if (!this.tags.length) { return }
-    const writeupData = await new Writeup().getWriteupsByTags(this.prismic, this.tags, this.pageSize, page)
+    const writeupData = await new Writeup(this.ffEnvironment).getWriteupsByTags(this.prismic, this.tags, this.pageSize, page)
     if (writeupData) {
       this.totalPages.value = writeupData.totalPages
       this.nextPage.value = writeupData.nextPage

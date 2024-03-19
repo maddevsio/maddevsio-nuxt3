@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { IContactMeForm } from '~/components/Widgets/Form/interfaces/forms/IContactMeForm'
+
 const props = defineProps({
   formUid: {
     type: [String, Number],
@@ -31,7 +33,7 @@ const {
   buttons,
   checkBoxes,
   formID: uid,
-} = form
+} = form as IContactMeForm
 </script>
 <template>
   <LazyWidgetsFormFactory

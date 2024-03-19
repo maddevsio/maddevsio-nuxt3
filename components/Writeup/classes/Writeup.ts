@@ -4,12 +4,18 @@ import type { Writeups } from '~/components/Writeup/interfaces/IWriteupList'
 import { fetchLinks } from '~/config/constants'
 
 export class Writeup {
+  ffEnvironment: string
+
+  constructor(ffEnvironment: string) {
+    this.ffEnvironment = ffEnvironment
+  }
+
   async getWriteupPages(prismic: PrismicPlugin, tags: string[], pageSize = 5, page = 1) {
     return await prismic.client.get({
       filters: [
         prismic.filter.any('document.type', ['writeup']),
         prismic.filter.any('document.tags', tags.map(tag => tag.replace('Software Development', 'Software Development '))),
-        process.env.ffEnvironment === 'production' ? prismic.filter.at('my.writeup.released', true) : '',
+        this.ffEnvironment === 'production' ? prismic.filter.at('my.writeup.released', true) : '',
       ].filter(Boolean),
       orderings: {
         field: 'my.writeup.created_date',

@@ -125,7 +125,7 @@ onUnmounted(() => {
       @include font('Inter', 17px, 400);
       line-height: 18.2px;
       letter-spacing: -0.1px;
-      color: $text-color--blue;
+      color: #79a6e5;
       text-decoration: none;
     }
 

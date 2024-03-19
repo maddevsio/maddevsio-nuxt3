@@ -64,8 +64,6 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
   // Schema org snippet
   schemaOrgSnippet.value = extractSchemaOrg(post.value?.data?.schema_org_snippets as SchemaOrgSnippet[])
 
-  useClearStoresBeforeRouteLeave()
-
   return {
     post: {
       type: post.value.type,
