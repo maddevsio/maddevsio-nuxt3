@@ -6,7 +6,6 @@ import { extractGlossaryPageData } from '~/components/Glossary/helpers/extractGl
 import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
 
 const prismic = usePrismic()
-const route = useRoute()
 const config = useRuntimeConfig()
 const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment)
 const { updateFooterVisible } = useFooterStore()
@@ -65,7 +64,10 @@ useHead(buildHead({
 
 <template>
   <div class="glossary-page-content">
-    <LazyGlossaryPageStartScreen class="glossary-start-screen" :start-screen-data="glossaryData?.glossaryStartScreenData" />
+    <LazyGlossaryPageStartScreen
+      class="glossary-start-screen"
+      :start-screen-data="glossaryData?.glossaryStartScreenData"
+    />
     <LazyGlossaryMainPageContent />
   </div>
 </template>

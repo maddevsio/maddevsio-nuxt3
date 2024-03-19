@@ -1,6 +1,9 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
 import type { BooleanField, DateField, KeyTextField, NumberField, RichTextField, SelectField } from '@prismicio/client'
-import type { VacancyDocumentDataBodySlice } from '~/prismicio-types'
+import type {
+  GlossaryDocumentData,
+  VacancyDocumentDataBodySlice,
+} from '~/prismicio-types'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -373,13 +376,7 @@ export interface TransformedVacancy {
 export interface GlossaryPage {
   uid: string
   data: {
-    body: {
-      slice_type?: string
-      slice_variation?: string
-      primary: {
-        text?: RichTextField
-      }
-    }[]
+    body: GlossaryDocumentData['body']
     word_title: KeyTextField
     word_page_title: KeyTextField
     word_page_description: RichTextField
@@ -412,7 +409,7 @@ export interface TransformedGlossaryPost {
   wordPageTitle: KeyTextField
   wordPageDescription: RichTextField
   slices: any[]
-  tableOfContents?: TableOfContent
+  tableOfContents: TableOfContent
   createdDate?: string
   updatedDate?: string
   author?: Author

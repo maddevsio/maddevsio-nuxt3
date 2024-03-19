@@ -19,7 +19,7 @@ const { glossaryPostHead, glossaryPostSidebar, glossaryPostFooter, glossaryPostC
       <LazyGlossaryPostSidebar :glossary-post-sidebar-instance="glossaryPostSidebar" />
       <div class="glossary-post-content__main">
         <LazyGlossaryPostHead :glossary-post-head-instance="glossaryPostHead" />
-        <LazyGlossarySlicesComponent
+        <LazyGlossarySlicesComponents
           v-if="glossaryPostComponents.length"
           :slices="glossaryPostComponents"
         />

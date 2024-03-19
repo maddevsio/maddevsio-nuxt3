@@ -76,7 +76,7 @@ const {
             <a
               v-for="(letter, i) in alphabetArray"
               :key="`glossary-filter-letter-${i}`"
-              :href="checkWordsForLetter(letter) & homePage ? `#${letter}` : ''"
+              :href="checkWordsForLetter(letter) && homePage ? `#${letter}` : ''"
               :class="[addClassesToLetter(letter), {'glossary-words-filter__button--active': activeLetter === letter}]"
               @click="buttonClickHandler(letter, $event)"
             >
@@ -242,7 +242,7 @@ const {
 
     &__nav-buttons {
       width: 100%;
-      margin-left: -18px;
+      margin-left: -12px;
     }
 
     &__nav {

@@ -35,11 +35,11 @@ const loadMoreWords = (letter: string) => {
 
 <template>
   <div
-    :id="letterTitle"
     class="glossary-words-section"
   >
     <h2
       v-if="letterTitle"
+      :id="letterTitle"
       :class="['glossary-words-section__title', {'glossary-words-section__title--active': activeLetter === letterTitle}]"
     >
       {{ letterTitle }}
@@ -79,6 +79,7 @@ const loadMoreWords = (letter: string) => {
     color: $text-color--white-primary;
     margin-bottom: 32px;
     transition: color 0.2s ease;
+    scroll-margin-top: 130px;
 
     &--active {
       color: $text-color--red;

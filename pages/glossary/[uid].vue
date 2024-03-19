@@ -6,7 +6,6 @@ import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
 import { extractGlossaryStartScreenData } from '~/components/Glossary/helpers/extractGlossaryStartScreenData'
 import { filterLastGlossaryWords } from '~/components/Glossary/helpers/filterLastGlossaryWords'
 import { extractGlossaryPageData } from '~/components/Glossary/helpers/extractGlossaryPageData'
-import type { IGlossaryService } from '~/components/Glossary/interfaces/IGlossaryService'
 
 const prismic = usePrismic()
 const route = useRoute()

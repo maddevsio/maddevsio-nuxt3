@@ -23,33 +23,39 @@ defineProps({
   color: $text-color--grey-20-percent;
 }
 
-:deep(h1, h2, h3, h4, h5, h6) {
-  color: $text-color--white-primary;
+:deep(h1),
+:deep(h2),
+:deep(h3),
+:deep(h4),
+:deep(h5),
+:deep(h6) {
   margin-top: 48px;
   margin-bottom: 12px;
 }
 
 :deep(h1) {
-  @include font('Inter', 38px, 700);
+  @include title($text-color--white-primary, 38px, -0.04em);
   display: none; // h1 tag should not be used
 }
 
 :deep(h2) {
-  @include font('Inter', 32px, 600);
   @include title($text-color--white-primary, 32px, -0.04em);
 }
 
 :deep(h3) {
-  @include font('Inter', 26px, 600);
+  @include title($text-color--white-primary, 26px, -0.04em);
 }
+
 :deep(h4) {
-  @include font('Inter', 21px, 800);
+  @include title($text-color--white-primary, 21px, -0.04em);
 }
+
 :deep(h5) {
-  @include font('Inter', 17px, 700);
+  @include title($text-color--white-primary, 17px, -0.04em);
 }
+
 :deep(h6) {
-  @include font('Inter', 14px, 700);
+  @include title($text-color--white-primary, 14px, -0.04em);
 }
 
 :deep(a) {

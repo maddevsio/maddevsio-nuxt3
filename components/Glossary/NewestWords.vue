@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { GlossaryPost } from '~/interfaces/common/commonInterfaces'
 import { GlossaryNewestWords } from '~/components/Glossary/classes/GlossaryNewestWords'
+import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
 
 const { tag, lastNewestFilteredWords } = defineProps({
   tag: {
@@ -10,7 +10,7 @@ const { tag, lastNewestFilteredWords } = defineProps({
   },
 
   lastNewestFilteredWords: {
-    type: Array as PropType<GlossaryPost[]>,
+    type: Array as PropType<GlossaryPage[]>,
     default: () => [],
   },
 })
@@ -38,7 +38,6 @@ const { lastWords } = new GlossaryNewestWords(lastNewestFilteredWords)
 <style lang="scss" scoped>
 .glossary-newest-words {
   padding: 96px 0 128px;
-  background-color: $bgcolor--grey-hover;
 
   &__container {
     * {

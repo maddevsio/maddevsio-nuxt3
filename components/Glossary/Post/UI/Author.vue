@@ -26,9 +26,9 @@ defineProps({
       :src="author.image.url"
       :alt="author.name"
       class="glossary-post-author__image"
-      sizes="mobile:70px tablet:70px desktop:70px"
-      width="35"
-      height="35"
+      sizes="mobile:100px tablet:100px desktop:100px"
+      width="50"
+      height="50"
     />
     <div class="glossary-post-author__info">
       <p class="glossary-post-author__name">
@@ -47,6 +47,9 @@ defineProps({
   align-items: center;
 
   &__image {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
     margin-right: 8px;
     border-radius: 5px;
   }

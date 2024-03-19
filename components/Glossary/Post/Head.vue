@@ -27,7 +27,7 @@ const { glossaryPostHeadInstance } = defineProps({
 <style lang="scss" scoped>
 .glossary-post-head {
   &__title {
-    @include font('Inter', 48px, 900);
+    @include font('Inter', 48px, 700);
     line-height: 130%;
     color: $text-color--white-primary;
   }
