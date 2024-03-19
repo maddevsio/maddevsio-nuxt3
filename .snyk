@@ -1,0 +1,100 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-UNSETVALUE-2400660:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:13.152Z
+        created: 2022-09-15T10:52:13.161Z
+  SNYK-JS-TRIMNEWLINES-1298042:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:15.406Z
+        created: 2022-09-15T10:52:15.426Z
+  SNYK-JS-TERSER-2806366:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:17.403Z
+        created: 2022-09-15T10:52:17.420Z
+  SNYK-JS-SIMPLEGET-2361683:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:19.604Z
+        created: 2022-09-15T10:52:19.624Z
+  SNYK-JS-PARSEURL-3023021:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:21.649Z
+        created: 2022-09-15T10:52:21.656Z
+  SNYK-JS-PARSEURL-2942134:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:23.667Z
+        created: 2022-09-15T10:52:23.686Z
+  SNYK-JS-PARSEURL-2936249:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:25.784Z
+        created: 2022-09-15T10:52:25.804Z
+  SNYK-JS-PARSEURL-2935947:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:28.100Z
+        created: 2022-09-15T10:52:28.107Z
+  SNYK-JS-PARSEURL-2935944:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:30.153Z
+        created: 2022-09-15T10:52:30.173Z
+  SNYK-JS-PARSEPATH-2936439:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:32.301Z
+        created: 2022-09-15T10:52:32.323Z
+  SNYK-JS-NWSAPI-2841516:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:34.327Z
+        created: 2022-09-15T10:52:34.349Z
+  SNYK-JS-NTHCHECK-1586032:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:36.566Z
+        created: 2022-09-15T10:52:36.589Z
+  SNYK-JS-LODASHTEMPLATE-1088054:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:38.719Z
+        created: 2022-09-15T10:52:38.738Z
+  SNYK-JS-JOSE-3018688:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:40.808Z
+        created: 2022-09-15T10:52:40.830Z
+  SNYK-JS-GLOBPARENT-1016905:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:43.341Z
+        created: 2022-09-15T10:52:43.363Z
+  SNYK-JS-FOLLOWREDIRECTS-2396346:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:45.409Z
+        created: 2022-09-15T10:52:45.430Z
+  SNYK-JS-DICER-2311764:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:47.457Z
+        created: 2022-09-15T10:52:47.477Z
+  SNYK-JS-ASYNC-2441827:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:49.503Z
+        created: 2022-09-15T10:52:49.515Z
+  SNYK-JS-ANSIREGEX-1583908:
+    - '*':
+        reason: None Given
+        expires: 2022-10-15T10:52:51.550Z
+        created: 2022-09-15T10:52:51.562Z
+patch: {}

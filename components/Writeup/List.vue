@@ -12,7 +12,8 @@ const { slice } = defineProps({
 const prismic = usePrismic()
 const router = useRouter()
 const route = useRoute()
-const writeupList = new WriteupList(slice, prismic, router, route)
+const config = useRuntimeConfig()
+const writeupList = new WriteupList(slice, prismic, router, route, config.public.ffEnvironment)
 await useAsyncData(() => writeupList.getWriteups(Number(route.query.writeupPage) || 1), {
   server: false,
   lazy: true,

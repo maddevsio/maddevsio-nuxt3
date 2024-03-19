@@ -8,20 +8,21 @@ import type { WriteupPost } from '~/interfaces/common/commonInterfaces'
 const prismic = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
-const { updateFooterVisible } = useFooterStore()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
-const writeupService = new Writeup()
+const writeupService = new Writeup(config.public.ffEnvironment)
 
 const { data: writeupData, error } = await useAsyncData('caseData', async () => {
   try {
     const writeupPageData = await writeupService.getWriteupPage(prismic, route.params.uid as string) as WriteupPost
     const pageContent = extractWriteupData(writeupPageData)
 
-    // const { headerPlate } = pageContent
-    //
-    // if (!$cookies.get(`seenArticlePlate_${route.path}`)) {
-    //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
-    // }
+    const { headerPlate } = pageContent
+
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(headerPlate)
+    }
 
     if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })
@@ -39,9 +40,7 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-onBeforeRouteLeave(() => {
-  updateFooterVisible(true)
-})
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead({

@@ -9,6 +9,8 @@ const imageWithoutCrop = () => {
   return post.featuredImage?.url?.split('?auto')[0]
 }
 
+useClearStoresBeforeRouteLeave()
+
 // @ts-ignore
 useHead(buildHead({
   title: post.metaTitle || '',

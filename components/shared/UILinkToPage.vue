@@ -1,11 +1,13 @@
 <script setup lang="ts">
-interface Props {
-  linkToPage: string
-  color: string
-}
-
-withDefaults(defineProps<Props>(), {
-  color: 'black',
+defineProps({
+  linkToPage: {
+    type: String,
+    default: '',
+  },
+  color: {
+    type: String,
+    default: 'black',
+  },
 })
 </script>
 <template>

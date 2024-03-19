@@ -7,6 +7,7 @@ const prismic = usePrismic()
 const route = useRoute()
 const router = useRouter()
 const { activeTag } = storeToRefs(useDynamicTagCloudStore())
+const config = useRuntimeConfig()
 const {
   writeups,
   totalPages,
@@ -16,7 +17,7 @@ const {
   currentPage,
   changePage,
   getWriteups,
-} = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, router, route, activeTag.value)
+} = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, router, route, activeTag.value, config.public.ffEnvironment)
 
 if ('page' in route.query) {
   currentPage.value = Number(route.query.page)

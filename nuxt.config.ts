@@ -25,6 +25,10 @@ export default defineNuxtConfig({
           name: 'facebook-domain-verification',
           content: 'gjmbb6g9th5cxl6awr0dx598t7ruz3',
         },
+        {
+          name: 'theme-color',
+          content: '#111213',
+        },
       ],
       link: [
         {
@@ -35,7 +39,7 @@ export default defineNuxtConfig({
         {
           rel: 'sitemap',
           type: 'application/xml',
-          href: 'https://maddevs.io/sitemapindex.xml',
+          href: 'https://maddevs.io/sitemap_index.xml',
         },
         {
           rel: 'preconnect',
@@ -49,11 +53,6 @@ export default defineNuxtConfig({
       ],
 
       script: [
-        {
-          src: 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver',
-          defer: true,
-          body: true,
-        },
         process.env.FF_ENVIRONMENT === 'production'
           ? {
             type: 'text/javascript',
@@ -80,7 +79,7 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: { enabled: process.env.FF_ENVIRONMENT !== 'production' },
+  devtools: { enabled: process.env.FF_ENVIRONMENT === 'development' },
 
   experimental: {
     asyncEntry: true,
@@ -103,6 +102,7 @@ export default defineNuxtConfig({
     }],
     ['nuxt-swiper', {
       styleLang: 'scss',
+      modules: ['navigation', 'pagination', 'thumbs', 'autoplay'],
     }],
     ['@nuxt/image', {
       prismic: {},
@@ -123,7 +123,38 @@ export default defineNuxtConfig({
       xssValidator: false,
     }],
     '@nuxtjs/sitemap',
+    '@vite-pwa/nuxt',
   ],
+
+  pwa: {
+    includeAssets: ['favicon.ico', 'favicon-16x16.ico', 'favicon-32x32.ico', 'apple-touch-icon.png'],
+    manifest: {
+      name: 'Mad Devs',
+      short_name: 'Mad Devs',
+      description: 'Mad Devs: Software & Mobile App Development Company',
+      theme_color: '#111213',
+      lang: 'en',
+      background_color: '#111213',
+      icons: [
+        {
+          src: 'pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
+      ],
+    },
+  },
 
   sitemap: {
     cacheMaxAgeSeconds: 10 * 3600000,
@@ -172,16 +203,39 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/open-source/': { prerender: true },
-    '/careers/': { prerender: true },
-    '/delivery-models/': { prerender: true },
-    '/delivery-models/**': { prerender: true },
-    '/transparency/': { prerender: true },
-    '/our-philosophy/': { prerender: true },
-    '/nda/': { prerender: true },
-    '/gdpr/': { prerender: true },
-    '/blog/': { prerender: true },
-    '/digest/': { prerender: true },
+    '/open-source': { prerender: true },
+    '/careers': { prerender: true },
+    '/delivery-models': { prerender: true },
+    '/delivery-models/staff-augmentation': { prerender: true },
+    '/delivery-models/dedicated-team': { prerender: true },
+    '/delivery-models/temp-to-hire': { prerender: true },
+    '/delivery-models/technical-assessment': { prerender: true },
+    '/delivery-models/team-supervision': { prerender: true },
+    '/delivery-models/transferring-projects': { prerender: true },
+    '/transparency': { prerender: true },
+    '/our-philosophy': { prerender: true },
+    '/nda': { prerender: true },
+    '/gdpr': { prerender: true },
+    '/blog': { prerender: true },
+    '/digest': { prerender: true },
+    '/privacy': { prerender: true },
+    '/case-studies/bandpay': { prerender: true },
+    '/case-studies/bilimapp': { prerender: true },
+    '/case-studies/citycam': { prerender: true },
+    '/case-studies/clutch': { prerender: true },
+    '/case-studies/godee': { prerender: true },
+    '/case-studies/guardrails': { prerender: true },
+    '/case-studies/lido': { prerender: true },
+    '/case-studies/megauni': { prerender: true },
+    '/case-studies/mobile-banking': { prerender: true },
+    '/case-studies/namba-food': { prerender: true },
+    '/case-studies/namba-taxi': { prerender: true },
+    '/case-studies/peklo': { prerender: true },
+    '/case-studies/R4TCA-web-application': { prerender: true },
+    '/case-studies/rocifi': { prerender: true },
+    '/case-studies/sir-john-monash-centre': { prerender: true },
+    '/case-studies/veeqo': { prerender: true },
+    '/case-studies/yourcast': { prerender: true },
     '/api/leads': {
       security: {
         rateLimiter: {

@@ -20,13 +20,16 @@ export class WriteupMainContent implements IWriteupMainContent {
   prismic: PrismicPlugin
   router: Router
   route: any
+  ffEnvironment: string
 
   constructor(
     writeupsData: TransformedWriteups,
     prismic: PrismicPlugin,
     router: Router,
     route: any,
-    activeTagObj: ActiveTag) {
+    activeTagObj: ActiveTag,
+    ffEnvironment: string,
+  ) {
     this.activeTag = activeTagObj
     this.writeups = ref(writeupsData.writeupList)
     this.totalPages = ref(writeupsData.totalPages)
@@ -38,6 +41,7 @@ export class WriteupMainContent implements IWriteupMainContent {
     this.prismic = prismic
     this.router = router
     this.route = route
+    this.ffEnvironment = ffEnvironment
 
     this.getWriteups = this.getWriteups.bind(this)
     this.changePage = this.changePage.bind(this)
@@ -45,7 +49,7 @@ export class WriteupMainContent implements IWriteupMainContent {
   }
 
   async getWriteups(page: number, tags: string[]) {
-    const writeupData = await new Writeup().getWriteupsByTags(this.prismic, tags, this.pageSize, page)
+    const writeupData = await new Writeup(this.ffEnvironment).getWriteupsByTags(this.prismic, tags, this.pageSize, page)
     if (writeupData) {
       this.totalPages.value = writeupData.totalPages
       this.nextPage.value = writeupData.nextPage

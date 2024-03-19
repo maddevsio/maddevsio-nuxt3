@@ -19,6 +19,8 @@ export default defineEventHandler(async event => {
       }
     } else if (url.hostname === 'heimdall.maddevs.io') {
       await sendRedirect(event, 'https://maddevs.io/', 301)
+    } else if (url.pathname.startsWith('/success-and-faq/')) {
+      await sendRedirect(event, 'https://maddevs.io/', 301)
     } else {
       try {
         const { data } = await axios.get(`${ MAD_MARKETING_BACKEND_API }redirect?from_url=${ url.pathname }`, authConfig)

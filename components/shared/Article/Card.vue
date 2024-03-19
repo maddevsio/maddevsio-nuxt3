@@ -91,7 +91,6 @@ withDefaults(defineProps<Props>(), {
 
   &__cover-wrapper {
     margin-bottom: 16px;
-    max-height: 218px;
   }
 
   &__cover {

@@ -17,11 +17,13 @@ export const extractWriteupsHomePageData = (pageData: WriteupDocument) => {
     title: pageData?.data?.title,
     description: pageData?.data?.description,
     image: pageData?.data?.image,
-    headerPlate: {
-      text: pageData?.data?.header_plate_text,
-      btnText: pageData?.data?.header_plate_button_text,
-      btnLink: pageData?.data?.header_plate_link,
-      backgroundColor: pageData?.data?.header_plate_background_color,
-    },
+    headerPlate: pageData?.data?.header_plate_text
+      ? {
+        text: pageData?.data?.header_plate_text,
+        btnText: pageData?.data?.header_plate_button_text,
+        btnLink: pageData?.data?.header_plate_link,
+        backgroundColor: pageData?.data?.header_plate_background_color,
+      }
+      : null,
   }
 }
