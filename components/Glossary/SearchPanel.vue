@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const { isMobile } = useCheckMobile(680)
-const glossaryStore = useGlossaryStore()
-const { searchIsActive, searchValue } = storeToRefs(glossaryStore)
+const glossaryNavStore = useGlossaryNavStore()
+const { searchIsActive, searchValue } = storeToRefs(glossaryNavStore)
 const {
   openSearchPanel,
   closeSearchPanel,
   searchQuery,
-} = glossaryStore
+} = glossaryNavStore
 </script>
 
 <template>

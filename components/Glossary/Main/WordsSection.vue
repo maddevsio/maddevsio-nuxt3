@@ -21,13 +21,15 @@ const props = defineProps({
   },
 })
 
+const { activeLetter } = storeToRefs(useGlossaryNavStore())
+const { $eventBus } = useNuxtApp()
+const { headerHeight } = storeToRefs(useHeaderStore())
+
 const glossaryWords = computed(() => {
   if (props.showAllWords) { return props.words }
   return props.words.slice(0, 11)
 })
 
-const { activeLetter } = storeToRefs(useGlossaryStore())
-const { $eventBus } = useNuxtApp()
 const loadMoreWords = (letter: string) => {
   $eventBus.$emit('load-more-words', letter)
 }
@@ -40,7 +42,9 @@ const loadMoreWords = (letter: string) => {
     <h2
       v-if="letterTitle"
       :id="letterTitle"
-      :class="['glossary-words-section__title', {'glossary-words-section__title--active': activeLetter === letterTitle}]"
+      :style="`scroll-margin-top: ${headerHeight + 65}px`"
+      class="glossary-words-section__title"
+      :class="{'glossary-words-section__title--active': activeLetter === letterTitle}"
     >
       {{ letterTitle }}
     </h2>
@@ -79,7 +83,6 @@ const loadMoreWords = (letter: string) => {
     color: $text-color--white-primary;
     margin-bottom: 32px;
     transition: color 0.2s ease;
-    scroll-margin-top: 130px;
 
     &--active {
       color: $text-color--red;

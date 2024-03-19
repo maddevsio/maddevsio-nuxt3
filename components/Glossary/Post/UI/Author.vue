@@ -26,8 +26,8 @@ defineProps({
       :alt="author.name"
       class="glossary-post-author__image"
       sizes="mobile:100px tablet:100px desktop:100px"
-      width="50"
-      height="50"
+      width="53"
+      height="53"
     />
     <div class="glossary-post-author__info">
       <p class="glossary-post-author__name">
@@ -46,15 +46,15 @@ defineProps({
   align-items: center;
 
   &__image {
-    width: 50px;
-    min-width: 50px;
-    height: 50px;
+    width: 53px;
+    min-width: 53px;
+    height: 53px;
     margin-right: 8px;
     border-radius: 5px;
   }
 
   &__name, &__position {
-    @include font('Inter', 14px, 400);
+    @include font('Inter', 16px, 400);
     line-height: 140%;
   }
 
@@ -64,6 +64,18 @@ defineProps({
 
   &__position {
     color: $text-color--grey-opacity-40-percent;
+  }
+
+  @media screen and (max-width: 768px) {
+    &__image {
+      width: 35px;
+      min-width: 35px;
+      height: 35px;
+    }
+
+    &__name, &__position {
+      font-size: 14px;
+    }
   }
 }
 </style>

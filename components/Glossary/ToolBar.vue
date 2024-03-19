@@ -11,9 +11,9 @@ const route = useRoute()
 const router = useRouter()
 
 const glossaryService = inject('glossaryService') as IGlossaryService
-const glossaryStore = useGlossaryStore()
-const { searchIsActive, activeLetter, navIsOpened } = storeToRefs(glossaryStore)
-const { setActiveLetter, toggleNavPanel } = glossaryStore
+const glossaryNavStore = useGlossaryNavStore()
+const { searchIsActive, activeLetter, navIsOpened, searchValue } = storeToRefs(glossaryNavStore)
+const { setActiveLetter, toggleNavPanel } = glossaryNavStore
 const { headerHeight } = storeToRefs(useHeaderStore())
 const { isMobile } = useCheckMobile(680)
 
@@ -39,7 +39,6 @@ const buttonClickHandler = (letter: string, e: Event) => {
 
 const {
   homePage,
-  isScrolling,
   updateIsScrolling,
   setInitialNavOffset,
   glossaryFilterRef,
@@ -48,40 +47,45 @@ const {
   checkWordsForLetter,
   getLettersForFilter,
   navigateToHomePage,
+  filterClasses,
 } = new GlossaryToolBar(
   route,
   router,
   headerHeight.value,
   glossaryService.getAllGlossaryPages,
-  activeLetter)
+  activeLetter,
+  searchValue,
+  isMobile)
 </script>
 
 <template>
   <div
     ref="glossaryFilterRef"
-    :class="['glossary-words-filter',
-             {'glossary-words-filter--sticky': homePage},
-             {'glossary-words-filter--transparent': isScrolling}]"
+    class="glossary-words-filter"
+    :class="filterClasses"
     :style="`top: ${headerHeight}px`"
   >
     <div class="glossary-words-filter__container container">
       <div
-        :class="['glossary-words-filter__nav',
-                 {'glossary-words-filter__nav--without-search': !homePage,
+        class="glossary-words-filter__nav"
+        :class="[{'glossary-words-filter__nav--without-search': !homePage,
                   'glossary-words-filter__nav--opened': navIsOpened}]"
       >
         <LazyGlossarySearchPanel
           v-if="homePage"
-          :class="['glossary-words-filter__nav-search', {'glossary-words-filter__nav-search--active': searchIsActive}]"
+          class="glossary-words-filter__nav-search"
+          :class="{'glossary-words-filter__nav-search--active': searchIsActive}"
         />
         <div class="glossary-words-filter__nav-panel">
           <div
-            :class="['glossary-words-filter__nav-buttons', {'glossary-words-filter__nav-buttons--hidden': searchIsActive}]"
+            class="glossary-words-filter__nav-buttons"
+            :class="{'glossary-words-filter__nav-buttons--hidden': searchIsActive}"
           >
             <a
               v-for="(letter, i) in alphabetArray"
               :key="`glossary-filter-letter-${i}`"
               :href="checkWordsForLetter(letter) && homePage ? `#${letter}` : ''"
+              class="glossary-words-filter__button"
               :class="[addClassesToLetter(letter), {'glossary-words-filter__button--active': activeLetter === letter}]"
               @click="buttonClickHandler(letter, $event)"
             >
@@ -89,8 +93,9 @@ const {
             </a>
           </div>
           <button
-            v-if="isMobile && homePage"
-            :class="['glossary-words-filter__btn-arrow', {'glossary-words-filter__btn-arrow--opened': navIsOpened}]"
+            v-if="isMobile"
+            class="glossary-words-filter__btn-arrow"
+            :class="{'glossary-words-filter__btn-arrow--opened': navIsOpened}"
             @click="toggleNavPanel"
           />
         </div>
@@ -211,6 +216,11 @@ const {
 
     &--active {
       color: $text-color--red;
+    }
+
+    &--all-disabled {
+      color: $text-color--grey-pale !important;
+      pointer-events: none;
     }
   }
 

@@ -37,7 +37,7 @@ export class GlossaryMainPageContent implements IGlossaryMainPageContent {
     this.sections = ref([])
     this.observer = ref<IntersectionObserverInstance | null>(null)
 
-    this.loadInitialGlossaryState = this.loadInitialGlossaryState.bind(this)
+    this.loadAllWords = this.loadAllWords.bind(this)
     this.loadMoreWordsByLetter = this.loadMoreWordsByLetter.bind(this)
     this.searchWordsByValue = this.searchWordsByValue.bind(this)
     this.clearSearchResults = this.clearSearchResults.bind(this)
@@ -54,7 +54,7 @@ export class GlossaryMainPageContent implements IGlossaryMainPageContent {
     this.showAllWords.value = true
   }
 
-  async loadInitialGlossaryState() {
+  async loadAllWords() {
     this.isLoading.value = true
     this.showAllWords.value = false
     const pages = await this.glossaryService.getAllGlossaryPages(this.currentPage)

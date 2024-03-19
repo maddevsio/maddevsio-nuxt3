@@ -12,11 +12,14 @@ export interface IGlossaryToolBar {
   initialNavOffset: Ref<number>
   glossaryFilterRef: Ref<HTMLElement | null>
   homePage: ComputedRef<boolean>
-  currentActiveLetter: Ref<string>
   getAllGlossaryPages: IGlossaryService['getAllGlossaryPages']
+  filterClasses: ComputedRef<{[key: string]: boolean | undefined}[]>
+  currentActiveLetter: Ref<string>
+  searchValue: Ref<string>
+  isMobile: Ref<boolean>
   getLettersForFilter(): Promise<void>
   checkWordsForLetter(letter: string): boolean
-  addClassesToLetter(letter: string): (string | { 'glossary-words-filter__button--disabled': boolean })[]
+  addClassesToLetter(letter: string): {[key: string]: boolean | undefined}[]
   navigateToHomePage(letter: string): void
   updateIsScrolling(): void
 }

@@ -17,8 +17,10 @@ export class GlossaryToolBar implements IGlossaryToolBar {
   glossaryFilterRef: Ref<HTMLElement | null>
   homePage: ComputedRef<boolean>
   getAllGlossaryPages: IGlossaryService['getAllGlossaryPages']
+  filterClasses: ComputedRef<{[key: string]: boolean | undefined}[]>
   currentActiveLetter: Ref<string>
-
+  searchValue: Ref<string>
+  isMobile: Ref<boolean>
   currentPage = 1
 
   constructor(
@@ -26,7 +28,9 @@ export class GlossaryToolBar implements IGlossaryToolBar {
     router: Router,
     headerHeight: number,
     getAllGlossaryPages: IGlossaryService['getAllGlossaryPages'],
-    currentActiveLetter: Ref<string>) {
+    currentActiveLetter: Ref<string>,
+    searchValue: Ref<string>,
+    isMobile: Ref<boolean>) {
     this.alphabetArray = createAlphabetArray()
     this.route = route
     this.router = router
@@ -37,7 +41,14 @@ export class GlossaryToolBar implements IGlossaryToolBar {
     this.glossaryFilterRef = ref(null)
     this.homePage = computed(() => this.route.path === '/glossary/')
     this.currentActiveLetter = currentActiveLetter
+    this.searchValue = searchValue
+    this.isMobile = isMobile
     this.getAllGlossaryPages = getAllGlossaryPages
+    this.filterClasses = computed(() => {
+      return [
+        { 'glossary-words-filter--sticky': this.homePage.value },
+        { 'glossary-words-filter--transparent': this.isScrolling.value }]
+    })
 
     this.getLettersForFilter = this.getLettersForFilter.bind(this)
     this.checkWordsForLetter = this.checkWordsForLetter.bind(this)
@@ -58,8 +69,12 @@ export class GlossaryToolBar implements IGlossaryToolBar {
   }
 
   addClassesToLetter(letter: string) {
-    return ['glossary-words-filter__button',
-      { 'glossary-words-filter__button--disabled': !this.checkWordsForLetter(letter) }]
+    if (this.isMobile.value && this.homePage.value) {
+      return [
+        { 'glossary-words-filter__button--all-disabled': this.searchValue.value.length > 0 },
+        { 'glossary-words-filter__button--disabled': !this.checkWordsForLetter(letter) }]
+    }
+    return [{ 'glossary-words-filter__button--disabled': !this.checkWordsForLetter(letter) }]
   }
 
   navigateToHomePage(letter: string) {

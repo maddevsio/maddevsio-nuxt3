@@ -5,9 +5,9 @@ import type { IGlossaryService } from '~/components/Glossary/interfaces/IGlossar
 const glossaryService = inject('glossaryService') as IGlossaryService
 const route = useRoute()
 
-const glossaryStore = useGlossaryStore()
-const { searchIsActive, activeLetter } = storeToRefs(glossaryStore)
-const { closeSearchPanel, setActiveLetter } = glossaryStore
+const glossaryNavStore = useGlossaryNavStore()
+const { searchIsActive, activeLetter } = storeToRefs(glossaryNavStore)
+const { closeSearchPanel, setActiveLetter } = glossaryNavStore
 const {
   isSearching,
   isLoading,
@@ -16,7 +16,7 @@ const {
   words,
   wordsBySearch,
   observer,
-  loadInitialGlossaryState,
+  loadAllWords,
   loadMoreWordsByLetter,
   searchWordsByValue,
   clearSearchResults,
@@ -31,7 +31,7 @@ $eventBus.$on('search-query', searchWordsByValue)
 $eventBus.$on('clear-search', clearSearchResults)
 
 onMounted(async () => {
-  await loadInitialGlossaryState()
+  await loadAllWords()
   timeoutID.value = setTimeout(() => {
     if (route.hash) {
       const element = document.querySelector(route.hash)
@@ -64,11 +64,11 @@ watch(searchIsActive, val => {
 </script>
 
 <template>
-  <div>
+  <div class="glossary-main-content">
     <ClientOnly>
       <LazyGlossaryToolBar />
     </ClientOnly>
-    <div v-if="!isLoading">
+    <div v-if="!isLoading" class="glossary-main-content__wrapper">
       <LazyGlossaryMainSearchResults
         v-if="isSearching && wordsBySearch.length"
         :words="wordsBySearch"
@@ -101,10 +101,6 @@ watch(searchIsActive, val => {
 
   @media screen and (max-width: 768px) {
     padding-bottom: 72px;
-  }
-
-  &__container {
-    min-height: 500px;
   }
 
   &__loader {

@@ -15,7 +15,7 @@ export interface IGlossaryMainPageContent {
   sections: Ref<NodeListOf<Element> | never[]>
   observer: Ref<IntersectionObserverInstance | null>
   loadMoreWordsByLetter(letter: string): Promise<void>
-  loadInitialGlossaryState(): Promise<void>
+  loadAllWords(): Promise<void>
   searchWordsByValue(value: string): Promise<void>
   clearSearchResults(): void
   initIntersectionObserverForSections(setActiveTitle: (letter: string) => void, activeTitle: Ref<string>): void

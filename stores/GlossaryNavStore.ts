@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useGlossaryStore = defineStore('glossaryStore', () => {
+export const useGlossaryNavStore = defineStore('glossaryNavStore', () => {
   const searchIsActive = ref(false)
   const navIsOpened = ref(false)
   const searchValue = ref('')
