@@ -6,14 +6,14 @@ const { glossaryPostSidebarInstance } = defineProps({
   },
 })
 
-const { indentFromHeader, initialHeaderHeight, postTableOfContentsInstance } = glossaryPostSidebarInstance
+const { indentFromHeader, postTableOfContentsInstance } = glossaryPostSidebarInstance
 const { headerHeight } = storeToRefs(useHeaderStore())
 </script>
 
 <template>
   <div
     class="glossary-post-sidebar"
-    :style="{ 'top': `${(headerHeight ? headerHeight : initialHeaderHeight) + indentFromHeader}px`}"
+    :style="{ 'top': `${headerHeight + indentFromHeader}px`}"
   >
     <BlogUIPostPostTableOfContents
       :post-table-of-contents-instance="postTableOfContentsInstance"

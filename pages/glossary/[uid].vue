@@ -9,9 +9,10 @@ import { extractGlossaryPageData } from '~/components/Glossary/helpers/extractGl
 
 const prismic = usePrismic()
 const route = useRoute()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 const config = useRuntimeConfig()
+const { updateHeaderPlateData } = useHeaderPlateStore()
 const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment)
-const { updateFooterVisible } = useFooterStore()
 
 const { data: glossaryData, error } = await useAsyncData('glossaryPost', async () => {
   try {
@@ -32,11 +33,11 @@ const { data: glossaryData, error } = await useAsyncData('glossaryPost', async (
 
     const lastNewestFilteredWords = filterLastGlossaryWords(lastNewestGlossaryPages.results as GlossaryPage[], currentPageWordTitle)
 
-    // const { headerPlate } = glossaryPostContent
-    //
-    // if (!$cookies.get(`seenArticlePlate_${route.path}`)) {
-    //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
-    // }
+    const { headerPlate } = glossaryPageData
+
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(headerPlate)
+    }
 
     if (!glossaryPageData?.released && config.public.ffEnvironment === 'production') {
       showError({
@@ -65,10 +66,7 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-onBeforeRouteLeave(() => {
-  updateFooterVisible(true)
-})
-
+useClearStoresBeforeRouteLeave()
 provide('glossaryService', glossaryService)
 
 // @ts-ignore

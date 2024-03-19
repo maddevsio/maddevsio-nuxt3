@@ -48,7 +48,12 @@ const {
   checkWordsForLetter,
   getLettersForFilter,
   navigateToHomePage,
-} = new GlossaryToolBar(route, router, headerHeight.value, glossaryService.getAllGlossaryPages, activeLetter)
+} = new GlossaryToolBar(
+  route,
+  router,
+  headerHeight.value,
+  glossaryService.getAllGlossaryPages,
+  activeLetter)
 </script>
 
 <template>

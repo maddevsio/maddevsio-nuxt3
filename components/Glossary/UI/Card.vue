@@ -14,6 +14,7 @@ defineProps({
   },
 })
 </script>
+
 <template>
   <NuxtLink
     :to="`/glossary/${word.wordUID}/`"

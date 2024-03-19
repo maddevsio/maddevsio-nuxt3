@@ -10,13 +10,20 @@ const { glossaryPostContent } = defineProps({
   },
 })
 
-const { glossaryPostHead, glossaryPostSidebar, glossaryPostFooter, glossaryPostComponents } = new GlossaryPostView(glossaryPostContent)
+const {
+  glossaryPostHead,
+  glossaryPostSidebar,
+  glossaryPostFooter,
+  glossaryPostComponents,
+} = new GlossaryPostView(glossaryPostContent)
 </script>
 
 <template>
   <div class="glossary-post-content">
     <div class="glossary-post-content__container container">
-      <LazyGlossaryPostSidebar :glossary-post-sidebar-instance="glossaryPostSidebar" />
+      <ClientOnly>
+        <LazyGlossaryPostSidebar :glossary-post-sidebar-instance="glossaryPostSidebar" />
+      </ClientOnly>
       <div class="glossary-post-content__main">
         <LazyGlossaryPostHead :glossary-post-head-instance="glossaryPostHead" />
         <LazyGlossarySlicesComponents

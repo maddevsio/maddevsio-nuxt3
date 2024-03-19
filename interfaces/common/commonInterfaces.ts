@@ -446,10 +446,10 @@ export interface TransformedGlossaryPost {
   wordPageDescription: RichTextField
   slices: any[]
   tableOfContents: TableOfContent
-  createdDate?: string
-  updatedDate?: string
-  author?: Author
-  coAuthor?: Author
+  createdDate: string
+  updatedDate: string
+  author: Author
+  coAuthor: Author
 }
 
 export interface TransformedGlossaryPageData {
@@ -468,5 +468,5 @@ export interface TransformedGlossaryPageData {
     btnText: KeyTextField
     btnLink: KeyTextField
     backgroundColor: SelectField
-  }
+  } | null
 }

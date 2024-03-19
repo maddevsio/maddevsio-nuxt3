@@ -21,7 +21,12 @@ export class GlossaryToolBar implements IGlossaryToolBar {
 
   currentPage = 1
 
-  constructor(route: any, router: Router, headerHeight: number, getAllGlossaryPages: IGlossaryService['getAllGlossaryPages'], currentActiveLetter: Ref<string>) {
+  constructor(
+    route: any,
+    router: Router,
+    headerHeight: number,
+    getAllGlossaryPages: IGlossaryService['getAllGlossaryPages'],
+    currentActiveLetter: Ref<string>) {
     this.alphabetArray = createAlphabetArray()
     this.route = route
     this.router = router

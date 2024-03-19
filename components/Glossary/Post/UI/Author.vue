@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { ImageField } from '@prismicio/client'
 import type { PropType } from 'vue'
-
 interface Props {
   image: ImageField
   name: string
