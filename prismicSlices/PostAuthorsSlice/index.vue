@@ -6,4 +6,8 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />
+  <LazyPageBlocksAuthorsCustomizable
+    v-if="slice.variation === 'customizableAuthorsSlice'"
+    :slice="slice"
+  />
 </template>

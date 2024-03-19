@@ -11,6 +11,7 @@ withDefaults(defineProps<Props>(), {
   colorTheme: 'white',
   currentPage: 1,
 })
+
 const { headerHeight } = storeToRefs(useHeaderStore())
 </script>
 <template>

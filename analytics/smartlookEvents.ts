@@ -19,3 +19,5 @@ export const smartlookSubmitCv = new SmartlookEvent(SMARTLOOK_EVENTS.submitCv).s
 export const smartlookSubmitNewsletter = new SmartlookEvent(SMARTLOOK_EVENTS.submitNewsletter).setCategory(
   SMARTLOOK_EVENT_CATEGORIES.SUBMIT,
 )
+export const smartlookClickHeaderCta = new SmartlookEvent(SMARTLOOK_EVENTS.clickHeaderCta)
+  .setCategory(SMARTLOOK_EVENT_CATEGORIES.CLICK)

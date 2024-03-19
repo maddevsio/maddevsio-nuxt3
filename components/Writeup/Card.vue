@@ -31,18 +31,21 @@ const {
   tags: () => [],
   currentPage: 1,
 })
-// const { activeTagNameGlobal } = inject('activeTagGlobal')
+const { activeTag } = storeToRefs(useDynamicTagCloudStore())
+const route = useRoute()
 
 const tagName = computed(() => {
-  // if (props.tags.length > 1 && (activeTagNameGlobal.value === 'Writeup' || activeTagNameGlobal.value === '')) return props.tags[0]
-  // if (tags.length > 1 && activeTagNameGlobal.value !== 'Writeup') return props.tags.find(tag => tag.replace('Software Development ', 'Software Development') === activeTagNameGlobal.value)
+  if (tags.length > 1 && (activeTag.value.writeUps === 'Writeup' || activeTag.value.writeUps === '')) { return tags[0] }
+  if (tags.length > 1 && activeTag.value.writeUps !== 'Writeup') { return tags.find(tag => tag.replace('Software Development ', 'Software Development') === activeTag.value.writeUps) }
   if (tags.length > 1) { return tags.find(tag => tag.replace('Software Development ', 'Software Development')) }
   return tags[0]
 })
 
 const showLabel = computed(() => index === 0 &&
-  currentPage === 1)
-// TODO: Needs finishing
+  currentPage === 1 &&
+  (activeTag.value.writeUps === 'Writeup' || activeTag.value.writeUps === '') &&
+  route.path.includes('writeups'))
+
 </script>
 <template>
   <div
@@ -69,8 +72,8 @@ const showLabel = computed(() => index === 0 &&
           :src="author.image.url"
           :alt="author.name"
           class="writeup-list__info-img"
-          width="30"
-          height="30"
+          width="60"
+          height="60"
         />
         <p class="writeup-list__info-author-name">
           {{ author.name }}
@@ -105,6 +108,10 @@ const showLabel = computed(() => index === 0 &&
 </template>
 <style lang="scss" scoped>
 .writeup-list {
+  * {
+    box-sizing: border-box;
+  }
+
   &__item {
     position: relative;
     display: flex;
@@ -319,6 +326,7 @@ const showLabel = computed(() => index === 0 &&
 
   &__info {
     &-img {
+      width: 30px;
       min-width: 30px;
       max-width: 100%;
       height: 30px;

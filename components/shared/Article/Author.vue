@@ -6,7 +6,7 @@ interface Props {
   disabled?: boolean
   name: string
   position: string
-  date: string
+  date?: string
   image: ImageField | undefined
   theme: string
   readTime?: string
@@ -43,6 +43,7 @@ const shortName = name.substr(0, 100)
         loading="lazy"
         :src="image.url"
         :alt="image.alt || 'Image'"
+        sizes="mobile:180px tablet:180px desktop:180px"
         width="70"
         height="70"
       />
@@ -116,6 +117,7 @@ const shortName = name.substr(0, 100)
       min-width: 70px;
       height: 70px;
       border-radius: 9.4px;
+      object-fit: contain;
     }
   }
 

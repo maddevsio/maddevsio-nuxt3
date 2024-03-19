@@ -8,6 +8,8 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
   const route = useRoute()
   const prismic = usePrismic()
   const blogService = new BlogService()
+  const { updateHeaderPlateData } = useHeaderPlateStore()
+  const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
   const schemaOrgSnippet = ref<any>()
   const post = ref<BlogPost>()
@@ -35,6 +37,19 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
         postResponse.clusterData.items = extractCUPost(postResponse.clusterData.items, prismic)
       }
 
+      const headerPlate = postResponse.data?.header_plate_text
+        ? {
+          text: postResponse.data?.header_plate_text,
+          btnText: postResponse.data?.header_plate_button_text,
+          btnLink: postResponse.data?.header_plate_link,
+          backgroundColor: postResponse.data?.header_plate_background_color,
+        }
+        : null
+
+      if (!cookiePlate.value) {
+        updateHeaderPlateData(headerPlate)
+      }
+
       return postResponse
     } catch {
       showError({ statusMessage: 'Page not found', statusCode: 404 })
@@ -48,6 +63,8 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
   }
   // Schema org snippet
   schemaOrgSnippet.value = extractSchemaOrg(post.value?.data?.schema_org_snippets as SchemaOrgSnippet[])
+
+  useClearStoresBeforeRouteLeave()
 
   return {
     post: {

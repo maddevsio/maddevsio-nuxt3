@@ -21,6 +21,7 @@ const {
   toggleMobileMenu,
 } = header
 
+// const { headerPlateData } = storeToRefs(useHeaderPlateStore())
 const route = useRoute()
 const headerRef = ref<Element | null>(null)
 const isBlogPage = computed(
@@ -54,7 +55,7 @@ onUnmounted(() => {
       :class="{ 'header--transparent-bg': headerIsTransparent }"
       @mouseleave="menu.setActiveSubMenu('')"
     >
-      <!--      <WidgetsHeaderUIPlate />-->
+      <WidgetsHeaderUIPlate />
       <div
         id="header-container"
         class="container header__inner"

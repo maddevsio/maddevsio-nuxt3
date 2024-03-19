@@ -1,7 +1,6 @@
 import type { Ref } from 'vue'
 import type { Router } from 'vue-router'
-// @ts-ignore
-import type { PrismicPluginClient } from '@prismicio/vue/src/types'
+import type { PrismicPlugin } from '@prismicio/vue'
 import type { IWriteupList, WriteupListProps, TransformedWriteup } from '~/components/Writeup/interfaces/IWriteupList'
 import { Writeup } from '~/components/Writeup/classes/Writeup'
 
@@ -15,11 +14,11 @@ export class WriteupList implements IWriteupList {
   writeupListRef: Ref<any>
   currentPage: Ref<number>
   pageSize: number
-  prismic: PrismicPluginClient
+  prismic: PrismicPlugin
   router: Router
   route: any
 
-  constructor(props: WriteupListProps, prismic: PrismicPluginClient, router: Router, route: any) {
+  constructor(props: WriteupListProps, prismic: PrismicPlugin, router: Router, route: any) {
     this.sliceBackgroundColor = props.primary.backgroundColor || 'white'
     this.tags = props?.items.filter(item => item.writeupTag).map(item => item.writeupTag)
     this.writeups = ref([])

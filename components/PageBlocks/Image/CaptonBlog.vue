@@ -30,7 +30,8 @@ const $prismic = usePrismic()
       <div
         class="block-img"
       >
-        <img
+        <NuxtImg
+          provider="prismic"
           loading="lazy"
           :class="{ 'block-img-zoom': isEnableZoom }"
           :src="image.url"
@@ -38,7 +39,7 @@ const $prismic = usePrismic()
           :width="imageDimensions.imageWidth"
           :height="imageDimensions.imageHeight"
           @click="openModal"
-        >
+        />
         <ClientOnly>
           <Teleport to="body">
             <LazyWidgetsModalZoomImage

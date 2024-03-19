@@ -155,8 +155,8 @@ export interface TransformedAuthor {
     btnText?: string
     btnLink?: string
     backgroundColor?: string
-  },
-  socialNetworks: TransformedAuthorSocialNetwork[],
+  } | null
+  socialNetworks: TransformedAuthorSocialNetwork[]
 }
 
 export interface BlogPost {
@@ -295,7 +295,7 @@ export interface TransformedChecklist {
     btnText: KeyTextField
     btnLink: KeyTextField
     backgroundColor: KeyTextField
-  }
+  } | null
 }
 
 export interface TransformedCustomType {
@@ -371,6 +371,42 @@ export interface TransformedVacancy {
   date: KeyTextField
   schemaOrgSnippet: ({ type: string; innerHTML: string; } | null)[] | null
   released: boolean
+  headerPlate: {
+    text: KeyTextField
+    btnText: KeyTextField
+    btnLink: KeyTextField
+    backgroundColor: KeyTextField
+  } | null
+}
+
+export interface WriteupPost {
+  uid: string
+  data?: {
+    body?: {
+      slice_type?: string
+      slice_variation?: string
+      primary: {
+        text?: RichTextField
+      }
+    }[]
+    title?: KeyTextField
+    date?: string
+    header_plate_background_color?: SelectField
+    header_plate_button_text?: KeyTextField
+    header_plate_link: KeyTextField
+    header_plate_text: KeyTextField
+    meta_description: KeyTextField
+    meta_title?: KeyTextField
+    author?: Author
+    schema_org_snippets: SchemaOrgSnippet[]
+    updated_date?: DateField
+    created_date?: DateField
+    released: BooleanField
+    og_image: ImageField
+  }
+  first_publication_date?: string
+  last_publication_date?: string
+  tags: string[]
 }
 
 export interface GlossaryPage {

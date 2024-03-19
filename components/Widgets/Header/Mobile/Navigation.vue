@@ -28,6 +28,7 @@ const {
         :url="menuItem.mainNav.url"
         :current-root-route="currentRootRoute"
         emit-event-name="set-active-mobile-sub-menu"
+        :reset-state="header.resetState"
         @set-active-mobile-sub-menu="header.menu.setActiveMobileSubMenu(menuItem.mainNav.name)"
       />
       <LazyWidgetsHeaderMobileNavSection

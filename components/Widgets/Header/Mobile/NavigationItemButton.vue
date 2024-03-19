@@ -42,6 +42,11 @@ defineProps({
     type: String,
     default: '',
   },
+
+  resetState: {
+    type: Function,
+    default: () => {},
+  },
 })
 </script>
 <template>
@@ -80,6 +85,7 @@ defineProps({
       :to="url"
       exact
       class="header-navigation-button"
+      @click.prevent="resetState"
     >
       <span
         class="header-navigation-button__label"

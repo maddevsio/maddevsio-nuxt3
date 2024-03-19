@@ -2,6 +2,7 @@ import type { PrismicPlugin } from '@prismicio/vue'
 import { fetchLinks } from '~/config/constants'
 import type { GlossaryDocument, PostDocument, WriteupDocument } from '~/prismicio-types'
 import type { TransformedWriteup, Writeup } from '~/components/Writeup/interfaces/IWriteupList'
+import { transformationWriteupItems } from '~/components/Writeup/helpers/transformationWriteupItems'
 
 export type ResponseContent = PostDocument | WriteupDocument | GlossaryDocument
 
@@ -77,17 +78,6 @@ export class AuthorService {
   }
 
   extractWriteupData(writeups: Writeup[]): TransformedWriteup[] {
-    return writeups.map(writeup => ({
-      uid: writeup.uid,
-      date: formatDate(writeup.data.created_date, true),
-      title: writeup.data.title,
-      tags: writeup.tags.filter(tag => tag !== 'Writeup'),
-      author: {
-        name: writeup?.data?.author?.data?.name,
-        position: writeup?.data?.author?.data?.position,
-        uid: writeup?.data?.author?.data?.uid,
-        image: writeup?.data?.author?.data?.image,
-      },
-    }))
+    return transformationWriteupItems(writeups)
   }
 }

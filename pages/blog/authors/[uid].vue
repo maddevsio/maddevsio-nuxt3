@@ -12,6 +12,8 @@ interface ContentCount {
 const prismic = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 const authorService = new AuthorService(prismic)
 const contentCount = ref<ContentCount>()
 const handleContentCount = (contentCountData: { posts: number, writeups: number, words: number }) => {
@@ -21,8 +23,13 @@ const handleContentCount = (contentCountData: { posts: number, writeups: number,
 const { data: authorData, error } = await useAsyncData('authorData', async () => {
   try {
     const response = await authorService.getAuthor(route.params.uid as string)
+    const author = extractAuthorData(response as unknown as Author) as TransformedAuthor
 
-    return extractAuthorData(response as unknown as Author) as TransformedAuthor
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(author.headerPlate)
+    }
+
+    return author
   } catch {
     showError({ statusMessage: 'Page not found', statusCode: 404 })
   }
@@ -31,6 +38,8 @@ const { data: authorData, error } = await useAsyncData('authorData', async () =>
 if (error.value) {
   throw createError({ statusMessage: 'Page not found', statusCode: 404 })
 }
+
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead({
