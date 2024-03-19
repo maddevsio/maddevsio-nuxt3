@@ -21,7 +21,6 @@ const {
   toggleMobileMenu,
 } = header
 
-// const { headerPlateData } = storeToRefs(useHeaderPlateStore())
 const route = useRoute()
 const headerRef = ref<Element | null>(null)
 const isBlogPage = computed(

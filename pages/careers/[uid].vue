@@ -12,30 +12,24 @@ const { updateHeaderPlateData } = useHeaderPlateStore()
 const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: vacancyData, error } = await useAsyncData('vacancyData', async () => {
-  try {
-    const response = await careersService.getVacancy(route.params.uid as string)
-    const vacancy = careersService.extractVacancyData(response)
+  const response = await careersService.getVacancy(route.params.uid as string)
+  const vacancy = careersService.extractVacancyData(response)
 
-    if (!vacancy.released && config.public.ffEnvironment === 'production') {
-      navigateTo('/careers/', {
-        redirectCode: 303,
-      })
-    }
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(vacancy.headerPlate)
-    }
-
-    return vacancy
-  } catch {
+  if (!vacancy.released && config.public.ffEnvironment === 'production') {
     navigateTo('/careers/', {
       redirectCode: 303,
     })
   }
+
+  if (!cookiePlate.value) {
+    updateHeaderPlateData(vacancy.headerPlate)
+  }
+
+  return vacancy
 })
 
 if (error.value) {
-  navigateTo('/careers/', {
+  await navigateTo('/careers/', {
     redirectCode: 303,
   })
 }

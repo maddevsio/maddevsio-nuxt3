@@ -8,9 +8,10 @@ import type { Writeups } from '~/components/Writeup/interfaces/IWriteupList'
 const prismic = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
-const { updateFooterVisible } = useFooterStore()
+const { updateHeaderPlateData } = useHeaderPlateStore()
+const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
-const writeupService = new Writeup()
+const writeupService = new Writeup(config.public.ffEnvironment)
 
 const { data: writeupData, error } = await useAsyncData('writeupData', async () => {
   try {
@@ -21,15 +22,13 @@ const { data: writeupData, error } = await useAsyncData('writeupData', async () 
 
     const transformedWriteupsData = transformationWriteupListData(allWriteups)
 
-    const { tagCloud } = pageContent
+    const { tagCloud, headerPlate } = pageContent
 
     const tags = tagCloud?.length ? tagCloud[0].items : []
 
-    // const { headerPlate } = pageContent
-    //
-    // if (!$cookies.get(`seenArticlePlate_${route.path}`)) {
-    //   store.commit('SET_HEADER_PLATE_CONTENT', headerPlate)
-    // }
+    if (!cookiePlate.value) {
+      updateHeaderPlateData(headerPlate)
+    }
 
     if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })
@@ -51,9 +50,7 @@ if (error.value) {
 
 provide('transformedWriteupsData', writeupData.value?.transformedWriteupsData)
 
-onBeforeRouteLeave(() => {
-  updateFooterVisible(true)
-})
+useClearStoresBeforeRouteLeave()
 
 // @ts-ignore
 useHead(buildHead({

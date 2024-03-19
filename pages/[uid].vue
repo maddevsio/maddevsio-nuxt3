@@ -7,6 +7,7 @@ import type { TransformedCustomType } from '~/interfaces/common/commonInterfaces
 const { client } = usePrismic()
 const route = useRoute()
 const { updateFooterVisible } = useFooterStore()
+const { updateEmailSubject } = useEmailSubjectStore()
 const config = useRuntimeConfig()
 const { updateHeaderPlateData } = useHeaderPlateStore()
 const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
@@ -44,7 +45,11 @@ if (error.value) {
 useClearStoresBeforeRouteLeave()
 
 if (data.value?.uid) {
-  updateFooterVisible(data.value.showFooter)
+  if (data.value.showFooter !== undefined) {
+    updateFooterVisible(data.value.showFooter)
+  }
+
+  updateEmailSubject(data.value?.emailSubject as string)
 }
 
 // @ts-ignore
