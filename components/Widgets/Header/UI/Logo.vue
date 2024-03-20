@@ -313,7 +313,7 @@ onMounted(() => {
   &-default {
     padding-top: 10px;
 
-    @media screen and (max-width: 1026px) {
+    @media screen and (max-width: 1200px) {
       padding-top: 0;
       margin-top: -4px;
     }
@@ -327,7 +327,7 @@ onMounted(() => {
     opacity: 0;
     transition: 0.33s ease 0.2s;
 
-    @media screen and (max-width: 1026px) {
+    @media screen and (max-width: 1200px) {
       width: 32px;
       height: 32px;
       margin-top: -5px;
@@ -346,7 +346,7 @@ onMounted(() => {
 
 .logo-text {
   overflow: hidden;
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1200px) {
     margin-top: -5px;
   }
 }
