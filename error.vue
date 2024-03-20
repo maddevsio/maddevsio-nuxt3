@@ -8,7 +8,6 @@ const { error } = defineProps({
 })
 const { $getMediaFromS3 } = useMediaFromS3()
 const handleClearError = () => clearError({ redirect: '/' })
-console.log(error)
 </script>
 
 <template>

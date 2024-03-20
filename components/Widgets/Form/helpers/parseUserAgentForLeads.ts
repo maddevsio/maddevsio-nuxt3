@@ -6,6 +6,7 @@ export const parseUserAgentForLeads = () => {
   let userPlatform = 'Unknown'
 
   if (window && window.navigator && window.navigator.userAgent) {
+    // eslint-disable-next-line import/no-named-as-default-member
     const { browser, os, platform } = bowser.parse(window.navigator.userAgent)
     const { name: browserName = 'Unknown', version: browserVersion = 'Unknown' } = browser
     const { name: osName = 'Unknown', version: osVersion = 'Unknown', versionName: osVersionName = 'Unknown' } = os

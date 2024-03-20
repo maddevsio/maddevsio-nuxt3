@@ -1,4 +1,3 @@
-import type { SelectField } from '@prismicio/client'
 import type { ComputedRef } from 'vue'
 import type {
   ISubscribeFormDefault,

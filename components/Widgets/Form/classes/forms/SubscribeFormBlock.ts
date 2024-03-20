@@ -1,5 +1,4 @@
 import type { Ref } from 'vue'
-import type { SelectField } from '@prismicio/client'
 import type {
   ISubscribeFormBlock,
   SubscribeFormBlockProps,

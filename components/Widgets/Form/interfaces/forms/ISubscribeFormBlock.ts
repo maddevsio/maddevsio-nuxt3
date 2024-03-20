@@ -1,5 +1,4 @@
 import type { Ref } from 'vue'
-import type { SelectField } from '@prismicio/client'
 
 export type TitleClass = string | { [className: string]: boolean };
 
