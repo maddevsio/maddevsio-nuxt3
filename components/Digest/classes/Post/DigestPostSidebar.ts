@@ -3,7 +3,6 @@ import type { IPostTableOfContents } from '~/components/Blog/interfaces/Post/IPo
 import type { ISubscribeFormBlock } from '~/components/Widgets/Form/interfaces/forms/ISubscribeFormBlock'
 import { PostTableOfContents } from '~/components/Blog/classes/Post/PostTableOfContents'
 import { SubscribeFormBlock } from '~/components/Widgets/Form/classes/forms/SubscribeFormBlock'
-import type { TableOfContent } from '~/interfaces/common/commonInterfaces'
 
 export class DigestPostSidebar implements IDigestPostSidebar {
   postTableOfContentsInstance: IPostTableOfContents

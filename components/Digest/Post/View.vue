@@ -5,7 +5,7 @@ import type { DigestPostComponents } from '~/components/Digest/interfaces/Post/I
 
 const props = defineProps({
   digest: {
-    Object,
+    type: Object,
     required: true,
     default: () => ({}),
   },

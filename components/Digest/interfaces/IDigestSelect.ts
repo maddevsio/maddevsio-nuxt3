@@ -13,7 +13,6 @@ export interface IDigestSelect {
   prismic: PrismicPlugin
   currentOption: Ref<DigestSelectOption>
   selectDigestOptions: Ref<UnwrapRef<(false | { year: string; label: string })[]>>
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   createSelectOption(date: DigestSelectDate): DigestSelectOption
   createSelectOptionsList(): Promise<void>
 }

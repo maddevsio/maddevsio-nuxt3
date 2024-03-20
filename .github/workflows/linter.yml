@@ -1,0 +1,22 @@
+name: Linter CI
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ vars.ACTIVE_RUNNER }}
+
+    strategy:
+      matrix:
+        node-version: [18.19.0]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run lint
+        env:
+          CI: true
