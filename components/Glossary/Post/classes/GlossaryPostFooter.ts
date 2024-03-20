@@ -20,7 +20,7 @@ export class GlossaryPostFooter implements IGlossaryPostFooter {
   }
 
   transformGlossaryAuthorData(author: Author) {
-    return author.data && Object.keys(author.data)
+    return author.data && Object.keys(author.data).length
       ? {
         name: author?.data?.name,
         position: author?.data?.position,

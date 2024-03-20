@@ -14,7 +14,7 @@ const config = useRuntimeConfig()
 const { updateHeaderPlateData } = useHeaderPlateStore()
 const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment)
 
-const { data: glossaryData, error } = await useAsyncData('glossaryData', async () => {
+const { data: glossaryPost, error } = await useAsyncData('glossaryPost', async () => {
   try {
     const glossaryPostData = await glossaryService.getGlossaryPageContent(route.params.uid as string) as GlossaryPage
     const glossaryPostContent = extractGlossaryPostData(glossaryPostData)
@@ -71,20 +71,20 @@ provide('glossaryService', glossaryService)
 
 // @ts-ignore
 useHead(buildHead({
-  url: glossaryData.value?.glossaryPageData.url || '',
-  title: glossaryData.value?.glossaryPageData?.metaTitle || '',
-  description: glossaryData.value?.glossaryPageData?.metaDescription || '',
-  jsonLd: glossaryData?.value?.glossaryPageData?.schemaOrg,
-  image: glossaryData.value?.glossaryPageData?.ogImage,
+  url: glossaryPost.value?.glossaryPageData.url || '',
+  title: glossaryPost.value?.glossaryPageData?.metaTitle || '',
+  description: glossaryPost.value?.glossaryPageData?.metaDescription || '',
+  jsonLd: glossaryPost?.value?.glossaryPageData?.schemaOrg,
+  image: glossaryPost.value?.glossaryPageData?.ogImage,
 }))
 </script>
 
 <template>
   <div class="glossary-page-content">
-    <LazyGlossaryPageStartScreen v-if="glossaryData" class="glossary-start-screen" :start-screen-data="glossaryData.glossaryStartScreenData" />
-    <LazyGlossaryToolBar v-if="glossaryData" :active-letter-prop="glossaryData.activeLetter" />
-    <LazyGlossaryPostView v-if="glossaryData" :glossary-post-content="glossaryData.glossaryPostContent" />
-    <LazyGlossaryNewestWords v-if="glossaryData" :last-newest-filtered-words="glossaryData.lastNewestFilteredWords" :tag="glossaryData.tagForSubtitle" />
+    <LazyGlossaryPageStartScreen v-if="glossaryPost" class="glossary-start-screen" :start-screen-data="glossaryPost.glossaryStartScreenData" />
+    <LazyGlossaryToolBar v-if="glossaryPost" :active-letter-prop="glossaryPost.activeLetter" />
+    <LazyGlossaryPostView v-if="glossaryPost" :glossary-post-content="glossaryPost.glossaryPostContent" />
+    <LazyGlossaryNewestWords v-if="glossaryPost" :last-newest-filtered-words="glossaryPost.lastNewestFilteredWords" :tag="glossaryPost.tagForSubtitle" />
   </div>
 </template>
 
