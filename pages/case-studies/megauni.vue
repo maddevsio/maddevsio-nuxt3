@@ -3,7 +3,7 @@ import { buildHead } from '~/SEO/buildMetaTags'
 
 const caseStudyData = await useCaseStudyData({
   caseName: 'megauni',
-  defaultOgImage: 'https://maddevs.io/sjmc-case.png',
+  defaultOgImage: 'https://maddevs.io/megauni-meta-banner.jpg',
 })
 
 // @ts-ignore

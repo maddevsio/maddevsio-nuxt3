@@ -46,7 +46,7 @@ rules:
   no-warn: 2
   one-declaration-per-line: 2
   property-sort-order: 0
-  pseudo-element: 2
+  pseudo-element: 0
   quotes:
     - 2
     -
@@ -60,5 +60,7 @@ rules:
   no-css-comments: 0
   no-url-protocols: 0
   no-url-domains: 0
-  mixins-before-declarations: false
-  variable-name-format: 'camelCase'
+  mixins-before-declarations: true
+  variable-name-format: 'hyphenatedlowercase'
+  hex-notation: 0
+  hex-length: 0

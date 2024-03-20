@@ -3,7 +3,7 @@ import { buildHead } from '~/SEO/buildMetaTags'
 
 const caseStudyData = await useCaseStudyData({
   caseName: 'citycam',
-  defaultOgImage: 'https://maddevs.io/sjmc-case.png',
+  defaultOgImage: 'https://maddevs.io/citycam.png',
 })
 
 // @ts-ignore
