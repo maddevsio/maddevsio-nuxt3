@@ -46,7 +46,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
     }
   }
 
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1200px) {
     flex: 1;
     display: flex;
     justify-content: flex-end;
