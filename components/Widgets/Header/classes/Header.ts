@@ -12,7 +12,7 @@ export class Header implements IHeader {
   headerRef: Ref<HTMLElement | null>
   menu: IHeaderMenu<IHeaderMenuItem[]>
 
-  mobileSize = 1026
+  mobileSize = 1200
   headerTransparent = ref(true)
   showLogoText = ref(true)
   isActiveMobileMenu = ref(false)

@@ -68,7 +68,7 @@ const {
   background: transparent;
   border: none;
   cursor: pointer;
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1200px) {
     display: flex;
   }
 }
