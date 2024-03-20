@@ -1,6 +1,9 @@
 import type { FilledLinkToWebField, ImageField } from '@prismicio/types'
 import type { BooleanField, DateField, KeyTextField, NumberField, RichTextField, SelectField } from '@prismicio/client'
-import type { VacancyDocumentDataBodySlice } from '~/prismicio-types'
+import type {
+  GlossaryDocumentData,
+  VacancyDocumentDataBodySlice,
+} from '~/prismicio-types'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -404,4 +407,73 @@ export interface WriteupPost {
   first_publication_date?: string
   last_publication_date?: string
   tags: string[]
+}
+
+export interface GlossaryPage {
+  uid: string
+  data: {
+    body: GlossaryDocumentData['body']
+    word_title: KeyTextField
+    word_page_title: KeyTextField
+    word_page_description: RichTextField
+    image: ImageField
+    title: KeyTextField
+    subtitle: KeyTextField
+    description: KeyTextField
+    header_plate_background_color: SelectField
+    header_plate_button_text: KeyTextField
+    header_plate_link: KeyTextField
+    header_plate_text: KeyTextField
+    meta_description: KeyTextField
+    meta_title: KeyTextField
+    author: Author
+    co_author: Author
+    schema_org_snippets: SchemaOrgSnippet[]
+    updated_date?: DateField
+    created_date?: DateField
+    released: BooleanField
+    og_image: ImageField
+  }
+  first_publication_date?: string
+  last_publication_date?: string
+  tags: string[]
+}
+
+export interface TransformedGlossaryPost {
+  uid: string
+  wordTitle: KeyTextField
+  wordPageTitle: KeyTextField
+  wordPageDescription: RichTextField
+  slices: any[]
+  tableOfContents: TableOfContent
+  createdDate: string
+  updatedDate: string
+  author: Author
+  coAuthor: Author
+}
+
+export interface TransformedGlossaryPageData {
+  uid: string
+  url: string
+  metaTitle: KeyTextField
+  metaDescription: KeyTextField
+  ogImage: string
+  schemaOrg: ({
+    type: string
+    innerHTML: string
+  } | null)[] | null
+  released: boolean
+  headerPlate: {
+    text: KeyTextField
+    btnText: KeyTextField
+    btnLink: KeyTextField
+    backgroundColor: SelectField
+  } | null
+}
+
+export interface TransformedGlossaryAuthor {
+  image?: ImageField | undefined
+  name?: string | undefined
+  position?: string | undefined
+  link?: string | undefined
 }

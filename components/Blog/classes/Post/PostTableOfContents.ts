@@ -51,7 +51,7 @@ export class PostTableOfContents implements IPostTableOfContents {
         // @ts-ignore
         label: tableOfContent.lable[0].text,
         index: tableOfContentIndex,
-        colorTheme: this.colorTheme,
+        colorTheme: this.tableOfContents?.primary?.color_theme,
       }))
   }
 

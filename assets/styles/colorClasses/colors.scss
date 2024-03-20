@@ -54,6 +54,10 @@
   color: $text-color--grey-opacity-40-percent;
 }
 
+.text--red {
+  color: $text-color--venetian-red;
+}
+
 .text--blue-gradient {
   background-image: linear-gradient(to bottom, #4CA0F5 7.33%, #2E6FF9 85.42%);
   -webkit-background-clip: text;
