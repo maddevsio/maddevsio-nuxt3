@@ -14,7 +14,7 @@ const config = useRuntimeConfig()
 const { updateHeaderPlateData } = useHeaderPlateStore()
 const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment)
 
-const { data: glossaryData, error } = await useAsyncData('glossaryPost', async () => {
+const { data: glossaryData, error } = await useAsyncData('glossaryData', async () => {
   try {
     const glossaryPostData = await glossaryService.getGlossaryPageContent(route.params.uid as string) as GlossaryPage
     const glossaryPostContent = extractGlossaryPostData(glossaryPostData)
@@ -81,10 +81,10 @@ useHead(buildHead({
 
 <template>
   <div class="glossary-page-content">
-    <LazyGlossaryPageStartScreen class="glossary-start-screen" :start-screen-data="glossaryData?.glossaryStartScreenData" />
-    <LazyGlossaryToolBar :active-letter-prop="glossaryData?.activeLetter" />
-    <LazyGlossaryPostView :glossary-post-content="glossaryData?.glossaryPostContent" />
-    <LazyGlossaryNewestWords :last-newest-filtered-words="glossaryData?.lastNewestFilteredWords" :tag="glossaryData?.tagForSubtitle" />
+    <LazyGlossaryPageStartScreen v-if="glossaryData" class="glossary-start-screen" :start-screen-data="glossaryData.glossaryStartScreenData" />
+    <LazyGlossaryToolBar v-if="glossaryData" :active-letter-prop="glossaryData.activeLetter" />
+    <LazyGlossaryPostView v-if="glossaryData" :glossary-post-content="glossaryData.glossaryPostContent" />
+    <LazyGlossaryNewestWords v-if="glossaryData" :last-newest-filtered-words="glossaryData.lastNewestFilteredWords" :tag="glossaryData.tagForSubtitle" />
   </div>
 </template>
 

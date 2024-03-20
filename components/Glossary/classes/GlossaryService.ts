@@ -1,8 +1,7 @@
 import type { PrismicPlugin } from '@prismicio/vue'
-import type { Ordering } from '@prismicio/client'
 import { fetchLinks } from '~/config/constants'
 import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
-import type { IGlossaryService } from '~/components/Glossary/interfaces/IGlossaryService'
+import type { IGlossaryService, QueryOrdering } from '~/components/Glossary/interfaces/IGlossaryService'
 
 export class GlossaryService implements IGlossaryService {
   prismic: PrismicPlugin
@@ -24,7 +23,7 @@ export class GlossaryService implements IGlossaryService {
     pageSize = 11,
     page = 1,
     tag = ['Glossary'],
-    orderings: string | Ordering | (string | Ordering)[] | undefined = { field: 'my.glossary.word_title', direction: 'desc' },
+    orderings: QueryOrdering = { field: 'my.glossary.word_title', direction: 'desc' },
   ) {
     try {
       return await this.prismic.client.get({
@@ -63,7 +62,7 @@ export class GlossaryService implements IGlossaryService {
     field: string,
     tags: string,
     queryValue: string,
-    orderings: string | Ordering | (string | Ordering)[] | undefined = { field: 'my.glossary.word_title', direction: 'desc' }) {
+    orderings: QueryOrdering = { field: 'my.glossary.word_title', direction: 'desc' }) {
     try {
       return await this.prismic.client.get({
         filters: [
@@ -86,7 +85,7 @@ export class GlossaryService implements IGlossaryService {
     field: string,
     tags: string,
     queryValue: string,
-    orderings: string | Ordering | (string | Ordering)[] | undefined = { field: 'my.glossary.word_title', direction: 'desc' }) {
+    orderings: QueryOrdering = { field: 'my.glossary.word_title', direction: 'desc' }) {
     try {
       let pages: GlossaryPage[] = []
       const response = await this.loadWordsBySearch(type, field, tags, queryValue, orderings)

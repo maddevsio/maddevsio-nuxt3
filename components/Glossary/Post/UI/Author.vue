@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import type { ImageField } from '@prismicio/client'
 import type { PropType } from 'vue'
-interface Props {
-  image: ImageField
-  name: string
-  position: string
-  link: string
-}
+import type { TransformedGlossaryAuthor } from '~/interfaces/common/commonInterfaces'
+
 defineProps({
   author: {
-    type: Object as PropType<Props>,
+    type: Object as PropType<TransformedGlossaryAuthor>,
     default: () => ({}),
   },
 })

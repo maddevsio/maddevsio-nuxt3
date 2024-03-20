@@ -470,3 +470,10 @@ export interface TransformedGlossaryPageData {
     backgroundColor: SelectField
   } | null
 }
+
+export interface TransformedGlossaryAuthor {
+  image?: ImageField | undefined
+  name?: string | undefined
+  position?: string | undefined
+  link?: string | undefined
+}

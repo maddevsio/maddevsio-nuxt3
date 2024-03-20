@@ -12,7 +12,7 @@ const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 const { updateHeaderPlateData } = useHeaderPlateStore()
 const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment)
 
-const { data: glossaryData, error } = await useAsyncData('glossaryPost', async () => {
+const { data: glossaryData, error } = await useAsyncData('glossaryData', async () => {
   try {
     const glossaryPageData = await glossaryService.getGlossaryPageContent('glossary') as GlossaryPage
     const glossaryPageContent = extractGlossaryPageData(glossaryPageData, config.public.domain)
@@ -64,8 +64,9 @@ useHead(buildHead({
 <template>
   <div class="glossary-page-content">
     <LazyGlossaryPageStartScreen
+      v-if="glossaryData"
       class="glossary-start-screen"
-      :start-screen-data="glossaryData?.glossaryStartScreenData"
+      :start-screen-data="glossaryData.glossaryStartScreenData"
     />
     <LazyGlossaryMainPageContent />
   </div>

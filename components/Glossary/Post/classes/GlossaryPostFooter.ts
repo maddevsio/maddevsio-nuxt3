@@ -1,43 +1,32 @@
-import type { ComputedRef } from 'vue'
 import type {
   GlossaryPostFooterProps,
   IGlossaryPostFooter,
 } from '~/components/Glossary/Post/interfaces/IGlossaryPostFooter'
-import type { Author } from '~/interfaces/common/commonInterfaces'
+import type { Author, TransformedGlossaryAuthor } from '~/interfaces/common/commonInterfaces'
 
 export class GlossaryPostFooter implements IGlossaryPostFooter {
   author: Author
   coAuthor: Author
   updatedDate: string
-  authorData: ComputedRef<object>
-  coAuthorData: ComputedRef<object>
+  authorData: TransformedGlossaryAuthor
+  coAuthorData: TransformedGlossaryAuthor
   constructor({ author, coAuthor, updatedDate }: GlossaryPostFooterProps) {
     this.author = author
     this.coAuthor = coAuthor
     this.updatedDate = updatedDate
 
-    this.authorData = computed(() => {
-      if (this.author?.data?.name) {
-        return {
-          name: this.author?.data?.name,
-          position: this.author?.data?.position,
-          image: this.author?.data?.thumbnail_image,
-          link: linkResolver({ type: 'author', uid: this.author?.uid }),
-        }
-      }
-      return {}
-    })
+    this.authorData = this.transformGlossaryAuthorData(this.author)
+    this.coAuthorData = this.transformGlossaryAuthorData(this.coAuthor)
+  }
 
-    this.coAuthorData = computed(() => {
-      if (this.coAuthor?.data?.name) {
-        return {
-          name: this.coAuthor?.data?.name,
-          position: this.coAuthor?.data?.position,
-          image: this.coAuthor?.data?.thumbnail_image,
-          link: linkResolver({ type: 'author', uid: this.coAuthor?.uid }),
-        }
+  transformGlossaryAuthorData(author: Author) {
+    return author.data && Object.keys(author.data)
+      ? {
+        name: author?.data?.name,
+        position: author?.data?.position,
+        image: author?.data?.thumbnail_image,
+        link: linkResolver({ type: 'author', uid: author?.uid }),
       }
-      return {}
-    })
+      : {}
   }
 }
