@@ -5,6 +5,7 @@ import type {
   IImageCaptionBlog,
   ImageCaptionBlogProps,
 } from '~/components/PageBlocks/Image/interfaces/IImageCaptionBlog'
+import { manageScrollOnBody } from '~/utils/manageScrollOnBody'
 
 export class ImageCaptionBlog implements IImageCaptionBlog {
   zoom: Ref<{ show(): void } | null>
@@ -36,6 +37,7 @@ export class ImageCaptionBlog implements IImageCaptionBlog {
 
   openModal() {
     if (this.isEnableZoom && this.zoom.value) {
+      manageScrollOnBody.disableScrollOnBody()
       this.zoom.value.show()
     }
   }
