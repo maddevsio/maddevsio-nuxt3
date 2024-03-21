@@ -1,7 +1,10 @@
 import mitt from 'mitt'
 
+type AppTypes = {
+  [key: string]: any
+}
 export default defineNuxtPlugin(() => {
-  const emitter = mitt()
+  const emitter = mitt<AppTypes>()
 
   return {
     provide: {

@@ -101,7 +101,7 @@ onMounted(() => {
     }
   }
 
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1200px) {
     bottom: unset;
     left: unset;
   }

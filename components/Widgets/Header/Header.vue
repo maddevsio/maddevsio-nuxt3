@@ -136,7 +136,7 @@ onUnmounted(() => {
     flex-wrap: wrap;
     align-items: center;
     height: 66px;
-    @media screen and (max-width: 1026px) {
+    @media screen and (max-width: 1200px) {
       justify-content: space-between;
       padding: 0 10px 0 25px;
       max-width: 100%;
@@ -149,7 +149,7 @@ onUnmounted(() => {
     position: relative;
     width: 100%;
 
-    @media screen and (max-width: 1026px) {
+    @media screen and (max-width: 1200px) {
       position: absolute;
       bottom: -20px;
       left: 25px;
@@ -165,7 +165,7 @@ onUnmounted(() => {
     transform: translateX(-100%);
     padding-top: 8px;
     margin-left: -33px;
-    @media screen and (max-width: 1026px) {
+    @media screen and (max-width: 1200px) {
       transform: translateX(0);
       margin-left: 0;
       padding-top: 22px;
@@ -182,7 +182,7 @@ onUnmounted(() => {
 
   &__main-nav {
     flex-grow: 1;
-    @media screen and (max-width: 1026px) {
+    @media screen and (max-width: 1200px) {
       display: none;
     }
   }

@@ -61,7 +61,7 @@ watch(route, () => {
   padding-top: 63px; // 63px - height of sticky header
   background-color: $bgcolor--black;
   color: white;
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1200px) {
     padding-top: 48px;
   }
 
@@ -69,7 +69,7 @@ watch(route, () => {
     position: relative;
     height: calc(100vh - 63px);
     overflow: auto;
-    @media screen and (max-width: 1026px) {
+    @media screen and (max-width: 1200px) {
       height: calc(100vh - 48px);
     }
   }
