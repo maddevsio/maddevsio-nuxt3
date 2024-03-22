@@ -14,7 +14,7 @@ const route = useRoute()
 const config = useRuntimeConfig()
 const { updateHeaderPlateData } = useHeaderPlateStore()
 const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
-const authorService = new AuthorService(prismic)
+const authorService = new AuthorService(prismic, config.public.ffEnvironment)
 const contentCount = ref<ContentCount>()
 const handleContentCount = (contentCountData: { posts: number, writeups: number, words: number }) => {
   contentCount.value = contentCountData
