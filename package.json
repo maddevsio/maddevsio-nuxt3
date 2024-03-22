@@ -5,7 +5,7 @@
   "author": "Mad Devs",
   "private": true,
   "engines": {
-    "node": "18.19.0"
+    "node": ">=18.19.0"
   },
   "scripts": {
     "build": "nuxt build",
@@ -15,7 +15,7 @@
     "start": "node .output/server/index.mjs",
     "postinstall": "nuxt prepare",
     "slicemachine": "start-slicemachine",
-    "lint": "eslint . & npm run lint-scss",
+    "lint": "npm run lint-scss & eslint .",
     "lint:fix": "eslint . --fix",
     "lint-scss": "sass-lint assets/styles/**/*.scss --verbose",
     "snyk-protect": "snyk-protect"

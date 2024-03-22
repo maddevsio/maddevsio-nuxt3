@@ -44,7 +44,7 @@ const tagName = computed(() => {
 const showLabel = computed(() => index === 0 &&
   currentPage === 1 &&
   (activeTag.value.writeUps === 'Writeup' || activeTag.value.writeUps === '') &&
-  !route.path.includes('authors'))
+  route.path.includes('writeups'))
 
 </script>
 <template>
