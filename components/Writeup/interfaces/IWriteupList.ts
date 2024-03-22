@@ -63,7 +63,7 @@ export interface IWriteupList {
   totalPages: Ref<number>
   nextPage: Ref<string | null>
   prevPage: Ref<string | null>
-  writeupListRef: Ref<any>
+  writeupListRef: Ref<HTMLElement & {$el: HTMLElement}| null>
   currentPage: Ref<number>
   pageSize: number
   prismic: PrismicPlugin

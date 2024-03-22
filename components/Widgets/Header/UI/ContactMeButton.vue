@@ -42,7 +42,7 @@ const {
     background-color: $bgcolor--red;
     color: $text-color--white-primary;
   }
-  @media screen and (max-width: 1026px) {
+  @media screen and (max-width: 1200px) {
     display: none;
   }
 

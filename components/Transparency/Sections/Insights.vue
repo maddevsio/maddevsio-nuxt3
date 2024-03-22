@@ -4,6 +4,7 @@ import { fetchLinks } from '~/config/constants'
 import type { PostDocument } from '~/prismicio-types'
 import type { Author, BlogPost } from '~/interfaces/common/commonInterfaces'
 import type { IButtonOutline } from '~/components/PageBlocks/ButtonSlice/interfaces/IButtonOutline'
+import { ButtonOutline } from '~/components/PageBlocks/ButtonSlice/classes/ButtonOutline'
 
 const buttonProps = {
   primary: {
@@ -80,6 +81,7 @@ const { isMobile } = useCheckMobile(959)
 
 onMounted(async () => {
   await fetchPosts()
+  buttonInstance.value = new ButtonOutline(buttonProps)
 })
 </script>
 <template>

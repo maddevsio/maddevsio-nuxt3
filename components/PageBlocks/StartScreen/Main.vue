@@ -21,6 +21,9 @@ const {
   image,
   modalContactMeRef,
 } = mainStartScreen
+
+const sectionText = ref<HTMLElement | null>(null)
+const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
 </script>
 
 <template>
@@ -33,7 +36,11 @@ const {
       :lazy="false"
       class="main-start-screen__image"
     />
-    <div ref="sectionText" class="container">
+    <div
+      ref="sectionText"
+      class="container"
+      :style="{ opacity: sectionTextOpacity }"
+    >
       <div class="main-start-screen__text-content">
         <h1 class="main-start-screen__title" v-html="reformattedTitle" />
         <h2
