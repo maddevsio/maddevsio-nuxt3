@@ -1,32 +1,29 @@
 <script setup lang="ts">
-const { $getMediaFromS3 } = useMediaFromS3()
-
 const sectionText = ref<HTMLElement>()
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
+
+const { isMobile } = useCheckMobile(680)
+
+const sourcePaths = {
+  desktop: '/images/OpenSource/webp/programmer-desktop.webp',
+  laptop: '/images/OpenSource/webp/programmer-laptop.webp',
+  tablet: '/images/OpenSource/webp/programmer-tablet.webp',
+  mobile: '/images/OpenSource/webp/programmer-mobile.webp',
+}
 </script>
+
 <template>
   <div
     id="transparent-header-area"
     class="open-source-banner"
   >
-    <picture>
-      <source
-        :srcset="[
-          $getMediaFromS3('/images/OpenSource/webp/programmer.webp') + ' ',
-          $getMediaFromS3('/images/OpenSource/webp/programmer@2x.webp') + ' 2x'
-        ].join(', ')"
-        type="image/webp"
-        class="open-source-banner__image"
-      >
-      <img
-        :src="$getMediaFromS3('/images/OpenSource/png/programmer.png')"
-        :srcset="$getMediaFromS3('/images/OpenSource/png/programmer@2x.png') + ' 2x'"
-        width="1680"
-        height="969"
-        class="open-source-banner__image"
-        alt="Programmer"
-      >
-    </picture>
+    <SharedUIAdaptiveImage
+      :source-paths="sourcePaths"
+      :width="isMobile ? 414 : 1920"
+      :height="isMobile ? 780 : 977"
+      :alt="'Programmer'"
+      class="open-source-banner__image"
+    />
     <div class="container">
       <div
         ref="sectionText"
@@ -44,6 +41,7 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .open-source-banner {
   position: relative;
@@ -56,17 +54,15 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
   min-height: 568px;
   background: linear-gradient(180deg, rgba(17, 18, 19, 0) 75%, $bgcolor--black 100%);
   overflow: hidden;
-  &__image {
-    display: block;
-    z-index: -1;
+
+  :deep(.image-background) {
     position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    object-fit: cover;
+    top: 0;
+    left: 0;
     object-position: top;
+    z-index: -1;
   }
+
   &__content {
     z-index: 2;
     display: block;
@@ -74,12 +70,14 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
     max-width: 1028px;
     text-align: center;
   }
+
   &__title {
     color: $text-color--white;
     font-size: 100px;
     line-height: 96px;
     letter-spacing: -0.04em;
   }
+
   &__subtitle {
     margin-top: 64px;
     font-size: 32px;
@@ -94,6 +92,7 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
       font-size: 80px;
       line-height: 88px;
     }
+
     &__subtitle {
       margin-top: 62px;
       font-size: 24px;
@@ -106,6 +105,7 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
       font-size: 52px;
       line-height: 57px;
     }
+
     &__subtitle {
       margin-top: 21px;
       font-size: 21px;
