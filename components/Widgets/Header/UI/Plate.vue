@@ -117,10 +117,7 @@ const clickArticle = (path: string) => {
 
       @media screen and (max-width: 450px) {
         justify-content: flex-start;
-      }
-
-      @media screen and (max-width: 360px) {
-        column-gap: 10px;
+        column-gap: 15px;
       }
     }
 
@@ -167,10 +164,6 @@ const clickArticle = (path: string) => {
       transform: translateY(-50%);
 
       @media screen and (max-width: 490px) {
-        right: 10px;
-      }
-
-      @media screen and (max-width: 360px) {
         right: 0;
       }
     }
