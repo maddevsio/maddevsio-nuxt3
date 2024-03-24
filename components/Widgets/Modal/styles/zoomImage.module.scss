@@ -1,11 +1,9 @@
 @import "./modalWindow.module";
 
 .zoom-image-modal {
-  margin: 0;
-
-  .modal-window__body {
-    width: 98vw;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .modal-window__close {
     top: 0;

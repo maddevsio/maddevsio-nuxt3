@@ -15,6 +15,7 @@ defineExpose({
   <LazyWidgetsModalBase
     ref="modalWindow"
     :class="styles['zoom-image-modal']"
+    :with-scroll="false"
   >
     <slot />
   </LazyWidgetsModalBase>
