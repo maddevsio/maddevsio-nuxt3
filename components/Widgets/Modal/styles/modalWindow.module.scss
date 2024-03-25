@@ -6,6 +6,12 @@
   height: 100%;
   overflow: hidden;
 
+  &--without-scroll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   * {
     box-sizing: border-box;
   }

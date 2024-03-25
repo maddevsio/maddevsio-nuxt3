@@ -77,7 +77,7 @@ defineExpose({
   <LazySharedUITransitionFade>
     <div
       v-if="isShowModal"
-      :class="styles['modal-window']"
+      :class="[styles['modal-window'], styles[!withScroll ? 'modal-window--without-scroll' : '']]"
     >
       <div
         :class="styles['modal-window__overlay']"
