@@ -7,7 +7,6 @@ import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
 
 const prismic = usePrismic()
 const config = useRuntimeConfig()
-const route = useRoute()
 const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment)
 
 const { data: glossaryData, error } = await useAsyncData('glossaryData', async () => {
