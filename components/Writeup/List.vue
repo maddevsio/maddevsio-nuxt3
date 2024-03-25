@@ -32,7 +32,7 @@ const handleChangePage = (page: number) => writeupList.changePage(page)
       >
         <LazyWriteupCards
           v-if="writeupList.writeups.value.length"
-          ref="writeupListRef"
+          :ref="writeupList.writeupListRef"
           :writeups="writeupList.writeups.value"
           :color-theme="writeupList.sliceBackgroundColor"
           :current-page="writeupList.currentPage.value"
