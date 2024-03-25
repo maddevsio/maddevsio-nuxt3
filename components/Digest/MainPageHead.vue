@@ -1,18 +1,22 @@
 <script setup lang="ts">
-const { isMobile } = useDevice()
-const { $getMediaFromS3 } = useMediaFromS3()
-// TODO: Needs add background images of different sizes and create component for this
+const { isMobile } = useCheckMobile(680)
+const sourcePaths = {
+  desktop: '/images/Digest/webp/digest-start-screen.webp',
+  laptop: '/images/Digest/webp/digest-start-screen-laptop.webp',
+  tablet: '/images/Digest/webp/digest-start-screen-tablet.webp',
+  mobile: '/images/Digest/webp/digest-start-screen-mobile.webp',
+}
 </script>
 
 <template>
   <section class="digest-main-page-head">
-    <img
-      :src="$getMediaFromS3('images/Digest/webp/digest-start-screen.webp')"
-      :alt="'Digest Start Screen Background'"
-      :width="isMobile ? 414 : 1440"
-      :height="isMobile ? 445 : 582"
+    <SharedUIAdaptiveImage
       class="digest-main-page-head__image"
-    >
+      :source-paths="sourcePaths"
+      :width="isMobile ? 414 : 1920"
+      :height="isMobile ? 445 : 582"
+      :alt="'Digest Start Screen Background'"
+    />
     <div class="container digest-main-page-head__container">
       <h1
         class="digest-main-page-head__title"
@@ -58,16 +62,13 @@ const { $getMediaFromS3 } = useMediaFromS3()
     }
   }
 
-  &__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: bottom center;
-  }
+    :deep(.image-background) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      mix-blend-mode: multiply;
+      object-position: bottom center;
+    }
 
   &::after {
     content: '';

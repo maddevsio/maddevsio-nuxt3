@@ -6,19 +6,11 @@ const prismic = usePrismic()
 const route = useRoute()
 const caseStudiesService = new CaseStudiesService(prismic)
 const config = useRuntimeConfig()
-const { updateHeaderPlateData } = useHeaderPlateStore()
-const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: caseData, error } = await useAsyncData('caseData', async () => {
   try {
     const caseStudiesPageData = await caseStudiesService.getCaseStudiesPageContent(route.params.uid as string)
     const pageContent = caseStudiesService.extractCaseStudiesHomePageData(caseStudiesPageData, config.public.domain)
-
-    const { headerPlate } = pageContent
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(headerPlate)
-    }
 
     if (!pageContent.released && process.env.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })

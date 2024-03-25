@@ -8,8 +8,6 @@ const { client } = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
 const { updateFooterVisible } = useFooterStore()
-const { updateHeaderPlateData } = useHeaderPlateStore()
-const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data: authorsHome, error } = await useAsyncData('authorsHome', async () => {
   try {
@@ -17,13 +15,7 @@ const { data: authorsHome, error } = await useAsyncData('authorsHome', async () 
       fetchLinks,
     })
 
-    const authorPage = extractCustomPageData(response) as TransformedCustomType
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(authorPage.headerPlate)
-    }
-
-    return authorPage
+    return extractCustomPageData(response) as TransformedCustomType
   } catch (e: any) {
     showError({ statusMessage: e.toString(), statusCode: 404 })
   }

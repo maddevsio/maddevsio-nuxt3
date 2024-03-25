@@ -54,14 +54,6 @@ export class CareersService {
       date: formatDate(vacancy.data.date),
       schemaOrgSnippet: extractSchemaOrg(vacancy.data.schema_org_snippets as SchemaOrgSnippet[]),
       released: vacancy.data.released === null ? true : vacancy.data.released,
-      headerPlate: vacancy.data.header_plate_text
-        ? {
-          text: vacancy.data.header_plate_text,
-          btnText: vacancy.data.header_plate_button_text,
-          btnLink: vacancy.data.header_plate_link,
-          backgroundColor: vacancy.data.header_plate_background_color,
-        }
-        : null,
     }
   }
 }

@@ -5,8 +5,6 @@ import { buildHead } from '~/SEO/buildMetaTags'
 const prismic = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
-const { updateHeaderPlateData } = useHeaderPlateStore()
-const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 const checklistsService = new ChecklistService(prismic, config.public.domain)
 
 const { data: checklistHomePage, error } = await useAsyncData('checklistHomePage', async () => {
@@ -20,13 +18,9 @@ const { data: checklistHomePage, error } = await useAsyncData('checklistHomePage
       config.public.ffEnvironment,
     )
 
-    const { tagCloud, headerPlate } = checklistPageContent
+    const { tagCloud } = checklistPageContent
 
     const tags = tagCloud?.length ? tagCloud[0].items : []
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(headerPlate)
-    }
 
     if (!checklistPageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusMessage: 'Page not found', statusCode: 404 })

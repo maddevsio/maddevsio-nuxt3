@@ -7,8 +7,6 @@ export const useDigestContentData = async() => {
   const config = useRuntimeConfig()
   const route = useRoute()
   const prismic = usePrismic()
-  const { updateHeaderPlateData } = useHeaderPlateStore()
-  const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
   const schemaOrgSnippet = ref<any>()
   const digestAPI = new DigestAPI()
@@ -32,19 +30,6 @@ export const useDigestContentData = async() => {
       })
 
       digestPost.ogImageUrl = digestPost.data.featuredImage?.url?.split('?auto')[0]
-
-      const headerPlate = digestPost.data?.header_plate_text
-        ? {
-          text: digestPost.data?.header_plate_text,
-          btnText: digestPost.data?.header_plate_button_text,
-          btnLink: digestPost.data?.header_plate_link,
-          backgroundColor: digestPost.data?.header_plate_background_color,
-        }
-        : null
-
-      if (!cookiePlate.value) {
-        updateHeaderPlateData(headerPlate)
-      }
 
       return digestPost
     } catch (e) {

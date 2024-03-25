@@ -1,28 +1,27 @@
 <script setup lang="ts">
 const sectionText = ref<HTMLElement>()
-const { $getMediaFromS3 } = useMediaFromS3()
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
+const { isMobile } = useCheckMobile(680)
+const sourcePaths = {
+  desktop: '/images/OurPhilosophy/webp/banner-philosophy.webp',
+  laptop: '/images/OurPhilosophy/webp/banner-philosophy-laptop.webp',
+  tablet: '/images/OurPhilosophy/webp/banner-philosophy-tablet.webp',
+  mobile: '/images/OurPhilosophy/webp/banner-philosophy-mobile.webp',
+}
 </script>
+
 <template>
   <section
     id="transparent-header-area"
     class="our-philosophy-banner"
   >
-    <picture>
-      <source
-        :srcset="[$getMediaFromS3('/images/OurPhilosophy/webp/banner-philosophy.webp') + ' ', $getMediaFromS3('/images/OurPhilosophy/webp/banner-philosophy@2x.webp 2x')]"
-        type="image/webp"
-        class="our-philosophy-banner__image"
-      >
-      <img
-        :srcset="$getMediaFromS3('/images/OurPhilosophy/png/banner-philosophy@2x.png')"
-        :src="$getMediaFromS3('/images/OurPhilosophy/png/banner-philosophy.png')"
-        width="1680"
-        height="827"
-        class="our-philosophy-banner__image"
-        alt="Team"
-      >
-    </picture>
+    <SharedUIAdaptiveImage
+      :source-paths="sourcePaths"
+      :width="isMobile ? 414 : 1920"
+      :height="isMobile ? 765 : 839"
+      :alt="'Team'"
+      class="our-philosophy-banner__image"
+    />
     <div class="container">
       <!-- sectionTextOpacity - value from changeOpacityOnScrollMixin mixin -->
       <div
@@ -40,6 +39,7 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
     </div>
   </section>
 </template>
+
 <style lang="scss" scoped>
 .our-philosophy-banner {
   position: relative;
@@ -52,22 +52,18 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
   background: linear-gradient(180deg, rgba(17, 18, 19, 0) 70%, #111213);
   overflow: hidden;
 
-  &__image {
-    display: block;
-    z-index: -1;
+  :deep(.image-background) {
     position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    object-fit: cover;
+    top: 0;
+    left: 0;
     object-position: top;
+    z-index: -1;
     opacity: 0.8;
-
     @media screen and (max-width: 430px) {
       object-position: 18%;
     }
   }
+
   &__content {
     z-index: 2;
     display: block;
@@ -75,11 +71,13 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
     max-width: 816px;
     text-align: center;
   }
+
   &__title {
     @include font('Poppins', 100px, 700);
     line-height: 109%;
     color: $text-color--white;
   }
+
   &__subtitle {
     @include font('Inter', 32px, 600);
     line-height: 39px;

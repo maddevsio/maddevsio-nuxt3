@@ -8,8 +8,6 @@ import type { WriteupPost } from '~/interfaces/common/commonInterfaces'
 const prismic = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
-const { updateHeaderPlateData } = useHeaderPlateStore()
-const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const writeupService = new Writeup(config.public.ffEnvironment)
 
@@ -17,12 +15,6 @@ const { data: writeupData, error } = await useAsyncData('caseData', async () => 
   try {
     const writeupPageData = await writeupService.getWriteupPage(prismic, route.params.uid as string) as WriteupPost
     const pageContent = extractWriteupData(writeupPageData)
-
-    const { headerPlate } = pageContent
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(headerPlate)
-    }
 
     if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })

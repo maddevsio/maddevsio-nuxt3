@@ -20,13 +20,5 @@ export const extractCustomPageData = (page: CustomPageDocument): TransformedCust
     ogImage: page.data?.og_image?.url,
     schemaOrgSnippet: extractSchemaOrg(page.data?.schema_org_snippets as SchemaOrgSnippet[]),
     emailSubject: page.data?.emailSubject,
-    headerPlate: page.data?.header_plate_text
-      ? {
-        text: page.data?.header_plate_text,
-        btnText: page.data?.header_plate_button_text,
-        btnLink: page.data?.header_plate_link,
-        backgroundColor: page.data?.header_plate_background_color,
-      }
-      : null,
   }
 }

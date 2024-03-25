@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { DigestMainPageCTA } from '~/components/Digest/classes/DigestMainPageCTA'
 
-const { isMobile } = useCheckMobile(1024)
-const { $getMediaFromS3 } = useMediaFromS3()
+const { isMobile } = useCheckMobile(680)
 const prismic = usePrismic()
 const {
   article,
@@ -20,7 +19,12 @@ await useAsyncData(() => fetchArticle(prismic), {
 watch(isMobile, newValue => {
   teleportBlogBtn(newValue)
 })
-// TODO: Needs add background images of different sizes and create component for this
+
+const sourcePaths = {
+  desktop: '/images/Digest/webp/cta-bg.webp',
+  tablet: '/images/Digest/webp/cta-bg-tablet.webp',
+  mobile: '/images/Digest/webp/cta-bg-mobile.webp',
+}
 </script>
 
 <template>
@@ -30,13 +34,13 @@ watch(isMobile, newValue => {
         ref="contentRef"
         class="digest-main-page-cta__content"
       >
-        <img
-          :src="$getMediaFromS3('images/Digest/webp/cta-bg.webp')"
-          :alt="'Read more Insights background'"
-          :width="isMobile ? 414 : 1240"
-          :height="isMobile ? 445 : 371"
+        <SharedUIAdaptiveImage
           class="digest-main-page-cta__image"
-        >
+          :source-paths="sourcePaths"
+          :width="isMobile ? 366 : 1240"
+          :height="isMobile ? 480 : 393"
+          :alt="'Read more Insights background'"
+        />
         <div
           ref="contentTextRef"
           class="digest-main-page-cta__content-text"
@@ -66,7 +70,7 @@ watch(isMobile, newValue => {
           class="digest-main-page-cta__content-article"
         >
           <img
-            v-if="article.data.featured_image.url"
+            v-if="article.data?.featured_image?.url"
             loading="lazy"
             :src="article.data.featured_image.url.replace('compress,', '')"
             width="480"
@@ -148,15 +152,12 @@ watch(isMobile, newValue => {
     }
   }
 
-  &__image {
+  :deep(.image-background) {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
     mix-blend-mode: multiply;
+    object-position: bottom center;
   }
 
   &__title,

@@ -8,8 +8,6 @@ import type { Writeups } from '~/components/Writeup/interfaces/IWriteupList'
 const prismic = usePrismic()
 const route = useRoute()
 const config = useRuntimeConfig()
-const { updateHeaderPlateData } = useHeaderPlateStore()
-const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const writeupService = new Writeup(config.public.ffEnvironment)
 
@@ -22,13 +20,9 @@ const { data: writeupData, error } = await useAsyncData('writeupData', async () 
 
     const transformedWriteupsData = transformationWriteupListData(allWriteups)
 
-    const { tagCloud, headerPlate } = pageContent
+    const { tagCloud } = pageContent
 
     const tags = tagCloud?.length ? tagCloud[0].items : []
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(headerPlate)
-    }
 
     if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })
