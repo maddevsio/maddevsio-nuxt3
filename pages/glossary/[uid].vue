@@ -9,9 +9,7 @@ import { extractGlossaryPageData } from '~/components/Glossary/helpers/extractGl
 
 const prismic = usePrismic()
 const route = useRoute()
-const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 const config = useRuntimeConfig()
-const { updateHeaderPlateData } = useHeaderPlateStore()
 const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment)
 
 const { data: glossaryPost, error } = await useAsyncData('glossaryPost', async () => {
@@ -32,12 +30,6 @@ const { data: glossaryPost, error } = await useAsyncData('glossaryPost', async (
       { field: 'my.glossary.word_title', direction: 'desc' })
 
     const lastNewestFilteredWords = filterLastGlossaryWords(lastNewestGlossaryPages.results as GlossaryPage[], currentPageWordTitle)
-
-    const { headerPlate } = glossaryPageData
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(headerPlate)
-    }
 
     if (!glossaryPageData?.released && config.public.ffEnvironment === 'production') {
       showError({
@@ -74,7 +66,7 @@ useHead(buildHead({
   url: glossaryPost.value?.glossaryPageData.url || '',
   title: glossaryPost.value?.glossaryPageData?.metaTitle || '',
   description: glossaryPost.value?.glossaryPageData?.metaDescription || '',
-  jsonLd: glossaryPost?.value?.glossaryPageData?.schemaOrg,
+  jsonLd: glossaryPost?.value?.glossaryPageData?.schemaOrg || '',
   image: glossaryPost.value?.glossaryPageData?.ogImage,
 }))
 </script>

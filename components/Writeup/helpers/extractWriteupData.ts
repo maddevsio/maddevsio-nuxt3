@@ -23,13 +23,5 @@ export const extractWriteupData = (writeupData: WriteupPost) => {
       uid: writeupData?.data?.author?.uid,
       image: writeupData?.data?.author?.data?.image,
     },
-    headerPlate: writeupData?.data?.header_plate_text
-      ? {
-        text: writeupData?.data?.header_plate_text,
-        btnText: writeupData.data?.header_plate_button_text,
-        btnLink: writeupData?.data?.header_plate_link,
-        backgroundColor: writeupData?.data?.header_plate_background_color,
-      }
-      : null,
   }
 }

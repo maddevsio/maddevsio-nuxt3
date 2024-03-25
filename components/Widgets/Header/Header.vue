@@ -54,7 +54,6 @@ onUnmounted(() => {
       :class="{ 'header--transparent-bg': headerIsTransparent }"
       @mouseleave="menu.setActiveSubMenu('')"
     >
-      <WidgetsHeaderUIPlate />
       <div
         id="header-container"
         class="container header__inner"
