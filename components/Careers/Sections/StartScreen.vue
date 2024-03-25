@@ -1,28 +1,26 @@
 <script setup lang="ts">
-const { $getMediaFromS3 } = useMediaFromS3()
 const sectionText = ref<HTMLElement | null>(null)
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
+const { isMobile } = useCheckMobile(680)
+const sourcePaths = {
+  desktop: '/images/Careers/webp/office-black.webp',
+  laptop: '/images/Careers/webp/office-black-laptop.webp',
+  tablet: '/images/Careers/webp/office-black-tablet.webp',
+  mobile: '/images/Careers/webp/office-black-mobile.webp',
+}
 </script>
 <template>
   <div
     id="transparent-header-area"
     class="careers-banner"
   >
-    <picture>
-      <source
-        :srcset="[$getMediaFromS3('/images/Careers/webp/office_black.webp') + ' ', $getMediaFromS3('/images/Careers/webp/office_black@2x.webp 2x')].join(', ')"
-        type="image/webp"
-        class="careers-banner__image"
-      >
-      <img
-        :src="$getMediaFromS3('/images/Careers/jpg/office_black.jpg')"
-        :srcset="$getMediaFromS3('/images/Careers/jpg/office_black@2x.jpg')"
-        width="1239"
-        height="606"
-        class="careers-banner__image"
-        alt="Office"
-      >
-    </picture>
+    <SharedUIAdaptiveImage
+      :source-paths="sourcePaths"
+      :width="isMobile ? 414 : 1920"
+      :height="isMobile ? 844 : 915"
+      :alt="'Office'"
+      class="careers-banner__image"
+    />
     <div
       ref="sectionText"
       class="container"
@@ -55,16 +53,12 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
     flex-direction: column;
   }
 
-  &__image {
-    display: block;
-    z-index: -1;
+  :deep(.image-background) {
     position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    object-fit: cover;
+    top: 0;
+    left: 0;
     object-position: top;
+    z-index: -1;
     opacity: 0.48;
   }
 
