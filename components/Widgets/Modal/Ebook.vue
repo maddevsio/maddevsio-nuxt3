@@ -79,6 +79,8 @@ defineExpose({
   <LazyWidgetsModalBase
     ref="modalWindow"
     :class="styles['ebook-form-modal']"
+    where-is-called="ebook"
+    :ebook-sendpulse-template-id="sendPulseTemplateId"
   >
     <div
       :class="styles['ebook-form-modal__content']"
