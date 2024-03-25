@@ -23,13 +23,7 @@ const handleContentCount = (contentCountData: { posts: number, writeups: number,
 const { data: authorData, error } = await useAsyncData('authorData', async () => {
   try {
     const response = await authorService.getAuthor(route.params.uid as string)
-    const author = extractAuthorData(response as unknown as Author) as TransformedAuthor
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(author.headerPlate)
-    }
-
-    return author
+    return extractAuthorData(response as unknown as Author) as TransformedAuthor
   } catch {
     showError({ statusMessage: 'Page not found', statusCode: 404 })
   }

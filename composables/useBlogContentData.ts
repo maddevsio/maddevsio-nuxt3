@@ -8,8 +8,6 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
   const route = useRoute()
   const prismic = usePrismic()
   const blogService = new BlogService()
-  const { updateHeaderPlateData } = useHeaderPlateStore()
-  const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
   const schemaOrgSnippet = ref<any>()
   const post = ref<BlogPost>()
@@ -35,19 +33,6 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
           // @ts-ignore
             .find(clusterItem => clusterItem.cu_post.id === postResponse.id) !== undefined) || null
         postResponse.clusterData.items = extractCUPost(postResponse.clusterData.items, prismic)
-      }
-
-      const headerPlate = postResponse.data?.header_plate_text
-        ? {
-          text: postResponse.data?.header_plate_text,
-          btnText: postResponse.data?.header_plate_button_text,
-          btnLink: postResponse.data?.header_plate_link,
-          backgroundColor: postResponse.data?.header_plate_background_color,
-        }
-        : null
-
-      if (!cookiePlate.value) {
-        updateHeaderPlateData(headerPlate)
       }
 
       return postResponse

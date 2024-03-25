@@ -9,8 +9,6 @@ const route = useRoute()
 const { updateFooterVisible } = useFooterStore()
 const { updateEmailSubject } = useEmailSubjectStore()
 const config = useRuntimeConfig()
-const { updateHeaderPlateData } = useHeaderPlateStore()
-const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
 
 const { data, error } = await useAsyncData(`customPage-${ route.params.uid }`, async () => {
   try {
@@ -19,10 +17,6 @@ const { data, error } = await useAsyncData(`customPage-${ route.params.uid }`, a
     })
 
     const customPage = extractCustomPageData(response) as TransformedCustomType
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(customPage.headerPlate)
-    }
 
     if (
       !customPage?.slices ||

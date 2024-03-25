@@ -7,9 +7,6 @@ import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
 
 const prismic = usePrismic()
 const config = useRuntimeConfig()
-const route = useRoute()
-const cookiePlate = useCookie(`seenArticlePlate_${ route.path }`)
-const { updateHeaderPlateData } = useHeaderPlateStore()
 const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment)
 
 const { data: glossaryData, error } = await useAsyncData('glossaryData', async () => {
@@ -17,12 +14,6 @@ const { data: glossaryData, error } = await useAsyncData('glossaryData', async (
     const glossaryPageData = await glossaryService.getGlossaryPageContent('glossary') as GlossaryPage
     const glossaryPageContent = extractGlossaryPageData(glossaryPageData, config.public.domain)
     const glossaryStartScreenData = extractGlossaryStartScreenData(glossaryPageData)
-
-    const { headerPlate } = glossaryPageContent
-
-    if (!cookiePlate.value) {
-      updateHeaderPlateData(headerPlate)
-    }
 
     if (!glossaryPageContent?.released && config.public.ffEnvironment === 'production') {
       showError({
@@ -56,7 +47,7 @@ useHead(buildHead({
   url: glossaryData.value?.glossaryPageContent.url || '',
   title: glossaryData.value?.glossaryPageContent?.metaTitle || '',
   description: glossaryData.value?.glossaryPageContent?.metaDescription || '',
-  jsonLd: glossaryData?.value?.glossaryPageContent?.schemaOrg,
+  jsonLd: glossaryData?.value?.glossaryPageContent?.schemaOrg || '',
   image: glossaryData.value?.glossaryPageContent?.ogImage,
 }))
 </script>
