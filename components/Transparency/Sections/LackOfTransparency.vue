@@ -13,7 +13,6 @@ const { $getMediaFromS3 } = useMediaFromS3()
   <section class="lack-of-transparency">
     <div class="container lack-of-transparency__container">
       <img
-        loading="lazy"
         :src="$getMediaFromS3('images/transparency/webp/transparency-spiral.webp')"
         width="930"
         height="930"
