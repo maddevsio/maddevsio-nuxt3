@@ -150,12 +150,6 @@ export interface TransformedAuthor {
   noindex: boolean
   schemaOrgSnippet: SchemaOrgSnippet[]
   personalPageLink: string
-  headerPlate: {
-    text?: string
-    btnText?: string
-    btnLink?: string
-    backgroundColor?: string
-  } | null
   socialNetworks: TransformedAuthorSocialNetwork[]
 }
 
@@ -290,12 +284,6 @@ export interface TransformedChecklist {
   title: KeyTextField
   description: KeyTextField
   image: ImageField
-  headerPlate: {
-    text: KeyTextField
-    btnText: KeyTextField
-    btnLink: KeyTextField
-    backgroundColor: KeyTextField
-  } | null
 }
 
 export interface TransformedCustomType {
@@ -371,12 +359,6 @@ export interface TransformedVacancy {
   date: KeyTextField
   schemaOrgSnippet: ({ type: string; innerHTML: string; } | null)[] | null
   released: boolean
-  headerPlate: {
-    text: KeyTextField
-    btnText: KeyTextField
-    btnLink: KeyTextField
-    backgroundColor: KeyTextField
-  } | null
 }
 
 export interface WriteupPost {
@@ -463,12 +445,6 @@ export interface TransformedGlossaryPageData {
     innerHTML: string
   } | null)[] | null
   released: boolean
-  headerPlate: {
-    text: KeyTextField
-    btnText: KeyTextField
-    btnLink: KeyTextField
-    backgroundColor: SelectField
-  } | null
 }
 
 export interface TransformedGlossaryAuthor {
