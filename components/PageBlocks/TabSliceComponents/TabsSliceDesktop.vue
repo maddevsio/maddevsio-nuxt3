@@ -48,7 +48,7 @@ const showModal = () => {
         }"
         @click="changeActiveTab({
           tabName: tab.tabName,
-          event: 'click',
+          event: 'click'
         })"
       >
         <button class="tabs-slice__list-tab-name">
