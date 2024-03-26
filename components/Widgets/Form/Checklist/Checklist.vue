@@ -21,9 +21,15 @@ const props = defineProps({
     type: String,
     default: '',
   },
+
   isModalChecklist: {
     type: Boolean,
     default: false,
+  },
+
+  buttonText: {
+    type: String,
+    default: 'Send me the checklist',
   },
 })
 
@@ -36,6 +42,7 @@ const { form, styles } = useForm({
     checklistPathOnS3: props.checklistPathOnS3,
     checklistName: props.checklistName,
     isModalChecklist: props.isModalChecklist,
+    buttonText: props.buttonText,
   },
 })
 
