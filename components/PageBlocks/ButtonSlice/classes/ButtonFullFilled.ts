@@ -19,7 +19,6 @@ export class ButtonFullFilled implements IButtonFullFilled {
       return 'left'
     })
     this.backgroundColor = setSliceBackground(props.primary.background || 'white')
-    // console.log('color', this.backgroundColor)
     this.link = props.primary.link.url
     this.buttonStyles = `max-width: ${ props.primary.maxWidth ? props.primary.maxWidth : '' }; ${ props.primary.maxWidth ? 'width: 100%' : '' };`
     this.text = props.primary.text
