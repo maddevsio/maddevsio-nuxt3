@@ -67,10 +67,10 @@ const tagChangedHandler = async ({
   await loadBlogPosts(1)
 }
 
-const tagChangedFromQuery = async ({ tags }: { tags: string[], name?: string }) => {
+const tagChangedFromQuery = async ({ tags, name }: { tags: string[], name?: string }) => {
   activeTags.value = tags
   await loadBlogPosts(Number(route.query.page || page.value))
-  // await routerPush({ tag: name })
+  await routerPush({ tag: name })
 }
 
 const onChangePage = async (page: number) => {

@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
-
+import type { ResizeObserverInstance } from '~/interfaces/common/commonInterfaces'
 export const useGlossaryNavStore = defineStore('glossaryNavStore', () => {
   const searchIsActive = ref(false)
   const navIsOpened = ref(false)
   const searchValue = ref('')
   const activeLetter = ref('A')
+  const navHeight = ref(0)
+  const resizeObserver = ref<ResizeObserverInstance | null>(null)
   const { isMobile } = useCheckMobile(680)
   const { $eventBus } = useNuxtApp()
 
@@ -45,16 +47,34 @@ export const useGlossaryNavStore = defineStore('glossaryNavStore', () => {
     }
   }
 
+  const updateNavHeight = (value: number) => {
+    navHeight.value = value
+  }
+
+  const getNavHeight = (glossaryFilterRef: Element) => {
+    if (window.ResizeObserver) {
+      resizeObserver.value = new ResizeObserver(entries => entries.forEach(entry => {
+        if (!entry.contentBoxSize) { return }
+        const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize
+        updateNavHeight(contentBoxSize.blockSize)
+      }))
+      resizeObserver.value.observe(glossaryFilterRef)
+    }
+  }
+
   return {
     searchIsActive,
     navIsOpened,
     searchValue,
     activeLetter,
+    navHeight,
+    resizeObserver,
     openSearchPanel,
     closeSearchPanel,
     searchQuery,
     setActiveLetter,
     clearSearchState,
     toggleNavPanel,
+    getNavHeight,
   }
 })

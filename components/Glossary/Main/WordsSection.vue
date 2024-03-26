@@ -21,7 +21,7 @@ const props = defineProps({
   },
 })
 
-const { activeLetter } = storeToRefs(useGlossaryNavStore())
+const { activeLetter, navHeight } = storeToRefs(useGlossaryNavStore())
 const { $eventBus } = useNuxtApp()
 const { headerHeight } = storeToRefs(useHeaderStore())
 
@@ -42,7 +42,7 @@ const loadMoreWords = (letter: string) => {
     <h2
       v-if="letterTitle"
       :id="letterTitle"
-      :style="`scroll-margin-top: ${headerHeight + 65}px`"
+      :style="`scroll-margin-top: ${headerHeight + navHeight + 15}px`"
       class="glossary-words-section__title"
       :class="{'glossary-words-section__title--active': activeLetter === letterTitle}"
     >

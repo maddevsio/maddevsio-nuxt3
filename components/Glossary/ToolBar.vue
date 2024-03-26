@@ -12,30 +12,10 @@ const router = useRouter()
 
 const glossaryService = inject('glossaryService') as IGlossaryService
 const glossaryNavStore = useGlossaryNavStore()
-const { searchIsActive, activeLetter, navIsOpened, searchValue } = storeToRefs(glossaryNavStore)
-const { setActiveLetter, toggleNavPanel } = glossaryNavStore
+const { searchIsActive, activeLetter, navIsOpened, searchValue, resizeObserver } = storeToRefs(glossaryNavStore)
+const { setActiveLetter, toggleNavPanel, getNavHeight } = glossaryNavStore
 const { headerHeight } = storeToRefs(useHeaderStore())
 const { isMobile } = useCheckMobile(680)
-
-onMounted(async () => {
-  setInitialNavOffset()
-  setActiveLetter(route.hash ? route.hash.replace('#', '') : props.activeLetterProp)
-  window.addEventListener('scroll', updateIsScrolling)
-  await getLettersForFilter()
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', updateIsScrolling)
-})
-
-const buttonClickHandler = (letter: string, e: Event) => {
-  if (route.path === '/glossary/') {
-    setActiveLetter(letter)
-  } else {
-    e.preventDefault()
-    navigateToHomePage(letter)
-  }
-}
 
 const {
   homePage,
@@ -56,6 +36,28 @@ const {
   activeLetter,
   searchValue,
   isMobile)
+
+onMounted(async () => {
+  getNavHeight(glossaryFilterRef.value!)
+  setInitialNavOffset()
+  setActiveLetter(route.hash ? route.hash.replace('#', '') : props.activeLetterProp)
+  window.addEventListener('scroll', updateIsScrolling)
+  await getLettersForFilter()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateIsScrolling)
+  resizeObserver.value?.disconnect()
+})
+
+const buttonClickHandler = (letter: string, e: Event) => {
+  if (route.path === '/glossary/') {
+    setActiveLetter(letter)
+  } else {
+    e.preventDefault()
+    navigateToHomePage(letter)
+  }
+}
 </script>
 
 <template>

@@ -46,4 +46,8 @@ const isHovered = inject('isHovered')
     }
   }
 }
+
+a.router-link-exact-active {
+  color: $text-color--red;
+}
 </style>
