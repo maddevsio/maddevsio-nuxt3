@@ -16,6 +16,7 @@ const {
   checklistName,
   checklistPdfPath,
   sendpulseTemplateID,
+  buttonText,
 } = new ChecklistFormBanner(slice)
 </script>
 <template>
@@ -35,6 +36,7 @@ const {
             :checklist-name="checklistName"
             :checklist-path-on-s3="checklistPdfPath"
             :sendpulse-template-i-d="sendpulseTemplateID"
+            :button-text="buttonText"
           />
         </div>
         <div class="checklist-form-banner__image-wrapper">

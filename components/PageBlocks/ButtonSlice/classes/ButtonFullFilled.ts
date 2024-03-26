@@ -8,8 +8,8 @@ export class ButtonFullFilled implements IButtonFullFilled {
   alignment: ComputedRef<string>
   backgroundColor: string | null
   link: string
-  maxWidth: string | number
   text: string
+  buttonStyles: string
   target: string
   fullWidth: boolean
   constructor(props: ButtonFullFilledProps) {
@@ -19,8 +19,9 @@ export class ButtonFullFilled implements IButtonFullFilled {
       return 'left'
     })
     this.backgroundColor = setSliceBackground(props.primary.background || 'white')
+    // console.log('color', this.backgroundColor)
     this.link = props.primary.link.url
-    this.maxWidth = props.primary.maxWidth
+    this.buttonStyles = `max-width: ${ props.primary.maxWidth ? props.primary.maxWidth : '' }; ${ props.primary.maxWidth ? 'width: 100%' : '' };`
     this.text = props.primary.text
     this.target = props.primary.target ? '_blank' : '_self'
     this.fullWidth = props.primary.fullWidth
