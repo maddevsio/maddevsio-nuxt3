@@ -14,6 +14,11 @@ const props = defineProps({
     type: Number,
     default: 763889, // default value is a template ID of  "Ebooks - Pricing Strategies"
   },
+
+  withScroll: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const { styles } = useStyleFormElement()
@@ -72,13 +77,14 @@ defineExpose({
   <LazySharedUITransitionFade>
     <div
       v-if="isShowModal"
-      :class="styles['modal-window']"
+      :class="[styles['modal-window'], styles[!withScroll ? 'modal-window--without-scroll' : '']]"
     >
       <div
         :class="styles['modal-window__overlay']"
         @click="close"
       />
       <div
+        v-if="withScroll"
         :class="styles['modal-window__body-wrapper']"
       >
         <Simplebar
@@ -94,6 +100,16 @@ defineExpose({
             @click="close"
           />
         </Simplebar>
+      </div>
+      <div v-else :class="[styles['modal-window__body-wrapper'], styles['modal-window__body-wrapper--without-scroll']]">
+        <slot name="title" />
+        <slot />
+        <button
+          aria-label="Close modal"
+          type="button"
+          :class="styles['modal-window__close']"
+          @click="close"
+        />
       </div>
     </div>
   </LazySharedUITransitionFade>

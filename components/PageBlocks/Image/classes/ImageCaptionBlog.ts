@@ -36,6 +36,7 @@ export class ImageCaptionBlog implements IImageCaptionBlog {
 
   openModal() {
     if (this.isEnableZoom && this.zoom.value) {
+      manageScrollOnBody.disableScrollOnBody()
       this.zoom.value.show()
     }
   }

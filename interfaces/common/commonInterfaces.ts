@@ -11,6 +11,8 @@ export interface IntersectionObserverInstance {
   disconnect: () => void
 }
 
+export interface ResizeObserverInstance extends IntersectionObserverInstance {}
+
 export interface ISwiperOptions {
   speed: number
   slidesPerView: number
