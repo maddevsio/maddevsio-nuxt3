@@ -24,6 +24,7 @@ const {
 
 const sectionText = ref<HTMLElement | null>(null)
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
+const { emailSubject } = storeToRefs(useEmailSubjectStore())
 </script>
 
 <template>
@@ -65,7 +66,7 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
         <WidgetsModalContactMe
           ref="modalContactMeRef"
           :location="'\'Let`s talk\' button, main start screen component'"
-          email-subject="Placeholder"
+          :email-subject="emailSubject"
         />
       </Teleport>
     </LazyClientOnly>

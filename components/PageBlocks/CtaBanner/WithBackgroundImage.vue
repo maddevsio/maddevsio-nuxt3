@@ -27,6 +27,7 @@ const {
 } = ctaBanner
 
 const VNodeTitle = () => h(titleTag, { innerHTML: title })
+const { emailSubject } = storeToRefs(useEmailSubjectStore())
 </script>
 <template>
   <div
@@ -85,7 +86,7 @@ const VNodeTitle = () => h(titleTag, { innerHTML: title })
         <LazyWidgetsModalContactMe
           ref="modalContactMeRef"
           :location="'CtaBanner button'"
-          email-subject="Placeholder"
+          :email-subject="emailSubject"
         />
       </Teleport>
     </LazyClientOnly>

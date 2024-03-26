@@ -415,7 +415,7 @@ export class FormMaker {
             type: 'text',
             name: 'linkedin',
             placeholder: 'LinkedIn link',
-            validationType: 'linkedin',
+            validationType: 'linkedinLink',
             required: true,
             $eventBus: this.options.$eventBus,
           }),
