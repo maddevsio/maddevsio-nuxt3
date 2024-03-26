@@ -26,6 +26,7 @@ defineProps({
 
 const modalContactMeRef = ref<{ show(): void } | null>(null)
 const { $getMediaFromS3 } = useMediaFromS3()
+const { emailSubject } = storeToRefs(useEmailSubjectStore())
 const showModal = () => {
   if (!modalContactMeRef?.value && !modalContactMeRef?.value!.show) {
     return
@@ -47,7 +48,7 @@ const showModal = () => {
         }"
         @click="changeActiveTab({
           tabName: tab.tabName,
-          event: 'click',
+          event: 'click'
         })"
       >
         <button class="tabs-slice__list-tab-name">
@@ -123,7 +124,7 @@ const showModal = () => {
         <LazyWidgetsModalContactMe
           ref="modalContactMeRef"
           :location="'\'Tab slice\' button'"
-          email-subject="Placeholder"
+          :email-subject="emailSubject"
         />
       </Teleport>
     </LazyClientOnly>

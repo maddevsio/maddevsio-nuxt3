@@ -24,6 +24,7 @@ const {
   formSends,
   handleFile,
 } = useFormField(props)
+const acceptedExtensions = '.pdf,.doc,.docx'
 const { $getMediaFromS3 } = useMediaFromS3()
 const selectedFilename = computed(() => {
   if (!value.value) {
@@ -38,6 +39,8 @@ const selectedFilename = computed(() => {
 
 onUnmounted(() => {
   value.value = ''
+  error.value = ''
+  showCheckMark.value = false
 })
 </script>
 <template>
@@ -54,6 +57,7 @@ onUnmounted(() => {
         :name="name"
         :placeholder="placeholder"
         :disabled="formSends"
+        :accept="acceptedExtensions"
         class="form-field-file"
         @change="handleFile"
       >

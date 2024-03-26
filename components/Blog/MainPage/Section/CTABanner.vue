@@ -5,7 +5,7 @@ const showModal = () => {
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef.value.show()
 }
-// TODO: add email subject
+const { emailSubject } = storeToRefs(useEmailSubjectStore())
 </script>
 <template>
   <section class="blog-cta">
@@ -54,6 +54,7 @@ const showModal = () => {
           ref="modalContactMeRef"
           location="Main blog page. CTA banner."
           form-uid="main-blog-page-cta"
+          :email-subject="emailSubject"
         />
       </Teleport>
     </ClientOnly>
