@@ -20,6 +20,7 @@ export class Field implements IField {
     emailExists: 'Your email already exists.',
     fileSize: 'File size must be less than 5MB',
     fileExtensions: 'File extension must be PDF, DOC or DOCX',
+    linkedinLink: 'URL does not contain \'linkedin\'',
   }
 
   private readonly validationTypes: Record<string, ValidationTypes> = {
@@ -117,6 +118,10 @@ export class Field implements IField {
     return this.fieldValue.value.length > this.longTextLimit ? this.errorMessages.longText(this.longTextLimit) : ''
   }
 
+  linkedinLinkValidation() {
+    return !this.fieldValue.value.toLowerCase().includes('linkedin') ? this.errorMessages.linkedinLink : ''
+  }
+
   correctEmailValidation() {
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
     if (this.fieldValue.value) {
@@ -179,6 +184,8 @@ export class Field implements IField {
       this.phoneValidation()) { return this.phoneValidation() }
     if (this.validationType === this.validationTypes.file &&
     this.fileValidation()) { return this.fileValidation() }
+    if (this.validationType === this.validationTypes.linkedinLink &&
+    this.linkedinLinkValidation()) { return this.linkedinLinkValidation() }
 
     return ''
   }

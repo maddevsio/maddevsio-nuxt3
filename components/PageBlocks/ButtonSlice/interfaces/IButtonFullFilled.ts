@@ -18,7 +18,7 @@ export interface IButtonFullFilled {
   alignment: ComputedRef<string>
   backgroundColor: string | null
   link: string
-  maxWidth: string | number
+  buttonStyles: string
   text: string
   target: string
   fullWidth: boolean

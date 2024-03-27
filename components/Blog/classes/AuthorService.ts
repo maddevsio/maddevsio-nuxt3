@@ -8,9 +8,12 @@ export type ResponseContent = PostDocument | WriteupDocument | GlossaryDocument
 
 export class AuthorService {
   prismic: PrismicPlugin
+  ffEnvironment: string
 
-  constructor(prismic: PrismicPlugin) {
+  contentTypesForCheck = ['writeup', 'glossary']
+  constructor(prismic: PrismicPlugin, ffEnvironment: string) {
     this.prismic = prismic
+    this.ffEnvironment = ffEnvironment
   }
 
   async getAuthor(uid: string) {
@@ -23,6 +26,7 @@ export class AuthorService {
       filters: [
         this.prismic.filter.at('document.type', contentType),
         this.prismic.filter.at(`my.${ contentType }.${ whatAuthor }`, authorID),
+        this.ffEnvironment === 'production' && this.contentTypesForCheck.includes(contentType) ? this.prismic.filter.at(`my.${ contentType }.released`, true) : '',
       ],
       orderings: {
         field: `my.${ contentType }.date`,

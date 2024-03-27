@@ -25,6 +25,7 @@ const {
 } = new CtaBannerDefault(slice)
 const route = useRoute()
 const { $getMediaFromS3 } = useMediaFromS3()
+const { emailSubject } = storeToRefs(useEmailSubjectStore())
 const sendCareersClickEvent = () => sendCareersLinkClickEvent(route)
 const modalShow = () => showModal(route)
 </script>
@@ -92,7 +93,7 @@ const modalShow = () => showModal(route)
         <LazyWidgetsModalContactMe
           ref="modalContactMeRef"
           :location="'\'CtaBanner slice\' button'"
-          email-subject="Placeholder"
+          :email-subject="emailSubject"
         />
       </Teleport>
     </LazyClientOnly>

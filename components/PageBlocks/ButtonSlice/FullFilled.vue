@@ -17,10 +17,11 @@ const {
   alignment,
   fullWidth,
   link,
-  maxWidth,
+  buttonStyles,
   target,
 } = buttonFullFilled
 </script>
+
 <template>
   <div
     class="button-slice"
@@ -34,7 +35,7 @@ const {
       <LazySharedUIButton
         class="button-slice__button button-slice__button--normal"
         :full-width="fullWidth"
-        :style="{ maxWidth }"
+        :style="buttonStyles"
         :to="link"
         data-testid="button-ui"
         is-link

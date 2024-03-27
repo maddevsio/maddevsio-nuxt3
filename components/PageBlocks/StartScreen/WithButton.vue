@@ -19,7 +19,7 @@ const {
 } = new StartScreenWithButton(slice)
 
 const modalContactMeRef = ref<{ show(): void } | null>(null)
-// const { emailSubjectGlobal } = inject('emailSubjectGlobal')
+const { emailSubject } = storeToRefs(useEmailSubjectStore())
 const showModal = () => {
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef?.value.show()
@@ -50,7 +50,7 @@ const showModal = () => {
       <LazyWidgetsModalContactMe
         ref="modalContactMeRef"
         :location="'\'Let`s talk\' button, start screen component'"
-        email-subject="Placeholder"
+        :email-subject="emailSubject"
       />
     </Teleport>
   </LazyClientOnly>

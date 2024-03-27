@@ -35,6 +35,12 @@ onMounted(() => {
     value.value = ''
   }
 })
+
+onUnmounted(() => {
+  value.value = ''
+  error.value = ''
+  showCheckMark.value = false
+})
 </script>
 <template>
   <div>

@@ -5,7 +5,6 @@ import { buildHead } from '~/SEO/buildMetaTags'
 import type { TransformedCustomType } from '~/interfaces/common/commonInterfaces'
 
 const { client } = usePrismic()
-const route = useRoute()
 const config = useRuntimeConfig()
 const { updateFooterVisible } = useFooterStore()
 
