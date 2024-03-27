@@ -99,11 +99,11 @@ const findTag = (post: BlogPost) => {
   }
 }
 
-const showPosts = () => {
+const showPosts = computed(() => {
   if (posts.value) {
     return Object.keys(posts.value).length && posts.value.results.length && postsLoaded.value
   }
-}
+})
 
 const handleShowSearchPanel = (isActive: boolean) => {
   isActiveSearchPanel.value = Boolean(isActive)
@@ -175,12 +175,13 @@ onUnmounted(() => {
         :is-active-search-panel="isActiveSearchPanel"
         @is-active-search-bar="handleShowSearchPanel"
       />
-      <Transition
+      <LazySharedUITransitionFade
         mode="out-in"
-        name="list"
+        duration="0.6s"
+        timing-function="ease-in-out"
       >
         <div
-          v-if="showPosts() && posts"
+          v-if="showPosts && posts"
           :key="activeTags.join(' ')"
           class="filtered-posts__list"
         >
@@ -203,7 +204,7 @@ onUnmounted(() => {
             class="filtered-posts__list-item"
           />
         </div>
-      </Transition>
+      </LazySharedUITransitionFade>
       <div
         v-if="!postsLoaded"
         class="filtered-posts__list"
