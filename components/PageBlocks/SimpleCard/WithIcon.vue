@@ -9,7 +9,8 @@ const props = defineProps({
     default: () => ({}),
   },
 })
-const simpleCardWithIcon = new SimpleCardWithIcon(props.slice)
+const router = useRouter()
+const simpleCardWithIcon = new SimpleCardWithIcon({ ...props.slice, router })
 </script>
 <template>
   <section
@@ -210,6 +211,16 @@ const simpleCardWithIcon = new SimpleCardWithIcon(props.slice)
 
       :deep(a) {
         text-decoration: underline;
+      }
+
+      @media screen and (max-width: 1350px) {
+        :deep(p) {
+          display: -webkit-box;
+          -webkit-line-clamp: 6;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
 
       @media screen and (max-width: 1100px) {
