@@ -1,0 +1,68 @@
+name: Production deployment
+
+on:
+  push:
+    branches:
+     - master # Changing the branch here would also work
+
+jobs:
+  build:
+    runs-on: ${{ vars.ACTIVE_RUNNER }}
+
+    steps:
+    - name: Prepare variables
+      run: |
+            echo "SHORT_SHA=${GITHUB_SHA:0:8}" >> $GITHUB_ENV
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        build-args: |
+          NODE_ENV=${{ secrets.PROD_NODE_ENV }}
+          NODE_S3_PUBLIC_URL=${{ secrets.PROD_NODE_S3_PUBLIC_URL }}
+          NODE_DOMAIN=${{ secrets.PROD_NODE_DOMAIN }}
+          NODE_EMAIL_HR=${{ secrets.PROD_NODE_EMAIL_HR }}
+          NODE_EMAIL_CV=${{ secrets.PROD_NODE_EMAIL_CV }}
+          NODE_EMAIL_CONTACT=${{ secrets.PROD_NODE_EMAIL_CONTACT }}
+          NODE_EMAIL_MARKETING=${{ secrets.PROD_NODE_EMAIL_MARKETING }}
+          NODE_SENTRY_DSN_FRONT=${{ secrets.PROD_NODE_SENTRY_DSN_FRONT }}
+          NODE_PRISMIC_API=${{ secrets.PROD_NODE_PRISMIC_API }}
+          NODE_IP_INFO_TOKEN=${{ secrets.PROD_NODE_IP_INFO_TOKEN }}
+          NODE_SMARTLOOK_PROJECT_ID=${{ secrets.PROD_NODE_SMARTLOOK_PROJECT_ID }}
+          NODE_ANALYTICS_UNIVERSAL_KEY=${{ secrets.PROD_NODE_ANALYTICS_UNIVERSAL_KEY }}
+          NODE_GA4_KEY=${{ secrets.PROD_NODE_GA4_KEY }}
+          NODE_SENDPULSE_ADDRESSBOOKS_ID=${{ secrets.PROD_NODE_SENDPULSE_ADDRESSBOOKS_ID }}
+          FF_ENVIRONMENT=${{ secrets.PROD_FF_ENVIRONMENT }}
+          RECAPTCHA_SITE_KEY=${{ secrets.PROD_RECAPTCHA_SITE_KEY }}
+          MAD_MARKETING_BACKEND_API=${{ secrets.PROD_MAD_MARKETING_BACKEND_API }}
+          NUXT_PUBLIC_SITE_URL=${{ secrets.PROD_NUXT_PUBLIC_SITE_URL }}
+        cache-from: |
+          maddevsio/maddevsio:prod
+        tags: maddevsio/maddevsio:prod,maddevsio/maddevsio:${{ env.SHORT_SHA }}
+
+    - name: DigitalOcean App Platform deployment
+      uses: digitalocean/app_action@v1.1.4 # replace this with current version from https://github.com/digitalocean/app_action/releases
+      with:
+        app_name: maddevs-io
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+        images: '[
+              {
+                "name": "maddevs-io",
+                "image":{
+                  "registry_type": "DOCKER_HUB",
+                  "registry": "maddevsio",
+                  "repository": "maddevsio",
+                  "tag": "${{ env.SHORT_SHA }}"
+                }
+              }
+            ]'

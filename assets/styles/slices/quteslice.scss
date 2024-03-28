@@ -14,6 +14,7 @@
 
   :deep(p) {
     margin-bottom: 28px;
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -24,74 +25,6 @@
   display: inline-block;
   font-style: italic;
   border-left: solid #b4b4b4 4px;
-}
-
-.author {
-  display: flex;
-  align-items: center;
-
-  &.p {
-    &-border {
-      padding-left: 37px;
-
-      @media screen and (max-width: 525px) {
-        padding-left: 0;
-      }
-    }
-    &-brackets {
-      padding-left: 62px;
-
-      @media screen and (max-width: 525px) {
-        padding-left: 0;
-      }
-    }
-  }
-
-  &__image {
-    margin-right: 8px;
-    img {
-      width: 40px;
-      min-width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      vertical-align: middle;
-    }
-  }
-
-  &__name {
-    @include font('Inter', 16px, 400);
-    color: $text-color--grey-opacity-40-percent;
-    font-style: italic;
-    line-height: 166%;
-    letter-spacing: -0.035em;
-
-    @media screen and (max-width: 650px) {
-      font-size: 13px;
-    }
-  }
-
-  &__info {
-    display: flex;
-    align-items: center;
-
-    @media screen and (max-width: 650px) {
-      flex-direction: column;
-      row-gap: 5px;
-      align-items: flex-start;
-    }
-  }
-
-  &__divider {
-    height: 25px;
-    width: 1px;
-    margin: 0 12px;
-    border: none;
-    background-color: $border-color--grey-20-percent;
-
-    @media screen and (max-width: 650px) {
-      display: none;
-    }
-  }
 }
 
 :deep(.post-quote) {

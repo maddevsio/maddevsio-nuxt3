@@ -1,0 +1,121 @@
+<script setup lang="ts">
+const props = defineProps({
+  customers: {
+    type: Array,
+    default: () => [],
+  },
+
+  light: {
+    type: Boolean,
+    default: false,
+  },
+
+  iconBackground: {
+    type: String,
+    default: 'transparent',
+  },
+})
+
+const { $getMediaFromS3 } = useMediaFromS3()
+const backgroundColor = computed(() => {
+  if (props.iconBackground) { return `background-color: ${ props.iconBackground }` }
+  return null
+})
+
+const fileName = (name: string) => {
+  if (props.light) { return $getMediaFromS3(`images/core/Projects/svg/${ name }-black.svg`) }
+  return $getMediaFromS3(`images/core/Projects/svg/${ name }.svg`)
+}
+</script>
+<template>
+  <section class="customers">
+    <div class="wrapper">
+      <div class="customers__list">
+        <div
+          v-for="customer in customers"
+          :key="customer"
+          :style="backgroundColor"
+          class="customers__logo"
+          data-testid="icon-wrapper"
+        >
+          <img
+            loading="lazy"
+            :src="fileName(customer)"
+            :alt="customer || 'Image'"
+            width="143"
+            height="64"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+<style lang="scss" scoped>
+.customers {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__list {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @media only screen and (max-width: 1024px) {
+      gap: 14px;
+    }
+  }
+
+  &__logo {
+    width: 16%;
+    max-width: 190px;
+    min-height: 111px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 8px;
+    box-sizing: border-box;
+
+    img {
+      width: 143px;
+      height: 64px;
+      display: block;
+    }
+
+    @media only screen and (max-width: 1160px) {
+      width: 19%;
+    }
+
+    @media only screen and (max-width: 1024px) {
+      width: 15%;
+      min-height: 81px;
+
+      img {
+        width: 75px;
+        height: 33px;
+      }
+    }
+
+    @media only screen and (max-width: 834px) {
+      width: 18%;
+    }
+
+    @media only screen and (max-width: 640px) {
+      width: 22.99%;
+    }
+
+    @media only screen and (max-width: 520px) {
+      width: 29%;
+    }
+
+    @media only screen and (max-width: 360px) {
+      width: 45%;
+    }
+  }
+}
+</style>

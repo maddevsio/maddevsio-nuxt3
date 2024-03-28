@@ -1,0 +1,26 @@
+<script setup lang="ts">
+const { $getMediaFromS3 } = useMediaFromS3()
+</script>
+<template>
+  <section>
+    <section class="container_regular m-48_top media-m-24_top m-48_bottom media-m-24_bottom">
+      <LazyCaseStudiesUITextParagraph>
+        Keeping up with the technological evolution, Mad Devs undertook the development of a new-generation
+        intersection monitoring system for a company called CityCam. The system’s purpose is to let anyone
+        monitor traffic in a city in real time. Traffic monitoring can help prevent congestion, and overall,
+        it makes transportation safer and faster. The project, known internally as Microphotographer, was largely
+        about hardware and featured two major parts: engineering the camera device with backend for it and building an
+        application with frontend and backend.
+      </LazyCaseStudiesUITextParagraph>
+    </section>
+    <section class="container_regular m-72_bottom media-m-48_bottom">
+      <LazySharedLottieMad
+        id="about-citycam"
+        class="case_lottie"
+        height="395px"
+        :lottie-link="$getMediaFromS3(`/images/Cases/citycam/lottie/about-citycam.json`)"
+        :autoplay="true"
+      />
+    </section>
+  </section>
+</template>

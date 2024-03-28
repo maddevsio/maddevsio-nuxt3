@@ -82,6 +82,10 @@ const mouseEventHandler = () => {
     }
   }
 }
+
+onMounted(() => {
+  lazyLoadVideo()
+})
 </script>
 <template>
   <NuxtLink
@@ -214,7 +218,7 @@ const mouseEventHandler = () => {
   }
 
   &__title {
-    @include font('Poppins', 20px, 700);
+    @include font('Inter', 20px, 700);
     line-height: 130%;
     color: $text-color--white-primary;
     width: 72%;

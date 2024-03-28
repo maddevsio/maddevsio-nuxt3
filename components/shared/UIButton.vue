@@ -1,3 +1,63 @@
+<script setup lang="ts">
+const props = defineProps({
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+
+  isLink: {
+    type: Boolean,
+    default: false,
+  },
+
+  to: {
+    type: String,
+    default: '/',
+  },
+
+  fullWidth: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+const emit = defineEmits(['click'])
+const router = useRouter()
+const setNoopener = ref<boolean | null | 'noopener'>(null)
+const isTag = computed(() => {
+  if (props.isLink) { return 'a' }
+  return 'button'
+})
+
+const linkTo = computed(() => {
+  if (props.isLink) { return props.to }
+  return null
+})
+
+const handleClick = () => {
+  if (props.isLink) {
+    const { ourDomain, url } = checkAndExtractDomain(props.to)
+    if (ourDomain) {
+      router.push(url)
+    } else {
+      const link = document.createElement('a')
+      link.href = props.to
+      link.target = '_blank'
+      link.click()
+    }
+  }
+  if (!props.disabled) { emit('click') }
+}
+
+onMounted(() => {
+  setNoopener.value = !checkAndExtractDomain(props.to).ourDomain && 'noopener'
+})
+</script>
 <template>
   <Component
     :is="isTag"
@@ -15,86 +75,6 @@
     <slot v-else />
   </Component>
 </template>
-
-<script>
-// import WaveAnimation from '~/directives/WaveAnimation'
-
-export default {
-  name: 'UIButton',
-  // directives: {
-  //   WaveAnimation,
-  // },
-
-  props: {
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-
-    isLink: {
-      type: Boolean,
-      default: false,
-    },
-
-    to: {
-      type: String,
-      default: '/',
-    },
-
-    fullWidth: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
-  data() {
-    return {
-      setNoopener: null,
-    }
-  },
-
-  computed: {
-    isTag() {
-      if (this.isLink) { return 'a' }
-      return 'button'
-    },
-
-    linkTo() {
-      if (this.isLink) { return this.to }
-      return null
-    },
-  },
-
-  mounted() {
-    this.setNoopener = !checkAndExtractDomain(this.to).ourDomain && 'noopener'
-  },
-
-  methods: {
-    handleClick() {
-      if (this.isLink) {
-        const { ourDomain, url } = checkAndExtractDomain(this.to)
-        if (ourDomain) {
-          this.$router.push(url)
-        } else {
-          const link = document.createElement('a')
-          link.href = this.to
-          link.target = '_blank'
-          link.click()
-        }
-      }
-      if (!this.disabled) { this.$emit('click') }
-    },
-
-    checkAndExtractDomain,
-  },
-}
-</script>
-
 <style lang="scss" scoped>
 .ui-button {
   @include font('Inter', 16px, 600);

@@ -1,0 +1,166 @@
+{
+  "id": "header_for_local_dev",
+  "label": "Header for local dev",
+  "repeatable": false,
+  "json": {
+    "Main": {
+      "company_blog_post": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "post",
+            "customer_university"
+          ],
+          "label": "Company section | Blog post",
+          "placeholder": "Blog post for the company navigation section"
+        }
+      },
+      "services_blog_post": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "post",
+            "customer_university"
+          ],
+          "label": "Services section | Blog post",
+          "placeholder": "Blog post for the services navigation section"
+        }
+      },
+      "industries_blog_post": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "post",
+            "customer_university"
+          ],
+          "label": "Industries section | Blog post",
+          "placeholder": "Blog post for the industries navigation section"
+        }
+      },
+      "clients_blog_post": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "post",
+            "customer_university"
+          ],
+          "label": "Clients section | Blog post",
+          "placeholder": "Blog post for the clients navigation section"
+        }
+      },
+      "insights_blog_post": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "post",
+            "customer_university"
+          ],
+          "label": "Insights section | Blog post",
+          "placeholder": "Blog post for the insights navigation section"
+        }
+      },
+      "expertise_blog_post": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "post",
+            "customer_university"
+          ],
+          "label": "Expertise section | Blog post",
+          "placeholder": "Blog post for the expertise navigation section"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {},
+          "choices": {
+            "navigation_list": {
+              "type": "Slice",
+              "fieldset": "Navigation list",
+              "description": "List of links for site navigation",
+              "icon": "view_list",
+              "non-repeat": {
+                "name": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Navigation list name"
+                  }
+                },
+                "link": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                    "label": "Link",
+                    "placeholder": "Example: /about/ or /blog/"
+                  }
+                },
+                "nav_section": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "Company",
+                      "Services",
+                      "Expertise",
+                      "Industries",
+                      "Clients",
+                      "Insights",
+                      "Careers"
+                    ],
+                    "default_value": "Company",
+                    "label": "Navigation section"
+                  }
+                },
+                "show_icon": {
+                  "type": "Boolean",
+                  "config": {
+                    "placeholder_false": "Hide",
+                    "placeholder_true": "Show",
+                    "default_value": false,
+                    "label": "Show Icon"
+                  }
+                },
+                "main_link_icon": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 12,
+                      "height": 12
+                    },
+                    "thumbnails": [],
+                    "label": "Main Link Icon"
+                  }
+                }
+              },
+              "repeat": {
+                "label": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Navigation item label"
+                  }
+                },
+                "link": {
+                  "type": "Link",
+                  "config": {
+                    "allowTargetBlank": true,
+                    "label": "Navigation item link",
+                    "select": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

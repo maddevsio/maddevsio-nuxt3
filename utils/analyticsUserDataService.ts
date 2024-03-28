@@ -1,4 +1,3 @@
-import uniqid from '~/utils/generatorUid'
 import { loadState, saveState } from '~/utils/localStorage'
 
 const LOCAL_STORAGE_KEYS = {
@@ -13,7 +12,7 @@ export function checkUserExist() {
 
 export function setUserUID() {
   if (!loadState(LOCAL_STORAGE_KEYS.ID)) {
-    saveState(uniqid(), LOCAL_STORAGE_KEYS.ID)
+    saveState(uid(), LOCAL_STORAGE_KEYS.ID)
   }
 }
 

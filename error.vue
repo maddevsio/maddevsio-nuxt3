@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const error = useError()
+import type { PropType } from 'vue'
+import type { NuxtError } from '#app'
+
+const { error } = defineProps({
+  // eslint-disable-next-line vue/require-default-prop
+  error: Object as PropType<NuxtError>,
+})
 const { $getMediaFromS3 } = useMediaFromS3()
 const handleClearError = () => clearError({ redirect: '/' })
 </script>
@@ -15,6 +21,7 @@ const handleClearError = () => clearError({ redirect: '/' })
     />
     <h1 class="error-page_title">
       The page you were looking for doesn’t exist.
+      {{ error.statusCode !== 404 ? error.statusMessage : '' }}
     </h1>
     <button
       class="error-page_link"

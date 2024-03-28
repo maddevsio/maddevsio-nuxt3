@@ -1,0 +1,37 @@
+{
+  "id": "writeup_list_slice",
+  "type": "SharedSlice",
+  "name": "WriteupListSlice",
+  "description": "WriteupListSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "WriteupListSlice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "required choice",
+            "options": [
+              "black",
+              "white"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "writeupTag": {
+          "config": {
+            "label": "Writeup Tag",
+            "placeholder": "like: Cybersecurity"
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

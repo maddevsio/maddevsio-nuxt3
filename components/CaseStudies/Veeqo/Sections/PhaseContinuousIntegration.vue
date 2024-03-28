@@ -1,0 +1,136 @@
+<script setup lang="ts">
+import { continuousIntegrationCards } from '~/components/CaseStudies/Veeqo/constants/veeqoConstants'
+</script>
+<template>
+  <section class="container_regular">
+    <h2 class="case_title_h2 m-24_bottom">
+      Phase 2: Continuous integration (CI)
+    </h2>
+    <LazyCaseStudiesUIColoredCards
+      :cards-data="continuousIntegrationCards"
+      grid-type="two-two"
+    />
+    <LazyCaseStudiesUITextQuoteBox
+      class="m-48_top m-96_bottom media-m-24_top media-m-72_bottom m-auto"
+      author="Andrew Sapozhnikov, Head of DevOps"
+    >
+      The developers didn’t trust their CI system. CI wasn’t helping them; it was hindering their work instead. It’s
+      just bad DevOps.
+    </LazyCaseStudiesUITextQuoteBox>
+    <h3 class="case_title_h3 m-38_bottom media-m-24_bottom">
+      What we achieved
+    </h3>
+    <div class="case_achievements m-48_bottom media-m-24_bottom">
+      <LazyCaseStudiesUITextParagraph class="case_achievement-item">
+        Reproducible <br> CI results
+      </LazyCaseStudiesUITextParagraph>
+      <LazyCaseStudiesUITextParagraph class="case_achievement-item">
+        Unified <br> runtime
+      </LazyCaseStudiesUITextParagraph>
+      <LazyCaseStudiesUITextParagraph class="case_achievement-item">
+        Standardized development, test, and production environments
+      </LazyCaseStudiesUITextParagraph>
+    </div>
+    <div class="case_ci-panel m-96_bottom media-m-48_bottom">
+      <LazyCaseStudiesUIPicture
+        folder="veeqo"
+        file="ci-panel"
+        extension="png"
+        alt="CI Panel."
+        :width="818"
+        :height="440"
+        :background="false"
+      />
+    </div>
+    <h3 class="case_title_h3 m-12_bottom">
+      Moving Jenkins
+    </h3>
+    <LazyCaseStudiesUITextParagraph class="m-34_bottom">
+      Jenkins was operated manually on a separate EC2 instance. Managing it was thus challenging, especially in
+      emergencies. We moved the Jenkins master to ECS by remaking its provisioning, deployment, and updating (Later,
+      we’ll move it to k8s, but in 2017, ECS was the only good option for us). We reduced build time and cost by
+      allocating a small part of compute resources of Jenkins agents to reserved instances and moving 90% of the load to
+      spot instances.
+    </LazyCaseStudiesUITextParagraph>
+    <LazyCaseStudiesUITextParagraph class="case_bold">
+      We further renovated CI by:
+    </LazyCaseStudiesUITextParagraph>
+    <LazyCaseStudiesUIListDots>
+      <LazyCaseStudiesUIListDotsItem>Creating Jenkinsfiles for all repositories thus making pipelines reproducible</LazyCaseStudiesUIListDotsItem>
+      <LazyCaseStudiesUIListDotsItem>Creating backups</LazyCaseStudiesUIListDotsItem>
+      <LazyCaseStudiesUIListDotsItem>Running access audit and configuring SSO for more secure access</LazyCaseStudiesUIListDotsItem>
+    </LazyCaseStudiesUIListDots>
+    <LazyCaseStudiesUITextQuote
+      class="m-auto m-96_top m-96_bottom media-m-48_top media-m-72_bottom"
+      author="Maxim Glotov, DevOps Engineer"
+    >
+      Everything down to the last comma is now written in the form of code. Even if we took Jenkins down completely and
+      had to build it from scratch again, it’d take us no more than 10 minutes.
+    </LazyCaseStudiesUITextQuote>
+  </section>
+</template>
+<style lang="scss" scoped>
+.case {
+  &_cards-container {
+    @include grid(repeat(2, 1fr), auto, 25px, 0);
+
+    @media screen and (max-width: 880px) {
+      @include grid(repeat(1, 1fr), auto, 0, 10px);
+    }
+  }
+
+  &_achievements {
+    @include grid(repeat(3, 1fr), auto, 0, 0);
+  }
+
+  &_achievement-item {
+    position: relative;
+    padding-left: 10px;
+
+    &:before {
+      content: '';
+      width: 2px;
+      height: 85%;
+      min-height: 40px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background-color: $bgcolor--blue;
+    }
+
+    @media screen and (max-width: 642px) {
+      &:last-child {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &_bold {
+    font-weight: 700;
+  }
+
+  &_ci-panel {
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.15));
+  }
+
+  @media screen and (max-width: 950px) {
+    &_achievements {
+      @include grid(repeat(1, 1fr), auto, 0, 21px);
+    }
+
+    &_achievement-item {
+      padding: 12px 0 12px 10px;
+
+      br {
+        display: none;
+      }
+    }
+  }
+}
+
+:deep(.list-item_dot) {
+  margin-bottom: 0;
+}
+</style>

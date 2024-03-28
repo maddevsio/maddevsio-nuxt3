@@ -1,0 +1,186 @@
+{
+  "id": "customer_logo_slice",
+  "type": "SharedSlice",
+  "name": "CustomerLogoSlice",
+  "description": "Customer Logo Slice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default Slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Customer Logo Slice",
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "animation": {
+          "config": {
+            "label": "Animation list",
+            "placeholder": "Select aos animation",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-righ",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-up",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "logo": {
+          "type": "Image",
+          "config": {
+            "label": "Image logo",
+            "thumbnails": [],
+            "constraint": {}
+          }
+        },
+        "link": {
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "allowTargetBlank": true
+          },
+          "type": "Link"
+        }
+      }
+    },
+    {
+      "id": "customersLogoInteractive",
+      "name": "CustomersLogoInteractive",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Customer Logo Slice",
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Background",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ]
+          },
+          "type": "Select"
+        },
+        "animation": {
+          "config": {
+            "label": "Animation list",
+            "placeholder": "Select aos animation",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-righ",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-up",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ]
+          },
+          "type": "Select"
+        },
+        "containerSize": {
+          "config": {
+            "label": "Container Size",
+            "placeholder": "Select container size",
+            "options": [
+              "1240",
+              "1026",
+              "816"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "logo": {
+          "type": "Image",
+          "config": {
+            "label": "Image logo",
+            "thumbnails": [],
+            "constraint": {}
+          }
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": "Enter title"
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "Enter description"
+          },
+          "type": "Text"
+        },
+        "linkToCaseStudy": {
+          "config": {
+            "label": "Link to case study",
+            "placeholder": "Like /case-studies/rocifi/"
+          },
+          "type": "Text"
+        },
+        "linkedin": {
+          "config": {
+            "label": "Link to LinkedIn",
+            "placeholder": "Enter LN Link",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "facebook": {
+          "config": {
+            "label": "Link to Facebook",
+            "placeholder": "Enter FB Link",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "twitter": {
+          "config": {
+            "label": "Link to Twitter",
+            "placeholder": "Enter TW Link",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "externalLinkToSite": {
+          "config": {
+            "label": "External link to site",
+            "placeholder": "Enter web link",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        }
+      }
+    }
+  ]
+}

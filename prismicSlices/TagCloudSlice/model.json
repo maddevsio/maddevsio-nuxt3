@@ -1,0 +1,36 @@
+{
+  "id": "tag_cloud_slice",
+  "type": "SharedSlice",
+  "name": "TagCloudSlice",
+  "description": "TagCloudSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TagCloudSlice",
+      "primary": {},
+      "items": {
+        "icon": {
+          "config": {
+            "label": "Tag Icon",
+            "constraint": {
+              "width": 20,
+              "height": 20
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "name": {
+          "config": {
+            "label": "Tag Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

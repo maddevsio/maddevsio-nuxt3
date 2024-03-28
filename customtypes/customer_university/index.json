@@ -1,0 +1,701 @@
+{
+  "id": "customer_university",
+  "label": "Customer University",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": "unique-identifier-for-blog-post-url"
+        }
+      },
+      "meta_title": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph",
+          "label": "Meta title"
+        }
+      },
+      "meta_description": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph",
+          "allowTargetBlank": true,
+          "label": "Meta description"
+        }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading1",
+          "label": "Title",
+          "placeholder": "Blog Post Title..."
+        }
+      },
+      "subtitle": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
+          "label": "Subtitle"
+        }
+      },
+      "date": {
+        "type": "Date",
+        "config": {
+          "label": "Date"
+        }
+      },
+      "featured_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {
+            "width": 983
+          },
+          "thumbnails": [],
+          "label": "featured-image"
+        }
+      },
+      "introduction_paragraph": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
+          "label": "introduction-paragraph"
+        }
+      },
+      "post_author": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": [
+            "author"
+          ],
+          "label": "Post author",
+          "placeholder": "Select the author of this post from the list of authors"
+        }
+      },
+      "schema_org_snippets": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "single_snippet": {
+              "type": "StructuredText",
+              "config": {
+                "multi": "preformatted",
+                "label": "Single snippet"
+              }
+            }
+          },
+          "label": "schema.org snippets"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {
+            "image_with_caption": [
+              {
+                "name": "emphasized",
+                "display": "Emphasized"
+              },
+              {
+                "name": "image-full-width",
+                "display": "Full"
+              }
+            ],
+            "text": [
+              {
+                "name": "html",
+                "display": "html"
+              }
+            ],
+            "embed": [
+              {
+                "name": "embed",
+                "display": "embed"
+              }
+            ],
+            "codeblock": [
+              {
+                "name": "codeblock",
+                "display": "codeblock"
+              }
+            ],
+            "divider": [],
+            "github_gist": [],
+            "ordered_list": [],
+            "section_id": [],
+            "author": [],
+            "table_of_contents": []
+          },
+          "choices": {
+            "text": {
+              "type": "Slice",
+              "fieldset": "Text",
+              "description": "A rich text section",
+              "icon": "ac_unit",
+              "non-repeat": {
+                "color": {
+                  "type": "Color",
+                  "config": {
+                    "label": "Color"
+                  }
+                },
+                "text": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
+                    "label": "Text",
+                    "placeholder": "Post text...",
+                    "allowTargetBlank": true
+                  }
+                }
+              },
+              "repeat": {},
+              "display": "grid"
+            },
+            "quote": {
+              "type": "Slice",
+              "fieldset": "Quote",
+              "description": "A quote section",
+              "icon": "format_quote",
+              "non-repeat": {
+                "quotation_design": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "brackets",
+                      "border"
+                    ],
+                    "default_value": "border",
+                    "label": "Quotation design"
+                  }
+                },
+                "quote": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph",
+                    "label": "Quote",
+                    "placeholder": "Post Quote..."
+                  }
+                },
+                "name_of_the_author": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph",
+                    "label": "Name of the author",
+                    "placeholder": "John Doe"
+                  }
+                },
+                "portrait_author": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 700,
+                      "height": 700
+                    },
+                    "thumbnails": [
+                      {
+                        "name": "mobile",
+                        "width": 50,
+                        "height": 50
+                      }
+                    ],
+                    "label": "Portrait Author"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "image_with_caption": {
+              "type": "Slice",
+              "fieldset": "Image with Caption",
+              "description": "An image with an optional caption",
+              "icon": "image",
+              "non-repeat": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": null
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                },
+                "caption": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading3",
+                    "label": "Caption",
+                    "placeholder": "Image Caption..."
+                  }
+                },
+                "enable_zoom": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "enable",
+                      "disable"
+                    ],
+                    "default_value": "disable",
+                    "label": "Enable zoom"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "list_of_articles": {
+              "type": "Slice",
+              "fieldset": "List of Articles",
+              "description": "Section title and article list",
+              "icon": "photo_filter",
+              "non-repeat": {
+                "title_of_section": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "heading2",
+                    "label": "Title of Section",
+                    "placeholder": "Featured"
+                  }
+                }
+              },
+              "repeat": {
+                "articles_to_link": {
+                  "type": "Link",
+                  "config": {
+                    "label": "Articles to link",
+                    "placeholder": "Selct your article",
+                    "select": null
+                  }
+                }
+              }
+            },
+            "team": {
+              "type": "Slice",
+              "fieldset": "Team",
+              "description": "Section for team member information with portrait",
+              "icon": "person_pin",
+              "non-repeat": {
+                "team_section": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading2",
+                    "label": "Team Section",
+                    "placeholder": "Management"
+                  }
+                }
+              },
+              "repeat": {
+                "first_and_lastname": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "heading3",
+                    "label": "First and LastName",
+                    "placeholder": "John Doe"
+                  }
+                },
+                "position": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph",
+                    "label": "Position",
+                    "placeholder": "Design director"
+                  }
+                },
+                "portrait": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 1000,
+                      "height": 1000
+                    },
+                    "thumbnails": [
+                      {
+                        "name": "Mobile",
+                        "width": 500,
+                        "height": 500
+                      }
+                    ],
+                    "label": "Portrait"
+                  }
+                }
+              }
+            },
+            "image_gallery": {
+              "type": "Slice",
+              "fieldset": "Image Gallery",
+              "description": "Image Gallery with a title and a caption for each image",
+              "icon": "photo_library",
+              "non-repeat": {
+                "name_of_the_gallery": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading2",
+                    "label": "Name of the gallery",
+                    "placeholder": "My beautiful paintings"
+                  }
+                }
+              },
+              "repeat": {
+                "image_captions": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph",
+                    "label": "Image captions",
+                    "placeholder": "Images captions"
+                  }
+                },
+                "gallery_image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": null,
+                      "height": null
+                    },
+                    "thumbnails": [
+                      {
+                        "name": "Mobile",
+                        "width": 73,
+                        "height": 40
+                      }
+                    ],
+                    "label": "Gallery Image"
+                  }
+                }
+              }
+            },
+            "embed": {
+              "type": "Slice",
+              "fieldset": "Embed",
+              "description": "Embed link or video",
+              "icon": "crop_free",
+              "display": "list",
+              "non-repeat": {},
+              "repeat": {
+                "embed": {
+                  "type": "Embed",
+                  "config": {
+                    "label": "Embed"
+                  }
+                },
+                "embed_title": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Embed title",
+                    "placeholder": "Replaces the incoming title of embed item (Optional field)"
+                  }
+                },
+                "embed_description": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Embed description",
+                    "placeholder": "Replaces the incoming description of embed item (Optional field)"
+                  }
+                }
+              }
+            },
+            "codeblock": {
+              "type": "Slice",
+              "fieldset": "Codeblock",
+              "description": "Codeblock",
+              "icon": "code",
+              "display": "list",
+              "non-repeat": {
+                "language": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "css",
+                      "javascript",
+                      "markup",
+                      "java",
+                      "go",
+                      "php",
+                      "c",
+                      "cpp",
+                      "ruby",
+                      "scss",
+                      "sass",
+                      "swift",
+                      "objectivec",
+                      "kotlin",
+                      "python"
+                    ],
+                    "label": "Language",
+                    "default_value": "css"
+                  }
+                },
+                "code": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Code",
+                    "placeholder": "<Code>"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "divider": {
+              "type": "Slice",
+              "fieldset": "Divider",
+              "description": "Full width dash",
+              "icon": "drag_handle",
+              "display": "list",
+              "non-repeat": {},
+              "repeat": {}
+            },
+            "image_with_attributes": {
+              "type": "Slice",
+              "fieldset": "Image with Attributes",
+              "description": "An image with an attributes",
+              "icon": "image",
+              "non-repeat": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 1200
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                },
+                "target": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "_blank",
+                      "_self",
+                      "_parent",
+                      "_top"
+                    ],
+                    "default_value": "_self",
+                    "label": "Target attribute"
+                  }
+                },
+                "title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Title attribute",
+                    "placeholder": "title"
+                  }
+                },
+                "url": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "URL",
+                    "placeholder": "https://"
+                  }
+                },
+                "enable_zoom": {
+                  "type": "Select",
+                  "config": {
+                    "options": [
+                      "enable",
+                      "disable"
+                    ],
+                    "default_value": "disable",
+                    "label": "Enable zoom"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "ordered_list": {
+              "type": "Slice",
+              "fieldset": "Ordered List",
+              "description": "Ordered List",
+              "icon": "format_list_numbered",
+              "display": "list",
+              "non-repeat": {
+                "list_introduction": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink",
+                    "allowTargetBlank": true,
+                    "label": "list introduction"
+                  }
+                }
+              },
+              "repeat": {
+                "list_item": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Item",
+                    "placeholder": ""
+                  }
+                }
+              }
+            },
+            "doublecolumn_bordered": {
+              "type": "Slice",
+              "fieldset": "Multicolumn Bordered",
+              "description": "Bordered section with 2 columns",
+              "icon": "announcement",
+              "display": "grid",
+              "non-repeat": {
+                "left_column": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
+                    "label": "Left column content"
+                  }
+                },
+                "right_column": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 1200
+                    },
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "github_gist": {
+              "type": "Slice",
+              "fieldset": "Github gist",
+              "description": "Code sample from Github Gists",
+              "icon": "code",
+              "display": "list",
+              "non-repeat": {
+                "gist_id": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Gist id",
+                    "placeholder": "gist id"
+                  }
+                },
+                "file_name": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph",
+                    "label": "File name",
+                    "placeholder": "file name"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "section_id": {
+              "type": "Slice",
+              "fieldset": "Section ID",
+              "description": "ID of section to refer to from table of contents",
+              "icon": "bookmark_border",
+              "display": "list",
+              "non-repeat": {
+                "id": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "ID"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "author": {
+              "type": "Slice",
+              "fieldset": "Author",
+              "description": "Card with contributors and information about author",
+              "icon": "account_circle",
+              "display": "list",
+              "non-repeat": {},
+              "repeat": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 56,
+                      "height": 56
+                    },
+                    "thumbnails": [],
+                    "label": "Contributor image"
+                  }
+                },
+                "link": {
+                  "type": "Link",
+                  "config": {
+                    "allowTargetBlank": true,
+                    "label": "Contributor link",
+                    "select": null
+                  }
+                }
+              }
+            },
+            "table_of_contents": {
+              "type": "Slice",
+              "fieldset": "Table of Contents",
+              "description": "Table of Contents for CU post",
+              "icon": "format_list_bulleted",
+              "display": "list",
+              "non-repeat": {},
+              "repeat": {
+                "lable": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                    "label": "lable"
+                  }
+                }
+              }
+            },
+            "spacer_slice": {
+              "type": "SharedSlice"
+            },
+            "accordion_slice": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "Header Plate": {
+      "header_plate_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Text"
+        }
+      },
+      "header_plate_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Button Text"
+        }
+      },
+      "header_plate_link": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Link",
+          "placeholder": "/backend/"
+        }
+      },
+      "header_plate_background_color": {
+        "type": "Select",
+        "config": {
+          "options": [
+            "blue",
+            "purple",
+            "orange",
+            "green",
+            "blue-green"
+          ],
+          "label": "Header Plate Background Color",
+          "placeholder": "requires choice"
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

@@ -1,0 +1,107 @@
+{
+  "id": "blog-post-parts",
+  "label": "blogPostParts",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID",
+          "placeholder": "unique-id-for-nested-page-url"
+        },
+        "type": "UID"
+      },
+      "metaTitle": {
+        "config": {
+          "label": "Meta title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        },
+        "type": "StructuredText"
+      },
+      "metaDescription": {
+        "config": {
+          "label": "Meta description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        },
+        "type": "StructuredText"
+      },
+      "title": {
+        "config": {
+          "label": "Title",
+          "placeholder": "Title",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        },
+        "type": "StructuredText"
+      },
+      "subtitle": {
+        "config": {
+          "label": "Subtitle",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        },
+        "type": "StructuredText"
+      },
+      "date": {
+        "config": {
+          "label": "Date",
+          "placeholder": ""
+        },
+        "type": "Date"
+      },
+      "featured-image": {
+        "config": {
+          "label": "featured-image",
+          "constraint": {
+            "width": 983
+          },
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "introductionParagraph": {
+        "config": {
+          "label": "introduction_paragraph",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        },
+        "type": "StructuredText"
+      },
+      "postAuthor": {
+        "config": {
+          "label": "Post author ",
+          "customtypes": [
+            "author"
+          ],
+          "select": "document"
+        },
+        "type": "Link"
+      },
+      "schemaOrgSnippets": {
+        "config": {
+          "label": "schema.org snippets",
+          "fields": {
+            "singleSnippet": {
+              "config": {
+                "label": "Single snippet",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "preformatted"
+              },
+              "type": "StructuredText"
+            }
+          }
+        },
+        "type": "Group"
+      }
+    }
+  },
+  "format": "custom"
+}

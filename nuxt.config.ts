@@ -25,6 +25,10 @@ export default defineNuxtConfig({
           name: 'facebook-domain-verification',
           content: 'gjmbb6g9th5cxl6awr0dx598t7ruz3',
         },
+        {
+          name: 'theme-color',
+          content: '#111213',
+        },
       ],
       link: [
         {
@@ -35,7 +39,7 @@ export default defineNuxtConfig({
         {
           rel: 'sitemap',
           type: 'application/xml',
-          href: 'https://maddevs.io/sitemapindex.xml',
+          href: 'https://maddevs.io/sitemap_index.xml',
         },
         {
           rel: 'preconnect',
@@ -49,11 +53,6 @@ export default defineNuxtConfig({
       ],
 
       script: [
-        {
-          src: 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver',
-          defer: true,
-          body: true,
-        },
         process.env.FF_ENVIRONMENT === 'production'
           ? {
             type: 'text/javascript',
@@ -80,7 +79,7 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: { enabled: process.env.FF_ENVIRONMENT !== 'production' },
+  devtools: { enabled: process.env.FF_ENVIRONMENT === 'development' },
 
   experimental: {
     asyncEntry: true,
@@ -95,14 +94,189 @@ export default defineNuxtConfig({
       },
     }],
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/device',
     ['nuxt-delay-hydration', {
       mode: 'mount',
+      debug: process.env.NODE_ENV === 'development',
     }],
     ['nuxt-swiper', {
       styleLang: 'scss',
+      modules: ['navigation', 'pagination', 'thumbs', 'autoplay'],
     }],
+    ['@nuxt/image', {
+      prismic: {},
+      screens: {
+        mobile: 600,
+        tablet: 800,
+        desktop: 1200,
+      },
+    }],
+    ['nuxt-security', {
+      rateLimiter: false,
+      headers: {
+        contentSecurityPolicy: false,
+        crossOriginEmbedderPolicy: false,
+        xFrameOptions: 'DENY',
+        permissionsPolicy: false,
+      },
+      xssValidator: false,
+    }],
+    '@nuxtjs/sitemap',
+    '@vite-pwa/nuxt',
   ],
+
+  pwa: {
+    includeAssets: ['favicon.ico', 'favicon-16x16.ico', 'favicon-32x32.ico', 'apple-touch-icon.png'],
+    manifest: {
+      name: 'Mad Devs',
+      short_name: 'Mad Devs',
+      description: 'Mad Devs: Software & Mobile App Development Company',
+      theme_color: '#111213',
+      lang: 'en',
+      background_color: '#111213',
+      icons: [
+        {
+          src: 'pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
+      ],
+    },
+    workbox: {
+      navigateFallback: null,
+    },
+  },
+
+  sitemap: {
+    cacheMaxAgeSeconds: 10 * 3600000,
+    autoLastmod: true,
+    sitemaps: {
+      main: {
+        sources: [
+          '/api/__sitemap__/main',
+        ],
+      },
+      blog: {
+        sources: [
+          '/api/__sitemap__/blog',
+        ],
+      },
+      careers: {
+        sources: [
+          '/api/__sitemap__/careers',
+        ],
+      },
+      cases: {
+        sources: [
+          '/api/__sitemap__/cases',
+        ],
+      },
+      insights: {
+        sources: [
+          '/api/__sitemap__/insights',
+        ],
+      },
+      services: {
+        sources: [
+          '/api/__sitemap__/services',
+        ],
+      },
+      authors: {
+        sources: [
+          '/api/__sitemap__/authors',
+        ],
+      },
+    },
+  },
+
+  site: {
+    trailingSlash: true,
+  },
+
+  routeRules: {
+    '/open-source/': { prerender: true },
+    '/careers/': { prerender: true },
+    '/delivery-models/': { prerender: true },
+    '/delivery-models/staff-augmentation/': { prerender: true },
+    '/delivery-models/dedicated-team/': { prerender: true },
+    '/delivery-models/temp-to-hire/': { prerender: true },
+    '/delivery-models/technical-assessment/': { prerender: true },
+    '/delivery-models/team-supervision/': { prerender: true },
+    '/delivery-models/transferring-projects/': { prerender: true },
+    '/transparency/': { prerender: true },
+    '/our-philosophy/': { prerender: true },
+    '/nda/': { prerender: true },
+    '/gdpr/': { prerender: true },
+    '/blog/': { prerender: true },
+    '/digest/': { prerender: true },
+    '/privacy/': { prerender: true },
+    '/case-studies/bandpay/': { prerender: true },
+    '/case-studies/bilimapp/': { prerender: true },
+    '/case-studies/citycam/': { prerender: true },
+    '/case-studies/clutch/': { prerender: true },
+    '/case-studies/godee/': { prerender: true },
+    '/case-studies/guardrails/': { prerender: true },
+    '/case-studies/lido/': { prerender: true },
+    '/case-studies/megauni/': { prerender: true },
+    '/case-studies/mobile-banking/': { prerender: true },
+    '/case-studies/namba-food/': { prerender: true },
+    '/case-studies/namba-taxi/': { prerender: true },
+    '/case-studies/peklo/': { prerender: true },
+    '/case-studies/R4TCA-web-application/': { prerender: true },
+    '/case-studies/rocifi/': { prerender: true },
+    '/case-studies/sir-john-monash-centre/': { prerender: true },
+    '/case-studies/veeqo/': { prerender: true },
+    '/case-studies/yourcast/': { prerender: true },
+    '/api/leads': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 5,
+          interval: 15 * 60 * 1000, // 15 minutes
+          headers: true,
+        },
+      },
+    },
+    'api/send-email': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 5,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
+    'api/careers': {
+      security: {
+        xssValidator: false,
+        rateLimiter: {
+          tokensPerInterval: 10,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
+    'api/send-checklist': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 15,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
+  },
 
   nitro: {
     compressPublicAssets: true,
@@ -123,7 +297,7 @@ export default defineNuxtConfig({
     families: {
       'IBM+Plex+Mono': true,
       Inter: {
-        wght: [300, 400, 600, 700, 800],
+        wght: [300, 400, 500, 600, 700, 800],
       },
       Poppins: {
         wght: [300, 500, 600, 700],
@@ -173,7 +347,7 @@ export default defineNuxtConfig({
         const file = manifest[key]
         if (file.preload && file.prefetch) {
           file.preload = false
-          file.preload = false
+          file.prefetch = false
         }
 
         if (file.assets) {
@@ -187,5 +361,9 @@ export default defineNuxtConfig({
         }
       }
     },
+  },
+  devServer: {
+    port: Number(process.env.PORT) || 3000,
+    host: process.env.HOST || '0',
   },
 })

@@ -1,0 +1,18 @@
+.form-success-message {
+  &__title {
+    @include font('Inter', 24px, 700);
+    line-height: 130%;
+    color: $text-color--chinese-black;
+    margin-bottom: 12px;
+  }
+
+  &__image {
+    margin-bottom: 20px;
+  }
+
+  &__description {
+    @include font('Inter', 16px, 400);
+    line-height: 26px;
+    color: $text-color--quote-box;
+  }
+}

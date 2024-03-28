@@ -1,0 +1,68 @@
+{
+  "id": "customer_university_section",
+  "label": "Customer University Section",
+  "repeatable": false,
+  "json": {
+    "Main": {
+      "pricing_strategies": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "post": {
+              "type": "Link",
+              "config": {
+                "select": "document",
+                "customtypes": [
+                  "customer_university"
+                ],
+                "tags": [
+                  "Pricing strategies"
+                ],
+                "label": "Post"
+              }
+            }
+          },
+          "label": "Pricing  Strategies"
+        }
+      },
+      "development_process": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "post": {
+              "type": "Link",
+              "config": {
+                "select": "document",
+                "customtypes": [
+                  "customer_university"
+                ],
+                "label": "Post"
+              }
+            }
+          },
+          "label": "Development Process"
+        }
+      },
+      "mad_community": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "post": {
+              "type": "Link",
+              "config": {
+                "select": "document",
+                "customtypes": [
+                  "customer_university"
+                ],
+                "label": "Post"
+              }
+            }
+          },
+          "label": "Mad  Community"
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

@@ -1,0 +1,154 @@
+{
+  "id": "expert",
+  "label": "Expert",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "uid",
+          "placeholder": ""
+        },
+        "type": "UID"
+      },
+      "released": {
+        "config": {
+          "label": "Available on",
+          "placeholder_false": "staging",
+          "placeholder_true": "production",
+          "default_value": false
+        },
+        "type": "Boolean"
+      },
+      "showFooter": {
+        "config": {
+          "label": "Show footer",
+          "placeholder_false": "hide",
+          "placeholder_true": "show",
+          "default_value": false
+        },
+        "type": "Boolean"
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "start_screen": {
+              "type": "SharedSlice"
+            },
+            "title_and_paragraph_slice": {
+              "type": "SharedSlice"
+            },
+            "posts_section_slice": {
+              "type": "SharedSlice"
+            },
+            "case_list_slice": {
+              "type": "SharedSlice"
+            },
+            "spacer_slice": {
+              "type": "SharedSlice"
+            },
+            "text_slice": {
+              "type": "SharedSlice"
+            },
+            "button_slice": {
+              "type": "SharedSlice"
+            },
+            "industries": {
+              "type": "SharedSlice"
+            },
+            "awards_slice": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO": {
+      "metaTitle": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        },
+        "type": "StructuredText"
+      },
+      "metaDescription": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        },
+        "type": "StructuredText"
+      },
+      "ogImage": {
+        "config": {
+          "label": "Open graph image",
+          "constraint": {
+            "width": 1200,
+            "height": 630
+          },
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "schemaOrgSnippets": {
+        "config": {
+          "label": "SchemaOrg Snippets",
+          "fields": {
+            "singleSnippet": {
+              "config": {
+                "label": "Single Snippet",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "preformatted"
+              },
+              "type": "StructuredText"
+            }
+          }
+        },
+        "type": "Group"
+      }
+    },
+    "Header Plate": {
+      "header_plate_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Text"
+        }
+      },
+      "header_plate_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Button Text"
+        }
+      },
+      "header_plate_link": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Link",
+          "placeholder": "/expertise/"
+        }
+      },
+      "header_plate_background_color": {
+        "type": "Select",
+        "config": {
+          "options": [
+            "blue",
+            "purple",
+            "orange",
+            "green",
+            "blue-green"
+          ],
+          "label": "Header Plate Background Color",
+          "placeholder": "requires choice"
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

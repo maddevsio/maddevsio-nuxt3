@@ -53,6 +53,7 @@ export default defineEventHandler(async event => {
 
     return data
   } catch (e) {
+    // eslint-disable-next-line
     console.log('ERROR', e)
     return e
   }

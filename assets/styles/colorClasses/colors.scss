@@ -38,6 +38,10 @@
   background: $bgcolor--bright-green;
 }
 
+.bg--yellow {
+  background: $bgcolor--yellow;
+}
+
 .bg--blue-green {
   background: $bgcolor--blue-green;
 }
@@ -52,6 +56,10 @@
 
 .text--gray {
   color: $text-color--grey-opacity-40-percent;
+}
+
+.text--red {
+  color: $text-color--venetian-red;
 }
 
 .text--blue-gradient {

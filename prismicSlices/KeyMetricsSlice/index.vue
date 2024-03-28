@@ -2,7 +2,7 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyKeyMetricsDefault
+  <LazyPageBlocksKeyMetricsDefault
     :slice="slice"
   />
 </template>

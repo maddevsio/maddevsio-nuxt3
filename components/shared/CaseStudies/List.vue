@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { ICaseListItem } from '~/components/CaseList/interfaces/iCaseList'
+import type { ICaseListItem } from '~/components/PageBlocks/CaseList/interfaces/iCaseList'
 
 const { caseStudiesList } = defineProps({
   caseStudiesList: {

@@ -1,0 +1,38 @@
+{
+  "id": "key_takeaways_slice",
+  "type": "SharedSlice",
+  "name": "KeyTakeawaysSlice",
+  "description": "KeyTakeawaysSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "KeyTakeawaysSlice",
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "text": {
+          "config": {
+            "label": "Point Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "id": "tech_and_tools_new_slice",
+  "type": "SharedSlice",
+  "name": "TechAndToolsNewSlice",
+  "description": "TechAndToolsNewSlice",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TechAndToolsNewSlice",
+      "primary": {
+        "animation": {
+          "config": {
+            "label": "Animation",
+            "placeholder": "",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-right",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-down",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ],
+            "default_value": "fade-up"
+          },
+          "type": "Select"
+        },
+        "addBorder": {
+          "config": {
+            "label": "Add Border To Icons?",
+            "placeholder_false": "No",
+            "placeholder_true": "Yes",
+            "default_value": true
+          },
+          "type": "Boolean"
+        },
+        "theme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "requires choice",
+            "options": [
+              "white",
+              "black"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "SVG Icon",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "isBig": {
+          "config": {
+            "label": "Big card?",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "if little card don`t filled"
+          },
+          "type": "Text"
+        }
+      }
+    },
+    {
+      "id": "threeBigCards",
+      "name": "ThreeBigCards",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TechAndToolsNewSlice",
+      "primary": {
+        "animation": {
+          "config": {
+            "label": "Animation",
+            "placeholder": "",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-right",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-down",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ],
+            "default_value": "fade-up"
+          },
+          "type": "Select"
+        },
+        "addBorder": {
+          "config": {
+            "label": "Add Border To Icons?",
+            "placeholder_false": "No",
+            "placeholder_true": "Yes",
+            "default_value": true
+          },
+          "type": "Boolean"
+        },
+        "theme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "requires choice",
+            "options": [
+              "white",
+              "black"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "SVG Icon",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "isBig": {
+          "config": {
+            "label": "Big card?",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "if little card don`t filled"
+          },
+          "type": "Text"
+        }
+      }
+    },
+    {
+      "id": "twoBigCards",
+      "name": "TwoBigCards",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TechAndToolsNewSlice",
+      "primary": {
+        "animation": {
+          "config": {
+            "label": "Animation",
+            "placeholder": "",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-right",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-down",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ],
+            "default_value": "fade-up"
+          },
+          "type": "Select"
+        },
+        "isPostPage": {
+          "config": {
+            "label": "Custom Page or Post",
+            "placeholder_false": "Custom Page",
+            "placeholder_true": "Post",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "addBorder": {
+          "config": {
+            "label": "Add Border To Icons?",
+            "placeholder_false": "No",
+            "placeholder_true": "Yes",
+            "default_value": true
+          },
+          "type": "Boolean"
+        },
+        "theme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "SVG Icon",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "isBig": {
+          "config": {
+            "label": "Big card?",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "if little card don`t filled"
+          },
+          "type": "Text"
+        }
+      }
+    },
+    {
+      "id": "oneBigCard",
+      "name": "OneBigCard",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TechAndToolsNewSlice",
+      "primary": {
+        "animation": {
+          "config": {
+            "label": "Animation",
+            "placeholder": "",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-right",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-down",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ],
+            "default_value": "fade-up"
+          },
+          "type": "Select"
+        },
+        "isPostPage": {
+          "config": {
+            "label": "Custom Page or Post",
+            "placeholder_false": "Custom Page",
+            "placeholder_true": "Post",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "addBorder": {
+          "config": {
+            "label": "Add Border To Icons?",
+            "placeholder_false": "No",
+            "placeholder_true": "Yes",
+            "default_value": true
+          },
+          "type": "Boolean"
+        },
+        "theme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "icon": {
+          "config": {
+            "label": "SVG Icon",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "isBig": {
+          "config": {
+            "label": "Big card?",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "if little card don`t filled"
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}
