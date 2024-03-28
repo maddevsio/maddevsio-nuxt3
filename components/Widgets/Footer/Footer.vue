@@ -137,6 +137,7 @@ useCurrentRoute(setCurrentRoute)
   }
 
   &__content {
+
     &-wrapper {
       display: flex;
       @media screen and (max-width: 991px) {
