@@ -34,7 +34,7 @@ const $prismic = usePrismic()
           provider="prismic"
           loading="lazy"
           :class="{ 'block-img-zoom': isEnableZoom }"
-          :src="image.url"
+          :src="`${image.url}&dpr=3`"
           :alt="image.alt || 'Image'"
           :width="imageDimensions.imageWidth"
           :height="imageDimensions.imageHeight"
