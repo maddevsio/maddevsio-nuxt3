@@ -23,9 +23,11 @@ export class HeaderCrumbs implements IHeaderCrumbs {
         }
         return breadcrumbArray
       }, [])
+
       if (breadcrumbs[0]?.title === 'Writeups') { breadcrumbs[0].title = 'Write-ups' }
       if (breadcrumbs[0]?.title === 'Customer university') { breadcrumbs[0].to = '/blog/#customer-university' }
       if (breadcrumbs[0]?.title === 'Tag') { breadcrumbs[0].to = '/blog/' }
+      if (breadcrumbs[2]?.to.includes('authors')) { breadcrumbs[2].to = `/blog${ breadcrumbs[2]?.to }` }
 
       return breadcrumbs.length >= 2 ? breadcrumbs : []
     })
