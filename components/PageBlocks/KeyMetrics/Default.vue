@@ -1,7 +1,21 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { KeyMetricsCard } from '~/components/PageBlocks/KeyMetrics/classes/KeyMetricsCard'
-import type { IKeyMetricsProps } from '~/components/PageBlocks/KeyMetrics/interfaces/IKeyMetricsCard'
+import setSliceBackground from '~/utils/setSliceBackground'
+interface IKeyMetricsItem {
+  title: string
+  subtitle: string
+  numberColor: string
+  descriptionColor: string
+}
+
+interface IKeyMetricsProps {
+  items: IKeyMetricsItem[]
+  primary: {
+    background: string
+    bigCardTitle: string
+    lottieFileName: string
+  }
+}
 
 const { slice } = defineProps({
   slice: {
@@ -10,16 +24,13 @@ const { slice } = defineProps({
   },
 })
 
-const keyMetricsCard = new KeyMetricsCard(slice)
+const cards = slice.items || []
+const backgroundInText = slice.primary.background || 'black'
+const backgroundColor = setSliceBackground(slice.primary.background || 'black')
+const bigCardTitle = slice.primary?.bigCardTitle?.replace(/\n/g, '<br />') || ''
+const lottieFileName = slice.primary.lottieFileName || 'key-metrics'
 const { $getMediaFromS3 } = useMediaFromS3()
 
-const {
-  cards,
-  bigCardTitle,
-  backgroundColor,
-  backgroundInText,
-  lottieFileName,
-} = keyMetricsCard
 </script>
 <template>
   <section

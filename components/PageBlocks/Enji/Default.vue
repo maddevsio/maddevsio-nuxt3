@@ -1,7 +1,19 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { Enji } from '~/components/PageBlocks/Enji/classes/Enji'
-import type { EnjiProps } from '~/components/PageBlocks/Enji/interfaces/IEnji'
+import type { ImageField, LinkField } from '@prismicio/types'
+import type { IntersectionObserverInstance } from '~/interfaces/common/commonInterfaces'
+interface EnjiProps {
+  primary: {
+    mainTitle: string
+    mainDescription: string
+    enjiDescription: string
+    linkText: string
+    link: LinkField
+    buttonText: string
+    buttonLink: LinkField
+    image: ImageField
+  }
+}
 
 const { slice } = defineProps({
   slice: {
@@ -9,26 +21,54 @@ const { slice } = defineProps({
     default: () => ({}),
   },
 })
-const enji = new Enji(slice)
+
+const intersectionOptions = {
+  threshold: 0.4,
+}
+const mainTitle = reformatToHtml(slice.primary.mainTitle, 'string') || ''
+const mainDescription = reformatToHtml(slice.primary.mainDescription, 'string') || ''
+const enjiDescription = slice.primary.enjiDescription
+const linkText = slice.primary.linkText || 'We provide Enji.ai to our clients for FREE'
+const link = slice.primary.link?.url || ''
+const buttonText = slice.primary.buttonText || 'Learn More'
+const buttonLink = slice.primary.buttonLink?.url || ''
+const image = slice.primary.image || {}
+const enjiSectionRef = ref<HTMLElement | null>(null)
+const observer = ref<IntersectionObserverInstance | null>(null)
+
+const initIntersectionObserverForSections = () => {
+  observer.value = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        updateActiveAnchor(entry.target.id)
+      }
+    })
+  }, intersectionOptions)
+  if (!enjiSectionRef.value) { return }
+  observer.value.observe(enjiSectionRef.value)
+}
+
+const { headerHeight } = storeToRefs(useHeaderStore())
 const { updateActiveAnchor } = useHorizontalToCStore()
-const enjiSectionRef = enji.enjiSectionRef
 const { $getMediaFromS3 } = useMediaFromS3()
 
 onMounted(() => {
-  enji.initIntersectionObserverForSections(updateActiveAnchor)
+  initIntersectionObserverForSections()
 })
 
 onUnmounted(() => {
-  if (enjiSectionRef.value && enji.observer.value) {
-    enji.observer.value!.unobserve(enjiSectionRef.value)
+  if (enjiSectionRef.value && observer.value) {
+    observer.value!.unobserve(enjiSectionRef.value)
   }
 })
 </script>
+
 <template>
   <section
     id="enji-section"
     ref="enjiSectionRef"
     class="enji-slice"
+    :style="`scroll-margin-top: ${headerHeight}px`"
   >
     <div class="container">
       <div class="enji-slice__wrapper">
@@ -42,35 +82,35 @@ onUnmounted(() => {
         >
         <div class="enji-slice__content-wrapper">
           <h2
-            v-if="enji.mainTitle"
+            v-if="mainTitle"
             class="enji-slice__main-title"
-            v-html="enji.mainTitle"
+            v-html="mainTitle"
           />
           <p
-            v-if="enji.mainDescription"
+            v-if="mainDescription"
             class="enji-slice__main-description"
-            v-html="enji.mainDescription"
+            v-html="mainDescription"
           />
           <div class="enji-slice__cards">
             <div class="enji-slice__text-content">
               <div
-                v-if="enji.enjiDescription"
+                v-if="enjiDescription"
                 class="enji-slice__descriptions"
-                v-html="$prismic.asHTML(enji.enjiDescription)"
+                v-html="$prismic.asHTML(enjiDescription)"
               />
               <Component
-                :is="enji.link ? 'a' : 'p'"
-                :href="enji.link"
+                :is="link ? 'a' : 'p'"
+                :href="link"
                 class="enji-slice__content-link"
               >
-                {{ enji.linkText }}
+                {{ linkText }}
               </Component>
               <div
-                v-if="enji.buttonLink"
+                v-if="buttonLink"
                 class="enji-slice__content-button-link"
               >
                 <SharedUIButtonPowerCustom
-                  :label="enji.buttonText"
+                  :label="buttonText"
                   have-border
                   is-outlined
                   hover-background-color="#fff"
@@ -80,18 +120,18 @@ onUnmounted(() => {
                   hover-label-color="#111111"
                   is-link
                   is-external-link
-                  :link-to-page="enji.buttonLink"
+                  :link-to-page="buttonLink"
                 />
               </div>
             </div>
             <div
-              v-if="enji.image.url"
+              v-if="image.url"
               class="enji-slice__image-wrapper"
             >
               <img
                 loading="lazy"
-                :src="enji.image.url.replace('compress,', '')"
-                :alt="enji.image.alt || 'Enji screenshots'"
+                :src="image.url.replace('compress,', '')"
+                :alt="image.alt || 'Enji screenshots'"
                 width="610"
                 height="412"
                 class="enji-slice__image"
@@ -103,6 +143,7 @@ onUnmounted(() => {
     </div>
   </section>
 </template>
+
 <style scoped lang="scss">
 .enji-slice {
   background-color: $bgcolor--cultured;
