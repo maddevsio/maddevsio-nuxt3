@@ -87,7 +87,7 @@ onUnmounted(() => {
         />
         <div class="header__crumbs-wrapper">
           <Transition name="fade">
-            <LazyWidgetsHeaderUICrumbs
+            <WidgetsHeaderUICrumbs
               v-show="logoTextIsActive"
             />
           </Transition>

@@ -319,6 +319,7 @@ export default defineNuxtConfig({
       },
     },
     build: {
+      modulePreload: false,
       rollupOptions: {
         output: {
           experimentalMinChunkSize: 250 * 1024,
