@@ -94,7 +94,6 @@ export default defineNuxtConfig({
       },
     }],
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/device',
     ['nuxt-delay-hydration', {
       mode: 'mount',
