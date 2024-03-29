@@ -25,6 +25,7 @@ const link = linkResolver({ type: 'tag', uid: convertStringToSlug(props.tag) })
     class="post-tag"
     :class="`post-tag--${theme}-theme`"
     data-testid="test-tag"
+    no-prefetch
   >
     {{ tag }}
   </NuxtLink>

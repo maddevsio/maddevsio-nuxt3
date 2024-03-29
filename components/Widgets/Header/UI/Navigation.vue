@@ -38,6 +38,7 @@ const {
         :to="menuItem.mainNav.url"
         class="header__navigation-main-link"
         :class="{ 'header__navigation-main-link--active': currentRootRoute === menuItem.mainNav.name }"
+        no-prefetch
         @mouseenter="setActiveSubMenu(menuItem.mainNav.name)"
         @click="linkClickEvent($event, menuItem.sendAnalyticsEvent, menuItem.mainNav.url)"
       >
@@ -60,8 +61,8 @@ const {
       >
         {{ menuItem.mainNav.name }}
       </span>
-      <LazyWidgetsHeaderUINavigationSection
-        v-if="menuItem.chapters.length"
+      <WidgetsHeaderUINavigationSection
+        v-show="menuItem.chapters.length"
         :show-section="activeSubNavigation === menuItem.mainNav.name"
         :navigation-section="menuItem.chapters"
         :post="menuItem.post"

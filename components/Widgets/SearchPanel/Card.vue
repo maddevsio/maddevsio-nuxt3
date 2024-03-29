@@ -72,6 +72,7 @@ const articleLink = linkResolver(props.post as { isBroken?: boolean, type: strin
   >
     <NuxtLink
       :to="articleLink"
+      no-prefetch
       class="search-panel__result-image-wrapper"
     >
       <img
@@ -85,6 +86,7 @@ const articleLink = linkResolver(props.post as { isBroken?: boolean, type: strin
     <div class="search-panel__result-content">
       <NuxtLink
         :to="articleLink"
+        no-prefetch
         class="search-panel__result-title"
       >
         {{ shortTitle }}

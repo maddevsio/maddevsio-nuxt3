@@ -68,6 +68,7 @@ const headerVar = computed(() => ({
                 :to="navItem.url"
                 class="header-navigation-section__menu-list-link"
                 :class="{ 'header-navigation-section__menu-list-link--active': route.path.includes(navItem.url) }"
+                no-prefetch
                 @click="linkClickEvent($event, navItem.sendAnalyticsEvent, navItem.url)"
               >
                 {{ navItem.name }}

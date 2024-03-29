@@ -33,6 +33,7 @@ const shortName = name.substr(0, 100)
     :to="link"
     :class="`post-author--${theme}-theme`"
     class="post-author"
+    no-prefetch
   >
     <div
       v-if="image"

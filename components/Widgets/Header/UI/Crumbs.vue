@@ -31,6 +31,7 @@ onMounted(() => {
         class="crumbs__list-title"
         itemprop="item"
         title="Home"
+        no-prefetch
       >
         <span itemprop="name">Home</span>
         <meta
@@ -53,6 +54,7 @@ onMounted(() => {
         class="crumbs__list-title"
         itemprop="item"
         :title="setTitle(i, crumb)"
+        no-prefetch
       >
         <span itemprop="name">{{ setTitle(i, crumb) }}</span>
         <meta
