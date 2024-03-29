@@ -1,9 +1,26 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { ServiceSliceWithLottie } from '~/components/PageBlocks/ServiceWithLottie/classes/ServiceSliceWithLottie'
-import type {
-  ServiceSliceWithLottieProps,
-} from '~/components/PageBlocks/ServiceWithLottie/interfaces/IServiceSliceWithLottie'
+
+interface GetLinkProps {
+  softwareDevelopmentLink: string
+  hrPracticesLink: string
+  transparentStaffingLink: string
+  technicalAuditLink: string
+  technicalInfrastructureLink: string
+  techMarketingLink: string
+  projectDiscoveryLink: string
+  customSoftwareLink: string
+}
+
+interface ButtonsGroup {
+  firstGroupButtonText: string
+  secondGroupButtonText: string
+  thirdGroupButtonText: string
+}
+
+interface ServiceSliceWithLottieProps {
+  primary: GetLinkProps & ButtonsGroup
+}
 
 const props = defineProps({
   slice: {
@@ -11,8 +28,35 @@ const props = defineProps({
     default: () => ({}),
   },
 })
-const router = useRouter()
-const { desktopInstance, mobileInstance, triggerBreakpoint } = new ServiceSliceWithLottie({ ...props.slice, router })
+
+const triggerBreakpoint = 875
+const icons = [
+  'first-group-service-slice-icon.svg',
+  'second-group-service-slice-icon.svg',
+  'third-group-service-slice-icon.svg',
+]
+
+const buttons = [
+  {
+    label: props.slice.primary.firstGroupButtonText || 'Tech and Development',
+    lottieFrame: 200,
+  },
+  {
+    label: props.slice.primary.secondGroupButtonText || 'Management and Consulting',
+    lottieFrame: 250,
+  },
+  {
+    label: props.slice.primary.thirdGroupButtonText || 'HR and Marketing',
+    lottieFrame: 330,
+  },
+]
+
+const collectedSliceData = {
+  ...props.slice.primary || {},
+  buttons,
+  icons,
+}
+
 const { isMobile } = useCheckMobile(triggerBreakpoint)
 </script>
 <template>
@@ -21,11 +65,11 @@ const { isMobile } = useCheckMobile(triggerBreakpoint)
   >
     <LazyPageBlocksServiceWithLottieDesktop
       v-if="!isMobile"
-      :desktop-instance="desktopInstance"
+      :collected-data="collectedSliceData"
     />
     <LazyPageBlocksServiceWithLottieMobile
       v-if="isMobile"
-      :mobile-instance="mobileInstance"
+      :collected-data="collectedSliceData"
     />
   </section>
 </template>

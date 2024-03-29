@@ -1,20 +1,39 @@
 <script setup lang="ts">
-import type { FlexibleParagraphProps } from '~/components/Typography/interfaces/IFlexibleParagraph'
-import { FlexibleParagraph } from '~/components/Typography/classes/FlexibleParagraph'
-
 interface Props {
-  slice: FlexibleParagraphProps
+  slice: {
+    primary: {
+      type: string
+      colorTheme: string
+      text: string
+      maxWidth: string
+      tag: string
+      position: string
+      fontWeight: string
+      textAlign: string
+      'size-xl': string
+      'size-lg': string
+      'size-md': string
+      'size-sm': string
+      'size-xs': string
+    }
+  }
 }
 const { slice } = defineProps<Props>()
-const {
-  type,
-  colorTheme,
-  text,
-  tag,
-  position,
-  cssVars,
-  textSizesClassnames,
-} = new FlexibleParagraph(slice)
+
+const type = slice.primary.type || 'default'
+const colorTheme = slice.primary.colorTheme || 'black'
+const text = slice.primary.text || ''
+const maxWidth = slice.primary.maxWidth || '100%'
+const tag = slice.primary.tag || 'p'
+const position = slice.primary.position || 'left'
+const fontWeight = slice.primary.fontWeight || '400'
+const textAlign = slice.primary.textAlign || 'left'
+const cssVars = {
+  '--font-weight': fontWeight,
+  '--text-align': textAlign,
+  '--max-width': maxWidth,
+}
+const textSizesClassnames = getTextClassNames(getTextSizes(slice.primary), 'paragraph-slice')
 
 const VNodeComponent = () => h(tag, { innerHTML: text })
 </script>

@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import type { IVCard } from '~/components/PageBlocks/StartScreen/interfaces/IStartScreenExpert'
+interface IVCard {
+  firstName: string
+  lastName: string
+  phoneNumber: string
+  position: string
+  company: string
+  email: string
+  location: string
+  socialNetworks: {}
+}
 
 interface Props {
   vcard: IVCard

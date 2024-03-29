@@ -1,30 +1,130 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type {
-  IServiceWithLottieMobile,
-} from '~/components/PageBlocks/ServiceWithLottie/interfaces/IServiceWithLottieMobile'
 
-defineProps({
-  mobileInstance: {
-    type: Object as PropType<IServiceWithLottieMobile>,
+interface GetLinkProps {
+  softwareDevelopmentLink: string
+  hrPracticesLink: string
+  transparentStaffingLink: string
+  technicalAuditLink: string
+  technicalInfrastructureLink: string
+  techMarketingLink: string
+  projectDiscoveryLink: string
+  customSoftwareLink: string
+}
+
+interface Button {
+  label: string
+  lottieFrame: number
+}
+
+interface CollectedData extends GetLinkProps {
+  icons: string[]
+  buttons: Button[]
+}
+
+const props = defineProps({
+  collectedData: {
+    type: Object as PropType<CollectedData>,
     required: true,
     default: () => ({}),
   },
 })
 
+const indentFromHeader = 230
 const { $getMediaFromS3 } = useMediaFromS3()
+const activeAccordion = ref('Tech and Development')
+
+const getLottieLink = (groupIdx: number) => {
+  switch (groupIdx) {
+  case 1: return 'blue-graphic'
+  case 2: return 'red-graphic'
+  case 3: return 'yellow-graphic'
+  default: return ''
+  }
+}
+
+const getGroupLinks = (groupIdx: number, props: GetLinkProps) => {
+  switch (groupIdx) {
+  case 1: return [
+    {
+      url: props.customSoftwareLink,
+      label: 'Custom Software Development',
+      haveLink: Boolean(props.customSoftwareLink),
+    },
+    {
+      url: props.transparentStaffingLink,
+      label: 'Build-Operate-Transfer',
+      haveLink: Boolean(props.transparentStaffingLink),
+    },
+    {
+      url: props.technicalInfrastructureLink,
+      label: 'Technical Infrastructure Optimization',
+      haveLink: Boolean(props.technicalInfrastructureLink),
+    },
+  ]
+  case 2: return [
+    {
+      url: props.softwareDevelopmentLink,
+      label: 'Software Development Process Consulting',
+      haveLink: Boolean(props.softwareDevelopmentLink),
+    },
+    {
+      url: props.technicalAuditLink,
+      label: 'Technical Audit',
+      haveLink: Boolean(props.technicalAuditLink),
+    },
+    {
+      url: props.projectDiscoveryLink,
+      label: 'Project Discovery',
+      haveLink: Boolean(props.projectDiscoveryLink),
+    },
+  ]
+  case 3: return [
+    {
+      url: props.hrPracticesLink,
+      label: 'HR Practices in Tech Companies Consulting',
+      haveLink: Boolean(props.hrPracticesLink),
+    },
+    {
+      url: props.techMarketingLink,
+      label: 'Tech Marketing Consulting & Support',
+      haveLink: Boolean(props.techMarketingLink),
+    },
+  ]
+  default: return []
+  }
+}
+
+const getData = (props: CollectedData) => {
+  return props.buttons.map((item, itemIdx) => ({
+    buttonLabel: item.label,
+    buttonIcon: props.icons[itemIdx],
+    links: getGroupLinks(itemIdx + 1, props),
+    lottieLink: getLottieLink(itemIdx + 1),
+  }))
+}
+
+const dataForCreateAccordion = getData(props.collectedData)
+
+const changeActiveAccordion = async ({
+  $event,
+  buttonLabel,
+}: { $event: Event, buttonLabel: string }) => {
+  activeAccordion.value = buttonLabel
+  await useScrollToTab($event, indentFromHeader)
+}
 </script>
 <template>
   <div class="container service-slice-mobile">
     <div
-      v-for="(accordion, accordionIdx) in mobileInstance.dataForCreateAccordion"
+      v-for="(accordion, accordionIdx) in dataForCreateAccordion"
       :key="`${accordion.buttonIcon}-${accordionIdx}`"
       class="service-slice-mobile__item"
-      :class="{ 'service-slice-mobile__item--active': mobileInstance.activeAccordion.value === accordion.buttonLabel }"
+      :class="{ 'service-slice-mobile__item--active': activeAccordion === accordion.buttonLabel }"
     >
       <button
         class="service-slice-mobile__item-button"
-        @click="mobileInstance.changeActiveAccordion({
+        @click="changeActiveAccordion({
           $event,
           buttonLabel: accordion.buttonLabel
         })"
@@ -40,7 +140,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
         {{ accordion.buttonLabel }}
       </button>
       <div
-        v-show="mobileInstance.activeAccordion.value === accordion.buttonLabel"
+        v-show="activeAccordion === accordion.buttonLabel"
         class="service-slice-mobile__content"
       >
         <div

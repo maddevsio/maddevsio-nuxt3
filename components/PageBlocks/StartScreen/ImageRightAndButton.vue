@@ -1,29 +1,42 @@
 <script setup lang="ts">
-import type {
-  StartScreenImageRightAndButtonProps,
-} from '~/components/PageBlocks/StartScreen/interfaces/IStartScreenImageRightAndButton'
-import { StartScreenImageRightAndButton } from '~/components/PageBlocks/StartScreen/classes/StartScreenImageRightAndButton'
+import type { ImageField, RichTextField } from '@prismicio/client'
 
 interface Props {
-  slice: StartScreenImageRightAndButtonProps
+  slice: {
+    primary: {
+      btnText: string
+      imageOpacity: number
+      background: string
+      gradientColor: string
+      title: RichTextField
+      subtitle: RichTextField
+      image: ImageField
+      rightImage: ImageField
+      ebookImage: ImageField
+      ebookName: string
+      ebookPath: string
+      modal: string
+      btnLink: string
+      sendPulseTemplateId: number
+    }
+  }
 }
 
 const { slice } = defineProps<Props>()
-const {
-  btnText,
-  imageOpacity,
-  sliceBackground,
-  sliceGradient,
-  title,
-  subtitle,
-  image,
-  rightImage,
-  ebookImage,
-  ebookName,
-  ebookPath,
-  modal,
-  sendPulseTemplateId,
-} = new StartScreenImageRightAndButton(slice)
+
+const btnText = slice.primary.btnText || 'Download PDF'
+const imageOpacity = slice.primary.imageOpacity || 0.8
+const sliceBackground = setSliceBackground(slice.primary.background)
+const sliceGradient = setSliceGradient(slice.primary.gradientColor)
+const title = slice.primary.title
+const subtitle = slice.primary.subtitle
+const image = slice.primary.image
+const rightImage = slice.primary.rightImage
+const ebookImage = slice.primary.ebookImage
+const ebookName = slice.primary.ebookName
+const ebookPath = slice.primary.ebookPath
+const modal = slice.primary.modal
+const sendPulseTemplateId = Number(slice.primary.sendPulseTemplateId)
 
 const sectionText = ref(null)
 const modalEbook = ref<{ show(): void } | null>(null)
@@ -49,7 +62,7 @@ const showModalEbook = () => {
       :lazy="false"
       :style="{
         opacity: imageOpacity,
-        backgroundColor: sliceBackground,
+        backgroundColor: sliceBackground
       }"
       class="start-screen-slice__image"
     />
@@ -77,7 +90,7 @@ const showModalEbook = () => {
             :html-serializer="prismicHtmlSerializer"
           />
           <div class="start-screen-slice__btn-box">
-            <LazySharedUIButton
+            <SharedUIButton
               v-if="modal === 'download-pdf'"
               class="start-screen-slice__btn"
               @click="showModalEbook"
@@ -89,7 +102,7 @@ const showModalEbook = () => {
                 :src="$getMediaFromS3('images/core/common/arrow-up-right.svg')"
                 alt="Arrow"
               >
-            </LazySharedUIButton>
+            </SharedUIButton>
           </div>
         </div>
         <div class="start-screen-slice__img-box">

@@ -1,7 +1,21 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { IndustriesCardDescriptionProps } from '~/components/PageBlocks/Industries/interfaces/IIndustriesCardDescription'
-import { IndustriesCardDescription } from '~/components/PageBlocks/Industries/classes/IndustriesCardDescription'
+import type { ImageField } from '@prismicio/client'
+
+interface IIndustriesCardDescriptionItem {
+  icon: ImageField
+  description: string
+  linkToIndustryPage: string
+  cardBackgroundColor: string
+  cardTextColor: string
+}
+
+interface IndustriesCardDescriptionProps {
+  items: IIndustriesCardDescriptionItem[]
+  primary: {
+    colorTheme: string
+  }
+}
 
 const { slice } = defineProps({
   slice: {
@@ -10,23 +24,37 @@ const { slice } = defineProps({
   },
 })
 
-const industriesCard = new IndustriesCardDescription(slice)
+const router = useRouter()
+
+const cards = slice.items.map(card => ({
+  ...card,
+  cardBackgroundColor: colorConverterToClass('bg', slice.primary?.colorTheme || 'white'),
+  cardTextColor: colorConverterToClass('text', slice.primary?.colorTheme === 'white' ? 'black' : 'white'),
+}))
+const colorTheme = slice.primary.colorTheme || 'white'
+const sliceBackground = colorConverterToClass('slice-bg', slice.primary.colorTheme || 'white')
+
+const goToPage = async (url: string) => {
+  if (!url) { return }
+  await router.push(url)
+}
+
 </script>
 <template>
   <div
-    :class="`industries-card-description ${industriesCard.sliceBackground}`"
+    :class="`industries-card-description ${sliceBackground}`"
   >
     <div class="container industries-card-description__cards">
-      <LazyPageBlocksIndustriesUICardDescriptionItem
-        v-for="(card, idx) in industriesCard.cards"
+      <PageBlocksIndustriesUICardDescriptionItem
+        v-for="(card, idx) in cards"
         :key="`industries-card-description--${idx}`"
         :icon="card.icon"
         :description="card.description"
         :card-background-color="card.cardBackgroundColor"
-        :color-theme="industriesCard.colorTheme"
+        :color-theme="colorTheme"
         :card-text-color="card.cardTextColor"
         :link-to-industry-page="card.linkToIndustryPage"
-        :go-to-page="industriesCard.goToPage"
+        :go-to-page="goToPage"
       />
     </div>
   </div>
