@@ -10,7 +10,7 @@ defineProps({
 </script>
 <template>
   <div class="post-components post-slices">
-    <LazySliceZone
+    <SliceZone
       :components="blogComponents"
       :slices="slices"
     />

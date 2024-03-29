@@ -48,7 +48,7 @@ if (data.value?.uid) {
 
 // @ts-ignore
 useHead(buildHead({
-  url: `${ config.public.domain }/`,
+  url: `${ config.public.domain }/${ route.params.uid }/`,
   title: data.value?.metaTitle || '',
   description: data.value?.metaDescription || '',
   jsonLd: data.value!.schemaOrgSnippet!,
