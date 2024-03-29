@@ -318,6 +318,35 @@ export default defineNuxtConfig({
         },
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          experimentalMinChunkSize: 250 * 1024,
+          manualChunks: (id, _) => {
+            // need to avoid touching non-entrypoint files, otherwise it breaks bundling
+            // because imports aren't idempotent
+            if (
+              !id.includes('node_modules') &&
+              !id.startsWith('virtual:') &&
+              !id.includes('src') &&
+              !id.includes('assets')
+            ) {
+              // merge pages/foo/* as chunk-pg-foo, pages/bar/* as chunk-pg-bar, etc.
+              // then merge pages/* (ie no subfolder) into chunk-pg-misc
+              if (id.includes('pages')) {
+                const parts = id.split('/');
+                const folderIndex = parts.indexOf('pages');
+                if (folderIndex + 2 < parts.length) {
+                  const pageGroup = parts[folderIndex + 1];
+                  return `chunk-pg-${ pageGroup }`;
+                }
+                return 'chunk-pg-misc';
+              }
+            }
+          },
+        },
+      },
+    },
   },
 
   runtimeConfig: {
@@ -343,20 +372,17 @@ export default defineNuxtConfig({
   hooks: {
     'build:manifest': manifest => {
       for (const key in manifest) {
-        const file = manifest[key]
+        manifest[key].dynamicImports = [];
+
+        const file = manifest[key];
         if (file.preload && file.prefetch) {
           file.preload = false
           file.prefetch = false
         }
-
         if (file.assets) {
-          file.assets = file.assets
-            .filter(
-              (asset: string) =>
-                !asset.endsWith('.webp') &&
-              !asset.endsWith('.jpg') &&
-              !asset.endsWith('.png'),
-            )
+          file.assets = file.assets.filter(
+            assetName => !/.+\.(gif|jpe?g|png|svg)$/.test(assetName),
+          )
         }
       }
     },
