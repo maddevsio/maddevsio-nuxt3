@@ -1,23 +1,50 @@
 <script setup lang="ts">
-import type { StartScreenExpertProps } from '~/components/PageBlocks/StartScreen/interfaces/IStartScreenExpert'
-import { StartScreenExpert } from '~/components/PageBlocks/StartScreen/classes/StartScreenExpert'
+import type { Author, AuthorSocialNetwork } from '~/interfaces/common/commonInterfaces'
 
 interface Props {
-  slice: StartScreenExpertProps
+  slice: {
+    primary: {
+      author: Author
+      description: string
+      btnText: string
+    }
+  }
 }
 
 const { slice } = defineProps<Props>()
 
-const {
-  socialNetworksList,
-  description,
-  btnText,
-  imageAlt,
-  imageUrl,
-  location,
-  vcardData,
-  generateSocialNetworks,
-} = new StartScreenExpert(slice)
+const authorData = slice.primary.author.data
+const description = slice.primary.description
+const btnText = slice.primary.btnText || 'save contact'
+const imageUrl = authorData.image.header.url!
+const imageAlt = authorData.image.header.alt! || `${ authorData.firstName } ${ authorData.lastName }`
+const location = authorData?.location || ''
+
+const socialNetworksObj = ref<{[key: string]: string}>({})
+const socialNetworksList = ref<AuthorSocialNetwork[]>([])
+
+const vcardData = reactive({
+  firstName: authorData.firstName || '',
+  lastName: authorData.lastName || '',
+  phoneNumber: authorData.phoneNumber || '',
+  position: authorData.position || '',
+  company: authorData.company || '',
+  email: authorData.email || '',
+  location: authorData.location || '',
+  socialNetworks: socialNetworksObj.value,
+})
+
+const generateSocialNetworks = () => {
+  if (authorData.social_networks && Array.isArray(authorData.social_networks)) {
+    authorData.social_networks.forEach(item => {
+      if (item.network && item.link && item.link.url) {
+        socialNetworksObj.value[item.network] = item.link.url
+        socialNetworksList.value.push(item)
+      }
+    })
+  }
+}
+
 generateSocialNetworks()
 </script>
 <template>
@@ -27,27 +54,27 @@ generateSocialNetworks()
     >
       <div class="container expert-page-header__container">
         <div class="expert-page-header__info">
-          <LazyPageBlocksStartScreenExpertPhoto
+          <PageBlocksStartScreenExpertPhoto
             :image-url="imageUrl"
             :image-alt="imageAlt"
           />
-          <LazyPageBlocksStartScreenExpertInfo
+          <PageBlocksStartScreenExpertInfo
             :company="vcardData.company"
             :first-name="vcardData.firstName"
             :last-name="vcardData.lastName"
             :position="vcardData.position"
           />
-          <LazyPageBlocksStartScreenExpertSocialNetworks
+          <PageBlocksStartScreenExpertSocialNetworks
             v-if="socialNetworksList && socialNetworksList.length"
             :social-network-list="socialNetworksList"
           />
         </div>
-        <LazyPageBlocksStartScreenExpertPhoto
+        <PageBlocksStartScreenExpertPhoto
           platform="desktop"
           :image-url="imageUrl"
           :image-alt="imageAlt"
         />
-        <LazyPageBlocksStartScreenExpertContactInfo
+        <PageBlocksStartScreenExpertContactInfo
           :vcard="vcardData"
           :description="description"
           :btn-text="btnText"

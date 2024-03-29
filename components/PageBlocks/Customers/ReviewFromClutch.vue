@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import { ClutchReviewsBlack } from '~/components/PageBlocks/Customers/classes/ClutchReviewsBlack'
+import { type PropType } from 'vue'
+import axios from 'axios'
 import type { ReviewsData } from '~/interfaces/server/IServerClutchReviews'
-import type { ClutchReviewsProps } from '~/components/PageBlocks/Customers/interfaces/IClutchReviewsBlack'
+
+interface ClutchReviewsProps {
+  primary: {
+    title: string
+  }
+}
 
 const { slice } = defineProps({
   slice: {
@@ -11,28 +16,34 @@ const { slice } = defineProps({
   },
 })
 
-const clutchReviews = new ClutchReviewsBlack(slice)
+const title = slice.primary.title || 'Mad Devs\' Reviews on Clutch'
+const reviewsData = ref<ReviewsData | null>(null)
+const updateReviewsData = (reviews: any) => {
+  reviewsData.value = reviews
+}
 
-const { data } = await useFetch<ReviewsData>('/api/clutch-reviews')
-clutchReviews.updateReviewsData(data.value)
+onMounted(async () => {
+  const { data } = await axios.get('/api/clutch-reviews')
+  updateReviewsData(data)
+})
 </script>
 <template>
   <div class="clutch-reviews">
     <div class="container">
       <LazySharedClutchReviewsHeader
-        v-if="clutchReviews.reviewsData"
-        :title="clutchReviews.title"
-        :html-stars="clutchReviews.reviewsData.value!.headerRating || ''"
-        :rating="clutchReviews.reviewsData.value!.rating || ''"
-        :reviews-count="clutchReviews.reviewsData.value!.reviewsCount || ''"
+        v-if="reviewsData"
+        :title="title"
+        :html-stars="reviewsData.headerRating || ''"
+        :rating="reviewsData.rating || ''"
+        :reviews-count="reviewsData.reviewsCount || ''"
         color-theme="black"
       />
       <div
-        v-if="Object.keys(clutchReviews.reviewsData.value).length"
+        v-if="reviewsData && Object.keys(reviewsData).length && reviewsData.reviews"
         class="clutch-reviews__cards"
       >
         <LazySharedClutchReviewsCard
-          v-for="(card, cardIdx) in clutchReviews.reviewsData.value!.reviews"
+          v-for="(card, cardIdx) in reviewsData.reviews"
           :key="`clutch-reviews-${cardIdx}`"
           :href="card.href"
           :rating="card.rating"
@@ -47,7 +58,7 @@ clutchReviews.updateReviewsData(data.value)
         v-else
         class="clutch-reviews__skeleton-cards"
       >
-        <LazySharedClutchReviewsSkeletonCards
+        <SharedClutchReviewsSkeletonCards
           v-for="(card) in 4"
           :key="card"
         />

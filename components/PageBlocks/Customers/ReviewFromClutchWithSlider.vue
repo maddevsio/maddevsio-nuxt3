@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type {
-  ClutchReviewsWithSliderProps,
-} from '~/components/PageBlocks/Customers/interfaces/IClutchReviewsWithSlider'
-import { ClutchReviewsWithSlider } from '~/components/PageBlocks/Customers/classes/ClutchReviewsWithSlider'
+
+interface ClutchReviewsWithSliderProps {
+  primary: {
+    colorTheme: string
+    title: string
+  }
+}
 
 const { slice } = defineProps({
   slice: {
@@ -11,15 +14,14 @@ const { slice } = defineProps({
     default: () => ({}),
   },
 })
-const {
-  colorTheme,
-  title,
-} = new ClutchReviewsWithSlider(slice)
+
+const colorTheme = slice.primary.colorTheme || 'black'
+const title = slice.primary.title || 'Mad Devs\' Reviews on Clutch'
 </script>
 <template>
   <div :class="`clutch-reviews-with-slider clutch-reviews-with-slider--${colorTheme}`">
     <div class="container">
-      <LazySharedClutchReviewsSlider
+      <SharedClutchReviewsSlider
         :title="title"
         :color-theme="colorTheme"
       />

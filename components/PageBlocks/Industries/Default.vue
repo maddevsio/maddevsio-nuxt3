@@ -1,17 +1,30 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { Industries } from '~/components/PageBlocks/Industries/classes/Industries'
-import type { IIndustriesItem } from '~/components/PageBlocks/Industries/interfaces/IIndustries'
+
+interface IIndustriesItem {
+  image: {
+    url: string
+    alt: string
+    dimensions: {
+      width: number
+      height: number
+    }
+  }
+  name: string
+}
+
+interface SliceProps {
+  items: IIndustriesItem[]
+}
 
 const props = defineProps({
   slice: {
-    type: Object as PropType<{ items: IIndustriesItem[] }>,
+    type: Object as PropType<SliceProps>,
     required: true,
   },
 })
 
-const industriesInstance = new Industries(props.slice)
-const { cards } = industriesInstance
+const cards = props.slice.items
 </script>
 <template>
   <section class="industries__section">
