@@ -1,16 +1,94 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { PressCenter } from '~/components/PageBlocks/PressCenter/classes/PressCenter'
-import type { PressCenterProps } from '~/components/PageBlocks/PressCenter/interfaces/IPressCenter'
+import type { ImageField } from '@prismicio/types'
+import type { ISwiperOptions } from '~/interfaces/common/commonInterfaces'
 
-const props = defineProps({
+interface PressCenterCard {
+  link: {
+    url: string
+  }
+  image: ImageField
+  linkedCompanyLogo: ImageField
+  date: string
+  title: string
+  description: string
+  linkLabel: string
+  external: boolean
+  target: string
+}
+
+interface PressCenterProps {
+  primary: {
+    colorTheme: string
+  },
+  items: PressCenterCard[]
+}
+
+const { slice } = defineProps({
   slice: {
     type: Object as PropType<PressCenterProps>,
     default: () => ({}),
   },
 })
 
-const { swiperOptions, cards, colorClassesNames } = new PressCenter(props.slice)
+const swiperOptions: ISwiperOptions = {
+  speed: 750,
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+  loop: false,
+  grabCursor: false,
+  allowTouchMove: true,
+  spaceBetween: 20,
+  navigation: {
+    nextEl: '.ui-prev-next-buttons__button--next',
+    prevEl: '.ui-prev-next-buttons__button--prev',
+    disabledClass: 'disabled',
+  },
+
+  breakpoints: {
+    550: {
+      spaceBetween: 20,
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+    },
+
+    900: {
+      spaceBetween: 20,
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+    },
+
+    1150: {
+      spaceBetween: 20,
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+    },
+  },
+}
+
+const colorTheme = slice.primary?.colorTheme || 'white'
+
+const cards = computed(() => {
+  const transformedCards = slice.items.map(item => ({
+    ...item,
+    link: {
+      ...item.link,
+      url: checkAndExtractDomain(item.link.url).ourDomain ? new URL(item.link.url).pathname : item.link.url,
+    },
+    target: setTargetForLinks(item.link.url),
+    external: !checkAndExtractDomain(item.link.url).ourDomain,
+  }))
+  // @ts-ignore
+  return [...transformedCards].sort((cardA, cardB) => new Date(cardB.date) - new Date(cardA.date))
+})
+
+const colorClassesNames = {
+  backgroundColorClass: colorConverterToClass('slice-bg', colorTheme),
+  cardBackgroundColorClass: colorConverterToClass('bg', colorTheme),
+  titleColorClass: `press-center-slice__card-body-title--${ colorTheme }`,
+  descriptionColorClass: `press-center-slice__card-body-description--${ colorTheme }`,
+}
+
 const { $getMediaFromS3 } = useMediaFromS3()
 </script>
 <template>

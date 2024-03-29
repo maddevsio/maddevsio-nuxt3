@@ -2,7 +2,7 @@
 import type { PropType } from 'vue'
 import type { ImageField, LinkField } from '@prismicio/types'
 import type { IntersectionObserverInstance } from '~/interfaces/common/commonInterfaces'
-export interface EnjiProps {
+interface EnjiProps {
   primary: {
     mainTitle: string
     mainDescription: string
