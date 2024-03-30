@@ -81,10 +81,6 @@ export default defineNuxtConfig({
 
   devtools: { enabled: process.env.FF_ENVIRONMENT === 'development' },
 
-  experimental: {
-    asyncEntry: true,
-  },
-
   modules: [
     '@nuxtjs/prismic',
     '@nuxtjs/google-fonts',
@@ -95,10 +91,6 @@ export default defineNuxtConfig({
     }],
     '@pinia/nuxt',
     '@nuxtjs/device',
-    ['nuxt-delay-hydration', {
-      mode: 'mount',
-      debug: process.env.NODE_ENV === 'development',
-    }],
     ['nuxt-swiper', {
       styleLang: 'scss',
       modules: ['navigation', 'pagination', 'thumbs', 'autoplay'],
@@ -122,41 +114,7 @@ export default defineNuxtConfig({
       xssValidator: false,
     }],
     '@nuxtjs/sitemap',
-    '@vite-pwa/nuxt',
   ],
-
-  pwa: {
-    includeAssets: ['favicon.ico', 'favicon-16x16.ico', 'favicon-32x32.ico', 'apple-touch-icon.png'],
-    manifest: {
-      name: 'Mad Devs',
-      short_name: 'Mad Devs',
-      description: 'Mad Devs: Software & Mobile App Development Company',
-      theme_color: '#111213',
-      lang: 'en',
-      background_color: '#111213',
-      icons: [
-        {
-          src: 'pwa-192x192.png',
-          sizes: '192x192',
-          type: 'image/png',
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'maskable',
-        },
-      ],
-    },
-    workbox: {
-      navigateFallback: null,
-    },
-  },
 
   sitemap: {
     cacheMaxAgeSeconds: 10 * 3600000,
