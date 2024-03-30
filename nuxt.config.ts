@@ -283,6 +283,7 @@ export default defineNuxtConfig({
       crawlLinks: false,
     },
     minify: true,
+    preset: 'digital-ocean',
   },
 
   prismic: {
