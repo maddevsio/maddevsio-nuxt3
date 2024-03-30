@@ -2,15 +2,15 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyPageBlocksButtonSliceFullFilled
+  <PageBlocksButtonSliceFullFilled
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />
-  <LazyPageBlocksButtonSliceOutline
+  <PageBlocksButtonSliceOutline
     v-if="slice.variation === 'outlinedButton'"
     :slice="slice"
   />
-  <LazyPageBlocksButtonSliceOutlinedLight
+  <PageBlocksButtonSliceOutlinedLight
     v-if="slice.variation === 'outlinedLightButtonSlice'"
     :slice="slice"
   />

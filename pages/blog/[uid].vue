@@ -24,7 +24,7 @@ useHead(buildHead({
 
 <template>
   <div v-if="post">
-    <LazyBlogPostView
+    <BlogPostView
       :post-data="post"
     />
   </div>
