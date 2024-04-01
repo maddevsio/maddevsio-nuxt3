@@ -81,6 +81,10 @@ export default defineNuxtConfig({
 
   devtools: { enabled: process.env.FF_ENVIRONMENT === 'development' },
 
+  experimental: {
+    asyncEntry: true,
+  },
+
   modules: [
     '@nuxtjs/prismic',
     '@nuxtjs/google-fonts',
@@ -103,63 +107,40 @@ export default defineNuxtConfig({
         desktop: 1200,
       },
     }],
-    ['nuxt-security', {
-      rateLimiter: false,
-      headers: {
-        contentSecurityPolicy: false,
-        crossOriginEmbedderPolicy: false,
-        xFrameOptions: 'DENY',
-        permissionsPolicy: false,
-      },
-      xssValidator: false,
-    }],
-    '@nuxtjs/sitemap',
+    '@vite-pwa/nuxt',
   ],
 
-  sitemap: {
-    cacheMaxAgeSeconds: 10 * 3600000,
-    autoLastmod: true,
-    sitemaps: {
-      main: {
-        sources: [
-          '/api/__sitemap__/main',
-        ],
-      },
-      blog: {
-        sources: [
-          '/api/__sitemap__/blog',
-        ],
-      },
-      careers: {
-        sources: [
-          '/api/__sitemap__/careers',
-        ],
-      },
-      cases: {
-        sources: [
-          '/api/__sitemap__/cases',
-        ],
-      },
-      insights: {
-        sources: [
-          '/api/__sitemap__/insights',
-        ],
-      },
-      services: {
-        sources: [
-          '/api/__sitemap__/services',
-        ],
-      },
-      authors: {
-        sources: [
-          '/api/__sitemap__/authors',
-        ],
-      },
+  pwa: {
+    includeAssets: ['favicon.ico', 'favicon-16x16.ico', 'favicon-32x32.ico', 'apple-touch-icon.png'],
+    manifest: {
+      name: 'Mad Devs',
+      short_name: 'Mad Devs',
+      description: 'Mad Devs: Software & Mobile App Development Company',
+      theme_color: '#111213',
+      lang: 'en',
+      background_color: '#111213',
+      icons: [
+        {
+          src: 'pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
+      ],
     },
-  },
-
-  site: {
-    trailingSlash: true,
+    workbox: {
+      navigateFallback: null,
+    },
   },
 
   routeRules: {
@@ -196,43 +177,6 @@ export default defineNuxtConfig({
     '/case-studies/sir-john-monash-centre/': { prerender: true },
     '/case-studies/veeqo/': { prerender: true },
     '/case-studies/yourcast/': { prerender: true },
-    '/api/leads': {
-      security: {
-        rateLimiter: {
-          tokensPerInterval: 5,
-          interval: 15 * 60 * 1000, // 15 minutes
-          headers: true,
-        },
-      },
-    },
-    'api/send-email': {
-      security: {
-        rateLimiter: {
-          tokensPerInterval: 5,
-          interval: 15 * 60 * 1000,
-          headers: true,
-        },
-      },
-    },
-    'api/careers': {
-      security: {
-        xssValidator: false,
-        rateLimiter: {
-          tokensPerInterval: 10,
-          interval: 15 * 60 * 1000,
-          headers: true,
-        },
-      },
-    },
-    'api/send-checklist': {
-      security: {
-        rateLimiter: {
-          tokensPerInterval: 15,
-          interval: 15 * 60 * 1000,
-          headers: true,
-        },
-      },
-    },
   },
 
   nitro: {
