@@ -2,11 +2,11 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyPageBlocksCardWithColoredTitleDefault
+  <PageBlocksCardWithColoredTitleDefault
     v-if="slice.variation === 'default-slice'"
     :slice="slice"
   />
-  <LazyPageBlocksCardWithColoredTitleWithIcon
+  <PageBlocksCardWithColoredTitleWithIcon
     v-if="slice.variation === 'cardWithColoredTitleAndIcon'"
     :slice="slice"
   />

@@ -217,7 +217,7 @@ export default defineNuxtConfig({
     },
     minify: true,
     sourceMap: false,
-    // preset: 'digital-ocean',
+    preset: 'digital-ocean',
   },
 
   prismic: {

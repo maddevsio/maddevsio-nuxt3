@@ -1,40 +1,53 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { Slice } from '@prismicio/types'
-import { Awards } from '~/components/PageBlocks/Awards/classes/Awards'
-
-const props = defineProps({
+import type { ImageField } from '@prismicio/types'
+export interface AwardsProps {
+  items: {
+    isBig: boolean
+    image: ImageField
+    description: string
+  }[]
+  primary: {
+    background: string
+  }
+}
+const { slice } = defineProps({
   slice: {
-    type: Object as PropType<Slice>,
+    type: Object as PropType<AwardsProps>,
     default: () => ({}),
   },
 })
 
-const awards = new Awards(props.slice)
+const bigCard = slice.items.find(card => card.isBig)
+const littleCards = slice.items.filter(card => !card.isBig)
+const background = setSliceBackground(slice.primary.background)
+const backgroundInText = slice.primary.background
 </script>
+
 <template>
   <section
     class="awards-slice"
-    :style="{ backgroundColor: awards.background }"
+    :style="{ backgroundColor: background }"
   >
     <div class="container">
       <div class="awards-slice__cards">
         <LazyPageBlocksAwardsBigCard
-          v-if="awards.bigCard"
-          :image="awards.bigCard.image"
-          :description="awards.bigCard.description"
-          :color-theme="awards.backgroundInText"
+          v-if="bigCard"
+          :image="bigCard.image"
+          :description="bigCard.description"
+          :color-theme="backgroundInText"
         />
         <LazyPageBlocksAwardsLittleCard
-          v-for="(card, cardIdx) in awards.littleCards"
+          v-for="(card, cardIdx) in littleCards"
           :key="`${card.image.url}-${cardIdx}`"
           :image="card.image"
-          :color-theme="awards.backgroundInText"
+          :color-theme="backgroundInText"
         />
       </div>
     </div>
   </section>
 </template>
+
 <style lang="scss" scoped>
 .awards-slice {
   &__cards {

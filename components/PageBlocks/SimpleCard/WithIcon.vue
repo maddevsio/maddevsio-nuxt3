@@ -1,39 +1,118 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { SimpleCardWithIcon } from '~/components/PageBlocks/SimpleCard/classes/SimpleCardWithIcon'
-import type { SimpleCardWithIconProps } from '~/components/PageBlocks/SimpleCard/interfaces/ISimpleCardWithIcon'
+import type { RichTextField } from '@prismicio/types'
 
-const props = defineProps({
+type SimpleCard = {
+  bigCard: boolean
+  link: string
+  icon: {
+    url: string
+    alt: string
+  }
+  title: string
+  titleTag: string
+  titleColor: string
+  description: RichTextField
+  descriptionColor: string
+  positionAtRow: string
+  backgroundColor: string
+}
+
+interface SimpleCardWithIconProps {
+  items: SimpleCard[]
+  primary: {
+    backgroundColor: string
+  }
+}
+
+const { slice } = defineProps({
   slice: {
     type: Object as PropType<SimpleCardWithIconProps>,
     default: () => ({}),
   },
 })
 const router = useRouter()
-const simpleCardWithIcon = new SimpleCardWithIcon({ ...props.slice, router })
+const cards = slice.items || []
+
+const sliceBackgroundColor = slice.primary.backgroundColor || 'white'
+
+// @ts-ignore
+const animatedCards = slice.items.some((item: SimpleCard) => item.description.length && item.description[0]!.text)
+const fourAnimatedCards = slice.items.length === 4 && animatedCards
+const getCardClassNames = (card: SimpleCard) => {
+  return [colorConverterToClass('bg', card.backgroundColor || sliceBackgroundColor),
+    { 'simple-card-with-icon__card--big': card.bigCard },
+    // @ts-ignore
+    { 'simple-card-with-icon__card--animated': card.description.length && card.description[0].text },
+    { 'simple-card-with-icon__card--static': !animatedCards },
+    { 'simple-card-with-icon__card--4-animated-items': fourAnimatedCards },
+    card.bigCard && card.positionAtRow ? `simple-card-with-icon__card--${ card.positionAtRow }` : '']
+}
+
+const getCardDescriptionClassNames = ({
+  descriptionColor,
+}: { descriptionColor: string }) => {
+  return `simple-card-with-icon__card-description-wrapper--${ descriptionColor || 'white' }`
+}
+
+const setRowId = (item: { bigCard: boolean }, index: number) => {
+  if (!item.bigCard) { return false }
+
+  const position = index + 1
+  const rows = {
+    'first-row': [1, 2, 3],
+    'second-row': [4, 5, 6],
+    'third-row': [7, 8, 9, 10],
+  }
+
+  for (const [id, positions] of Object.entries(rows)) {
+    if (positions.includes(position)) {
+      return id
+    }
+  }
+
+  return false
+}
+
+const redirectToUrl = ($event: { target: { tagName: string, href: any } }, { tag, link }: { tag: string, link: string }) => {
+  if (tag === 'a') {
+    // eslint-disable-next-line no-console
+    if (link) { router.push(link).catch(console.error) }
+  } else if ($event.target.tagName === 'A') {
+    const { href } = $event.target
+    if (href.includes('maddevs.io')) {
+      const path = href.replace(/^https?:\/\/[^/]*/, '')
+      // eslint-disable-next-line no-console
+      router.push(path).catch(console.error)
+    } else {
+      window.open(href, '_blank')
+    }
+  }
+}
 </script>
+
 <template>
   <section
     class="simple-card-with-icon"
-    :class="[colorConverterToClass('slice-bg', simpleCardWithIcon.sliceBackgroundColor)]"
+    :class="[colorConverterToClass('slice-bg', sliceBackgroundColor)]"
   >
     <div class="container">
       <div
         class="simple-card-with-icon__cards"
-        :class="{'simple-card-with-icon__cards--static': !simpleCardWithIcon.animatedCards}"
+        :class="{'simple-card-with-icon__cards--static': !animatedCards}"
       >
         <div
-          v-for="(card, cardIdx) in simpleCardWithIcon.cards"
-          :id="`${card.bigCard ? simpleCardWithIcon.setRowId(card, cardIdx) : cardIdx + 1}`"
+          v-for="(card, cardIdx) in cards"
+          :id="`${card.bigCard ? setRowId(card, cardIdx) : cardIdx + 1}`"
           :key="`simple-card-with-icon-${cardIdx}`"
           class="simple-card-with-icon__card"
-          :class="simpleCardWithIcon.getCardClassNames(card)"
+          :class="getCardClassNames(card)"
         >
           <Component
             :is="card.link ? 'a' : 'div'"
             :href="card.link"
             class="simple-card-with-icon__card-wrapper"
-            @click.prevent="simpleCardWithIcon.redirectToUrl($event,{tag: card.link ? 'a' : 'div', link: card.link})"
+            @click.prevent="redirectToUrl($event,{tag: card.link ? 'a' : 'div', link: card.link})"
           >
             <img
               v-if="card.icon.url"
@@ -54,7 +133,7 @@ const simpleCardWithIcon = new SimpleCardWithIcon({ ...props.slice, router })
             <div
               v-if="card.description.length && card.description[0].text"
               class="simple-card-with-icon__card-description-wrapper"
-              :class="simpleCardWithIcon.getCardDescriptionClassNames({
+              :class="getCardDescriptionClassNames({
                 descriptionColor: card.descriptionColor})"
               v-html="$prismic.asHTML(card.description)"
             />

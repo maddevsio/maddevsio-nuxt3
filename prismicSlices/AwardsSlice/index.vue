@@ -3,11 +3,11 @@ const props = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'c
 </script>
 <template>
   <div>
-    <LazyPageBlocksAwardsVariationDefault
+    <PageBlocksAwardsVariationDefault
       v-if="props.slice.variation === 'default-slice'"
       :slice="props.slice"
     />
-    <LazyPageBlocksAwardsVariationCertificates
+    <PageBlocksAwardsVariationCertificates
       v-else-if="props.slice.variation === 'certificates'"
       :slice="props.slice"
     />
