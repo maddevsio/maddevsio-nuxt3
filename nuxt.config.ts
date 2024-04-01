@@ -95,6 +95,10 @@ export default defineNuxtConfig({
     }],
     '@pinia/nuxt',
     '@nuxtjs/device',
+    ['nuxt-delay-hydration', {
+      mode: 'mount',
+      debug: process.env.NODE_ENV === 'development',
+    }],
     ['nuxt-swiper', {
       styleLang: 'scss',
       modules: ['navigation', 'pagination', 'thumbs', 'autoplay'],
@@ -107,76 +111,103 @@ export default defineNuxtConfig({
         desktop: 1200,
       },
     }],
-    '@vite-pwa/nuxt',
+    ['nuxt-security', {
+      rateLimiter: false,
+      headers: {
+        contentSecurityPolicy: false,
+        crossOriginEmbedderPolicy: false,
+        xFrameOptions: 'DENY',
+        permissionsPolicy: false,
+      },
+      xssValidator: false,
+    }],
+    '@nuxtjs/sitemap',
   ],
 
-  pwa: {
-    includeAssets: ['favicon.ico', 'favicon-16x16.ico', 'favicon-32x32.ico', 'apple-touch-icon.png'],
-    manifest: {
-      name: 'Mad Devs',
-      short_name: 'Mad Devs',
-      description: 'Mad Devs: Software & Mobile App Development Company',
-      theme_color: '#111213',
-      lang: 'en',
-      background_color: '#111213',
-      icons: [
-        {
-          src: 'pwa-192x192.png',
-          sizes: '192x192',
-          type: 'image/png',
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'maskable',
-        },
-      ],
-    },
-    workbox: {
-      navigateFallback: null,
+  sitemap: {
+    cacheMaxAgeSeconds: 10 * 3600000,
+    autoLastmod: true,
+    sitemaps: {
+      main: {
+        sources: [
+          '/api/__sitemap__/main',
+        ],
+      },
+      blog: {
+        sources: [
+          '/api/__sitemap__/blog',
+        ],
+      },
+      careers: {
+        sources: [
+          '/api/__sitemap__/careers',
+        ],
+      },
+      cases: {
+        sources: [
+          '/api/__sitemap__/cases',
+        ],
+      },
+      insights: {
+        sources: [
+          '/api/__sitemap__/insights',
+        ],
+      },
+      services: {
+        sources: [
+          '/api/__sitemap__/services',
+        ],
+      },
+      authors: {
+        sources: [
+          '/api/__sitemap__/authors',
+        ],
+      },
     },
   },
 
+  site: {
+    trailingSlash: true,
+  },
+
   routeRules: {
-    '/open-source/': { prerender: true },
-    '/careers/': { prerender: true },
-    '/delivery-models/': { prerender: true },
-    '/delivery-models/staff-augmentation/': { prerender: true },
-    '/delivery-models/dedicated-team/': { prerender: true },
-    '/delivery-models/temp-to-hire/': { prerender: true },
-    '/delivery-models/technical-assessment/': { prerender: true },
-    '/delivery-models/team-supervision/': { prerender: true },
-    '/delivery-models/transferring-projects/': { prerender: true },
-    '/transparency/': { prerender: true },
-    '/our-philosophy/': { prerender: true },
-    '/nda/': { prerender: true },
-    '/gdpr/': { prerender: true },
-    '/blog/': { prerender: true },
-    '/digest/': { prerender: true },
-    '/privacy/': { prerender: true },
-    '/case-studies/bandpay/': { prerender: true },
-    '/case-studies/bilimapp/': { prerender: true },
-    '/case-studies/citycam/': { prerender: true },
-    '/case-studies/clutch/': { prerender: true },
-    '/case-studies/godee/': { prerender: true },
-    '/case-studies/guardrails/': { prerender: true },
-    '/case-studies/lido/': { prerender: true },
-    '/case-studies/megauni/': { prerender: true },
-    '/case-studies/mobile-banking/': { prerender: true },
-    '/case-studies/namba-food/': { prerender: true },
-    '/case-studies/namba-taxi/': { prerender: true },
-    '/case-studies/peklo/': { prerender: true },
-    '/case-studies/R4TCA-web-application/': { prerender: true },
-    '/case-studies/rocifi/': { prerender: true },
-    '/case-studies/sir-john-monash-centre/': { prerender: true },
-    '/case-studies/veeqo/': { prerender: true },
-    '/case-studies/yourcast/': { prerender: true },
+    '/api/leads': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 5,
+          interval: 15 * 60 * 1000, // 15 minutes
+          headers: true,
+        },
+      },
+    },
+    'api/send-email': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 5,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
+    'api/careers': {
+      security: {
+        xssValidator: false,
+        rateLimiter: {
+          tokensPerInterval: 10,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
+    'api/send-checklist': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 15,
+          interval: 15 * 60 * 1000,
+          headers: true,
+        },
+      },
+    },
   },
 
   nitro: {
@@ -185,6 +216,7 @@ export default defineNuxtConfig({
       crawlLinks: false,
     },
     minify: true,
+    sourceMap: false,
     preset: 'digital-ocean',
   },
 
@@ -223,6 +255,7 @@ export default defineNuxtConfig({
     },
     build: {
       modulePreload: false,
+      sourcemap: false,
       rollupOptions: {
         output: {
           experimentalMinChunkSize: 250 * 1024,
@@ -295,4 +328,5 @@ export default defineNuxtConfig({
     port: Number(process.env.PORT) || 3000,
     host: process.env.HOST || '0',
   },
+  sourcemap: false,
 })
