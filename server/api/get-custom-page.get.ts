@@ -1,13 +1,7 @@
-import { eq } from 'drizzle-orm';
-import { db } from './sqlite-service';
-import { pages } from '~/db/schema'
+import { Page } from '~/server/models/Page.model'
 
-export default defineEventHandler(event => {
+export default defineEventHandler(async event => {
   const { uid } = getQuery(event)
-  const pageResp = db
-    .select()
-    .from(pages)
-    .where(eq(pages.uid, uid as string))
-    .get();
-  return { page: pageResp }
+  const page = await Page.findOne({ where: { uid } })
+  return { page }
 })
