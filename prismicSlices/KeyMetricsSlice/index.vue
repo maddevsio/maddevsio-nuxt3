@@ -2,7 +2,9 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyPageBlocksKeyMetricsDefault
-    :slice="slice"
-  />
+  <NuxtLazyHydrate when-visible>
+    <LazyPageBlocksKeyMetricsDefault
+      :slice="slice"
+    />
+  </NuxtLazyHydrate>
 </template>

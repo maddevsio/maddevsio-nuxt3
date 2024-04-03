@@ -1,25 +1,31 @@
 <script setup lang="ts">
 import { components } from '~/prismicSlices'
-import { fetchLinks } from '~/config/constants'
+// import { fetchLinks } from '~/config/constants'
 import { buildHead } from '~/SEO/buildMetaTags'
 import type { TransformedCustomType } from '~/interfaces/common/commonInterfaces'
 
-const { client } = usePrismic()
+// const { client } = usePrismic()
 const { updateFooterVisible } = useFooterStore()
 const { updateEmailSubject } = useEmailSubjectStore()
 const config = useRuntimeConfig()
+const home = ref<null | TransformedCustomType>(null)
 
-const { data: home, error } = await useAsyncData('home', async () => {
-  try {
-    const response = await client.getByUID('custom_page', 'main-page', {
-      fetchLinks,
-    })
+// const { data: home, error } = await useAsyncData('home', async () => {
+//   try {
+//     const response = await client.getByUID('custom_page', 'main-page', {
+//       fetchLinks,
+//     })
+//
+//     return extractCustomPageData(response) as TransformedCustomType
+//   } catch (e: any) {
+//     showError({ statusMessage: e.toString(), statusCode: 404 })
+//   }
+// })
 
-    return extractCustomPageData(response) as TransformedCustomType
-  } catch (e: any) {
-    showError({ statusMessage: e.toString(), statusCode: 404 })
-  }
-})
+const { data, error } = await useFetch('/api/get-custom-page?uid=main-page')
+if (data.value) {
+  home.value = JSON.parse(data.value.page!.jsonData!)
+}
 
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
@@ -27,7 +33,7 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
-if (home.value?.uid) {
+if (home.value && home.value.uid) {
   updateFooterVisible(home.value.showFooter)
   updateEmailSubject(home.value?.emailSubject as string)
 }

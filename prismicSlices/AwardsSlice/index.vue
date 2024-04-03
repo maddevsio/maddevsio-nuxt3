@@ -3,13 +3,15 @@ const props = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'c
 </script>
 <template>
   <div>
-    <PageBlocksAwardsVariationDefault
-      v-if="props.slice.variation === 'default-slice'"
-      :slice="props.slice"
-    />
-    <PageBlocksAwardsVariationCertificates
-      v-else-if="props.slice.variation === 'certificates'"
-      :slice="props.slice"
-    />
+    <NuxtLazyHydrate when-visible>
+      <PageBlocksAwardsVariationDefault
+        v-if="props.slice.variation === 'default-slice'"
+        :slice="props.slice"
+      />
+      <PageBlocksAwardsVariationCertificates
+        v-else-if="props.slice.variation === 'certificates'"
+        :slice="props.slice"
+      />
+    </NuxtLazyHydrate>
   </div>
 </template>
