@@ -1,10 +1,8 @@
 import { Client } from '@prismicio/client'
-import { eq } from 'drizzle-orm'
-import { db } from './sqlite-service'
-import { InsertPages, pages } from '~/db/schema'
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import { getRoutePrefixClient } from '~/utils/extractCustomPageData'
 import { fetchLinks } from '~/config/constants'
+import { Page } from '~/server/models/Page.model'
 
 export default defineEventHandler(async () => {
   const client = new Client('superpupertest')
@@ -34,16 +32,18 @@ export default defineEventHandler(async () => {
   const prismicPosts = await getPages()
   const customPages = extractCustomPageData(prismicPosts.filter(page => page.type === 'custom_page'))
   try {
-    customPages.forEach((page: any) => {
-      const customPage: InsertPages = {
+    await Page.destroy({
+      truncate: true,
+    })
+    for (const page of customPages) {
+      const customPage = {
         uid: page.uid,
         jsonData: JSON.stringify(page),
       }
-      db.delete(pages).where(eq(pages.uid, page.uid)).run()
-      db.insert(pages).values(customPage).run();
-    })
-    const usersResp = db.select().from(pages).all()
-    return { pages: usersResp }
+      await Page.create(customPage)
+    }
+    const pages = await Page.findAll()
+    return { pages }
   } catch (e: any) {
     throw createError({
       statusCode: 400,
