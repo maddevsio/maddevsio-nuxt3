@@ -83,6 +83,8 @@ export default defineNuxtConfig({
 
   experimental: {
     asyncEntry: true,
+    renderJsonPayloads: false,
+    payloadExtraction: false,
   },
 
   modules: [
@@ -122,6 +124,7 @@ export default defineNuxtConfig({
       xssValidator: false,
     }],
     '@nuxtjs/sitemap',
+    'nuxt-lazy-hydrate',
   ],
 
   sitemap: {

@@ -3,17 +3,19 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
 </script>
 <template>
   <section class="industries-slice">
-    <LazyPageBlocksIndustriesDefault
-      v-if="slice.variation === 'default-slice'"
-      :slice="slice"
-    />
-    <LazyPageBlocksIndustriesCard
-      v-else-if="slice.variation === 'industriesCardSlice'"
-      :slice="slice"
-    />
-    <LazyPageBlocksIndustriesCardDescription
-      v-else-if="slice.variation === 'industriesCardDescription'"
-      :slice="slice"
-    />
+    <NuxtLazyHydrate when-visible>
+      <LazyPageBlocksIndustriesDefault
+        v-if="slice.variation === 'default-slice'"
+        :slice="slice"
+      />
+      <LazyPageBlocksIndustriesCard
+        v-else-if="slice.variation === 'industriesCardSlice'"
+        :slice="slice"
+      />
+      <LazyPageBlocksIndustriesCardDescription
+        v-else-if="slice.variation === 'industriesCardDescription'"
+        :slice="slice"
+      />
+    </NuxtLazyHydrate>
   </section>
 </template>
