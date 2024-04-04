@@ -13,6 +13,10 @@ Page.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
+  documentType: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   jsonData: {
     type: DataTypes.STRING,
     allowNull: false,
