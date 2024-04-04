@@ -31,13 +31,16 @@ export default defineEventHandler(async () => {
   }
   const prismicPosts = await getPages()
   const customPages = extractCustomPageData(prismicPosts.filter(page => page.type === 'custom_page'))
+  const header = prismicPosts.filter(header => header.type === 'header_for_local_dev')
+  const filteredPages = [...customPages, ...header]
   try {
     await Page.destroy({
       truncate: true,
     })
-    for (const page of customPages) {
+    for (const page of filteredPages) {
       const customPage = {
-        uid: page.uid,
+        uid: page.uid || '',
+        documentType: page.type,
         jsonData: JSON.stringify(page),
       }
       await Page.create(customPage)
