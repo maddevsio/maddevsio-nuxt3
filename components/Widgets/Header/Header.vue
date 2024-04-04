@@ -3,7 +3,6 @@ import { Header } from '~/components/Widgets/Header/classes/Header'
 import { HeaderMenu } from '~/components/Widgets/Header/classes/HeaderMenu'
 import { transformationHeaderData } from '~/components/Widgets/Header/helpers/transformationHeaderData'
 
-// const { data } = await useAsyncData('header', () => fetchHeader())
 const config = useRuntimeConfig()
 const headerDocument = config.public.ffEnvironment !== 'production' ? 'header_for_local_dev' : 'header'
 const { data } = await useFetch(`/api/get-header?type=${ headerDocument }`)
