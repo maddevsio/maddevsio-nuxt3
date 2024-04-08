@@ -56,8 +56,8 @@ useHead(buildHead({
 </script>
 <template>
   <section class="search-result">
-    <LazyBlogSearchResultBanner />
-    <LazyBlogSearchResultPosts
+    <BlogSearchResultBanner />
+    <BlogSearchResultPosts
       :posts="posts"
     />
   </section>

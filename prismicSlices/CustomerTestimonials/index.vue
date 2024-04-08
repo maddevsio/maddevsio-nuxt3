@@ -2,12 +2,14 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyPageBlocksCustomersReviewFromClutch
-    v-if="slice.variation === 'clutchReviewsBlack'"
-    :slice="slice"
-  />
-  <LazyPageBlocksCustomersReviewFromClutchWithSlider
-    v-if="slice.variation === 'clutchReviewsWithSlider'"
-    :slice="slice"
-  />
+  <NuxtLazyHydrate when-visible>
+    <LazyPageBlocksCustomersReviewFromClutch
+      v-if="slice.variation === 'clutchReviewsBlack'"
+      :slice="slice"
+    />
+    <LazyPageBlocksCustomersReviewFromClutchWithSlider
+      v-if="slice.variation === 'clutchReviewsWithSlider'"
+      :slice="slice"
+    />
+  </NuxtLazyHydrate>
 </template>

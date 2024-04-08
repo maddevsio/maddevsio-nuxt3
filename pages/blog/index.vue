@@ -34,6 +34,6 @@ useHead(buildHead({
 </script>
 <template>
   <div class="blog-home">
-    <LazyBlogMainPage />
+    <BlogMainPage />
   </div>
 </template>

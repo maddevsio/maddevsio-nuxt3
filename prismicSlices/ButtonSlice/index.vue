@@ -2,16 +2,18 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <LazyPageBlocksButtonSliceFullFilled
-    v-if="slice.variation === 'default-slice'"
-    :slice="slice"
-  />
-  <LazyPageBlocksButtonSliceOutline
-    v-if="slice.variation === 'outlinedButton'"
-    :slice="slice"
-  />
-  <LazyPageBlocksButtonSliceOutlinedLight
-    v-if="slice.variation === 'outlinedLightButtonSlice'"
-    :slice="slice"
-  />
+  <NuxtLazyHydrate when-visible>
+    <PageBlocksButtonSliceFullFilled
+      v-if="slice.variation === 'default-slice'"
+      :slice="slice"
+    />
+    <PageBlocksButtonSliceOutline
+      v-if="slice.variation === 'outlinedButton'"
+      :slice="slice"
+    />
+    <PageBlocksButtonSliceOutlinedLight
+      v-if="slice.variation === 'outlinedLightButtonSlice'"
+      :slice="slice"
+    />
+  </NuxtLazyHydrate>
 </template>
