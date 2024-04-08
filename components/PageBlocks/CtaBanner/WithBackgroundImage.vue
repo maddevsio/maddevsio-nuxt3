@@ -1,9 +1,29 @@
 <script setup lang="ts">
-import { h, type PropType } from 'vue'
-import { CtaBannerWithBackgroundImage } from '~/components/PageBlocks/CtaBanner/classes/CtaBannerWithBackgroundImage'
-import type {
-  CtaBannerWithBackgroundImageProps,
-} from '~/components/PageBlocks/CtaBanner/interfaces/ICtaBannerWithBackgroundImage'
+import { h, type PropType, type VNodeRef } from 'vue'
+import { transformLineSeparator } from '~/utils/transformLineSeparator'
+import { contactMeClickEvent } from '~/analytics/events'
+interface CtaBannerWithBackgroundImageProps {
+  primary: {
+    title: string
+    titleTag: string
+    description: string
+    showButton: boolean
+    buttonText: string
+    backgroundImage: {
+      url: string
+      alt: string
+      dimensions: {
+        width: number
+        height: number
+      }
+    }
+    backgroundColor: string | null
+    enableImageOverlay: boolean
+    linkToPage: {
+      url: string
+    }
+  }
+}
 
 const { slice } = defineProps({
   slice: {
@@ -11,20 +31,31 @@ const { slice } = defineProps({
     default: () => ({}),
   },
 })
-const ctaBanner = new CtaBannerWithBackgroundImage(slice)
-const {
-  title,
-  titleTag,
-  description,
-  showButton,
-  buttonText,
-  showModal,
-  backgroundColor,
-  backgroundImage,
-  enableImageOverlay,
-  modalContactMeRef,
-  linkToPage,
-} = ctaBanner
+
+const title = transformLineSeparator(slice.primary.title, 'string') || ''
+const titleTag = slice.primary.titleTag || 'h2'
+const description = transformLineSeparator(slice.primary.description, 'string') || ''
+const showButton = slice.primary.showButton === null ? true : slice.primary.showButton
+const buttonText = slice.primary.buttonText || 'Contact us'
+const backgroundImage = slice.primary.backgroundImage || {
+  url: '',
+  alt: '',
+  dimensions: {
+    width: 0,
+    height: 0,
+  },
+}
+
+const backgroundColor = setSliceBackground(slice.primary.backgroundColor || 'black')
+const enableImageOverlay = slice.primary.enableImageOverlay === null ? true : slice.primary.enableImageOverlay
+const linkToPage = slice.primary.linkToPage.url ? checkAndExtractDomain(slice.primary.linkToPage.url) : { ourDomain: false, url: '' }
+
+const modalContactMeRef = ref<VNodeRef | null>(null)
+const showModal = () => {
+  if (!modalContactMeRef.value?.show) { return }
+  modalContactMeRef.value.show()
+  contactMeClickEvent.send('CTA Banner with background image component')
+}
 
 const VNodeTitle = () => h(titleTag, { innerHTML: title })
 const { emailSubject } = storeToRefs(useEmailSubjectStore())

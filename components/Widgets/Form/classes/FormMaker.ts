@@ -150,6 +150,7 @@ export class FormMaker {
       formTitle: this.options.formTitle,
       formLocation: this.options.formLocation!,
       emailSubject: this.options.emailSubject!,
+      formID: this.options.formUid,
       formBuilder: this.formBuilder
         .setFields([
           new Field({

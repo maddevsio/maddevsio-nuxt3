@@ -1,12 +1,25 @@
 <script setup lang="ts">
-import { CustomersWhite } from '~/components/PageBlocks/Customers/classes/CustomersWhite'
+interface ICustomer {
+  gallery_image: {
+    url: string
+    alt: string
+  }
+}
 
 const { client } = usePrismic()
-const customersWhiteInstance = new CustomersWhite()
 
-await customersWhiteInstance.getCustomersLogo(client)
+const uidLogosDocument = 'list-of-customer-logos'
+const customType = 'customerstype'
+const customerLogos = ref<ICustomer[] | any>([])
 
-const { customerLogos } = customersWhiteInstance
+const getCustomersLogo = async () => {
+  const response = await client.getByUID(customType, uidLogosDocument)
+  customerLogos.value = response.data.body[0]?.items
+}
+
+onMounted(async () => {
+  await getCustomersLogo()
+})
 </script>
 <template>
   <div class="customer-logo-slice">

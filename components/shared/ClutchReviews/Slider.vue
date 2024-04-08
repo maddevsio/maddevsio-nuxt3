@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import axios from 'axios'
 import type { ReviewsData } from '~/interfaces/server/IServerClutchReviews'
 
 const SWIPER_OPTIONS = {
@@ -45,18 +46,20 @@ const clutchReviews = reactive<ReviewsData>({
   reviews: [],
 })
 
-try {
-  const { data } = await useFetch<ReviewsData>('/api/clutch-reviews/?count=all')
-  if (data.value && data.value.headerRating && data.value.rating && data.value.reviewsCount && data.value.reviews.length) {
-    clutchReviews.headerRating = data.value.headerRating
-    clutchReviews.rating = data.value.rating
-    clutchReviews.reviewsCount = data.value.reviewsCount
-    clutchReviews.reviews = data.value.reviews
+onMounted(async () => {
+  try {
+    const { data } = await axios.get('/api/clutch-reviews/?count=all')
+    if (data && data.headerRating && data.rating && data.reviewsCount && data.reviews.length) {
+      clutchReviews.headerRating = data.headerRating
+      clutchReviews.rating = data.rating
+      clutchReviews.reviewsCount = data.reviewsCount
+      clutchReviews.reviews = data.reviews
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e)
   }
-} catch (e) {
-  // eslint-disable-next-line no-console
-  console.log(e)
-}
+})
 </script>
 <template>
   <div class="clutch-reviews-slider">

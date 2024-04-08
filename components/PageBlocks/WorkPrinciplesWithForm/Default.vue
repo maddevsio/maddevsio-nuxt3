@@ -21,10 +21,13 @@ const {
   formButtonText,
   backgroundColorClass,
 } = new WorkPrinciplesWithFormDefault(props.slice)
+const { headerHeight } = storeToRefs(useHeaderStore())
 </script>
 
 <template>
-  <div :class="`work-principles-with-form ${backgroundColorClass}`">
+  <div
+    :class="`work-principles-with-form ${backgroundColorClass}`"
+  >
     <div class="work-principles-with-form__container container">
       <div class="work-principles-with-form__list">
         <h2
@@ -45,6 +48,7 @@ const {
         class="work-principles-with-form__form"
         :form-title="formTitle"
         :form-button-text="formButtonText"
+        :style="`scroll-margin-top: ${headerHeight}px`"
       />
     </div>
   </div>

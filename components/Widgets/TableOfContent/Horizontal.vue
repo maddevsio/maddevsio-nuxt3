@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { HorizontalToC } from '~/components/Widgets/TableOfContent/classes/HorizontalToC'
-import type { HorizontalToCProps } from '~/components/Widgets/TableOfContent/interfaces/IHorizontalToC'
+
+interface HorizontalToCProps {
+  items: {
+    sectionId: string
+    label: string
+  }[]
+}
 
 const props = defineProps({
   slice: {
@@ -13,16 +18,26 @@ const props = defineProps({
 const horizontalToCStore = useHorizontalToCStore()
 const { activeAnchor } = storeToRefs(horizontalToCStore)
 const { headerHeight } = storeToRefs(useHeaderStore())
-const horizontalToC = new HorizontalToC({ items: props.slice.items, activeAnchor }, headerHeight)
-const { isMobile } = useCheckMobile(horizontalToC.triggerBreakpoint)
+const horizontalTocRef = ref<HTMLElement | null>(null)
+const isIntersection = ref(false)
+const anchors = props.slice.items
+const stickyTopFromHeader = computed(() => ({
+  '--stickyTop': `${ Number(headerHeight.value) - 1 }px`,
+}))
+const triggerBreakpoint = 768
+const { isMobile } = useCheckMobile(triggerBreakpoint)
 
-const {
-  anchors,
-  horizontalTocRef,
-  isIntersection,
-  stickyTopFromHeader,
-  getDistanceFromHeader,
-} = horizontalToC
+const getDistanceFromHeader = () => {
+  const header = document.getElementById('header')
+  if (header) {
+    const headerDistanceScrollTop = document.getElementById('header')?.getBoundingClientRect().top
+    if (headerDistanceScrollTop !== undefined && horizontalTocRef.value) {
+      const tocDistanceScrollTop = horizontalTocRef.value.getBoundingClientRect().top
+      const distance = tocDistanceScrollTop - headerDistanceScrollTop
+      isIntersection.value = distance < 130
+    }
+  }
+}
 
 onMounted(() => {
   if (!isMobile.value) {

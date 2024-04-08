@@ -57,5 +57,133 @@ const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
 </template>
 
 <style scoped lang="scss">
-@import "./styles/startScreenDefaultStyles";
+.start-screen-slice {
+  position: relative;
+  height: 100vh;
+  min-height: 568px;
+  background: linear-gradient(180deg, rgba(17, 18, 19, 0) 60%, #111213);
+  overflow: hidden;
+
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__image {
+    display: block;
+    z-index: -1;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    object-fit: cover;
+    background-color: $bgcolor--black;
+  }
+
+  &__content {
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+    max-width: 1113px;
+  }
+
+  &__title {
+    @include font("Inter", 64px, 700);
+    line-height: 105px;
+    letter-spacing: -2px;
+    color: $text-color--white-primary;
+    margin-bottom: 50px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 76px;
+      line-height: 72px;
+    }
+
+    @media screen and (max-width: 580px) {
+      margin-bottom: 27px;
+      font-size: 42px;
+      line-height: 48px;
+    }
+
+    :deep(.large) {
+      @include font("Inter", 100px, 800);
+      line-height: 105px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 76px;
+        line-height: 110px;
+      }
+
+      @media screen and (max-width: 580px) {
+        font-size: 42px;
+        line-height: 70px;
+      }
+    }
+
+    :deep(.medium) {
+      @include font("Inter", 100px, 700);
+      line-height: 105px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 76px;
+        line-height: 72px;
+      }
+
+      @media screen and (max-width: 580px) {
+        margin-bottom: 10px;
+        font-size: 42px;
+        line-height: 48px;
+      }
+    }
+
+    :deep(.small) {
+      @media screen and (max-width: 768px) {
+        font-size: 42px;
+        line-height: 25px;
+        display: block;
+      }
+
+      @media screen and (max-width: 580px) {
+        font-size: 32px;
+        line-height: 36px;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include font("Inter", 32px, 600);
+    line-height: 44px;
+    letter-spacing: -1px;
+    color: $text-color--white-primary;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 32px;
+      line-height: 44px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 24px;
+      line-height: 35px;
+    }
+
+    @media screen and (max-width: 580px) {
+      font-size: 21px;
+      line-height: 30px;
+    }
+  }
+
+  :deep(br) {
+    @media only screen and (max-width: 520px) {
+      display: none;
+    }
+  }
+}
+
+.start-screen-with-image {
+  height: auto;
+}
 </style>

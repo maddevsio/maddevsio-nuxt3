@@ -24,7 +24,6 @@ onMounted(() => {
 </script>
 <template>
   <div class="default-layout">
-    <NuxtPwaManifest />
     <NuxtLoadingIndicator
       color="#ec1c24"
       :height="2"

@@ -16,6 +16,6 @@ export const getRobots = (env: string): RobotsConfig => {
     UserAgent: '*',
     Disallow: ['/blog/?page=*&tag=*', '/blog/?page=*', '/blog/?tag=*'],
     Allow: '/',
-    Sitemap: 'https://maddevs.io/sitemapindex.xml',
+    Sitemap: 'https://maddevs.io/sitemap_index.xml',
   }
 }

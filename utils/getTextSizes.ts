@@ -19,7 +19,3 @@ export const getTextSizes = (sizes: SizesProps) => ({
   '--text-size-sm': sizes['size-sm']?.split('-')?.join(''),
   '--text-size-xs': sizes['size-xs']?.split('-')?.join(''),
 })
-
-export const getTextClassNames = (sizes: { [key: string]: string }, name: string) => Object.keys(sizes)
-  .filter(filterSize => sizes[filterSize])
-  .map(size => `${ name }${ size }--${ sizes[size] }`)

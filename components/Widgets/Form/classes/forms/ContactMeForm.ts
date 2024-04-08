@@ -21,10 +21,11 @@ export class ContactMeForm extends BaseForm implements IContactMeForm {
     formBuilder,
     formLocation,
     emailSubject,
+    formID,
   }: ContactMeFromProps) {
     super({ emailTitle: emailSubject })
     this.config = useRuntimeConfig()
-    this.formID = 'contact-me'
+    this.formID = formID || 'contact-me'
     this.formTitle = formTitle
     this.fields = formBuilder.fields
     this.buttons = formBuilder.buttons

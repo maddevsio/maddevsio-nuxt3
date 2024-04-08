@@ -1,21 +1,30 @@
 <script setup lang="ts">
-import type { ParagraphProps } from '~/components/Typography/interfaces/IParagraph'
-import { Paragraph } from '~/components/Typography/classes/Paragraph'
-
 interface Props {
-  slice: ParagraphProps
+  slice: {
+    primary: {
+      text: string
+      maxWidth: string
+      colorTheme: string
+      position: string
+      type: string
+      'size-xl': string
+      'size-lg': string
+      'size-md': string
+      'size-sm': string
+      'size-xs': string
+    }
+  }
 }
 
 const { slice } = defineProps<Props>()
-const {
-  position,
-  maxWidth,
-  text,
-  background,
-  themeColorClass,
-  paragraphType,
-  textSizesClassnames,
-} = new Paragraph(slice)
+
+const text = slice.primary.text || ''
+const maxWidth = slice.primary.maxWidth || ''
+const background = setSliceBackground(slice.primary.colorTheme || 'black')
+const position = slice.primary.position || 'left'
+const themeColorClass = getThemeColorClass('paragraph-text', slice.primary.colorTheme || 'black')
+const paragraphType = slice.primary.type || 'default'
+const textSizesClassnames = getTextClassNames(getTextSizes(slice.primary), 'paragraph')
 </script>
 <template>
   <section

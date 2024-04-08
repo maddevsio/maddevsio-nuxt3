@@ -2,10 +2,11 @@
 import { Header } from '~/components/Widgets/Header/classes/Header'
 import { HeaderMenu } from '~/components/Widgets/Header/classes/HeaderMenu'
 import { transformationHeaderData } from '~/components/Widgets/Header/helpers/transformationHeaderData'
-import { fetchHeader } from '~/components/Widgets/Header/helpers/fetchHeader'
 
-const { data } = await useAsyncData('header', () => fetchHeader())
-const header = new Header(new HeaderMenu(transformationHeaderData(data.value)))
+const config = useRuntimeConfig()
+const headerDocument = config.public.ffEnvironment !== 'production' ? 'header_for_local_dev' : 'header'
+const { data } = await useFetch(`/api/get-header?type=${ headerDocument }`)
+const header = new Header(new HeaderMenu(transformationHeaderData(JSON.parse(data.value?.jsonData).data)))
 const {
   getHeaderHeight,
   setStylesForHeader,
@@ -87,7 +88,7 @@ onUnmounted(() => {
         />
         <div class="header__crumbs-wrapper">
           <Transition name="fade">
-            <LazyWidgetsHeaderUICrumbs
+            <WidgetsHeaderUICrumbs
               v-show="logoTextIsActive"
             />
           </Transition>

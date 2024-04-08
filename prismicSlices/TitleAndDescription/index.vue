@@ -2,5 +2,7 @@
 const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 <template>
-  <TypographyTitleAndDescription :slice="slice" />
+  <NuxtLazyHydrate when-visible>
+    <TypographyTitleAndDescription :slice="slice" />
+  </NuxtLazyHydrate>
 </template>

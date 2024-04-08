@@ -83,6 +83,8 @@ export default defineNuxtConfig({
 
   experimental: {
     asyncEntry: true,
+    renderJsonPayloads: false,
+    payloadExtraction: false,
   },
 
   modules: [
@@ -94,7 +96,6 @@ export default defineNuxtConfig({
       },
     }],
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/device',
     ['nuxt-delay-hydration', {
       mode: 'mount',
@@ -123,41 +124,8 @@ export default defineNuxtConfig({
       xssValidator: false,
     }],
     '@nuxtjs/sitemap',
-    '@vite-pwa/nuxt',
+    'nuxt-lazy-hydrate',
   ],
-
-  pwa: {
-    includeAssets: ['favicon.ico', 'favicon-16x16.ico', 'favicon-32x32.ico', 'apple-touch-icon.png'],
-    manifest: {
-      name: 'Mad Devs',
-      short_name: 'Mad Devs',
-      description: 'Mad Devs: Software & Mobile App Development Company',
-      theme_color: '#111213',
-      lang: 'en',
-      background_color: '#111213',
-      icons: [
-        {
-          src: 'pwa-192x192.png',
-          sizes: '192x192',
-          type: 'image/png',
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'maskable',
-        },
-      ],
-    },
-    workbox: {
-      navigateFallback: null,
-    },
-  },
 
   sitemap: {
     cacheMaxAgeSeconds: 10 * 3600000,
@@ -206,39 +174,6 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/open-source/': { prerender: true },
-    '/careers/': { prerender: true },
-    '/delivery-models/': { prerender: true },
-    '/delivery-models/staff-augmentation/': { prerender: true },
-    '/delivery-models/dedicated-team/': { prerender: true },
-    '/delivery-models/temp-to-hire/': { prerender: true },
-    '/delivery-models/technical-assessment/': { prerender: true },
-    '/delivery-models/team-supervision/': { prerender: true },
-    '/delivery-models/transferring-projects/': { prerender: true },
-    '/transparency/': { prerender: true },
-    '/our-philosophy/': { prerender: true },
-    '/nda/': { prerender: true },
-    '/gdpr/': { prerender: true },
-    '/blog/': { prerender: true },
-    '/digest/': { prerender: true },
-    '/privacy/': { prerender: true },
-    '/case-studies/bandpay/': { prerender: true },
-    '/case-studies/bilimapp/': { prerender: true },
-    '/case-studies/citycam/': { prerender: true },
-    '/case-studies/clutch/': { prerender: true },
-    '/case-studies/godee/': { prerender: true },
-    '/case-studies/guardrails/': { prerender: true },
-    '/case-studies/lido/': { prerender: true },
-    '/case-studies/megauni/': { prerender: true },
-    '/case-studies/mobile-banking/': { prerender: true },
-    '/case-studies/namba-food/': { prerender: true },
-    '/case-studies/namba-taxi/': { prerender: true },
-    '/case-studies/peklo/': { prerender: true },
-    '/case-studies/R4TCA-web-application/': { prerender: true },
-    '/case-studies/rocifi/': { prerender: true },
-    '/case-studies/sir-john-monash-centre/': { prerender: true },
-    '/case-studies/veeqo/': { prerender: true },
-    '/case-studies/yourcast/': { prerender: true },
     '/api/leads': {
       security: {
         rateLimiter: {
@@ -284,6 +219,8 @@ export default defineNuxtConfig({
       crawlLinks: false,
     },
     minify: true,
+    sourceMap: false,
+    preset: 'digital-ocean',
   },
 
   prismic: {
@@ -319,6 +256,37 @@ export default defineNuxtConfig({
         },
       },
     },
+    build: {
+      modulePreload: false,
+      sourcemap: false,
+      rollupOptions: {
+        output: {
+          experimentalMinChunkSize: 250 * 1024,
+          manualChunks: (id, _) => {
+            // need to avoid touching non-entrypoint files, otherwise it breaks bundling
+            // because imports aren't idempotent
+            if (
+              !id.includes('node_modules') &&
+              !id.startsWith('virtual:') &&
+              !id.includes('src') &&
+              !id.includes('assets')
+            ) {
+              // merge pages/foo/* as chunk-pg-foo, pages/bar/* as chunk-pg-bar, etc.
+              // then merge pages/* (ie no subfolder) into chunk-pg-misc
+              if (id.includes('pages')) {
+                const parts = id.split('/');
+                const folderIndex = parts.indexOf('pages');
+                if (folderIndex + 2 < parts.length) {
+                  const pageGroup = parts[folderIndex + 1];
+                  return `chunk-pg-${ pageGroup }`;
+                }
+                return 'chunk-pg-misc';
+              }
+            }
+          },
+        },
+      },
+    },
   },
 
   runtimeConfig: {
@@ -344,20 +312,17 @@ export default defineNuxtConfig({
   hooks: {
     'build:manifest': manifest => {
       for (const key in manifest) {
-        const file = manifest[key]
+        manifest[key].dynamicImports = [];
+
+        const file = manifest[key];
         if (file.preload && file.prefetch) {
           file.preload = false
           file.prefetch = false
         }
-
         if (file.assets) {
-          file.assets = file.assets
-            .filter(
-              (asset: string) =>
-                !asset.endsWith('.webp') &&
-              !asset.endsWith('.jpg') &&
-              !asset.endsWith('.png'),
-            )
+          file.assets = file.assets.filter(
+            assetName => !/.+\.(gif|jpe?g|png|svg)$/.test(assetName),
+          )
         }
       }
     },
@@ -366,4 +331,5 @@ export default defineNuxtConfig({
     port: Number(process.env.PORT) || 3000,
     host: process.env.HOST || '0',
   },
+  sourcemap: false,
 })

@@ -1,7 +1,35 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { CustomersCard } from '~/components/PageBlocks/Customers/classes/CustomersCard'
-import type { CustomersCardProps } from '~/components/PageBlocks/Customers/interfaces/ICustomersCard'
+
+interface ICustomerCardItem {
+  caseLogo: {
+    url: string
+    alt: string
+    dimensions: {
+      width: number
+      height: number
+    }
+  }
+  authorPhoto: {
+    url: string
+    alt: string
+    dimensions: {
+      width: number
+      height: number
+    }
+  }
+  authorName: string
+  authorCompany: string
+  linkToCaseStudy: string
+  description: string
+}
+
+interface CustomersCardProps {
+  primary: {
+    backgroundColor: string | null
+  }
+  items: ICustomerCardItem[]
+}
 
 const { slice } = defineProps({
   slice: {
@@ -9,12 +37,16 @@ const { slice } = defineProps({
     default: () => ({}),
   },
 })
-const customersCard = new CustomersCard(slice)
-const {
-  backgroundColor,
-  cards,
-  replacePhotoUrl,
-} = customersCard
+
+const backgroundColor = slice.primary.backgroundColor || 'black'
+const cards = slice.items
+
+const replacePhotoUrl = (photoUrl: string) => {
+  if (photoUrl.includes('w=')) {
+    return photoUrl.replace('w=50&h=50', 'w=500&h=500').replace('compress,', '')
+  }
+  return `${ photoUrl }&w=500&h=500`
+}
 </script>
 
 <template>
