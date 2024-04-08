@@ -1,5 +1,6 @@
 import { config } from 'dotenv'
 import { getRobots } from './SEO/getRobots'
+import { getPrismicRoutes } from './SEO/getDynamicRoutes'
 
 config()
 
@@ -310,6 +311,15 @@ export default defineNuxtConfig({
   },
 
   hooks: {
+    async 'nitro:config'(nitroConfig) {
+      // fetch the routes from our function above
+      const slugs = await getPrismicRoutes()
+      const correctSlugs = slugs.map((item: any) => item.startsWith('//') ? item.slice(1) : item)
+      // add the routes to the nitro config
+      if (nitroConfig && nitroConfig.prerender && nitroConfig.prerender.routes) {
+        nitroConfig.prerender.routes.push(...correctSlugs)
+      }
+    },
     'build:manifest': manifest => {
       for (const key in manifest) {
         manifest[key].dynamicImports = [];
