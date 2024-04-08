@@ -23,13 +23,9 @@ const { data: glossaryPost, error } = await useAsyncData('glossaryPost', async (
     const { tagForSubtitle } = glossaryStartScreenData
     const activeLetter = currentPageWordTitle ? currentPageWordTitle[0] : ''
 
-    const lastNewestGlossaryPages = await glossaryService.getGlossaryPages(
-      5,
-      1,
-      [tagForSubtitle],
-      { field: 'my.glossary.word_title', direction: 'desc' })
+    const lastNewestGlossaryPages = await glossaryService.getAllGlossaryPages(1, [tagForSubtitle])
 
-    const lastNewestFilteredWords = filterLastGlossaryWords(lastNewestGlossaryPages.results as GlossaryPage[], currentPageWordTitle)
+    const lastNewestFilteredWords = filterLastGlossaryWords(lastNewestGlossaryPages as GlossaryPage[], currentPageWordTitle)
 
     if (!glossaryPageData?.released && config.public.ffEnvironment === 'production') {
       showError({

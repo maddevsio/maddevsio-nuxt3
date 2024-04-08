@@ -15,7 +15,7 @@ const { tag, lastNewestFilteredWords } = defineProps({
   },
 })
 
-const { lastWords } = new GlossaryNewestWords(lastNewestFilteredWords)
+const { lastWords, allLastWords, isShowMore, showMore } = new GlossaryNewestWords(lastNewestFilteredWords)
 </script>
 
 <template>
@@ -29,6 +29,10 @@ const { lastWords } = new GlossaryNewestWords(lastNewestFilteredWords)
           v-for="word in lastWords"
           :key="word.wordTitle"
           :word="word"
+        />
+        <LazyGlossaryUIButtonMore
+          v-if="allLastWords.length > 4 && !isShowMore"
+          @click="showMore"
         />
       </div>
     </div>
