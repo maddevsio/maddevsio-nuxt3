@@ -17,7 +17,10 @@ const { data: tagsData, error } = await useAsyncData('tagsData', async () => {
     const posts = extractPostInfo(await tagService.getPostsByTag(currentTag), prismic)
 
     return {
-      postsCount: posts.length,
+      contentCount: {
+        posts: posts.length,
+        words: 0,
+      },
       posts,
       currentTag,
     }
@@ -46,7 +49,7 @@ useHead(buildHead({
     <LazyTagsBanner
       v-if="tagsData"
       :title="tagsData.currentTag"
-      :count="tagsData.postsCount"
+      :count="tagsData.contentCount"
     />
     <LazyTagsPosts
       v-if="tagsData"

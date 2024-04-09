@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import type { PropType } from 'vue'
+import { checkCountForEnding } from '../../utils/addEndingForCount'
 import { tagsDescriptions } from '~/components/Tags/constants/tagsConstants'
+
+interface ContentCount {
+  posts: number
+  words: number
+}
 
 const props = defineProps({
   title: {
@@ -8,8 +15,11 @@ const props = defineProps({
   },
 
   count: {
-    type: Number,
-    default: 0,
+    type: Object as PropType<ContentCount>,
+    default: () => ({
+      posts: 0,
+      words: 0,
+    }),
   },
 })
 
@@ -35,7 +45,8 @@ const getTagDescriptionIdx = computed(() => {
           {{ tagsDescriptions[getTagDescriptionIdx].description }}
         </p>
         <p class="current-tag__posts-count">
-          A collection of {{ count }} posts
+          <span v-if="count.posts">A collection of {{ checkCountForEnding('post', count.posts).toLowerCase() }} </span>
+          <span v-if="count.words">and {{ checkCountForEnding('word', count.words).toLowerCase() }} </span>
         </p>
       </div>
       <div
