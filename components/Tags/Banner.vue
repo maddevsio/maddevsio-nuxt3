@@ -46,7 +46,7 @@ const getTagDescriptionIdx = computed(() => {
         </p>
         <p class="current-tag__posts-count">
           <span v-if="count.posts">A collection of {{ checkCountForEnding('post', count.posts).toLowerCase() }} </span>
-          <span v-if="count.words">and {{ checkCountForEnding('word', count.words).toLowerCase() }} </span>
+          <span v-if="count.words"> and {{ checkCountForEnding('word', count.words).toLowerCase() }} </span>
         </p>
       </div>
       <div

@@ -35,9 +35,11 @@ const handleClick = event => {
   color: $text-color--black;
   transition: 0.4s;
 
-  &:hover {
-    background-color: $bgcolor--black;
-    color: $text-color--white;
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: $bgcolor--black;
+      color: $text-color--white;
+    }
   }
 
   @media only screen and (max-width: 991px) {

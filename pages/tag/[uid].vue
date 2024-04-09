@@ -15,13 +15,16 @@ const { data: tagsData, error } = await useAsyncData('tagsData', async () => {
     const tag = tagService.getTag(response[0].data.tags, route.params.uid as string)
     const currentTag = tag === 'Software Development' ? 'Software Development ' : tag
     const posts = extractPostInfo(await tagService.getPostsByTag(currentTag), prismic)
+    const glossaryPages = await tagService.getWordsByTag(currentTag)
+    const words = transformGlossaryWords(glossaryPages)
 
     return {
       contentCount: {
         posts: posts.length,
-        words: 0,
+        words: words.length,
       },
       posts,
+      words,
       currentTag,
     }
   } catch {
@@ -55,6 +58,10 @@ useHead(buildHead({
       v-if="tagsData"
       :posts="tagsData.posts"
       :tag="tagsData.currentTag"
+    />
+    <LazyTagsWords
+      v-if="tagsData && tagsData.words.length"
+      :words="tagsData.words"
     />
   </div>
 </template>
