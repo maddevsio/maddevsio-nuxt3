@@ -17,6 +17,7 @@ defineProps({
       :to="tag.link"
       class="glossary-post-tags__tag"
       :class="{'glossary-post-tags__tag--not-active': !checkTagPageExists(tag.name)}"
+      no-prefetch
     >
       {{ tag.name }}
     </NuxtLink>
