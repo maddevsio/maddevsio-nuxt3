@@ -21,6 +21,7 @@ export class GlossaryPostView implements IGlossaryPostView {
       author: glossaryPost?.author,
       coAuthor: glossaryPost?.coAuthor,
       updatedDate: glossaryPost?.updatedDate,
+      tags: glossaryPost.tags,
     })
   }
 }

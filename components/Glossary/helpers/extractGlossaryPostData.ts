@@ -2,6 +2,8 @@ import type {
   GlossaryPage,
   TransformedGlossaryPost,
 } from '~/interfaces/common/commonInterfaces'
+import { transformGlossaryTags } from '~/components/Glossary/helpers/transformGlossaryTags'
+
 export const extractGlossaryPostData = (glossaryPostData: GlossaryPage): TransformedGlossaryPost => {
   try {
     return {
@@ -15,6 +17,7 @@ export const extractGlossaryPostData = (glossaryPostData: GlossaryPage): Transfo
       updatedDate: glossaryPostData?.data?.updated_date ? formatDate(glossaryPostData?.data?.updated_date, true, true) : '',
       author: glossaryPostData?.data?.author,
       coAuthor: glossaryPostData?.data?.co_author,
+      tags: transformGlossaryTags(glossaryPostData?.tags),
     }
   } catch (e: any) {
     // eslint-disable-next-line no-console
