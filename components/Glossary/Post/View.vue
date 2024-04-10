@@ -21,9 +21,7 @@ const {
 <template>
   <div class="glossary-post-content">
     <div class="glossary-post-content__container container">
-      <ClientOnly>
-        <LazyGlossaryPostSidebar :glossary-post-sidebar-instance="glossaryPostSidebar" />
-      </ClientOnly>
+      <LazyGlossaryPostSidebar :glossary-post-sidebar-instance="glossaryPostSidebar" />
       <div class="glossary-post-content__main">
         <LazyGlossaryPostHead :glossary-post-head-instance="glossaryPostHead" />
         <LazyGlossarySlicesComponents
