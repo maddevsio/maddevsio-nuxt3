@@ -72,7 +72,7 @@ useHead(buildHead({
     <LazyGlossaryPageStartScreen v-if="glossaryPost" class="glossary-start-screen" :start-screen-data="glossaryPost.glossaryStartScreenData" />
     <LazyGlossaryToolBar v-if="glossaryPost" :active-letter-prop="glossaryPost.activeLetter" />
     <LazyGlossaryPostView v-if="glossaryPost" :glossary-post-content="glossaryPost.glossaryPostContent" />
-    <LazyGlossaryNewestWords v-if="glossaryPost" :last-newest-filtered-words="glossaryPost.lastNewestFilteredWords" :tag="glossaryPost.tagForSubtitle" />
+    <LazyGlossaryNewestWords v-if="glossaryPost && glossaryPost.lastNewestFilteredWords.length" :last-newest-filtered-words="glossaryPost.lastNewestFilteredWords" :tag="glossaryPost.tagForSubtitle" />
   </div>
 </template>
 
