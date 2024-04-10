@@ -2,7 +2,7 @@
 import Tweet from 'vue-tweet'
 
 defineProps({
-  id: {
+  tweetId: {
     type: String,
     default: '',
   },
@@ -10,10 +10,13 @@ defineProps({
 </script>
 <template>
   <div class="twitter-card">
-    <Tweet
-      :tweet-id="id"
-      class="twitter-card__tweet"
-    />
+    <ClientOnly>
+      <Tweet
+        v-if="tweetId"
+        :tweet-id="tweetId"
+        class="twitter-card__tweet"
+      />
+    </ClientOnly>
   </div>
 </template>
 <style lang="scss" scoped>

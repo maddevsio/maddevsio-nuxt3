@@ -55,7 +55,7 @@ const tweetId = '1498248565495418881'
       <LazyCaseStudiesUITextParagraph class="m-24_bottom">
         Our joint work helped to strengthen and improve the service, which had a positive impact on the overall statistics of its work:
       </LazyCaseStudiesUITextParagraph>
-      <LazyCaseStudiesUITwitterCard :id="tweetId" />
+      <!--      <LazyCaseStudiesUITwitterCard :tweet-id="tweetId" />-->
     </div>
   </section>
 </template>
