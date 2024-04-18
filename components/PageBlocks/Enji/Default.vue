@@ -68,7 +68,7 @@ onUnmounted(() => {
     id="enji-section"
     ref="enjiSectionRef"
     class="enji-slice"
-    :style="`scroll-margin-top: ${headerHeight}px`"
+    :style="`scroll-margin-top: ${headerHeight || 66}px`"
   >
     <div class="container">
       <div class="enji-slice__wrapper">

@@ -5,7 +5,7 @@ import { buildHead, getMetadata } from '~/SEO/buildMetaTags'
 const route = useRoute()
 const prismic = usePrismic()
 const config = useRuntimeConfig()
-const tagService = new TagService(prismic)
+const tagService = new TagService(prismic, config.public.ffEnvironment)
 const openGraphUrl = `${ config.public.domain }/tag/${ route.params.uid }/`
 
 const { data: tagsData, error } = await useAsyncData('tagsData', async () => {
