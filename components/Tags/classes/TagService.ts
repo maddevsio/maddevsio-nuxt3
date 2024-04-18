@@ -5,9 +5,11 @@ import type { CustomerUniversityDocument, PostDocument } from '~/prismicio-types
 
 export class TagService {
   prismic: PrismicPlugin
+  ffEnvironment: string
 
-  constructor(prismic: PrismicPlugin) {
+  constructor(prismic: PrismicPlugin, ffEnvironment: string) {
     this.prismic = prismic
+    this.ffEnvironment = ffEnvironment
   }
 
   async getTags() {
@@ -30,6 +32,8 @@ export class TagService {
       filters: [
         this.prismic.filter.any('document.type', ['post', 'customer_university']),
         this.prismic.filter.any('document.tags', [tag]),
+        this.ffEnvironment === 'production' ? this.prismic.filter.not('my.post.released', false) : '',
+        this.ffEnvironment === 'production' ? this.prismic.filter.not('my.customer_university.released', false) : '',
       ],
       orderings: {
         field: 'my.post.date',

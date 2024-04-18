@@ -7,7 +7,9 @@ import {
 import type { FooterProps } from '~/components/Widgets/Footer/interfaces/IFooter'
 import { fetchFooter } from '~/components/Widgets/Footer/helpers/fetchFooter'
 
-const { data } = await useAsyncData('footer', () => fetchFooter())
+const emit = defineEmits(['loading-footer'])
+
+const { data, pending } = await useAsyncData('footer', () => fetchFooter())
 const {
   presentations,
   currentRootRoute,
@@ -29,6 +31,8 @@ const {
 } = new Footer(transformationFooterData(data.value as FooterPrismicData) as FooterProps)
 
 const router = useRouter()
+
+emit('loading-footer', pending)
 
 provide('presentationLinks', presentations)
 provide('currentRootRoute', currentRootRoute)

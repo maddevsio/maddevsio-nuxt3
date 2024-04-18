@@ -3,9 +3,10 @@ import { BlogService } from '~/components/Blog/classes/BlogService'
 
 const prismic = usePrismic()
 const { $getMediaFromS3 } = useMediaFromS3()
+const config = useRuntimeConfig()
 const { data: cuSection, error } = await useAsyncData('cuSection', async () => {
   try {
-    return await new BlogService().getCUSection(prismic)
+    return await new BlogService({ ffEnvironment: config.public.ffEnvironment }).getCUSection(prismic)
   } catch {
     showError({ statusMessage: 'Page not found', statusCode: 404 })
   }

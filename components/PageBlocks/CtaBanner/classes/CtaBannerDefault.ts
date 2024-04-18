@@ -16,6 +16,7 @@ export class CtaBannerDefault implements ICtaBannerDefault {
   buttonText: string
   modalType: string
   modalContactMeRef: Ref<{ show(): void } | null>
+  isShowModal: Ref<boolean>
 
   constructor(props: CtaBannerDefaultProps) {
     this.fullName = props.primary.name || ''
@@ -27,12 +28,15 @@ export class CtaBannerDefault implements ICtaBannerDefault {
     this.buttonText = props.primary.btnText || ''
     this.modalType = props.primary.modal || 'order-project'
     this.modalContactMeRef = ref(null)
+    this.isShowModal = ref(false)
 
     this.showModal = this.showModal.bind(this)
     this.sendCareersLinkClickEvent = this.sendCareersLinkClickEvent.bind(this)
   }
 
-  showModal(route: any) {
+  async showModal(route: any) {
+    this.isShowModal.value = true
+    await delay(100)
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef?.value?.show()
     contactMeClickEvent.send(`CTA Banner from ${ route.path }`)

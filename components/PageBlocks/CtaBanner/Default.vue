@@ -22,12 +22,13 @@ const {
   buttonText,
   showModal,
   sendCareersLinkClickEvent,
+  isShowModal,
 } = new CtaBannerDefault(slice)
 const route = useRoute()
 const { $getMediaFromS3 } = useMediaFromS3()
 const { emailSubject } = storeToRefs(useEmailSubjectStore())
 const sendCareersClickEvent = () => sendCareersLinkClickEvent(route)
-const modalShow = () => showModal(route)
+const modalShow = async () => await showModal(route)
 </script>
 <template>
   <section class="cta-banner">
@@ -90,11 +91,14 @@ const modalShow = () => showModal(route)
     </div>
     <LazyClientOnly>
       <Teleport to="body">
-        <LazyWidgetsModalContactMe
-          ref="modalContactMeRef"
-          :location="'\'CtaBanner slice\' button'"
-          :email-subject="emailSubject"
-        />
+        <NuxtLazyHydrate :on-interaction="isShowModal">
+          <LazyWidgetsModalContactMe
+            v-if="isShowModal"
+            ref="modalContactMeRef"
+            :location="'\'CtaBanner slice\' button'"
+            :email-subject="emailSubject"
+          />
+        </NuxtLazyHydrate>
       </Teleport>
     </LazyClientOnly>
   </section>
