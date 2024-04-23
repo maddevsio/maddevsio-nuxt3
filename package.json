@@ -74,14 +74,12 @@
     "prismjs": "^1.29.0",
     "sass": "^1.69.5",
     "sendpulse-api": "^1.1.6",
-    "sequelize": "^6.37.2",
     "simplebar-vue": "^2.3.3",
-    "sqlite3": "^5.1.7",
     "vue": "^3.4.21",
     "vue-gtag-next": "^1.14.0",
     "vue-prism-editor": "^2.0.0-alpha.2",
     "vue-recaptcha": "^2.0.3",
     "vue-router": "^4.3.0",
-    "vue-tweet": "^2.0.2"
+    "vue-tweet": "2.0.2"
   }
 }

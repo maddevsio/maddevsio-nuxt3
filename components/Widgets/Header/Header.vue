@@ -2,11 +2,10 @@
 import { Header } from '~/components/Widgets/Header/classes/Header'
 import { HeaderMenu } from '~/components/Widgets/Header/classes/HeaderMenu'
 import { transformationHeaderData } from '~/components/Widgets/Header/helpers/transformationHeaderData'
+import { fetchHeader } from '~/components/Widgets/Header/helpers/fetchHeader'
 
-const config = useRuntimeConfig()
-const headerDocument = config.public.ffEnvironment !== 'production' ? 'header_for_local_dev' : 'header'
-const { data } = await useFetch(`/api/get-header?type=${ headerDocument }`)
-const header = new Header(new HeaderMenu(transformationHeaderData(JSON.parse(data.value?.jsonData).data)))
+const { data } = await useAsyncData('header', () => fetchHeader())
+const header = new Header(new HeaderMenu(transformationHeaderData(data.value)))
 const {
   getHeaderHeight,
   setStylesForHeader,
@@ -20,6 +19,7 @@ const {
   isMobile,
   isActiveMobileMenu,
   toggleMobileMenu,
+  isShowModal,
 } = header
 
 const route = useRoute()
@@ -96,11 +96,14 @@ onUnmounted(() => {
       </div>
       <ClientOnly>
         <Teleport to="body">
-          <LazyWidgetsModalContactMe
-            ref="modalContactMeRef"
-            form-uid="header-form"
-            location="Header"
-          />
+          <NuxtLazyHydrate :on-interaction="isShowModal">
+            <LazyWidgetsModalContactMe
+              v-if="isShowModal"
+              ref="modalContactMeRef"
+              form-uid="header-form"
+              location="Header"
+            />
+          </NuxtLazyHydrate>
         </Teleport>
       </ClientOnly>
     </header>

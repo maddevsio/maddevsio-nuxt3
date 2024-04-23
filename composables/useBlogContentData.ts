@@ -7,7 +7,9 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
   const config = useRuntimeConfig()
   const route = useRoute()
   const prismic = usePrismic()
-  const blogService = new BlogService()
+  const blogService = new BlogService({
+    ffEnvironment: config.public.ffEnvironment,
+  })
 
   const schemaOrgSnippet = ref<any>()
   const post = ref<BlogPost>()
@@ -18,6 +20,10 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
   const { data: blogContentResponseData } = await useAsyncData('blogContentResponseData', async () => {
     try {
       const postResponse = await blogService.getPostByUID(prismic, route.params.uid as string, type) as BlogPost
+
+      if (postResponse.data?.released === false && config.public.ffEnvironment === 'production') {
+        showError({ message: 'Page not found', statusCode: 404 })
+      }
 
       if (type === 'post') {
         const recommendedPosts = await blogService.fetchPostsByTag(prismic, [postResponse.tags[0]], 4)

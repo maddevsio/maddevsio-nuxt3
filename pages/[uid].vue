@@ -2,54 +2,64 @@
 import { components } from '~/prismicSlices'
 import { buildHead } from '~/SEO/buildMetaTags'
 import type { TransformedCustomType } from '~/interfaces/common/commonInterfaces'
+import { fetchLinks } from '~/config/constants'
 
 const route = useRoute()
 const { updateFooterVisible } = useFooterStore()
 const { updateEmailSubject } = useEmailSubjectStore()
 const config = useRuntimeConfig()
-const customPage = ref<null | TransformedCustomType>(null)
+const { client } = usePrismic()
 
-const { data, error } = await useFetch(`/api/get-custom-page?uid=${ route.params.uid }`)
-if (data.value) {
-  customPage.value = JSON.parse(data.value.page!.jsonData!)
-}
+const { data, error } = await useAsyncData(`customPage-${ route.params.uid }`, async () => {
+  try {
+    const response = await client.getByUID('custom_page', route.params.uid.toString(), {
+      fetchLinks,
+    })
+
+    const customPage = extractCustomPageData(response) as TransformedCustomType
+
+    if (
+      !customPage?.slices ||
+      (!customPage.released && config.public.ffEnvironment === 'production') ||
+      getRoutePrefixClient(route.path) !== `${ customPage.routePrefix ? `${ customPage.routePrefix }/` : '' }${ route.params.uid }`
+    ) {
+      showError({ message: 'Page not found', statusCode: 404 })
+    }
+
+    return customPage
+  } catch (e) {
+    showError({ message: 'Page not found', statusCode: 404 })
+  }
+})
 
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-if (customPage.value &&
-  (!customPage.value.slices ||
-  (!customPage.value?.released && config.public.ffEnvironment === 'production') ||
-  getRoutePrefixClient(route.path) !== `${ customPage.value?.routePrefix ? `${ customPage.value?.routePrefix }/` : '' }${ route.params.uid }`)
-) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found' })
-}
-
 useClearStoresBeforeRouteLeave()
 
-if (customPage.value && customPage.value.uid) {
-  if (customPage.value.showFooter !== undefined) {
-    updateFooterVisible(customPage.value.showFooter)
+if (data.value && data.value.uid) {
+  if (data.value.showFooter !== undefined) {
+    updateFooterVisible(data.value.showFooter)
   }
 
-  updateEmailSubject(customPage.value?.emailSubject as string)
+  updateEmailSubject(data.value?.emailSubject as string)
 }
 
 // @ts-ignore
 useHead(buildHead({
   url: `${ config.public.domain }/${ route.params.uid }/`,
-  title: customPage.value?.metaTitle || '',
-  description: customPage.value?.metaDescription || '',
-  jsonLd: customPage.value!.schemaOrgSnippet!,
-  image: customPage.value!.ogImage!,
+  title: data.value?.metaTitle || '',
+  description: data.value?.metaDescription || '',
+  jsonLd: data.value!.schemaOrgSnippet!,
+  image: data.value!.ogImage!,
 }))
 </script>
 <template>
   <div>
     <SliceZone
-      v-if="customPage"
-      :slices="customPage.slices"
+      v-if="data"
+      :slices="data.slices"
       :components="components"
     />
   </div>

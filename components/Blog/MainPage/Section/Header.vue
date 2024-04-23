@@ -3,19 +3,20 @@ import { BlogService } from '~/components/Blog/classes/BlogService'
 
 const image = inject('blogHeaderBackgroundImage')
 const prismic = usePrismic()
+const config = useRuntimeConfig()
 const { data: featuredPost, error } = await useAsyncData('featuredPost', async () => {
   try {
-    return await new BlogService().getFeaturePost(prismic)
+    return await new BlogService({ ffEnvironment: config.public.ffEnvironment }).getFeaturePost(prismic)
   } catch {
-    showError({ statusCode: 404, statusMessage: 'Page not found' })
+    showError({ statusCode: 404, message: 'Page not found' })
   }
 })
 
 if (error.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+  throw createError({ statusCode: 404, message: 'Page not found' })
 }
 
-const sectionText = ref<HTMLElement>()
+const sectionText = ref<HTMLElement | null>(null)
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
 </script>
 <template>

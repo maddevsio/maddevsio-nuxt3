@@ -26,7 +26,7 @@ export class AuthorService {
       filters: [
         this.prismic.filter.at('document.type', contentType),
         this.prismic.filter.at(`my.${ contentType }.${ whatAuthor }`, authorID),
-        this.ffEnvironment === 'production' && this.contentTypesForCheck.includes(contentType) ? this.prismic.filter.at(`my.${ contentType }.released`, true) : '',
+        this.ffEnvironment === 'production' ? this.prismic.filter.not(`my.${ contentType }.released`, false) : '',
       ],
       orderings: {
         field: `my.${ contentType }.date`,
