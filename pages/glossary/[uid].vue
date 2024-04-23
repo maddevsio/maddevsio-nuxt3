@@ -77,6 +77,18 @@ useHead(buildHead({
 </template>
 
 <style lang="scss" scoped>
+.glossary-page-content {
+  padding-bottom: 128px;
+
+  @media screen and (max-width: 1280px) {
+    padding-bottom: 96px;
+  }
+
+  @media screen and (max-width: 1185px) {
+    padding-bottom: 48px;
+  }
+}
+
 .glossary-start-screen {
     :deep(.glossary-head-start-screen__title) {
       max-width: 100%;

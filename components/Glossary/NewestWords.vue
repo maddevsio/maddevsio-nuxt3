@@ -41,7 +41,7 @@ const { lastWords, allLastWords, isShowMore, showMore } = new GlossaryNewestWord
 
 <style lang="scss" scoped>
 .glossary-newest-words {
-  padding: 96px 0 128px;
+  padding-top: 96px;
 
   &__container {
     * {
@@ -71,7 +71,7 @@ const { lastWords, allLastWords, isShowMore, showMore } = new GlossaryNewestWord
   }
 
   @media screen and (max-width: 550px) {
-    padding: 48px 0;
+    padding-top: 48px;
     &__title {
       font-size: 31px;
     }
