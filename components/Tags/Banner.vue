@@ -44,10 +44,19 @@ const getTagDescriptionIdx = computed(() => {
         >
           {{ tagsDescriptions[getTagDescriptionIdx].description }}
         </p>
-        <p class="current-tag__posts-count">
-          <span v-if="count.posts">A collection of {{ checkCountForEnding('post', count.posts).toLowerCase() }} </span>
-          <span v-if="count.words"> and {{ checkCountForEnding('word', count.words).toLowerCase() }} </span>
-        </p>
+        <div>
+          <p
+            v-if="count.posts || count.words"
+            class="current-tag__posts-count"
+          >
+            <span>A collection of {{ checkCountForEnding('post', count.posts).toLowerCase() }}</span>
+            <span v-if="count.words"> and {{ checkCountForEnding('word', count.words).toLowerCase() }}</span>
+          </p>
+          <div
+            v-else
+            class="current-tag__posts-count-skeleton"
+          />
+        </div>
       </div>
       <div
         v-if="getTagDescriptionIdx !== null"
@@ -72,48 +81,73 @@ const getTagDescriptionIdx = computed(() => {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+
   &__info {
     width: 61%;
   }
+
   &__title {
     font-size: 68px;
     line-height: 130%;
     letter-spacing: -2px;
   }
+
   &__description {
     @include font('Inter', 22px, 400);
     line-height: 30px;
     letter-spacing: -1px;
     margin-top: 32px;
   }
+
   &__posts-count {
-    margin-top: 32px;
     font-size: 17px;
     line-height: 166%;
     letter-spacing: -0.035em;
     color: $text-color--grey-opacity-40-percent;
+
+    &-skeleton {
+      height: 28px;
+      width: 100%;
+      max-width: 343px;
+      background-color: $bgcolor--silver;
+      border-radius: 5px;
+    }
   }
+
+  &__posts-count, &__posts-count-skeleton {
+    margin-top: 32px;
+  }
+
   @media only screen and (max-width: 991px) {
     padding-top: 134px;
     padding-bottom: 48px;
+
     &__title {
       font-size: 42px;
       letter-spacing: -1px;
     }
+
     &__posts-count {
       font-size: 17px;
+    }
+
+    &__posts-count, &__posts-count-skeleton {
       margin-top: 12px;
     }
   }
+
   @media screen and (max-width: 800px) {
     flex-wrap: wrap-reverse;
+
     &__info {
       width: 100%;
     }
+
     &__lottie {
       margin-bottom: 52px;
     }
   }
+
   @media screen and (max-width: 580px) {
     &__lottie {
       width: 147px;

@@ -81,7 +81,7 @@ const { headerHeight } = storeToRefs(useHeaderStore())
 <style lang="scss" scoped>
 .tag-posts {
   background-color: $bgcolor--white-primary;
-  padding: 60px 0 71px;
+  padding-bottom: 71px;
 
   &__featured-post {
     margin-bottom: 137px;
