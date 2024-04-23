@@ -1,7 +1,10 @@
 <script setup lang="ts">
 const modalContactMeRef = ref<{ show(): void }>()
+const isShowModal = ref(false)
 const { $getMediaFromS3 } = useMediaFromS3()
-const showModal = () => {
+const showModal = async () => {
+  isShowModal.value = true
+  await delay(100)
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef.value.show()
 }
@@ -50,12 +53,15 @@ const { emailSubject } = storeToRefs(useEmailSubjectStore())
     </div>
     <ClientOnly>
       <Teleport to="body">
-        <LazyWidgetsModalContactMe
-          ref="modalContactMeRef"
-          location="Main blog page. CTA banner."
-          form-uid="main-blog-page-cta"
-          :email-subject="emailSubject"
-        />
+        <NuxtLazyHydrate :on-interaction="isShowModal">
+          <LazyWidgetsModalContactMe
+            v-if="isShowModal"
+            ref="modalContactMeRef"
+            location="Main blog page. CTA banner."
+            form-uid="main-blog-page-cta"
+            :email-subject="emailSubject"
+          />
+        </NuxtLazyHydrate>
       </Teleport>
     </ClientOnly>
   </section>

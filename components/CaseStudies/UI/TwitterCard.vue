@@ -21,9 +21,12 @@ defineProps({
 </template>
 <style lang="scss" scoped>
 .twitter-card {
-  &__tweet {
-    display: flex;
+  :deep(.twitter-tweet) {
     justify-content: center;
+
+    iframe {
+      flex-grow: unset !important;
+    }
   }
 }
 </style>

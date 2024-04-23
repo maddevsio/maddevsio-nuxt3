@@ -184,6 +184,7 @@ export interface BlogPost {
     schema_org_snippets?: SchemaOrgSnippet[]
     subtitle?: RichTextField
     updated_date?: string
+    released: boolean | null
   }
   uid: string
   first_publication_date?: string

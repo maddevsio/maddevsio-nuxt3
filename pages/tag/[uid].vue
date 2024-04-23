@@ -6,7 +6,7 @@ import type { GlossaryWord } from '~/components/Glossary/interfaces/IGlossaryNew
 const route = useRoute()
 const prismic = usePrismic()
 const config = useRuntimeConfig()
-const tagService = new TagService(prismic)
+const tagService = new TagService(prismic, config.public.ffEnvironment)
 const openGraphUrl = `${ config.public.domain }/tag/${ route.params.uid }/`
 const tagPosts = ref([])
 const tagWords = ref<GlossaryWord[] | never[]>([])

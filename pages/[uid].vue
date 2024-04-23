@@ -36,14 +36,6 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-if (data.value &&
-  (!data.value.slices ||
-  (!data.value?.released && config.public.ffEnvironment === 'production') ||
-  getRoutePrefixClient(route.path) !== `${ data.value?.routePrefix ? `${ data.value?.routePrefix }/` : '' }${ route.params.uid }`)
-) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found' })
-}
-
 useClearStoresBeforeRouteLeave()
 
 if (data.value && data.value.uid) {

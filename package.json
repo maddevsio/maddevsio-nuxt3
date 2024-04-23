@@ -80,6 +80,6 @@
     "vue-prism-editor": "^2.0.0-alpha.2",
     "vue-recaptcha": "^2.0.3",
     "vue-router": "^4.3.0",
-    "vue-tweet": "^2.0.2"
+    "vue-tweet": "2.0.2"
   }
 }
