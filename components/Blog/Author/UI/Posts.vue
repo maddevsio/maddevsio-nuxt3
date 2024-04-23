@@ -20,6 +20,7 @@ const {
   sectionRef,
   authorContent,
   findTag,
+  showButton,
 } = useAuthorContent(4, 'See all articles', props.authorPosts)
 </script>
 <template>
@@ -63,7 +64,7 @@ const {
       />
     </div>
     <div
-      v-if="authorContent.length >= countToShow"
+      v-if="authorContent.length >= countToShow && showButton"
       class="author-posts__load-more"
     >
       <LazyBlogAuthorUILoadMoreButton

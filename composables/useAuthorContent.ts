@@ -7,6 +7,8 @@ export const useAuthorContent = (contentCount: number, buttonTextContent: string
   const sectionRef = ref<HTMLElement | null>(null)
   const dynamicTag = useDynamicTagCloudStore()
 
+  const showButton = contentData.length > contentCount
+
   const showMoreContent = () => {
     showMore.value = !showMore.value
     if (!showMore.value) {
@@ -59,5 +61,6 @@ export const useAuthorContent = (contentCount: number, buttonTextContent: string
     sectionRef,
     authorContent,
     findTag,
+    showButton,
   }
 }

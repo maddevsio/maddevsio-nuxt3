@@ -20,6 +20,7 @@ const {
   buttonText,
   sectionRef,
   authorContent,
+  showButton,
 } = useAuthorContent(10, 'See all articles', props.posts)
 
 const { headerHeight } = storeToRefs(useHeaderStore())
@@ -66,7 +67,7 @@ const { headerHeight } = storeToRefs(useHeaderStore())
         />
       </div>
       <div
-        v-if="posts.length >= countToShow"
+        v-if="authorContent.length >= countToShow && showButton"
         class="tag-posts__load-more"
       >
         <LazyBlogAuthorUILoadMoreButton
