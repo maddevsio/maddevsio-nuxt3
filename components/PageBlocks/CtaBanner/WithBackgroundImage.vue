@@ -51,7 +51,10 @@ const enableImageOverlay = slice.primary.enableImageOverlay === null ? true : sl
 const linkToPage = slice.primary.linkToPage.url ? checkAndExtractDomain(slice.primary.linkToPage.url) : { ourDomain: false, url: '' }
 
 const modalContactMeRef = ref<VNodeRef | null>(null)
-const showModal = () => {
+const isShowModal = ref(false)
+const showModal = async () => {
+  isShowModal.value = true
+  await delay(100)
   if (!modalContactMeRef.value?.show) { return }
   modalContactMeRef.value.show()
   contactMeClickEvent.send('CTA Banner with background image component')
@@ -114,11 +117,14 @@ const { emailSubject } = storeToRefs(useEmailSubjectStore())
     </div>
     <LazyClientOnly>
       <Teleport to="body">
-        <LazyWidgetsModalContactMe
-          ref="modalContactMeRef"
-          :location="'CtaBanner button'"
-          :email-subject="emailSubject"
-        />
+        <NuxtLazyHydrate :on-interaction="isShowModal">
+          <LazyWidgetsModalContactMe
+            v-if="isShowModal"
+            ref="modalContactMeRef"
+            :location="'CtaBanner button'"
+            :email-subject="emailSubject"
+          />
+        </NuxtLazyHydrate>
       </Teleport>
     </LazyClientOnly>
   </div>

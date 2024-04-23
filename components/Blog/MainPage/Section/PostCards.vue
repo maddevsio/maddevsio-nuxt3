@@ -17,6 +17,7 @@ const route = useRoute()
 const router = useRouter()
 const prismic = usePrismic()
 const { $getMediaFromS3 } = useMediaFromS3()
+const config = useRuntimeConfig()
 
 watch(() => route.query, query => {
   if ('page' in query) {
@@ -27,7 +28,8 @@ watch(() => route.query, query => {
 const loadBlogPosts = async (pageNumber = 1) => {
   page.value = pageNumber
   postsLoaded.value = false
-  posts.value = await new BlogService().getPostsByTag(prismic, activeTags.value, page.value) as PostResponse
+  posts.value = await new BlogService({ ffEnvironment: config.public.ffEnvironment })
+    .getPostsByTag(prismic, activeTags.value, page.value) as PostResponse
   posts.value = {
     ...posts.value,
     // @ts-ignore

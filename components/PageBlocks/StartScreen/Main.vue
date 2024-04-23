@@ -32,8 +32,11 @@ const reformattedTitle = reformatToHtml(props.slice.primary?.title)
 const reformattedSubtitle = reformatToHtml(props.slice.primary?.subtitle)
 const image = props.slice.primary.image
 const buttonText = props.slice.primary.buttonText || 'Let`s Talk'
+const isShowModal = ref(false)
 
-const showModal = () => {
+const showModal = async () => {
+  isShowModal.value = true
+  await delay(100)
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef?.value?.show()
   contactMeClickEvent.send('Main start screen component')
@@ -80,11 +83,14 @@ const { emailSubject } = storeToRefs(useEmailSubjectStore())
     </div>
     <LazyClientOnly>
       <Teleport to="body">
-        <LazyWidgetsModalContactMe
-          ref="modalContactMeRef"
-          :location="'\'Let`s talk\' button, main start screen component'"
-          :email-subject="emailSubject"
-        />
+        <NuxtLazyHydrate :on-interaction="isShowModal">
+          <LazyWidgetsModalContactMe
+            v-if="isShowModal"
+            ref="modalContactMeRef"
+            :location="'\'Let`s talk\' button, main start screen component'"
+            :email-subject="emailSubject"
+          />
+        </NuxtLazyHydrate>
       </Teleport>
     </LazyClientOnly>
   </section>

@@ -22,7 +22,7 @@ const tweetId = '1486353473985822727'
       <LazyCaseStudiesUITextParagraph class="m-48_bottom">
         Total stuck in the bridge - 450 ETH (1 million 200 thousand at that rate by then).
       </LazyCaseStudiesUITextParagraph>
-      <LazyCaseStudiesUITwitterCard :id="tweetId" />
+      <LazyCaseStudiesUITwitterCard :tweet-id="tweetId" />
       <LazyCaseStudiesUITextParagraph class="m-48_top">
         Moral: Not only is it important to make tests "green," but also to evaluate the entire system - <strong>the user
           should

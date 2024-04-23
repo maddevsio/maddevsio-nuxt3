@@ -11,14 +11,25 @@ export interface PostResponse {
   total_pages: number
 }
 
+interface BlogServiceConfig {
+  ffEnvironment: string
+}
+
 export class BlogService {
+  ffEnvironment: string
+
+  constructor(config: BlogServiceConfig) {
+    this.ffEnvironment = config.ffEnvironment
+  }
+
   async getFeaturePost(prismic: PrismicPlugin) {
     try {
       const response = await prismic.client.get({
         filters: [
           prismic.filter.at('document.type', 'post'),
           prismic.filter.any('document.tags', ['Featured post']),
-        ],
+          this.ffEnvironment === 'production' ? prismic.filter.not('my.post.released', false) : '',
+        ].filter(Boolean),
         orderings: {
           field: 'my.post.date',
           direction: 'desc',
@@ -38,7 +49,9 @@ export class BlogService {
         filters: [
           prismic.filter.any('document.type', ['post', 'customer_university']),
           prismic.filter.any('document.tags', tags),
-        ],
+          this.ffEnvironment === 'production' ? prismic.filter.not('my.post.released', false) : '',
+          this.ffEnvironment === 'production' ? prismic.filter.not('my.customer_university.released', false) : '',
+        ].filter(Boolean),
         orderings: {
           field: 'my.post.date',
           direction: 'desc',
@@ -79,7 +92,8 @@ export class BlogService {
         filters: [
           prismic.filter.at('document.type', 'post'),
           prismic.filter.at('document.tags', tags),
-        ],
+          this.ffEnvironment === 'production' ? prismic.filter.not('my.post.released', false) : '',
+        ].filter(Boolean),
         pageSize,
         fetchLinks,
       })
@@ -101,7 +115,8 @@ export class BlogService {
       filters: [
         prismic.filter.any('document.type', [type]),
         prismic.filter.fulltext(`my.${ type }.title`, query),
-      ],
+        this.ffEnvironment === 'production' ? prismic.filter.not(`my.${ type }.released`, false) : '',
+      ].filter(Boolean),
       fetchLinks,
     })
     return results

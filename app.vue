@@ -1,11 +1,34 @@
 <script setup lang="ts">
 import type { IntersectionObserverInstance } from '~/interfaces/common/commonInterfaces'
 
+const route = useRoute()
+
 const showFooter = ref(false)
 const footerRef = ref<HTMLElement | null>(null)
 const observer = ref<IntersectionObserverInstance | null>(null)
+const displayCookieNotice = ref(false)
+const careersPage = ref(false)
+const timerId = ref<ReturnType<typeof setTimeout> | undefined>()
+const footerLoaded = ref(false)
 const { footerVisible } = storeToRefs(useFooterStore())
+
+const handleChangeCookie = (cookieState: boolean) => {
+  displayCookieNotice.value = cookieState
+}
+
+const footerLoadingHandler = (isLoading: boolean) => {
+  footerLoaded.value = isLoading
+}
+
+watch(() => route.name, newRoute => {
+  careersPage.value = newRoute === 'careers'
+}, { deep: true, immediate: true })
+
 onMounted(() => {
+  timerId.value = setTimeout(() => {
+    displayCookieNotice.value = !loadState(LOCAL_STORAGE_KEYS.ACCEPT_COOKIE)
+  }, 5000)
+
   observer.value = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -21,6 +44,10 @@ onMounted(() => {
     observer.value.observe(footerRef.value)
   }
 })
+
+onUnmounted(() => {
+  clearTimeout(timerId.value)
+})
 </script>
 <template>
   <div class="default-layout">
@@ -32,10 +59,25 @@ onMounted(() => {
     <main class="main-section">
       <NuxtPage />
     </main>
-    <div ref="footerRef" class="intersecting-element" />
+    <div
+      v-if="!footerLoaded"
+      ref="footerRef"
+      class="intersecting-element"
+    >
+      <LazySharedLoadersSpinnerLoader
+        v-if="!footerLoaded"
+      />
+    </div>
     <ClientOnly>
+      <SharedUITransitionFade>
+        <LazyWidgetsCookieNotice
+          v-if="displayCookieNotice"
+          @change-cookie="handleChangeCookie"
+        />
+      </SharedUITransitionFade>
       <LazyWidgetsFooter
         v-if="showFooter && footerVisible"
+        @loading-footer="footerLoadingHandler"
       />
     </ClientOnly>
   </div>
@@ -52,6 +94,6 @@ onMounted(() => {
 }
 
 .intersecting-element {
-  height: 1px;
+  height: 350px;
 }
 </style>
