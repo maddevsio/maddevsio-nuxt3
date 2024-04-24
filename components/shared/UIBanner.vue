@@ -150,7 +150,6 @@ const VParagraph = () => h('p', { innerHTML: props.text })
     position: absolute;
     bottom: 0;
     right: 106px;
-    image-rendering: pixelated;
     @media screen and (max-width: 1280px) {
       right: 90px;
     }
