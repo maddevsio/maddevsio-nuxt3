@@ -18,8 +18,8 @@
   }
 
   &__title {
-    @include font('Inter', 24px, 700);
-    line-height: 191%;
+    @include font('Inter', 36px, 700);
+    line-height: 127%;
     color: $text-color--chinese-black;
     letter-spacing: -1.3px;
     margin-bottom: 21px;
@@ -86,6 +86,7 @@
 
   @media screen and (max-width: 650px) {
     &__title {
+      font-size: 24px;
       margin-bottom: 13px;
     }
 
