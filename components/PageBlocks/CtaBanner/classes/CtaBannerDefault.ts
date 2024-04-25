@@ -36,7 +36,7 @@ export class CtaBannerDefault implements ICtaBannerDefault {
 
   async showModal(route: any) {
     this.isShowModal.value = true
-    await delay(100)
+    await delay(200)
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef?.value?.show()
     contactMeClickEvent.send(`CTA Banner from ${ route.path }`)

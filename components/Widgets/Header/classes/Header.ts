@@ -91,7 +91,7 @@ export class Header implements IHeader {
 
   async showModal() {
     this.isShowModal.value = true
-    await delay(100)
+    await delay(200)
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef.value.show()
     contactMeClickEvent.send('Header')

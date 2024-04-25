@@ -30,7 +30,7 @@ const modalContactMeRef = ref<{ show(): void } | null>(null)
 const { emailSubject } = storeToRefs(useEmailSubjectStore())
 const showModal = async () => {
   isShowModal.value = true
-  await delay(100)
+  await delay(200)
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef?.value.show()
   contactMeClickEvent.send('Start Screen Lets talk button')

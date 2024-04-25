@@ -30,7 +30,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
 const { emailSubject } = storeToRefs(useEmailSubjectStore())
 const showModal = async () => {
   isShowModal.value = true
-  await delay(100)
+  await delay(200)
   if (!modalContactMeRef.value && !modalContactMeRef.value!.show) {
     return
   }
