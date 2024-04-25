@@ -27,16 +27,25 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
-if (home.value?.uid) {
+if (home.value && home.value.uid) {
   updateFooterVisible(home.value.showFooter)
   updateEmailSubject(home.value?.emailSubject as string)
 }
+
+if (home.value!.schemaOrgSnippet) {
+  useJsonld(() => home.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: `${ config.public.domain }/`,
   title: home.value?.metaTitle || '',
   description: home.value?.metaDescription || '',
-  jsonLd: home.value!.schemaOrgSnippet!,
   image: home.value!.ogImage!,
 }))
 </script>

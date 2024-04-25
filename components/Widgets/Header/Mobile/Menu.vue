@@ -51,6 +51,7 @@ const route = useRoute()
             :to="subMenuItem.url"
             class="header-mobile-menu__page"
             :class="{ 'header-mobile-menu__page--active': route.path.includes(subMenuItem.url) }"
+            no-prefetch
             @click.prevent="resetState"
           >
             {{ subMenuItem.name }}

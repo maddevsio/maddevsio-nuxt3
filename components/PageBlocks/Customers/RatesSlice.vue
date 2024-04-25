@@ -1,7 +1,19 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { CustomersRates } from '~/components/PageBlocks/Customers/classes/CustomersRates'
-import type { CustomersRatesProps } from '~/components/PageBlocks/Customers/interfaces/ICustomersRates'
+
+interface ICustomersRatesItem {
+  title: string
+  subtitle: string
+  numberColor: string
+  descriptionColor: string
+}
+
+interface CustomersRatesProps {
+  items: ICustomersRatesItem[]
+  primary: {
+    background: string
+  }
+}
 
 const { slice } = defineProps({
   slice: {
@@ -10,8 +22,9 @@ const { slice } = defineProps({
   },
 })
 
-const customersRates = new CustomersRates(slice)
-const { cards, backgroundInText, backgroundColor } = customersRates
+const cards = slice.items || []
+const backgroundColor = setSliceBackground(slice.primary.background || 'black')
+const backgroundInText = slice.primary.background || 'black'
 </script>
 
 <template>

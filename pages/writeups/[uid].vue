@@ -34,12 +34,20 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
+if (writeupData.value!.pageContent.schemaOrg) {
+  useJsonld(() => writeupData.value!.pageContent.schemaOrg!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: writeupData.value?.pageContent.url || '',
   title: writeupData.value?.pageContent.metaTitle || '',
   description: writeupData.value?.pageContent.metaDescription || '',
-  jsonLd: writeupData.value!.pageContent.schemaOrg!,
   image: writeupData.value?.pageContent.ogImage,
 },
 [

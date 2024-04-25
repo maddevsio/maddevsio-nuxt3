@@ -47,6 +47,7 @@ jobs:
           RECAPTCHA_SITE_KEY=${{ secrets.STAGING_RECAPTCHA_SITE_KEY }}
           MAD_MARKETING_BACKEND_API=${{ secrets.STAGING_MAD_MARKETING_BACKEND_API }}
           NUXT_PUBLIC_SITE_URL=${{ secrets.STAGING_NUXT_PUBLIC_SITE_URL }}
+          NITRO_PRESET=${{ secrets.NITRO_PRESET }}
         cache-from: |
           maddevsio/maddevsio:staging
         tags: maddevsio/maddevsio:staging,maddevsio/maddevsio:${{ env.SHORT_SHA }}

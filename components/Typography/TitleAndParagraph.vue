@@ -1,17 +1,22 @@
 <script setup lang="ts">
-import type { TitleAndParagraphProps } from '~/components/Typography/interfaces/ITitleAndParagraph'
-import { TitleAndParagraph } from '~/components/Typography/classes/TitleAndParagraph'
+import type { RichTextField } from '@prismicio/client'
 
 interface Props {
-  slice: TitleAndParagraphProps
+  slice: {
+    primary: {
+      title: RichTextField
+      description: RichTextField
+      position: string
+      maxWidth: string
+    }
+  }
 }
 const { slice } = defineProps<Props>()
-const {
-  title,
-  description,
-  position,
-  maxWidth,
-} = new TitleAndParagraph(slice)
+
+const title = slice.primary.title
+const description = slice.primary.description
+const position = slice.primary.position
+const maxWidth = slice.primary.maxWidth
 </script>
 <template>
   <div class="content">

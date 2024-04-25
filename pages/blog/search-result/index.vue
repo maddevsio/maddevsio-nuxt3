@@ -5,9 +5,10 @@ import { buildHead } from '~/SEO/buildMetaTags'
 const prismic = usePrismic()
 const route = useRoute()
 const router = useRouter()
+const config = useRuntimeConfig()
 const posts = ref<any[]>([])
 
-const blogService = new BlogService()
+const blogService = new BlogService({ ffEnvironment: config.public.ffEnvironment })
 
 const transformPost = (posts: any) => {
   return posts.map((postItem: any) => {
@@ -56,8 +57,8 @@ useHead(buildHead({
 </script>
 <template>
   <section class="search-result">
-    <LazyBlogSearchResultBanner />
-    <LazyBlogSearchResultPosts
+    <BlogSearchResultBanner />
+    <BlogSearchResultPosts
       :posts="posts"
     />
   </section>

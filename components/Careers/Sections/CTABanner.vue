@@ -16,10 +16,10 @@ const { $getMediaFromS3 } = useMediaFromS3()
     <LazySharedUIBanner
       title="Can’t see your next role?"
       text="If you don’t see a suitable vacancy, but you are sure we're meant to be together, drop us a line."
-      :image="$getMediaFromS3(`/images/CTABanner/Daria.png`)"
-      image-alt-text="Daria"
-      man-name="Daria Utesheva"
-      man-position="Head of HR Department"
+      :image="$getMediaFromS3(`/images/CTABanner/ekaterina-bludova2x.webp`)"
+      image-alt-text="Ekaterina Bludova"
+      man-name="Ekaterina Bludova"
+      man-position="Recruitment Team Leader"
     >
       <ClientOnly>
         <a

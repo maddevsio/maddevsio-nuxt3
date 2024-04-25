@@ -1,22 +1,34 @@
 <script setup lang="ts">
-import type { StartScreenChecklistProps } from '~/components/PageBlocks/StartScreen/interfaces/IStartScreenChecklist'
-import { StartScreenChecklist } from '~/components/PageBlocks/StartScreen/classes/StartScreenChecklist'
+import type { ImageField } from '@prismicio/types'
 
 interface Props {
-  slice: StartScreenChecklistProps
+  slice: {
+    primary: {
+      background: string
+      image: ImageField
+      checklistImage: ImageField
+      title: string
+      buttonText: string
+      checklistPdfPath: string
+      sendpulseTemplateID: number
+      checklistName: string
+    }
+  }
 }
 
 const { slice } = defineProps<Props>()
-const {
-  image,
-  checklistImage,
-  title,
-  buttonText,
-  checklistPdfPath,
-  sendpulseTemplateID,
-  checklistName,
-  checklistFormUID,
-} = new StartScreenChecklist(slice)
+
+const image = slice.primary.image
+const checklistImage = {
+  ...slice.primary.checklistImage,
+  url: removeCompressFromPrismicImage(slice.primary.checklistImage.url!),
+} as ImageField
+const title = replaceLineSeparatorToBr(slice.primary.title || '')
+const buttonText = slice.primary.buttonText
+const checklistPdfPath = slice.primary.checklistPdfPath
+const sendpulseTemplateID = Number(slice.primary.sendpulseTemplateID)
+const checklistName = slice.primary.checklistName
+const checklistFormUID = createUID(slice.primary.checklistName)
 
 const { isMobile } = useDevice()
 const { $getMediaFromS3 } = useMediaFromS3()
@@ -52,7 +64,7 @@ const showModal = () => {
         class="checklist-start-screen__title"
         v-html="title"
       />
-      <LazySharedUIButton
+      <SharedUIButton
         class="checklist-start-screen__btn"
         @click="showModal"
       >
@@ -63,7 +75,7 @@ const showModal = () => {
           :src="$getMediaFromS3('images/core/common/arrow-up-right.svg')"
           alt="Arrow"
         >
-      </LazySharedUIButton>
+      </SharedUIButton>
       <NuxtImg
         v-if="checklistImage.url"
         provider="prismic"

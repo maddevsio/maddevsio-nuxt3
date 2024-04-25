@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import type { SimpleTextProps } from '~/components/Typography/interfaces/ISimpleText'
-import { SimpleText } from '~/components/Typography/classes/SimpleText'
-
 interface Props {
-  slice: SimpleTextProps
+  slice: {
+    primary: {
+      colorTheme: string
+      text: string
+    }
+  }
   large?: boolean
 }
 
 const { slice } = defineProps<Props>()
-const {
-  text,
-  colorThemeClass,
-  sliceBackground,
-} = new SimpleText(slice)
+
+const text = slice.primary.text
+const sliceBackground = setSliceBackground(slice.primary.colorTheme || 'white')
+const colorThemeClass = slice.primary.colorTheme === 'black' ? 'text-slice--black-theme' : 'text-slice--white-theme'
 </script>
 
 <template>

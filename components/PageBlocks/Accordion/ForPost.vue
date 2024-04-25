@@ -12,8 +12,6 @@ const accordionForPost = new AccordionForPost(slice)
 
 <template>
   <section
-    itemscope
-    itemtype="https://schema.org/FAQPage"
     class="accordion-for-post"
   >
     <h2

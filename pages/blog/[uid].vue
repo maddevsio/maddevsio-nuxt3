@@ -11,20 +11,28 @@ const imageWithoutCrop = () => {
 
 useClearStoresBeforeRouteLeave()
 
+if (post.schemaOrgSnippet.value) {
+  useJsonld(() => post.schemaOrgSnippet.value?.map((snippet: { type: string, innerHTML: string }) => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   title: post.metaTitle || '',
   metaTitle: post.metaTitle || '',
   description: post.metaDescription || '',
   url: post.openGraphUrl,
-  jsonLd: post.schemaOrgSnippet.value,
   image: imageWithoutCrop() ? imageWithoutCrop() : '/favicon.ico',
 }))
 </script>
 
 <template>
   <div v-if="post">
-    <LazyBlogPostView
+    <BlogPostView
       :post-data="post"
     />
   </div>

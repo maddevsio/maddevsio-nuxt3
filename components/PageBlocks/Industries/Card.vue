@@ -1,8 +1,25 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import type { PropType } from 'vue'
-import { IndustriesCard } from '~/components/PageBlocks/Industries/classes/IndustriesCard'
-import type { IndustriesCardProps } from '~/components/PageBlocks/Industries/interfaces/IIndustriesCard'
+
+interface IIndustriesCardItem {
+  linkToIndustryPage: string
+  icon: {
+    url: string
+    alt: string
+    dimensions: {
+      width: number
+      height: number
+    }
+  }
+  name: string
+}
+
+interface IndustriesCardProps {
+  items: IIndustriesCardItem[]
+  primary: {
+    colorTheme: string
+  }
+}
 
 const props = defineProps({
   slice: {
@@ -11,10 +28,18 @@ const props = defineProps({
   },
 })
 const router = useRouter()
-const industriesInstance = new IndustriesCard(props.slice)
 
-const { industries, colorThemeClassNames, colorTheme } = industriesInstance
-const goToPage = (url: string) => industriesInstance.goToPage(url, router)
+const industries = props.slice.items
+const colorTheme = props.slice.primary.colorTheme || 'black'
+const colorThemeClassNames = {
+  sliceClassNames: colorConverterToClass('slice-bg', colorTheme),
+  cardClassNames: colorConverterToClass('bg', colorTheme),
+  textClassNames: colorConverterToClass('text', colorTheme === 'white' ? 'black' : 'white'),
+}
+const goToPage = async (url: string) => {
+  if (!url) { return }
+  await router.push(url)
+}
 </script>
 <template>
   <section

@@ -1,10 +1,25 @@
 <script setup lang="ts">
-import { h, type PropType } from 'vue'
-import { storeToRefs } from 'pinia'
-import { TitleAndDescription } from '~/components/Typography/classes/TitleAndDescription'
-import type {
-  TitleAndDescriptionPropTypes,
-} from '~/components/Typography/interfaces/ITitleAndDescription'
+import { computed, h, type PropType, ref } from 'vue'
+import type { IntersectionObserverInstance } from '~/interfaces/common/commonInterfaces'
+
+interface TitleAndDescriptionPropTypes {
+  primary: {
+    sectionIdForToc: string
+    title: string
+    titleTag: string
+    titleFontSize: string
+    titleFontSizeLaptop: string
+    titleFontSizeTablet: string
+    titleFontSizeMobile: string
+    titleLineHeight: string
+    titleTextColor: string
+    description: string
+    descriptionColor: string
+    descriptionLocation: string
+    backgroundColor: string
+    textPosition: string
+  }
+}
 
 const props = defineProps({
   slice: {
@@ -13,26 +28,104 @@ const props = defineProps({
   },
 })
 
-const titleAndDescription = new TitleAndDescription(props.slice)
+const classNames = {
+  contentCenter: 'title-and-description__content--center',
+  contentDirection: {
+    column: 'title-and-description__content--column',
+    row: 'title-and-description__content--row',
+  },
+}
+
+const defaultOptions = {
+  titleTag: 'h2',
+  fontSizes: {
+    desktop: '60px',
+    laptop: '45px',
+    tablet: '31px',
+    mobile: '31px',
+  },
+  lineHeight: '117%',
+  titleTextColor: 'white',
+  descriptionColor: 'white',
+  descriptionLocation: {
+    column: 'column',
+    row: 'row',
+  },
+  backgroundColor: 'black',
+  textPosition: 'left',
+}
+
+const intersectionOptions = {
+  rootMargin: '0px 0px -40%',
+}
+
+const sectionIdForToc = props.slice.primary.sectionIdForToc
+const titleTag = props.slice.primary.titleTag || defaultOptions.titleTag
+const titleFontSize = props.slice.primary.titleFontSize || defaultOptions.fontSizes.desktop
+const titleFontSizeLaptop = props.slice.primary.titleFontSizeLaptop || defaultOptions.fontSizes.laptop
+const titleFontSizeTablet = props.slice.primary.titleFontSizeTablet || defaultOptions.fontSizes.tablet
+const titleFontSizeMobile = props.slice.primary.titleFontSizeMobile || defaultOptions.fontSizes.mobile
+const titleLineHeight = props.slice.primary.titleLineHeight || defaultOptions.lineHeight
+const titleTextColor = props.slice.primary.titleTextColor || defaultOptions.titleTextColor
+const descriptionColor = props.slice.primary.descriptionColor || defaultOptions.descriptionColor
+const descriptionLocation = props.slice.primary.descriptionLocation
+  ? defaultOptions.descriptionLocation.column
+  : defaultOptions.descriptionLocation.row
+const backgroundColor = props.slice.primary.backgroundColor || defaultOptions.backgroundColor
+const textPosition = props.slice.primary.textPosition || defaultOptions.textPosition
+const fontsLoaded = ref(false)
+const sectionRef = ref<Element | null>(null)
+const observer = ref<IntersectionObserverInstance | null>(null)
+
 const horizontalToCStore = useHorizontalToCStore()
 const { activeAnchor } = storeToRefs(horizontalToCStore)
+const cssVars = computed(() => ({
+  '--titleFontSize': `${ titleFontSize }`,
+  '--titleFontSizeLaptop': `${ titleFontSizeLaptop }`,
+  '--titleFontSizeTablet': `${ titleFontSizeTablet }`,
+  '--titleFontSizeMobile': `${ titleFontSizeMobile }`,
+  '--titleLineHeight': `${ titleLineHeight }`,
+}))
 
-const {
-  observer,
-  contentClassNames,
-  backgroundColor,
-  descriptionColor,
+const reformatToHtml = (text: string, type = 'title') => {
+  if (type === 'title' && text) { return text.replace(/\n/g, '<br />') }
+  if (type === 'desc' && text) { return text.split(/\n/g) }
+  return text
+}
+
+const reformattedTitle = reformatToHtml(props.slice.primary.title, 'title')
+const reformattedDescription = reformatToHtml(props.slice.primary.description, 'desc')
+
+const getContentClassNames = ({ textPosition = 'left', descriptionLocation = 'row' }) =>
+  computed(() =>
+    [
+      textPosition === 'center' && descriptionLocation !== 'row' && classNames.contentCenter,
+      descriptionLocation === defaultOptions.descriptionLocation.column
+        ? classNames.contentDirection.column
+        : classNames.contentDirection.row,
+    ].filter(Boolean),
+  )
+
+const contentClassNames = getContentClassNames({
+  textPosition,
   descriptionLocation,
-  fontsLoaded,
-  sectionIdForToc,
-  reformattedDescription,
-  cssVars,
-  reformattedTitle,
-  titleTag,
-  initIntersectionObserverForSections,
-  sectionRef,
-  titleTextColor,
-} = titleAndDescription
+})
+
+const initIntersectionObserverForSections = (updateActiveAnchor: (anchor: string) => void, activeAnchor: any) => {
+  observer.value = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const targetId = entry.target.id ? entry.target.id.split('_')[0].toLowerCase() : ''
+        if (targetId && activeAnchor.value !== targetId) {
+          updateActiveAnchor(targetId)
+        }
+      }
+    })
+  }, intersectionOptions)
+  if (sectionRef.value) {
+    observer.value.observe(sectionRef.value)
+  }
+}
 
 onMounted(() => {
   fontsLoaded.value = true

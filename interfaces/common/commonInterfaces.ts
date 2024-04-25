@@ -4,6 +4,7 @@ import type {
   GlossaryDocumentData,
   VacancyDocumentDataBodySlice,
 } from '~/prismicio-types'
+import type { TransformedGlossaryTag } from '~/components/Glossary/Post/interfaces/IGlossaryPostFooter'
 
 export interface IntersectionObserverInstance {
   observe: (target: Element) => void
@@ -183,6 +184,7 @@ export interface BlogPost {
     schema_org_snippets?: SchemaOrgSnippet[]
     subtitle?: RichTextField
     updated_date?: string
+    released: boolean | null
   }
   uid: string
   first_publication_date?: string
@@ -434,6 +436,7 @@ export interface TransformedGlossaryPost {
   updatedDate: string
   author: Author
   coAuthor: Author
+  tags: TransformedGlossaryTag[]
 }
 
 export interface TransformedGlossaryPageData {

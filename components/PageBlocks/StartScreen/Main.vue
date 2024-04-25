@@ -1,7 +1,23 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { MainStartScreen } from '~/components/PageBlocks/StartScreen/classes/MainStartScreen'
-import type { IMainStartScreenPropTypes } from '~/components/PageBlocks/StartScreen/interfaces/IMainStartScreen'
+import { contactMeClickEvent } from '~/analytics/events'
+
+interface IMainStartScreenPropTypes {
+  primary: {
+    description: Array<{ text: string }>
+    title: string
+    subtitle: string
+    image: {
+      url: string
+      alt: string
+      dimensions: {
+        width: number
+        height: number
+      }
+    }
+    buttonText: string
+  }
+}
 
 const props = defineProps({
   slice: {
@@ -10,17 +26,21 @@ const props = defineProps({
   },
 })
 
-const mainStartScreen = new MainStartScreen(props.slice)
+const modalContactMeRef = ref<{ show(): void } | null>(null)
+const reformattedDescription = reformatToHtml(props.slice.primary?.description[0]?.text)
+const reformattedTitle = reformatToHtml(props.slice.primary?.title)
+const reformattedSubtitle = reformatToHtml(props.slice.primary?.subtitle)
+const image = props.slice.primary.image
+const buttonText = props.slice.primary.buttonText || 'Let`s Talk'
+const isShowModal = ref(false)
 
-const showModal = () => mainStartScreen.showModal()
-const {
-  reformattedDescription,
-  reformattedSubtitle,
-  buttonText,
-  reformattedTitle,
-  image,
-  modalContactMeRef,
-} = mainStartScreen
+const showModal = async () => {
+  isShowModal.value = true
+  await delay(100)
+  if (!modalContactMeRef?.value?.show) { return }
+  modalContactMeRef?.value?.show()
+  contactMeClickEvent.send('Main start screen component')
+}
 
 const sectionText = ref<HTMLElement | null>(null)
 const { sectionTextOpacity } = useChangeTextOpacity(sectionText)
@@ -54,20 +74,23 @@ const { emailSubject } = storeToRefs(useEmailSubjectStore())
           class="main-start-screen__description"
           v-html="reformattedDescription"
         />
-        <LazySharedUIAnimatedButton @click-emit="showModal">
+        <SharedUIAnimatedButton @click-emit="showModal">
           <span class="button-text">
             {{ buttonText }}
           </span>
-        </LazySharedUIAnimatedButton>
+        </SharedUIAnimatedButton>
       </div>
     </div>
     <LazyClientOnly>
       <Teleport to="body">
-        <WidgetsModalContactMe
-          ref="modalContactMeRef"
-          :location="'\'Let`s talk\' button, main start screen component'"
-          :email-subject="emailSubject"
-        />
+        <NuxtLazyHydrate :on-interaction="isShowModal">
+          <LazyWidgetsModalContactMe
+            v-if="isShowModal"
+            ref="modalContactMeRef"
+            :location="'\'Let`s talk\' button, main start screen component'"
+            :email-subject="emailSubject"
+          />
+        </NuxtLazyHydrate>
       </Teleport>
     </LazyClientOnly>
   </section>

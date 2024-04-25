@@ -1,23 +1,34 @@
 <script setup lang="ts">
-import type { StartScreenCaseStudyProps } from '~/components/PageBlocks/StartScreen/interfaces/IStartScreenCaseStudy'
-import { StartScreenCaseStudy } from '~/components/PageBlocks/StartScreen/classes/StartScreenCaseStudy'
+import type { ImageField, RichTextField } from '@prismicio/client'
 
 interface Props {
-  slice: StartScreenCaseStudyProps
+  slice: {
+    primary: {
+      videoPath: string
+      poster: ImageField
+      title: string
+      description: RichTextField
+      caseLogoImage: ImageField
+      caseTag: string
+      clickableCaseTag: boolean
+      backgroundOverlay: string
+    }
+  }
 }
 
 const { slice } = defineProps<Props>()
-const {
-  videoPath,
-  poster,
-  title,
-  description,
-  caseLogoImage,
-  caseTag,
-  caseTagEncodedUri,
-  clickableCaseTag,
-  backgroundOverlay,
-} = new StartScreenCaseStudy(slice)
+
+const videoPath = slice.primary.videoPath
+const poster = {
+  ...slice.primary.poster,
+  url: removeCompressFromPrismicImage(slice.primary.poster.url!),
+} as ImageField
+const title = replaceLineSeparatorToBr(slice.primary.title)
+const description = slice.primary.description
+const caseLogoImage = slice.primary.caseLogoImage
+const caseTag = slice.primary.caseTag
+const caseTagEncodedUri = encodeURIComponent(slice.primary.caseTag || '')
+const clickableCaseTag = slice.primary.clickableCaseTag
 
 const { $getMediaFromS3 } = useMediaFromS3()
 </script>
@@ -64,6 +75,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
             <NuxtLink
               v-if="clickableCaseTag && caseTag"
               :to="`/case-studies/?tag=${caseTagEncodedUri}`"
+              no-prefetch
               class="case-study-start-screen__badges-tag"
             >
               {{ caseTag }}

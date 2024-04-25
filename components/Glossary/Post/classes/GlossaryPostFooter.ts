@@ -1,6 +1,6 @@
 import type {
   GlossaryPostFooterProps,
-  IGlossaryPostFooter,
+  IGlossaryPostFooter, TransformedGlossaryTag,
 } from '~/components/Glossary/Post/interfaces/IGlossaryPostFooter'
 import type { Author, TransformedGlossaryAuthor } from '~/interfaces/common/commonInterfaces'
 
@@ -10,10 +10,17 @@ export class GlossaryPostFooter implements IGlossaryPostFooter {
   updatedDate: string
   authorData: TransformedGlossaryAuthor
   coAuthorData: TransformedGlossaryAuthor
-  constructor({ author, coAuthor, updatedDate }: GlossaryPostFooterProps) {
+  tags: TransformedGlossaryTag[]
+  constructor({
+    author,
+    coAuthor,
+    updatedDate,
+    tags,
+  }: GlossaryPostFooterProps) {
     this.author = author
     this.coAuthor = coAuthor
     this.updatedDate = updatedDate
+    this.tags = tags
 
     this.authorData = this.transformGlossaryAuthorData(this.author)
     this.coAuthorData = this.transformGlossaryAuthorData(this.coAuthor)

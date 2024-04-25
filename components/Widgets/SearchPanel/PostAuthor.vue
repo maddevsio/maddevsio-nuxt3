@@ -31,6 +31,7 @@ const authorLink = linkResolver({ type: 'author', uid: props.uid })
 <template>
   <NuxtLink
     :to="authorLink"
+    no-prefetch
     class="search-panel__result-author"
   >
     <img

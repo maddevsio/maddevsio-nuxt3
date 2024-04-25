@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { components } from '~/prismicSlices'
-import { fetchLinks } from '~/config/constants'
 import { buildHead } from '~/SEO/buildMetaTags'
 import type { TransformedCustomType } from '~/interfaces/common/commonInterfaces'
+import { fetchLinks } from '~/config/constants'
 
-const { client } = usePrismic()
 const route = useRoute()
 const { updateFooterVisible } = useFooterStore()
 const { updateEmailSubject } = useEmailSubjectStore()
 const config = useRuntimeConfig()
+const { client } = usePrismic()
 
 const { data, error } = await useAsyncData(`customPage-${ route.params.uid }`, async () => {
   try {
@@ -38,7 +38,7 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
-if (data.value?.uid) {
+if (data.value && data.value.uid) {
   if (data.value.showFooter !== undefined) {
     updateFooterVisible(data.value.showFooter)
   }
@@ -46,12 +46,22 @@ if (data.value?.uid) {
   updateEmailSubject(data.value?.emailSubject as string)
 }
 
+console.log(data.value!.schemaOrgSnippet)
+
+if (data.value!.schemaOrgSnippet) {
+  useJsonld(() => data.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
-  url: `${ config.public.domain }/`,
+  url: `${ config.public.domain }/${ route.params.uid }/`,
   title: data.value?.metaTitle || '',
   description: data.value?.metaDescription || '',
-  jsonLd: data.value!.schemaOrgSnippet!,
   image: data.value!.ogImage!,
 }))
 </script>

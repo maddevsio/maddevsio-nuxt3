@@ -1,33 +1,43 @@
 <script setup lang="ts">
-import type { StartScreenWithButtonProps } from '~/components/PageBlocks/StartScreen/interfaces/IStartScreenWithButton'
-import { StartScreenWithButton } from '~/components/PageBlocks/StartScreen/classes/StartScreenWithButton'
+import type { ImageField } from '@prismicio/client'
 import { contactMeClickEvent } from '~/analytics/events'
 
 interface Props {
-  slice: StartScreenWithButtonProps
+  slice: {
+    primary: {
+      imageOpacity: string
+      background: string
+      gradientColor: string
+      title: string
+      subtitle: string
+      image: ImageField
+      btnText: string
+    }
+  }
 }
 const { slice } = defineProps<Props>()
 
-const {
-  title,
-  subtitle,
-  imageOpacity,
-  image,
-  gradient,
-  btnText,
-  background,
-} = new StartScreenWithButton(slice)
+const imageOpacity = Number(slice.primary.imageOpacity) || 0.8
+const image = slice.primary.image
+const background = setSliceBackground(slice.primary.background || 'black')
+const gradient = setSliceGradient(slice.primary.gradientColor)
+const title = slice.primary.title
+const subtitle = slice.primary.subtitle
+const btnText = slice.primary.btnText || 'Let`s talk'
+const isShowModal = ref(false)
 
 const modalContactMeRef = ref<{ show(): void } | null>(null)
 const { emailSubject } = storeToRefs(useEmailSubjectStore())
-const showModal = () => {
+const showModal = async () => {
+  isShowModal.value = true
+  await delay(100)
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef?.value.show()
   contactMeClickEvent.send('Start Screen Lets talk button')
 }
 </script>
 <template>
-  <LazyPageBlocksStartScreenDefaultTemplate
+  <PageBlocksStartScreenDefaultTemplate
     :background="background"
     :gradient="gradient"
     :image="image"
@@ -36,22 +46,25 @@ const showModal = () => {
     :title="title"
   >
     <template #button>
-      <LazySharedUIAnimatedButton
+      <SharedUIAnimatedButton
         @click="showModal"
       >
         <span class="button-text">
           {{ btnText }}
         </span>
-      </LazySharedUIAnimatedButton>
+      </SharedUIAnimatedButton>
     </template>
-  </LazyPageBlocksStartScreenDefaultTemplate>
+  </PageBlocksStartScreenDefaultTemplate>
   <LazyClientOnly>
     <Teleport to="body">
-      <LazyWidgetsModalContactMe
-        ref="modalContactMeRef"
-        :location="'\'Let`s talk\' button, start screen component'"
-        :email-subject="emailSubject"
-      />
+      <NuxtLazyHydrate :on-interaction="isShowModal">
+        <LazyWidgetsModalContactMe
+          v-if="isShowModal"
+          ref="modalContactMeRef"
+          :location="'\'Let`s talk\' button, start screen component'"
+          :email-subject="emailSubject"
+        />
+      </NuxtLazyHydrate>
     </Teleport>
   </LazyClientOnly>
 </template>

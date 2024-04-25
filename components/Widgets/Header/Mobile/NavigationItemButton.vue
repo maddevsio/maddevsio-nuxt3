@@ -85,6 +85,7 @@ defineProps({
       :to="url"
       exact
       class="header-navigation-button"
+      no-prefetch
       @click.prevent="resetState"
     >
       <span

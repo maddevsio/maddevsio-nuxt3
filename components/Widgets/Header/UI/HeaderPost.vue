@@ -61,6 +61,7 @@ const isBlogPage = computed(() => route.fullPath.endsWith('/blog/'))
       :to="link"
       class="header-post__content"
       data-testid="post-link"
+      no-prefetch
       @click="resetState(link)"
     >
       <div class="header-post__text">
@@ -100,6 +101,7 @@ const isBlogPage = computed(() => route.fullPath.endsWith('/blog/'))
       v-if="!isBlogPage"
       to="/blog/"
       class="header-post__more-btn"
+      no-prefetch
       @click="resetState"
     >
       More articles
