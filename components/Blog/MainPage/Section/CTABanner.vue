@@ -4,7 +4,7 @@ const isShowModal = ref(false)
 const { $getMediaFromS3 } = useMediaFromS3()
 const showModal = async () => {
   isShowModal.value = true
-  await delay(100)
+  await delay(200)
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef.value.show()
 }

@@ -36,7 +36,7 @@ const isShowModal = ref(false)
 
 const showModal = async () => {
   isShowModal.value = true
-  await delay(100)
+  await delay(200)
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef?.value?.show()
   contactMeClickEvent.send('Main start screen component')
