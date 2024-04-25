@@ -33,8 +33,7 @@ const getPrismicRef = async () => {
   return ref
 }
 
-const getBlogPostsUrls = async () => {
-  const ref = await getPrismicRef()
+const getBlogPostsUrls = async (ref: string) => {
   const blogPostsUrls = await getPages(
     `${ process.env.NODE_PRISMIC_API }/documents/search?ref=${ ref }&q=[[any(document.type, ["post", "tags"])]]&pageSize=100`,
   )
@@ -51,8 +50,7 @@ const getBlogPostsUrls = async () => {
   }
 }
 
-const getMainUrls = async () => {
-  const ref = await getPrismicRef()
+const getMainUrls = async (ref: string) => {
   const expertPages = await getPages(
     `${ process.env.NODE_PRISMIC_API }/documents/search?ref=${ ref }&q=[[any(document.type, ["expert"])]]&pageSize=100`,
   )
@@ -83,8 +81,7 @@ const getMainUrls = async () => {
   }
 }
 
-const getCaseStudiesUrls = async () => {
-  const ref = await getPrismicRef()
+const getCaseStudiesUrls = async (ref: string) => {
   const caseStudiesUrls = await getPages(
     `${ process.env.NODE_PRISMIC_API }/documents/search?ref=${ ref }&q=[[any(document.type, ["case-studies"])]]&pageSize=100`,
   )
@@ -96,8 +93,7 @@ const getCaseStudiesUrls = async () => {
   }
 }
 
-const getInsightUrls = async () => {
-  const ref = await getPrismicRef()
+const getInsightUrls = async (ref: string) => {
   const insightUrls = await getPages(
 
     `${ process.env.NODE_PRISMIC_API }/documents/search?ref=${ ref }&q=[[any(document.type, ["customer_university", "custom_page", "writeup", "checklists", "glossary"])]]&pageSize=100`,
@@ -129,8 +125,7 @@ const getInsightUrls = async () => {
   }
 }
 
-const getAuthorsUrls = async () => {
-  const ref = await getPrismicRef()
+const getAuthorsUrls = async (ref: string) => {
   const authorsUrls = await getPages(
     `${ process.env.NODE_PRISMIC_API }/documents/search?ref=${ ref }&q=[[any(document.type, ["author"])]]&pageSize=100`,
   )
@@ -145,8 +140,7 @@ const getAuthorsUrls = async () => {
   }
 }
 
-const getCareersUrls = async () => {
-  const ref = await getPrismicRef()
+const getCareersUrls = async (ref: string) => {
   const careersUrls = await getPages(
     `${ process.env.NODE_PRISMIC_API }/documents/search?ref=${ ref }&q=[[any(document.type, ["vacancy"])]]&pageSize=100`,
   )
@@ -161,8 +155,7 @@ const getCareersUrls = async () => {
   }
 }
 
-const getCustomPageUrls = async () => {
-  const ref = await getPrismicRef()
+const getCustomPageUrls = async (ref: string) => {
   const customPageUrls = await getPages(
     `${ process.env.NODE_PRISMIC_API }/documents/search?ref=${ ref }&q=[[any(document.type, ["custom_page"])]]&pageSize=100`,
   )
@@ -193,14 +186,15 @@ const getCustomPageUrls = async () => {
 }
 
 export const getPrismicRoutes = async () => {
+  const ref = await getPrismicRef()
   const structuredRoutes = await Promise.all([
-    getMainUrls(),
-    getCustomPageUrls(),
-    getBlogPostsUrls(),
-    getCareersUrls(),
-    getCaseStudiesUrls(),
-    getInsightUrls(),
-    getAuthorsUrls(),
+    getMainUrls(ref),
+    getCustomPageUrls(ref),
+    getBlogPostsUrls(ref),
+    getCareersUrls(ref),
+    getCaseStudiesUrls(ref),
+    getInsightUrls(ref),
+    getAuthorsUrls(ref),
   ])
   const pages = structuredRoutes.reduce((acc, route) => {
     acc = {
