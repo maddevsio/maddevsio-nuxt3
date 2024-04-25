@@ -25,12 +25,9 @@ defineProps({
 })
 
 const modalContactMeRef = ref<{ show(): void } | null>(null)
-const isShowModal = ref(false)
 const { $getMediaFromS3 } = useMediaFromS3()
 const { emailSubject } = storeToRefs(useEmailSubjectStore())
-const showModal = async () => {
-  isShowModal.value = true
-  await delay(200)
+const showModal = () => {
   if (!modalContactMeRef?.value && !modalContactMeRef?.value!.show) {
     return
   }
@@ -124,14 +121,11 @@ const showModal = async () => {
     </div>
     <LazyClientOnly>
       <Teleport to="body">
-        <NuxtLazyHydrate :on-interaction="isShowModal">
-          <LazyWidgetsModalContactMe
-            v-if="isShowModal"
-            ref="modalContactMeRef"
-            :location="'\'Tab slice\' button'"
-            :email-subject="emailSubject"
-          />
-        </NuxtLazyHydrate>
+        <LazyWidgetsModalContactMe
+          ref="modalContactMeRef"
+          :location="'\'Tab slice\' button'"
+          :email-subject="emailSubject"
+        />
       </Teleport>
     </LazyClientOnly>
   </div>
