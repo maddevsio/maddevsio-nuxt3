@@ -2,6 +2,15 @@ import { getMetadata } from '~/SEO/buildMetaTags'
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import type { SchemaOrgSnippet } from '~/interfaces/common/commonInterfaces'
 
+interface CaseStudyMeta {
+  title: string
+  metaTitle: string
+  description: string
+  url: string
+  schemaOrg: any
+  image: string
+}
+
 export const useCaseStudyData = async ({
   caseName = '',
   defaultOgImage = 'https://maddevs.io/Open-Graph.png',
@@ -11,7 +20,14 @@ export const useCaseStudyData = async ({
 
   const { data: caseStudyData, error } = await useAsyncData('caseStudyData', async () => {
     try {
-      let caseStudyMeta = {}
+      let caseStudyMeta: CaseStudyMeta = {
+        title: '',
+        metaTitle: '',
+        description: '',
+        url: '',
+        schemaOrg: [],
+        image: '',
+      }
       const toCamelCase = (str: string) => str.replace(/-([a-z])/g, (_, char) => char.toUpperCase())
       const convertItc = (str: string) => (str === 'r4tca-web-application' ? str.replace('r4tca', 'R4TCA') : str)
       const response = await prismic.client.getByUID('case-studies', caseName)

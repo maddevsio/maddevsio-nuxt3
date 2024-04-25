@@ -47,13 +47,21 @@ if (error.value) {
   throw createError({ statusMessage: 'Page not found', statusCode: 404 })
 }
 
+if (expertData.value!.schemaOrgSnippet) {
+  useJsonld(() => expertData.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   title: expertData.value?.expert.metaTitle || '',
   metaTitle: expertData.value?.expert.metaTitle || '',
   description: expertData.value?.expert.metaDescription || '',
   url: expertData.value?.openGraphUrl || '',
-  jsonLd: expertData.value?.schemaOrgSnippet || '',
   image: expertData.value?.expert.ogImage || '',
 }))
 </script>

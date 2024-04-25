@@ -30,12 +30,20 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
+if (caseData.value!.pageContent.schemaOrg) {
+  useJsonld(() => caseData.value!.pageContent.schemaOrg!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: caseData.value?.pageContent.url || '',
   title: caseData.value?.pageContent.metaTitle || '',
   description: caseData.value?.pageContent.metaDescription || '',
-  jsonLd: caseData.value!.pageContent.schemaOrg!,
   image: caseData.value?.pageContent.ogImage,
 }))
 </script>

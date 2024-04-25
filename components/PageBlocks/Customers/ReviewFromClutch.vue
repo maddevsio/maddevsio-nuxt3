@@ -22,7 +22,7 @@ const updateReviewsData = (reviews: any) => {
   reviewsData.value = reviews
 }
 
-onMounted(async () => {
+await useAsyncData(async () => {
   const { data } = await axios.get('/api/clutch-reviews')
   updateReviewsData(data)
 })

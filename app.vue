@@ -75,10 +75,12 @@ onUnmounted(() => {
           @change-cookie="handleChangeCookie"
         />
       </SharedUITransitionFade>
-      <LazyWidgetsFooter
-        v-if="showFooter && footerVisible"
-        @loading-footer="footerLoadingHandler"
-      />
+      <NuxtLazyHydrate :on-interaction="showFooter">
+        <LazyWidgetsFooter
+          v-if="showFooter && footerVisible"
+          @loading-footer="footerLoadingHandler"
+        />
+      </NuxtLazyHydrate>
     </ClientOnly>
   </div>
 </template>

@@ -126,6 +126,7 @@ export default defineNuxtConfig({
     }],
     '@nuxtjs/sitemap',
     'nuxt-lazy-hydrate',
+    ['nuxt-jsonld', { disableOptionsAPI: true }],
   ],
 
   sitemap: {
@@ -241,7 +242,7 @@ export default defineNuxtConfig({
         wght: [300, 500, 600, 700],
       },
     },
-    display: 'optional',
+    display: 'fallback',
     preload: true,
     prefetch: true,
     preconnect: true,
