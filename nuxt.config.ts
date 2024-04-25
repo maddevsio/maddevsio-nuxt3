@@ -99,7 +99,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/device',
     ['nuxt-delay-hydration', {
-      mode: 'mount',
+      mode: 'init',
       debug: process.env.NODE_ENV === 'development',
     }],
     ['nuxt-swiper', {
