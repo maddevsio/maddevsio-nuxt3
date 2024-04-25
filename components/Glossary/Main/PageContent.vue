@@ -75,7 +75,7 @@ watch(searchIsActive, val => {
       />
       <LazyGlossaryUISearchNotFoundResult v-if="isSearching && !wordsBySearch.length" />
       <div
-        v-if="!wordsBySearch.length"
+        v-show="!wordsBySearch.length"
         class="glossary-main-content__container container"
       >
         <GlossaryMainWordsSection

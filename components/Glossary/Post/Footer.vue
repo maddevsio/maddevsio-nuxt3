@@ -6,11 +6,21 @@ const { glossaryPostFooterInstance } = defineProps({
   },
 })
 
-const { authorData, coAuthorData, updatedDate } = glossaryPostFooterInstance
+const {
+  authorData,
+  coAuthorData,
+  updatedDate,
+  tags,
+} = glossaryPostFooterInstance
 </script>
 
 <template>
   <div class="glossary-post-footer">
+    <LazyGlossaryPostUITags
+      v-if="tags.length"
+      :tags="tags"
+      class="glossary-post-footer__tags"
+    />
     <div class="glossary-post-footer__authors">
       <div
         v-if="authorData && Object.keys(authorData).length"
@@ -44,6 +54,10 @@ const { authorData, coAuthorData, updatedDate } = glossaryPostFooterInstance
 <style lang="scss" scoped>
 .glossary-post-footer {
   margin-top: 48px;
+
+  &__tags {
+    margin-bottom: 24px;
+  }
 
   &__authors {
     display: flex;

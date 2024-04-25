@@ -14,37 +14,43 @@ const {
   authorContent,
   showButton,
 } = useAuthorContent(8, 'See other tech terms', props.words)
+
+const { headerHeight } = storeToRefs(useHeaderStore())
 </script>
+
 <template>
   <div
-    v-if="authorContent.length"
     ref="sectionRef"
-    class="author-words"
+    class="tag-words"
+    :style="`scroll-margin-top: ${headerHeight}px`"
   >
-    <LazySharedContentTitle title="Technical terms" />
-    <div class="author-words__section">
-      <LazyGlossaryUICard
-        v-for="word in authorContent.slice(0, countToShow)"
-        :key="word.wordUID"
-        :word="word"
-        color-theme="white"
-      />
-    </div>
-    <div
-      v-if="authorContent.length >= countToShow && showButton"
-      class="author-words__load-more"
-    >
-      <LazyBlogAuthorUILoadMoreButton
-        :button-text="buttonText"
-        @click="showMoreContent"
-      />
+    <div class="container">
+      <LazySharedContentTitle title="Technical terms" />
+      <div class="tag-words__section">
+        <LazyGlossaryUICard
+          v-for="word in authorContent.slice(0, countToShow)"
+          :key="word.wordUID"
+          :word="word"
+          color-theme="white"
+        />
+      </div>
+      <div
+        v-if="authorContent.length >= countToShow && showButton"
+        class="tag-words__load-more"
+      >
+        <LazyBlogAuthorUILoadMoreButton
+          :button-text="buttonText"
+          @click="showMoreContent"
+        />
+      </div>
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
-.author-words {
-  padding-bottom: 128px;
+.tag-words {
   background-color: $bgcolor--white-primary;
+  padding: 57px 0 128px;
 
   &__load-more {
     margin-top: 48px;

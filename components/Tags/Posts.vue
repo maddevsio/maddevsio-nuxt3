@@ -14,14 +14,26 @@ const props = defineProps({
   },
 })
 
-const countToShow = ref(13)
-const showMore = () => {
-  countToShow.value = props.posts.length
-}
+const {
+  countToShow,
+  showMoreContent,
+  buttonText,
+  sectionRef,
+  authorContent,
+  showButton,
+} = useAuthorContent(10, 'See all articles', props.posts)
+
+const { headerHeight } = storeToRefs(useHeaderStore())
+
 </script>
 <template>
-  <div class="tag-posts">
+  <div
+    ref="sectionRef"
+    class="tag-posts"
+    :style="`scroll-margin-top: ${headerHeight}px`"
+  >
     <div class="container">
+      <LazySharedContentTitle title="Blog posts" />
       <div
         class="tag-posts__featured-post"
         :class="[posts.length === 1 ? 'tag-posts__featured-post--mb-0' : '']"
@@ -55,21 +67,22 @@ const showMore = () => {
         />
       </div>
       <div
-        v-if="posts.length > countToShow"
+        v-if="authorContent.length >= countToShow && showButton"
         class="tag-posts__load-more"
       >
         <LazyBlogAuthorUILoadMoreButton
-          button-text="See more"
-          @click="showMore"
+          :button-text="buttonText"
+          @click="showMoreContent"
         />
       </div>
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .tag-posts {
   background-color: $bgcolor--white-primary;
-  padding: 60px 0 71px;
+  padding-bottom: 71px;
 
   &__featured-post {
     margin-bottom: 137px;

@@ -12,6 +12,7 @@ const {
   buttonText,
   sectionRef,
   authorContent,
+  showButton,
 } = useAuthorContent(5, 'See all write-ups', props.authorWriteups)
 </script>
 <template>
@@ -20,14 +21,12 @@ const {
     ref="sectionRef"
     class="author-writeups"
   >
-    <h2 class="author-writeups__title">
-      Write-ups
-    </h2>
+    <LazySharedContentTitle title="Write-ups" />
     <LazyWriteupCards
       :writeups="authorContent.slice(0, countToShow)"
     />
     <div
-      v-if="authorContent.length >= countToShow"
+      v-if="authorContent.length >= countToShow && showButton"
       class="author-writeups__load-more"
     >
       <LazyBlogAuthorUILoadMoreButton
@@ -41,14 +40,6 @@ const {
 .author-writeups {
   padding-bottom: 128px;
   background-color: $bgcolor--white-primary;
-
-  &__title {
-    @include font('Inter', 60px, 700);
-    line-height: 125%;
-    margin-bottom: 48px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid $border-color--black-border-03-opacity;
-  }
 
   &__load-more {
     margin-top: 48px;
@@ -64,19 +55,10 @@ const {
 
   @media screen and (max-width: 768px) {
     padding-bottom: 72px;
-    &__title {
-      font-size: 31px;
-      line-height: 193%;
-      margin-bottom: 32px;
-    }
   }
 
   @media screen and (max-width: 690px) {
     padding-bottom: 48px;
-    &__title {
-      line-height: 116%;
-      margin-bottom: 24px;
-    }
 
     &__load-more {
       margin-top: 32px;

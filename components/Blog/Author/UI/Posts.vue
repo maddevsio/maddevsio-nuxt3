@@ -20,6 +20,7 @@ const {
   sectionRef,
   authorContent,
   findTag,
+  showButton,
 } = useAuthorContent(4, 'See all articles', props.authorPosts)
 </script>
 <template>
@@ -28,9 +29,7 @@ const {
     ref="sectionRef"
     class="author-posts"
   >
-    <h2 class="author-posts__title">
-      Blog posts
-    </h2>
+    <LazySharedContentTitle title="Blog posts" />
     <div
       class="author-posts__featured-post"
       :class="[authorPosts.length === 1 ? 'author-posts__featured-post--mb-0' : '']"
@@ -65,7 +64,7 @@ const {
       />
     </div>
     <div
-      v-if="authorContent.length >= countToShow"
+      v-if="authorContent.length >= countToShow && showButton"
       class="author-posts__load-more"
     >
       <LazyBlogAuthorUILoadMoreButton
@@ -79,14 +78,6 @@ const {
 .author-posts {
   background-color: $bgcolor--white-primary;
   padding-bottom: 128px;
-
-  &__title {
-    @include font('Inter', 60px, 700);
-    line-height: 125%;
-    margin-bottom: 32px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid $border-color--black-border-03-opacity;
-  }
 
   &__featured-post {
     margin-bottom: 48px;
@@ -168,11 +159,6 @@ const {
 
   @media only screen and (max-width: 768px) {
     padding-bottom: 72px;
-    &__title {
-      font-size: 31px;
-      line-height: 193%;
-      margin-bottom: 32px;
-    }
   }
 
   @media screen and (max-width: 690px) {
@@ -184,11 +170,6 @@ const {
 
     :deep(.article-card__cover-wrapper) {
       max-height: unset;
-    }
-
-    &__title {
-      line-height: 116%;
-      margin-bottom: 24px;
     }
 
     &__load-more {
