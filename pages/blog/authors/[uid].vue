@@ -33,13 +33,21 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
+if (authorData.value!.schemaOrgSnippet) {
+  useJsonld(() => authorData.value!.schemaOrgSnippet.map((snippet: any) => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   title: authorData.value?.metaTitle || `${ authorData.value?.name } | Blog`,
   metaTitle: authorData.value?.metaTitle || `${ authorData.value?.name } | Blog`,
   description: authorData.value?.metaDescription || '',
   url: `${ config.public.domain }/blog/authors/${ route.params.uid }`,
-  jsonLd: authorData.value?.schemaOrgSnippet || '',
   image: 'https://maddevs.io/md-blog.png',
   noindex: authorData.value?.noindex,
 }))

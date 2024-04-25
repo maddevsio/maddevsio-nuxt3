@@ -14,30 +14,15 @@ const getID = (text: RichTextField) => prismic.asText(text)
   .replace(/ /g, '-')
   .toLowerCase()
 
-const replaceHtmlEntities = (text: string) => text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-
-const schemaOrg = `
-&lt;script type="application/ld+json"&gt;
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [${ props.questions.map(item => `
-    {
-    "@type": "Question",
-    "name": "${ prismic.asText(item.question) }",
-    "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "${ prismic.asText(item.answer) }"
-      }
-    }
-  `) }
-  ]
-}
-&lt;/script&gt;`
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: `{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [${ props.questions.map(item => `{"@type": "Question","name": "${ prismic.asText(item.question).replace(/"/g, '\\"') }","acceptedAnswer": {"@type": "Answer","text": "${ prismic.asText(item.answer).replace(/"/g, '\\"') }"}}`) }]}`,
+  }],
+})
 </script>
 <template>
   <div>
-    <div v-html="replaceHtmlEntities(schemaOrg)" />
     <LazySharedUIAccordion
       v-for="(faq, faqIndex) in questions"
       :key="`${getID(faq.question)}-${faqIndex}`"

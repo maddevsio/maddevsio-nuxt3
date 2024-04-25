@@ -7,7 +7,7 @@ interface BuildHeadData {
   url: string
   jsonLd?: string | ({ type: string; innerHTML: string; } | null)[] | SchemaOrgSnippet[]
   image?: string
-  metaTitle: string
+  metaTitle?: string
   noindex?: boolean
 }
 
@@ -324,7 +324,7 @@ export const buildHead = ({
   image = 'https://maddevs.io/Open-Graph.png',
   metaTitle,
   noindex = false,
-}: BuildHeadData, scripts = [], links = []) => ({
+}: BuildHeadData, scripts: any[] = [], links: any[] = []) => ({
   title,
   meta: [
     { name: 'description', content: description },

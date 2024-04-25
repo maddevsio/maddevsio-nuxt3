@@ -7,12 +7,20 @@ const {
   openGraphUrl,
 } = await useDigestContentData()
 
+if (schemaOrgSnippet.value) {
+  useJsonld(() => schemaOrgSnippet.value.map((snippet: { type: string, innerHTML: string }) => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: openGraphUrl || '',
   title: digest.metaTitle || '',
   description: digest.metaDescription || '',
-  jsonLd: schemaOrgSnippet.value,
   image: digest?.ogImageUrl,
 }))
 </script>

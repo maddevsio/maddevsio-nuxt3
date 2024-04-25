@@ -30,12 +30,20 @@ if (authorsHome.value?.uid) {
   updateFooterVisible(authorsHome.value.showFooter)
 }
 
+if (authorsHome.value!.schemaOrgSnippet) {
+  useJsonld(() => authorsHome.value!.schemaOrgSnippet!.map((snippet: any) => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: `${ config.public.domain }/authors/`,
   title: authorsHome.value?.metaTitle || '',
   description: authorsHome.value?.metaDescription || '',
-  jsonLd: authorsHome.value!.schemaOrgSnippet!,
   image: authorsHome.value!.ogImage!,
 }))
 </script>

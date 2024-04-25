@@ -43,12 +43,20 @@ if (data.value?.uid) {
   updateEmailSubject(data.value?.emailSubject as string)
 }
 
+if (data.value!.schemaOrgSnippet) {
+  useJsonld(() => data.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: `${ config.public.domain }/`,
   title: data.value?.metaTitle || '',
   description: data.value?.metaDescription || '',
-  jsonLd: data.value!.schemaOrgSnippet!,
   image: data.value!.ogImage!,
 }))
 </script>

@@ -57,12 +57,20 @@ if (error.value) {
 useClearStoresBeforeRouteLeave()
 provide('glossaryService', glossaryService)
 
+if (glossaryPost.value!.glossaryPageData.schemaOrg) {
+  useJsonld(() => glossaryPost.value!.glossaryPageData.schemaOrg!.map(snippet => ({
+    ...JSON.parse(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  })))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: glossaryPost.value?.glossaryPageData.url || '',
   title: glossaryPost.value?.glossaryPageData?.metaTitle || '',
   description: glossaryPost.value?.glossaryPageData?.metaDescription || '',
-  jsonLd: glossaryPost?.value?.glossaryPageData?.schemaOrg || '',
   image: glossaryPost.value?.glossaryPageData?.ogImage,
 }))
 </script>
