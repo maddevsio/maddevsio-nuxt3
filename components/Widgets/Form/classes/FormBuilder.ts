@@ -1,5 +1,11 @@
 import type { FormBuilderReturnProps, IFormBuilder } from '~/components/Widgets/Form/interfaces/IFormBuilder'
-import type { IButton, ICheckbox, IField, IRadioButtonGroup } from '~/components/Widgets/Form/interfaces/formElements'
+import type {
+  IButton,
+  ICheckbox,
+  IField,
+  IRadioButtonGroup,
+  ISelect,
+} from '~/components/Widgets/Form/interfaces/formElements'
 
 export class FormBuilder implements IFormBuilder {
   props: FormBuilderReturnProps
@@ -11,6 +17,7 @@ export class FormBuilder implements IFormBuilder {
       radioButtonGroups: {},
       checkBoxes: {},
       textarea: {},
+      select: {},
     }
   }
 
@@ -54,6 +61,15 @@ export class FormBuilder implements IFormBuilder {
     this.props.textarea = {
       ...this.props.textarea,
       [textarea.objectKeyName]: textarea,
+    }
+
+    return this
+  }
+
+  addSelect(select: ISelect) {
+    this.props.select = {
+      ...this.props.select,
+      [select.objectKeyName]: select,
     }
 
     return this

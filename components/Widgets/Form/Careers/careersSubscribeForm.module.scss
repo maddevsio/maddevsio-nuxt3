@@ -1,0 +1,32 @@
+@import "../UI/styles/styleFormElements.module";
+
+.careers-subscribe-form {
+  * {
+    box-sizing: border-box;
+  }
+
+  &__title {
+    @include font('Inter', 32px, 700);
+    line-height: 130%;
+    color: $text-color--black-oil;
+    margin-bottom: 32px;
+
+    @media screen and (max-width: 620px) {
+      font-size: 20px;
+      margin-bottom: 28px;
+    }
+  }
+
+  &__description, &__privacy-policy, &__input-group {
+    margin-bottom: 20px;
+  }
+
+  &__input-group {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__input {
+    flex: 1;
+  }
+}

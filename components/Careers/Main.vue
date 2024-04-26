@@ -6,6 +6,7 @@
   <div class="careers_white-section">
     <LazyCareersSectionsEmployeesBenefits />
     <LazyCareersSectionsOpenPositions />
+    <LazyCareersSectionsVacanciesSubscription />
     <LazyCareersSectionsCTABanner />
   </div>
   <LazyCareersUIScrollToPositionsLink />

@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-
-interface SelectOption {
-  label: string
-  uid: string
-}
+import type { SelectOption } from '~/interfaces/common/commonInterfaces'
 
 const props = defineProps({
   colorTheme: {
