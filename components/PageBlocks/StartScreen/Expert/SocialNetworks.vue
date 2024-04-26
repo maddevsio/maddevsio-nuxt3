@@ -35,7 +35,7 @@ onUnmounted(() => {
       >
         <a
           :href="`${network.network === 'Email' && showEmail ? 'mailto:' : ''}${network.link.url.replace('mailto:', '')}`"
-          target="_blank"
+          :target="network.network !== 'Email' ? '_blank' : null"
           rel="noopener"
           class="expert-page-header__info-socials-link"
         >

@@ -1,14 +1,14 @@
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import type { SchemaOrgSnippet, WriteupPost } from '~/interfaces/common/commonInterfaces'
 
-export const extractWriteupData = (writeupData: WriteupPost) => {
+export const extractWriteupData = (writeupData: WriteupPost, domain: string) => {
   const ogImageWithoutCrop = writeupData?.data?.og_image?.url?.replace('compress,', '')
   // @ts-ignore
   return {
     uid: writeupData?.uid,
     metaTitle: writeupData?.data?.meta_title,
     metaDescription: writeupData?.data?.meta_description,
-    url: `${ process.env.domain }/writeups/${ writeupData.uid }/`,
+    url: `${ domain }/writeups/${ writeupData.uid }/`,
     ogImage: ogImageWithoutCrop || 'https://maddevsio.s3.eu-west-1.amazonaws.com/images/writeups/webp/write-up-og.webp',
     schemaOrg: extractSchemaOrg(writeupData?.data?.schema_org_snippets as SchemaOrgSnippet[]),
     slices: writeupData?.data?.body,

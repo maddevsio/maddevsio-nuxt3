@@ -19,6 +19,7 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss">
 .skeleton-full-width-card {
   width: 100%;
+  height: 117px;
   margin-bottom: 11px;
   border-radius: 10px;
   &:last-child {

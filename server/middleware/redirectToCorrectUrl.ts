@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { MAD_MARKETING_BACKEND_API } from '~/server/config/envs'
+import { MAD_BACKEND_TOKEN, MAD_MARKETING_BACKEND_API } from '~/server/config/envs'
 import { authConfig } from '~/server/config'
 
 export default defineEventHandler(async event => {
@@ -23,7 +23,7 @@ export default defineEventHandler(async event => {
       await sendRedirect(event, 'https://maddevs.io/', 301)
     } else {
       try {
-        const { data } = await axios.get(`${ MAD_MARKETING_BACKEND_API }redirect?from_url=${ url.pathname }`, authConfig)
+        const { data } = await axios.get(`${ MAD_MARKETING_BACKEND_API }redirect?from_url=${ url.pathname.slice(0, -1) }`, authConfig)
         // eslint-disable-next-line
         console.log(`Redirect from backend\nTrying to redirect from ${data.to_url}`)
         await sendRedirect(event, data.to_url, data.status_code)

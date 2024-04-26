@@ -46,8 +46,6 @@ if (data.value && data.value.uid) {
   updateEmailSubject(data.value?.emailSubject as string)
 }
 
-console.log(data.value!.schemaOrgSnippet)
-
 if (data.value!.schemaOrgSnippet) {
   useJsonld(() => data.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
     JSON.stringify(snippet!.innerHTML

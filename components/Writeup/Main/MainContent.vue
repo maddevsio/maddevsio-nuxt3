@@ -8,6 +8,8 @@ const route = useRoute()
 const router = useRouter()
 const { activeTag } = storeToRefs(useDynamicTagCloudStore())
 const config = useRuntimeConfig()
+const loadingComponent = ref(true)
+
 const {
   writeups,
   totalPages,
@@ -28,6 +30,10 @@ watch(() => route.query, async () => {
     await getWriteups(1, [activeTag.value.writeUps])
   }
 }, { immediate: true })
+
+onMounted(() => {
+  loadingComponent.value = false
+})
 </script>
 
 <template>
@@ -41,18 +47,20 @@ watch(() => route.query, async () => {
       <div
         class="writeup-list-slice__content"
       >
-        <LazyWriteupCards
-          v-if="writeups.length"
-          ref="writeupListRef"
-          :writeups="writeups"
-          color-theme="black"
-          :current-page="currentPage"
-        />
+        <ClientOnly>
+          <LazyWriteupCards
+            v-if="writeups.length"
+            ref="writeupListRef"
+            :writeups="writeups"
+            color-theme="black"
+            :current-page="currentPage"
+          />
+        </ClientOnly>
         <div
-          v-if="!writeups.length"
+          v-if="loadingComponent"
           class="writeup-list-slice__skeletons"
         >
-          <LazySharedSkeletonsWriteupFullCard
+          <SharedSkeletonsWriteupFullCard
             v-for="skeleton in 5"
             :key="`writeup-list-item-skeleton-${skeleton}`"
             color-theme="black"
