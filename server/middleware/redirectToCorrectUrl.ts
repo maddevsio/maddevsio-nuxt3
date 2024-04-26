@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { MAD_BACKEND_TOKEN, MAD_MARKETING_BACKEND_API } from '~/server/config/envs'
+import { MAD_MARKETING_BACKEND_API } from '~/server/config/envs'
 import { authConfig } from '~/server/config'
 
 export default defineEventHandler(async event => {
