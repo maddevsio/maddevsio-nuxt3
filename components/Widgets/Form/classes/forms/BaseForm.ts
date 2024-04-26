@@ -40,6 +40,7 @@ export class BaseForm implements IBaseForm {
   radioButtonGroups?: FormBuilderReturnProps['radioButtonGroups']
   checkBoxes?: FormBuilderReturnProps['checkBoxes']
   textarea?: FormBuilderReturnProps['textarea']
+  selects?: FormBuilderReturnProps['selects']
   formSends: Ref<boolean> = ref(false)
   config: RuntimeConfig
 
@@ -140,6 +141,7 @@ export class BaseForm implements IBaseForm {
       ...(this.fields ? Object.values(this.fields) : []),
       ...(this.radioButtonGroups ? Object.values(this.radioButtonGroups) : []),
       ...(this.checkBoxes ? Object.values(this.checkBoxes) : []),
+      ...(this.selects ? Object.values(this.selects) : []),
       ...(this.textarea ? Object.values(this.textarea) : []),
     ]
   }
@@ -208,6 +210,14 @@ export class BaseForm implements IBaseForm {
           ...acc,
           [element.objectKeyName]: element?.checkboxValue.value ? 'Yes' : 'No',
           agreeToGetMadDevsDiscountOffers: element?.checkboxValue.value ? 'Yes' : 'No',
+        }
+        return acc
+      }
+
+      if (element?.selectedOption && !acc[element.objectKeyName]) {
+        acc = {
+          ...acc,
+          [element.objectKeyName]: element?.selectedOption,
         }
         return acc
       }

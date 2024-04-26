@@ -4,6 +4,7 @@ import { Checkbox } from '~/components/Widgets/Form/classes/formElements/Checkbo
 import { Button } from '~/components/Widgets/Form/classes/formElements/Button'
 import { RadioButtonGroup } from '~/components/Widgets/Form/classes/formElements/RadioButtonGroup'
 import { RadioButton } from '~/components/Widgets/Form/classes/formElements/RadioButton'
+import { Select } from '~/components/Widgets/Form/classes/formElements/Select'
 import { ContactMeForm } from '~/components/Widgets/Form/classes/forms/ContactMeForm'
 import { ServiceForm } from '~/components/Widgets/Form/classes/forms/ServiceForm'
 import { EbookForm } from '~/components/Widgets/Form/classes/forms/EbookForm'
@@ -483,6 +484,16 @@ export class FormMaker {
             placeholder: 'Email',
             validationType: 'email',
             required: true,
+          }),
+        ])
+        .addSelect([
+          new Select({
+            objectKeyName: 'vacancyForSubscription',
+            elementId: 'vacancyForSubscription',
+            label: 'Choose a position',
+            required: true,
+            colorTheme: 'white',
+            options: this.options.selectOptions,
           }),
         ])
         .addCheckBoxes([

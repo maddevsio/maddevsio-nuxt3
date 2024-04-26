@@ -57,6 +57,7 @@ export interface IBaseForm {
   radioButtonGroups?: FormBuilderReturnProps['radioButtonGroups']
   checkBoxes?: FormBuilderReturnProps['checkBoxes']
   textarea?: FormBuilderReturnProps['textarea']
+  selects?: FormBuilderReturnProps['selects']
   formSends: Ref<boolean>
   onError(err: string): void
   onExpired(): void

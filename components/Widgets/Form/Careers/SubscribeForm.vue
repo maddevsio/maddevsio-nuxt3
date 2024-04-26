@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import type { PropType } from 'vue'
+import type { SelectOption } from '~/interfaces/common/commonInterfaces'
+import type { ICareersSubscribeForm } from '~/components/Widgets/Form/interfaces/forms/ICareersSubscribeForm'
+
 const props = defineProps({
   formUid: {
     type: [String, Number],
@@ -15,6 +19,11 @@ const props = defineProps({
     type: String,
     default: 'Leave your contact information and select a position from the list. We will send you a message as soon as we receive it.',
   },
+
+  selectOptions: {
+    type: Array as PropType<SelectOption[]>,
+    default: () => [],
+  },
 })
 
 const { form, styles } = useForm({
@@ -23,6 +32,7 @@ const { form, styles } = useForm({
     formUid: props.formUid,
     formTitle: props.formTitle,
     formDescription: props.formDescription,
+    selectOptions: props.selectOptions,
   },
 })
 
@@ -30,8 +40,9 @@ const {
   formID,
   fields,
   buttons,
+  selects,
   checkBoxes,
-} = form
+} = form as ICareersSubscribeForm
 </script>
 
 <template>
@@ -60,6 +71,11 @@ const {
         :class="styles['careers-subscribe-form__input']"
       />
     </div>
+    <LazyWidgetsFormUISelectField
+      v-if="selects && selects.vacancyForSubscription"
+      :select-field-instance="selects.vacancyForSubscription"
+      :class="styles['careers-subscribe-form__select']"
+    />
     <LazyWidgetsFormUIPrivacyPolicyNotice
       :class="styles['careers-subscribe-form__privacy-policy']"
     />

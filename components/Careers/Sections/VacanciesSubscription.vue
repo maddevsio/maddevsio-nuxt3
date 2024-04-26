@@ -1,12 +1,16 @@
 <script setup lang="ts">
-
+const vacancyCategories = inject('vacancyCategories') as {title: string; tags: string[]}[]
+const selectOptions = computed(() => vacancyCategories.map(vacancy => ({
+  label: vacancy.title,
+  uid: '',
+})))
 </script>
 
 <template>
   <div class="vacancies-subscription">
     <div class="container">
       <div class="vacancies-subscription__wrapper">
-        <LazyWidgetsFormCareersSubscribeForm form-uid="careers-subscribe" />
+        <LazyWidgetsFormCareersSubscribeForm form-uid="careers-subscribe" :select-options="selectOptions" />
       </div>
     </div>
   </div>

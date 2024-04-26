@@ -22,7 +22,7 @@ export interface FormBuilderReturnProps {
   textarea: {
     [key: string]: IField
   }
-  select: {
+  selects: {
     [key: string]: ISelect
   }
 }
@@ -34,6 +34,6 @@ export interface IFormBuilder {
   addRadioButtonGroup(radioButtonGroup?: IRadioButtonGroup): IFormBuilder
   addCheckBoxes(checkBoxes?: ICheckbox[]): IFormBuilder
   addTextarea(textarea?: IField): IFormBuilder
-  addSelect(select?: ISelect): IFormBuilder
+  addSelect(selects?: ISelect[]): IFormBuilder
   build(): FormBuilderReturnProps
 }

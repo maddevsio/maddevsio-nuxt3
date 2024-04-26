@@ -17,7 +17,7 @@ export class FormBuilder implements IFormBuilder {
       radioButtonGroups: {},
       checkBoxes: {},
       textarea: {},
-      select: {},
+      selects: {},
     }
   }
 
@@ -66,11 +66,13 @@ export class FormBuilder implements IFormBuilder {
     return this
   }
 
-  addSelect(select: ISelect) {
-    this.props.select = {
-      ...this.props.select,
-      [select.objectKeyName]: select,
-    }
+  addSelect(selects: ISelect[] = []) {
+    selects.forEach(select => {
+      this.props.selects = {
+        ...this.props.selects,
+        [select.objectKeyName]: select,
+      }
+    })
 
     return this
   }

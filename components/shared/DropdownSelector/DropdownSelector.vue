@@ -17,6 +17,11 @@ const props = defineProps({
     type: String,
     default: 'Explore the chapters',
   },
+
+  orderedList: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const emit = defineEmits(['option:selected'])
@@ -84,7 +89,7 @@ onUnmounted(() => {
           ]"
           @click="selectOption(option)"
         >
-          <span class="dropdown-selector__option--number">{{ index + 1 }}.</span> {{ option.label }}
+          <span v-if="orderedList" class="dropdown-selector__option--number">{{ index + 1 }}.</span> {{ option.label }}
         </li>
       </ul>
     </LazySharedUITransitionFade>
