@@ -63,6 +63,7 @@ useHead(buildHead({
   image: data.value!.ogImage!,
 }))
 </script>
+
 <template>
   <div>
     <SliceZone
