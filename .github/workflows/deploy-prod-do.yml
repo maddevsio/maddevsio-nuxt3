@@ -49,7 +49,7 @@ jobs:
           NITRO_PRESET=${{ secrets.NITRO_PRESET }}
 #        cache-from: |
 #          maddevsio/maddevsio:prod
-#        tags: maddevsio/maddevsio:prod,maddevsio/maddevsio:${{ env.SHORT_SHA }}
+        tags: maddevsio/maddevsio:prod,maddevsio/maddevsio:${{ env.SHORT_SHA }}
 
     - name: DigitalOcean App Platform deployment
       uses: digitalocean/app_action@v1.1.4 # replace this with current version from https://github.com/digitalocean/app_action/releases
