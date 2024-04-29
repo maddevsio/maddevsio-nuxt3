@@ -50,6 +50,7 @@ jobs:
 #        cache-from: |
 #          maddevsio/maddevsio:prod
 #        tags: maddevsio/maddevsio:prod,maddevsio/maddevsio:${{ env.SHORT_SHA }}
+        no-cache: true
         tags: maddevsio/maddevsio:prod
 
     - name: DigitalOcean App Platform deployment
