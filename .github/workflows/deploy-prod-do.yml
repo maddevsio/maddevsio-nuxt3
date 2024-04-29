@@ -47,8 +47,8 @@ jobs:
           MAD_MARKETING_BACKEND_API=${{ secrets.PROD_MAD_MARKETING_BACKEND_API }}
           NUXT_PUBLIC_SITE_URL=${{ secrets.PROD_NUXT_PUBLIC_SITE_URL }}
           NITRO_PRESET=${{ secrets.NITRO_PRESET }}
-        cache-from: |
-          maddevsio/maddevsio:prod
+#        cache-from: |
+#          maddevsio/maddevsio:prod
         tags: maddevsio/maddevsio:prod,maddevsio/maddevsio:${{ env.SHORT_SHA }}
 
     - name: DigitalOcean App Platform deployment

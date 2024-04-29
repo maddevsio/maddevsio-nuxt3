@@ -24,13 +24,10 @@ const gradient = setSliceGradient(slice.primary.gradientColor)
 const title = slice.primary.title
 const subtitle = slice.primary.subtitle
 const btnText = slice.primary.btnText || 'Let`s talk'
-const isShowModal = ref(false)
 
 const modalContactMeRef = ref<{ show(): void } | null>(null)
 const { emailSubject } = storeToRefs(useEmailSubjectStore())
-const showModal = async () => {
-  isShowModal.value = true
-  await delay(100)
+const showModal = () => {
   if (!modalContactMeRef?.value?.show) { return }
   modalContactMeRef?.value.show()
   contactMeClickEvent.send('Start Screen Lets talk button')
@@ -57,14 +54,11 @@ const showModal = async () => {
   </PageBlocksStartScreenDefaultTemplate>
   <LazyClientOnly>
     <Teleport to="body">
-      <NuxtLazyHydrate :on-interaction="isShowModal">
-        <LazyWidgetsModalContactMe
-          v-if="isShowModal"
-          ref="modalContactMeRef"
-          :location="'\'Let`s talk\' button, start screen component'"
-          :email-subject="emailSubject"
-        />
-      </NuxtLazyHydrate>
+      <LazyWidgetsModalContactMe
+        ref="modalContactMeRef"
+        :location="'\'Let`s talk\' button, start screen component'"
+        :email-subject="emailSubject"
+      />
     </Teleport>
   </LazyClientOnly>
 </template>

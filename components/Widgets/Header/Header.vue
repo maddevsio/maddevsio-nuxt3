@@ -19,7 +19,6 @@ const {
   isMobile,
   isActiveMobileMenu,
   toggleMobileMenu,
-  isShowModal,
 } = header
 
 const route = useRoute()
@@ -96,14 +95,11 @@ onUnmounted(() => {
       </div>
       <ClientOnly>
         <Teleport to="body">
-          <NuxtLazyHydrate :on-interaction="isShowModal">
-            <LazyWidgetsModalContactMe
-              v-if="isShowModal"
-              ref="modalContactMeRef"
-              form-uid="header-form"
-              location="Header"
-            />
-          </NuxtLazyHydrate>
+          <LazyWidgetsModalContactMe
+            ref="modalContactMeRef"
+            form-uid="header-form"
+            location="Header"
+          />
         </Teleport>
       </ClientOnly>
     </header>

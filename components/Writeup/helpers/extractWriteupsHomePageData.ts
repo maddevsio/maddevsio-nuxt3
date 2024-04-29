@@ -2,11 +2,11 @@ import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import type { WriteupDocument } from '~/prismicio-types'
 import type { SchemaOrgSnippet } from '~/interfaces/common/commonInterfaces'
 
-export const extractWriteupsHomePageData = (pageData: WriteupDocument) => {
+export const extractWriteupsHomePageData = (pageData: WriteupDocument, domain: string) => {
   const ogImageWithoutCrop = pageData?.data?.og_image?.url?.replace('compress,', '')
   return {
     uid: pageData?.uid,
-    url: `${ process.env.domain }/writeups/`,
+    url: `${ domain }/writeups/`,
     metaTitle: pageData?.data?.meta_title,
     metaDescription: pageData?.data?.meta_description,
     ogImage: ogImageWithoutCrop || 'https://maddevsio.s3.eu-west-1.amazonaws.com/images/writeups/webp/write-up-og.webp',

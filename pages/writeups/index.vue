@@ -14,7 +14,7 @@ const writeupService = new Writeup(config.public.ffEnvironment)
 const { data: writeupData, error } = await useAsyncData('writeupData', async () => {
   try {
     const writeupPageData = await writeupService.getWriteupPage(prismic, 'writeups')
-    const pageContent = extractWriteupsHomePageData(writeupPageData)
+    const pageContent = extractWriteupsHomePageData(writeupPageData, config.public.domain)
 
     const allWriteups = await writeupService.loadWriteupPagesData(prismic, 5, route) as Writeups
 

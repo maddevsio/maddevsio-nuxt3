@@ -13,7 +13,7 @@ export interface EmbedBlogProps {
 }
 
 export interface IEmbedBlog {
-  item: Embed
+  item: Embed | null
   embedImage: {
     url: string
     width: number

@@ -1,10 +1,7 @@
 <script setup lang="ts">
 const modalContactMeRef = ref<{ show(): void }>()
-const isShowModal = ref(false)
 
-const show = async () => {
-  isShowModal.value = true
-  await delay(100)
+const show = () => {
   if (!modalContactMeRef.value?.show) { return }
   modalContactMeRef.value?.show()
 }
@@ -27,14 +24,11 @@ const { $getMediaFromS3 } = useMediaFromS3()
     </LazySharedUIBanner>
     <ClientOnly>
       <Teleport to="body">
-        <NuxtLazyHydrate :on-interaction="isShowModal">
-          <LazyWidgetsModalContactMe
-            v-if="isShowModal"
-            ref="modalContactMeRef"
-            :location="'\'Estimate your project\' button, delivery models page'"
-            form-uid="delivery-models-banner"
-          />
-        </NuxtLazyHydrate>
+        <LazyWidgetsModalContactMe
+          ref="modalContactMeRef"
+          :location="'\'Estimate your project\' button, delivery models page'"
+          form-uid="delivery-models-banner"
+        />
       </Teleport>
     </ClientOnly>
   </div>
