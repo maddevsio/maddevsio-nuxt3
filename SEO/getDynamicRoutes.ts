@@ -187,6 +187,7 @@ const getCustomPageUrls = async (ref: string) => {
 
 export const getPrismicRoutes = async () => {
   const ref = await getPrismicRef()
+  console.log('PRISMIC MASTER REF: ', ref)
   const structuredRoutes = await Promise.all([
     getMainUrls(ref),
     getCustomPageUrls(ref),
