@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const progressBar = ref<HTMLElement | null>(null)
-// const { headerHeight } = storeToRefs(useHeaderStore()) TODO: return when header plate is back
+const { headerHeight } = storeToRefs(useHeaderStore())
+const indentFromHeader = ref(66)
 const calcProgress = () => {
   const winScroll = document.body.scrollTop || document.documentElement.scrollTop
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
@@ -11,18 +12,23 @@ const calcProgress = () => {
 }
 
 onMounted(() => {
+  indentFromHeader.value = headerHeight.value
   window.addEventListener('scroll', calcProgress)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', calcProgress)
 })
+
+watch(headerHeight, newVal => {
+  indentFromHeader.value = newVal
+})
 </script>
 <template>
   <div
     ref="progressBar"
     class="progress-bar"
-    :style="{ 'top': `66px` }"
+    :style="{ 'top': `${indentFromHeader}px` }"
   />
 </template>
 <style lang="scss" scoped>
