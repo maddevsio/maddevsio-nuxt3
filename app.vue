@@ -62,12 +62,12 @@ onUnmounted(() => {
       </main>
     </DelayHydration>
     <div
-      v-if="!footerLoaded"
+      v-if="!footerLoaded && !showFooter"
       ref="footerRef"
       class="intersecting-element"
     >
       <LazySharedLoadersSpinnerLoader
-        v-if="!footerLoaded"
+        v-if="!footerLoaded && !showFooter"
       />
     </div>
     <ClientOnly>

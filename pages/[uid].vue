@@ -65,6 +65,12 @@ useHead(buildHead({
 </script>
 <template>
   <div>
+    <h1
+      v-if="data && data.uid === 'contact-us'"
+      class="contacts-hidden-title"
+    >
+      Mad Devs Contact Information
+    </h1>
     <SliceZone
       v-if="data"
       :slices="data.slices"
@@ -72,3 +78,11 @@ useHead(buildHead({
     />
   </div>
 </template>
+<style lang="scss" scoped>
+.contacts-hidden-title {
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+</style>
