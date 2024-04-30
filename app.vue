@@ -56,16 +56,18 @@ onUnmounted(() => {
       :height="2"
     />
     <WidgetsHeader />
-    <main class="main-section">
-      <NuxtPage />
-    </main>
+    <DelayHydration>
+      <main class="main-section">
+        <NuxtPage />
+      </main>
+    </DelayHydration>
     <div
-      v-if="!footerLoaded"
+      v-if="!footerLoaded && !showFooter"
       ref="footerRef"
       class="intersecting-element"
     >
       <LazySharedLoadersSpinnerLoader
-        v-if="!footerLoaded"
+        v-if="!footerLoaded && !showFooter"
       />
     </div>
     <ClientOnly>

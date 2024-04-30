@@ -34,6 +34,7 @@ export default defineNuxtPlugin(nuxtApp => {
       'The request is not triggered by a user activation.',
       // Video error
       'AbortError: The play() request was interrupted by a call to pause().',
+      'undefined is not an object (evaluating \'r["@context"].toLowerCase\')',
     ],
     denyUrls: [
       // Prismic

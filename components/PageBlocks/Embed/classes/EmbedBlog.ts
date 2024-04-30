@@ -3,7 +3,7 @@ import type { Ref } from 'vue'
 import type { Embed, EmbedBlogProps, IEmbedBlog } from '~/components/PageBlocks/Embed/interfaces/IEmbedBlog'
 
 export class EmbedBlog implements IEmbedBlog {
-  item: Embed
+  item: Embed | null
 
   embedImage: {
     url: string
@@ -20,9 +20,9 @@ export class EmbedBlog implements IEmbedBlog {
   }
 
   constructor(props: EmbedBlogProps) {
-    this.item = props.items[0] || null
+    this.item = Object.keys(props.items[0].embed).length ? props.items[0] : null
     this.embedImage = {
-      url: `${ props.items[0]?.embed?.thumbnail_url }?w=400&h=218`,
+      url: !props.items[0].embed?.embed_url?.includes('sir-john-monash-centre') ? `${ props.items[0]?.embed?.thumbnail_url }?w=400&h=218` : 'https://images.prismic.io/superpupertest/6b7fea0c-453b-4259-8b16-44d24b78076f_sjmc-case.png?w=400&h218',
       width: 200,
       height: 109,
     }
@@ -58,47 +58,51 @@ export class EmbedBlog implements IEmbedBlog {
   }
 
   setRawEmbed() {
-    const {
-      embed: {
-        title: rawTitle,
-        html: rawHtml,
-      },
-      // @ts-ignore
-      embedTitle,
-      // @ts-ignore
-      embedDescription,
-    } = this.item
+    if (this.item) {
+      const {
+        embed: {
+          title: rawTitle,
+          html: rawHtml,
+        },
+        // @ts-ignore
+        embedTitle,
+        // @ts-ignore
+        embedDescription,
+      } = this.item
 
-    const matchDescription = rawHtml!.match('<p>(.*?)</p>')
-    const description = matchDescription ? matchDescription[1] || '' : ''
+      const matchDescription = rawHtml!.match('<p>(.*?)</p>')
+      const description = matchDescription ? matchDescription[1] || '' : ''
 
-    const html = `
+      const html = `
         <div class="embed__title">${ embedTitle || rawTitle!.split(' | ')[0] }</div>
         <p class="embed__description">${ embedDescription || description }</p>
       `
 
-    // @ts-ignore
-    this.embedFieldData.value = {
-      ...this.item.embed,
-      html,
+      // @ts-ignore
+      this.embedFieldData.value = {
+        ...this.item.embed,
+        html,
+      }
     }
   }
 
   setEmbedWithVideo() {
-    const {
-      embed: {
-        html: rawHtml,
-      },
-    } = this.item
+    if (this.item) {
+      const {
+        embed: {
+          html: rawHtml,
+        },
+      } = this.item
 
-    const html = rawHtml!
-      .replace(/height="[0-9]*"/, 'height="500"')
-      .replace(/width="[0-9]*"/, 'width="100%"')
+      const html = rawHtml!
+        .replace(/height="[0-9]*"/, 'height="500"')
+        .replace(/width="[0-9]*"/, 'width="100%"')
 
-    // @ts-ignore
-    this.embedFieldData.value = {
-      ...this.item?.embed,
-      html,
+      // @ts-ignore
+      this.embedFieldData.value = {
+        ...this.item?.embed,
+        html,
+      }
     }
   }
 }

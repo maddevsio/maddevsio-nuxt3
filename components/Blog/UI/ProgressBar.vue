@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const progressBar = ref<HTMLElement | null>(null)
-const { headerHeight } = storeToRefs(useHeaderStore())
+// const { headerHeight } = storeToRefs(useHeaderStore()) TODO: return when header plate is back
 const calcProgress = () => {
   const winScroll = document.body.scrollTop || document.documentElement.scrollTop
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
@@ -22,7 +22,7 @@ onUnmounted(() => {
   <div
     ref="progressBar"
     class="progress-bar"
-    :style="{ 'top': `${headerHeight}px` }"
+    :style="{ 'top': `66px` }"
   />
 </template>
 <style lang="scss" scoped>

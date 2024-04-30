@@ -49,7 +49,7 @@ const {
             provider="prismic"
             loading="lazy"
             :src="image.url"
-            :alt="image.alt"
+            :alt="image.alt || 'Image'"
             class="card-with-image__image"
             :width="image.dimensions!.width"
             :height="image.dimensions!.height"

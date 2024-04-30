@@ -21,7 +21,7 @@ const {
   formButtonText,
   backgroundColorClass,
 } = new WorkPrinciplesWithFormDefault(props.slice)
-const { headerHeight } = storeToRefs(useHeaderStore())
+// const { headerHeight } = storeToRefs(useHeaderStore()) TODO: return when header plate is back
 </script>
 
 <template>
@@ -48,7 +48,7 @@ const { headerHeight } = storeToRefs(useHeaderStore())
         class="work-principles-with-form__form"
         :form-title="formTitle"
         :form-button-text="formButtonText"
-        :style="`scroll-margin-top: ${headerHeight}px`"
+        :style="`scroll-margin-top: 66px`"
       />
     </div>
   </div>

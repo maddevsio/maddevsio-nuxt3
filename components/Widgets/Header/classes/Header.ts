@@ -11,7 +11,6 @@ export class Header implements IHeader {
   modalContactMeRef: Ref<{ show(): void } | null>
   headerRef: Ref<HTMLElement | null>
   menu: IHeaderMenu<IHeaderMenuItem[]>
-  isShowModal: Ref<boolean>
 
   mobileSize = 1200
   headerTransparent = ref(true)
@@ -27,7 +26,6 @@ export class Header implements IHeader {
     this.logoTextIsActive = computed(() => (this.showLogoText.value &&
       !this.menu.activeSubNavigation.value && this.headerTransparent.value))
     this.modalContactMeRef = ref(null)
-    this.isShowModal = ref(false)
 
     this.getHeaderHeight = this.getHeaderHeight.bind(this)
     this.setStylesForHeader = this.setStylesForHeader.bind(this)
@@ -89,9 +87,7 @@ export class Header implements IHeader {
     }
   }
 
-  async showModal() {
-    this.isShowModal.value = true
-    await delay(100)
+  showModal() {
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef.value.show()
     contactMeClickEvent.send('Header')

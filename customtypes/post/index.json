@@ -62,6 +62,15 @@
           "label": "Post With Form"
         }
       },
+      "released" : {
+        "type" : "Boolean",
+        "config" : {
+          "placeholder_false" : "Staging",
+          "placeholder_true" : "Production",
+          "default_value" : true,
+          "label" : "Available at"
+        }
+      },
       "featured_image": {
         "type": "Image",
         "config": {
