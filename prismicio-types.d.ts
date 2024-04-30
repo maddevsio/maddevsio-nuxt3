@@ -1383,24 +1383,16 @@ type CustomPageDocumentDataBodySlice =
 	| SpacerSliceSlice
 	| ButtonSliceSlice
 	| CustomerLogoSliceSlice
-	| CreateProjectsSliceSlice
-	| CardGridSliceSlice
 	| KeyMetricsSliceSlice
-	| TechnologiesSliceSlice
 	| CustomerTestimonialsSlice
 	| CustomerRatesSliceSlice
-	| ProjectStartSliceSlice
 	| StartScreenSlice
 	| TextSliceSlice
 	| TeamCardsSlice
 	| ContactsSliceSlice
-	| TechnologiesAndToolsSlice
-	| SingleImageSlice
-	| ProgressSliceSlice
 	| GridLottieSliceSlice
 	| PostsSectionSliceSlice
 	| ImageSliceSlice
-	| DescriptionSliceWithIconSlice
 	| CaseListSliceSlice
 	| BenefitSliceSlice
 	| NavLinkSliceSlice
@@ -1413,7 +1405,6 @@ type CustomPageDocumentDataBodySlice =
 	| CardWithImageSliceSlice
 	| CardsWithIconSlice
 	| FormSliceSlice
-	| EbookPageCardsSliceSlice
 	| EbooksWithFilterSliceSlice
 	| AuthorsListSliceSlice
 	| AccordionSliceSlice
@@ -1424,7 +1415,6 @@ type CustomPageDocumentDataBodySlice =
 	| AchievementsSliceSlice
 	| TableSliceSlice
 	| QuoteSliceSlice
-	| BulletSliceSlice
 	| HorizontalToCSlice
 	| TitleAndDescriptionSlice
 	| TabsSliceSlice
@@ -8964,6 +8954,152 @@ type CustomersSliceSliceVariation = CustomersSliceSliceDefaultSlice | CustomersS
 export type CustomersSliceSlice = prismic.SharedSlice<'customers_slice', CustomersSliceSliceVariation>
 
 /**
+ * Primary content in *DigestPostCard → Primary*
+ */
+export interface DigestPostCardSliceDefaultSlicePrimary {
+	/**
+	 * Blog post field in *DigestPostCard → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: digest_post_card.primary.post
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	post: prismic.ContentRelationshipField<'post' | 'customer_university'>
+
+	/**
+	 * description field in *DigestPostCard → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: digest_post_card.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField
+}
+
+/**
+ * Default slice variation for DigestPostCard Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: DigestPostCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DigestPostCardSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<DigestPostCardSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Slice variation for *DigestPostCard*
+ */
+type DigestPostCardSliceVariation = DigestPostCardSliceDefaultSlice
+
+/**
+ * DigestPostCard Shared Slice
+ *
+ * - **API ID**: `digest_post_card`
+ * - **Description**: DigestPostCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DigestPostCardSlice = prismic.SharedSlice<'digest_post_card', DigestPostCardSliceVariation>
+
+/**
+ * Primary content in *DigestProjectCard → Primary*
+ */
+export interface DigestProjectCardSliceDefaultSlicePrimary {
+	/**
+	 * Image field in *DigestProjectCard → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: digest_project_card.primary.image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Description field in *DigestProjectCard → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: digest_project_card.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField
+
+	/**
+	 * Link is external? field in *DigestProjectCard → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: digest_project_card.primary.external
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	external: prismic.BooleanField
+
+	/**
+	 * Button text field in *DigestProjectCard → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: digest_project_card.primary.buttonText
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	buttonText: prismic.KeyTextField
+
+	/**
+	 * Url to page field in *DigestProjectCard → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: If url internal should be: "/blog/"
+	 * - **API ID Path**: digest_project_card.primary.url
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	url: prismic.KeyTextField
+
+	/**
+	 * Show Border Bottom field in *DigestProjectCard → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: digest_project_card.primary.showBorderBottom
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	showBorderBottom: prismic.BooleanField
+}
+
+/**
+ * Default slice variation for DigestProjectCard Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: DigestProjectCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DigestProjectCardSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<DigestProjectCardSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Slice variation for *DigestProjectCard*
+ */
+type DigestProjectCardSliceVariation = DigestProjectCardSliceDefaultSlice
+
+/**
+ * DigestProjectCard Shared Slice
+ *
+ * - **API ID**: `digest_project_card`
+ * - **Description**: DigestProjectCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DigestProjectCardSlice = prismic.SharedSlice<'digest_project_card', DigestProjectCardSliceVariation>
+
+/**
  * Primary content in *DividerSlice → Primary*
  */
 export interface DividerSliceSliceDefaultSlicePrimary {
@@ -9015,6 +9151,36 @@ type DividerSliceSliceVariation = DividerSliceSliceDefaultSlice
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type DividerSliceSlice = prismic.SharedSlice<'divider_slice', DividerSliceSliceVariation>
+
+/**
+ * Default slice variation for EbooksWithFilterSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: EbooksWithFilterSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EbooksWithFilterSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Record<string, never>,
+	never
+>
+
+/**
+ * Slice variation for *EbooksWithFilterSlice*
+ */
+type EbooksWithFilterSliceSliceVariation = EbooksWithFilterSliceSliceDefaultSlice
+
+/**
+ * EbooksWithFilterSlice Shared Slice
+ *
+ * - **API ID**: `ebooks_with_filter_slice`
+ * - **Description**: EbooksWithFilterSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EbooksWithFilterSliceSlice = prismic.SharedSlice<
+	'ebooks_with_filter_slice',
+	EbooksWithFilterSliceSliceVariation
+>
 
 /**
  * Primary content in *EmbedSlice → Items*
@@ -10872,6 +11038,64 @@ type KeyMetricsSliceSliceVariation =
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type KeyMetricsSliceSlice = prismic.SharedSlice<'key_metrics_slice', KeyMetricsSliceSliceVariation>
+
+/**
+ * Primary content in *KeyTakeawaysSlice → Primary*
+ */
+export interface KeyTakeawaysSliceSliceDefaultSlicePrimary {
+	/**
+	 * Color Theme field in *KeyTakeawaysSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: white
+	 * - **API ID Path**: key_takeaways_slice.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'white' | 'black', 'filled'>
+}
+
+/**
+ * Primary content in *KeyTakeawaysSlice → Items*
+ */
+export interface KeyTakeawaysSliceSliceDefaultSliceItem {
+	/**
+	 * Point Text field in *KeyTakeawaysSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: key_takeaways_slice.items[].text
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	text: prismic.KeyTextField
+}
+
+/**
+ * Default slice variation for KeyTakeawaysSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: KeyTakeawaysSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeyTakeawaysSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<KeyTakeawaysSliceSliceDefaultSlicePrimary>,
+	Simplify<KeyTakeawaysSliceSliceDefaultSliceItem>
+>
+
+/**
+ * Slice variation for *KeyTakeawaysSlice*
+ */
+type KeyTakeawaysSliceSliceVariation = KeyTakeawaysSliceSliceDefaultSlice
+
+/**
+ * KeyTakeawaysSlice Shared Slice
+ *
+ * - **API ID**: `key_takeaways_slice`
+ * - **Description**: KeyTakeawaysSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeyTakeawaysSliceSlice = prismic.SharedSlice<'key_takeaways_slice', KeyTakeawaysSliceSliceVariation>
 
 /**
  * Primary content in *LogoSlice → Primary*
@@ -13050,6 +13274,96 @@ type StartScreenSliceVariation =
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type StartScreenSlice = prismic.SharedSlice<'start_screen', StartScreenSliceVariation>
+
+/**
+ * Primary content in *SubscribeFormSlice → Primary*
+ */
+export interface SubscribeFormSliceSliceDefaultSlicePrimary {
+	/**
+	 * Background Color field in *SubscribeFormSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Please choice background color
+	 * - **API ID Path**: subscribe_form_slice.primary.backgroundColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	backgroundColor: prismic.SelectField<'white' | 'black'>
+}
+
+/**
+ * Default slice variation for SubscribeFormSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: SubscribeFormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubscribeFormSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<SubscribeFormSliceSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Primary content in *SubscribeFormSlice → Primary*
+ */
+export interface SubscribeFormSliceSliceSubscribeFormDigestPrimary {
+	/**
+	 * Background Color field in *SubscribeFormSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Please choice background color
+	 * - **API ID Path**: subscribe_form_slice.primary.backgroundColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	backgroundColor: prismic.SelectField<'white' | 'black'>
+
+	/**
+	 * Title field in *SubscribeFormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: subscribe_form_slice.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Subtitle field in *SubscribeFormSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: subscribe_form_slice.primary.subtitle
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	subtitle: prismic.KeyTextField
+}
+
+/**
+ * SubscribeFormDigest variation for SubscribeFormSlice Slice
+ *
+ * - **API ID**: `subscribeFormDigest`
+ * - **Description**: SubscribeFormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubscribeFormSliceSliceSubscribeFormDigest = prismic.SharedSliceVariation<
+	'subscribeFormDigest',
+	Simplify<SubscribeFormSliceSliceSubscribeFormDigestPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *SubscribeFormSlice*
+ */
+type SubscribeFormSliceSliceVariation = SubscribeFormSliceSliceDefaultSlice | SubscribeFormSliceSliceSubscribeFormDigest
+
+/**
+ * SubscribeFormSlice Shared Slice
+ *
+ * - **API ID**: `subscribe_form_slice`
+ * - **Description**: SubscribeFormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubscribeFormSliceSlice = prismic.SharedSlice<'subscribe_form_slice', SubscribeFormSliceSliceVariation>
 
 /**
  * Primary content in *TableSlice → Primary*
@@ -15465,6 +15779,59 @@ type WriteupListSliceSliceVariation = WriteupListSliceSliceDefaultSlice
  */
 export type WriteupListSliceSlice = prismic.SharedSlice<'writeup_list_slice', WriteupListSliceSliceVariation>
 
+/**
+ * Primary content in *WriteupTextSlice → Primary*
+ */
+export interface WriteupTextSliceSliceDefaultSlicePrimary {
+	/**
+	 * Show Border Bottom field in *WriteupTextSlice → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: writeup_text_slice.primary.showBorderBottom
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	showBorderBottom: prismic.BooleanField
+
+	/**
+	 * Content field in *WriteupTextSlice → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: writeup_text_slice.primary.content
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	content: prismic.RichTextField
+}
+
+/**
+ * Default slice variation for WriteupTextSlice Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: WriteupTextSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WriteupTextSliceSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<WriteupTextSliceSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Slice variation for *WriteupTextSlice*
+ */
+type WriteupTextSliceSliceVariation = WriteupTextSliceSliceDefaultSlice
+
+/**
+ * WriteupTextSlice Shared Slice
+ *
+ * - **API ID**: `writeup_text_slice`
+ * - **Description**: WriteupTextSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WriteupTextSliceSlice = prismic.SharedSlice<'writeup_text_slice', WriteupTextSliceSliceVariation>
+
 declare module '@prismicio/client' {
 	interface CreateClient {
 		(repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>
@@ -15748,10 +16115,21 @@ declare module '@prismicio/client' {
 			CustomersSliceSliceVariation,
 			CustomersSliceSliceDefaultSlice,
 			CustomersSliceSliceCustomersSliceBlack,
+			DigestPostCardSlice,
+			DigestPostCardSliceDefaultSlicePrimary,
+			DigestPostCardSliceVariation,
+			DigestPostCardSliceDefaultSlice,
+			DigestProjectCardSlice,
+			DigestProjectCardSliceDefaultSlicePrimary,
+			DigestProjectCardSliceVariation,
+			DigestProjectCardSliceDefaultSlice,
 			DividerSliceSlice,
 			DividerSliceSliceDefaultSlicePrimary,
 			DividerSliceSliceVariation,
 			DividerSliceSliceDefaultSlice,
+			EbooksWithFilterSliceSlice,
+			EbooksWithFilterSliceSliceVariation,
+			EbooksWithFilterSliceSliceDefaultSlice,
 			EmbedSliceSlice,
 			EmbedSliceSliceDefaultSliceItem,
 			EmbedSliceSliceVariation,
@@ -15813,6 +16191,11 @@ declare module '@prismicio/client' {
 			KeyMetricsSliceSliceDefaultSlice,
 			KeyMetricsSliceSliceSecondVariation,
 			KeyMetricsSliceSliceThirdVariation,
+			KeyTakeawaysSliceSlice,
+			KeyTakeawaysSliceSliceDefaultSlicePrimary,
+			KeyTakeawaysSliceSliceDefaultSliceItem,
+			KeyTakeawaysSliceSliceVariation,
+			KeyTakeawaysSliceSliceDefaultSlice,
 			LogoSliceSlice,
 			LogoSliceSliceDefaultSlicePrimary,
 			LogoSliceSliceDefaultSliceItem,
@@ -15899,6 +16282,12 @@ declare module '@prismicio/client' {
 			StartScreenSliceExpertPage,
 			StartScreenSliceStartScreenWithImage,
 			StartScreenSliceMainStartScreen,
+			SubscribeFormSliceSlice,
+			SubscribeFormSliceSliceDefaultSlicePrimary,
+			SubscribeFormSliceSliceSubscribeFormDigestPrimary,
+			SubscribeFormSliceSliceVariation,
+			SubscribeFormSliceSliceDefaultSlice,
+			SubscribeFormSliceSliceSubscribeFormDigest,
 			TableSliceSlice,
 			TableSliceSliceDefaultSlicePrimary,
 			TableSliceSliceForCustomPagePrimary,
@@ -15984,6 +16373,10 @@ declare module '@prismicio/client' {
 			WriteupListSliceSliceDefaultSliceItem,
 			WriteupListSliceSliceVariation,
 			WriteupListSliceSliceDefaultSlice,
+			WriteupTextSliceSlice,
+			WriteupTextSliceSliceDefaultSlicePrimary,
+			WriteupTextSliceSliceVariation,
+			WriteupTextSliceSliceDefaultSlice,
 		}
 	}
 }

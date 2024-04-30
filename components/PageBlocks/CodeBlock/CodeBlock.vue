@@ -6,6 +6,7 @@ import Prism from 'prismjs'
 import 'prismjs/themes/prism.min.css'
 import type { CodeBlockProps } from '~/components/PageBlocks/CodeBlock/interfaces/ICodeBlock'
 import { CodeBlock } from '~/components/PageBlocks/CodeBlock/classes/CodeBlock'
+import '~/components/PageBlocks/CodeBlock/highlights'
 
 const { slice } = defineProps({
   slice: {
