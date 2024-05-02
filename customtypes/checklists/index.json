@@ -5,191 +5,1962 @@
 	"status": true,
 	"format": "custom",
 	"json": {
-		"Main": {
-			"uid": {
-				"type": "UID",
-				"config": {
-					"label": "UID"
-				}
-			},
-			"publish_date": {
-				"type": "Date",
-				"config": {
-					"label": "publish_date"
-				}
-			},
-			"released": {
-				"type": "Boolean",
-				"config": {
-					"placeholder_false": "Стейджинге",
-					"placeholder_true": "Продакшине",
-					"default_value": false,
-					"label": "Страница доступна на"
-				}
-			},
-			"body": {
-				"type": "Slices",
-				"fieldset": "Slice Zone",
-				"config": {
-					"choices": {
-						"tag_cloud_slice": {
-							"type": "SharedSlice"
-						},
-						"title_and_description": {
-							"type": "SharedSlice"
-						},
-						"cta_banner_slice": {
-							"type": "SharedSlice"
-						},
-						"writeup_list_slice": {
-							"type": "SharedSlice"
-						},
-						"start_screen": {
-							"type": "SharedSlice"
-						},
-						"spacer_slice": {
-							"type": "SharedSlice"
-						},
-						"process_slice": {
-							"type": "SharedSlice"
-						},
-						"card_with_colored_title": {
-							"type": "SharedSlice"
-						},
-						"posts_section_slice": {
-							"type": "SharedSlice"
-						},
-						"button_slice": {
-							"type": "SharedSlice"
-						},
-						"form_slice": {
-							"type": "SharedSlice"
-						}
-					}
-				}
-			}
-		},
-		"SEO": {
-			"meta_title": {
-				"type": "Text",
-				"config": {
-					"label": "Meta Title"
-				}
-			},
-			"meta_description": {
-				"type": "Text",
-				"config": {
-					"label": "Meta Description"
-				}
-			},
-			"og_image": {
-				"type": "Image",
-				"config": {
-					"constraint": {
-						"width": 1200,
-						"height": 630
-					},
-					"thumbnails": [],
-					"label": "OG Image"
-				}
-			},
-			"schema_org_snippets": {
-				"type": "Group",
-				"config": {
-					"fields": {
-						"single_snippet": {
-							"type": "StructuredText",
-							"config": {
-								"single": "preformatted",
-								"label": "Single snippet"
-							}
-						}
-					},
-					"label": "schema.org snippets"
-				}
-			}
-		},
-		"Header Plate": {
-			"header_plate_text": {
-				"type": "Text",
-				"config": {
-					"label": "Header Plate Text"
-				}
-			},
-			"header_plate_button_text": {
-				"type": "Text",
-				"config": {
-					"label": "Header Plate Button Text"
-				}
-			},
-			"header_plate_link": {
-				"type": "Text",
-				"config": {
-					"label": "Header Plate Link",
-					"placeholder": "/blog/"
-				}
-			},
-			"header_plate_background_color": {
-				"type": "Select",
-				"config": {
-					"options": ["blue", "purple", "orange", "green", "blue-green"],
-					"label": "Header Plate Background Color",
-					"placeholder": "requires choice"
-				}
-			}
-		},
-		"Main Page Data": {
-			"title": {
-				"type": "Text",
-				"config": {
-					"label": "Title"
-				}
-			},
-			"description": {
-				"type": "Text",
-				"config": {
-					"label": "Description"
-				}
-			},
-			"background_image": {
-				"type": "Image",
-				"config": {
-					"constraint": {},
-					"thumbnails": [],
-					"label": "Background Image"
-				}
-			}
-		},
-		"Card in Main Page Data": {
-			"card_title": {
-				"type": "Text",
-				"config": {
-					"label": "Card Title"
-				}
-			},
-			"card_description": {
-				"type": "Text",
-				"config": {
-					"label": "Card Description"
-				}
-			},
-			"card_color_in_main_page": {
-				"type": "Select",
-				"config": {
-					"options": ["yellow", "white", "black", "red", "purple", "orange", "green", "blue"],
-					"default_value": "yellow",
-					"label": "Card color in main page",
-					"placeholder": "default: yellow"
-				}
-			},
-			"card_image": {
-				"type": "Image",
-				"config": {
-					"constraint": {},
-					"thumbnails": [],
-					"label": "Card Image"
-				}
-			}
-		}
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "publish_date": {
+        "type": "Date",
+        "config": {
+          "label": "publish_date"
+        }
+      },
+      "released": {
+        "type": "Boolean",
+        "config": {
+          "placeholder_false": "Стейджинге",
+          "placeholder_true": "Продакшине",
+          "default_value": false,
+          "label": "Страница доступна на"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": { },
+          "choices": {
+            "title_and_description": {
+              "id": "title_and_description",
+              "type": "SharedSlice",
+              "name": "TitleAndDescription",
+              "description": "TitleAndDescription",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "TitleAndDescription",
+                "primary": {
+                  "backgroundColor": {
+                    "config": {
+                      "label": "Background Color",
+                      "placeholder": "Default: black",
+                      "options": [ "black", "white" ],
+                      "default_value": "black"
+                    },
+                    "type": "Select"
+                  },
+                  "sectionIdForToc": {
+                    "config": {
+                      "label": "Section ID For ToC",
+                      "placeholder": "If need for horizontal ToC"
+                    },
+                    "type": "Text"
+                  },
+                  "textPosition": {
+                    "config": {
+                      "label": "Text Position",
+                      "placeholder": "Default: Left",
+                      "options": [ "left", "center" ],
+                      "default_value": "left"
+                    },
+                    "type": "Select"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "titleTag": {
+                    "config": {
+                      "label": "Title Tag",
+                      "placeholder": "default: h2",
+                      "options": [ "h1", "h2", "h3", "h4", "h5", "h6" ]
+                    },
+                    "type": "Select"
+                  },
+                  "titleFontSize": {
+                    "config": {
+                      "label": "Title Font Size",
+                      "placeholder": "Font size with PX. Default: 60px"
+                    },
+                    "type": "Text"
+                  },
+                  "titleFontSizeLaptop": {
+                    "config": {
+                      "label": "Title Font Size Laptop",
+                      "placeholder": "in PX. Default: 45px"
+                    },
+                    "type": "Text"
+                  },
+                  "titleFontSizeTablet": {
+                    "config": {
+                      "label": "Title Font Size Tablet",
+                      "placeholder": "in PX. Default: 31px"
+                    },
+                    "type": "Text"
+                  },
+                  "titleFontSizeMobile": {
+                    "config": {
+                      "label": "Title Font Size Mobile",
+                      "placeholder": "in PX. Default: 31px"
+                    },
+                    "type": "Text"
+                  },
+                  "titleLineHeight": {
+                    "config": {
+                      "label": "Title Line Height",
+                      "placeholder": "in PX or %. Default: 105%"
+                    },
+                    "type": "Text"
+                  },
+                  "titleTextColor": {
+                    "config": {
+                      "label": "Title Text Color",
+                      "placeholder": "Required to choice. Default: white",
+                      "options": [ "white", "black", "blue-gradient", "purple-gradient", "orange-gradient", "green-gradient" ]
+                    },
+                    "type": "Select"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Description",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "descriptionColor": {
+                    "config": {
+                      "label": "Description Color",
+                      "placeholder": "Required to choice. Default: white",
+                      "options": [ "white", "black", "white-with-opacity", "black-with-opacity" ],
+                      "default_value": "white"
+                    },
+                    "type": "Select"
+                  },
+                  "descriptionLocation": {
+                    "config": {
+                      "label": "Description Location",
+                      "placeholder_false": "Right",
+                      "placeholder_true": "Bottom",
+                      "default_value": false
+                    },
+                    "type": "Boolean"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/title_and_description/default_slice-4bllku5k06liliv9xz/preview.png"
+              } ]
+            },
+            "cta_banner_slice": {
+              "id": "cta_banner_slice",
+              "type": "SharedSlice",
+              "name": "CtaBannerSlice",
+              "description": "Cta Banner Slice",
+              "variations": [ {
+                "id": "default",
+                "name": "Default Slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "Cta Banner Slice",
+                "primary": {
+                  "animation": {
+                    "config": {
+                      "label": "Animation list",
+                      "placeholder": "Select aos animation",
+                      "options": [ "fade-up", "fade-down", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-righ", "fade-down-left", "zoom-in", "zoom-in-up", "zoom-in-left", "zoom-in-right", "none" ]
+                    },
+                    "type": "Select"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Image",
+                      "constraint": {
+                        "width": null
+                      },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Main Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Main Description",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "btnText": {
+                    "config": {
+                      "label": "Button text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "name": {
+                    "config": {
+                      "label": "Fullname",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "position": {
+                    "config": {
+                      "label": "Position",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "btnLink": {
+                    "config": {
+                      "label": "Button link (optional)",
+                      "placeholder": "Button will be a link instead of a modal window",
+                      "allowTargetBlank": true,
+                      "select": null
+                    },
+                    "type": "Link"
+                  },
+                  "modal": {
+                    "config": {
+                      "label": "Modal window (optional)",
+                      "placeholder": "Select modal window that will open",
+                      "options": [ "contact-me", "order-project" ],
+                      "default_value": "contact-me"
+                    },
+                    "type": "Select"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/cta_banner_slice/default-4bllku551b0lqd9oc8j/preview.png"
+              }, {
+                "id": "ctaBannerWithBackgroundImage",
+                "name": "CtaBannerWithBackgroundImage",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "Cta Banner Slice",
+                "primary": {
+                  "backgroundColor": {
+                    "config": {
+                      "label": "Background Color",
+                      "placeholder": "",
+                      "options": [ "black", "white" ],
+                      "default_value": "black"
+                    },
+                    "type": "Select"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "titleTag": {
+                    "config": {
+                      "label": "titleTag",
+                      "placeholder": "",
+                      "options": [ "h2", "h3", "h4", "h5", "h6" ],
+                      "default_value": "h2"
+                    },
+                    "type": "Select"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "description",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "backgroundImage": {
+                    "config": {
+                      "label": "Background Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "enableImageOverlay": {
+                    "config": {
+                      "label": "Enable Image Overlay",
+                      "placeholder_false": "false",
+                      "placeholder_true": "true",
+                      "default_value": false
+                    },
+                    "type": "Boolean"
+                  },
+                  "showButton": {
+                    "config": {
+                      "label": "Show Button",
+                      "placeholder_false": "Hide",
+                      "placeholder_true": "Show",
+                      "default_value": true
+                    },
+                    "type": "Boolean"
+                  },
+                  "buttonText": {
+                    "config": {
+                      "label": "Button Text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "linkToPage": {
+                    "config": {
+                      "label": "Link To Page",
+                      "placeholder": "if need link",
+                      "allowTargetBlank": false,
+                      "select": null
+                    },
+                    "type": "Link"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/cta_banner_slice/cta_banner_with_background_image-4bllku551b0lqd9odjx/preview.png"
+              }, {
+                "id": "expertCtaSlice",
+                "name": "ExpertCTASlice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "Cta Banner Slice",
+                "primary": { },
+                "items": {
+                  "image": {
+                    "config": {
+                      "label": "Expert Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "name": {
+                    "config": {
+                      "label": "Expert Name",
+                      "placeholder": "like: Tony Fedorenko"
+                    },
+                    "type": "Text"
+                  },
+                  "position": {
+                    "config": {
+                      "label": "Expert Position",
+                      "placeholder": "like: Head of HR Department"
+                    },
+                    "type": "Text"
+                  },
+                  "btnText": {
+                    "config": {
+                      "label": "Button Text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "btnLinkUrl": {
+                    "config": {
+                      "label": "Button Link Url",
+                      "placeholder": "like: /blog/"
+                    },
+                    "type": "Text"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/cta_banner_slice/expert_cta_slice-4bllku551b0lqd9of6i/preview.png"
+              }, {
+                "id": "checklistCtaBannerSlice",
+                "name": "Checklist CTA Banner Slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "Cta Banner Slice",
+                "primary": {
+                  "backgroundColor": {
+                    "config": {
+                      "label": "Background Color",
+                      "placeholder": "",
+                      "options": [ "white", "black" ],
+                      "default_value": "white"
+                    },
+                    "type": "Select"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Image",
+                      "constraint": {
+                        "width": null
+                      },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Description",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "btnText": {
+                    "config": {
+                      "label": "Button text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "btnLink": {
+                    "config": {
+                      "label": "Link",
+                      "placeholder": "Button will be a link instead of a modal window",
+                      "allowTargetBlank": true,
+                      "select": null
+                    },
+                    "type": "Link"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/cta_banner_slice/checklist_cta_banner_slice-4bllku551b0lqd9ogo9/preview.png"
+              } ]
+            },
+            "writeup_list_slice": {
+              "id": "writeup_list_slice",
+              "type": "SharedSlice",
+              "name": "WriteupListSlice",
+              "description": "WriteupListSlice",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "WriteupListSlice",
+                "primary": {
+                  "backgroundColor": {
+                    "config": {
+                      "label": "Background Color",
+                      "placeholder": "required choice",
+                      "options": [ "black", "white" ]
+                    },
+                    "type": "Select"
+                  }
+                },
+                "items": {
+                  "writeupTag": {
+                    "config": {
+                      "label": "Writeup Tag",
+                      "placeholder": "like: Cybersecurity"
+                    },
+                    "type": "Text"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/writeup_list_slice/default_slice-5myh31qb6llnsg8j2/preview.png"
+              } ]
+            },
+            "tag_cloud_slice": {
+              "id": "tag_cloud_slice",
+              "type": "SharedSlice",
+              "name": "TagCloudSlice",
+              "description": "TagCloudSlice",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "TagCloudSlice",
+                "primary": { },
+                "items": {
+                  "icon": {
+                    "config": {
+                      "label": "Tag Icon",
+                      "constraint": {
+                        "width": 20,
+                        "height": 20
+                      },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "name": {
+                    "config": {
+                      "label": "Tag Name",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/tag_cloud_slice/default_slice-5myh31h7glofeo6cc/preview.png"
+              } ]
+            },
+            "start_screen": {
+              "id": "start_screen",
+              "type": "SharedSlice",
+              "name": "StartScreen",
+              "description": "StartScreen",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "StartScreen",
+                "primary": {
+                  "background": {
+                    "config": {
+                      "label": "Slice background",
+                      "placeholder": "",
+                      "options": [ "black", "white", "grey" ]
+                    },
+                    "type": "Select"
+                  },
+                  "gradientColor": {
+                    "config": {
+                      "label": "Gradient color",
+                      "placeholder": "",
+                      "options": [ "white", "black", "grey" ]
+                    },
+                    "type": "Select"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "imageOpacity": {
+                    "config": {
+                      "label": "Image opacity",
+                      "placeholder": "0.8"
+                    },
+                    "type": "Number"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "subtitle": {
+                    "config": {
+                      "label": "Subtitle",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/start_screen/default_slice-4bllku52ahdlq2a1q41/preview.png"
+              }, {
+                "id": "startScreenImageRightAndButton",
+                "name": "StartScreenImageRightAndButton",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "StartScreen",
+                "primary": {
+                  "background": {
+                    "config": {
+                      "label": "Slice background",
+                      "placeholder": "",
+                      "options": [ "black", "white", "grey" ]
+                    },
+                    "type": "Select"
+                  },
+                  "gradientColor": {
+                    "config": {
+                      "label": "Gradient color",
+                      "placeholder": "",
+                      "options": [ "white", "black", "grey" ]
+                    },
+                    "type": "Select"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Background Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "rightImage": {
+                    "config": {
+                      "label": "RIght Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "imageOpacity": {
+                    "config": {
+                      "label": "Image opacity",
+                      "placeholder": "0.8"
+                    },
+                    "type": "Number"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": "",
+                      "allowTargetBlank": true,
+                      "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong"
+                    },
+                    "type": "StructuredText"
+                  },
+                  "subtitle": {
+                    "config": {
+                      "label": "Subtitle",
+                      "placeholder": "",
+                      "allowTargetBlank": true,
+                      "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                    },
+                    "type": "StructuredText"
+                  },
+                  "btnText": {
+                    "config": {
+                      "label": "Button text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "btnLink": {
+                    "config": {
+                      "label": "Button Link (optional)",
+                      "placeholder": "Button will be a link instead of a modal window",
+                      "allowTargetBlank": false,
+                      "select": null
+                    },
+                    "type": "Link"
+                  },
+                  "modal": {
+                    "config": {
+                      "label": "Modal window (optional)",
+                      "placeholder": "Select modal window that will open",
+                      "options": [ "download-pdf", "contact-me", "order-project" ]
+                    },
+                    "type": "Select"
+                  },
+                  "ebookPath": {
+                    "config": {
+                      "label": "Ebook Path on AWS S3",
+                      "placeholder": "Example: pdf/ebook-name.pdf"
+                    },
+                    "type": "Text"
+                  },
+                  "ebookName": {
+                    "config": {
+                      "label": "Book Name for Email",
+                      "placeholder": "Like: Pricing Strategies"
+                    },
+                    "type": "Text"
+                  },
+                  "ebookImage": {
+                    "config": {
+                      "label": "Book Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "sendPulseTemplateId": {
+                    "config": {
+                      "label": "SendPulse Template ID",
+                      "placeholder": "Numbers from SendPulse template URL"
+                    },
+                    "type": "Number"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/start_screen/start_screen_image_right_and_button-4bllku52ahdlq2a1shb/preview.png"
+              }, {
+                "id": "startScreenwithButton",
+                "name": "StartScreenwithButton",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "StartScreen",
+                "primary": {
+                  "background": {
+                    "config": {
+                      "label": "Slice background",
+                      "placeholder": "",
+                      "options": [ "black", "white", "grey" ]
+                    },
+                    "type": "Select"
+                  },
+                  "gradientColor": {
+                    "config": {
+                      "label": "Gradient color",
+                      "placeholder": "",
+                      "options": [ "white", "black", "grey" ]
+                    },
+                    "type": "Select"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "imageOpacity": {
+                    "config": {
+                      "label": "Image opacity",
+                      "placeholder": "0.8"
+                    },
+                    "type": "Number"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "subtitle": {
+                    "config": {
+                      "label": "Subtitle",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "btnText": {
+                    "config": {
+                      "label": "Button text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/start_screen/start_screenwith_button-4bllku52ahdlq2a1u3n/preview.png"
+              }, {
+                "id": "expertPage",
+                "name": "Expert Page",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "StartScreen",
+                "primary": {
+                  "description": {
+                    "config": {
+                      "label": "Description",
+                      "placeholder": "Your trusted IT partner"
+                    },
+                    "type": "Text"
+                  },
+                  "btnText": {
+                    "config": {
+                      "label": "btnText",
+                      "placeholder": "(has default value \"SAVE CONTACT\")"
+                    },
+                    "type": "Text"
+                  },
+                  "author": {
+                    "config": {
+                      "label": "author",
+                      "customtypes": [ "author" ],
+                      "select": "document"
+                    },
+                    "type": "Link"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+              }, {
+                "id": "startScreenWithImage",
+                "name": "StartScreenWithImage",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "StartScreen",
+                "primary": {
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Description",
+                      "placeholder": "",
+                      "allowTargetBlank": true,
+                      "multi": "paragraph,strong,em,hyperlink"
+                    },
+                    "type": "StructuredText"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "buttonText": {
+                    "config": {
+                      "label": "Form Button Text",
+                      "placeholder": "Default: Book a consultation"
+                    },
+                    "type": "Text"
+                  },
+                  "linkToPage": {
+                    "config": {
+                      "label": "Link to page",
+                      "placeholder": "",
+                      "allowTargetBlank": false,
+                      "select": null
+                    },
+                    "type": "Link"
+                  },
+                  "expertRelation": {
+                    "config": {
+                      "label": "Expert Document",
+                      "customtypes": [ "author" ],
+                      "select": "document"
+                    },
+                    "type": "Link"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/start_screen/start_screen_with_image-4bllku52ahdlq2a1vqe/preview.png"
+              }, {
+                "id": "mainStartScreen",
+                "name": "MainStartScreen",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "StartScreen",
+                "primary": {
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "subtitle": {
+                    "config": {
+                      "label": "Subtitle",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Description",
+                      "placeholder": "",
+                      "allowTargetBlank": true,
+                      "single": "paragraph"
+                    },
+                    "type": "StructuredText"
+                  },
+                  "buttonText": {
+                    "config": {
+                      "label": "Button Text",
+                      "placeholder": "default: Let’s Talk"
+                    },
+                    "type": "Text"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/start_screen/main_start_screen-4bllku52ahdlq2a1x97/preview.png"
+              }, {
+                "id": "caseStudyStartScreen",
+                "name": "Case Study Start Screen",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "StartScreen",
+                "primary": {
+                  "backgroundOverlay": {
+                    "config": {
+                      "label": "Background Overlay",
+                      "placeholder": "Gradient or color in rgba format"
+                    },
+                    "type": "Text"
+                  },
+                  "caseTag": {
+                    "config": {
+                      "label": "Case Tag",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "clickableCaseTag": {
+                    "config": {
+                      "label": "Clickable Case Tag",
+                      "placeholder_false": "No",
+                      "placeholder_true": "Yes",
+                      "default_value": false
+                    },
+                    "type": "Boolean"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Description",
+                      "placeholder": "",
+                      "allowTargetBlank": true,
+                      "multi": "paragraph,strong,em,hyperlink,rtl"
+                    },
+                    "type": "StructuredText"
+                  },
+                  "poster": {
+                    "config": {
+                      "label": "Poster or Background Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "videoPath": {
+                    "config": {
+                      "label": "Video Path From S3",
+                      "placeholder": "Max video size 15 MB"
+                    },
+                    "type": "Text"
+                  },
+                  "caseLogoImage": {
+                    "config": {
+                      "label": "Case Logo Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/start_screen/case_study_start_screen-4bllku52ahdlq2a1yzw/preview.png"
+              }, {
+                "id": "checklistStartScreenSlice",
+                "name": "Checklist Start Screen Slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "StartScreen",
+                "primary": {
+                  "background": {
+                    "config": {
+                      "label": "Slice background",
+                      "placeholder": "",
+                      "options": [ "black", "white", "grey" ]
+                    },
+                    "type": "Select"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Image",
+                      "constraint": {
+                        "width": 1728,
+                        "height": 680
+                      },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "checklistImage": {
+                    "config": {
+                      "label": "Checklist Image",
+                      "constraint": {
+                        "width": null,
+                        "height": null
+                      },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "buttonText": {
+                    "config": {
+                      "label": "Button Text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "checklistPdfPath": {
+                    "config": {
+                      "label": "Checklist PDF Path",
+                      "placeholder": "Path on S3"
+                    },
+                    "type": "Text"
+                  },
+                  "sendpulseTemplateID": {
+                    "config": {
+                      "label": "Sendpulse Template ID",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "checklistName": {
+                    "config": {
+                      "label": "Checklist PDF Name",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/start_screen/checklist_start_screen_slice-4bllku52ahdlq2a20gt/preview.png"
+              } ]
+            },
+            "spacer_slice": {
+              "id": "spacer_slice",
+              "type": "SharedSlice",
+              "name": "SpacerSlice",
+              "description": "SpacerSlice",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "SpacerSlice",
+                "primary": {
+                  "background": {
+                    "config": {
+                      "label": "Background",
+                      "placeholder": "",
+                      "options": [ "white", "black" ]
+                    },
+                    "type": "Select"
+                  },
+                  "height": {
+                    "config": {
+                      "label": "Height DEFAULT",
+                      "placeholder": "Example: 100px or 10% or 100vh"
+                    },
+                    "type": "Text"
+                  },
+                  "height-xl": {
+                    "config": {
+                      "label": "Height XL",
+                      "placeholder": "1024px - 1440px"
+                    },
+                    "type": "Text"
+                  },
+                  "height-lg": {
+                    "config": {
+                      "label": "Height LG",
+                      "placeholder": "768px - 1024px"
+                    },
+                    "type": "Text"
+                  },
+                  "height-md": {
+                    "config": {
+                      "label": "Height MD",
+                      "placeholder": "375px - 768px"
+                    },
+                    "type": "Text"
+                  },
+                  "height-sm": {
+                    "config": {
+                      "label": "Height SM",
+                      "placeholder": "320px - 375px"
+                    },
+                    "type": "Text"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/spacer_slice/default_slice-4bllku5i03li49dg6e/preview.png"
+              } ]
+            },
+            "process_slice": {
+              "id": "process_slice",
+              "type": "SharedSlice",
+              "name": "ProcessSlice",
+              "description": "ProcessSlice",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "ProcessSlice",
+                "primary": {
+                  "backgroundColor": {
+                    "config": {
+                      "label": "Background Color",
+                      "placeholder": "",
+                      "options": [ "white", "black" ]
+                    },
+                    "type": "Select"
+                  }
+                },
+                "items": {
+                  "tabName": {
+                    "config": {
+                      "label": "Tab Name",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "tabDescription": {
+                    "config": {
+                      "label": "Tab Description",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "tabIcon": {
+                    "config": {
+                      "label": "Tab Icon",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/process_slice/default_slice-klsmt947lln9l26h/preview.png"
+              }, {
+                "id": "processInlineSlice",
+                "name": "ProcessInlineSlice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "ProcessSlice",
+                "primary": {
+                  "backgroundColor": {
+                    "config": {
+                      "label": "Background Color",
+                      "placeholder": "",
+                      "options": [ "white", "black" ]
+                    },
+                    "type": "Select"
+                  }
+                },
+                "items": {
+                  "icon": {
+                    "config": {
+                      "label": "Icon",
+                      "constraint": {
+                        "width": 50,
+                        "height": 50
+                      },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Description",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "showBottomDivider": {
+                    "config": {
+                      "label": "Show Bottom Divider",
+                      "placeholder_false": "Hide",
+                      "placeholder_true": "Show",
+                      "default_value": false
+                    },
+                    "type": "Boolean"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/process_slice/process_inline_slice-klsmt947lln9l3dt/preview.png"
+              } ]
+            },
+            "card_with_colored_title": {
+              "id": "card_with_colored_title",
+              "type": "SharedSlice",
+              "name": "CardWithColoredTitle",
+              "description": "CardWithColoredTitle",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "CardWithColoredTitle",
+                "primary": {
+                  "backgroundColor": {
+                    "config": {
+                      "label": "Background Color",
+                      "placeholder": "",
+                      "options": [ "white", "black" ]
+                    },
+                    "type": "Select"
+                  }
+                },
+                "items": {
+                  "title": {
+                    "config": {
+                      "label": "Card Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Card Description",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "titleColor": {
+                    "config": {
+                      "label": "Title Color",
+                      "placeholder": "",
+                      "options": [ "blue-gradient", "pink-gradient", "purple-gradient", "green-gradient", "orange-gradient", "white", "black" ]
+                    },
+                    "type": "Select"
+                  },
+                  "titleTag": {
+                    "config": {
+                      "label": "Title Tag",
+                      "placeholder": "Default: h3",
+                      "options": [ "h3", "h4", "h5", "h6" ],
+                      "default_value": "h3"
+                    },
+                    "type": "Select"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/card_with_colored_title/default_slice-klsmtr9allnkcb4v/preview.png"
+              }, {
+                "id": "cardWithColoredTitleAndIcon",
+                "name": "CardWithColoredTitleAndIcon",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "CardWithColoredTitle",
+                "primary": {
+                  "backgroundColor": {
+                    "config": {
+                      "label": "Background Color",
+                      "placeholder": "",
+                      "options": [ "white", "black" ]
+                    },
+                    "type": "Select"
+                  }
+                },
+                "items": {
+                  "icon": {
+                    "config": {
+                      "label": "Icon",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Card Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "description": {
+                    "config": {
+                      "label": "Card Description",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "titleColor": {
+                    "config": {
+                      "label": "Title Color",
+                      "placeholder": "",
+                      "options": [ "blue-gradient", "pink-gradient", "purple-gradient", "green-gradient", "orange-gradient", "white", "black" ]
+                    },
+                    "type": "Select"
+                  },
+                  "titleTag": {
+                    "config": {
+                      "label": "Title Tag",
+                      "placeholder": "Default: h3",
+                      "options": [ "h3", "h4", "h5", "h6" ],
+                      "default_value": "h3"
+                    },
+                    "type": "Select"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/card_with_colored_title/card_with_colored_title_and_icon-klsmtr9allnkccn8/preview.png"
+              } ]
+            },
+            "posts_section_slice": {
+              "id": "posts_section_slice",
+              "type": "SharedSlice",
+              "name": "PostsSectionSlice",
+              "description": "PostsSectionSlice",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "PostsSectionSlice",
+                "primary": {
+                  "animation": {
+                    "config": {
+                      "label": "Animation list",
+                      "placeholder": "Select aos animation",
+                      "options": [ "fade-up", "fade-down", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-right", "fade-down-left", "zoom-in", "zoom-in-down", "zoom-in-left", "zoom-in-right", "none" ],
+                      "default_value": "fade-up"
+                    },
+                    "type": "Select"
+                  }
+                },
+                "items": {
+                  "theme": {
+                    "config": {
+                      "label": "Theme",
+                      "placeholder": "",
+                      "options": [ "light", "dark" ],
+                      "default_value": "light"
+                    },
+                    "type": "Select"
+                  },
+                  "data": {
+                    "config": {
+                      "label": "LinkToArticle",
+                      "select": "document",
+                      "customtypes": [ "post", "customer_university" ]
+                    },
+                    "type": "Link"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/posts_section_slice/default_slice-4bllku5i03li49flmm/preview.png"
+              }, {
+                "id": "ebookPostsSectionSlice",
+                "name": "EbookPostsSectionSlice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "PostsSectionSlice",
+                "primary": {
+                  "animation": {
+                    "config": {
+                      "label": "Animation list",
+                      "placeholder": "Select aos animation",
+                      "options": [ "fade-up", "fade-down", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-right", "fade-down-left", "zoom-in", "zoom-in-down", "zoom-in-left", "zoom-in-right", "none" ],
+                      "default_value": "fade-up"
+                    },
+                    "type": "Select"
+                  },
+                  "title": {
+                    "config": {
+                      "label": "Main Title",
+                      "placeholder": "",
+                      "allowTargetBlank": true,
+                      "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong"
+                    },
+                    "type": "StructuredText"
+                  },
+                  "containerSize": {
+                    "config": {
+                      "label": "Container size",
+                      "placeholder": "",
+                      "options": [ "1026", "1240" ],
+                      "default_value": "1026"
+                    },
+                    "type": "Select"
+                  }
+                },
+                "items": {
+                  "theme": {
+                    "config": {
+                      "label": "Theme",
+                      "placeholder": "",
+                      "options": [ "light", "dark" ],
+                      "default_value": "light"
+                    },
+                    "type": "Select"
+                  },
+                  "data": {
+                    "config": {
+                      "label": "LinkToArticle",
+                      "select": "document",
+                      "customtypes": [ "post", "customer_university" ]
+                    },
+                    "type": "Link"
+                  }
+                },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/posts_section_slice/ebook_posts_section_slice-4bllku5i03li49fn9b/preview.png"
+              } ]
+            },
+            "button_slice": {
+              "id": "button_slice",
+              "type": "SharedSlice",
+              "name": "ButtonSlice",
+              "description": "ButtonSlice",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "ButtonSlice",
+                "primary": {
+                  "fullWidth": {
+                    "config": {
+                      "label": "Full width",
+                      "placeholder_false": "false",
+                      "placeholder_true": "true",
+                      "default_value": false
+                    },
+                    "type": "Boolean"
+                  },
+                  "animation": {
+                    "config": {
+                      "label": "Animation list",
+                      "placeholder": "Select aos animation",
+                      "options": [ "fade-up", "fade-down", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-righ", "fade-down-left", "zoom-in", "zoom-in-up", "zoom-in-left", "zoom-in-right", "none" ]
+                    },
+                    "type": "Select"
+                  },
+                  "background": {
+                    "config": {
+                      "label": "Slice background",
+                      "placeholder": "",
+                      "options": [ "black", "white", "grey" ],
+                      "default_value": "black"
+                    },
+                    "type": "Select"
+                  },
+                  "alignment": {
+                    "config": {
+                      "label": "Alignment",
+                      "placeholder": "",
+                      "options": [ "left", "center", "right" ],
+                      "default_value": "left"
+                    },
+                    "type": "Select"
+                  },
+                  "text": {
+                    "config": {
+                      "label": "Button text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "link": {
+                    "config": {
+                      "label": "Button link",
+                      "placeholder": "",
+                      "select": "web",
+                      "allowTargetBlank": false
+                    },
+                    "type": "Link"
+                  },
+                  "maxWidth": {
+                    "config": {
+                      "label": "Max width (px,% or vw)",
+                      "placeholder": "300px"
+                    },
+                    "type": "Text"
+                  },
+                  "target": {
+                    "config": {
+                      "label": "Type",
+                      "placeholder_false": "Internal",
+                      "placeholder_true": "External",
+                      "default_value": false
+                    },
+                    "type": "Boolean"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/button_slice/default_slice-klsmtjg97llggc8g2/preview.png"
+              }, {
+                "id": "outlinedButton",
+                "name": "Outlined Button",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "ButtonSlice",
+                "primary": {
+                  "fullWidth": {
+                    "config": {
+                      "label": "Full width",
+                      "placeholder_false": "false",
+                      "placeholder_true": "true",
+                      "default_value": false
+                    },
+                    "type": "Boolean"
+                  },
+                  "animation": {
+                    "config": {
+                      "label": "Animation list",
+                      "placeholder": "Select aos animation",
+                      "options": [ "fade-up", "fade-down", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-righ", "fade-down-left", "zoom-in", "zoom-in-up", "zoom-in-left", "zoom-in-right", "none" ]
+                    },
+                    "type": "Select"
+                  },
+                  "background": {
+                    "config": {
+                      "label": "Slice background",
+                      "placeholder": "",
+                      "options": [ "black", "white", "grey" ],
+                      "default_value": "black"
+                    },
+                    "type": "Select"
+                  },
+                  "color": {
+                    "config": {
+                      "label": "Button color",
+                      "placeholder": "",
+                      "options": [ "grey", "black", "red", "blue" ]
+                    },
+                    "type": "Select"
+                  },
+                  "alignment": {
+                    "config": {
+                      "label": "Alignment",
+                      "placeholder": "",
+                      "options": [ "left", "center", "right" ],
+                      "default_value": "left"
+                    },
+                    "type": "Select"
+                  },
+                  "text": {
+                    "config": {
+                      "label": "Button text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "link": {
+                    "config": {
+                      "label": "Button link",
+                      "placeholder": "",
+                      "select": "web",
+                      "allowTargetBlank": false
+                    },
+                    "type": "Link"
+                  },
+                  "maxWidth": {
+                    "config": {
+                      "label": "Max width (px,% or vw)",
+                      "placeholder": "300px"
+                    },
+                    "type": "Text"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/button_slice/outlined_button-klsmtjg97llggc9md/preview.png"
+              }, {
+                "id": "linkButton",
+                "name": "Link Button",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "ButtonSlice",
+                "primary": {
+                  "fullWidth": {
+                    "config": {
+                      "label": "Full width",
+                      "placeholder_false": "false",
+                      "placeholder_true": "true",
+                      "default_value": false
+                    },
+                    "type": "Boolean"
+                  },
+                  "animation": {
+                    "config": {
+                      "label": "Animation list",
+                      "placeholder": "Select aos animation",
+                      "options": [ "fade-up", "fade-down", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-righ", "fade-down-left", "zoom-in", "zoom-in-up", "zoom-in-left", "zoom-in-right", "none" ]
+                    },
+                    "type": "Select"
+                  },
+                  "background": {
+                    "config": {
+                      "label": "Slice background",
+                      "placeholder": "",
+                      "options": [ "black", "white", "grey" ],
+                      "default_value": "black"
+                    },
+                    "type": "Select"
+                  },
+                  "color": {
+                    "config": {
+                      "label": "Button color",
+                      "placeholder": "",
+                      "options": [ "grey", "black", "red", "blue" ]
+                    },
+                    "type": "Select"
+                  },
+                  "alignment": {
+                    "config": {
+                      "label": "Alignment",
+                      "placeholder": "",
+                      "options": [ "left", "center", "right" ],
+                      "default_value": "left"
+                    },
+                    "type": "Select"
+                  },
+                  "text": {
+                    "config": {
+                      "label": "Button text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "link": {
+                    "config": {
+                      "label": "Button link",
+                      "placeholder": "",
+                      "select": "web",
+                      "allowTargetBlank": false
+                    },
+                    "type": "Link"
+                  },
+                  "maxWidth": {
+                    "config": {
+                      "label": "Max width (px,% or vw)",
+                      "placeholder": "300px"
+                    },
+                    "type": "Text"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/button_slice/link_button-klsmtjg97llggcaqu/preview.png"
+              }, {
+                "id": "outlinedLightButtonSlice",
+                "name": "OutlinedLightButtonSlice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "ButtonSlice",
+                "primary": {
+                  "fullWidth": {
+                    "config": {
+                      "label": "Full width",
+                      "placeholder_false": "false",
+                      "placeholder_true": "true",
+                      "default_value": true
+                    },
+                    "type": "Boolean"
+                  },
+                  "background": {
+                    "config": {
+                      "label": "Slice background",
+                      "placeholder": "",
+                      "options": [ "black", "white", "grey" ],
+                      "default_value": "black"
+                    },
+                    "type": "Select"
+                  },
+                  "typeLink": {
+                    "config": {
+                      "label": "Type of Link",
+                      "placeholder": "",
+                      "options": [ "internal", "external" ],
+                      "default_value": "internal"
+                    },
+                    "type": "Select"
+                  },
+                  "text": {
+                    "config": {
+                      "label": "Button text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "internalLink": {
+                    "config": {
+                      "label": "Internal Link",
+                      "placeholder": "like: /link-to-page/, withou domain"
+                    },
+                    "type": "Text"
+                  },
+                  "link": {
+                    "config": {
+                      "label": "External Link",
+                      "placeholder": "NOT OUR PAGES",
+                      "select": "web",
+                      "allowTargetBlank": false
+                    },
+                    "type": "Link"
+                  },
+                  "maxWidth": {
+                    "config": {
+                      "label": "Max width (px,% or vw)",
+                      "placeholder": "300px"
+                    },
+                    "type": "Text"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/button_slice/outlined_light_button_slice-klsmtjg97llggcbvz/preview.png"
+              } ]
+            },
+            "form_slice": {
+              "id": "form_slice",
+              "type": "SharedSlice",
+              "name": "FormSlice",
+              "description": "FormSlice",
+              "variations": [ {
+                "id": "default-slice",
+                "name": "Default slice",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "FormSlice",
+                "primary": {
+                  "title": {
+                    "type": "StructuredText",
+                    "config": {
+                      "label": "Title",
+                      "placeholder": "This is where it all begins...",
+                      "allowTargetBlank": true,
+                      "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+                    }
+                  },
+                  "containerSize": {
+                    "config": {
+                      "label": "Container size",
+                      "placeholder": "",
+                      "options": [ "1026", "1240" ],
+                      "default_value": "1026"
+                    },
+                    "type": "Select"
+                  },
+                  "animation": {
+                    "config": {
+                      "label": "Animation List",
+                      "placeholder": "",
+                      "options": [ "fade-up", "fade-down", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-right", "fade-down-left", "zoom-in", "zoom-in-down", "zoom-in-left", "zoom-in-right", "none" ],
+                      "default_value": "fade-up"
+                    },
+                    "type": "Select"
+                  },
+                  "image": {
+                    "config": {
+                      "label": "Book image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  },
+                  "ebookPath": {
+                    "config": {
+                      "label": "Ebook Path on AWS S3",
+                      "placeholder": "Example: pdf/ebook-name.pdf"
+                    },
+                    "type": "Text"
+                  },
+                  "ebookName": {
+                    "config": {
+                      "label": "Book Name For Email",
+                      "placeholder": "Like: Pricing Strategies"
+                    },
+                    "type": "Text"
+                  },
+                  "sendPulseTemplateId": {
+                    "config": {
+                      "label": "SendPulse Template ID",
+                      "placeholder": "Numbers from SendPulse template URL"
+                    },
+                    "type": "Number"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/form_slice/default_slice-4bllku53kptlq3bijg8/preview.png"
+              }, {
+                "id": "checklistForm",
+                "name": "Checklist Form",
+                "docURL": "...",
+                "version": "sktwi1xtmkfgx8626",
+                "description": "FormSlice",
+                "primary": {
+                  "title": {
+                    "config": {
+                      "label": "Title",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "buttonText": {
+                    "config": {
+                      "label": "Button Text",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "checklistPdfPath": {
+                    "config": {
+                      "label": "Checklist PDF Path",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "checklistName": {
+                    "config": {
+                      "label": "Checklist Name",
+                      "placeholder": ""
+                    },
+                    "type": "Text"
+                  },
+                  "sendPulseTemplateID": {
+                    "config": {
+                      "label": "SendPulse Template ID",
+                      "placeholder": "Numbers from SendPulse template URL"
+                    },
+                    "type": "Number"
+                  },
+                  "checklistImage": {
+                    "config": {
+                      "label": "Checklist Image",
+                      "constraint": { },
+                      "thumbnails": [ ]
+                    },
+                    "type": "Image"
+                  }
+                },
+                "items": { },
+                "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/form_slice/checklist_form-4bllku53kptlq3bil29/preview.png"
+              } ]
+            }
+          }
+        }
+      }
+    },
+    "SEO": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description"
+        }
+      },
+      "og_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {
+            "width": 1200,
+            "height": 630
+          },
+          "thumbnails": [ ],
+          "label": "OG Image"
+        }
+      },
+      "schema_org_snippets": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "single_snippet": {
+              "type": "StructuredText",
+              "config": {
+                "single": "preformatted",
+                "label": "Single snippet"
+              }
+            }
+          },
+          "label": "schema.org snippets"
+        }
+      }
+    },
+    "Header Plate": {
+      "header_plate_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Text"
+        }
+      },
+      "header_plate_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Button Text"
+        }
+      },
+      "header_plate_link": {
+        "type": "Text",
+        "config": {
+          "label": "Header Plate Link",
+          "placeholder": "/blog/"
+        }
+      },
+      "header_plate_background_color": {
+        "type": "Select",
+        "config": {
+          "options": [ "blue", "purple", "orange", "green", "blue-green" ],
+          "label": "Header Plate Background Color",
+          "placeholder": "requires choice"
+        }
+      }
+    },
+    "Main Page Data": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title"
+        }
+      },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Description"
+        }
+      },
+      "background_image": {
+        "type": "Image",
+        "config": {
+          "constraint": { },
+          "thumbnails": [ ],
+          "label": "Background Image"
+        }
+      }
+    },
+    "Card in Main Page Data": {
+      "card_title": {
+        "type": "Text",
+        "config": {
+          "label": "Card Title"
+        }
+      },
+      "card_description": {
+        "type": "Text",
+        "config": {
+          "label": "Card Description"
+        }
+      },
+      "card_color_in_main_page": {
+        "type": "Select",
+        "config": {
+          "options": [ "yellow", "white", "black", "red", "purple", "orange", "green", "blue" ],
+          "default_value": "yellow",
+          "label": "Card color in main page",
+          "placeholder": "default: yellow"
+        }
+      },
+      "card_image": {
+        "type": "Image",
+        "config": {
+          "constraint": { },
+          "thumbnails": [ ],
+          "label": "Card Image"
+        }
+      }
+    }
 	}
 }

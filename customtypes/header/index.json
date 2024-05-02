@@ -106,8 +106,10 @@
                       "Expertise",
                       "Industries",
                       "Clients",
+                      "Case Studies",
                       "Insights",
-                      "Careers"
+                      "Careers",
+                      "Contacts"
                     ],
                     "default_value": "Company",
                     "label": "Navigation section"

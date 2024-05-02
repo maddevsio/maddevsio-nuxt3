@@ -20,6 +20,10 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
         v-if="slice.variation === 'checklistCtaBannerSlice'"
         :slice="slice"
       />
+      <LazyPageBlocksCtaBannerExpertsWithInfo
+        v-if="slice.variation === 'expertCtaWithInfo'"
+        :slice="slice"
+      />
     </NuxtLazyHydrate>
   </section>
 </template>

@@ -1,0 +1,339 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"animation": {
+				"__TYPE__": "FieldContent",
+				"value": "fade-up-left",
+				"type": "Select"
+			},
+			"image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118",
+					"width": 4160,
+					"height": 3120
+				},
+				"url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118",
+				"width": 4160,
+				"height": 3120,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "yourself",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "FieldContent",
+				"value": "size",
+				"type": "Text"
+			},
+			"btnText": {
+				"__TYPE__": "FieldContent",
+				"value": "cup",
+				"type": "Text"
+			},
+			"name": {
+				"__TYPE__": "FieldContent",
+				"value": "arrive",
+				"type": "Text"
+			},
+			"position": {
+				"__TYPE__": "FieldContent",
+				"value": "being",
+				"type": "Text"
+			},
+			"btnLink": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com"
+				}
+			},
+			"modal": {
+				"__TYPE__": "FieldContent",
+				"value": "order-project",
+				"type": "Select"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "ctaBannerWithBackgroundImage",
+		"primary": {
+			"backgroundColor": {
+				"__TYPE__": "FieldContent",
+				"value": "black",
+				"type": "Select"
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "create",
+				"type": "Text"
+			},
+			"titleTag": {
+				"__TYPE__": "FieldContent",
+				"value": "h5",
+				"type": "Select"
+			},
+			"description": {
+				"__TYPE__": "FieldContent",
+				"value": "repeat",
+				"type": "Text"
+			},
+			"backgroundImage": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1586952518485-11b180e92764",
+					"width": 4172,
+					"height": 4000
+				},
+				"url": "https://images.unsplash.com/photo-1586952518485-11b180e92764",
+				"width": 4172,
+				"height": 4000,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"enableImageOverlay": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			},
+			"showButton": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			},
+			"buttonText": {
+				"__TYPE__": "FieldContent",
+				"value": "court",
+				"type": "Text"
+			},
+			"linkToPage": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com"
+				}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "expertCtaSlice",
+		"primary": {},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"image",
+						{
+							"origin": {
+								"id": "main",
+								"url": "https://images.unsplash.com/photo-1607582278043-57198ac8da43",
+								"width": 4024,
+								"height": 4024
+							},
+							"url": "https://images.unsplash.com/photo-1607582278043-57198ac8da43",
+							"width": 4024,
+							"height": 4024,
+							"edit": {
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 0
+								},
+								"background": "transparent"
+							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
+							"thumbnails": {}
+						}
+					],
+					[
+						"name",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "pretty",
+							"type": "Text"
+						}
+					],
+					[
+						"position",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "doctor",
+							"type": "Text"
+						}
+					],
+					[
+						"btnText",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "gulf",
+							"type": "Text"
+						}
+					],
+					[
+						"btnLinkUrl",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "lovely",
+							"type": "Text"
+						}
+					]
+				]
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "checklistCtaBannerSlice",
+		"primary": {
+			"backgroundColor": {
+				"__TYPE__": "FieldContent",
+				"value": "white",
+				"type": "Select"
+			},
+			"image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
+					"width": 3456,
+					"height": 3456
+				},
+				"url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
+				"width": 3456,
+				"height": 3456,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "stand",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "FieldContent",
+				"value": "man",
+				"type": "Text"
+			},
+			"btnText": {
+				"__TYPE__": "FieldContent",
+				"value": "lying",
+				"type": "Text"
+			},
+			"btnLink": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io"
+				}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "expertCtaWithInfo",
+		"primary": {
+			"colorTheme": {
+				"__TYPE__": "FieldContent",
+				"value": "white",
+				"type": "Select"
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "figure",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "FieldContent",
+				"value": "tell",
+				"type": "Text"
+			},
+			"buttonText": {
+				"__TYPE__": "FieldContent",
+				"value": "nothing",
+				"type": "Text"
+			},
+			"expertsImage": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef",
+					"width": 4000,
+					"height": 6000
+				},
+				"url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef",
+				"width": 4000,
+				"height": 6000,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"thumbnails": {}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]
