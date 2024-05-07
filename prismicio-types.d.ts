@@ -889,10 +889,10 @@ export type CaseStudiesDocument<Lang extends string = string> = prismic.PrismicD
 >
 
 type ChecklistsDocumentDataBodySlice =
-	| TagCloudSliceSlice
 	| TitleAndDescriptionSlice
 	| CtaBannerSliceSlice
 	| WriteupListSliceSlice
+	| TagCloudSliceSlice
 	| StartScreenSlice
 	| SpacerSliceSlice
 	| ProcessSliceSlice
@@ -944,7 +944,7 @@ interface ChecklistsDocumentData {
 	released: prismic.BooleanField
 
 	/**
-	 * Slice Zone field in *Checklists*
+	 * Slice zone field in *Checklists*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -2476,6 +2476,18 @@ interface CustomerUniversityDocumentData {
 	date: prismic.DateField
 
 	/**
+	 * Available at field in *Customer University*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: customer_university.released
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	released: prismic.BooleanField
+
+	/**
 	 * featured-image field in *Customer University*
 	 *
 	 * - **Field Type**: Image
@@ -3420,11 +3432,11 @@ export interface FooterForLocalDevDocumentDataColumnIconsItem {
 }
 
 /**
- * Primary content in *Footer for local dev → Slice zone → Navigation list → Primary*
+ * Primary content in *Footer for local dev → Slice Zone → Navigation list → Primary*
  */
 export interface FooterForLocalDevDocumentDataBodyNavigationListSlicePrimary {
 	/**
-	 * Navigation list name field in *Footer for local dev → Slice zone → Navigation list → Primary*
+	 * Navigation list name field in *Footer for local dev → Slice Zone → Navigation list → Primary*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -3434,7 +3446,7 @@ export interface FooterForLocalDevDocumentDataBodyNavigationListSlicePrimary {
 	name: prismic.KeyTextField
 
 	/**
-	 * Link field in *Footer for local dev → Slice zone → Navigation list → Primary*
+	 * Link field in *Footer for local dev → Slice Zone → Navigation list → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: Example: /about/ or /blog/
@@ -3444,7 +3456,7 @@ export interface FooterForLocalDevDocumentDataBodyNavigationListSlicePrimary {
 	link: prismic.RichTextField
 
 	/**
-	 * Navigation section field in *Footer for local dev → Slice zone → Navigation list → Primary*
+	 * Navigation section field in *Footer for local dev → Slice Zone → Navigation list → Primary*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -3458,7 +3470,7 @@ export interface FooterForLocalDevDocumentDataBodyNavigationListSlicePrimary {
 	>
 
 	/**
-	 * Column Number field in *Footer for local dev → Slice zone → Navigation list → Primary*
+	 * Column Number field in *Footer for local dev → Slice Zone → Navigation list → Primary*
 	 *
 	 * - **Field Type**: Number
 	 * - **Placeholder**: like: 1
@@ -3469,11 +3481,11 @@ export interface FooterForLocalDevDocumentDataBodyNavigationListSlicePrimary {
 }
 
 /**
- * Item content in *Footer for local dev → Slice zone → Navigation list → Items*
+ * Item content in *Footer for local dev → Slice Zone → Navigation list → Items*
  */
 export interface FooterForLocalDevDocumentDataBodyNavigationListSliceItem {
 	/**
-	 * Navigation item label field in *Footer for local dev → Slice zone → Navigation list → Items*
+	 * Navigation item label field in *Footer for local dev → Slice Zone → Navigation list → Items*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -3483,7 +3495,7 @@ export interface FooterForLocalDevDocumentDataBodyNavigationListSliceItem {
 	label: prismic.KeyTextField
 
 	/**
-	 * Navigation item link field in *Footer for local dev → Slice zone → Navigation list → Items*
+	 * Navigation item link field in *Footer for local dev → Slice Zone → Navigation list → Items*
 	 *
 	 * - **Field Type**: Link
 	 * - **Placeholder**: *None*
@@ -3494,7 +3506,7 @@ export interface FooterForLocalDevDocumentDataBodyNavigationListSliceItem {
 }
 
 /**
- * Slice for *Footer for local dev → Slice zone*
+ * Slice for *Footer for local dev → Slice Zone*
  */
 export type FooterForLocalDevDocumentDataBodyNavigationListSlice = prismic.Slice<
 	'navigation_list',
@@ -3507,7 +3519,6 @@ type FooterForLocalDevDocumentDataBodySlice =
 	| PresentationLinksSlice
 	| FooterForLocalDevDocumentDataBodyNavigationListSlice
 	| ContactsSliceSlice
-	| ParagraphSliceSlice
 
 /**
  * Content for Footer for local dev documents
@@ -3569,7 +3580,7 @@ interface FooterForLocalDevDocumentData {
 	column_icons: prismic.GroupField<Simplify<FooterForLocalDevDocumentDataColumnIconsItem>>
 
 	/**
-	 * Slice zone field in *Footer for local dev*
+	 * Slice Zone field in *Footer for local dev*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -4043,7 +4054,15 @@ export interface HeaderDocumentDataBodyNavigationListSlicePrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
 	nav_section: prismic.SelectField<
-		'Company' | 'Services' | 'Expertise' | 'Industries' | 'Clients' | 'Insights' | 'Careers',
+		| 'Company'
+		| 'Services'
+		| 'Expertise'
+		| 'Industries'
+		| 'Clients'
+		| 'Case Studies'
+		| 'Insights'
+		| 'Careers'
+		| 'Contacts',
 		'filled'
 	>
 
@@ -4236,7 +4255,7 @@ export interface HeaderForLocalDevDocumentDataBodyNavigationListSlicePrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
 	nav_section: prismic.SelectField<
-		'Company' | 'Services' | 'Expertise' | 'Industries' | 'Clients' | 'Insights' | 'Careers',
+		'Company' | 'Services' | 'Expertise' | 'Industries' | 'Case Studies' | 'Insights' | 'Careers' | 'Contacts',
 		'filled'
 	>
 
@@ -5286,6 +5305,18 @@ interface PostDocumentData {
 	post_with_form: prismic.BooleanField
 
 	/**
+	 * Available at field in *Post*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: post.released
+	 * - **Tab**: Blog Post
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	released: prismic.BooleanField
+
+	/**
 	 * featured-image field in *Post*
 	 *
 	 * - **Field Type**: Image
@@ -5816,7 +5847,7 @@ export type VacancyDocument<Lang extends string = string> = prismic.PrismicDocum
 	Lang
 >
 
-type VideoBlockDocumentDataSlicesSlice = VideoSliceSlice
+type VideoBlockDocumentDataSlicesSlice = never
 
 /**
  * Content for VideoBlock documents
@@ -8354,6 +8385,75 @@ export type CtaBannerSliceSliceChecklistCtaBannerSlice = prismic.SharedSliceVari
 >
 
 /**
+ * Primary content in *CtaBannerSlice → Primary*
+ */
+export interface CtaBannerSliceSliceExpertCtaWithInfoPrimary {
+	/**
+	 * Color Theme field in *CtaBannerSlice → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: white
+	 * - **API ID Path**: cta_banner_slice.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'white' | 'black', 'filled'>
+
+	/**
+	 * Title field in *CtaBannerSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_banner_slice.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *CtaBannerSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_banner_slice.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+
+	/**
+	 * Button Text field in *CtaBannerSlice → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_banner_slice.primary.buttonText
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	buttonText: prismic.KeyTextField
+
+	/**
+	 * Experts Image field in *CtaBannerSlice → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_banner_slice.primary.expertsImage
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	expertsImage: prismic.ImageField<never>
+}
+
+/**
+ * Expert CTA With Info variation for CtaBannerSlice Slice
+ *
+ * - **API ID**: `expertCtaWithInfo`
+ * - **Description**: Cta Banner Slice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CtaBannerSliceSliceExpertCtaWithInfo = prismic.SharedSliceVariation<
+	'expertCtaWithInfo',
+	Simplify<CtaBannerSliceSliceExpertCtaWithInfoPrimary>,
+	never
+>
+
+/**
  * Slice variation for *CtaBannerSlice*
  */
 type CtaBannerSliceSliceVariation =
@@ -8361,6 +8461,7 @@ type CtaBannerSliceSliceVariation =
 	| CtaBannerSliceSliceCtaBannerWithBackgroundImage
 	| CtaBannerSliceSliceExpertCtaSlice
 	| CtaBannerSliceSliceChecklistCtaBannerSlice
+	| CtaBannerSliceSliceExpertCtaWithInfo
 
 /**
  * CtaBannerSlice Shared Slice
@@ -8729,7 +8830,121 @@ export type CustomerRatesSliceSlice = prismic.SharedSlice<'customer_rates_slice'
 /**
  * Primary content in *CustomerTestimonials → Primary*
  */
+export interface CustomerTestimonialsSliceDefaultSlicePrimary {
+	/**
+	 * Animation list field in *CustomerTestimonials → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: customer_testimonials.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+
+	/**
+	 * Title field in *CustomerTestimonials → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+}
+
+/**
+ * Default slice variation for CustomerTestimonials Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: CustomerTestimonials
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CustomerTestimonialsSliceDefaultSlice = prismic.SharedSliceVariation<
+	'default-slice',
+	Simplify<CustomerTestimonialsSliceDefaultSlicePrimary>,
+	never
+>
+
+/**
+ * Primary content in *CustomerTestimonials → Primary*
+ */
+export interface CustomerTestimonialsSliceTestimonialsSecondVariationPrimary {
+	/**
+	 * Animation list field in *CustomerTestimonials → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select aos animation
+	 * - **API ID Path**: customer_testimonials.primary.animation
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	animation: prismic.SelectField<
+		| 'fade-up'
+		| 'fade-down'
+		| 'fade-right'
+		| 'fade-left'
+		| 'fade-up-right'
+		| 'fade-up-left'
+		| 'fade-down-righ'
+		| 'fade-down-left'
+		| 'zoom-in'
+		| 'zoom-in-up'
+		| 'zoom-in-left'
+		| 'zoom-in-right'
+		| 'none'
+	>
+
+	/**
+	 * Title field in *CustomerTestimonials → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+}
+
+/**
+ * testimonialsSecondVariation variation for CustomerTestimonials Slice
+ *
+ * - **API ID**: `testimonialsSecondVariation`
+ * - **Description**: CustomerTestimonials
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CustomerTestimonialsSliceTestimonialsSecondVariation = prismic.SharedSliceVariation<
+	'testimonialsSecondVariation',
+	Simplify<CustomerTestimonialsSliceTestimonialsSecondVariationPrimary>,
+	never
+>
+
+/**
+ * Primary content in *CustomerTestimonials → Primary*
+ */
 export interface CustomerTestimonialsSliceClutchReviewsBlackPrimary {
+	/**
+	 * Color Theme field in *CustomerTestimonials → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'black' | 'white'>
+
 	/**
 	 * Title field in *CustomerTestimonials → Primary*
 	 *
@@ -8755,9 +8970,51 @@ export type CustomerTestimonialsSliceClutchReviewsBlack = prismic.SharedSliceVar
 >
 
 /**
+ * Primary content in *CustomerTestimonials → Primary*
+ */
+export interface CustomerTestimonialsSliceClutchReviewsWithSliderPrimary {
+	/**
+	 * Color Theme field in *CustomerTestimonials → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'black' | 'white'>
+
+	/**
+	 * Title field in *CustomerTestimonials → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+}
+
+/**
+ * ClutchReviewsWithSlider variation for CustomerTestimonials Slice
+ *
+ * - **API ID**: `clutchReviewsWithSlider`
+ * - **Description**: CustomerTestimonials
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CustomerTestimonialsSliceClutchReviewsWithSlider = prismic.SharedSliceVariation<
+	'clutchReviewsWithSlider',
+	Simplify<CustomerTestimonialsSliceClutchReviewsWithSliderPrimary>,
+	never
+>
+
+/**
  * Slice variation for *CustomerTestimonials*
  */
-type CustomerTestimonialsSliceVariation = CustomerTestimonialsSliceClutchReviewsBlack
+type CustomerTestimonialsSliceVariation =
+	| CustomerTestimonialsSliceDefaultSlice
+	| CustomerTestimonialsSliceTestimonialsSecondVariation
+	| CustomerTestimonialsSliceClutchReviewsBlack
+	| CustomerTestimonialsSliceClutchReviewsWithSlider
 
 /**
  * CustomerTestimonials Shared Slice
@@ -13256,6 +13513,203 @@ export type StartScreenSliceMainStartScreen = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *StartScreen → Primary*
+ */
+export interface StartScreenSliceCaseStudyStartScreenPrimary {
+	/**
+	 * Background Overlay field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Gradient or color in rgba format
+	 * - **API ID Path**: start_screen.primary.backgroundOverlay
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	backgroundOverlay: prismic.KeyTextField
+
+	/**
+	 * Case Tag field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.caseTag
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	caseTag: prismic.KeyTextField
+
+	/**
+	 * Clickable Case Tag field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: start_screen.primary.clickableCaseTag
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	clickableCaseTag: prismic.BooleanField
+
+	/**
+	 * Title field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField
+
+	/**
+	 * Poster or Background Image field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.poster
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	poster: prismic.ImageField<never>
+
+	/**
+	 * Video Path From S3 field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Max video size 15 MB
+	 * - **API ID Path**: start_screen.primary.videoPath
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	videoPath: prismic.KeyTextField
+
+	/**
+	 * Case Logo Image field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.caseLogoImage
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	caseLogoImage: prismic.ImageField<never>
+}
+
+/**
+ * Case Study Start Screen variation for StartScreen Slice
+ *
+ * - **API ID**: `caseStudyStartScreen`
+ * - **Description**: StartScreen
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StartScreenSliceCaseStudyStartScreen = prismic.SharedSliceVariation<
+	'caseStudyStartScreen',
+	Simplify<StartScreenSliceCaseStudyStartScreenPrimary>,
+	never
+>
+
+/**
+ * Primary content in *StartScreen → Primary*
+ */
+export interface StartScreenSliceChecklistStartScreenSlicePrimary {
+	/**
+	 * Slice background field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.background
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	background: prismic.SelectField<'black' | 'white' | 'grey'>
+
+	/**
+	 * Image field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Checklist Image field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.checklistImage
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	checklistImage: prismic.ImageField<never>
+
+	/**
+	 * Title field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Button Text field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.buttonText
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	buttonText: prismic.KeyTextField
+
+	/**
+	 * Checklist PDF Path field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Path on S3
+	 * - **API ID Path**: start_screen.primary.checklistPdfPath
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	checklistPdfPath: prismic.KeyTextField
+
+	/**
+	 * Sendpulse Template ID field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.sendpulseTemplateID
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	sendpulseTemplateID: prismic.KeyTextField
+
+	/**
+	 * Checklist PDF Name field in *StartScreen → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: start_screen.primary.checklistName
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	checklistName: prismic.KeyTextField
+}
+
+/**
+ * Checklist Start Screen Slice variation for StartScreen Slice
+ *
+ * - **API ID**: `checklistStartScreenSlice`
+ * - **Description**: StartScreen
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StartScreenSliceChecklistStartScreenSlice = prismic.SharedSliceVariation<
+	'checklistStartScreenSlice',
+	Simplify<StartScreenSliceChecklistStartScreenSlicePrimary>,
+	never
+>
+
+/**
  * Slice variation for *StartScreen*
  */
 type StartScreenSliceVariation =
@@ -13265,6 +13719,8 @@ type StartScreenSliceVariation =
 	| StartScreenSliceExpertPage
 	| StartScreenSliceStartScreenWithImage
 	| StartScreenSliceMainStartScreen
+	| StartScreenSliceCaseStudyStartScreen
+	| StartScreenSliceChecklistStartScreenSlice
 
 /**
  * StartScreen Shared Slice
@@ -16083,11 +16539,13 @@ declare module '@prismicio/client' {
 			CtaBannerSliceSliceCtaBannerWithBackgroundImagePrimary,
 			CtaBannerSliceSliceExpertCtaSliceItem,
 			CtaBannerSliceSliceChecklistCtaBannerSlicePrimary,
+			CtaBannerSliceSliceExpertCtaWithInfoPrimary,
 			CtaBannerSliceSliceVariation,
 			CtaBannerSliceSliceDefault,
 			CtaBannerSliceSliceCtaBannerWithBackgroundImage,
 			CtaBannerSliceSliceExpertCtaSlice,
 			CtaBannerSliceSliceChecklistCtaBannerSlice,
+			CtaBannerSliceSliceExpertCtaWithInfo,
 			CustomerLogoSliceSlice,
 			CustomerLogoSliceSliceDefaultPrimary,
 			CustomerLogoSliceSliceDefaultItem,
@@ -16102,9 +16560,15 @@ declare module '@prismicio/client' {
 			CustomerRatesSliceSliceVariation,
 			CustomerRatesSliceSliceDefaultSlice,
 			CustomerTestimonialsSlice,
+			CustomerTestimonialsSliceDefaultSlicePrimary,
+			CustomerTestimonialsSliceTestimonialsSecondVariationPrimary,
 			CustomerTestimonialsSliceClutchReviewsBlackPrimary,
+			CustomerTestimonialsSliceClutchReviewsWithSliderPrimary,
 			CustomerTestimonialsSliceVariation,
+			CustomerTestimonialsSliceDefaultSlice,
+			CustomerTestimonialsSliceTestimonialsSecondVariation,
 			CustomerTestimonialsSliceClutchReviewsBlack,
+			CustomerTestimonialsSliceClutchReviewsWithSlider,
 			CustomersCardSliceSlice,
 			CustomersCardSliceSliceDefaultSlicePrimary,
 			CustomersCardSliceSliceDefaultSliceItem,
@@ -16275,6 +16739,8 @@ declare module '@prismicio/client' {
 			StartScreenSliceExpertPagePrimary,
 			StartScreenSliceStartScreenWithImagePrimary,
 			StartScreenSliceMainStartScreenPrimary,
+			StartScreenSliceCaseStudyStartScreenPrimary,
+			StartScreenSliceChecklistStartScreenSlicePrimary,
 			StartScreenSliceVariation,
 			StartScreenSliceDefaultSlice,
 			StartScreenSliceStartScreenImageRightAndButton,
@@ -16282,6 +16748,8 @@ declare module '@prismicio/client' {
 			StartScreenSliceExpertPage,
 			StartScreenSliceStartScreenWithImage,
 			StartScreenSliceMainStartScreen,
+			StartScreenSliceCaseStudyStartScreen,
+			StartScreenSliceChecklistStartScreenSlice,
 			SubscribeFormSliceSlice,
 			SubscribeFormSliceSliceDefaultSlicePrimary,
 			SubscribeFormSliceSliceSubscribeFormDigestPrimary,

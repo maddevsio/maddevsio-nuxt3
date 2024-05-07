@@ -22,7 +22,7 @@ export class EmbedBlog implements IEmbedBlog {
   constructor(props: EmbedBlogProps) {
     this.item = Object.keys(props.items[0].embed).length ? props.items[0] : null
     this.embedImage = {
-      url: !props.items[0].embed?.embed_url?.includes('sir-john-monash-centre') ? `${ props.items[0]?.embed?.thumbnail_url }?w=400&h=218` : 'https://images.prismic.io/superpupertest/6b7fea0c-453b-4259-8b16-44d24b78076f_sjmc-case.png?w=400&h218',
+      url: !props.items[0].embed?.embed_url?.includes('sir-john-monash-centre') ? `${ props.items[0]?.embed?.thumbnail_url }` : 'https://images.prismic.io/superpupertest/6b7fea0c-453b-4259-8b16-44d24b78076f_sjmc-case.png?w=400&h218',
       width: 200,
       height: 109,
     }

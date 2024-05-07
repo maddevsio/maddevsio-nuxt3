@@ -82,7 +82,8 @@
           "config": {
             "label": "Button link (optional)",
             "placeholder": "Button will be a link instead of a modal window",
-            "allowTargetBlank": true
+            "allowTargetBlank": true,
+            "select": null
           },
           "type": "Link"
         },
@@ -99,7 +100,8 @@
           "type": "Select"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "ctaBannerWithBackgroundImage",
@@ -186,12 +188,14 @@
           "config": {
             "label": "Link To Page",
             "placeholder": "if need link",
-            "allowTargetBlank": false
+            "allowTargetBlank": false,
+            "select": null
           },
           "type": "Link"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "expertCtaSlice",
@@ -237,7 +241,8 @@
           },
           "type": "Text"
         }
-      }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "checklistCtaBannerSlice",
@@ -293,12 +298,66 @@
           "config": {
             "label": "Link",
             "placeholder": "Button will be a link instead of a modal window",
-            "allowTargetBlank": true
+            "allowTargetBlank": true,
+            "select": null
           },
           "type": "Link"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "expertCtaWithInfo",
+      "name": "Expert CTA With Info",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Cta Banner Slice",
+      "primary": {
+        "colorTheme": {
+          "type": "Select",
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "white",
+              "black"
+            ],
+            "default_value": "white"
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          }
+        },
+        "buttonText": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          }
+        },
+        "expertsImage": {
+          "type": "Image",
+          "config": {
+            "label": "Experts Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }

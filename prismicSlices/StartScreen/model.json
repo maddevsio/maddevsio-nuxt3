@@ -408,6 +408,157 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "caseStudyStartScreen",
+      "name": "Case Study Start Screen",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StartScreen",
+      "primary": {
+        "backgroundOverlay": {
+          "config": {
+            "label": "Background Overlay",
+            "placeholder": "Gradient or color in rgba format"
+          },
+          "type": "Text"
+        },
+        "caseTag": {
+          "config": {
+            "label": "Case Tag",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "clickableCaseTag": {
+          "config": {
+            "label": "Clickable Case Tag",
+            "placeholder_false": "No",
+            "placeholder_true": "Yes",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,rtl"
+          },
+          "type": "StructuredText"
+        },
+        "poster": {
+          "config": {
+            "label": "Poster or Background Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "videoPath": {
+          "config": {
+            "label": "Video Path From S3",
+            "placeholder": "Max video size 15 MB"
+          },
+          "type": "Text"
+        },
+        "caseLogoImage": {
+          "config": {
+            "label": "Case Logo Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "checklistStartScreenSlice",
+      "name": "Checklist Start Screen Slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StartScreen",
+      "primary": {
+        "background": {
+          "config": {
+            "label": "Slice background",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white",
+              "grey"
+            ]
+          },
+          "type": "Select"
+        },
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": 1728,
+              "height": 680
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "checklistImage": {
+          "config": {
+            "label": "Checklist Image",
+            "constraint": {
+              "width": null,
+              "height": null
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "buttonText": {
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "checklistPdfPath": {
+          "config": {
+            "label": "Checklist PDF Path",
+            "placeholder": "Path on S3"
+          },
+          "type": "Text"
+        },
+        "sendpulseTemplateID": {
+          "config": {
+            "label": "Sendpulse Template ID",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "checklistName": {
+          "config": {
+            "label": "Checklist PDF Name",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
     }
   ]
 }
