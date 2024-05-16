@@ -7,7 +7,6 @@
     <LazyCareersSectionsEmployeesBenefits />
     <LazyCareersSectionsOpenPositions />
     <LazyCareersSectionsVacanciesSubscription />
-    <LazyCareersSectionsCTABanner />
   </div>
   <LazyCareersUIScrollToPositionsLink />
 </template>

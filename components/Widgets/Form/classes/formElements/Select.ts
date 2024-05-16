@@ -43,5 +43,6 @@ export class Select implements ISelect {
 
   setSelectedOption(option: SelectOption) {
     this.selectedOption.value = option.label
+    if (this.selectedOption.value) { this.error.value = '' }
   }
 }

@@ -65,6 +65,7 @@ onUnmounted(() => {
     ]"
   >
     <button
+      type="button"
       :class="`dropdown-selector__selected dropdown-selector__selected--${colorTheme}`"
       @click="toggleDropdown"
     >

@@ -72,8 +72,8 @@ const {
       />
     </div>
     <LazyWidgetsFormUISelectField
-      v-if="selects && selects.vacancyForSubscription"
-      :select-field-instance="selects.vacancyForSubscription"
+      v-if="selects && selects.vacancyCategorySubscription"
+      :select-field-instance="selects.vacancyCategorySubscription"
       :class="styles['careers-subscribe-form__select']"
     />
     <LazyWidgetsFormUIPrivacyPolicyNotice

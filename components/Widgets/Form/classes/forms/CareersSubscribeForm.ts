@@ -30,7 +30,7 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
       description: '',
       showSuccessfulMessage: true,
       showImage: true,
-      imagePath: 'images/core/forms/success-message-hand.svg',
+      imagePath: 'images/core/forms/success-message-checkmark.svg',
       imageAlt: 'Checkmark',
     }
     this.fields = formBuilder.fields
@@ -49,9 +49,19 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
 
   async onSubmitVerifiedForm({
     token,
-    route,
-    $eventBus,
   }: OnSubmitFromProps) {
     if (!this.validationBeforeSend(token)) { }
+
+    try {
+      const fieldsData = this.collectData()
+      console.log(fieldsData)
+      if (this.successMessage.showSuccessfulMessage) {
+        this.successMessage.show.value = true
+      }
+
+      console.log(this.successMessage.show.value)
+    } catch (e: any) {
+      this.error.value = e
+    }
   }
 }

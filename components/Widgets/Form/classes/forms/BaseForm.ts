@@ -217,7 +217,7 @@ export class BaseForm implements IBaseForm {
       if (element?.selectedOption && !acc[element.objectKeyName]) {
         acc = {
           ...acc,
-          [element.objectKeyName]: element?.selectedOption,
+          [element.objectKeyName]: element?.selectedOption.value,
         }
         return acc
       }

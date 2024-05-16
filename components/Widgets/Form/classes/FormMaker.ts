@@ -471,7 +471,7 @@ export class FormMaker {
             elementId: 'fullName',
             type: 'text',
             name: 'Full name',
-            placeholder: 'Your name',
+            placeholder: 'Full Name',
             validationType: 'longText',
             longTextLimit: 140,
             required: true,
@@ -488,8 +488,8 @@ export class FormMaker {
         ])
         .addSelect([
           new Select({
-            objectKeyName: 'vacancyForSubscription',
-            elementId: 'vacancyForSubscription',
+            objectKeyName: 'vacancyCategorySubscription',
+            elementId: 'vacancyCategorySubscription',
             label: 'Choose a position',
             required: true,
             colorTheme: 'white',
