@@ -12,11 +12,20 @@ const scripts = [{
   defer: true,
 }]
 
+if (caseStudyData.value?.caseStudyMeta.schemaOrg) {
+  useJsonld(() => caseStudyData.value?.caseStudyMeta.schemaOrg.map((snippet: { type: string, innerHTML: string }) => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   ...caseStudyData.value?.caseStudyMeta,
   // @ts-ignore
-}, Array.isArray(caseStudyData.value?.caseStudyMeta.schemaOrg) ? [...caseStudyData.value!.caseStudyMeta.schemaOrg, ...scripts] : [...scripts]))
+}, [...scripts]))
 
 const logo = {
   width: 242,

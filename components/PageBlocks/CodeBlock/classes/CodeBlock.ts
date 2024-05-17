@@ -6,6 +6,7 @@ export class CodeBlock implements ICodeBlock {
   language: string
 
   constructor(props: CodeBlockProps) {
+    // @ts-ignore
     this.code = ref(props.primary?.code?.reduce((prev, element) => prev + element.text, ''))
     this.language = props.primary.language
 

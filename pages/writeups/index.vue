@@ -14,7 +14,7 @@ const writeupService = new Writeup(config.public.ffEnvironment)
 const { data: writeupData, error } = await useAsyncData('writeupData', async () => {
   try {
     const writeupPageData = await writeupService.getWriteupPage(prismic, 'writeups')
-    const pageContent = extractWriteupsHomePageData(writeupPageData)
+    const pageContent = extractWriteupsHomePageData(writeupPageData, config.public.domain)
 
     const allWriteups = await writeupService.loadWriteupPagesData(prismic, 5, route) as Writeups
 
@@ -46,12 +46,20 @@ provide('transformedWriteupsData', writeupData.value?.transformedWriteupsData)
 
 useClearStoresBeforeRouteLeave()
 
+if (writeupData.value!.pageContent.schemaOrg) {
+  useJsonld(() => writeupData.value!.pageContent.schemaOrg!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: writeupData.value?.pageContent.url || '',
   title: writeupData.value?.pageContent.metaTitle || '',
   description: writeupData.value?.pageContent.metaDescription || '',
-  jsonLd: writeupData.value!.pageContent.schemaOrg!,
   image: writeupData.value?.pageContent.ogImage,
 }))
 </script>

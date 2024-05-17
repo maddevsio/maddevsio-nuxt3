@@ -17,12 +17,12 @@ const props = defineProps({
 
 const horizontalToCStore = useHorizontalToCStore()
 const { activeAnchor } = storeToRefs(horizontalToCStore)
-const { headerHeight } = storeToRefs(useHeaderStore())
+// const { headerHeight } = storeToRefs(useHeaderStore())
 const horizontalTocRef = ref<HTMLElement | null>(null)
 const isIntersection = ref(false)
 const anchors = props.slice.items
 const stickyTopFromHeader = computed(() => ({
-  '--stickyTop': `${ Number(headerHeight.value) - 1 }px`,
+  '--stickyTop': '63px', // TODO: return headerHeight when article to be added
 }))
 const triggerBreakpoint = 768
 const { isMobile } = useCheckMobile(triggerBreakpoint)

@@ -9,9 +9,23 @@ defineProps<Props>()
 
 const { $getMediaFromS3 } = useMediaFromS3()
 const showEmail = ref(false)
+const shareIconLabel = ref<HTMLSpanElement[] | null>(null)
 const timerId = ref<ReturnType<typeof setTimeout> | null>(null)
 const setShowEmail = () => {
   showEmail.value = true
+}
+
+const copyEmail = (email: string) => {
+  copyToClipboard(email)
+  if (shareIconLabel.value) {
+    shareIconLabel.value[0].innerText = 'Email copied'
+    const timerID = setTimeout(() => {
+      if (shareIconLabel.value && shareIconLabel.value[0]) {
+        shareIconLabel.value[0].innerText = 'Copy email'
+      }
+      clearTimeout(timerID)
+    }, 3000)
+  }
 }
 
 onMounted(() => {
@@ -33,8 +47,28 @@ onUnmounted(() => {
         :key="`${network.network}-${networkIndex}`"
         class="expert-page-header__info-socials-list-item"
       >
+        <button
+          v-if="network.network === 'Email'"
+          class="expert-page-header__info-socials-link"
+          @click="() => copyEmail(network.link.url.replace('mailto:', ''))"
+        >
+          <img
+            :src="$getMediaFromS3(`images/ExpertPages/svg/startScreen/${network.network.toLowerCase()}.svg`)"
+            :alt="network.network || 'icon'"
+            width="50"
+            height="50"
+            class="expert-page-header__info-socials-icon"
+          >
+          <span
+            ref="shareIconLabel"
+            class="expert-page-header__info-socials-link-label"
+          >
+            Copy email
+          </span>
+        </button>
         <a
-          :href="`${network.network === 'Email' && showEmail ? 'mailto:' : ''}${network.link.url.replace('mailto:', '')}`"
+          v-if="network.network !== 'Email'"
+          :href="`${network.link.url.replace('mailto:', '')}`"
           target="_blank"
           rel="noopener"
           class="expert-page-header__info-socials-link"
@@ -74,6 +108,39 @@ onUnmounted(() => {
         display: block;
         width: 100%;
         font-size: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        padding: 0;
+
+        &-label {
+          @include font('Inter', 12px, 400);
+          line-height: 150%;
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: max-content;
+          max-width: 81px;
+          height: 28px;
+          padding: 0 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: $bgcolor--cultured;
+          border-radius: 3px;
+          opacity: 0;
+          visibility: hidden;
+          transition: 0.3s;
+        }
+
+        &:hover {
+          & .expert-page-header__info-socials-link-label {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
       }
 
       &-icon {

@@ -36,12 +36,20 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
+if (checklist.value!.checklistPageContent!.schemaOrg) {
+  useJsonld(() => checklist.value!.checklistPageContent!.schemaOrg!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: checklist.value?.checklistPageContent.url || '',
   title: checklist.value?.checklistPageContent.metaTitle || '',
   description: checklist.value?.checklistPageContent.metaDescription || '',
-  jsonLd: checklist.value!.checklistPageContent.schemaOrg!,
   image: checklist.value?.checklistPageContent.ogImage,
 }))
 </script>

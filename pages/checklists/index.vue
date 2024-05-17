@@ -47,12 +47,20 @@ if (error.value) {
   throw createError({ statusMessage: 'Page not found', statusCode: 404 })
 }
 
+if (checklistHomePage.value!.checklistPageContent.schemaOrg) {
+  useJsonld(() => checklistHomePage.value!.checklistPageContent.schemaOrg!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: checklistHomePage.value?.checklistPageContent.url as string,
   title: checklistHomePage.value?.checklistPageContent.metaTitle || '',
   description: checklistHomePage.value?.checklistPageContent.metaDescription || '',
-  jsonLd: checklistHomePage.value!.checklistPageContent.schemaOrg!,
   image: checklistHomePage.value?.checklistPageContent.ogImage,
 }))
 </script>

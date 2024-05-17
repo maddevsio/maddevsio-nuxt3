@@ -14,7 +14,7 @@ const writeupService = new Writeup(config.public.ffEnvironment)
 const { data: writeupData, error } = await useAsyncData('caseData', async () => {
   try {
     const writeupPageData = await writeupService.getWriteupPage(prismic, route.params.uid as string) as WriteupPost
-    const pageContent = extractWriteupData(writeupPageData)
+    const pageContent = extractWriteupData(writeupPageData, config.public.domain)
 
     if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusCode: 404, statusMessage: 'Page not found' })
@@ -34,12 +34,20 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
+if (writeupData.value!.pageContent.schemaOrg) {
+  useJsonld(() => writeupData.value!.pageContent.schemaOrg!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: writeupData.value?.pageContent.url || '',
   title: writeupData.value?.pageContent.metaTitle || '',
   description: writeupData.value?.pageContent.metaDescription || '',
-  jsonLd: writeupData.value!.pageContent.schemaOrg!,
   image: writeupData.value?.pageContent.ogImage,
 },
 [

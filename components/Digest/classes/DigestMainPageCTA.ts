@@ -20,8 +20,8 @@ export class DigestMainPageCTA implements IDigestMainPageCTA {
     this.teleportBlogBtn = this.teleportBlogBtn.bind(this)
   }
 
-  async fetchArticle(prismic: PrismicPlugin) {
-    const response = await new BlogService().getPostsByTag(prismic, [], 1) as PostResponse
+  async fetchArticle(prismic: PrismicPlugin, ffEnvironment: string) {
+    const response = await new BlogService({ ffEnvironment }).getPostsByTag(prismic, [], 1) as PostResponse
     this.article.value = response.results[0]
   }
 

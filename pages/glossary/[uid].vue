@@ -23,13 +23,9 @@ const { data: glossaryPost, error } = await useAsyncData('glossaryPost', async (
     const { tagForSubtitle } = glossaryStartScreenData
     const activeLetter = currentPageWordTitle ? currentPageWordTitle[0] : ''
 
-    const lastNewestGlossaryPages = await glossaryService.getGlossaryPages(
-      5,
-      1,
-      [tagForSubtitle],
-      { field: 'my.glossary.word_title', direction: 'desc' })
+    const lastNewestGlossaryPages = await glossaryService.getAllGlossaryPages(1, [tagForSubtitle])
 
-    const lastNewestFilteredWords = filterLastGlossaryWords(lastNewestGlossaryPages.results as GlossaryPage[], currentPageWordTitle)
+    const lastNewestFilteredWords = filterLastGlossaryWords(lastNewestGlossaryPages as GlossaryPage[], currentPageWordTitle)
 
     if (!glossaryPageData?.released && config.public.ffEnvironment === 'production') {
       showError({
@@ -61,12 +57,20 @@ if (error.value) {
 useClearStoresBeforeRouteLeave()
 provide('glossaryService', glossaryService)
 
+if (glossaryPost.value!.glossaryPageData.schemaOrg) {
+  useJsonld(() => glossaryPost.value!.glossaryPageData.schemaOrg!.map(snippet => ({
+    ...JSON.parse(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  })))
+}
+
 // @ts-ignore
 useHead(buildHead({
   url: glossaryPost.value?.glossaryPageData.url || '',
   title: glossaryPost.value?.glossaryPageData?.metaTitle || '',
   description: glossaryPost.value?.glossaryPageData?.metaDescription || '',
-  jsonLd: glossaryPost?.value?.glossaryPageData?.schemaOrg || '',
   image: glossaryPost.value?.glossaryPageData?.ogImage,
 }))
 </script>
@@ -76,11 +80,23 @@ useHead(buildHead({
     <LazyGlossaryPageStartScreen v-if="glossaryPost" class="glossary-start-screen" :start-screen-data="glossaryPost.glossaryStartScreenData" />
     <LazyGlossaryToolBar v-if="glossaryPost" :active-letter-prop="glossaryPost.activeLetter" />
     <LazyGlossaryPostView v-if="glossaryPost" :glossary-post-content="glossaryPost.glossaryPostContent" />
-    <LazyGlossaryNewestWords v-if="glossaryPost" :last-newest-filtered-words="glossaryPost.lastNewestFilteredWords" :tag="glossaryPost.tagForSubtitle" />
+    <LazyGlossaryNewestWords v-if="glossaryPost && glossaryPost.lastNewestFilteredWords.length" :last-newest-filtered-words="glossaryPost.lastNewestFilteredWords" :tag="glossaryPost.tagForSubtitle" />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.glossary-page-content {
+  padding-bottom: 128px;
+
+  @media screen and (max-width: 1280px) {
+    padding-bottom: 96px;
+  }
+
+  @media screen and (max-width: 1185px) {
+    padding-bottom: 48px;
+  }
+}
+
 .glossary-start-screen {
     :deep(.glossary-head-start-screen__title) {
       max-width: 100%;

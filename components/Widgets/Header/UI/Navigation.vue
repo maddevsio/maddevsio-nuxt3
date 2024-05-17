@@ -18,12 +18,24 @@ const linkClickEvent = (event: Event, cb: Function, path: string) => {
 }
 
 useCurrentRoute(props.navigationData.setCurrentRoute)
+const navigationMounted = ref(false)
+
 const {
   navigationList,
   activeSubNavigation,
   currentRootRoute,
   setActiveSubMenu,
 } = props.navigationData
+
+const mouseEnterHandler = (name: string) => {
+  if (navigationMounted.value) {
+    setActiveSubMenu(name)
+  }
+}
+
+onMounted(() => {
+  navigationMounted.value = true
+})
 </script>
 <template>
   <ul class="header__navigation">
@@ -39,7 +51,7 @@ const {
         class="header__navigation-main-link"
         :class="{ 'header__navigation-main-link--active': currentRootRoute === menuItem.mainNav.name }"
         no-prefetch
-        @mouseenter="setActiveSubMenu(menuItem.mainNav.name)"
+        @mouseenter="mouseEnterHandler(menuItem.mainNav.name)"
         @click="linkClickEvent($event, menuItem.sendAnalyticsEvent, menuItem.mainNav.url)"
       >
         {{ menuItem.mainNav.name }}
@@ -57,7 +69,7 @@ const {
         v-else
         class="header__navigation-main-link"
         :class="{ 'header__navigation-main-link--active': currentRootRoute === menuItem.mainNav.name }"
-        @mouseenter="setActiveSubMenu(menuItem.mainNav.name)"
+        @mouseenter="mouseEnterHandler(menuItem.mainNav.name)"
       >
         {{ menuItem.mainNav.name }}
       </span>

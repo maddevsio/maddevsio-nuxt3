@@ -21,7 +21,7 @@ const {
   formButtonText,
   backgroundColorClass,
 } = new WorkPrinciplesWithFormDefault(props.slice)
-const { headerHeight } = storeToRefs(useHeaderStore())
+// const { headerHeight } = storeToRefs(useHeaderStore()) TODO: return when header plate is back
 </script>
 
 <template>
@@ -48,7 +48,7 @@ const { headerHeight } = storeToRefs(useHeaderStore())
         class="work-principles-with-form__form"
         :form-title="formTitle"
         :form-button-text="formButtonText"
-        :style="`scroll-margin-top: ${headerHeight}px`"
+        :style="`scroll-margin-top: 66px`"
       />
     </div>
   </div>
@@ -74,21 +74,20 @@ const { headerHeight } = storeToRefs(useHeaderStore())
     align-items: flex-start;
   }
 
+  &__list {
+    margin-top: 25px;
+  }
+
   &__title {
-    @include font('Inter', 60px, 700);
+    @include font('Inter', 54px, 700);
     line-height: 125%;
-    margin-bottom: 75px;
+    margin-bottom: 57px;
     color: inherit;
   }
 
   @media screen and (max-width: 1500px) {
     &__container {
       grid-column-gap: 68px;
-    }
-
-    &__title {
-      font-size: 54px;
-      margin-bottom: 56px;
     }
   }
 
@@ -98,8 +97,7 @@ const { headerHeight } = storeToRefs(useHeaderStore())
     }
 
     &__title {
-      font-size: 45px;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
   }
 
@@ -107,6 +105,12 @@ const { headerHeight } = storeToRefs(useHeaderStore())
     &__container {
       grid-template-columns: 1fr;
       grid-gap: 48px 0;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    &__title {
+      font-size: 45px;
     }
   }
 

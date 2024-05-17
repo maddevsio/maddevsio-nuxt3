@@ -30,12 +30,20 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
+if (vacancyData.value!.schemaOrgSnippet) {
+  useJsonld(() => vacancyData.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
   title: vacancyData.value?.metaTitle || vacancyData.value?.title || '',
   metaTitle: vacancyData.value?.metaTitle || vacancyData.value?.title || '',
   description: vacancyData.value?.metaDescription || vacancyData.value?.subtitle || '',
-  jsonLd: vacancyData.value?.schemaOrgSnippet || '',
   url: openGraphUrl,
 }))
 </script>

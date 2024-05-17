@@ -34,6 +34,7 @@ export class Header implements IHeader {
     this.handleLogo = this.handleLogo.bind(this)
     this.handleMobileMenuScroll = this.handleMobileMenuScroll.bind(this)
     this.observeIsMobile = this.observeIsMobile.bind(this)
+    this.showModal = this.showModal.bind(this)
   }
 
   getHeaderHeight(headerRef: Element) {
@@ -86,7 +87,7 @@ export class Header implements IHeader {
     }
   }
 
-  showModal = () => {
+  showModal() {
     if (!this.modalContactMeRef?.value?.show) { return }
     this.modalContactMeRef.value.show()
     contactMeClickEvent.send('Header')

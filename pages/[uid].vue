@@ -36,14 +36,6 @@ if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-if (data.value &&
-  (!data.value.slices ||
-  (!data.value?.released && config.public.ffEnvironment === 'production') ||
-  getRoutePrefixClient(route.path) !== `${ data.value?.routePrefix ? `${ data.value?.routePrefix }/` : '' }${ route.params.uid }`)
-) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found' })
-}
-
 useClearStoresBeforeRouteLeave()
 
 if (data.value && data.value.uid) {
@@ -54,17 +46,32 @@ if (data.value && data.value.uid) {
   updateEmailSubject(data.value?.emailSubject as string)
 }
 
+if (data.value!.schemaOrgSnippet) {
+  useJsonld(() => data.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
+    JSON.stringify(snippet!.innerHTML
+      .replace(/\r?\n|\r/g, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/,(\s*)$/, '$1')),
+  ))))
+}
+
 // @ts-ignore
 useHead(buildHead({
-  url: `${ config.public.domain }/${ route.params.uid }/`,
+  url: `${ config.public.domain }${ data.value?.routePrefix ? `/${ data.value?.routePrefix }/${ route.params.uid }/` : `/${ route.params.uid }/` }`,
   title: data.value?.metaTitle || '',
   description: data.value?.metaDescription || '',
-  jsonLd: data.value!.schemaOrgSnippet!,
   image: data.value!.ogImage!,
 }))
 </script>
+
 <template>
   <div>
+    <h1
+      v-if="data && data.uid === 'contact-us'"
+      class="contacts-hidden-title"
+    >
+      Mad Devs Contact Information
+    </h1>
     <SliceZone
       v-if="data"
       :slices="data.slices"
@@ -72,3 +79,11 @@ useHead(buildHead({
     />
   </div>
 </template>
+<style lang="scss" scoped>
+.contacts-hidden-title {
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+</style>

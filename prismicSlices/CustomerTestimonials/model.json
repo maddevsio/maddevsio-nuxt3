@@ -5,12 +5,34 @@
   "description": "CustomerTestimonials",
   "variations": [
     {
-      "id": "clutchReviewsBlack",
-      "name": "ClutchReviewsBlack",
+      "id": "default-slice",
+      "name": "Default slice",
       "docURL": "...",
       "version": "sktwi1xtmkfgx8626",
       "description": "CustomerTestimonials",
       "primary": {
+        "animation": {
+          "config": {
+            "label": "Animation list",
+            "placeholder": "Select aos animation",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-righ",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-up",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ]
+          },
+          "type": "Select"
+        },
         "title": {
           "config": {
             "label": "Title",
@@ -19,8 +41,102 @@
           "type": "Text"
         }
       },
-      "items": {},
-      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+      "items": {}
+    },
+    {
+      "id": "testimonialsSecondVariation",
+      "name": "testimonialsSecondVariation",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CustomerTestimonials",
+      "primary": {
+        "animation": {
+          "config": {
+            "label": "Animation list",
+            "placeholder": "Select aos animation",
+            "options": [
+              "fade-up",
+              "fade-down",
+              "fade-right",
+              "fade-left",
+              "fade-up-right",
+              "fade-up-left",
+              "fade-down-righ",
+              "fade-down-left",
+              "zoom-in",
+              "zoom-in-up",
+              "zoom-in-left",
+              "zoom-in-right",
+              "none"
+            ]
+          },
+          "type": "Select"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "clutchReviewsBlack",
+      "name": "ClutchReviewsBlack",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CustomerTestimonials",
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ]
+          },
+          "type": "Select"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "clutchReviewsWithSlider",
+      "name": "ClutchReviewsWithSlider",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CustomerTestimonials",
+      "primary": {
+        "colorTheme": {
+          "config": {
+            "label": "Color Theme",
+            "placeholder": "",
+            "options": [
+              "black",
+              "white"
+            ]
+          },
+          "type": "Select"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
     }
   ]
 }

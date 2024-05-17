@@ -17,9 +17,7 @@ const getCustomersLogo = async () => {
   customerLogos.value = response.data.body[0]?.items
 }
 
-onMounted(async () => {
-  await getCustomersLogo()
-})
+await useAsyncData(async () => await getCustomersLogo())
 </script>
 <template>
   <div class="customers-black">

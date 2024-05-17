@@ -15,7 +15,7 @@ const { tag, lastNewestFilteredWords } = defineProps({
   },
 })
 
-const { lastWords } = new GlossaryNewestWords(lastNewestFilteredWords)
+const { lastWords, allLastWords, isShowMore, showMore } = new GlossaryNewestWords(lastNewestFilteredWords)
 </script>
 
 <template>
@@ -30,6 +30,10 @@ const { lastWords } = new GlossaryNewestWords(lastNewestFilteredWords)
           :key="word.wordTitle"
           :word="word"
         />
+        <LazyGlossaryUIButtonMore
+          v-if="allLastWords.length > 4 && !isShowMore"
+          @click="showMore"
+        />
       </div>
     </div>
   </section>
@@ -37,7 +41,7 @@ const { lastWords } = new GlossaryNewestWords(lastNewestFilteredWords)
 
 <style lang="scss" scoped>
 .glossary-newest-words {
-  padding: 96px 0 128px;
+  padding-top: 96px;
 
   &__container {
     * {
@@ -67,7 +71,7 @@ const { lastWords } = new GlossaryNewestWords(lastNewestFilteredWords)
   }
 
   @media screen and (max-width: 550px) {
-    padding: 48px 0;
+    padding-top: 48px;
     &__title {
       font-size: 31px;
     }
