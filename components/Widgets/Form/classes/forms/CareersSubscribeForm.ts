@@ -1,17 +1,19 @@
 import axios from 'axios'
 import type {
-  CareersSubscribeFormProps,
+  CareersSubscribeFormProps, CareersSubscribePayload,
   ICareersSubscribeForm,
 } from '~/components/Widgets/Form/interfaces/forms/ICareersSubscribeForm'
 import { BaseForm } from '~/components/Widgets/Form/classes/forms/BaseForm'
 import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
-import type { SendEmailPayload } from '~/components/Widgets/Form/interfaces/forms/FormTypes'
 import type { OnSubmitFromProps } from '~/components/Widgets/Form/interfaces/forms/IContactMeForm'
+import { parseUserAgentForLeads } from '~/components/Widgets/Form/helpers/parseUserAgentForLeads'
 
 export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeForm {
   type: string
   formTitle: string
   formDescription: string
+  formLocation: string
+  modalTitle: string
   selects: FormBuilderReturnProps['selects']
   buttons: FormBuilderReturnProps['buttons']
 
@@ -20,14 +22,17 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
     formDescription = '',
     formBuilder,
   }: CareersSubscribeFormProps) {
-    super({ emailTitle: 'Create new vacancy subscriber' })
+    super({ emailTitle: 'New vacancy subscriber' })
     this.type = 'careers-subscribe-form'
     this.formTitle = formTitle
+    this.templateId = 980321
+    this.modalTitle = 'Mad Devs Website'
+    this.formLocation = 'Careers Home Page'
     this.formDescription = formDescription
     this.successMessage = {
       ...this.successMessage,
       title: 'Thank you!',
-      description: '',
+      description: 'You’ll get an email once a new vacancy appears.',
       showSuccessfulMessage: true,
       showImage: true,
       imagePath: 'images/core/forms/success-message-checkmark.svg',
@@ -39,7 +44,7 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
     this.buttons = formBuilder.buttons
   }
 
-  async sendEmail(payload: SendEmailPayload) {
+  async sendEmailData(payload: CareersSubscribePayload) {
     try {
       await axios.post('/api/subscribe-vacancies', payload)
     } catch (error: any) {
@@ -50,17 +55,57 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
   async onSubmitVerifiedForm({
     token,
   }: OnSubmitFromProps) {
-    if (!this.validationBeforeSend(token)) { }
+    if (!this.validationBeforeSend(token)) {
+      return
+    }
 
     try {
+      this.formSends.value = true
       const fieldsData = this.collectData()
-      console.log(fieldsData)
+      const dataFromStorage = localStorage.getItem('vacancy_subscriber')
+      const subscriber = dataFromStorage ? JSON.parse(dataFromStorage) : {}
+      if (fieldsData?.vacancyCategorySubscription in subscriber) {
+        this.selects.vacancyCategorySubscription.error.value = 'You are already subscribed to this category.'
+        this.selects.vacancyCategorySubscription.alreadySelected.value = true
+        this.formSends.value = false
+        this.resetRecaptcha()
+        return
+      }
+
+      subscriber[fieldsData?.vacancyCategorySubscription] = fieldsData?.email
+      localStorage.setItem('vacancy_subscriber', JSON.stringify(subscriber))
+
+      const {
+        userBrowser,
+        userOS,
+        userPlatform,
+      } = parseUserAgentForLeads()
+
+      await this.sendEmailData({
+        token: fieldsData?.token,
+        email: {
+          templateId: this.templateId,
+          variables: {
+            name: fieldsData?.fullName,
+            email: fieldsData?.email,
+            vacancy_category: fieldsData?.vacancyCategorySubscription,
+            subject: this.emailTitle,
+            modalTitle: this.modalTitle,
+            formLocation: this.formLocation,
+            newsLetter: fieldsData?.newsLetter,
+            userBrowser,
+            userOS,
+            userPlatform,
+          },
+        },
+      })
+
       if (this.successMessage.showSuccessfulMessage) {
         this.successMessage.show.value = true
       }
-
-      console.log(this.successMessage.show.value)
+      this.formSends.value = false
     } catch (e: any) {
+      this.formSends.value = false
       this.error.value = e
     }
   }

@@ -9,6 +9,7 @@ export class Select implements ISelect {
   selectedOption: Ref<string>
   required: boolean
   error: Ref<string>
+  alreadySelected: Ref<boolean>
   colorTheme: string
   options: string[]
 
@@ -30,6 +31,7 @@ export class Select implements ISelect {
     this.selectedOption = ref('')
     this.required = required
     this.error = ref('')
+    this.alreadySelected = ref(false)
     this.colorTheme = colorTheme
     this.options = options
 
@@ -43,6 +45,8 @@ export class Select implements ISelect {
 
   setSelectedOption(option: SelectOption) {
     this.selectedOption.value = option.label
+    this.alreadySelected.value = false
+    if (!this.alreadySelected.value) { this.error.value = '' }
     if (this.selectedOption.value) { this.error.value = '' }
   }
 }

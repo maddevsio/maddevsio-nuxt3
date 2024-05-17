@@ -19,6 +19,7 @@ export interface ISelect {
   selectedOption: Ref<string>
   required: boolean
   error: Ref<string>
+  alreadySelected: Ref<boolean>
   validationOnSubmit(): void
   setSelectedOption(option: SelectOption): void
 }

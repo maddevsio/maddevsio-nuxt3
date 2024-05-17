@@ -27,6 +27,7 @@ const props = defineProps({
 const emit = defineEmits(['option:selected'])
 const isDropdownOpen = ref(false)
 const selectedOption = ref<SelectOption>({ label: props.selectTitle, uid: '' })
+const selected = ref(false)
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value
 }
@@ -37,6 +38,7 @@ const closeDropdown = () => {
 
 const selectOption = (option: SelectOption) => {
   selectedOption.value = option
+  selected.value = true
   toggleDropdown()
   emit('option:selected', option)
 }
@@ -66,7 +68,10 @@ onUnmounted(() => {
   >
     <button
       type="button"
-      :class="`dropdown-selector__selected dropdown-selector__selected--${colorTheme}`"
+      class="dropdown-selector__selected"
+      :class="
+        [`dropdown-selector__selected--${colorTheme}`,
+         {'dropdown-selector__selected--filled': selected}]"
       @click="toggleDropdown"
     >
       {{ selectedOption.label }}
@@ -128,10 +133,18 @@ onUnmounted(() => {
     align-items: center;
 
     &--black {
-      color: $bgcolor--silver;
+      color: $text-color--silver;
     }
 
     &--white {
+      color: $text-color--black-oil;
+    }
+
+    &--black.dropdown-selector__selected--filled {
+      color: $text-color--white-primary;
+    }
+
+    &--white.dropdown-selector__selected--filled  {
       color: $text-color--black-oil;
     }
   }
