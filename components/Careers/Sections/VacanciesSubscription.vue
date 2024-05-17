@@ -1,11 +1,26 @@
 <script setup lang="ts">
-const vacancyCategories = inject('vacancyCategories') as {title: string; tags: string[]}[]
+const vacancyCategories = inject('vacancyCategories') as { title: string; tags: string[] }[]
 const selectOptions = computed(() => vacancyCategories.map(vacancy => ({
   label: vacancy.title,
   uid: '',
 })))
 
 const { $getMediaFromS3 } = useMediaFromS3()
+
+const { isMobile } = useCheckMobile(600)
+const imageAtts = computed(() => {
+  if (isMobile.value) {
+    return {
+      width: 263,
+      height: 326,
+    }
+  }
+
+  return {
+    width: 438,
+    height: 543,
+  }
+})
 </script>
 
 <template>
@@ -20,8 +35,8 @@ const { $getMediaFromS3 } = useMediaFromS3()
         <div class="vacancies-subscription__image">
           <img
             loading="lazy"
-            width="438"
-            height="543"
+            :width="imageAtts.width"
+            :height="imageAtts.height"
             class="vacancies-subscription__photo"
             :src="$getMediaFromS3(`/images/CTABanner/katya-bludova.webp`)"
             alt="Ekaterina Bludova"
@@ -38,7 +53,7 @@ const { $getMediaFromS3 } = useMediaFromS3()
 
 <style lang="scss" scoped>
 .vacancies-subscription {
-  padding: 8px 0 200px;
+  padding: 8px 0 150px;
 
   &__container {
     * {
@@ -98,6 +113,8 @@ const { $getMediaFromS3 } = useMediaFromS3()
   }
 
   @media screen and (max-width: 1060px) {
+    padding-bottom: 96px;
+
     &__wrapper {
       flex-direction: column;
     }
@@ -127,6 +144,12 @@ const { $getMediaFromS3 } = useMediaFromS3()
 
     &__image {
       bottom: -20px;
+    }
+
+    &__label {
+      &-name, &-position {
+        font-size: 14px;
+      }
     }
   }
 
