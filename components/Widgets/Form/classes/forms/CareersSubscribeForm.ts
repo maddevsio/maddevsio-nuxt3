@@ -7,6 +7,8 @@ import { BaseForm } from '~/components/Widgets/Form/classes/forms/BaseForm'
 import type { FormBuilderReturnProps } from '~/components/Widgets/Form/interfaces/IFormBuilder'
 import type { OnSubmitFromProps } from '~/components/Widgets/Form/interfaces/forms/IContactMeForm'
 import { parseUserAgentForLeads } from '~/components/Widgets/Form/helpers/parseUserAgentForLeads'
+import { careersSubscriptionSubmitEvent } from '~/analytics/events'
+import { addUserType } from '~/analytics/Event'
 
 export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeForm {
   type: string
@@ -22,7 +24,7 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
     formDescription = '',
     formBuilder,
   }: CareersSubscribeFormProps) {
-    super({ emailTitle: 'New vacancy subscriber' })
+    super({ emailTitle: 'New vacancy category subscriber' })
     this.type = 'careers-subscribe-form'
     this.formTitle = formTitle
     this.templateId = 980321
@@ -103,6 +105,8 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
         },
       })
 
+      this.submitCareersSubscriptionToAnalytics()
+
       if (this.successMessage.showSuccessfulMessage) {
         this.successMessage.show.value = true
       }
@@ -111,5 +115,10 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
       this.formSends.value = false
       this.error.value = e
     }
+  }
+
+  submitCareersSubscriptionToAnalytics() {
+    addUserType('vacancy_subscriber')
+    careersSubscriptionSubmitEvent.send(this.formLocation)
   }
 }
