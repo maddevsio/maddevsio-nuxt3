@@ -65,11 +65,13 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
       const dataFromStorage = localStorage.getItem('vacancy_subscriber')
       const subscriber = dataFromStorage ? JSON.parse(dataFromStorage) : {}
       if (fieldsData?.vacancyCategorySubscription in subscriber) {
-        this.selects.vacancyCategorySubscription.error.value = 'You are already subscribed to this category.'
-        this.selects.vacancyCategorySubscription.alreadySelected.value = true
-        this.formSends.value = false
-        this.resetRecaptcha()
-        return
+        if (subscriber[fieldsData?.vacancyCategorySubscription] === fieldsData?.email) {
+          this.selects.vacancyCategorySubscription.error.value = 'You are already subscribed to this category.'
+          this.selects.vacancyCategorySubscription.alreadySelected.value = true
+          this.formSends.value = false
+          this.resetRecaptcha()
+          return
+        }
       }
 
       subscriber[fieldsData?.vacancyCategorySubscription] = fieldsData?.email
@@ -86,7 +88,8 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
         email: {
           templateId: this.templateId,
           variables: {
-            name: fieldsData?.fullName,
+            type: this.type,
+            fullName: fieldsData?.fullName,
             email: fieldsData?.email,
             vacancy_category: fieldsData?.vacancyCategorySubscription,
             subject: this.emailTitle,

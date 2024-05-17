@@ -10,7 +10,6 @@ const props = defineProps({
 })
 
 const {
-  elementId,
   label,
   colorTheme,
   options,
@@ -44,6 +43,11 @@ const {
     .select-field__component {
       border: 1px solid $border-color--venetian-red;
     }
+  }
+
+  &__component, :deep(.dropdown-selector__options) {
+    border: 1px solid $border-color--grey-20-percent;
+
   }
 
   &__component {

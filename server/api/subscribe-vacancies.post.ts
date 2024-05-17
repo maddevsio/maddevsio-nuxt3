@@ -41,11 +41,10 @@ export default defineEventHandler(async event => {
     }
 
     // eslint-disable-next-line camelcase
-    const { name, email, vacancy_category } = reqBody.email.variables
-
+    const { fullName, email, vacancy_category } = reqBody.email.variables
     await emailService.sendMailFromVariables(emailPayload)
     // eslint-disable-next-line camelcase
-    return await vacancySubscribeService.addSubscriber({ name, email, vacancy_category })
+    return await vacancySubscribeService.addSubscriber({ name: fullName, email, vacancy_category })
   } catch (error: any) {
     throw createError({
       statusCode: 500,

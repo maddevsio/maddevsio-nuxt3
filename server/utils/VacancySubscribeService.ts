@@ -13,7 +13,8 @@ export interface CareersSubscribePayload {
   email: {
     templateId: number
     variables: {
-      name: string
+      type: string
+      fullName: string
       email: string
       vacancy_category: string
       modalTitle: string
