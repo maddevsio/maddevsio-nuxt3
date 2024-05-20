@@ -80,76 +80,82 @@ watch(() => route.path, (value: string) => {
 @import '@/assets/styles/colorClasses/colors.scss';
 
 .header-plate {
-    position: relative;
+  position: relative;
+
+  &__container {
+    padding: 5px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 32px;
+  }
+
+  &__title {
+    @include font('Poppins', 16px, 500);
+    line-height: 26px;
+    color: $text-color--white-primary;
+  }
+
+  :deep(.ui-button) {
+    min-width: 100px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    background: transparent;
+    @include font('Inter', 14px, 600);
+    line-height: 21px;
+    color: $text-color--grey-20-percent;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  @media screen and (max-width: 768px) {
     &__container {
-      padding: 5px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      column-gap: 32px;
-
-      @media screen and (max-width: 690px) {
-        column-gap: 24px;
-      }
-
-      @media screen and (max-width: 450px) {
-        justify-content: flex-start;
-      }
-
-      @media screen and (max-width: 360px) {
-        column-gap: 10px;
-      }
+      column-gap: 24px;
     }
 
     &__title {
-      @include font('Poppins', 16px, 500);
-      line-height: 26px;
-      color: $text-color--white-primary;
-
-      @media screen and (max-width: 690px) {
-        width: 49%;
-      }
-
-      @media screen and (max-width: 490px) {
-        font-size: 12px;
-        line-height: 18px;
-      }
-
-      @media screen and (max-width: 363px) {
-        width: 51%;
-      }
-    }
-
-    :deep(.ui-button) {
-      min-width: 100px;
-      @media screen and (max-width: 360px) {
-        margin-right: 15px;
-      }
+      width: 49%;
     }
 
     &__close {
-      position: absolute;
-      top: 50%;
-      right: 20px;
-      background: transparent;
-      @include font('Inter', 14px, 600);
-      line-height: 21px;
-      color: $text-color--grey-20-percent;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      box-sizing: border-box;
-      border: none;
-      cursor: pointer;
-      transform: translateY(-50%);
-
-      @media screen and (max-width: 490px) {
-        right: 10px;
-      }
-
-      @media screen and (max-width: 360px) {
-        right: 0;
-      }
+      width: 30px;
+      height: 30px;
+      right: 0;
     }
+  }
+
+  @media screen and (max-width: 490px) {
+    &__container {
+      justify-content: flex-start;
+    }
+
+    &__title {
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+    &__container {
+      column-gap: 10px;
+    }
+
+    &__title {
+      width: 51%;
+    }
+
+    :deep(.ui-button) {
+      margin-right: 15px;
+    }
+  }
 }
 </style>

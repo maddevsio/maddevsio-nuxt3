@@ -33,7 +33,7 @@ export class HeaderPlate implements IHeaderPlate {
   closePlate() {
     this.headerPlateContent.value = null
     ManageCookie.setCookie({
-      name: `seenArticlePlate_${ this.route.path }`,
+      name: `seenHeaderPlate_${ this.route.path }`,
       value: this.route.path,
       expires: 14,
     })
@@ -45,7 +45,10 @@ export class HeaderPlate implements IHeaderPlate {
     const currentUid = path === '/' ? 'main' : uidArr[uidArr.length - 1].replaceAll('/', '')
     const newCookie = useCookie(`seenHeaderPlate_${ path }`)
     this.isSeen.value = newCookie.value
-    if (this.isSeen.value) { return }
+    if (this.isSeen.value) {
+      this.headerPlateContent.value = null
+      return
+    }
     const data = this.headerPlateData.filter((item: HeaderPlateData) => item.uid === currentUid)
     this.headerPlateContent.value = data.length ? this.transformHeaderPlateData(data[0]) : null
   }
