@@ -32,7 +32,7 @@ watch(() => route.path, (value: string) => {
   <div
     v-if="headerPlateContent && !isSeen"
     class="header-plate"
-    :class="colorConverterToClass('bg', headerPlateContent.backgroundColor)"
+    :class="colorConverterToClass('bg', headerPlateContent.backgroundColor ? headerPlateContent.backgroundColor : 'purple')"
   >
     <div class="header-plate__container container">
       <p
