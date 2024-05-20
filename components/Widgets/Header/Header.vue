@@ -5,7 +5,10 @@ import { transformationHeaderData } from '~/components/Widgets/Header/helpers/tr
 import { fetchHeader } from '~/components/Widgets/Header/helpers/fetchHeader'
 
 const { data } = await useAsyncData('header', () => fetchHeader())
+
+const headerPlateData = data?.value?.header_plate_data
 const header = new Header(new HeaderMenu(transformationHeaderData(data.value)))
+
 const {
   getHeaderHeight,
   setStylesForHeader,
@@ -54,6 +57,10 @@ onUnmounted(() => {
       :class="{ 'header--transparent-bg': headerIsTransparent }"
       @mouseleave="menu.setActiveSubMenu('')"
     >
+      <WidgetsHeaderUIPlate
+        v-if="headerPlateData && headerPlateData.length"
+        :header-plate-data="headerPlateData"
+      />
       <div
         id="header-container"
         class="container header__inner"
