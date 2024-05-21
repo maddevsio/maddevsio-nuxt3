@@ -1,0 +1,70 @@
+@import "../UI/styles/styleFormElements.module";
+
+.careers-subscribe-form {
+  * {
+    box-sizing: border-box;
+  }
+
+  &__title {
+    @include font('Inter', 24px, 700);
+    line-height: 130%;
+    color: $text-color--black-oil;
+    margin-bottom: 16px;
+    letter-spacing: -1.3px;
+  }
+
+  &__description {
+    @include font('Inter', 14px, 400);
+    line-height: 128%;
+    margin-bottom: 32px;
+    letter-spacing: -0.4px;
+  }
+
+  &__select, &__privacy-policy, &__input {
+    margin-bottom: 20px;
+  }
+
+  .form-success-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 355px;
+
+    &__image {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 32px;
+    }
+
+    &__title {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .form-field,
+  .form-field:-webkit-autofill,
+  .form-field:-webkit-autofill:focus {
+    font-weight: 400;
+  }
+
+  .form-field:-webkit-autofill,
+  .form-field:-webkit-autofill:focus {
+    font-size: 12px !important;
+  }
+
+  @media screen and (max-width: 480px) {
+    .form-success-message {
+      align-items: center;
+
+      &__title {
+        font-size: 22px;
+      }
+
+      &__description {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+  }
+}
