@@ -113,5 +113,11 @@ export class ChecklistForm extends BaseForm implements IChecklistForm {
 
   submitChecklistToAnalytics() {
     checklistSubmitEvent.send(this.formLocation)
+
+    // @ts-ignore
+    if (window.lintrk) {
+      // @ts-ignore
+      window.lintrk('track', { conversion_id: 18316833 })
+    }
   }
 }

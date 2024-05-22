@@ -116,5 +116,11 @@ export class EbookForm extends BaseForm implements IEbookForm {
       submitNewsletterSubscription.send(`Ebook Form: Form from ${ route.path } page`)
       smartlookSubmitNewsletter.send({ location })
     }
+
+    // @ts-ignore
+    if (window.lintrk) {
+      // @ts-ignore
+      window.lintrk('track', { conversion_id: 18316825 })
+    }
   }
 }
