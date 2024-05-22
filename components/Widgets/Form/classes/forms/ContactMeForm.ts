@@ -73,5 +73,11 @@ export class ContactMeForm extends BaseForm implements IContactMeForm {
     addUserType('lead')
     contactMeSubmitEvent.send(location)
     smartlookSubmitContactMe.send({ location })
+
+    // @ts-ignore
+    if (window.lintrk) {
+      // @ts-ignore
+      window.lintrk('track', { conversion_id: 18316817 })
+    }
   }
 }
