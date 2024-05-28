@@ -4,12 +4,14 @@ import { Checkbox } from '~/components/Widgets/Form/classes/formElements/Checkbo
 import { Button } from '~/components/Widgets/Form/classes/formElements/Button'
 import { RadioButtonGroup } from '~/components/Widgets/Form/classes/formElements/RadioButtonGroup'
 import { RadioButton } from '~/components/Widgets/Form/classes/formElements/RadioButton'
+import { Select } from '~/components/Widgets/Form/classes/formElements/Select'
 import { ContactMeForm } from '~/components/Widgets/Form/classes/forms/ContactMeForm'
 import { ServiceForm } from '~/components/Widgets/Form/classes/forms/ServiceForm'
 import { EbookForm } from '~/components/Widgets/Form/classes/forms/EbookForm'
 import { SubscribeForm } from '~/components/Widgets/Form/classes/forms/SubscribeForm'
 import { ChecklistForm } from '~/components/Widgets/Form/classes/forms/ChecklistForm'
 import { CareersForm } from '~/components/Widgets/Form/classes/forms/CareersForm'
+import { CareersSubscribeForm } from '~/components/Widgets/Form/classes/forms/CareersSubscribeForm'
 
 interface FormMakerOptions {
   formLocation?: string
@@ -450,6 +452,64 @@ export class FormMaker {
             objectKeyName: 'submitButton',
             elementId: 'submitButton',
             label: 'I want to work for Mad Devs!',
+            type: 'submit',
+          }),
+        )
+        .build(),
+    })
+  }
+
+  careersSubscribeFormMaker() {
+    return new CareersSubscribeForm({
+      formTitle: this.options.formTitle || 'Didn\'t find a suitable position?',
+      formDescription: this.options.formDescription || 'Leave your contact information and select a position from the list. We will send you a message as soon as we receive it.',
+      selectOptions: this.options.selectOptions,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'fullName',
+            elementId: 'fullName',
+            type: 'text',
+            name: 'Full name',
+            placeholder: 'Full Name',
+            validationType: 'longText',
+            longTextLimit: 140,
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'email',
+            elementId: 'email',
+            type: 'email',
+            name: 'Email',
+            placeholder: 'Email',
+            validationType: 'email',
+            required: true,
+          }),
+        ])
+        .addSelect([
+          new Select({
+            objectKeyName: 'vacancyCategorySubscription',
+            elementId: 'vacancyCategorySubscription',
+            label: 'Choose a position',
+            required: true,
+            colorTheme: 'white',
+            options: this.options.selectOptions,
+          }),
+        ])
+        .addCheckBoxes([
+          new Checkbox({
+            objectKeyName: 'newsLetter',
+            elementId: 'newsLetter',
+            label: 'I agree to get Mad Devs’ discount offers and other marketing communications.',
+            name: 'Newsletter agreement',
+            defaultValue: true,
+          }),
+        ])
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            label: 'Send',
             type: 'submit',
           }),
         )

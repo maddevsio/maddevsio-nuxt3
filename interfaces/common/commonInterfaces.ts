@@ -14,6 +14,11 @@ export interface IntersectionObserverInstance {
 
 export interface ResizeObserverInstance extends IntersectionObserverInstance {}
 
+export interface SelectOption {
+  label: string
+  uid: string
+}
+
 export interface ISwiperOptions {
   speed: number
   slidesPerView: number

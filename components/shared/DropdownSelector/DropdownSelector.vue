@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-
-interface SelectOption {
-  label: string
-  uid: string
-}
+import type { SelectOption } from '~/interfaces/common/commonInterfaces'
 
 const props = defineProps({
   colorTheme: {
@@ -21,11 +17,17 @@ const props = defineProps({
     type: String,
     default: 'Explore the chapters',
   },
+
+  orderedList: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const emit = defineEmits(['option:selected'])
 const isDropdownOpen = ref(false)
 const selectedOption = ref<SelectOption>({ label: props.selectTitle, uid: '' })
+const selected = ref(false)
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value
 }
@@ -36,6 +38,7 @@ const closeDropdown = () => {
 
 const selectOption = (option: SelectOption) => {
   selectedOption.value = option
+  selected.value = true
   toggleDropdown()
   emit('option:selected', option)
 }
@@ -64,7 +67,11 @@ onUnmounted(() => {
     ]"
   >
     <button
-      :class="`dropdown-selector__selected dropdown-selector__selected--${colorTheme}`"
+      type="button"
+      class="dropdown-selector__selected"
+      :class="
+        [`dropdown-selector__selected--${colorTheme}`,
+         {'dropdown-selector__selected--filled': selected}]"
       @click="toggleDropdown"
     >
       {{ selectedOption.label }}
@@ -88,7 +95,7 @@ onUnmounted(() => {
           ]"
           @click="selectOption(option)"
         >
-          <span class="dropdown-selector__option--number">{{ index + 1 }}.</span> {{ option.label }}
+          <span v-if="orderedList" class="dropdown-selector__option--number">{{ index + 1 }}.</span> {{ option.label }}
         </li>
       </ul>
     </LazySharedUITransitionFade>
@@ -126,10 +133,18 @@ onUnmounted(() => {
     align-items: center;
 
     &--black {
-      color: $bgcolor--silver;
+      color: $text-color--silver;
     }
 
     &--white {
+      color: $text-color--black-oil;
+    }
+
+    &--black.dropdown-selector__selected--filled {
+      color: $text-color--white-primary;
+    }
+
+    &--white.dropdown-selector__selected--filled  {
       color: $text-color--black-oil;
     }
   }

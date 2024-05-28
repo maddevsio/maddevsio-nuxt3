@@ -70,7 +70,7 @@ const handleClick = () => {
     :disabled="disabled"
     :href="linkTo"
     class="ui-button"
-    @click="handleClick"
+    @click.prevent="handleClick"
   >
     <span v-if="loading">Waiting...</span>
     <slot

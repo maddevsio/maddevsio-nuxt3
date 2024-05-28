@@ -34,3 +34,5 @@ export const clickHeaderCta = new AnalyticsEvent('click_header_cta').setCategory
 export const submitOrderProject = new AnalyticsEvent('submit_order_project').setCategory(EVENT_CATEGORIES.SUBMIT)
 
 export const checklistSubmitEvent = new AnalyticsEvent('submit_checklist').setCategory(EVENT_CATEGORIES.SUBMIT)
+
+export const careersSubscriptionSubmitEvent = new AnalyticsEvent('submit_careers_subscription').setCategory(EVENT_CATEGORIES.SUBMIT)
