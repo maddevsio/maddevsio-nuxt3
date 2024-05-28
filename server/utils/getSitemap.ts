@@ -66,6 +66,7 @@ const IGNORE_ROUTES = [
   '/success-and-faq',
   '/about',
   '//about',
+  '/download-checklist',
 ]
 
 /** The priority of the route depends on the nesting. More nesting has a lower priority
