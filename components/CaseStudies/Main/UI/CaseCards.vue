@@ -23,6 +23,7 @@ const currentPage = ref(1)
 const casesListRef = ref<HTMLElement | null>(null)
 const { headerHeight } = storeToRefs(useHeaderStore())
 const dynamicTagStore = useDynamicTagCloudStore()
+const extraIndentFromHeader = 65
 
 const pageCount = computed(() => {
   if (isDesktop) {
@@ -69,59 +70,41 @@ const removeAnimationBlockOnLoad = () => {
   }
 }
 
+const navigateToPage = async (path: string, query: Record<string, string | number>) => {
+  await router.push({ path, query });
+  scrollToStart();
+};
+
+const getTagsFromRoute = (tag: string) => {
+  if (!tag) { return [caseStudiesService.mainTagForQuery] }
+  return tag === caseStudiesService.mainTagName ? [caseStudiesService.mainTagForQuery] : [tag];
+};
+
 const changePage = async (page: number) => {
-  currentPage.value = page
-  if ('tag' in route.query && !('page' in route.query)) {
-    if (currentPage.value !== 1) {
-      await router.push({
-        path: route.path,
-        query: {
-          tag: route.query.tag || dynamicTagStore.activeTag.caseStudies,
-          page: currentPage.value,
-        },
-      })
-      scrollToStart()
-    }
-  }
+  currentPage.value = page;
 
-  if ('tag' in route.query && 'page' in route.query) {
-    await router.push({
-      path: route.path,
-      query: {
-        tag: route.query.tag || dynamicTagStore.activeTag.caseStudies,
-        page: currentPage.value,
-      },
-    })
-    scrollToStart()
-  }
-
-  if (!('tag' in route.query)) {
-    await router.push({
-      path: route.path,
-      query: {
-        page: currentPage.value,
-      },
-    })
-    scrollToStart()
-  }
-
-  const tagsFromRoute = route.query.tag === 'All Cases' ? ['Case studies'] : [route.query.tag]
-  if (tagsFromRoute.every(tag => tag)) {
-    await loadCaseCards(tagsFromRoute as string[], pageCount.value, currentPage.value)
+  if ('tag' in route.query) {
+    await navigateToPage(route.path, {
+      tag: route.query.tag as string || dynamicTagStore.activeTag.caseStudies,
+      caseStudiesPage: currentPage.value,
+    });
   } else {
-    await loadCaseCards([dynamicTagStore.activeTag.caseStudies || 'Case studies'], pageCount.value, currentPage.value)
+    await navigateToPage(route.path, { caseStudiesPage: currentPage.value });
   }
-  removeAnimationBlockOnLoad()
-}
+};
 
-watch(() => route.query, async () => {
-  if ('tag' in route.query && ('caseStudiesPage' in route.query && Number(route.query.caseStudiesPage) === 1)) {
-    await loadCaseCards([dynamicTagStore.activeTag.caseStudies], pageCount.value, 1)
-    removeAnimationBlockOnLoad()
+watch(() => route.query, async value => {
+  if (!('tag' in value) && !(caseStudiesService.pageName in value)) {
+    await navigateToPage(route.path, { caseStudiesPage: caseStudiesService.firstPage });
   }
+
+  const tags = getTagsFromRoute(value.tag as string)
+  await loadCaseCards(tags as string[], pageCount.value, Number(value[caseStudiesService.pageName]) || currentPage.value);
+  removeAnimationBlockOnLoad();
 })
 
 onMounted(() => {
+  removeAnimationBlockOnLoad();
   lazyLoadVideo()
 })
 </script>
@@ -132,7 +115,7 @@ onMounted(() => {
     <div
       ref="casesListRef"
       class="container cases__container"
-      :style="`scroll-margin-top: ${(headerHeight ? headerHeight : 65) + 60}px`"
+      :style="`scroll-margin-top: ${(headerHeight ? headerHeight : extraIndentFromHeader) + extraIndentFromHeader}px`"
     >
       <div
         v-if="cards.length"
@@ -150,6 +133,7 @@ onMounted(() => {
       :current-page="currentPage"
       :total-pages="totalPages"
       class="cases__pagination"
+      where="caseStudiesPage"
       @page-changed="changePage"
     />
   </section>
