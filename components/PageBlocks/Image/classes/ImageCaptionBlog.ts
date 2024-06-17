@@ -8,6 +8,7 @@ import type {
 
 export class ImageCaptionBlog implements IImageCaptionBlog {
   zoom: Ref<{ show(): void } | null>
+  zoomProperty: string | undefined
   isEnableZoom: boolean
   caption: string | RichTextField
   image: ImageField
@@ -20,7 +21,8 @@ export class ImageCaptionBlog implements IImageCaptionBlog {
 
   constructor(props: ImageCaptionBlogProps) {
     this.zoom = ref(null)
-    this.isEnableZoom = props.primary.enablezoom === null ? true : props.primary.enablezoom === 'enable'
+    this.zoomProperty = props.primary?.enablezoom || props.primary?.enable_zoom
+    this.isEnableZoom = this.zoomProperty === null ? true : this.zoomProperty === 'enable'
     this.imageDimensions = this.getImageDimensions({
       containerSize: Number(props?.containerSize) || this.defaultContainerSize,
       image: props.primary.image,

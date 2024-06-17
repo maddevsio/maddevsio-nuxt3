@@ -9,4 +9,6 @@ export const digestComponents = defineSliceZoneComponents({
   digest_project_card: defineAsyncComponent(() => import('../../../prismicSlices/DigestProjectCard/index.vue')),
   digest_post_card: defineAsyncComponent(() => import('../../../prismicSlices/DigestPostCard/index.vue')),
   subscribe_form_slice: defineAsyncComponent(() => import('../../../prismicSlices/SubscribeFormSlice/index.vue')),
+  divider: defineAsyncComponent(() => import('../../PageBlocks/Divider/Blog.vue')),
+  image_with_caption: defineAsyncComponent(() => import('../../PageBlocks/Image/CaptonBlog.vue')),
 })
