@@ -4,10 +4,16 @@ import { fetchLinks } from '~/config/constants'
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import type { SchemaOrgSnippet, TransformedChecklist } from '~/interfaces/common/commonInterfaces'
 import type { ChecklistsDocument } from '~/prismicio-types'
+import { checkParametersForQuery } from '~/utils/checkParametersForQuery'
 
 export class ChecklistService {
   prismic: PrismicPlugin
   domain: string
+  pageName = 'checklistPage'
+  mainTagForQuery = 'Checklist'
+  mainTagName = 'All Checklists'
+  firstPage = 1
+  pageCount = 4
 
   constructor(prismic: PrismicPlugin, domain: string) {
     this.prismic = prismic
@@ -44,8 +50,8 @@ export class ChecklistService {
 
   async getChecklistsPages({
     tags = ['Checklist'],
-    pageSize = 4,
-    page = 1,
+    pageSize = this.pageCount,
+    page = this.firstPage,
     ffEnvironment,
   }: {
     tags: string[]
@@ -72,46 +78,15 @@ export class ChecklistService {
     }
   }
 
-  async loadChecklistsPagesData(pageSize = 4, route: any, ffEnvironment: string) {
-    const checkedTag = checkTagCloudName(route.query.tag)
-    let allChecklists
-    if ('checklistPage' in route.query && !('tag' in route.query)) {
-      allChecklists = await this.getChecklistsPages({
-        tags: ['Checklist'],
-        pageSize,
-        page: Number(route.query.checklistPage),
-        ffEnvironment,
-      })
-    }
-
-    if ('checklistPage' in route.query && 'tag' in route.query) {
-      allChecklists = await this.getChecklistsPages({
-        tags: [checkedTag],
-        pageSize,
-        page: Number(route.query.checklistPage),
-        ffEnvironment,
-      })
-    }
-
-    if ('tag' in route.query && !('checklistPage' in route.query)) {
-      allChecklists = await this.getChecklistsPages({
-        tags: [checkedTag],
-        pageSize,
-        page: 1,
-        ffEnvironment,
-      })
-    }
-
-    if (!('tag' in route.query) && !('checklistPage' in route.query)) {
-      allChecklists = await this.getChecklistsPages({
-        tags: ['Checklist'],
-        pageSize,
-        page: 1,
-        ffEnvironment,
-      })
-    }
-
-    return allChecklists
+  async loadChecklistsPagesData(pageSize = this.pageCount, route: any, ffEnvironment: string) {
+    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query)
+    const { tags, page } = queryParams
+    return await this.getChecklistsPages({
+      tags,
+      pageSize,
+      page,
+      ffEnvironment,
+    })
   }
 
   transformChecklistDataForCards(checklists: Query<ChecklistsDocument>) {

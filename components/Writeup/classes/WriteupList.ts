@@ -18,6 +18,10 @@ export class WriteupList implements IWriteupList {
   router: Router
   route: any
   ffEnvironment: string
+  pageName = 'writeupPage'
+  mainTagForQuery = 'Writeup'
+  mainTagName = 'All Write-ups'
+  firstPage = 1
 
   constructor(props: WriteupListProps, prismic: PrismicPlugin, router: Router, route: any, ffEnvironment: string) {
     this.sliceBackgroundColor = props.primary.backgroundColor || 'white'
@@ -36,6 +40,8 @@ export class WriteupList implements IWriteupList {
 
     this.getWriteups = this.getWriteups.bind(this)
     this.changePage = this.changePage.bind(this)
+    this.getTagsFromRoute = this.getTagsFromRoute.bind(this)
+    this.navigateToPage = this.navigateToPage.bind(this)
 
     markRaw(this)
   }
@@ -51,21 +57,51 @@ export class WriteupList implements IWriteupList {
     }
   }
 
-  async changePage(page: number) {
-    this.currentPage.value = page
-    await this.getWriteups(this.currentPage.value)
+  // async changePage(page: number) {
+  //   this.currentPage.value = page
+  //   await this.getWriteups(this.currentPage.value)
+  //
+  //   await this.router.push({
+  //     path: this.route.path,
+  //     query: {
+  //       writeupPage: this.currentPage.value,
+  //     },
+  //   })
+  //
+  //   if (!this.writeupListRef.value?.$el) { return }
+  //   this.writeupListRef.value.$el.scrollIntoView({
+  //     block: 'start',
+  //     behavior: 'smooth',
+  //   })
+  // }
 
-    await this.router.push({
-      path: this.route.path,
-      query: {
-        writeupPage: this.currentPage.value,
-      },
-    })
-
+  scrollToStart () {
     if (!this.writeupListRef.value?.$el) { return }
     this.writeupListRef.value.$el.scrollIntoView({
       block: 'start',
       behavior: 'smooth',
     })
+  }
+
+  async navigateToPage (path: string, query: Record<string, string | number>) {
+    await this.router.push({ path, query });
+    this.scrollToStart();
+  }
+
+  getTagsFromRoute(tag: string) {
+    if (!tag) { return [this.mainTagForQuery] }
+    return tag === this.mainTagName ? [this.mainTagForQuery] : [tag];
+  }
+
+  async changePage(page: number) {
+    this.currentPage.value = page
+    if ('tag' in this.route.query) {
+      await this.navigateToPage(this.route.path, {
+        tag: this.route.query.tag as string,
+        [this.pageName]: this.currentPage.value,
+      });
+    } else {
+      await this.navigateToPage(this.route.path, { [this.pageName]: this.currentPage.value });
+    }
   }
 }

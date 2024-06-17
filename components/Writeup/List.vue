@@ -14,11 +14,28 @@ const router = useRouter()
 const route = useRoute()
 const config = useRuntimeConfig()
 const writeupList = new WriteupList(slice, prismic, router, route, config.public.ffEnvironment)
-await useAsyncData(() => writeupList.getWriteups(Number(route.query.writeupPage) || 1), {
+const {
+  getWriteups,
+  changePage,
+  currentPage,
+  pageName,
+  firstPage,
+} = writeupList
+await useAsyncData(() => getWriteups(Number(route.query.writeupPage) || 1), {
   server: false,
   lazy: true,
 })
-const handleChangePage = (page: number) => writeupList.changePage(page)
+const handleChangePage = (page: number) => changePage(page)
+
+watch(() => route.query, async query => {
+  if (!('tag' in query) && !(pageName in query)) {
+    currentPage.value = 1
+    await getWriteups(currentPage.value)
+    return
+  }
+
+  await getWriteups(Number(query[pageName]) || currentPage.value)
+})
 </script>
 <template>
   <section

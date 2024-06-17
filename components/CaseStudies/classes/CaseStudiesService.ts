@@ -71,7 +71,7 @@ export class CaseStudiesService {
 
   async loadCasesPagesData(pageSize = 11, route: any, ffEnvironment: string) {
     const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query)
-    return await this.getCaseStudiesPages({ ...queryParams, pageSize, ffEnvironment });
+    return await this.getCaseStudiesPages({ ...queryParams, pageSize, ffEnvironment })
   }
 
   transformationCasesDataForCards(cases: Query<CaseStudiesDocument>): TransformedCaseStudyCard[] | [] {

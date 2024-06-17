@@ -71,42 +71,42 @@ const removeAnimationBlockOnLoad = () => {
 }
 
 const navigateToPage = async (path: string, query: Record<string, string | number>) => {
-  await router.push({ path, query });
-  scrollToStart();
+  await router.push({ path, query })
+  scrollToStart()
 };
 
 const getTagsFromRoute = (tag: string) => {
   if (!tag) { return [caseStudiesService.mainTagForQuery] }
-  return tag === caseStudiesService.mainTagName ? [caseStudiesService.mainTagForQuery] : [tag];
+  return tag === caseStudiesService.mainTagName ? [caseStudiesService.mainTagForQuery] : [tag]
 };
 
 const changePage = async (page: number) => {
-  currentPage.value = page;
+  currentPage.value = page
   if ('tag' in route.query) {
     await navigateToPage(route.path, {
       tag: route.query.tag as string || dynamicTagStore.activeTag.caseStudies,
       caseStudiesPage: currentPage.value,
     });
   } else {
-    await navigateToPage(route.path, { caseStudiesPage: currentPage.value });
+    await navigateToPage(route.path, { [caseStudiesService.pageName]: currentPage.value })
   }
 };
 
-watch(() => route.query, async (query: any, oldQuery: any) => {
+watch(() => route.query, async query => {
   const tags = getTagsFromRoute(query.tag as string)
   if (!('tag' in query) && !(caseStudiesService.pageName in query)) {
     currentPage.value = caseStudiesService.firstPage
-    await loadCaseCards(tags as string[], pageCount.value, caseStudiesService.firstPage);
-    removeAnimationBlockOnLoad();
+    await loadCaseCards(tags as string[], pageCount.value, caseStudiesService.firstPage)
+    removeAnimationBlockOnLoad()
     return
   }
 
-  await loadCaseCards(tags as string[], pageCount.value, Number(query[caseStudiesService.pageName]) || currentPage.value);
-  removeAnimationBlockOnLoad();
+  await loadCaseCards(tags as string[], pageCount.value, Number(query[caseStudiesService.pageName]) || currentPage.value)
+  removeAnimationBlockOnLoad()
 })
 
 onMounted(() => {
-  removeAnimationBlockOnLoad();
+  removeAnimationBlockOnLoad()
   lazyLoadVideo()
 })
 </script>

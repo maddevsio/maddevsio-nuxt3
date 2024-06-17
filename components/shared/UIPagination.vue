@@ -75,7 +75,7 @@ const isInFirstPage = computed(() => activePage.value === 1)
 const isInLastPage = computed(() => activePage.value === props.totalPages)
 
 watch(activePage, newPage => {
-  console.log('active watch')
+  console.log('active watch', newPage)
 
   if (!(props.where in route.query) && newPage === 1) {
     console.log('not emitted')

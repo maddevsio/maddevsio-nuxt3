@@ -44,54 +44,36 @@ const scrollToStart = () => {
   })
 }
 
+const navigateToPage = async (path: string, query: Record<string, string | number>) => {
+  await router.push({ path, query });
+  scrollToStart();
+};
+
+const getTagsFromRoute = (tag: string) => {
+  if (!tag) { return [checklistService.mainTagForQuery] }
+  return tag === checklistService.mainTagName ? [checklistService.mainTagForQuery] : [tag];
+};
+
 const changePageChecklist = async (page: number) => {
   currentPageChecklist.value = page
-  if ('tag' in route.query && !('checklistPage' in route.query)) {
-    if (currentPageChecklist.value !== 1) {
-      await router.push({
-        path: route.path,
-        query: {
-          tag: route.query.tag || activeTag.value.checklists,
-          checklistPage: currentPageChecklist.value,
-        },
-      })
-      scrollToStart()
-    }
-  }
-
-  if ('tag' in route.query && 'checklistPage' in route.query) {
-    await router.push({
-      path: route.path,
-      query: {
-        tag: route.query.tag || activeTag.value.checklists,
-        checklistPage: currentPageChecklist.value,
-      },
+  if ('tag' in route.query) {
+    await navigateToPage(route.path, {
+      tag: route.query.tag as string || activeTag.value.checklists,
+      [checklistService.pageName]: currentPageChecklist.value,
     })
-    scrollToStart()
-  }
-
-  if (!('tag' in route.query)) {
-    await router.push({
-      path: route.path,
-      query: {
-        checklistPage: currentPageChecklist.value,
-      },
-    })
-    scrollToStart()
-  }
-
-  const tagsFromRoute = route.query.tag === 'All Checklists' ? ['Checklist'] : [route.query.tag] as string[]
-  if (tagsFromRoute.every(tag => tag)) {
-    await loadChecklistCards(tagsFromRoute, 4, currentPageChecklist.value)
   } else {
-    await loadChecklistCards([activeTag.value.checklists || 'Checklist'], 4, currentPageChecklist.value)
+    await navigateToPage(route.path, { [checklistService.pageName]: currentPageChecklist.value })
   }
 }
 
-watch(() => route.query, async () => {
-  if ('tag' in route.query && ('checklistPage' in route.query && Number(route.query.checklistPage) === 1)) {
-    await loadChecklistCards([activeTag.value.checklists], 4, 1)
+watch(() => route.query, async query => {
+  const tags = getTagsFromRoute(query.tag as string)
+  if (!('tag' in query) && !(checklistService.pageName in query)) {
+    currentPageChecklist.value = checklistService.firstPage
+    await loadChecklistCards(tags as string[], checklistService.pageCount, checklistService.firstPage)
+    return
   }
+  await loadChecklistCards(tags as string[], checklistService.pageCount, Number(query[checklistService.pageName]) || currentPageChecklist.value)
 }, { immediate: true })
 </script>
 <template>
