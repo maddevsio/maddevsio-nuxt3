@@ -17,19 +17,23 @@ const {
   prevPage,
   writeupListRef,
   currentPage,
+  pageName,
+  firstPage,
   changePage,
   getWriteups,
+  getTagsFromRoute,
 } = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, router, route, activeTag.value, config.public.ffEnvironment)
 
-if ('page' in route.query) {
-  currentPage.value = Number(route.query.page)
-}
-
-watch(() => route.query, async () => {
-  if ('tag' in route.query && ('page' in route.query && Number(route.query.page) === 1)) {
-    await getWriteups(1, [activeTag.value.writeUps])
+watch(() => route.query, async query => {
+  const tags = getTagsFromRoute(query.tag as string)
+  if (!('tag' in query) && !(pageName in query)) {
+    currentPage.value = 1
+    await getWriteups(firstPage, tags as string[])
+    return
   }
-}, { immediate: true })
+
+  await getWriteups(Number(query[pageName]) || currentPage.value, tags as string[])
+})
 
 onMounted(() => {
   loadingComponent.value = false

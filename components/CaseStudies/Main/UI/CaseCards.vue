@@ -82,7 +82,6 @@ const getTagsFromRoute = (tag: string) => {
 
 const changePage = async (page: number) => {
   currentPage.value = page;
-
   if ('tag' in route.query) {
     await navigateToPage(route.path, {
       tag: route.query.tag as string || dynamicTagStore.activeTag.caseStudies,
@@ -93,13 +92,16 @@ const changePage = async (page: number) => {
   }
 };
 
-watch(() => route.query, async value => {
-  if (!('tag' in value) && !(caseStudiesService.pageName in value)) {
-    await navigateToPage(route.path, { caseStudiesPage: caseStudiesService.firstPage });
+watch(() => route.query, async (query: any, oldQuery: any) => {
+  const tags = getTagsFromRoute(query.tag as string)
+  if (!('tag' in query) && !(caseStudiesService.pageName in query)) {
+    currentPage.value = caseStudiesService.firstPage
+    await loadCaseCards(tags as string[], pageCount.value, caseStudiesService.firstPage);
+    removeAnimationBlockOnLoad();
+    return
   }
 
-  const tags = getTagsFromRoute(value.tag as string)
-  await loadCaseCards(tags as string[], pageCount.value, Number(value[caseStudiesService.pageName]) || currentPage.value);
+  await loadCaseCards(tags as string[], pageCount.value, Number(query[caseStudiesService.pageName]) || currentPage.value);
   removeAnimationBlockOnLoad();
 })
 

@@ -21,6 +21,10 @@ export class WriteupMainContent implements IWriteupMainContent {
   router: Router
   route: any
   ffEnvironment: string
+  pageName = 'page'
+  mainTagForQuery = 'Writeup'
+  mainTagName = 'All Write-ups'
+  firstPage = 1
 
   constructor(
     writeupsData: TransformedWriteups,
@@ -46,6 +50,8 @@ export class WriteupMainContent implements IWriteupMainContent {
     this.getWriteups = this.getWriteups.bind(this)
     this.changePage = this.changePage.bind(this)
     this.scrollToStart = this.scrollToStart.bind(this)
+    this.navigateToPage = this.navigateToPage.bind(this)
+    this.getTagsFromRoute = this.getTagsFromRoute.bind(this)
   }
 
   async getWriteups(page: number, tags: string[]) {
@@ -67,47 +73,25 @@ export class WriteupMainContent implements IWriteupMainContent {
     }
   }
 
+  async navigateToPage (path: string, query: Record<string, string | number>) {
+    await this.router.push({ path, query });
+    this.scrollToStart();
+  }
+
+  getTagsFromRoute(tag: string) {
+    if (!tag) { return [this.mainTagForQuery] }
+    return tag === this.mainTagName ? [this.mainTagForQuery] : [tag];
+  }
+
   async changePage(page: number) {
     this.currentPage.value = page
-    if ('tag' in this.route.query && !('page' in this.route.query)) {
-      if (this.currentPage.value !== 1) {
-        await this.router.push({
-          path: this.route.path,
-          query: {
-            tag: this.route.query.tag || this.activeTag?.writeUps,
-            page: this.currentPage.value,
-          },
-        })
-        this.scrollToStart()
-      }
-    }
-
-    if ('tag' in this.route.query && 'page' in this.route.query) {
-      await this.router.push({
-        path: this.route.path,
-        query: {
-          tag: this.route.query.tag || this.activeTag?.writeUps,
-          page: this.currentPage.value,
-        },
-      })
-      this.scrollToStart()
-    }
-
-    if (!('tag' in this.route.query)) {
-      await this.router.push({
-        path: this.route.path,
-        query: {
-          page: this.currentPage.value,
-        },
-      })
-      this.scrollToStart()
-    }
-
-    const tagsFromRoute = this.route.query.tag === 'All Write-ups' ? ['Writeup'] : [this.route.query.tag]
-    if (tagsFromRoute.length && tagsFromRoute.every(tag => tag)) {
-      await this.getWriteups(this.currentPage.value, tagsFromRoute)
+    if ('tag' in this.route.query) {
+      await this.navigateToPage(this.route.path, {
+        tag: this.route.query.tag as string || this.activeTag.writeUps,
+        [this.pageName]: this.currentPage.value,
+      });
     } else {
-      await this.getWriteups(this.currentPage.value, ['Writeup' || this.activeTag?.writeUps])
+      await this.navigateToPage(this.route.path, { [this.pageName]: this.currentPage.value });
     }
   }
 }

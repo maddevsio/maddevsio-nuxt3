@@ -2,9 +2,12 @@ import type { PrismicPlugin } from '@prismicio/vue'
 import { transformationWriteupListData } from '~/components/Writeup/helpers/transformationWriteupListData'
 import type { Writeups } from '~/components/Writeup/interfaces/IWriteupList'
 import { fetchLinks } from '~/config/constants'
+import { checkParametersForQuery } from '~/utils/checkParametersForQuery'
 
 export class Writeup {
   ffEnvironment: string
+  pageName = 'page'
+  mainTagForQuery = 'Writeup'
 
   constructor(ffEnvironment: string) {
     this.ffEnvironment = ffEnvironment
@@ -45,44 +48,8 @@ export class Writeup {
   }
 
   async loadWriteupPagesData(prismic: PrismicPlugin, pageSize = 5, route: any) {
-    const checkedTag = checkTagCloudName(route.query.tag)
-    let allWriteups
-    if ('page' in route.query && !('tag' in route.query)) {
-      allWriteups = await this.getWriteupPages(
-        prismic,
-        ['Writeup'],
-        pageSize,
-        Number(route.query.page),
-      )
-    }
-
-    if ('page' in route.query && 'tag' in route.query) {
-      allWriteups = await this.getWriteupPages(
-        prismic,
-        [checkedTag],
-        pageSize,
-        Number(route.query.page),
-      )
-    }
-
-    if ('tag' in route.query && !('page' in route.query)) {
-      allWriteups = await this.getWriteupPages(
-        prismic,
-        [checkedTag],
-        pageSize,
-        1,
-      )
-    }
-
-    if (!('tag' in route.query) && !('page' in route.query)) {
-      allWriteups = await this.getWriteupPages(
-        prismic,
-        ['Writeup'],
-        pageSize,
-        1,
-      )
-    }
-
-    return allWriteups
+    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query)
+    const { tags, page } = queryParams
+    return await this.getWriteupPages(prismic, tags, pageSize, page);
   }
 }

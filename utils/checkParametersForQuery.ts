@@ -5,7 +5,7 @@ export const checkParametersForQuery = (pageName: string, mainTag: string, route
     return { tags: [mainTag], page: Number(routeQuery[pageName]) };
   } else if (pageName in routeQuery && 'tag' in routeQuery) {
     return { tags: [checkedTag], page: Number(routeQuery[pageName]) };
-  } else if ('tag' in routeQuery && !('caseStudiesPage' in routeQuery)) {
+  } else if ('tag' in routeQuery && !(pageName in routeQuery)) {
     return { tags: [checkedTag], page: firstPage };
   } else {
     return { tags: [mainTag], page: firstPage };
