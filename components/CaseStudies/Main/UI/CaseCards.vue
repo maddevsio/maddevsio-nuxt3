@@ -20,7 +20,7 @@ const nextPage = ref(props.casesData.nextPage)
 const prevPage = ref(props.casesData.prevPage)
 const cards = ref(props.casesData.cards)
 const currentPage = ref(1)
-const casesListRef = ref<HTMLElement | null>(null)
+const casesListRef = ref<HTMLElement & { $el: HTMLElement } | null>(null)
 const { headerHeight } = storeToRefs(useHeaderStore())
 const dynamicTagStore = useDynamicTagCloudStore()
 const extraIndentFromHeader = 65
@@ -45,52 +45,37 @@ const loadCaseCards = async (tags: string[], pageSize: number, page: number) => 
     page,
     ffEnvironment: config.public.ffEnvironment,
   })
-  if (!casesPagesData) { return }
+  if (!casesPagesData) {
+    return
+  }
   totalPages.value = casesPagesData?.total_pages
   nextPage.value = casesPagesData?.next_page
   prevPage.value = casesPagesData?.prev_page
   cards.value = caseStudiesService.transformationCasesDataForCards(casesPagesData)
 }
 
-const scrollToStart = () => {
-  if (casesListRef.value) {
-    casesListRef.value.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth',
-    })
-  }
-}
-
 const removeAnimationBlockOnLoad = () => {
   const blockedCards = document.querySelectorAll('.cases-list-card')
   if (blockedCards.length) {
     blockedCards.forEach(item => {
-      if (item.classList.contains('cases-list-card--no-events')) { item.classList.remove('cases-list-card--no-events') }
+      if (item.classList.contains('cases-list-card--no-events')) {
+        item.classList.remove('cases-list-card--no-events')
+      }
     })
   }
 }
 
-const navigateToPage = async (path: string, query: Record<string, string | number>) => {
-  await router.push({ path, query })
-  scrollToStart()
-};
-
-const getTagsFromRoute = (tag: string) => {
-  if (!tag) { return [caseStudiesService.mainTagForQuery] }
-  return tag === caseStudiesService.mainTagName ? [caseStudiesService.mainTagForQuery] : [tag]
-};
-
-const changePage = async (page: number) => {
-  currentPage.value = page
-  if ('tag' in route.query) {
-    await navigateToPage(route.path, {
-      tag: route.query.tag as string || dynamicTagStore.activeTag.caseStudies,
-      caseStudiesPage: currentPage.value,
-    });
-  } else {
-    await navigateToPage(route.path, { [caseStudiesService.pageName]: currentPage.value })
-  }
-};
+const { changePage, getTagsFromRoute } = usePagination({
+  router,
+  route,
+  mainTagForQuery: caseStudiesService.mainTagForQuery,
+  mainTagName: caseStudiesService.mainTagName,
+  pageName: caseStudiesService.pageName,
+  activeTag: dynamicTagStore.activeTag.caseStudies,
+  currentPage,
+  scrollRef: casesListRef,
+  withScrollToStart: true,
+})
 
 watch(() => route.query, async query => {
   const tags = getTagsFromRoute(query.tag as string)

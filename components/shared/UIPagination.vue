@@ -75,17 +75,13 @@ const isInFirstPage = computed(() => activePage.value === 1)
 const isInLastPage = computed(() => activePage.value === props.totalPages)
 
 watch(activePage, newPage => {
-  console.log('active watch', newPage)
-
   if (!(props.where in route.query) && newPage === 1) {
-    console.log('not emitted')
     return
   }
   emit('page-changed', newPage)
 })
 
 watch(() => route.query, query => {
-  console.log('pagination watch')
   if (props.where in query) {
     if (Number(query[props.where]) !== activePage.value) {
       activePageComputed.value = Number(query[props.where])

@@ -13,19 +13,31 @@ const prismic = usePrismic()
 const router = useRouter()
 const route = useRoute()
 const config = useRuntimeConfig()
-const writeupList = new WriteupList(slice, prismic, router, route, config.public.ffEnvironment)
+const writeupList = new WriteupList(slice, prismic, config.public.ffEnvironment)
 const {
   getWriteups,
-  changePage,
+  mainTagName,
+  mainTagForQuery,
   currentPage,
   pageName,
-  firstPage,
+  writeupListRef,
 } = writeupList
 await useAsyncData(() => getWriteups(Number(route.query.writeupPage) || 1), {
   server: false,
   lazy: true,
 })
-const handleChangePage = (page: number) => changePage(page)
+
+const { changePage } = usePagination({
+  router,
+  route,
+  mainTagForQuery,
+  mainTagName,
+  pageName,
+  activeTag: '',
+  currentPage,
+  scrollRef: writeupListRef,
+  withScrollToStart: true,
+})
 
 watch(() => route.query, async query => {
   if (!('tag' in query) && !(pageName in query)) {
@@ -68,11 +80,12 @@ watch(() => route.query, async query => {
       </div>
       <LazySharedUIPagination
         v-if="writeupList.nextPage.value || writeupList.prevPage.value"
+        :key="'writeupList'"
         :current-page="writeupList.currentPage.value"
         :total-pages="writeupList.totalPages.value"
         class="writeup-list-pagination"
         where="writeupPage"
-        @page-changed="handleChangePage"
+        @page-changed="changePage"
       />
     </div>
   </section>

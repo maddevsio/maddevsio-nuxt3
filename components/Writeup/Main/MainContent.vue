@@ -7,6 +7,8 @@ const prismic = usePrismic()
 const route = useRoute()
 const router = useRouter()
 const { activeTag } = storeToRefs(useDynamicTagCloudStore())
+const { headerHeight } = storeToRefs(useHeaderStore())
+const writeupListRef = ref(null)
 const config = useRuntimeConfig()
 const loadingComponent = ref(true)
 
@@ -15,14 +17,26 @@ const {
   totalPages,
   nextPage,
   prevPage,
-  writeupListRef,
   currentPage,
   pageName,
   firstPage,
-  changePage,
+  mainTagForQuery,
+  mainTagName,
+  extraIndentFromHeader,
   getWriteups,
-  getTagsFromRoute,
-} = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, router, route, activeTag.value, config.public.ffEnvironment)
+} = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, config.public.ffEnvironment)
+
+const { changePage, getTagsFromRoute } = usePagination({
+  router,
+  route,
+  mainTagForQuery,
+  mainTagName,
+  pageName,
+  activeTag: activeTag.value.writeUps,
+  currentPage,
+  scrollRef: writeupListRef,
+  withScrollToStart: true,
+})
 
 watch(() => route.query, async query => {
   const tags = getTagsFromRoute(query.tag as string)
@@ -49,12 +63,13 @@ onMounted(() => {
         All Write-ups
       </h2>
       <div
+        ref="writeupListRef"
         class="writeup-list-slice__content"
+        :style="`scroll-margin-top: ${(headerHeight ? headerHeight : extraIndentFromHeader) + extraIndentFromHeader}px`"
       >
         <ClientOnly>
           <LazyWriteupCards
             v-if="writeups.length"
-            ref="writeupListRef"
             :writeups="writeups"
             color-theme="black"
             :current-page="currentPage"
@@ -110,6 +125,7 @@ onMounted(() => {
 @media screen and (max-width: 768px) {
   .writeup-main-content {
     padding: 48px 0 72px;
+
     &__title {
       font-size: 31px;
       line-height: 190%;

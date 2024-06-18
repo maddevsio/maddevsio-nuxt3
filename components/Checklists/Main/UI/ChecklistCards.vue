@@ -17,10 +17,11 @@ const config = useRuntimeConfig()
 const currentPageChecklist = ref(1)
 const route = useRoute()
 const router = useRouter()
-const checklistRef = ref<HTMLElement>()
+const checklistRef = ref<HTMLElement & { $el: HTMLElement } | null>()
 const { headerHeight } = storeToRefs(useHeaderStore())
 const { activeTag } = storeToRefs(useDynamicTagCloudStore())
 const checklistService = new ChecklistService(prismic, config.public.domain)
+const extraIndentFromHeader = 65
 
 const loadChecklistCards = async (tags: string[], pageSize: number, page: number) => {
   const checklistPagesData = await checklistService.getChecklistsPages({
@@ -29,59 +30,43 @@ const loadChecklistCards = async (tags: string[], pageSize: number, page: number
     page,
     ffEnvironment: config.public.ffEnvironment,
   })
-  if (!checklistPagesData) { return }
+  if (!checklistPagesData) {
+    return
+  }
   totalPages.value = checklistPagesData?.total_pages
   nextPage.value = checklistPagesData?.next_page
   prevPage.value = checklistPagesData?.prev_page
   cards.value = checklistService.transformChecklistDataForCards(checklistPagesData)
 }
 
-const scrollToStart = () => {
-  if (!checklistRef.value) { return }
-  checklistRef.value.scrollIntoView({
-    block: 'start',
-    behavior: 'smooth',
-  })
-}
-
-const navigateToPage = async (path: string, query: Record<string, string | number>) => {
-  await router.push({ path, query });
-  scrollToStart();
-};
-
-const getTagsFromRoute = (tag: string) => {
-  if (!tag) { return [checklistService.mainTagForQuery] }
-  return tag === checklistService.mainTagName ? [checklistService.mainTagForQuery] : [tag];
-};
-
-const changePageChecklist = async (page: number) => {
-  currentPageChecklist.value = page
-  if ('tag' in route.query) {
-    await navigateToPage(route.path, {
-      tag: route.query.tag as string || activeTag.value.checklists,
-      [checklistService.pageName]: currentPageChecklist.value,
-    })
-  } else {
-    await navigateToPage(route.path, { [checklistService.pageName]: currentPageChecklist.value })
-  }
-}
+const { changePage, getTagsFromRoute } = usePagination({
+  router,
+  route,
+  mainTagForQuery: checklistService.mainTagForQuery,
+  mainTagName: checklistService.mainTagName,
+  pageName: checklistService.pageName,
+  activeTag: activeTag.value.checklists,
+  currentPage: currentPageChecklist,
+  scrollRef: checklistRef,
+  withScrollToStart: true,
+})
 
 watch(() => route.query, async query => {
   const tags = getTagsFromRoute(query.tag as string)
   if (!('tag' in query) && !(checklistService.pageName in query)) {
     currentPageChecklist.value = checklistService.firstPage
     await loadChecklistCards(tags as string[], checklistService.pageCount, checklistService.firstPage)
-    return
   }
   await loadChecklistCards(tags as string[], checklistService.pageCount, Number(query[checklistService.pageName]) || currentPageChecklist.value)
 }, { immediate: true })
 </script>
+
 <template>
   <div class="container checklist">
     <div
       ref="checklistRef"
       class="checklist__cards"
-      :style="`scroll-margin-top: ${(headerHeight ? headerHeight : 65) + 60}px`"
+      :style="`scroll-margin-top: ${(headerHeight ? headerHeight : extraIndentFromHeader) + extraIndentFromHeader}px`"
     >
       <LazyChecklistsMainUIChecklistCard
         v-for="(card) in cards"
@@ -101,10 +86,11 @@ watch(() => route.query, async query => {
       :total-pages="totalPages"
       class="checklist__pagination"
       where="checklistPage"
-      @page-changed="changePageChecklist"
+      @page-changed="changePage"
     />
   </div>
 </template>
+
 <style scoped lang="scss">
 .checklist {
   &__cards {
