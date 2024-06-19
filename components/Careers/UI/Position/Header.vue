@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 
-defineProps({
+const props = defineProps({
   labels: {
     type: Object as PropType<{ remote: boolean; relocation: boolean }>,
     default: () => ({}),
@@ -33,6 +33,11 @@ const scrollToElement = (selector: string) => {
   }
 }
 
+const subtitleText = computed(() => {
+  if (!props.subtitle) { return '' }
+  return replaceLineSeparatorToBr(props.subtitle)
+})
+
 const sendWriteUsClickEvent = () => {
   scrollToElement('#careers-position-form')
 }
@@ -53,11 +58,10 @@ const sendWriteUsClickEvent = () => {
           {{ title }}
         </h1>
         <p
-          v-if="subtitle"
+          v-if="subtitleText && subtitleText.length"
           class="careers-position__subtitle"
-        >
-          {{ subtitle }}
-        </p>
+          v-html="subtitleText"
+        />
         <div
           v-if="tags && tags.length"
           class="careers-position__tags"
