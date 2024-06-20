@@ -14,7 +14,10 @@ const { data: careersHome, error } = await useAsyncData('careersHome', async () 
       tags: (category.tags && category.tags.length) ? category.tags.split(/, */g) : [],
     }))
     const response = await careersService.getVacancies()
-    const vacancies = response.results.map(vacancy => careersService.extractVacancyData(vacancy))
+    const vacancies = response.results.map(vacancy => careersService.extractVacancyData(vacancy)).filter(vacancy => {
+      if (config.public.ffEnvironment === 'production') { return vacancy.released }
+      return vacancy.released || !vacancy.released
+    })
 
     return {
       vacancyCategories,

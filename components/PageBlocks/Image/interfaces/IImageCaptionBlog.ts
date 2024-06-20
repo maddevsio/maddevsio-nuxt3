@@ -4,7 +4,8 @@ import type { PrismicPlugin } from '@prismicio/vue'
 
 export interface ImageCaptionBlogProps {
   primary: {
-    enablezoom: string
+    enablezoom?: string
+    enable_zoom?: string
     image: ImageField
     caption: string | RichTextField
   }
@@ -19,6 +20,7 @@ export interface ImageDimensions {
 export interface IImageCaptionBlog {
   defaultContainerSize: number
   zoom: Ref<{ show(): void } | null>
+  zoomProperty: string | undefined
   isEnableZoom: boolean
   imageDimensions: {
     imageHeight: number | string

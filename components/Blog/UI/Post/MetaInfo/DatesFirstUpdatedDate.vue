@@ -15,30 +15,21 @@ defineProps({
     default: '',
   },
 })
-
-const route = useRoute()
-
-const onlyUpdatedPages = [
-  'code-refactoring',
-  'jira-workflow-for-software-development',
-  'rpa-developer-roles-and-responsibilities',
-  'solid-principles-in-ios-development',
-  'leading-payment-gateways-in-vietnam-to-start-your-business',
-]
 </script>
+
 <template>
   <ul class="post-meta-info__dates-list">
-    <li
-      v-if="date && !onlyUpdatedPages.includes(route.params.uid as string)"
-      class="post-meta-info__dates-item"
-    >
-      <span class="post-meta-info__dates-item-time-event">Created:</span> {{ date }}
-    </li>
     <li
       v-if="updatedDate"
       class="post-meta-info__dates-item"
     >
       <span class="post-meta-info__dates-item-time-event">Updated:</span> {{ updatedDate }}
+    </li>
+    <li
+      v-if="date"
+      class="post-meta-info__dates-item"
+    >
+      <span class="post-meta-info__dates-item-time-event">Created:</span> {{ date }}
     </li>
     <li
       v-if="readTime"

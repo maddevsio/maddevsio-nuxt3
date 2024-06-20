@@ -23,6 +23,9 @@ const {
   getCaption,
 } = new ImageCaptionBlog({ primary: slice.primary, containerSize })
 const $prismic = usePrismic()
+const addDpr = (imageUrl: string) => {
+  return imageUrl && imageUrl.replace(/\?.*$/, '').endsWith('.gif') ? '' : '&dpr=3'
+}
 </script>
 <template>
   <div>
@@ -34,7 +37,7 @@ const $prismic = usePrismic()
           provider="prismic"
           loading="lazy"
           :class="{ 'block-img-zoom': isEnableZoom }"
-          :src="`${image.url}&dpr=3`"
+          :src="`${image.url}${image.url ? addDpr(image.url) : ''}`"
           :alt="image.alt || 'Image'"
           :width="imageDimensions.imageWidth"
           :height="imageDimensions.imageHeight"
