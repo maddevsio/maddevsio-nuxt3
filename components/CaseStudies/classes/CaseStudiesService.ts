@@ -4,9 +4,14 @@ import { fetchLinks } from '~/config/constants'
 import type { CaseStudiesDocument } from '~/prismicio-types'
 import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import type { SchemaOrgSnippet, TransformedCaseStudyCard } from '~/interfaces/common/commonInterfaces'
+import { checkParametersForQuery } from '~/utils/checkParametersForQuery'
 
 export class CaseStudiesService {
   prismic: PrismicPlugin
+  pageName = 'caseStudiesPage'
+  mainTagForQuery = 'Case studies'
+  mainTagName = 'All Cases'
+  firstPage = 1
 
   constructor(prismic: PrismicPlugin) {
     this.prismic = prismic
@@ -65,45 +70,8 @@ export class CaseStudiesService {
   }
 
   async loadCasesPagesData(pageSize = 11, route: any, ffEnvironment: string) {
-    const checkedTag = checkTagCloudName(route.query.tag)
-    let allCasePages
-    if ('page' in route.query && !('tag' in route.query)) {
-      allCasePages = await this.getCaseStudiesPages({
-        tags: ['Case studies'],
-        pageSize,
-        page: Number(route.query.page),
-        ffEnvironment,
-      })
-    }
-
-    if ('page' in route.query && 'tag' in route.query) {
-      allCasePages = await this.getCaseStudiesPages({
-        tags: [checkedTag],
-        pageSize,
-        page: Number(route.query.page),
-        ffEnvironment,
-      })
-    }
-
-    if ('tag' in route.query && !('page' in route.query)) {
-      allCasePages = await this.getCaseStudiesPages({
-        tags: [checkedTag],
-        pageSize,
-        page: 1,
-        ffEnvironment,
-      })
-    }
-
-    if (!('tag' in route.query) && !('page' in route.query)) {
-      allCasePages = await this.getCaseStudiesPages({
-        tags: ['Case studies'],
-        pageSize,
-        page: 1,
-        ffEnvironment,
-      })
-    }
-
-    return allCasePages
+    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query)
+    return await this.getCaseStudiesPages({ ...queryParams, pageSize, ffEnvironment })
   }
 
   transformationCasesDataForCards(cases: Query<CaseStudiesDocument>): TransformedCaseStudyCard[] | [] {

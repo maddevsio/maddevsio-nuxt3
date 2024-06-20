@@ -15,7 +15,7 @@ const {
 const {
   digestTitleRef,
   pageRef,
-  changePage,
+  pageName,
   setTitle,
 } = new DigestMainPageContent(router, route, prismic, fetchDigests)
 
@@ -29,6 +29,27 @@ const { pending } = await useAsyncData(() => fetchDigests({
 }), {
   server: false,
   lazy: true,
+})
+
+const { changePage } = usePagination({
+  router,
+  route,
+  mainTagForQuery: '',
+  mainTagName: '',
+  pageName: 'page',
+  activeTag: '',
+  currentPage: pageRef,
+  scrollRef: digestTitleRef,
+  withScrollToStart: true,
+})
+
+watch(() => route.query, async query => {
+  if (!('tag' in query) && !(pageName in query)) {
+    pageRef.value = 1
+    await fetchDigests({ prismic, year: '', filter: false, date: new Date(), page: pageRef.value, pageSize: 12 })
+    return
+  }
+  await fetchDigests({ prismic, year: '', filter: false, date: new Date(), page: Number(query[pageName]) || pageRef.value, pageSize: 12 })
 })
 </script>
 

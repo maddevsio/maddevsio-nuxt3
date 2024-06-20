@@ -5,12 +5,11 @@ import type { DigestSelectOption } from '~/components/Digest/interfaces/IDigestS
 import type { IDigests } from '~/components/Digest/interfaces/IDigests'
 
 export interface IDigestMainPageContent {
-  digestTitleRef: Ref<HTMLElement | null>
+  digestTitleRef: Ref<HTMLElement & { $el: HTMLElement } | null>
   pageRef: Ref<number>
   router: Router
   route: any
   prismic: PrismicPlugin
   fetchDigests: IDigests['fetchDigests']
-  changePage(page: number): Promise<void>
   setTitle(currentOption: DigestSelectOption): string
 }

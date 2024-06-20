@@ -3,6 +3,11 @@ import type { AnimationItem } from 'lottie-web'
 import { BlogService, type PostResponse } from '~/components/Blog/classes/BlogService'
 import type { BlogPost } from '~/interfaces/common/commonInterfaces'
 
+interface Tag {
+  name: string
+  tags: string[]
+}
+
 const posts = ref<PostResponse>()
 const page = ref(1)
 const activeTags = ref<string[]>([])
@@ -10,20 +15,13 @@ const postsLoaded = ref(false)
 const postsCount = ref<string | number>('000')
 const isActiveSearchPanel = ref(false)
 const lottieIntervalID = ref<ReturnType<typeof setInterval>>()
-const allPostsContainer = ref<HTMLElement>()
-
-const tags = inject('tags')
+const allPostsContainer = ref<HTMLElement & { $el: HTMLElement } | null>()
+const tagsArray = inject<Tag[] | undefined>('tags')
 const route = useRoute()
 const router = useRouter()
 const prismic = usePrismic()
 const { $getMediaFromS3 } = useMediaFromS3()
 const config = useRuntimeConfig()
-
-watch(() => route.query, query => {
-  if ('page' in query) {
-    page.value = Number(query.page)
-  }
-})
 
 const loadBlogPosts = async (pageNumber = 1) => {
   page.value = pageNumber
@@ -60,34 +58,18 @@ const routerPush = async (query: { page?: string | number, tag?: string }) => {
   })
 }
 
-const tagChangedHandler = async ({
-  tags,
-  name,
-}: { tags: string[], name: string }) => {
-  activeTags.value = tags
-  await routerPush({ page: '1', tag: name })
-  await loadBlogPosts(1)
+const filterTags = (tag: string) => {
+  const activeTagObj = tagsArray ? tagsArray.find(tagItem => tagItem.name === tag) : null
+  return activeTagObj && activeTagObj?.tags ? activeTagObj?.tags : []
 }
 
-const tagChangedFromQuery = async ({ tags, name }: { tags: string[], name?: string }) => {
-  activeTags.value = tags
-  await loadBlogPosts(Number(route.query.page || page.value))
-  await routerPush({ tag: name })
+const tagChangedHandler = async (activeTag: string) => {
+  activeTags.value = filterTags(activeTag)
+  await routerPush({ page: '1', tag: activeTag })
 }
 
-const onChangePage = async (page: number) => {
-  await loadBlogPosts(page)
-  if (!route.query.tag) {
-    await routerPush({ page, tag: 'All Articles' })
-  } else {
-    await routerPush({ page })
-  }
-  if (allPostsContainer.value) {
-    allPostsContainer.value.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth',
-    })
-  }
+const tagChangedFromQuery = async (activeTag: string) => {
+  await routerPush({ tag: activeTag })
 }
 
 const findTag = (post: BlogPost) => {
@@ -122,10 +104,34 @@ const animHandler = (lottie: AnimationItem) => {
   }, 15000)
 }
 
-onMounted(async () => {
-  if (!('tag' in route.query)) {
-    await loadBlogPosts()
+const { changePage } = usePagination({
+  router,
+  route,
+  mainTagForQuery: '',
+  mainTagName: '',
+  pageName: 'page',
+  activeTag: activeTags.value.length ? activeTags.value[0] : '',
+  currentPage: page,
+  scrollRef: allPostsContainer,
+  withScrollToStart: true,
+})
+
+watch(() => route.query, async query => {
+  if (!('tag' in query) && !('page' in query)) {
+    page.value = 1
+    activeTags.value = []
+    await loadBlogPosts(page.value)
+    return
   }
+  activeTags.value = filterTags(query.tag as string)
+  await loadBlogPosts(Number(query.page) || page.value)
+})
+
+onMounted(async () => {
+  if ('tag' in route.query) {
+    activeTags.value = filterTags(route.query.tag as string)
+  }
+  await loadBlogPosts(Number(route.query.page) || page.value)
 })
 
 onUnmounted(() => {
@@ -152,7 +158,7 @@ onUnmounted(() => {
           <LazyBlogUITagCloud
             v-show="!isActiveSearchPanel"
             :count-posts="postsCount"
-            :tags="tags"
+            :tags="tagsArray"
             :posts-loaded="postsLoaded"
             @changed="tagChangedHandler"
             @change-tag-from-query-params="tagChangedFromQuery"
@@ -223,7 +229,7 @@ onUnmounted(() => {
           v-if="posts && (posts.next_page || posts.prev_page)"
           :current-page="page"
           :total-pages="posts.total_pages"
-          @page-changed="onChangePage"
+          @page-changed="changePage"
         />
       </div>
     </div>
