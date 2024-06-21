@@ -40,6 +40,7 @@ $ npm run dev
 ```
 
 3. The application is available on [localhost:3000](http://localhost:3000)
+4. To improve the application's performance, it is better to run it from the local domain `maddevs.devtest:3000`. This is necessary for the forms to work properly.
 
 For detailed explanation on how things work, checkout the [Nuxt 3 docs](https://nuxt.com/docs/getting-started/introduction).
 
@@ -51,25 +52,30 @@ For detailed explanation on how things work, checkout the [Nuxt 3 docs](https://
 
 A list of main technologies that we use for build our application
 
-| Technology | Version | Description                                                             |
-|------------|---------| ----------------------------------------------------------------------- |
-| Node       | 18.x    | For the correct launch of the project, use this version of the node     |
-| Vue        | ^3.3.8  | Progressive framework for building a modern user interfaces             |
-| Nuxt       | ^3.10.1 | Server-side rendering framework for VueJS                               |
-| Axios      | ^1.6.5  | Promise based HTTP client for the browser and node.js                   |
-| Nitro      | ^2.9.3  | Web-framework for nodeJS                                                |
-| Prismic    | ^3.1.0  | Content-Management system                                               |
-| Lottie-web | ^5.12.2 | The mobile library for Web animations                                   |
+| Technology                                                          | Version  | Description                                                                                                                                            |
+|---------------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Node                                                                | 18.x     | For the correct launch of the project, use this version of the node                                                                                    |
+| [Vue](https://vuejs.org/guide/introduction.html)                    | ^3.3.8   | Progressive framework for building a modern user interfaces                                                                                            |
+| [Nuxt](https://nuxt.com/docs/getting-started/introduction)          | ^3.10.1  | Server-side rendering framework for VueJS                                                                                                              |
+| [Axios](https://axios-http.com/docs/intro)                          | ^1.6.5   | Promise based HTTP client for the browser and node.js                                                                                                  |
+| [Nitro](https://nitro.unjs.io/)                                     | ^2.9.3   | Web-framework for nodeJS                                                                                                                               |
+| [Prismic](https://prismic.io/docs/nuxt-3-setup)                     | ^3.1.0   | Content-Management system                                                                                                                              |
+| [slice-machine-ui](https://www.npmjs.com/package/slice-machine-ui)  | ^1.25.0  | Slice Machine transforms the way you code reusable components and lets you deliver them directly to marketers in a custom page builder using Prismic.  |
+| [Lottie-web](https://www.npmjs.com/package/lottie-web)              | ^5.12.2  | The mobile library for Web animations                                                                                                                  |
+| [AWS S3 SDK](https://www.npmjs.com/package/@aws-sdk/client-s3)      | ^3.511.0 | AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native.                                                                                |
+| [Pinia](https://pinia.vuejs.org/)                                   | ^2.1.7   | Intuitive, type safe and flexible Store for Vue                                                                                                        |
+| [mitt](https://www.npmjs.com/package/mitt)                          | ^3.0.1   | Tiny 200b functional event emitter / pubsub.                                                                                                           |
+| [sendpulse-api](https://www.npmjs.com/package/sendpulse-api)        | ^1.1.6   | A simple SendPulse REST client library and example for Node.js. [API Documentation](https://sendpulse.com/api)                                         |
 
 #### Additional tools
 
 A list of additional tools that we use for make our codebase better
 
-| Technology      | Version  | Description                                                                 |
-| --------------- |----------| --------------------------------------------------------------------------- |
-| ESLint          | ^8.56.0  | Pluggable JavaScript linter                                                 |
-| Sentry          | ^7.106.1 | Application monitoring and error tracking                                   |
-| Snyk            | ^1.1283.1 | Tool for find and fix security vulnerabilities                              |
+| Technology                                                        | Version  | Description                                                                 |
+|-------------------------------------------------------------------|----------| --------------------------------------------------------------------------- |
+| [ESLint](https://www.npmjs.com/package/eslint)                    | ^8.56.0  | Pluggable JavaScript linter                                                 |
+| [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) | ^7.106.1 | Application monitoring and error tracking                                   |
+| [Snyk](https://snyk.io/)                                          | ^1.1283.1 | Tool for find and fix security vulnerabilities                              |
 
 ### Project structure
 
@@ -147,69 +153,123 @@ A list of environment variables that needed to start the project(required)
 | LINKEDIN_PIXEL_ID                      | Linkidin identificator                                      |
 | NODE_SMARTLOOK_PROJECT_ID              | Smartlook project id from smartlook account                 |
 
-### 💻 Dev Radiator envs
-| NAME                                   | DESCRIPTION                                                 |
-|----------------------------------------|-------------------------------------------------------------|
-| NODE_DEV_RADIATOR_CRON_STRING          | Cron string for start dev radiator                          |
-| NODE_DEV_RADIATOR_GH_TOKEN             | Github token for request                                    |
-| NODE_DEV_RADIATOR_SLACK_WEBHOOK        | Slack webhook for send message                              |
-| NODE_DEV_MONGO_PASSWORD                | Cloud MongoDB password                                      |
-| NODE_DEV_MONGO_USERNAME                | Cloud MongoDB username                                      |
-| NODE_DEV_RADIATOR_MONGO                | Cloud MongoDB url connecting                                |
+[//]: # (### 💻 Dev Radiator envs)
 
-### 📉 Marketing Radiator envs
-| NAME                                    |                          DESCRIPTION                          |
-|-----------------------------------------|:-------------------------------------------------------------:|
-| RADIATOR_FIRESTORE_AUTH_TYPE            |                                                               |
-| RADIATOR_FIRESTORE_PROJECT_ID           |                                                               |
-| RADIATOR_FIRESTORE_PRIVATE_KEY_ID       |                                                               |
-| RADIATOR_FIRESTORE_PRIVATE_KEY          |                                                               |
-| RADIATOR_FIRESTORE_CLIENT_EMAIL         |                 From firestore auth json file                 |
-| RADIATOR_FIRESTORE_CLIENT_ID            |                                                               |
-| RADIATOR_FIRESTORE_AUTH_URI             |                                                               |
-| RADIATOR_FIRESTORE_TOKEN_URI            |                                                               |
-| RADIATOR_FIRESTORE_AUTH_PROVIDER        |                                                               |
-| RADIATOR_FIRESTORE_CLIENT_CERT_URL      |                                                               |
-| --------------------------------------  | ------------------------------------------------------------- |
-| RADIATOR_AUTH_TYPE                      |                                                               |
-| RADIATOR_AUTH_URI                       |                                                               |
-| RADIATOR_CLIENT_CERT_URL                |                                                               |
-| RADIATOR_CLIENT_EMAIL                   |                                                               |
-| RADIATOR_CLIENT_ID                      |                                                               |
-| RADIATOR_PRIVATE_KEY                    |           From google cloud console auth json file            |
-| RADIATOR_PRIVATE_KEY_ID                 |                                                               |
-| RADIATOR_PROJECT_ID                     |                                                               |
-| RADIATOR_PROVIDER_CERT_URL              |                                                               |
-| RADIATOR_TOKEN_URI                      |                                                               |
-| --------------------------------------  | ------------------------------------------------------------- |
-| RADIATOR_FIRESTORE_ID                   |                     Firestore database ID                     |
-| SLACK_WEBHOOK_URL                       |    Slack webhook for send message from marketing radiator     |
-| SLACK_CHANNEL_ID                        |  Slack channel id where send message from marketing radiator  |
-| RADIATOR_DAILY_DISPATCH_TIME            |      Number when run send report from marketing radiator      |
-| REDDIT_CLIENT_ID                        |             Reddit client id from API app reddit              |
-| REDDIT_CLIENT_SECRET                    |           Reddit client secret from API app reddit            |
-| REDDIT_USER_NAME                        |                    Reddit account username                    |
-| REDDIT_PASSWORD                         |                    Reddit account password                    |
-| RADIATOR_QUORA_USER_ID                  |                     Quora user account ID                     |
-| RADIATOR_GLASSDOOR_API_KEY              |                 API Key from page2api service                 |
+[//]: # (| NAME                                   | DESCRIPTION                                                 |)
 
-### Production status checker
-| NAME                                | DESCRIPTION                                                                |
-|-------------------------------------|----------------------------------------------------------------------------|
-| CHECK_PRODUCTION_STATUS_CRON_STRING | Cron string for start checker                                              |
-| SITE_URL_FOR_CHECK                  | Site url for check                                                         |
-| SLACK_CHANNEL_ID_FOR_PROD_CHECK     | Slack channel id where send message from checker                           |
-| USERS_TO_BE_MENTIONED               | Array with objects like [{ "name": "John Doe", :id": "<@slack user id>" }] |
+[//]: # (|----------------------------------------|-------------------------------------------------------------|)
 
-### Memory usage checker
-| NAME                                | DESCRIPTION                     |
-|-------------------------------------|---------------------------------|
-| CHECK_MEMORY_USAGE_CRON_STRING      | Cron string for start checker   |
-| CHECK_MEMORY_USAGE_WHEN_ALARM_PERC  | Percentage when alarm           |
-| CHECK_MEMORY_USAGE_ENABLED          | true or false                   |
-| CHECK_MEMORY_USAGE_SIZE_MEM         | Total memory size in OS         |
+[//]: # (| NODE_DEV_RADIATOR_CRON_STRING          | Cron string for start dev radiator                          |)
 
-<font size=4>All of these variables must be added to the Heroku hosting or  an any others</font>
+[//]: # (| NODE_DEV_RADIATOR_GH_TOKEN             | Github token for request                                    |)
+
+[//]: # (| NODE_DEV_RADIATOR_SLACK_WEBHOOK        | Slack webhook for send message                              |)
+
+[//]: # (| NODE_DEV_MONGO_PASSWORD                | Cloud MongoDB password                                      |)
+
+[//]: # (| NODE_DEV_MONGO_USERNAME                | Cloud MongoDB username                                      |)
+
+[//]: # (| NODE_DEV_RADIATOR_MONGO                | Cloud MongoDB url connecting                                |)
+
+[//]: # ()
+[//]: # (### 📉 Marketing Radiator envs)
+
+[//]: # (| NAME                                    |                          DESCRIPTION                          |)
+
+[//]: # (|-----------------------------------------|:-------------------------------------------------------------:|)
+
+[//]: # (| RADIATOR_FIRESTORE_AUTH_TYPE            |                                                               |)
+
+[//]: # (| RADIATOR_FIRESTORE_PROJECT_ID           |                                                               |)
+
+[//]: # (| RADIATOR_FIRESTORE_PRIVATE_KEY_ID       |                                                               |)
+
+[//]: # (| RADIATOR_FIRESTORE_PRIVATE_KEY          |                                                               |)
+
+[//]: # (| RADIATOR_FIRESTORE_CLIENT_EMAIL         |                 From firestore auth json file                 |)
+
+[//]: # (| RADIATOR_FIRESTORE_CLIENT_ID            |                                                               |)
+
+[//]: # (| RADIATOR_FIRESTORE_AUTH_URI             |                                                               |)
+
+[//]: # (| RADIATOR_FIRESTORE_TOKEN_URI            |                                                               |)
+
+[//]: # (| RADIATOR_FIRESTORE_AUTH_PROVIDER        |                                                               |)
+
+[//]: # (| RADIATOR_FIRESTORE_CLIENT_CERT_URL      |                                                               |)
+
+[//]: # (| --------------------------------------  | ------------------------------------------------------------- |)
+
+[//]: # (| RADIATOR_AUTH_TYPE                      |                                                               |)
+
+[//]: # (| RADIATOR_AUTH_URI                       |                                                               |)
+
+[//]: # (| RADIATOR_CLIENT_CERT_URL                |                                                               |)
+
+[//]: # (| RADIATOR_CLIENT_EMAIL                   |                                                               |)
+
+[//]: # (| RADIATOR_CLIENT_ID                      |                                                               |)
+
+[//]: # (| RADIATOR_PRIVATE_KEY                    |           From google cloud console auth json file            |)
+
+[//]: # (| RADIATOR_PRIVATE_KEY_ID                 |                                                               |)
+
+[//]: # (| RADIATOR_PROJECT_ID                     |                                                               |)
+
+[//]: # (| RADIATOR_PROVIDER_CERT_URL              |                                                               |)
+
+[//]: # (| RADIATOR_TOKEN_URI                      |                                                               |)
+
+[//]: # (| --------------------------------------  | ------------------------------------------------------------- |)
+
+[//]: # (| RADIATOR_FIRESTORE_ID                   |                     Firestore database ID                     |)
+
+[//]: # (| SLACK_WEBHOOK_URL                       |    Slack webhook for send message from marketing radiator     |)
+
+[//]: # (| SLACK_CHANNEL_ID                        |  Slack channel id where send message from marketing radiator  |)
+
+[//]: # (| RADIATOR_DAILY_DISPATCH_TIME            |      Number when run send report from marketing radiator      |)
+
+[//]: # (| REDDIT_CLIENT_ID                        |             Reddit client id from API app reddit              |)
+
+[//]: # (| REDDIT_CLIENT_SECRET                    |           Reddit client secret from API app reddit            |)
+
+[//]: # (| REDDIT_USER_NAME                        |                    Reddit account username                    |)
+
+[//]: # (| REDDIT_PASSWORD                         |                    Reddit account password                    |)
+
+[//]: # (| RADIATOR_QUORA_USER_ID                  |                     Quora user account ID                     |)
+
+[//]: # (| RADIATOR_GLASSDOOR_API_KEY              |                 API Key from page2api service                 |)
+
+[//]: # (### Production status checker)
+
+[//]: # (| NAME                                | DESCRIPTION                                                                |)
+
+[//]: # (|-------------------------------------|----------------------------------------------------------------------------|)
+
+[//]: # (| CHECK_PRODUCTION_STATUS_CRON_STRING | Cron string for start checker                                              |)
+
+[//]: # (| SITE_URL_FOR_CHECK                  | Site url for check                                                         |)
+
+[//]: # (| SLACK_CHANNEL_ID_FOR_PROD_CHECK     | Slack channel id where send message from checker                           |)
+
+[//]: # (| USERS_TO_BE_MENTIONED               | Array with objects like [{ "name": "John Doe", :id": "<@slack user id>" }] |)
+
+[//]: # ()
+[//]: # (### Memory usage checker)
+
+[//]: # (| NAME                                | DESCRIPTION                     |)
+
+[//]: # (|-------------------------------------|---------------------------------|)
+
+[//]: # (| CHECK_MEMORY_USAGE_CRON_STRING      | Cron string for start checker   |)
+
+[//]: # (| CHECK_MEMORY_USAGE_WHEN_ALARM_PERC  | Percentage when alarm           |)
+
+[//]: # (| CHECK_MEMORY_USAGE_ENABLED          | true or false                   |)
+
+[//]: # (| CHECK_MEMORY_USAGE_SIZE_MEM         | Total memory size in OS         |)
 
 ## ⚠️ Required variables for building an application
 <font size=3>Without these variables the application will not work correctly</font>
