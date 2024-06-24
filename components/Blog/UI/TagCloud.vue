@@ -3,11 +3,13 @@ import type { PropType } from 'vue'
 
 interface Tag {
   name: string
+
   icon(iconName: string): string
+
   tags: string[]
 }
 
-const props = defineProps({
+defineProps({
   tags: {
     type: Array as PropType<Tag[]>,
     required: true,
@@ -31,8 +33,7 @@ const emit = defineEmits(['changed', 'changeTagFromQueryParams'])
 const activeTag = ref('All Articles')
 
 const findTag = (emitName: 'changed' | 'changeTagFromQueryParams') => {
-  const { name, tags } = props.tags.find(tagItem => tagItem.name === activeTag.value)!
-  emit(emitName, { tags, name })
+  emit(emitName, activeTag.value)
 }
 
 const handleChangeTag = () => {
@@ -49,13 +50,12 @@ if (route.query.tag) {
 }
 
 watch(() => route.query, query => {
-  if ('tag' in query) {
-    activeTag.value = query.tag as string
-    changeTagFromQueryParams()
-  } else {
+  if (!query.tag) {
     activeTag.value = 'All Articles'
-    handleChangeTag()
+    return
   }
+  activeTag.value = query.tag as string
+  changeTagFromQueryParams()
 })
 </script>
 <template>

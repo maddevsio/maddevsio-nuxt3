@@ -7,6 +7,8 @@ const prismic = usePrismic()
 const route = useRoute()
 const router = useRouter()
 const { activeTag } = storeToRefs(useDynamicTagCloudStore())
+const { headerHeight } = storeToRefs(useHeaderStore())
+const writeupListRef = ref(null)
 const config = useRuntimeConfig()
 const loadingComponent = ref(true)
 
@@ -15,21 +17,37 @@ const {
   totalPages,
   nextPage,
   prevPage,
-  writeupListRef,
   currentPage,
-  changePage,
+  pageName,
+  firstPage,
+  mainTagForQuery,
+  mainTagName,
+  extraIndentFromHeader,
   getWriteups,
-} = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, router, route, activeTag.value, config.public.ffEnvironment)
+} = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, config.public.ffEnvironment)
 
-if ('page' in route.query) {
-  currentPage.value = Number(route.query.page)
-}
+const { changePage, getTagsFromRoute } = usePagination({
+  router,
+  route,
+  mainTagForQuery,
+  mainTagName,
+  pageName,
+  activeTag: activeTag.value.writeUps,
+  currentPage,
+  scrollRef: writeupListRef,
+  withScrollToStart: true,
+})
 
-watch(() => route.query, async () => {
-  if ('tag' in route.query && ('page' in route.query && Number(route.query.page) === 1)) {
-    await getWriteups(1, [activeTag.value.writeUps])
+watch(() => route.query, async query => {
+  const tags = getTagsFromRoute(query.tag as string)
+  if (!('tag' in query) && !(pageName in query)) {
+    currentPage.value = 1
+    await getWriteups(firstPage, tags as string[])
+    return
   }
-}, { immediate: true })
+
+  await getWriteups(Number(query[pageName]) || currentPage.value, tags as string[])
+})
 
 onMounted(() => {
   loadingComponent.value = false
@@ -45,12 +63,13 @@ onMounted(() => {
         All Write-ups
       </h2>
       <div
+        ref="writeupListRef"
         class="writeup-list-slice__content"
+        :style="`scroll-margin-top: ${(headerHeight ? headerHeight : extraIndentFromHeader) + extraIndentFromHeader}px`"
       >
         <ClientOnly>
           <LazyWriteupCards
             v-if="writeups.length"
-            ref="writeupListRef"
             :writeups="writeups"
             color-theme="black"
             :current-page="currentPage"
@@ -106,6 +125,7 @@ onMounted(() => {
 @media screen and (max-width: 768px) {
   .writeup-main-content {
     padding: 48px 0 72px;
+
     &__title {
       font-size: 31px;
       line-height: 190%;

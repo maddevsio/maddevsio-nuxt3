@@ -34,6 +34,7 @@ const activePageComputed = computed({
     activePage.value = newVal
   },
 })
+
 const firstPage = ref(1)
 const showFirstPageIfCurrentMoreThan = ref(2)
 const showDotsIfCurrentPageMoreThan = ref(3)
@@ -74,6 +75,9 @@ const isInFirstPage = computed(() => activePage.value === 1)
 const isInLastPage = computed(() => activePage.value === props.totalPages)
 
 watch(activePage, newPage => {
+  if (!(props.where in route.query) && newPage === 1) {
+    return
+  }
   emit('page-changed', newPage)
 })
 
@@ -82,6 +86,8 @@ watch(() => route.query, query => {
     if (Number(query[props.where]) !== activePage.value) {
       activePageComputed.value = Number(query[props.where])
     }
+  } else {
+    activePageComputed.value = 1
   }
 }, { deep: true, immediate: true })
 

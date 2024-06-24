@@ -14,6 +14,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['changed', 'changeTagFromQueryParams'])
+const allTag = props.tags[0].name
 const activeTag = ref(props.tags[0].name)
 const route = useRoute()
 const { updateActiveTag } = useDynamicTagCloudStore()
@@ -33,10 +34,22 @@ const changeTagFromQueryParams = () => {
   findTag('changeTagFromQueryParams')
 }
 
-if ('tag' in route.query) {
-  activeTag.value = route.query.tag as string
+const updateActiveState = (tag: string) => {
+  activeTag.value = tag as string
   changeTagFromQueryParams()
 }
+
+if ('tag' in route.query) {
+  updateActiveState(route.query.tag as string)
+}
+
+watch(() => route.query, value => {
+  if (!value.tag) {
+    activeTag.value = allTag
+    return
+  }
+  updateActiveState(value.tag as string)
+})
 
 onUnmounted(() => {
   updateActiveTag('', 'all')

@@ -4,16 +4,6 @@ export const useTagChanged = (pageType = 'page', globalStoreName: string, withPa
   const { updateActiveTag } = useDynamicTagCloudStore()
   const { activeTag } = storeToRefs(useDynamicTagCloudStore())
 
-  const tagChangedHandler = async (tag: string) => {
-    const checkedTag = checkTagCloudName(tag)
-    updateActiveTag(checkedTag, globalStoreName)
-    const query = withPageInRoute ? { tag, [pageType]: 1 } : { tag }
-    await router.push({
-      path: route.path,
-      query,
-    })
-  }
-
   const routerPush = async (query: any) => {
     await router.push({
       path: route.path,
@@ -22,6 +12,13 @@ export const useTagChanged = (pageType = 'page', globalStoreName: string, withPa
         ...query,
       },
     })
+  }
+
+  const tagChangedHandler = async (tag: string) => {
+    const checkedTag = checkTagCloudName(tag)
+    updateActiveTag(checkedTag, globalStoreName)
+    const query = withPageInRoute ? { [pageType]: 1, tag } : { tag }
+    await routerPush(query)
   }
 
   const tagChangedFromQuery = async (tag: string) => {
