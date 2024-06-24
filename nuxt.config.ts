@@ -317,6 +317,7 @@ export default defineNuxtConfig({
     'build:manifest': manifest => {
       for (const key in manifest) {
         manifest[key].dynamicImports = [];
+        manifest[key].css = [];
 
         const file = manifest[key];
         if (file.preload && file.prefetch) {
