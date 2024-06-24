@@ -34,6 +34,9 @@ const { digestPostHeader, digestPostContent, digestPostFooter } = postComponents
       :date="digestPostFooter.date"
       :swiper-options="digestPostFooter.swiperOptions"
     />
+    <ClientOnly>
+      <LazyBlogUIButtonScrollTop />
+    </ClientOnly>
   </div>
 </template>
 
