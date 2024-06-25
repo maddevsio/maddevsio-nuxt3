@@ -33,8 +33,7 @@ const addDpr = (imageUrl: string) => {
       <div
         class="block-img"
       >
-        <NuxtImg
-          provider="prismic"
+        <img
           loading="lazy"
           :class="{ 'block-img-zoom': isEnableZoom }"
           :src="`${image.url}${image.url ? addDpr(image.url) : ''}`"
@@ -42,7 +41,7 @@ const addDpr = (imageUrl: string) => {
           :width="imageDimensions.imageWidth"
           :height="imageDimensions.imageHeight"
           @click="openModal"
-        />
+        >
         <ClientOnly>
           <Teleport to="body">
             <LazyWidgetsModalZoomImage

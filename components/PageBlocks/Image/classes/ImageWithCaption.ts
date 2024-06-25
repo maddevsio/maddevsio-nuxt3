@@ -9,12 +9,14 @@ export class ImageWithCaption implements IImageWithCaption {
   containerSize: string
   videoUrl: string
   videoSpeed: number
+  initialImageSize: boolean
 
   constructor(props: ImageWithCaptionProps) {
     this.slice = this.setImageWithoutCrop(this.checkProperties(props))
     this.containerSize = this.setContainerSize(props.primary.containerSize || '816')
     this.videoUrl = props.primary.linkToVideo.url!
     this.videoSpeed = props.primary.videoSpeed || 1
+    this.initialImageSize = props.primary.initialImageSize
 
     this.openFullScreenVideo = this.openFullScreenVideo.bind(this)
   }

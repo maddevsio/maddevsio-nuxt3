@@ -8,6 +8,7 @@ export interface ImageWithCaptionProps {
     videoSpeed: number
     containerSize?: string
     backgroundColor?: string
+    initialImageSize: boolean
   }
 }
 
@@ -16,5 +17,6 @@ export interface IImageWithCaption {
   containerSize: string
   videoUrl: string
   videoSpeed: number
+  initialImageSize: boolean
   openFullScreenVideo(video: Ref<HTMLVideoElement>): void
 }
