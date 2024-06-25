@@ -81,6 +81,9 @@ useHead(buildHead({
     <LazyGlossaryToolBar v-if="glossaryPost" :active-letter-prop="glossaryPost.activeLetter" />
     <LazyGlossaryPostView v-if="glossaryPost" :glossary-post-content="glossaryPost.glossaryPostContent" />
     <LazyGlossaryNewestWords v-if="glossaryPost && glossaryPost.lastNewestFilteredWords.length" :last-newest-filtered-words="glossaryPost.lastNewestFilteredWords" :tag="glossaryPost.tagForSubtitle" />
+    <ClientOnly>
+      <LazyBlogUIButtonScrollTop />
+    </ClientOnly>
   </div>
 </template>
 

@@ -83,6 +83,9 @@ useHead(buildHead({
     <LazyWriteupSlicesComponent
       :slices="writeupData?.pageContent?.slices"
     />
+    <ClientOnly>
+      <LazyBlogUIButtonScrollTop />
+    </ClientOnly>
   </div>
 </template>
 
