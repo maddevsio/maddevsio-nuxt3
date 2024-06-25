@@ -3,180 +3,426 @@
   "label": "Digest",
   "repeatable": true,
   "json": {
-    "Main": {
-      "uid": {
-        "config": {
-          "label": "UID",
-          "placeholder": "unique-identifier-for-digest-url"
+    "Main" : {
+      "uid" : {
+        "config" : {
+          "label" : "UID",
+          "placeholder" : "unique-identifier-for-digest-url"
         },
-        "type": "UID"
+        "type" : "UID"
       },
-      "metaTitle": {
-        "config": {
-          "label": "Meta Title",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph"
+      "metaTitle" : {
+        "config" : {
+          "label" : "Meta Title",
+          "placeholder" : "",
+          "allowTargetBlank" : true,
+          "multi" : "paragraph"
         },
-        "type": "StructuredText"
+        "type" : "StructuredText"
       },
-      "metaDescription": {
-        "config": {
-          "label": "Meta Description",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph"
+      "metaDescription" : {
+        "config" : {
+          "label" : "Meta Description",
+          "placeholder" : "",
+          "allowTargetBlank" : true,
+          "multi" : "paragraph"
         },
-        "type": "StructuredText"
+        "type" : "StructuredText"
       },
-      "title": {
-        "config": {
-          "label": "Title",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "single": "heading1"
+      "title" : {
+        "config" : {
+          "label" : "Title",
+          "placeholder" : "",
+          "allowTargetBlank" : true,
+          "single" : "heading1"
         },
-        "type": "StructuredText"
+        "type" : "StructuredText"
       },
-      "subtitle": {
-        "config": {
-          "label": "Subtitle",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item"
+      "subtitle" : {
+        "config" : {
+          "label" : "Subtitle",
+          "placeholder" : "",
+          "allowTargetBlank" : true,
+          "multi" : "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item"
         },
-        "type": "StructuredText"
+        "type" : "StructuredText"
       },
-      "date": {
-        "config": {
-          "label": "Date",
-          "placeholder": ""
+      "date" : {
+        "config" : {
+          "label" : "Date",
+          "placeholder" : ""
         },
-        "type": "Date"
+        "type" : "Date"
       },
-      "featuredImage": {
-        "config": {
-          "label": "Featured Image",
-          "constraint": {
-            "width": 983
+      "featuredImage" : {
+        "config" : {
+          "label" : "Featured Image",
+          "constraint" : {
+            "width" : 983
           },
-          "thumbnails": []
+          "thumbnails" : [ ]
         },
-        "type": "Image"
+        "type" : "Image"
       },
-      "schemaOrgSnippets": {
-        "config": {
-          "label": "schema.org snippets",
-          "fields": {
-            "singleSnippet": {
-              "config": {
-                "label": "Single snippet",
-                "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "preformatted"
+      "schemaOrgSnippets" : {
+        "config" : {
+          "label" : "schema.org snippets",
+          "fields" : {
+            "singleSnippet" : {
+              "config" : {
+                "label" : "Single snippet",
+                "placeholder" : "",
+                "allowTargetBlank" : true,
+                "multi" : "preformatted"
               },
-              "type": "StructuredText"
+              "type" : "StructuredText"
             }
           }
         },
-        "type": "Group"
+        "type" : "Group"
       },
-      "body": {
-        "type": "Slices",
-        "fieldset": "Slice zone",
-        "config": {
-          "labels": {},
-          "choices": {
-            "text": {
-              "type": "Slice",
-              "fieldset": "Text",
-              "description": "A rich text section",
-              "icon": "ac_unit",
-              "non-repeat": {
-                "color": {
-                  "type": "Color",
-                  "config": {
-                    "label": "Color"
+      "body" : {
+        "type" : "Slices",
+        "fieldset" : "Slice zone",
+        "config" : {
+          "labels" : { },
+          "choices" : {
+            "text" : {
+              "type" : "Slice",
+              "fieldset" : "Text",
+              "description" : "A rich text section",
+              "icon" : "ac_unit",
+              "non-repeat" : {
+                "color" : {
+                  "type" : "Color",
+                  "config" : {
+                    "label" : "Color"
                   }
                 },
-                "text": {
-                  "type": "StructuredText",
-                  "config": {
-                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
-                    "label": "Text",
-                    "placeholder": "Post text...",
-                    "allowTargetBlank": true
+                "text" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "multi" : "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
+                    "label" : "Text",
+                    "placeholder" : "Post text...",
+                    "allowTargetBlank" : true
                   }
                 }
               },
-              "repeat": {},
-              "display": "grid"
+              "repeat" : { },
+              "display" : "grid"
             },
-            "table_of_contents": {
-              "type": "Slice",
-              "fieldset": "Table of Contents",
-              "description": "Navigation menu for post",
-              "icon": "format_list_bulleted",
-              "display": "list",
-              "non-repeat": {},
-              "repeat": {
-                "lable": {
-                  "type": "StructuredText",
-                  "config": {
-                    "single": "heading1,heading2,heading3,heading4,heading5,heading6",
-                    "label": "lable"
+            "table_of_contents" : {
+              "type" : "Slice",
+              "fieldset" : "Table of Contents",
+              "description" : "Navigation menu for post",
+              "icon" : "format_list_bulleted",
+              "display" : "list",
+              "non-repeat" : { },
+              "repeat" : {
+                "lable" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "heading1,heading2,heading3,heading4,heading5,heading6",
+                    "label" : "lable"
                   }
                 }
               }
             },
-            "digest_post_card": {
-              "type": "SharedSlice"
+            "digest_post_card" : {
+              "id" : "digest_post_card",
+              "type" : "SharedSlice",
+              "name" : "DigestPostCard",
+              "description" : "DigestPostCard",
+              "variations" : [ {
+                "id" : "default-slice",
+                "name" : "Default slice",
+                "docURL" : "...",
+                "version" : "sktwi1xtmkfgx8626",
+                "description" : "DigestPostCard",
+                "primary" : {
+                  "post" : {
+                    "config" : {
+                      "label" : "Blog post",
+                      "customtypes" : [ "post", "customer_university" ],
+                      "select" : "document"
+                    },
+                    "type" : "Link"
+                  },
+                  "description" : {
+                    "config" : {
+                      "label" : "description",
+                      "placeholder" : "",
+                      "allowTargetBlank" : true,
+                      "multi" : "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item"
+                    },
+                    "type" : "StructuredText"
+                  }
+                },
+                "items" : { },
+                "imageUrl" : "https://images.prismic.io/superpupertest/shared-slices/digest_post_card/default-slice/027591f286d5035d82a916a43e71ca2821397636.png?auto=compress%2Cformat"
+              } ]
             },
-            "spacer_slice": {
-              "type": "SharedSlice"
+            "spacer_slice" : {
+              "id" : "spacer_slice",
+              "type" : "SharedSlice",
+              "name" : "SpacerSlice",
+              "description" : "SpacerSlice",
+              "variations" : [ {
+                "id" : "default-slice",
+                "name" : "Default slice",
+                "docURL" : "...",
+                "version" : "sktwi1xtmkfgx8626",
+                "description" : "SpacerSlice",
+                "primary" : {
+                  "background" : {
+                    "config" : {
+                      "label" : "Background",
+                      "placeholder" : "",
+                      "options" : [ "white", "black" ]
+                    },
+                    "type" : "Select"
+                  },
+                  "height" : {
+                    "config" : {
+                      "label" : "Height DEFAULT",
+                      "placeholder" : "Example: 100px or 10% or 100vh"
+                    },
+                    "type" : "Text"
+                  },
+                  "height-xl" : {
+                    "config" : {
+                      "label" : "Height XL",
+                      "placeholder" : "1024px - 1440px"
+                    },
+                    "type" : "Text"
+                  },
+                  "height-lg" : {
+                    "config" : {
+                      "label" : "Height LG",
+                      "placeholder" : "768px - 1024px"
+                    },
+                    "type" : "Text"
+                  },
+                  "height-md" : {
+                    "config" : {
+                      "label" : "Height MD",
+                      "placeholder" : "375px - 768px"
+                    },
+                    "type" : "Text"
+                  },
+                  "height-sm" : {
+                    "config" : {
+                      "label" : "Height SM",
+                      "placeholder" : "320px - 375px"
+                    },
+                    "type" : "Text"
+                  }
+                },
+                "items" : { },
+                "imageUrl" : "https://images.prismic.io/superpupertest/shared-slices/spacer_slice/default-slice/984215bda6395f6e5f4cd7941ef6a719aa4d2bd7.png?auto=compress%2Cformat"
+              } ]
             },
-            "subscribe_form_slice": {
-              "type": "SharedSlice"
+            "subscribe_form_slice" : {
+              "id" : "subscribe_form_slice",
+              "type" : "SharedSlice",
+              "name" : "SubscribeFormSlice",
+              "description" : "SubscribeFormSlice",
+              "variations" : [ {
+                "id" : "default-slice",
+                "name" : "Default slice",
+                "docURL" : "...",
+                "version" : "sktwi1xtmkfgx8626",
+                "description" : "SubscribeFormSlice",
+                "primary" : {
+                  "backgroundColor" : {
+                    "config" : {
+                      "label" : "Background Color",
+                      "placeholder" : "Please choice background color",
+                      "options" : [ "white", "black" ]
+                    },
+                    "type" : "Select"
+                  }
+                },
+                "items" : { },
+                "imageUrl" : "https://images.prismic.io/superpupertest/shared-slices/subscribe_form_slice/default-slice/38cfdfe600ce95b59d7131384fa05b1ce1247230.png?auto=compress%2Cformat"
+              }, {
+                "id" : "subscribeFormDigest",
+                "name" : "SubscribeFormDigest",
+                "docURL" : "...",
+                "version" : "sktwi1xtmkfgx8626",
+                "description" : "SubscribeFormSlice",
+                "primary" : {
+                  "backgroundColor" : {
+                    "config" : {
+                      "label" : "Background Color",
+                      "placeholder" : "Please choice background color",
+                      "options" : [ "white", "black" ]
+                    },
+                    "type" : "Select"
+                  },
+                  "title" : {
+                    "config" : {
+                      "label" : "Title",
+                      "placeholder" : ""
+                    },
+                    "type" : "Text"
+                  },
+                  "subtitle" : {
+                    "config" : {
+                      "label" : "Subtitle",
+                      "placeholder" : ""
+                    },
+                    "type" : "Text"
+                  }
+                },
+                "items" : { },
+                "imageUrl" : "https://images.prismic.io/superpupertest/shared-slices/subscribe_form_slice/subscribeFormDigest/50a41a259ef5850ae950346f81b84ecb3406b2b5.png?auto=compress%2Cformat"
+              } ]
             },
-            "digest_project_card": {
-              "type": "SharedSlice"
+            "digest_project_card" : {
+              "id" : "digest_project_card",
+              "type" : "SharedSlice",
+              "name" : "DigestProjectCard",
+              "description" : "DigestProjectCard",
+              "variations" : [ {
+                "id" : "default-slice",
+                "name" : "Default slice",
+                "docURL" : "...",
+                "version" : "sktwi1xtmkfgx8626",
+                "description" : "DigestProjectCard",
+                "primary" : {
+                  "image" : {
+                    "config" : {
+                      "label" : "Image",
+                      "constraint" : {
+                        "width" : null,
+                        "height" : null
+                      },
+                      "thumbnails" : [ ]
+                    },
+                    "type" : "Image"
+                  },
+                  "description" : {
+                    "config" : {
+                      "label" : "Description",
+                      "placeholder" : "",
+                      "allowTargetBlank" : true,
+                      "multi" : "paragraph,hyperlink,strong"
+                    },
+                    "type" : "StructuredText"
+                  },
+                  "external" : {
+                    "config" : {
+                      "label" : "Link is external?",
+                      "placeholder_false" : "No",
+                      "placeholder_true" : "Yes",
+                      "default_value" : false
+                    },
+                    "type" : "Boolean"
+                  },
+                  "buttonText" : {
+                    "config" : {
+                      "label" : "Button text",
+                      "placeholder" : ""
+                    },
+                    "type" : "Text"
+                  },
+                  "url" : {
+                    "config" : {
+                      "label" : "Url to page",
+                      "placeholder" : "If url internal should be: \"/blog/\""
+                    },
+                    "type" : "Text"
+                  },
+                  "showBorderBottom" : {
+                    "config" : {
+                      "label" : "Show Border Bottom",
+                      "placeholder_false" : "No",
+                      "placeholder_true" : "Yes",
+                      "default_value" : false
+                    },
+                    "type" : "Boolean"
+                  }
+                },
+                "items" : { },
+                "imageUrl" : "https://images.prismic.io/superpupertest/shared-slices/digest_project_card/default-slice/e127dac5b93b11db5de48831fe74a69f9a71cfd5.png?auto=compress%2Cformat"
+              } ]
+            },
+            "divider" : {
+              "type" : "Slice",
+              "fieldset" : "Divider",
+              "description" : "Full width dash",
+              "icon" : "drag_handle",
+              "display" : "list",
+              "non-repeat" : { },
+              "repeat" : { }
+            },
+            "image_with_caption" : {
+              "type" : "Slice",
+              "fieldset" : "Image with Caption",
+              "description" : "An image with an optional caption",
+              "icon" : "image",
+              "non-repeat" : {
+                "image" : {
+                  "type" : "Image",
+                  "config" : {
+                    "constraint" : {
+                      "width" : null
+                    },
+                    "thumbnails" : [ ],
+                    "label" : "Image"
+                  }
+                },
+                "caption" : {
+                  "type" : "StructuredText",
+                  "config" : {
+                    "single" : "heading3",
+                    "label" : "Caption",
+                    "placeholder" : "Image Caption..."
+                  }
+                },
+                "enable_zoom" : {
+                  "type" : "Select",
+                  "config" : {
+                    "options" : [ "enable", "disable" ],
+                    "default_value" : "disable",
+                    "label" : "Enable zoom"
+                  }
+                }
+              },
+              "repeat" : { }
             }
           }
         }
       }
     },
-    "Header Plate": {
-      "header_plate_text": {
-        "type": "Text",
-        "config": {
-          "label": "Header Plate Text"
+    "Header Plate" : {
+      "header_plate_text" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Header Plate Text"
         }
       },
-      "header_plate_button_text": {
-        "type": "Text",
-        "config": {
-          "label": "Header Plate Button Text"
+      "header_plate_button_text" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Header Plate Button Text"
         }
       },
-      "header_plate_link": {
-        "type": "Text",
-        "config": {
-          "label": "Header Plate Link",
-          "placeholder": "/blog/"
+      "header_plate_link" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "Header Plate Link",
+          "placeholder" : "/blog/"
         }
       },
-      "header_plate_background_color": {
-        "type": "Select",
-        "config": {
-          "options": [
-            "blue",
-            "purple",
-            "orange",
-            "green",
-            "blue-green"
-          ],
-          "label": "Header Plate Background Color",
-          "placeholder": "requires choice"
+      "header_plate_background_color" : {
+        "type" : "Select",
+        "config" : {
+          "options" : [ "blue", "purple", "orange", "green", "blue-green" ],
+          "label" : "Header Plate Background Color",
+          "placeholder" : "requires choice"
         }
       }
     }

@@ -15,10 +15,16 @@ const {
   videoSpeed,
   videoUrl,
   openFullScreenVideo,
+  initialImageSize,
 } = new ImageWithCaption(slicePrismic)
 
 const video = ref<HTMLVideoElement | null>(null)
 const timerId = ref<ReturnType<typeof setTimeout> | null>(null)
+const cssVars = computed(() => slice.primary.image.dimensions?.width
+  ? ({
+    '--img-width': `${ slice.primary.image.dimensions?.width }px`,
+  })
+  : null)
 const openFullScreenVideoHandler = () => openFullScreenVideo(video)
 
 onMounted(() => {
@@ -39,7 +45,8 @@ onUnmounted(() => {
 <template>
   <section
     class="image-with-caption"
-    :class="`image-with-caption image-with-caption--${slice.primary.backgroundColor}`"
+    :class="[`image-with-caption--${slice.primary.backgroundColor}`, { 'image-with-caption--initial-size': initialImageSize }]"
+    :style="cssVars"
   >
     <div
       :class="`container image-with-caption__container--${containerSize}`"
@@ -101,6 +108,13 @@ onUnmounted(() => {
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  &--initial-size {
+    :deep(img) {
+      max-width: var(--img-width);
+      margin: 0 auto;
+    }
   }
 }
 </style>
