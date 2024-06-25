@@ -19,6 +19,8 @@ const { data: careersHome, error } = await useAsyncData('careersHome', async () 
       return vacancy.released || !vacancy.released
     })
 
+    console.log(vacancies)
+
     return {
       vacancyCategories,
       vacancies,

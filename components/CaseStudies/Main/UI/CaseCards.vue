@@ -20,9 +20,10 @@ const nextPage = ref(props.casesData.nextPage)
 const prevPage = ref(props.casesData.prevPage)
 const cards = ref(props.casesData.cards)
 const currentPage = ref(1)
-const casesListRef = ref<HTMLElement | null>(null)
+const casesListRef = ref<HTMLElement & { $el: HTMLElement } | null>(null)
 const { headerHeight } = storeToRefs(useHeaderStore())
 const dynamicTagStore = useDynamicTagCloudStore()
+const extraIndentFromHeader = 65
 
 const pageCount = computed(() => {
   if (isDesktop) {
@@ -44,84 +45,53 @@ const loadCaseCards = async (tags: string[], pageSize: number, page: number) => 
     page,
     ffEnvironment: config.public.ffEnvironment,
   })
-  if (!casesPagesData) { return }
+  if (!casesPagesData) {
+    return
+  }
   totalPages.value = casesPagesData?.total_pages
   nextPage.value = casesPagesData?.next_page
   prevPage.value = casesPagesData?.prev_page
   cards.value = caseStudiesService.transformationCasesDataForCards(casesPagesData)
 }
 
-const scrollToStart = () => {
-  if (casesListRef.value) {
-    casesListRef.value.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth',
-    })
-  }
-}
-
 const removeAnimationBlockOnLoad = () => {
   const blockedCards = document.querySelectorAll('.cases-list-card')
   if (blockedCards.length) {
     blockedCards.forEach(item => {
-      if (item.classList.contains('cases-list-card--no-events')) { item.classList.remove('cases-list-card--no-events') }
+      if (item.classList.contains('cases-list-card--no-events')) {
+        item.classList.remove('cases-list-card--no-events')
+      }
     })
   }
 }
 
-const changePage = async (page: number) => {
-  currentPage.value = page
-  if ('tag' in route.query && !('page' in route.query)) {
-    if (currentPage.value !== 1) {
-      await router.push({
-        path: route.path,
-        query: {
-          tag: route.query.tag || dynamicTagStore.activeTag.caseStudies,
-          page: currentPage.value,
-        },
-      })
-      scrollToStart()
-    }
-  }
+const { changePage, getTagsFromRoute } = usePagination({
+  router,
+  route,
+  mainTagForQuery: caseStudiesService.mainTagForQuery,
+  mainTagName: caseStudiesService.mainTagName,
+  pageName: caseStudiesService.pageName,
+  activeTag: dynamicTagStore.activeTag.caseStudies,
+  currentPage,
+  scrollRef: casesListRef,
+  withScrollToStart: true,
+})
 
-  if ('tag' in route.query && 'page' in route.query) {
-    await router.push({
-      path: route.path,
-      query: {
-        tag: route.query.tag || dynamicTagStore.activeTag.caseStudies,
-        page: currentPage.value,
-      },
-    })
-    scrollToStart()
-  }
-
-  if (!('tag' in route.query)) {
-    await router.push({
-      path: route.path,
-      query: {
-        page: currentPage.value,
-      },
-    })
-    scrollToStart()
-  }
-
-  const tagsFromRoute = route.query.tag === 'All Cases' ? ['Case studies'] : [route.query.tag]
-  if (tagsFromRoute.every(tag => tag)) {
-    await loadCaseCards(tagsFromRoute as string[], pageCount.value, currentPage.value)
-  } else {
-    await loadCaseCards([dynamicTagStore.activeTag.caseStudies || 'Case studies'], pageCount.value, currentPage.value)
-  }
-  removeAnimationBlockOnLoad()
-}
-
-watch(() => route.query, async () => {
-  if ('tag' in route.query && ('caseStudiesPage' in route.query && Number(route.query.caseStudiesPage) === 1)) {
-    await loadCaseCards([dynamicTagStore.activeTag.caseStudies], pageCount.value, 1)
+watch(() => route.query, async query => {
+  const tags = getTagsFromRoute(query.tag as string)
+  if (!('tag' in query) && !(caseStudiesService.pageName in query)) {
+    currentPage.value = caseStudiesService.firstPage
+    await loadCaseCards(tags as string[], pageCount.value, caseStudiesService.firstPage)
     removeAnimationBlockOnLoad()
+    return
   }
+
+  await loadCaseCards(tags as string[], pageCount.value, Number(query[caseStudiesService.pageName]) || currentPage.value)
+  removeAnimationBlockOnLoad()
 })
 
 onMounted(() => {
+  removeAnimationBlockOnLoad()
   lazyLoadVideo()
 })
 </script>
@@ -132,7 +102,7 @@ onMounted(() => {
     <div
       ref="casesListRef"
       class="container cases__container"
-      :style="`scroll-margin-top: ${(headerHeight ? headerHeight : 65) + 60}px`"
+      :style="`scroll-margin-top: ${(headerHeight ? headerHeight : extraIndentFromHeader) + extraIndentFromHeader}px`"
     >
       <div
         v-if="cards.length"
@@ -150,6 +120,7 @@ onMounted(() => {
       :current-page="currentPage"
       :total-pages="totalPages"
       class="cases__pagination"
+      where="caseStudiesPage"
       @page-changed="changePage"
     />
   </section>
