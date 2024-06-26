@@ -73,12 +73,14 @@ onMounted(() => {
       >
         {{ menuItem.mainNav.name }}
       </span>
-      <WidgetsHeaderUINavigationSection
-        v-show="menuItem.chapters.length"
-        :show-section="activeSubNavigation === menuItem.mainNav.name"
-        :navigation-section="menuItem.chapters"
-        :post="menuItem.post"
-      />
+      <ClientOnly>
+        <WidgetsHeaderUINavigationSection
+          v-show="menuItem.chapters.length"
+          :show-section="activeSubNavigation === menuItem.mainNav.name"
+          :navigation-section="menuItem.chapters"
+          :post="menuItem.post"
+        />
+      </ClientOnly>
     </li>
   </ul>
 </template>

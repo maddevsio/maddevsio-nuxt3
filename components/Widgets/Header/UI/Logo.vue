@@ -36,6 +36,7 @@ const activateLogo = (element: HTMLElement) => {
 }
 
 const logoMouseOverHandler = () => {
+  if (!logoRef.value) { return }
   let element = logoRef.value
 
   // @ts-ignore
