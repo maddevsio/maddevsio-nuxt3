@@ -285,6 +285,37 @@
 					"placeholder": "requires choice"
 				}
 			}
+		},
+		"Header Preview": {
+			"previewTitle": {
+				"type": "Text",
+				"config": {
+					"label": "Title",
+					"placeholder": ""
+				}
+			},
+			"previewDescription": {
+				"type": "Text",
+				"config": {
+					"label": "Description",
+					"placeholder": ""
+				}
+			},
+			"previewImage": {
+				"type": "Image",
+				"config": {
+					"label": "Image",
+					"constraint": {},
+					"thumbnails": []
+				}
+			},
+			"previewAuthor": {
+				"type": "Link",
+				"config": {
+					"label": "Author",
+					"select": "document"
+				}
+			}
 		}
 	}
 }

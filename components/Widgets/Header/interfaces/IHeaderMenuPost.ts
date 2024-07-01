@@ -11,6 +11,7 @@ export interface IHeaderMenuPost {
   image: ImageField
   author: Author
   link: string
+  isCustomPage: boolean
   postParagraph(slices: any[]): string
   getPostPath(): string
 }
