@@ -1590,7 +1590,49 @@ interface CustomPageDocumentData {
 	 * - **Tab**: Header Plate
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'>
+	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'> /**
+	 * Title field in *Custom page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: custom_page.previewTitle
+	 * - **Tab**: Header Preview
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	previewTitle: prismic.KeyTextField
+
+	/**
+	 * Description field in *Custom page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: custom_page.previewDescription
+	 * - **Tab**: Header Preview
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	previewDescription: prismic.KeyTextField
+
+	/**
+	 * Image field in *Custom page*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: custom_page.previewImage
+	 * - **Tab**: Header Preview
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	previewImage: prismic.ImageField<never>
+
+	/**
+	 * Author field in *Custom page*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: custom_page.previewAuthor
+	 * - **Tab**: Header Preview
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	previewAuthor: prismic.ContentRelationshipField
 }
 
 /**

@@ -40,6 +40,8 @@ export const transformationHeaderData = (data: any) => {
     })
 
     return data.body.reduce((acc: IHeaderMenuItem[], menuItem: any) => {
+      const isCustomPage = data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`]?.type === 'custom_page'
+      const dateField = data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`]?.data?.date
       if (acc.length && acc[acc.length - 1].mainNav.name === menuItem.primary.nav_section) { return acc }
       acc.push(
         new HeaderMenuItem(
@@ -52,14 +54,16 @@ export const transformationHeaderData = (data: any) => {
           menuChapters[getObjectSectionKey(menuItem.primary.nav_section)!],
           data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`]?.uid &&
           new HeaderMenuPost(
-            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].uid,
-            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].type,
-            formatDate(data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data.date),
-            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].tags,
-            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data.title,
-            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data.body,
-            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data.featured_image,
-            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data.post_author.data,
+            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`]?.uid,
+            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`]?.type,
+            dateField ? formatDate(dateField) : '',
+            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`]?.tags,
+            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data?.[isCustomPage ? 'previewTitle' : 'title'],
+            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data?.body,
+            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data?.previewDescription,
+            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data?.[isCustomPage ? 'previewImage' : 'featured_image'],
+            data[`${ getObjectSectionKey(menuItem.primary.nav_section) }_blog_post`].data?.[isCustomPage ? 'previewAuthor' : 'post_author'].data,
+            isCustomPage,
           ),
         ),
       )
