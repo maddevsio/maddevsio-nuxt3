@@ -11,6 +11,9 @@ const props = defineProps({
   },
 })
 
+const pageIsLoad = ref(false)
+const nuxtApp = useNuxtApp()
+
 const resetState = inject('resetState') as IHeader['resetState']
 const linkClickEvent = (event: Event, cb: Function, path: string) => {
   cb(event, 'Header', getPrevRoutePath())
@@ -18,7 +21,6 @@ const linkClickEvent = (event: Event, cb: Function, path: string) => {
 }
 
 useCurrentRoute(props.navigationData.setCurrentRoute)
-const navigationMounted = ref(false)
 
 const {
   navigationList,
@@ -28,17 +30,19 @@ const {
 } = props.navigationData
 
 const mouseEnterHandler = (name: string) => {
-  if (navigationMounted.value) {
+  if (pageIsLoad.value) {
     setActiveSubMenu(name)
   }
 }
 
-onMounted(() => {
-  navigationMounted.value = true
+nuxtApp.hook('page:finish', () => {
+  pageIsLoad.value = true
 })
 </script>
 <template>
-  <ul class="header__navigation">
+  <ul
+    class="header__navigation"
+  >
     <li
       v-for="(menuItem, menuItemIndex) in navigationList"
       :key="`${menuItem.mainNav.name}-${menuItemIndex}`"
@@ -74,12 +78,16 @@ onMounted(() => {
         {{ menuItem.mainNav.name }}
       </span>
       <ClientOnly>
-        <WidgetsHeaderUINavigationSection
-          v-show="menuItem.chapters.length"
-          :show-section="activeSubNavigation === menuItem.mainNav.name"
-          :navigation-section="menuItem.chapters"
-          :post="menuItem.post"
-        />
+        <Transition
+          name="fade-collapse"
+        >
+          <WidgetsHeaderUINavigationSection
+            v-if="menuItem.chapters.length && activeSubNavigation === menuItem.mainNav.name"
+            :show-section="activeSubNavigation === menuItem.mainNav.name"
+            :navigation-section="menuItem.chapters"
+            :post="menuItem.post"
+          />
+        </Transition>
       </ClientOnly>
     </li>
   </ul>
@@ -131,5 +139,19 @@ onMounted(() => {
 
 .router-link-exact-active {
   color: $text-color--red;
+}
+
+.fade-collapse-enter-active,
+.fade-collapse-leave-active {
+  transition: all .5s ease;
+  will-change: opacity, transform, pointer-events, visibility;
+}
+
+.fade-collapse-enter-from,
+.fade-collapse-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+  pointer-events: auto;
+  visibility: hidden;
 }
 </style>
