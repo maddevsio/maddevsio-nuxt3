@@ -118,6 +118,7 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     ['nuxt-delay-hydration', {
       mode: 'manual',
+      replayClick: true,
       debug: process.env.NODE_ENV === 'development',
     }],
     ['nuxt-swiper', {

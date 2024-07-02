@@ -4,7 +4,7 @@ import type { ImageField } from '@prismicio/client'
 import type { Author } from '~/interfaces/common/commonInterfaces'
 import type { IHeader } from '~/components/Widgets/Header/interfaces/IHeader'
 
-defineProps({
+const props = defineProps({
   type: {
     type: String,
     default: '',
@@ -16,7 +16,7 @@ defineProps({
   },
 
   title: {
-    type: Array,
+    type: [Array, String],
     default: () => ([]),
   },
 
@@ -49,11 +49,22 @@ defineProps({
     type: String,
     default: '',
   },
+
+  isCustomPage: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const route = useRoute()
+const prismic = usePrismic()
 const resetState = inject('resetState') as IHeader['resetState']
 const isBlogPage = computed(() => route.fullPath.endsWith('/blog/'))
+const isCurrentPage = computed(() => props.link === route.fullPath)
+const titleContent = computed(() => {
+  if (!Array.isArray(props.title)) { return props.title }
+  return prismic.asText(props.title)
+})
 </script>
 <template>
   <div class="header-post">
@@ -65,10 +76,16 @@ const isBlogPage = computed(() => route.fullPath.endsWith('/blog/'))
       @click="resetState(link)"
     >
       <div class="header-post__text">
-        <p class="header-post__text-title">
-          {{ $prismic.asText(title) }}
+        <p
+          v-if="titleContent"
+          class="header-post__text-title"
+        >
+          {{ titleContent }}
         </p>
-        <p class="header-post__text-paragraph">
+        <p
+          v-if="paragraph"
+          class="header-post__text-paragraph"
+        >
           {{ paragraph }}
         </p>
       </div>
@@ -83,6 +100,7 @@ const isBlogPage = computed(() => route.fullPath.endsWith('/blog/'))
     </NuxtLink>
     <div class="header-post__meta">
       <LazySharedArticleAuthor
+        v-if="author && Object.keys(author).length"
         v-bind="author"
         :date="date"
         theme="dark"
@@ -98,13 +116,22 @@ const isBlogPage = computed(() => route.fullPath.endsWith('/blog/'))
       />
     </div>
     <NuxtLink
-      v-if="!isBlogPage"
+      v-if="!isBlogPage && !isCustomPage"
       to="/blog/"
       class="header-post__more-btn"
       no-prefetch
       @click="resetState"
     >
       More articles
+    </NuxtLink>
+    <NuxtLink
+      v-if="isCustomPage && !isCurrentPage"
+      :to="link"
+      class="header-post__more-btn"
+      no-prefetch
+      @click="resetState"
+    >
+      Learn more
     </NuxtLink>
   </div>
 </template>
