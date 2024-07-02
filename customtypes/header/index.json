@@ -8,7 +8,7 @@
         "type" : "Link",
         "config" : {
           "select" : "document",
-          "customtypes" : [ "post" ],
+          "customtypes" : [ "post", "custom_page" ],
           "label" : "Company section | Blog post",
           "placeholder" : "Blog post for the company navigation section"
         }
@@ -17,7 +17,7 @@
         "type" : "Link",
         "config" : {
           "select" : "document",
-          "customtypes" : [ "post" ],
+          "customtypes" : [ "post", "custom_page" ],
           "label" : "Services section | Blog post",
           "placeholder" : "Blog post for the services navigation section"
         }
@@ -26,7 +26,7 @@
         "type" : "Link",
         "config" : {
           "select" : "document",
-          "customtypes" : [ "post" ],
+          "customtypes" : [ "post", "custom_page" ],
           "label" : "Industries section | Blog post",
           "placeholder" : "Blog post for the industries navigation section"
         }
@@ -35,7 +35,7 @@
         "type" : "Link",
         "config" : {
           "select" : "document",
-          "customtypes" : [ "post" ],
+          "customtypes" : [ "post", "custom_page" ],
           "label" : "Clients section | Blog post",
           "placeholder" : "Blog post for the clients navigation section"
         }
@@ -44,7 +44,7 @@
         "type" : "Link",
         "config" : {
           "select" : "document",
-          "customtypes" : [ "post" ],
+          "customtypes" : [ "post", "custom_page" ],
           "label" : "Insights section | Blog post",
           "placeholder" : "Blog post for the insights navigation section"
         }
@@ -53,7 +53,7 @@
         "type" : "Link",
         "config" : {
           "select" : "document",
-          "customtypes" : [ "post", "customer_university" ],
+          "customtypes" : [ "post", "customer_university", "custom_page" ],
           "label" : "Expertise section | Blog post",
           "placeholder" : "Blog post for the expertise navigation section"
         }
