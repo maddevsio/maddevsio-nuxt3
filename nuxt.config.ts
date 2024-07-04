@@ -104,6 +104,7 @@ export default defineNuxtConfig({
     asyncEntry: true,
     renderJsonPayloads: false,
     payloadExtraction: false,
+    emitRouteChunkError: 'manual',
   },
 
   modules: [
