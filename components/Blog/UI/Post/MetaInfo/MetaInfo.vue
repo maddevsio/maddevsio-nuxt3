@@ -15,16 +15,6 @@ onMounted(async () => {
   await props.postMetaInfo.fetchArticleRate(postId)
 })
 
-const route = useRoute()
-
-const updatedFirstPages = [
-  'swot-team-for-software-development-projects',
-  'critical-path-method-in-project-management',
-  'solid-principles-in-ios-development',
-  'fintech-and-software-development-opportunities-in-it',
-  'you-want-to-develop-a-mobile-application-are-you-sure',
-]
-
 const {
   articleRate,
   date,
@@ -40,13 +30,6 @@ const {
       :article-rate="articleRate"
     />
     <BlogUIPostMetaInfoDates
-      v-if="!updatedFirstPages.includes(route.params.uid as string)"
-      :date="date"
-      :updated-date="updatedDate"
-      :read-time="readTime"
-    />
-    <BlogUIPostMetaInfoDatesFirstUpdatedDate
-      v-if="updatedFirstPages.includes(route.params.uid as string)"
       :date="date"
       :updated-date="updatedDate"
       :read-time="readTime"
