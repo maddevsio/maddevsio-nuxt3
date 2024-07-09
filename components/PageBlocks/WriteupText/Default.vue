@@ -204,7 +204,8 @@ onUnmounted(() => {
       }
     }
 
-    :deep(ul, ol) {
+    :deep(ul),
+    :deep(ol) {
       padding-left: 40px;
       margin-bottom: 16px;
 
