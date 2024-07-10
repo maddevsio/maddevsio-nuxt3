@@ -12,6 +12,7 @@ export class HeaderMenuPost implements IHeaderMenuPost {
   image: ImageField
   author: Author
   link: string
+  isCustomPage: boolean
 
   constructor(
     uid: string,
@@ -20,18 +21,21 @@ export class HeaderMenuPost implements IHeaderMenuPost {
     tags: string[],
     title: string,
     slices: any[],
+    description: string,
     image: ImageField,
     author: Author,
+    isCustomPage: boolean,
   ) {
     this.uid = uid
     this.type = type
     this.date = date
     this.tags = tags
     this.title = title
-    this.paragraph = this.postParagraph(slices)
+    this.paragraph = description || this.postParagraph(slices)
     this.image = image
     this.author = author
     this.link = this.getPostPath()
+    this.isCustomPage = isCustomPage
     this.getPostPath = this.getPostPath.bind(this)
   }
 
@@ -43,6 +47,7 @@ export class HeaderMenuPost implements IHeaderMenuPost {
   getPostPath() {
     if (this.type === 'post' && this.uid) { return `/blog/${ this.uid }/` }
     if (this.type === 'customer_university' && this.uid) { return `/customer-university/${ this.uid }/` }
+    if (this.type === 'custom_page' && this.uid) { return `/${ this.uid }/` }
     return '/'
   }
 }

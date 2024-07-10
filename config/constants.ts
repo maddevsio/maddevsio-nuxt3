@@ -34,4 +34,8 @@ export const fetchLinks: string[] = [
   'cu_post.title',
   'cu_post.date',
   'cu_post.post_author',
+  'custom_page.previewTitle',
+  'custom_page.previewDescription',
+  'custom_page.previewAuthor',
+  'custom_page.previewImage',
 ]

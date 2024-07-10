@@ -103,19 +103,8 @@ const headerVar = computed(() => ({
   padding: 20px 0;
   background: rgba(17, 17, 17, 0.85);
   backdrop-filter: blur(16px);
-  opacity: 0;
   transform-origin: top;
-  transform: scaleY(0) translateY(var(--headerHeight));
-  pointer-events: none;
-  visibility: hidden;
-  transition: all .5s ease;
-  will-change: opacity, transform, pointer-events, visibility;
-  &--active {
-    opacity: 1;
-    transform: scaleY(1) translateY(var(--headerHeight));
-    pointer-events: auto;
-    visibility: visible;
-  }
+  translate: 0 var(--headerHeight);
 
   &__inner {
     display: flex;

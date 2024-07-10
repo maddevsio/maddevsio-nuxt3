@@ -76,7 +76,7 @@ export default defineNuxtConfig({
 
           innerHTML: `window.dataLayer = window.dataLayer || []; function gtag() {dataLayer.push(arguments)}; gtag('js', new Date()); gtag('config', '${ process.env.NODE_GA4_KEY }', {send_page_view: false,});`,
         },
-        process.env.FF_ENVIRONMENT === 'production'
+        process.env.FF_ENVIRONMENT === 'production' && process.env.LINKEDIN_SCRIPT_TURN_ON === 'on'
           ? {
             type: 'text/javascript',
             defer: true,
@@ -85,7 +85,7 @@ export default defineNuxtConfig({
             innerHTML: '_linkedin_partner_id = "2547234";window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];window._linkedin_data_partner_ids.push(_linkedin_partner_id);',
           }
           : '',
-        process.env.FF_ENVIRONMENT === 'production'
+        process.env.FF_ENVIRONMENT === 'production' && process.env.LINKEDIN_SCRIPT_TURN_ON === 'on'
           ? {
             type: 'text/javascript',
             defer: true,
@@ -104,6 +104,7 @@ export default defineNuxtConfig({
     asyncEntry: true,
     renderJsonPayloads: false,
     payloadExtraction: false,
+    emitRouteChunkError: 'manual',
   },
 
   modules: [
@@ -118,6 +119,7 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     ['nuxt-delay-hydration', {
       mode: 'manual',
+      replayClick: true,
       debug: process.env.NODE_ENV === 'development',
     }],
     ['nuxt-swiper', {
@@ -260,7 +262,7 @@ export default defineNuxtConfig({
         wght: [300, 500, 600, 700],
       },
     },
-    display: 'fallback',
+    display: 'optional',
     preload: true,
     prefetch: true,
     preconnect: true,
@@ -299,6 +301,7 @@ export default defineNuxtConfig({
       analyticsUniversalKey: process.env.NODE_ANALYTICS_UNIVERSAL_KEY,
       analytics4Key: process.env.NODE_GA4_KEY,
       sendPulseAddressBooksId: process.env.NODE_SENDPULSE_ADDRESSBOOKS_ID,
+      linkedinScriptTurnOn: process.env.LINKEDIN_SCRIPT_TURN_ON,
     },
   },
 

@@ -39,7 +39,7 @@ export class ChecklistForm extends BaseForm implements IChecklistForm {
     this.successMessage = {
       ...this.successMessage,
       title: 'Thank you!',
-      description: 'The letter with the PDF file was successfully sent to mail.<br><br>Please check your email.',
+      description: 'The PDF file was successfully sent to your email.',
       showSuccessfulMessage: true,
       showImage: true,
       imagePath: 'images/core/forms/success-message-hand.svg',
@@ -70,7 +70,7 @@ export class ChecklistForm extends BaseForm implements IChecklistForm {
 
     const emailForSuccessMessage = this.fields!.email.fieldValue.value
 
-    this.successMessage.description = `The letter with the PDF file was successfully sent to mail ${ emailForSuccessMessage }.<br><br>Please check your email.`
+    this.successMessage.description = `The PDF file was successfully sent to your email ${ emailForSuccessMessage }.`
 
     try {
       await this.sendEmail({

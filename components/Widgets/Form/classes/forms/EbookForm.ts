@@ -45,7 +45,7 @@ export class EbookForm extends BaseForm implements IEbookForm {
     this.successMessage = {
       ...this.successMessage,
       title: 'Thank you!',
-      description: 'The letter with the PDF file was successfully sent to mail.<br><br>Please check your email.',
+      description: 'The ebook was successfully sent to your email.',
       showSuccessfulMessage: true,
       showImage: true,
       imagePath: 'images/core/forms/success-message-hand.svg',
@@ -73,7 +73,7 @@ export class EbookForm extends BaseForm implements IEbookForm {
     const location = this.formLocation
 
     const emailForSuccessMessage = this.fields!.email.fieldValue.value
-    this.successMessage.description = `The letter with the PDF file was successfully sent to mail ${emailForSuccessMessage}.<br><br>Please check your email.` // eslint-disable-line
+    this.successMessage.description = `The ebook was successfully sent to your email ${emailForSuccessMessage}.` // eslint-disable-line
 
     try {
       await this.sendEmail({
