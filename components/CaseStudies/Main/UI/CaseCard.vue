@@ -24,12 +24,20 @@ const mouseEnterHandler = () => {
   if (!caseCardRef.value) { return }
 
   isShowContent.value = true
-  if (isShowContent.value) { videoComponentRef.value.play() }
+  if (isShowContent.value) {
+    if (videoComponentRef.value) {
+      videoComponentRef.value.play()
+    }
+  }
 }
 
 const mouseLeaveHandler = () => {
   isShowContent.value = false
-  if (!isShowContent.value) { videoComponentRef.value.pause() }
+  if (!isShowContent.value) {
+    if (videoComponentRef.value) {
+      videoComponentRef.value.pause()
+    }
+  }
 }
 
 const convertUid = (str: string) => (str === 'r4tca-web-application' ? str.replace('r4tca', 'R4TCA') : str)
