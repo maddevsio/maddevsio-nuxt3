@@ -13,7 +13,7 @@ const isNotFound = computed(() => props.error?.statusMessage === 'Page not found
 
 <template>
   <div class="error-page container">
-    <div v-if="isNotFound">
+    <div v-if="isNotFound" class="error-page__wrapper">
       <LazySharedLottieMad
         id="404-code"
         class="case_lottie"
@@ -35,11 +35,14 @@ const isNotFound = computed(() => props.error?.statusMessage === 'Page not found
 </template>
 <style lang="scss" scoped>
 .error-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-top: 250px;
   padding-bottom: 282px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   &_lottie {
     height: 12.1vw !important;
