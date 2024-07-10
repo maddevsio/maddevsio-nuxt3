@@ -2,32 +2,35 @@
 import type { PropType } from 'vue'
 import type { NuxtError } from '#app'
 
-defineProps({
+const props = defineProps({
   // eslint-disable-next-line vue/require-default-prop
   error: Object as PropType<NuxtError>,
 })
 const { $getMediaFromS3 } = useMediaFromS3()
 const handleClearError = () => clearError({ redirect: '/' })
+const isNotFound = computed(() => props.error?.statusMessage === 'Page not found')
 </script>
 
 <template>
   <div class="error-page container">
-    <LazySharedLottieMad
-      id="404-code"
-      class="case_lottie"
-      height="170px"
-      :lottie-link="$getMediaFromS3(`/images/Cases/error/lottie/404.json`)!"
-      :autoplay="true"
-    />
-    <h1 class="error-page_title">
-      The page you were looking for doesn’t exist.
-    </h1>
-    <button
-      class="error-page_link"
-      @click="handleClearError"
-    >
-      Back to our site
-    </button>
+    <div v-if="isNotFound">
+      <LazySharedLottieMad
+        id="404-code"
+        class="case_lottie"
+        height="170px"
+        :lottie-link="$getMediaFromS3(`/images/Cases/error/lottie/404.json`)!"
+        :autoplay="true"
+      />
+      <h1 class="error-page_title">
+        The page you were looking for doesn’t exist.
+      </h1>
+      <button
+        class="error-page_link"
+        @click="handleClearError"
+      >
+        Back to our site
+      </button>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>

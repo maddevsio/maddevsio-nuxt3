@@ -3,10 +3,15 @@ import { playVideo } from './playVideo'
 export const autoPlayVideo = (htmlVideoElement: HTMLVideoElement) => {
   // @ts-ignore
   const observerCallback = entries => entries.forEach(({ isIntersecting, target }) => {
-    if (!isIntersecting) {
-      if (target) { target.pause() }
-    } else {
-      playVideo(target)
+    try {
+      if (!isIntersecting) {
+        if (target) { target.pause() }
+      } else {
+        playVideo(target)
+      }
+    } catch (e) {
+      // eslint-disable-next-line
+      console.warn(e)
     }
   })
 
