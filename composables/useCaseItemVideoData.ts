@@ -2,18 +2,33 @@ export const useCaseItemVideoData = () => {
   const videoRef = ref<HTMLVideoElement | null>(null)
   const { isMobile } = useCheckMobile(996)
   const play = () => {
-    if (videoRef.value) { playVideo(videoRef.value) }
+    try {
+      if (videoRef.value) { playVideo(videoRef.value) }
+    } catch (e) {
+      // eslint-disable-next-line
+      console.warn(e)
+    }
   }
 
   const pause = () => {
-    if (videoRef.value) { videoRef.value.pause() }
+    try {
+      if (videoRef.value) { videoRef.value.pause() }
+    } catch (e) {
+      // eslint-disable-next-line
+      console.warn(e)
+    }
   }
 
   const enableAutoPlay = () => {
-    if (isMobile.value && videoRef.value) {
-      autoPlayVideo(videoRef.value)
-    } else {
-      pause()
+    try {
+      if (isMobile.value && videoRef.value) {
+        autoPlayVideo(videoRef.value)
+      } else {
+        pause()
+      }
+    } catch (e) {
+      // eslint-disable-next-line
+      console.warn(e)
     }
   }
 
