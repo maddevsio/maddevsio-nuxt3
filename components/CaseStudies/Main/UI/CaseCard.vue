@@ -25,7 +25,7 @@ const mouseEnterHandler = () => {
 
   isShowContent.value = true
   if (isShowContent.value) {
-    if (videoComponentRef.value) {
+    if (videoComponentRef.value && videoComponentRef.value.play) {
       videoComponentRef.value.play()
     }
   }
@@ -34,7 +34,7 @@ const mouseEnterHandler = () => {
 const mouseLeaveHandler = () => {
   isShowContent.value = false
   if (!isShowContent.value) {
-    if (videoComponentRef.value) {
+    if (videoComponentRef.value && videoComponentRef.value.pause) {
       videoComponentRef.value.pause()
     }
   }
