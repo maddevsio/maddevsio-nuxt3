@@ -12,6 +12,7 @@ export interface BaseFormPayload {
     projectDescriber?: string
     agreeToGetMadDevsDiscountOffers?: boolean | string
     agreeWithPrivacyPolicy?: boolean | string
+    alreadySubscribed?: boolean | undefined
     consent_to_mailing?: string
     formLocation?: string
     interest?: string

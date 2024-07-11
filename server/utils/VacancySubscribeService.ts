@@ -13,7 +13,6 @@ export interface CareersSubscribePayload {
   email: {
     templateId: number
     variables: {
-      type: string
       fullName: string
       email: string
       vacancy_category: string
@@ -24,8 +23,10 @@ export interface CareersSubscribePayload {
       userBrowser: string
       userOS: string
       userPlatform: string
-    },
-  },
+      alreadySubscribed: string
+      type: string
+    }
+  }
 }
 
 export class VacancySubscribeService {
