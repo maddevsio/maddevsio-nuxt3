@@ -50,6 +50,7 @@ export default defineEventHandler(async event => {
 
   if ((reqBody.variables?.addressBooksId && reqBody.variables?.newsLetter === 'Yes') || reqBody.variables.fromId === 'subscribe-form') {
     await emailService.addToAddressBookEmail(body)
+
     if (reqBody.variables.fromId !== 'subscribe-form') {
       await emailService.sendMailFromVariables(body)
     }
