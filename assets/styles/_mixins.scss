@@ -1,6 +1,6 @@
 // CORE MIXINS
 @mixin font($family, $size, $weight) {
-  font-family: $family, sans-serif;
+  font-family: $family, 'Segoe UI', 'DejaVu Sans', sans-serif;
   font-size: $size;
   font-weight: $weight;
 }
