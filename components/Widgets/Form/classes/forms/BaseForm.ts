@@ -64,35 +64,35 @@ export class BaseForm implements IBaseForm {
     this.pushSubscriberToLocalStorage = this.pushSubscriberToLocalStorage.bind(this)
     this.checkSubscriberInLocalStorage = this.checkSubscriberInLocalStorage.bind(this)
     this.getSubscriberFromLocalStorage = this.getSubscriberFromLocalStorage.bind(this)
+    this.parseSubscriberDataFromLocalStorage = this.parseSubscriberDataFromLocalStorage.bind(this)
   }
 
   getSubscriberFromLocalStorage() {
     return localStorage.getItem('newsLetter_subscriber')
   }
 
+  parseSubscriberDataFromLocalStorage(subscribers: string | null) {
+    return subscribers && subscribers.length
+      ? JSON.parse(subscribers).map((subscriber: string) => subscriber.trim()).filter(Boolean)
+      : []
+  }
+
   pushSubscriberToLocalStorage(email: string) {
     if (!email) { return }
     const subscribers = this.getSubscriberFromLocalStorage()
-    const parsedSubscribers = subscribers && subscribers.length
-      ? JSON.parse(subscribers).map((subscriber: string) => subscriber.trim()).filter(Boolean)
-      : []
+    const parsedSubscribers = this.parseSubscriberDataFromLocalStorage(subscribers)
 
-    parsedSubscribers.push(email);
+    parsedSubscribers.push(email)
     if (parsedSubscribers.length) {
-      localStorage.setItem('newsLetter_subscriber', JSON.stringify([...new Set(parsedSubscribers)]));
+      localStorage.setItem('newsLetter_subscriber', JSON.stringify([...new Set(parsedSubscribers)]))
     }
   }
 
   checkSubscriberInLocalStorage(email: string) {
-    if (this.getSubscriberFromLocalStorage()) {
-      const subscriber = JSON.parse(this.getSubscriberFromLocalStorage()!) || []
-      if (subscriber.length) {
-        if (subscriber.includes(email)) {
-          return true
-        }
-      }
-    }
-    return false
+    const subscribers = this.getSubscriberFromLocalStorage()
+    const parsedSubscribers = this.parseSubscriberDataFromLocalStorage(subscribers)
+
+    return parsedSubscribers.some((subscriber: string) => subscriber.trim() === email)
   }
 
   async submitLead({
