@@ -61,6 +61,38 @@ export class BaseForm implements IBaseForm {
     this.redirectToSuccessAndFaq = this.redirectToSuccessAndFaq.bind(this)
     this.resetForm = this.resetForm.bind(this)
     this.submitNewsletterSubscriptionToAnalytics = this.submitNewsletterSubscriptionToAnalytics.bind(this)
+    this.pushSubscriberToLocalStorage = this.pushSubscriberToLocalStorage.bind(this)
+    this.checkSubscriberInLocalStorage = this.checkSubscriberInLocalStorage.bind(this)
+    this.getSubscriberFromLocalStorage = this.getSubscriberFromLocalStorage.bind(this)
+    this.parseSubscriberDataFromLocalStorage = this.parseSubscriberDataFromLocalStorage.bind(this)
+  }
+
+  getSubscriberFromLocalStorage() {
+    return localStorage.getItem('newsLetter_subscriber')
+  }
+
+  parseSubscriberDataFromLocalStorage(subscribers: string | null) {
+    return subscribers && subscribers.length
+      ? JSON.parse(subscribers).map((subscriber: string) => subscriber.trim()).filter(Boolean)
+      : []
+  }
+
+  pushSubscriberToLocalStorage(email: string) {
+    if (!email) { return }
+    const subscribers = this.getSubscriberFromLocalStorage()
+    const parsedSubscribers = this.parseSubscriberDataFromLocalStorage(subscribers)
+
+    parsedSubscribers.push(email)
+    if (parsedSubscribers.length) {
+      localStorage.setItem('newsLetter_subscriber', JSON.stringify([...new Set(parsedSubscribers)]))
+    }
+  }
+
+  checkSubscriberInLocalStorage(email: string) {
+    const subscribers = this.getSubscriberFromLocalStorage()
+    const parsedSubscribers = this.parseSubscriberDataFromLocalStorage(subscribers)
+
+    return parsedSubscribers.some((subscriber: string) => subscriber.trim() === email)
   }
 
   async submitLead({
@@ -71,10 +103,14 @@ export class BaseForm implements IBaseForm {
   }: SubmitLeadProps) {
     if (!templateId) { throw new Error('Template ID was not provided') }
     if (this.error.value) { return }
-
     try {
       this.formSends.value = true
       const { userBrowser, userOS, userPlatform } = parseUserAgentForLeads()
+
+      const isSubscriberExists = this.checkSubscriberInLocalStorage(variables?.email)
+      if ((variables?.consent_to_mailing === 'Yes' || variables?.newsLetter === 'Yes') && !isSubscriberExists) {
+        this.pushSubscriberToLocalStorage(variables?.email)
+      }
 
       this.payload = {
         templateId,
@@ -89,6 +125,7 @@ export class BaseForm implements IBaseForm {
           formLocation: variables?.formLocation,
           interest: variables?.interest,
           pageUrl: (window && `${ window.location.origin }${ window.location.pathname }`) || 'Unknown',
+          alreadySubscribed: isSubscriberExists,
           userBrowser,
           userOS,
           userPlatform,

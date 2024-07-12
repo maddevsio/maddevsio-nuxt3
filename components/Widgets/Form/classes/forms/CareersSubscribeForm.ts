@@ -85,6 +85,11 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
         userPlatform,
       } = parseUserAgentForLeads()
 
+      const isSubscriberExists = this.checkSubscriberInLocalStorage(fieldsData?.email)
+      if (fieldsData?.newsLetter === 'Yes' && !isSubscriberExists) {
+        this.pushSubscriberToLocalStorage(fieldsData?.email)
+      }
+
       await this.sendEmailData({
         token: fieldsData?.token,
         email: {
@@ -98,6 +103,7 @@ export class CareersSubscribeForm extends BaseForm implements ICareersSubscribeF
             modalTitle: this.modalTitle,
             formLocation: this.formLocation,
             newsLetter: fieldsData?.newsLetter,
+            alreadySubscribed: isSubscriberExists,
             userBrowser,
             userOS,
             userPlatform,
