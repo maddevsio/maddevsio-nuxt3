@@ -11,4 +11,5 @@ export const writeupComponents = defineSliceZoneComponents({
   image_with_caption: defineAsyncComponent(() => import('../../../prismicSlices/ImageWithCaption/index.vue')),
   writeup_text_slice: defineAsyncComponent(() => import('../../../prismicSlices/WriteupTextSlice/index.vue')),
   post_authors_slice: defineAsyncComponent(() => import('../../PageBlocks/Authors/Customizable.vue')),
+  table_slice: defineAsyncComponent(() => import('../../../prismicSlices/TableSlice/index.vue')),
 })
