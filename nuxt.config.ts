@@ -183,11 +183,11 @@ export default defineNuxtConfig({
           '/api/__sitemap__/services',
         ],
       },
-      authors: {
-        sources: [
-          '/api/__sitemap__/authors',
-        ],
-      },
+      // authors: {
+      //   sources: [
+      //     '/api/__sitemap__/authors',
+      //   ],
+      // },
     },
   },
 
