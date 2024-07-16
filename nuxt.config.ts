@@ -262,7 +262,7 @@ export default defineNuxtConfig({
         wght: [300, 500, 600, 700],
       },
     },
-    display: 'optional',
+    display: 'fallback',
     preload: true,
     prefetch: true,
     preconnect: true,
