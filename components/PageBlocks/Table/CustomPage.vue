@@ -77,6 +77,19 @@ const tableCustomPage = new TableCustomPage(slice)
     :deep(li) {
       font-size: inherit;
     }
+
+    :deep(ul),
+    :deep(ol) {
+      padding-left: 18px;
+    }
+
+    :deep(ul) {
+      list-style: disc;
+    }
+
+    :deep(ol) {
+      list-style: decimal;
+    }
   }
 }
 </style>
