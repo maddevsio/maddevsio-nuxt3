@@ -5,6 +5,7 @@ export default defineEventHandler(async event => {
   const reqBody: JiraVariables = await readBody(event)
   const emailService = new EmailService()
   const ipService = new IPService()
+  const formIdsWithSubscription = ['ebook-form', 'service-form', 'contact-form']
 
   Object.keys(reqBody.variables).forEach(variable => {
     if (variable !== 'token') { reqBody.variables[variable] = escapeHtml(reqBody.variables[variable]) }
@@ -50,6 +51,9 @@ export default defineEventHandler(async event => {
 
   if ((reqBody.variables?.addressBooksId && reqBody.variables?.newsLetter === 'Yes') || reqBody.variables.fromId === 'subscribe-form') {
     await emailService.addToAddressBookEmail(body)
+    if (formIdsWithSubscription.includes(reqBody.variables.type) && !reqBody.variables.alreadySubscribed) {
+      await new JiraService('subscribe-form').createJiraIssue(body)
+    }
 
     if (reqBody.variables.fromId !== 'subscribe-form') {
       await emailService.sendMailFromVariables(body)

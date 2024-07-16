@@ -1,5 +1,6 @@
 import { CareersSubscribePayload, VacancySubscribeService } from '~/server/utils/VacancySubscribeService'
 import { NODE_EMAIL_CV } from '~/server/config/envs'
+import { JiraVariables } from '~/interfaces/server/JiraServiceInterfaces'
 
 export default defineEventHandler(async event => {
   const reqBody: CareersSubscribePayload = await readBody(event)
@@ -41,8 +42,11 @@ export default defineEventHandler(async event => {
     }
 
     // eslint-disable-next-line camelcase
-    const { fullName, email, vacancy_category } = reqBody.email.variables
+    const { fullName, email, vacancy_category, alreadySubscribed } = reqBody.email.variables
     await emailService.sendMailFromVariables(emailPayload)
+    if (!alreadySubscribed) {
+      await new JiraService('subscribe-form').createJiraIssue(emailPayload as JiraVariables)
+    }
     // eslint-disable-next-line camelcase
     return await vacancySubscribeService.addSubscriber({ name: fullName, email, vacancy_category })
   } catch (error: any) {
