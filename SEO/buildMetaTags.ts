@@ -343,7 +343,7 @@ export const buildHead = ({
     { property: 'twitter:description', content: description },
     { property: 'twitter:image:src', content: image },
     { property: 'twitter:url', content: url },
-    noindex && { name: 'robots', content: 'noindex' },
+    noindex && { name: 'robots', content: 'noindex, nofollow' },
   ].filter(Boolean),
   link: [
     {

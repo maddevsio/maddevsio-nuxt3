@@ -28,5 +28,10 @@ export interface JiraVariables {
     linkedinProfile: string
     addressBooksId: string
     fromId: string
+    vacancy_category: string
+    modalTitle: string
+    subject: string
+    alreadySubscribed: string
+    type: string
   }
 }
