@@ -85,7 +85,8 @@
           "type": "Number"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "checklistForm",
@@ -136,9 +137,17 @@
             "thumbnails": []
           },
           "type": "Image"
+        },
+        "emailTitle": {
+          "type": "Text",
+          "config": {
+            "label": "Title For Email To Recipient",
+            "placeholder": "Fill it if you need to change email title"
+          }
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }

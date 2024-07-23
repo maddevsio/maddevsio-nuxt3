@@ -8,6 +8,7 @@ export interface ChecklistFormBannerProps {
     checklistName: string
     checklistPdfPath: string
     sendPulseTemplateID: string
+    emailTitle: string
   }
 }
 
@@ -18,4 +19,5 @@ export interface IChecklistFormBanner {
   checklistName: string
   checklistPdfPath: string
   sendpulseTemplateID: string
+  emailTitle: string
 }

@@ -1,11 +1,5 @@
 export default defineEventHandler(async event => {
   const payload = await readBody(event)
-  if (checkIncludeRequiredText(payload.body.email.variables.subject)) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Invalid Subject',
-    })
-  }
   const emailService = new EmailService()
   try {
     if (checkExistPathOnS3(payload.body.email.variables)) {

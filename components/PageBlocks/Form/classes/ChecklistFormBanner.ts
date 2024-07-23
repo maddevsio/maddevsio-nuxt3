@@ -11,6 +11,7 @@ export class ChecklistFormBanner implements IChecklistFormBanner {
   checklistName: string
   checklistPdfPath: string
   sendpulseTemplateID: string
+  emailTitle: string
 
   constructor(props: ChecklistFormBannerProps) {
     this.title = replaceLineSeparatorToBr(props.primary.title || 'Fill out the short form and download the checklist')
@@ -22,5 +23,6 @@ export class ChecklistFormBanner implements IChecklistFormBanner {
     this.checklistName = props.primary.checklistName
     this.checklistPdfPath = props.primary.checklistPdfPath
     this.sendpulseTemplateID = props.primary.sendPulseTemplateID
+    this.emailTitle = props.primary.emailTitle
   }
 }

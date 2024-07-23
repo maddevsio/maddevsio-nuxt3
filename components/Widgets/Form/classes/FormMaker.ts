@@ -25,6 +25,7 @@ interface FormMakerOptions {
   isModalChecklist?: boolean
   checklistName?: string
   checklistPathOnS3?: string
+  emailTitle?: string
   [key: string]: any
 }
 
@@ -113,6 +114,7 @@ export class FormMaker {
       checklistName: this.options.checklistName!,
       checklistPathOnS3: this.options.checklistPathOnS3!,
       isModalChecklist: this.options.isModalChecklist!,
+      emailTitle: this.options.emailTitle!,
       formBuilder: this.formBuilder
         .setFields([
           new Field({
