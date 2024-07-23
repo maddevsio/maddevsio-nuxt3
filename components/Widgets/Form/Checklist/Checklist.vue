@@ -31,6 +31,11 @@ const props = defineProps({
     type: String,
     default: 'Send me the checklist',
   },
+
+  emailTitle: {
+    type: String,
+    default: '',
+  },
 })
 
 const { form, styles } = useForm({
@@ -43,6 +48,7 @@ const { form, styles } = useForm({
     checklistName: props.checklistName,
     isModalChecklist: props.isModalChecklist,
     buttonText: props.buttonText,
+    emailTitle: props.emailTitle,
   },
 })
 

@@ -10,6 +10,7 @@ export interface ChecklistFormProps {
   checklistPathOnS3: string
   checklistName: string
   isModalChecklist: boolean
+  emailTitle: string
 }
 
 export interface IChecklistForm extends IBaseForm {

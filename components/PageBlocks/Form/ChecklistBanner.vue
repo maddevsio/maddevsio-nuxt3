@@ -17,7 +17,9 @@ const {
   checklistPdfPath,
   sendpulseTemplateID,
   buttonText,
+  emailTitle,
 } = new ChecklistFormBanner(slice)
+
 </script>
 <template>
   <section class="checklist-form-banner">
@@ -32,7 +34,7 @@ const {
           <LazyWidgetsFormChecklist
             form-location="Checklist Banner Slice"
             form-uid="checklist-banner"
-            :email-subject="`${checklistName} Checklist by Mad Devs`"
+            :email-title="emailTitle"
             :checklist-name="checklistName"
             :checklist-path-on-s3="checklistPdfPath"
             :sendpulse-template-i-d="sendpulseTemplateID"

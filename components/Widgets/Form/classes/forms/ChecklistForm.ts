@@ -24,6 +24,7 @@ export class ChecklistForm extends BaseForm implements IChecklistForm {
     checklistPathOnS3,
     checklistName,
     isModalChecklist,
+    emailTitle,
   }: ChecklistFormProps) {
     super({ emailTitle: `Request a PDF file from the ${ checklistName || 'Checklist' } page` })
     this.type = 'checklist'
@@ -35,6 +36,7 @@ export class ChecklistForm extends BaseForm implements IChecklistForm {
     this.checklistPathOnS3 = checklistPathOnS3
     this.checklistName = checklistName
     this.subject = `Request a PDF file from the ${ checklistName || 'Checklist' } page`
+    this.emailTitle = emailTitle || `Your "${ this.checklistName }" Checklist by Mad Devs`
     this.baseEmailTitle = 'Checklist downloads from MD website'
     this.successMessage = {
       ...this.successMessage,
@@ -79,7 +81,7 @@ export class ChecklistForm extends BaseForm implements IChecklistForm {
             templateId: Number(this.sendpulseTemplateID),
             variables: {
               modalTitle: 'Mad Devs Team',
-              subject: `Your "${ this.checklistName }" Checklist by Mad Devs`,
+              subject: this.emailTitle,
               emailTo: this.fields!.email.fieldValue.value,
               checklistName: this.checklistName,
               checklistPathOnS3: this.checklistPathOnS3,
