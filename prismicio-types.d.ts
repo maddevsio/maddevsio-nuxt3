@@ -4286,7 +4286,7 @@ interface HeaderDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	company_blog_post: prismic.ContentRelationshipField<'post'>
+	company_blog_post: prismic.ContentRelationshipField<'post' | 'custom_page'>
 
 	/**
 	 * Services section | Blog post field in *Header*
@@ -4297,7 +4297,7 @@ interface HeaderDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	services_blog_post: prismic.ContentRelationshipField<'post'>
+	services_blog_post: prismic.ContentRelationshipField<'post' | 'custom_page'>
 
 	/**
 	 * Industries section | Blog post field in *Header*
@@ -4308,7 +4308,7 @@ interface HeaderDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	industries_blog_post: prismic.ContentRelationshipField<'post'>
+	industries_blog_post: prismic.ContentRelationshipField<'post' | 'custom_page'>
 
 	/**
 	 * Clients section | Blog post field in *Header*
@@ -4319,7 +4319,7 @@ interface HeaderDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	clients_blog_post: prismic.ContentRelationshipField<'post'>
+	clients_blog_post: prismic.ContentRelationshipField<'post' | 'custom_page'>
 
 	/**
 	 * Insights section | Blog post field in *Header*
@@ -4330,7 +4330,7 @@ interface HeaderDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	insights_blog_post: prismic.ContentRelationshipField<'post'>
+	insights_blog_post: prismic.ContentRelationshipField<'post' | 'custom_page'>
 
 	/**
 	 * Expertise section | Blog post field in *Header*
@@ -4341,7 +4341,7 @@ interface HeaderDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	expertise_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university'>
+	expertise_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university' | 'custom_page'>
 
 	/**
 	 * Slice zone field in *Header*
@@ -4543,7 +4543,7 @@ interface HeaderForLocalDevDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	company_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university'>
+	company_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university' | 'custom_page'>
 
 	/**
 	 * Services section | Blog post field in *Header for local dev*
@@ -4554,7 +4554,7 @@ interface HeaderForLocalDevDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	services_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university'>
+	services_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university' | 'custom_page'>
 
 	/**
 	 * Industries section | Blog post field in *Header for local dev*
@@ -4565,7 +4565,7 @@ interface HeaderForLocalDevDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	industries_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university'>
+	industries_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university' | 'custom_page'>
 
 	/**
 	 * Clients section | Blog post field in *Header for local dev*
@@ -4576,7 +4576,7 @@ interface HeaderForLocalDevDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	clients_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university'>
+	clients_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university' | 'custom_page'>
 
 	/**
 	 * Insights section | Blog post field in *Header for local dev*
@@ -4587,7 +4587,7 @@ interface HeaderForLocalDevDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	insights_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university'>
+	insights_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university' | 'custom_page'>
 
 	/**
 	 * Expertise section | Blog post field in *Header for local dev*
@@ -4598,7 +4598,7 @@ interface HeaderForLocalDevDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	expertise_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university'>
+	expertise_blog_post: prismic.ContentRelationshipField<'post' | 'customer_university' | 'custom_page'>
 
 	/**
 	 * Slice zone field in *Header for local dev*
@@ -6136,6 +6136,7 @@ type WriteupDocumentDataBodySlice =
 	| DividerSliceSlice
 	| TagCloudSliceSlice
 	| CtaBannerSliceSlice
+	| TableSliceSlice
 
 /**
  * Item in *Writeup → schema.org snippets*
@@ -10026,6 +10027,16 @@ export interface FormSliceSliceChecklistFormPrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#image
 	 */
 	checklistImage: prismic.ImageField<never>
+
+	/**
+	 * Title For Email To Recipient field in *FormSlice → Checklist Form → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Fill it if you need to change email title
+	 * - **API ID Path**: form_slice.checklistForm.primary.emailTitle
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	emailTitle: prismic.KeyTextField
 }
 
 /**
