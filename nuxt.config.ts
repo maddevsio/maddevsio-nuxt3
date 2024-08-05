@@ -183,11 +183,11 @@ export default defineNuxtConfig({
           '/api/__sitemap__/services',
         ],
       },
-      authors: {
-        sources: [
-          '/api/__sitemap__/authors',
-        ],
-      },
+      // authors: {
+      //   sources: [
+      //     '/api/__sitemap__/authors',
+      //   ],
+      // },
     },
   },
 
@@ -396,9 +396,9 @@ export default defineNuxtConfig({
     },
     'build:manifest': manifest => {
       for (const key in manifest) {
-        manifest[key].dynamicImports = [];
-
-        const file = manifest[key];
+        const file = manifest[key]
+        file.dynamicImports = []
+        file.css = []
         if (file.preload && file.prefetch) {
           file.preload = false
           file.prefetch = false

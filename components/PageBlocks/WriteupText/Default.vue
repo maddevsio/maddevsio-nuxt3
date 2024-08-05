@@ -101,7 +101,10 @@ onUnmounted(() => {
       @include font('Inter', 14px, 700);
     }
 
-    :deep(h3, h4, h5, h6) {
+    :deep(h3),
+    :deep(h4),
+    :deep(h5),
+    :deep(h6) {
       margin-top: 32px;
       margin-bottom: 16px;
     }
