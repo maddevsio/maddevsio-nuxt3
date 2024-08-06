@@ -247,7 +247,7 @@ export default defineNuxtConfig({
 
   prismic: {
     endpoint: 'superpupertest',
-    toolbar: true,
+    toolbar: process.env.FF_ENVIRONMENT !== 'production',
     clientConfig: {
       routes: [
         {
