@@ -3,7 +3,7 @@ import { getRobots } from './SEO/getRobots'
 import { getPrismicRoutes } from './SEO/getDynamicRoutes'
 
 config()
-
+const addGtag = (GA4Key: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const googleTagManager = document.createElement('script');googleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=${ GA4Key }';googleTagManager.defer = true;document.body.appendChild(googleTagManager);googleTagManager.onload = () => {window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);};gtag('js', new Date());gtag('config', '${ GA4Key }');};}, 3000)}})`
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
@@ -60,21 +60,14 @@ export default defineNuxtConfig({
             body: true,
             defer: true,
             vmid: 'smartlook-script',
-            innerHTML: `window.smartlook||(function(d) { var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0]; var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript'; c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c); })(document); smartlook('init', '${ process.env.NODE_SMARTLOOK_PROJECT_ID }', { region: 'eu' });`,
+            innerHTML: `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){window.smartlook||(function(d) { var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0]; var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript'; c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c); })(document); smartlook('init', '${ process.env.NODE_SMARTLOOK_PROJECT_ID }', { region: 'eu' });}})`,
           }
           : '',
-        {
-          src: `https://www.googletagmanager.com/gtag/js?id=${ process.env.NODE_GA4_KEY }&l=dataLayer`,
-          defer: true,
-          body: true,
-        },
         {
           type: 'text/javascript',
           defer: true,
           body: true,
-          vmid: 'gtag-script',
-
-          innerHTML: `window.dataLayer = window.dataLayer || []; function gtag() {dataLayer.push(arguments)}; gtag('js', new Date()); gtag('config', '${ process.env.NODE_GA4_KEY }', {send_page_view: false,});`,
+          innerHTML: addGtag(process.env.NODE_GA4_KEY),
         },
         process.env.FF_ENVIRONMENT === 'production' && process.env.LINKEDIN_SCRIPT_TURN_ON === 'on'
           ? {
@@ -183,6 +176,7 @@ export default defineNuxtConfig({
           '/api/__sitemap__/services',
         ],
       },
+      /* Commented for some time to hide all authors from sitemap, don't uncomment */
       // authors: {
       //   sources: [
       //     '/api/__sitemap__/authors',
