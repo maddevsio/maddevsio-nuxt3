@@ -380,7 +380,7 @@ onUpdated(() => {
 
       &-articles {
         max-width: 100%;
-        max-height: 230px;
+        max-height: 315px;
         height: auto;
 
         &-image {
