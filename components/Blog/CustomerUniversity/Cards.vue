@@ -237,6 +237,7 @@ onUpdated(() => {
 
       :deep(.swiper-horizontal) {
         padding-bottom: 24px;
+        width: 100%;
       }
 
       :deep(.swiper-pagination) {
