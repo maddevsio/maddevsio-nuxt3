@@ -44,7 +44,7 @@ export class PostsSectionWithoutAuthor implements IPostsSectionWithoutAuthor {
 
   constructor(props: PostsSectionWithoutAuthorProps, prismic: PrismicPlugin) {
     this.posts = transformPostInfo(props.items, prismic)
-    this.title = props.primary.title
-    this.containerSize = props.primary.containerSize || '1026'
+    this.title = props.primary?.title
+    this.containerSize = props.primary?.containerSize || '1026'
   }
 }
