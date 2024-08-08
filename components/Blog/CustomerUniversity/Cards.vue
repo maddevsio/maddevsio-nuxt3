@@ -237,6 +237,7 @@ onUpdated(() => {
 
       :deep(.swiper-horizontal) {
         padding-bottom: 24px;
+        width: 100%;
       }
 
       :deep(.swiper-pagination) {
@@ -379,7 +380,7 @@ onUpdated(() => {
 
       &-articles {
         max-width: 100%;
-        max-height: 315px;
+        max-height: 230px;
         height: auto;
 
         &-image {
