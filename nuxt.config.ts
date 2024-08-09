@@ -3,7 +3,7 @@ import { getRobots } from './SEO/getRobots'
 import { getPrismicRoutes } from './SEO/getDynamicRoutes'
 
 config()
-const addGtag = (GA4Key: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const googleTagManager = document.createElement('script');googleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=${ GA4Key }';googleTagManager.defer = true;document.body.appendChild(googleTagManager);googleTagManager.onload = () => {window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);};gtag('js', new Date());gtag('config', '${ GA4Key }');};}, 3500)}})`
+const addGtag = (GA4Key: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const googleTagManager = document.createElement('script');googleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=${ GA4Key }';googleTagManager.defer = true;document.body.appendChild(googleTagManager);googleTagManager.onload = () => {window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);};gtag('consent', 'default', {'ad_storage': 'granted','ad_user_data': 'granted','ad_personalization': 'granted','analytics_storage': 'granted'});gtag('js', new Date());gtag('config', '${ GA4Key }');};}, 3500)}})`
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
