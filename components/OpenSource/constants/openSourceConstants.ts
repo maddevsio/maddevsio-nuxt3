@@ -86,14 +86,14 @@ export const featuredProjectsList = [
     link: 'https://github.com/maddevsio/ariadna/',
   },
   {
-    id: 'maddevs',
+    id: 'hardhatMadBoiler',
     logo: {
       name: 'maddevs',
       alt: 'Mad Devs',
     },
-    title: 'Mad Devs website',
-    description: 'Open source website code with coverage tests to make websites like maddevs.io',
-    link: 'https://github.com/maddevsio/maddevs/',
+    title: 'Hardhat Mad Boiler',
+    description: 'Ready-to-use preconfigured HardHat Ethereum development environment with additional tools for smart-contract development.',
+    link: 'https://github.com/maddevsio/hardhat-mad-boiler',
   },
   {
     id: 'idmatch',
