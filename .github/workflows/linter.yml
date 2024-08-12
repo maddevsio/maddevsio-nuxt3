@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          build-args: |
+            NODE_PRISMIC_API=${{ secrets.STAGING_NODE_PRISMIC_API }}
       - run: npm install
       - run: npm run lint
         env:
