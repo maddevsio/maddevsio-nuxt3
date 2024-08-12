@@ -3,7 +3,7 @@ import { getRobots } from './SEO/getRobots'
 import { getPrismicRoutes } from './SEO/getDynamicRoutes'
 
 config()
-const addGtag = (GA4Key: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const googleTagManager = document.createElement('script');googleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=${ GA4Key }';googleTagManager.defer = true;document.body.appendChild(googleTagManager);googleTagManager.onload = () => {window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);};gtag('js', new Date());gtag('config', '${ GA4Key }');};}, 3500)}})`
+const addGtag = (GA4Key: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const googleTagManager = document.createElement('script');googleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=${ GA4Key }';googleTagManager.defer = true;document.body.appendChild(googleTagManager);googleTagManager.onload = () => {window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);};gtag('consent', 'default', {'ad_storage': 'granted','ad_user_data': 'granted','ad_personalization': 'granted','analytics_storage': 'granted'});gtag('js', new Date());gtag('config', '${ GA4Key }');};}, 3500)}})`
 const addSentry = () => 'document.addEventListener("readystatechange", () => {if(document.readyState === "complete"){setTimeout(()=>{const sentryScript = document.createElement("script");sentryScript.src = "https://js.sentry-cdn.com/d7de3ef1024e4c2aa21b2157f362b6fe.min.js";sentryScript.defer = true;sentryScript.crossorigin="anonymous";document.body.appendChild(sentryScript);}, 500)}})'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -303,8 +303,84 @@ export default defineNuxtConfig({
 
   prismic: {
     endpoint: 'superpupertest',
-    preview: false,
-    toolbar: false,
+    toolbar: process.env.FF_ENVIRONMENT !== 'production',
+    clientConfig: {
+      routes: [
+        {
+          type: 'custom_page',
+          uid: 'main-page',
+          path: '/',
+        },
+        {
+          type: 'custom_page',
+          path: '/:uid/',
+        },
+        {
+          type: 'blog_home',
+          path: '/blog/',
+        },
+        {
+          type: 'post',
+          path: '/blog/:uid/',
+        },
+        {
+          type: 'customer_university',
+          path: '/customer-university/:uid/',
+        },
+        {
+          type: 'author',
+          path: '/blog/authors/:uid/',
+        },
+        {
+          type: 'checklists',
+          uid: 'checklists',
+          path: '/checklists/',
+        },
+        {
+          type: 'checklists',
+          path: '/checklists/:uid/',
+        },
+        {
+          type: 'writeup',
+          uid: 'writeups',
+          path: '/writeups/',
+        },
+        {
+          type: 'writeup',
+          path: '/writeups/:uid/',
+        },
+        {
+          type: 'glossary',
+          uid: 'glossary',
+          path: '/glossary/',
+        },
+        {
+          type: 'glossary',
+          path: '/glossary/:uid/',
+        },
+        {
+          type: 'vacancy',
+          path: '/careers/:uid/',
+        },
+        {
+          type: 'expert',
+          path: '/team/:uid/',
+        },
+        {
+          type: 'digest',
+          path: '/digest/:uid/',
+        },
+        {
+          type: 'case-studies',
+          uid: 'case-studies',
+          path: '/case-studies/',
+        },
+        {
+          type: 'case-studies',
+          path: '/case-studies/:uid/',
+        },
+      ],
+    },
   },
 
   googleFonts: {
