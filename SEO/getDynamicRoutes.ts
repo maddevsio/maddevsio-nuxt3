@@ -28,7 +28,6 @@ const getRoutePrefix = (routePrefix: string | undefined) => ((typeof routePrefix
   : routePrefix.replace(/^\/|\/$/g, ''))
 
 const getPrismicRef = async () => {
-  console.log('PRISMIC_API: ', process.env.NODE_PRISMIC_API)
   const prismicData = await axios.get(process.env.NODE_PRISMIC_API!)
   const { ref } = prismicData.data.refs[0]
   return ref

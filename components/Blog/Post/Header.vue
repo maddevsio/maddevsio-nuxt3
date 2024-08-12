@@ -21,6 +21,25 @@ const {
   showTag,
 } = props.postHeader
 
+const imageFallback = computed(() => {
+  if (featuredImage && featuredImage.url) {
+    const queryStartIndex = featuredImage?.url.indexOf('?')
+    const queryString = featuredImage?.url.slice(0, queryStartIndex)
+    return `${ queryString }?w=200&h=100`
+  }
+  return featuredImage.url
+})
+
+const imageLoad = ref(true)
+const route = useRoute()
+const handleImageLoad = () => {
+  imageLoad.value = false
+}
+
+watch(() => route.query, () => {
+  imageLoad.value = false
+})
+
 const { isMobile } = useDevice()
 </script>
 <template>
@@ -73,9 +92,9 @@ const { isMobile } = useDevice()
           />
         </div>
       </div>
-      <div class="post-header__featured-image-wrapper">
+      <div v-if="featuredImage && featuredImage.url" class="post-header__featured-image-wrapper">
         <NuxtImg
-          v-if="featuredImage.url"
+          v-show="!imageLoad"
           provider="prismic"
           :src="clearImageParamsFromPrismic(featuredImage.url)"
           :alt="title"
@@ -83,7 +102,16 @@ const { isMobile } = useDevice()
           :width="isMobile ? 455 : 983"
           :height="isMobile ? 245 : 534"
           class="post-header__featured-image"
+          @load="handleImageLoad"
         />
+        <img
+          v-if="imageLoad"
+          :src="imageFallback"
+          :alt="title"
+          :width="isMobile ? 455 : 983"
+          :height="isMobile ? 245 : 534"
+          class="post-header__image-fallback"
+        >
       </div>
     </div>
   </section>
@@ -145,7 +173,7 @@ const { isMobile } = useDevice()
     width: 100%;
   }
 
-  &__featured-image {
+  &__featured-image, &__image-fallback {
     width: 100%;
     height: auto;
     max-height: 534px;
