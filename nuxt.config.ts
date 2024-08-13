@@ -303,8 +303,85 @@ export default defineNuxtConfig({
 
   prismic: {
     endpoint: 'superpupertest',
-    preview: false,
-    toolbar: false,
+    toolbar: process.env.FF_ENVIRONMENT === 'staging',
+    preview: process.env.FF_ENVIRONMENT === 'staging' ? '/preview' : false,
+    clientConfig: {
+      routes: [
+        {
+          type: 'custom_page',
+          uid: 'main-page',
+          path: '/',
+        },
+        {
+          type: 'custom_page',
+          path: '/:uid/',
+        },
+        {
+          type: 'blog_home',
+          path: '/blog/',
+        },
+        {
+          type: 'post',
+          path: '/blog/:uid/',
+        },
+        {
+          type: 'customer_university',
+          path: '/customer-university/:uid/',
+        },
+        {
+          type: 'author',
+          path: '/blog/authors/:uid/',
+        },
+        {
+          type: 'checklists',
+          uid: 'checklists',
+          path: '/checklists/',
+        },
+        {
+          type: 'checklists',
+          path: '/checklists/:uid/',
+        },
+        {
+          type: 'writeup',
+          uid: 'writeups',
+          path: '/writeups/',
+        },
+        {
+          type: 'writeup',
+          path: '/writeups/:uid/',
+        },
+        {
+          type: 'glossary',
+          uid: 'glossary',
+          path: '/glossary/',
+        },
+        {
+          type: 'glossary',
+          path: '/glossary/:uid/',
+        },
+        {
+          type: 'vacancy',
+          path: '/careers/:uid/',
+        },
+        {
+          type: 'expert',
+          path: '/team/:uid/',
+        },
+        {
+          type: 'digest',
+          path: '/digest/:uid/',
+        },
+        {
+          type: 'case-studies',
+          uid: 'case-studies',
+          path: '/case-studies/',
+        },
+        {
+          type: 'case-studies',
+          path: '/case-studies/:uid/',
+        },
+      ],
+    },
   },
 
   googleFonts: {
