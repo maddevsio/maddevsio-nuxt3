@@ -1,18 +1,31 @@
 <script setup lang="ts">
-import { blogComponents } from '~/components/Blog/Slices/index'
+import { type SliceObject, transformSlicesData } from '~/components/Blog/Slices/transformSlicesData'
+import { blogComponentsMapping } from '~/components/Blog/Slices/blogComponentsMapping'
+import { blogComponents } from '~/components/Blog/Slices/registerComponents'
+defineOptions({
+  components: {
+    ...blogComponents,
+  },
+})
 
-defineProps({
+const props = defineProps({
   slices: {
     type: Array,
     default: () => [],
   },
 })
+const items = transformSlicesData(props.slices as SliceObject[], blogComponentsMapping)
 </script>
 <template>
   <div class="post-components post-slices">
-    <SliceZone
-      :components="blogComponents"
-      :slices="slices"
+    <component
+      :is="item.componentName"
+      v-for="(item, itemIndex) in items"
+      :key="`${item.slice_type}${itemIndex}`"
+      :slice="item"
+      :index="itemIndex"
+      :context="''"
+      :slices="[]"
     />
   </div>
 </template>

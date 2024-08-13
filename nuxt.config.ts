@@ -304,6 +304,7 @@ export default defineNuxtConfig({
   prismic: {
     endpoint: 'superpupertest',
     toolbar: false,
+    preview: false,
     clientConfig: {
       routes: [
         {
