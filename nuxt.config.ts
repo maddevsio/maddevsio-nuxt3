@@ -3,8 +3,8 @@ import { getRobots } from './SEO/getRobots'
 import { getPrismicRoutes } from './SEO/getDynamicRoutes'
 
 config()
-const addGtag = (GA4Key: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const googleTagManager = document.createElement('script');googleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=${ GA4Key }';googleTagManager.defer = true;document.body.appendChild(googleTagManager);googleTagManager.onload = () => {window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);};gtag('js', new Date());gtag('config', '${ GA4Key }');};}, 3500)}})`
-const addSentry = () => 'document.addEventListener("readystatechange", () => {if(document.readyState === "complete"){setTimeout(()=>{const sentryScript = document.createElement("script");sentryScript.src = "https://js.sentry-cdn.com/d7de3ef1024e4c2aa21b2157f362b6fe.min.js";sentryScript.defer = true;sentryScript.crossorigin="anonymous";document.body.appendChild(sentryScript);}, 500)}})'
+const addGtag = (GA4Key: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const googleTagManager = document.createElement('script');googleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=${ GA4Key }';googleTagManager.defer = true;document.body.appendChild(googleTagManager);googleTagManager.onload = () => {window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);};gtag('consent', 'default', {'ad_storage': 'granted','ad_user_data': 'granted','ad_personalization': 'granted','analytics_storage': 'granted'});gtag('js', new Date());gtag('config', '${ GA4Key }');};}, 3500)}})`
+const addSentry = (sentryLoaderPath: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const sentryScript = document.createElement('script');sentryScript.src = '${ sentryLoaderPath }';sentryScript.defer = true;sentryScript.crossorigin='anonymous';document.body.appendChild(sentryScript);}, 500)}})`
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -89,11 +89,12 @@ export default defineNuxtConfig({
             innerHTML: '(function(l) {if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s = document.getElementsByTagName("script")[0];var b = document.createElement("script");b.type = "text/javascript";b.async = true;b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b, s);})(window.lintrk);',
           }
           : '',
-        {
-          type: 'text/javascript',
-          defer: true,
-          body: true,
-          innerHTML: `
+        process.env.FF_ENVIRONMENT === 'production'
+          ? {
+            type: 'text/javascript',
+            defer: true,
+            body: true,
+            innerHTML: `
             window.sentryOnLoad = function () {
               Sentry.init({
                   enabled: ${ process.env.FF_ENVIRONMENT === 'production' } ,
@@ -142,13 +143,16 @@ export default defineNuxtConfig({
               });
             };
           `,
-        },
-        {
-          type: 'text/javascript',
-          defer: true,
-          body: true,
-          innerHTML: addSentry(),
-        },
+          }
+          : '',
+        process.env.FF_ENVIRONMENT === 'production'
+          ? {
+            type: 'text/javascript',
+            defer: true,
+            body: true,
+            innerHTML: addSentry(process.env.SENTRY_LOADER_PATH),
+          }
+          : '',
       ].filter(Boolean),
     },
   },
@@ -440,7 +444,7 @@ export default defineNuxtConfig({
 
   hooks: {
     async 'nitro:config'(nitroConfig) {
-      if (process.env.FF_ENVIRONMENT !== 'development') {
+      if (process.env.FF_ENVIRONMENT === 'production') {
         // fetch the routes from our function above
         const slugs = await getPrismicRoutes()
         const correctSlugs = slugs.map((item: any) => item.startsWith('//') ? item.slice(1) : item)
