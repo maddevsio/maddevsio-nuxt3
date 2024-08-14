@@ -48,6 +48,10 @@ useHead(buildHead({
   description: home.value?.metaDescription || '',
   image: home.value!.ogImage!,
 }))
+
+setTimeout(() => {
+  throw new Error('Sentry Test Error Index')
+})
 </script>
 
 <template>

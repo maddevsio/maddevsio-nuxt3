@@ -96,7 +96,7 @@ export default defineNuxtConfig({
           innerHTML: `
             window.sentryOnLoad = function () {
               Sentry.init({
-                  enabled: ${ process.env.FF_ENVIRONMENT === 'production' } ,
+                  enabled: ${ process.env.FF_ENVIRONMENT === 'staging' } ,
                   environment: "${ process.env.FF_ENVIRONMENT }",
                   tracesSampleRate: 0.02,
                   ignoreErrors: [
