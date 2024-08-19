@@ -150,7 +150,7 @@ export default defineNuxtConfig({
             type: 'text/javascript',
             defer: true,
             body: true,
-            innerHTML: addSentry(process.env.SENTRY_LOADER_PATH),
+            innerHTML: addSentry(process.env.NODE_SENTRY_LOADER_PATH),
           }
           : '',
       ].filter(Boolean),
