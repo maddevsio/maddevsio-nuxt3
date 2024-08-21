@@ -1,11 +1,9 @@
 import sendpulse from 'sendpulse-api'
-import axios from 'axios'
 import {
   EMAIL_NODE_EMAIL_MARKETING,
-  MOOSEND_API_KEY,
-  MOOSEND_HOST_NAME,
-  MOOSEND_MAILING_LIST_ID, SENDPULSE_API_KEY,
-  SENDPULSE_API_USER_ID, SENDPULSE_TOKEN_STORAGE,
+  SENDPULSE_API_KEY,
+  SENDPULSE_API_USER_ID,
+  SENDPULSE_TOKEN_STORAGE,
 } from '~/server/config/envs'
 
 export class EmailService {
@@ -25,26 +23,14 @@ export class EmailService {
     })
   }
 
-  public async addToAddressBookEmail({ variables }: any) {
-    const body = {
-      Name: variables?.fullName || '',
-      Email: variables?.email || '',
-      Mobile: variables?.phoneNumber || '',
-      Tags: [
-        variables?.type && `${ variables.type === 'ebook-form' ? 'Ebook' : variables.type }`,
-      ].filter(Boolean),
-    }
-
-    await axios.post(
-      `${ MOOSEND_HOST_NAME }v3/subscribers/${ MOOSEND_MAILING_LIST_ID }/subscribe.json?apikey=${ MOOSEND_API_KEY }`,
-      body,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    )
+  // eslint-disable-next-line require-await
+  public async sendpulseAddEMailsRequest(email: string, addressBooksId: string | number, tags = '') {
+    return new Promise(resolve => {
+      sendpulse.addEmails((data: any) => {
+        resolve(data)
+        // eslint-disable-next-line
+      }, addressBooksId, [{ email, variables: { "Форма": tags } }])
+    })
   }
 
   private async send(email: string) {
@@ -96,10 +82,12 @@ export class EmailService {
         : variables.emailTo,
     }
 
+    const tag = variables.type === 'ebook-form' ? 'Ebook' : variables.type
+
     const email = this.buildEmail(emailParams)
 
     if (variables.consent_to_mailing === 'Yes' || variables.newsLetter === 'Yes') {
-      await this.addToAddressBookEmail({ variables })
+      await this.sendpulseAddEMailsRequest(variables.email, variables.addressBooksId, tag)
     }
     return await this.send(email)
   }
@@ -117,5 +105,15 @@ export class EmailService {
 
     const email = this.buildEmail(emailParams)
     return await this.send(email)
+  }
+
+  public async addToAddressBookEmail({ variables }: { variables: { email: string; addressBooksId: string | number }}) {
+    await this.initSendpulse(
+      SENDPULSE_API_USER_ID!,
+      SENDPULSE_API_KEY!,
+      SENDPULSE_TOKEN_STORAGE!,
+    )
+
+    return this.sendpulseAddEMailsRequest(variables.email, variables.addressBooksId)
   }
 }
