@@ -36,6 +36,7 @@ export const components = defineSliceZoneComponents({
 	image_with_caption: defineAsyncComponent(() => import('./ImageWithCaption/index.vue')),
 	industries: defineAsyncComponent(() => import('./Industries/index.vue')),
 	key_metrics_slice: defineAsyncComponent(() => import('./KeyMetricsSlice/index.vue')),
+	key_point_card: defineAsyncComponent(() => import('./KeyPointCard/index.vue')),
 	key_takeaways_slice: defineAsyncComponent(() => import('./KeyTakeawaysSlice/index.vue')),
 	logo_slice: defineAsyncComponent(() => import('./LogoSlice/index.vue')),
 	nav_link_slice: defineAsyncComponent(() => import('./NavLinkSlice/index.vue')),

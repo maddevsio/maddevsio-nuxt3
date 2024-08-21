@@ -95,6 +95,9 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"key_point_card": {
+							"type": "SharedSlice"
+						},
 						"text_with_border": {
 							"type": "SharedSlice"
 						},

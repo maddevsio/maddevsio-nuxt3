@@ -5858,6 +5858,7 @@ export type VacancyDocumentDataBodyVacancyTextSlice = prismic.Slice<
 >
 
 type VacancyDocumentDataBodySlice =
+	| KeyPointCardSlice
 	| TextWithBorderSlice
 	| VacancyDocumentDataBodyTextSlice
 	| VacancyDocumentDataBodyVacancyTextSlice
@@ -11567,6 +11568,58 @@ type KeyMetricsSliceSliceVariation =
 export type KeyMetricsSliceSlice = prismic.SharedSlice<'key_metrics_slice', KeyMetricsSliceSliceVariation>
 
 /**
+ * Primary content in *KeyPointCard → Default → Primary*
+ */
+export interface KeyPointCardSliceDefaultPrimary {
+	/**
+	 * Title field in *KeyPointCard → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: key_point_card.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *KeyPointCard → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: key_point_card.default.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+}
+
+/**
+ * Default variation for KeyPointCard Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeyPointCardSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<KeyPointCardSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *KeyPointCard*
+ */
+type KeyPointCardSliceVariation = KeyPointCardSliceDefault
+
+/**
+ * KeyPointCard Shared Slice
+ *
+ * - **API ID**: `key_point_card`
+ * - **Description**: KeyPointCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeyPointCardSlice = prismic.SharedSlice<'key_point_card', KeyPointCardSliceVariation>
+
+/**
  * Primary content in *KeyTakeawaysSlice → Default slice → Primary*
  */
 export interface KeyTakeawaysSliceSliceDefaultSlicePrimary {
@@ -16980,6 +17033,10 @@ declare module '@prismicio/client' {
 			KeyMetricsSliceSliceDefaultSlice,
 			KeyMetricsSliceSliceSecondVariation,
 			KeyMetricsSliceSliceThirdVariation,
+			KeyPointCardSlice,
+			KeyPointCardSliceDefaultPrimary,
+			KeyPointCardSliceVariation,
+			KeyPointCardSliceDefault,
 			KeyTakeawaysSliceSlice,
 			KeyTakeawaysSliceSliceDefaultSlicePrimary,
 			KeyTakeawaysSliceSliceDefaultSliceItem,
