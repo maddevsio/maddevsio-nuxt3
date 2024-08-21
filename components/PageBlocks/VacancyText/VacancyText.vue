@@ -10,6 +10,11 @@ const { slice } = defineProps({
   },
 })
 
+const { $getMediaFromS3 } = useMediaFromS3()
+const reformatIconName = (value: string) => {
+  return `${ value.toLowerCase().split(' ').join('-').replace(':', '') }.svg`
+}
+
 const {
   blocks,
 } = new VacancyText(slice)
@@ -25,10 +30,14 @@ const {
         v-if="item.textTitle"
         class="vacancy-text-slice__title"
       >
-        <span
+        <img
+          loading="lazy"
           class="vacancy-text-slice__icon"
-          v-html="item.textIcon || '☑️'"
-        />
+          :src="$getMediaFromS3(`/images/Careers/svg/title-icons/${reformatIconName(item.textTitle)}`)"
+          :alt="item.textTitle"
+          width="28"
+          height="28"
+        >
         {{ item.textTitle }}
       </h2>
       <PrismicRichText
@@ -41,8 +50,17 @@ const {
 </template>
 <style lang="scss" scoped>
 .vacancy-text-slice {
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   &__icon {
-    font-size: 27px;
+    display: block;
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
   }
 }
 

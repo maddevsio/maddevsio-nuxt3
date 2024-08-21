@@ -43,13 +43,53 @@ export const keyMetrics = [
 export const employeesBenefits = [
   {
     icon: {
-      name: 'hours',
+      name: 'hours-red',
       alt: 'Hours Icon.',
       width: 31,
       height: 30,
     },
 
     title: 'Flexible working hours',
+  },
+  {
+    icon: {
+      name: 'culture-red',
+      alt: 'Culture Icon.',
+      width: 24,
+      height: 31,
+    },
+
+    title: 'Remote-first culture',
+  },
+  {
+    icon: {
+      name: 'term-red',
+      alt: 'Docs Icon.',
+      width: 26,
+      height: 30,
+    },
+
+    title: 'Long-term projects',
+  },
+  {
+    icon: {
+      name: 'dollars-red',
+      alt: 'Dollar Icon.',
+      width: 33,
+      height: 31,
+    },
+
+    title: 'Salary in dollars',
+  },
+  {
+    icon: {
+      name: 'community-red',
+      alt: 'Community Icon.',
+      width: 33,
+      height: 31,
+    },
+
+    title: 'Professional communities',
   },
   {
     icon: {
@@ -63,16 +103,6 @@ export const employeesBenefits = [
   },
   {
     icon: {
-      name: 'lessons',
-      alt: 'Lessons Icon.',
-      width: 36,
-      height: 31,
-    },
-
-    title: 'English <br> lessons',
-  },
-  {
-    icon: {
       name: 'training',
       alt: 'Training Icon.',
       width: 39,
@@ -83,26 +113,6 @@ export const employeesBenefits = [
   },
   {
     icon: {
-      name: 'culture',
-      alt: 'Culture Icon.',
-      width: 24,
-      height: 31,
-    },
-
-    title: 'Remote-first culture',
-  },
-  {
-    icon: {
-      name: 'term',
-      alt: 'Docs Icon.',
-      width: 26,
-      height: 30,
-    },
-
-    title: 'Long-term projects',
-  },
-  {
-    icon: {
       name: 'conferences',
       alt: 'Microphone Icon.',
       width: 20,
@@ -110,16 +120,6 @@ export const employeesBenefits = [
     },
 
     title: 'Paid <br> conferences',
-  },
-  {
-    icon: {
-      name: 'parties',
-      alt: 'Cocktail Glass Icon.',
-      width: 31,
-      height: 36,
-    },
-
-    title: 'Team <br> parties',
   },
 ]
 
