@@ -124,8 +124,8 @@ const sendWriteUsClickEvent = () => {
   }
   &__subtitle {
     margin-top: 24.5px;
-    font-size: 17px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 28px;
     letter-spacing: -0.013em;
   }
   &__tags {
@@ -148,6 +148,11 @@ const sendWriteUsClickEvent = () => {
       font-size: 35px;
       line-height: 45px;
       letter-spacing: -1.4px;
+    }
+
+    &__subtitle {
+      font-size: 17px;
+      line-height: 24px;
     }
   }
 }
