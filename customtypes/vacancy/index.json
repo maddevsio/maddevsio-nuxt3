@@ -1,201 +1,240 @@
 {
-  "id": "vacancy",
-  "label": "Vacancy",
-  "repeatable": true,
-  "json": {
-    "Main" : {
-      "uid" : {
-        "type" : "UID",
-        "config" : {
-          "label" : "UID"
-        }
-      },
-      "huntflow_vacancy_id" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Huntflow vacancy ID"
-        }
-      },
-      "remote_label" : {
-        "type" : "Boolean",
-        "config" : {
-          "placeholder_false" : "hide",
-          "placeholder_true" : "show",
-          "default_value" : true,
-          "label" : "\"Remote\" label"
-        }
-      },
-      "relocation_label" : {
-        "type" : "Boolean",
-        "config" : {
-          "placeholder_false" : "hide",
-          "placeholder_true" : "show",
-          "default_value" : true,
-          "label" : "\"Open for relocation\" label"
-        }
-      },
-      "position" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Position",
-          "placeholder" : "Used in the application form"
-        }
-      },
-      "title" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Title"
-        }
-      },
-      "subtitle" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Subtitle"
-        }
-      },
-      "vacancy_category" : {
-        "type" : "Select",
-        "config" : {
-          "options" : [ "Backend development", "Blockchain", "DevOps", "Frontend development", "Human resources", "Machine learning", "Marketing", "Mobile development", "Project management", "Quality Assurance", "Sales management" ],
-          "label" : "Vacancy Category",
-          "placeholder" : "requires choice for vacancy subscription"
-        }
-      },
-      "date" : {
-        "type" : "Date",
-        "config" : {
-          "label" : "Date"
-        }
-      },
-      "released" : {
-        "type" : "Boolean",
-        "config" : {
-          "placeholder_false" : "На стейджинге",
-          "placeholder_true" : "На продакшине",
-          "default_value" : true,
-          "label" : "Released"
-        }
-      },
-      "body" : {
-        "type" : "Slices",
-        "fieldset" : "Slice zone",
-        "config" : {
-          "labels" : { },
-          "choices" : {
-            "text" : {
-              "type" : "Slice",
-              "fieldset" : "Text",
-              "description" : "A rich text section",
-              "icon" : "text_fields",
-              "display" : "list",
-              "non-repeat" : {
-                "text" : {
-                  "type" : "StructuredText",
-                  "config" : {
-                    "multi" : "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item",
-                    "allowTargetBlank" : true,
-                    "label" : "Text",
-                    "placeholder" : "Post text..."
-                  }
-                }
-              },
-              "repeat" : { }
-            },
-            "vacancy_text" : {
-              "type" : "Slice",
-              "fieldset" : "Vacancy text",
-              "description" : "Block of text for vacancy description",
-              "icon" : "short_text",
-              "display" : "list",
-              "non-repeat" : { },
-              "repeat" : {
-                "text_icon" : {
-                  "type" : "Text",
-                  "config" : {
-                    "label" : "Text block icon (Optional)",
-                    "placeholder" : "☑️ - by default"
-                  }
-                },
-                "text_title" : {
-                  "type" : "Select",
-                  "config" : {
-                    "options" : [ "Кого и куда мы ищем:", "Что нужно будет делать:", "Наши ожидания:", "Как мы работаем:", "Что мы предлагаем:", "Требования:", "Обязаности:", "Условия:", "Основные задачи:", "Ожидания от кандидата:", "Будет плюсом:", "Дополнительные преимущества:", "Who and where are we looking for:", "What will need to do:", "Our expectations:", "How we are working:", "What do we offer:", "Requirements:", "Responsibilities:", "Conditions:", "Main tasks:", "Candidate Expectations:", "It will be a plus:", "Additional benefits:" ],
-                    "label" : "Text block title (Optional)"
-                  }
-                },
-                "text_content" : {
-                  "type" : "StructuredText",
-                  "config" : {
-                    "multi" : "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item",
-                    "allowTargetBlank" : true,
-                    "label" : "Text block content"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "SEO" : {
-      "meta_title" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Meta title"
-        }
-      },
-      "meta_description" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Meta description"
-        }
-      },
-      "schema_org_snippets" : {
-        "type" : "Group",
-        "config" : {
-          "fields" : {
-            "single_snippet" : {
-              "type" : "StructuredText",
-              "config" : {
-                "multi" : "preformatted",
-                "label" : "Single snippet"
-              }
-            }
-          },
-          "label" : "schema.org snippets"
-        }
-      }
-    },
-    "Header Plate" : {
-      "header_plate_text" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Header Plate Text"
-        }
-      },
-      "header_plate_button_text" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Header Plate Button Text"
-        }
-      },
-      "header_plate_link" : {
-        "type" : "Text",
-        "config" : {
-          "label" : "Header Plate Link",
-          "placeholder" : "/careers/"
-        }
-      },
-      "header_plate_background_color" : {
-        "type" : "Select",
-        "config" : {
-          "options" : [ "blue", "purple", "orange", "green", "blue-green" ],
-          "label" : "Header Plate Background Color",
-          "placeholder" : "requires choice"
-        }
-      }
-    }
-  },
-  "status": true,
-  "format": "custom"
+	"id": "vacancy",
+	"label": "Vacancy",
+	"repeatable": true,
+	"status": true,
+	"format": "custom",
+	"json": {
+		"Main": {
+			"uid": {
+				"type": "UID",
+				"config": {
+					"label": "UID"
+				}
+			},
+			"huntflow_vacancy_id": {
+				"type": "Text",
+				"config": {
+					"label": "Huntflow vacancy ID"
+				}
+			},
+			"remote_label": {
+				"type": "Boolean",
+				"config": {
+					"placeholder_false": "hide",
+					"placeholder_true": "show",
+					"default_value": true,
+					"label": "\"Remote\" label"
+				}
+			},
+			"relocation_label": {
+				"type": "Boolean",
+				"config": {
+					"placeholder_false": "hide",
+					"placeholder_true": "show",
+					"default_value": true,
+					"label": "\"Open for relocation\" label"
+				}
+			},
+			"position": {
+				"type": "Text",
+				"config": {
+					"label": "Position",
+					"placeholder": "Used in the application form"
+				}
+			},
+			"title": {
+				"type": "Text",
+				"config": {
+					"label": "Title"
+				}
+			},
+			"subtitle": {
+				"type": "Text",
+				"config": {
+					"label": "Subtitle"
+				}
+			},
+			"vacancy_category": {
+				"type": "Select",
+				"config": {
+					"options": [
+						"Backend development",
+						"Blockchain",
+						"DevOps",
+						"Frontend development",
+						"Human resources",
+						"Machine learning",
+						"Marketing",
+						"Mobile development",
+						"Project management",
+						"Quality Assurance",
+						"Sales management"
+					],
+					"label": "Vacancy Category",
+					"placeholder": "requires choice for vacancy subscription"
+				}
+			},
+			"date": {
+				"type": "Date",
+				"config": {
+					"label": "Date"
+				}
+			},
+			"released": {
+				"type": "Boolean",
+				"config": {
+					"placeholder_false": "На стейджинге",
+					"placeholder_true": "На продакшине",
+					"default_value": true,
+					"label": "Released"
+				}
+			},
+			"body": {
+				"type": "Slices",
+				"fieldset": "Slice Zone",
+				"config": {
+					"choices": {
+						"text_with_border": {
+							"type": "SharedSlice"
+						},
+						"text": {
+							"type": "Slice",
+							"fieldset": "Text",
+							"description": "A rich text section",
+							"icon": "text_fields",
+							"display": "list",
+							"non-repeat": {
+								"text": {
+									"type": "StructuredText",
+									"config": {
+										"multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item",
+										"allowTargetBlank": true,
+										"label": "Text",
+										"placeholder": "Post text..."
+									}
+								}
+							},
+							"repeat": {}
+						},
+						"vacancy_text": {
+							"type": "Slice",
+							"fieldset": "Vacancy text",
+							"description": "Block of text for vacancy description",
+							"icon": "short_text",
+							"display": "list",
+							"non-repeat": {},
+							"repeat": {
+								"text_icon": {
+									"type": "Text",
+									"config": {
+										"label": "Text block icon (Optional)",
+										"placeholder": "☑️ - by default"
+									}
+								},
+								"text_title": {
+									"type": "Select",
+									"config": {
+										"options": [
+											"Кого и куда мы ищем:",
+											"Что нужно будет делать:",
+											"Наши ожидания:",
+											"Как мы работаем:",
+											"Что мы предлагаем:",
+											"Требования:",
+											"Обязаности:",
+											"Условия:",
+											"Основные задачи:",
+											"Ожидания от кандидата:",
+											"Будет плюсом:",
+											"Дополнительные преимущества:",
+											"Who and where are we looking for:",
+											"What will need to do:",
+											"Our expectations:",
+											"How we are working:",
+											"What do we offer:",
+											"Requirements:",
+											"Responsibilities:",
+											"Conditions:",
+											"Main tasks:",
+											"Candidate Expectations:",
+											"It will be a plus:",
+											"Additional benefits:"
+										],
+										"label": "Text block title (Optional)"
+									}
+								},
+								"text_content": {
+									"type": "StructuredText",
+									"config": {
+										"multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item",
+										"allowTargetBlank": true,
+										"label": "Text block content"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"SEO": {
+			"meta_title": {
+				"type": "Text",
+				"config": {
+					"label": "Meta title"
+				}
+			},
+			"meta_description": {
+				"type": "Text",
+				"config": {
+					"label": "Meta description"
+				}
+			},
+			"schema_org_snippets": {
+				"type": "Group",
+				"config": {
+					"fields": {
+						"single_snippet": {
+							"type": "StructuredText",
+							"config": {
+								"multi": "preformatted",
+								"label": "Single snippet"
+							}
+						}
+					},
+					"label": "schema.org snippets"
+				}
+			}
+		},
+		"Header Plate": {
+			"header_plate_text": {
+				"type": "Text",
+				"config": {
+					"label": "Header Plate Text"
+				}
+			},
+			"header_plate_button_text": {
+				"type": "Text",
+				"config": {
+					"label": "Header Plate Button Text"
+				}
+			},
+			"header_plate_link": {
+				"type": "Text",
+				"config": {
+					"label": "Header Plate Link",
+					"placeholder": "/careers/"
+				}
+			},
+			"header_plate_background_color": {
+				"type": "Select",
+				"config": {
+					"options": ["blue", "purple", "orange", "green", "blue-green"],
+					"label": "Header Plate Background Color",
+					"placeholder": "requires choice"
+				}
+			}
+		}
+	}
 }

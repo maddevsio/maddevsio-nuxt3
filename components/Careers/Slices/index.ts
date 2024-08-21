@@ -4,4 +4,5 @@ import { defineSliceZoneComponents } from '@prismicio/vue'
 export const careersComponents = defineSliceZoneComponents({
   text: defineAsyncComponent(() => import('../../PageBlocks/Text/Text.vue')),
   vacancy_text: defineAsyncComponent(() => import('../../PageBlocks/VacancyText/VacancyText.vue')),
+  text_with_border: defineAsyncComponent(() => import('../../PageBlocks/TextWithBorder/TextWithBorder.vue')),
 })
