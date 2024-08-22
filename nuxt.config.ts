@@ -3,6 +3,8 @@ import { getRobots } from './SEO/getRobots'
 import { getPrismicRoutes } from './SEO/getDynamicRoutes'
 
 config()
+const addGtag = (GA4Key: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const googleTagManager = document.createElement('script');googleTagManager.src = 'https://www.googletagmanager.com/gtag/js?id=${ GA4Key }';googleTagManager.defer = true;document.body.appendChild(googleTagManager);googleTagManager.onload = () => {window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);};gtag('consent', 'default', {'ad_storage': 'granted','ad_user_data': 'granted','ad_personalization': 'granted','analytics_storage': 'granted'});gtag('js', new Date());gtag('config', '${ GA4Key }');};}, 3500)}})`
+const addSentry = (sentryLoaderPath: string | undefined) => `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){setTimeout(()=>{const sentryScript = document.createElement('script');sentryScript.src = '${ sentryLoaderPath }';sentryScript.defer = true;sentryScript.crossorigin='anonymous';document.body.appendChild(sentryScript);}, 500)}})`
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -60,21 +62,14 @@ export default defineNuxtConfig({
             body: true,
             defer: true,
             vmid: 'smartlook-script',
-            innerHTML: `window.smartlook||(function(d) { var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0]; var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript'; c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c); })(document); smartlook('init', '${ process.env.NODE_SMARTLOOK_PROJECT_ID }', { region: 'eu' });`,
+            innerHTML: `document.addEventListener('readystatechange', () => {if(document.readyState === 'complete'){window.smartlook||(function(d) { var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0]; var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript'; c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c); })(document); smartlook('init', '${ process.env.NODE_SMARTLOOK_PROJECT_ID }', { region: 'eu' });}})`,
           }
           : '',
-        {
-          src: `https://www.googletagmanager.com/gtag/js?id=${ process.env.NODE_GA4_KEY }&l=dataLayer`,
-          defer: true,
-          body: true,
-        },
         {
           type: 'text/javascript',
           defer: true,
           body: true,
-          vmid: 'gtag-script',
-
-          innerHTML: `window.dataLayer = window.dataLayer || []; function gtag() {dataLayer.push(arguments)}; gtag('consent', 'default', {'ad_storage': 'granted','ad_user_data': 'granted','ad_personalization': 'granted','analytics_storage': 'granted'}); gtag('js', new Date()); gtag('config', '${ process.env.NODE_GA4_KEY }', {send_page_view: false,});`,
+          innerHTML: addGtag(process.env.NODE_GA4_KEY),
         },
         process.env.FF_ENVIRONMENT === 'production' && process.env.LINKEDIN_SCRIPT_TURN_ON === 'on'
           ? {
@@ -92,6 +87,70 @@ export default defineNuxtConfig({
             body: true,
             vmid: 'ln-script-2',
             innerHTML: '(function(l) {if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s = document.getElementsByTagName("script")[0];var b = document.createElement("script");b.type = "text/javascript";b.async = true;b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b, s);})(window.lintrk);',
+          }
+          : '',
+        process.env.FF_ENVIRONMENT === 'production'
+          ? {
+            type: 'text/javascript',
+            defer: true,
+            body: true,
+            innerHTML: `
+            window.sentryOnLoad = function () {
+              Sentry.init({
+                  enabled: ${ process.env.FF_ENVIRONMENT === 'production' } ,
+                  environment: "${ process.env.FF_ENVIRONMENT }",
+                  tracesSampleRate: 0.02,
+                  ignoreErrors: [
+                    'ResizeObserver loop limit exceeded', // https://stackoverflow.com/questions/49384120/resizeobserver-loop-limit-exceeded#comment86691361_49384120
+                    'ResizeObserver loop completezd with undelivered notifications.', // ^
+                    'Non-Error promise rejection captured', // https://forum.sentry.io/t/unhandledrejection-non-error-promise-rejection-captured-with-value/14062/14
+                    'Non-Error exception captured', // ^
+                    // Prismic
+                    'Failed to init Prismic API, preventing app fatal error.',
+                    'TypeError: Network request failed.',
+                    'ChunkLoadError: Loading chunk',
+                    // Facebook borked
+                    'fb_xd_fragment',
+                    // [Safari] Error playing video with muted
+                    'AbortError: The operation was aborted.',
+                    // [Safari] Error PiP when scrolling page
+                    'The request is not triggered by a user activation.',
+                    // Video error
+                    'AbortError: The play() request was interrupted by a call to pause().',
+                    'undefined is not an object (evaluating \\'r["@context"].toLowerCase\\')',
+                  ],
+                  denyUrls: [
+                    // Prismic
+                    /SuperPuperTest\\.cdn\\.prismic\\.io/i,
+                    // Facebook flakiness
+                    /graph\\.facebook\\.com/i,
+                    // Facebook blocked
+                    /connect\\.facebook\\.net\\/en_US\\/all\\.js/i,
+                    // Google Tag Manager
+                    /(https?:\\/\\/www\\.googletagmanager\\.com)/i,
+                    // Google flakiness
+                    /\\/(gtm|ga|analytics)\\.js/i,
+                    /(https?:\\/\\/www\\.google-analytics\\.com)/,
+                    // Chrome extensions
+                    /extensions\\//i,
+                    /^chrome:\\/\\//i,
+                    // Firefox extensions
+                    /^resource:\\/\\//i,
+                    // Other plugins
+                    /webappstoolbarba\\.texthelp\\.com\\//i,
+                    /metrics\\.itunes\\.apple\\.com\\.edgesuite\\.net\\//i,
+                  ],
+              });
+            };
+          `,
+          }
+          : '',
+        process.env.FF_ENVIRONMENT === 'production'
+          ? {
+            type: 'text/javascript',
+            defer: true,
+            body: true,
+            innerHTML: addSentry(process.env.NODE_SENTRY_LOADER_PATH),
           }
           : '',
       ].filter(Boolean),
@@ -183,6 +242,7 @@ export default defineNuxtConfig({
           '/api/__sitemap__/services',
         ],
       },
+      /* Commented for some time to hide all authors from sitemap, don't uncomment */
       // authors: {
       //   sources: [
       //     '/api/__sitemap__/authors',
