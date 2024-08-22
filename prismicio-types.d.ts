@@ -5765,11 +5765,11 @@ export type TagsDocument<Lang extends string = string> = prismic.PrismicDocument
 >
 
 /**
- * Primary content in *Vacancy → Slice zone → Text → Primary*
+ * Primary content in *Vacancy → Slice Zone → Text → Primary*
  */
 export interface VacancyDocumentDataBodyTextSlicePrimary {
 	/**
-	 * Text field in *Vacancy → Slice zone → Text → Primary*
+	 * Text field in *Vacancy → Slice Zone → Text → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: Post text...
@@ -5780,7 +5780,7 @@ export interface VacancyDocumentDataBodyTextSlicePrimary {
 }
 
 /**
- * Slice for *Vacancy → Slice zone*
+ * Slice for *Vacancy → Slice Zone*
  */
 export type VacancyDocumentDataBodyTextSlice = prismic.Slice<
 	'text',
@@ -5789,11 +5789,11 @@ export type VacancyDocumentDataBodyTextSlice = prismic.Slice<
 >
 
 /**
- * Item content in *Vacancy → Slice zone → Vacancy text → Items*
+ * Item content in *Vacancy → Slice Zone → Vacancy text → Items*
  */
 export interface VacancyDocumentDataBodyVacancyTextSliceItem {
 	/**
-	 * Text block icon (Optional) field in *Vacancy → Slice zone → Vacancy text → Items*
+	 * Text block icon (Optional) field in *Vacancy → Slice Zone → Vacancy text → Items*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: ☑️ - by default
@@ -5803,7 +5803,7 @@ export interface VacancyDocumentDataBodyVacancyTextSliceItem {
 	text_icon: prismic.KeyTextField
 
 	/**
-	 * Text block title (Optional) field in *Vacancy → Slice zone → Vacancy text → Items*
+	 * Text block title (Optional) field in *Vacancy → Slice Zone → Vacancy text → Items*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -5838,7 +5838,7 @@ export interface VacancyDocumentDataBodyVacancyTextSliceItem {
 	>
 
 	/**
-	 * Text block content field in *Vacancy → Slice zone → Vacancy text → Items*
+	 * Text block content field in *Vacancy → Slice Zone → Vacancy text → Items*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -5849,7 +5849,7 @@ export interface VacancyDocumentDataBodyVacancyTextSliceItem {
 }
 
 /**
- * Slice for *Vacancy → Slice zone*
+ * Slice for *Vacancy → Slice Zone*
  */
 export type VacancyDocumentDataBodyVacancyTextSlice = prismic.Slice<
 	'vacancy_text',
@@ -5857,7 +5857,11 @@ export type VacancyDocumentDataBodyVacancyTextSlice = prismic.Slice<
 	Simplify<VacancyDocumentDataBodyVacancyTextSliceItem>
 >
 
-type VacancyDocumentDataBodySlice = VacancyDocumentDataBodyTextSlice | VacancyDocumentDataBodyVacancyTextSlice
+type VacancyDocumentDataBodySlice =
+	| KeyPointCardSlice
+	| TextWithBorderSlice
+	| VacancyDocumentDataBodyTextSlice
+	| VacancyDocumentDataBodyVacancyTextSlice
 
 /**
  * Item in *Vacancy → schema.org snippets*
@@ -5993,7 +5997,7 @@ interface VacancyDocumentData {
 	released: prismic.BooleanField
 
 	/**
-	 * Slice zone field in *Vacancy*
+	 * Slice Zone field in *Vacancy*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -11564,6 +11568,58 @@ type KeyMetricsSliceSliceVariation =
 export type KeyMetricsSliceSlice = prismic.SharedSlice<'key_metrics_slice', KeyMetricsSliceSliceVariation>
 
 /**
+ * Primary content in *KeyPointCard → Default → Primary*
+ */
+export interface KeyPointCardSliceDefaultPrimary {
+	/**
+	 * Title field in *KeyPointCard → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: key_point_card.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *KeyPointCard → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: key_point_card.default.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+}
+
+/**
+ * Default variation for KeyPointCard Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeyPointCardSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<KeyPointCardSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *KeyPointCard*
+ */
+type KeyPointCardSliceVariation = KeyPointCardSliceDefault
+
+/**
+ * KeyPointCard Shared Slice
+ *
+ * - **API ID**: `key_point_card`
+ * - **Description**: KeyPointCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeyPointCardSlice = prismic.SharedSlice<'key_point_card', KeyPointCardSliceVariation>
+
+/**
  * Primary content in *KeyTakeawaysSlice → Default slice → Primary*
  */
 export interface KeyTakeawaysSliceSliceDefaultSlicePrimary {
@@ -15971,6 +16027,58 @@ type TextSliceSliceVariation =
 export type TextSliceSlice = prismic.SharedSlice<'text_slice', TextSliceSliceVariation>
 
 /**
+ * Primary content in *TextWithBorder → Default → Primary*
+ */
+export interface TextWithBorderSliceDefaultPrimary {
+	/**
+	 * Title field in *TextWithBorder → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: text_with_border.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *TextWithBorder → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: text_with_border.default.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+}
+
+/**
+ * Default variation for TextWithBorder Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextWithBorderSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<TextWithBorderSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *TextWithBorder*
+ */
+type TextWithBorderSliceVariation = TextWithBorderSliceDefault
+
+/**
+ * TextWithBorder Shared Slice
+ *
+ * - **API ID**: `text_with_border`
+ * - **Description**: TextWithBorder
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextWithBorderSlice = prismic.SharedSlice<'text_with_border', TextWithBorderSliceVariation>
+
+/**
  * Primary content in *TitleAndDescription → Default slice → Primary*
  */
 export interface TitleAndDescriptionSliceDefaultSlicePrimary {
@@ -16925,6 +17033,10 @@ declare module '@prismicio/client' {
 			KeyMetricsSliceSliceDefaultSlice,
 			KeyMetricsSliceSliceSecondVariation,
 			KeyMetricsSliceSliceThirdVariation,
+			KeyPointCardSlice,
+			KeyPointCardSliceDefaultPrimary,
+			KeyPointCardSliceVariation,
+			KeyPointCardSliceDefault,
 			KeyTakeawaysSliceSlice,
 			KeyTakeawaysSliceSliceDefaultSlicePrimary,
 			KeyTakeawaysSliceSliceDefaultSliceItem,
@@ -17087,6 +17199,10 @@ declare module '@prismicio/client' {
 			TextSliceSliceTitleTextButton,
 			TextSliceSliceParagraph,
 			TextSliceSliceFlexibleParagraph,
+			TextWithBorderSlice,
+			TextWithBorderSliceDefaultPrimary,
+			TextWithBorderSliceVariation,
+			TextWithBorderSliceDefault,
 			TitleAndDescriptionSlice,
 			TitleAndDescriptionSliceDefaultSlicePrimary,
 			TitleAndDescriptionSliceVariation,
