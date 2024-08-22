@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CareersService } from '~/components/Careers/classes/CareersService'
-import { employeesBenefits } from '~/components/Careers/constants/careersConstants'
+import { employeesBenefitsWithCorePoints } from '~/components/Careers/constants/careersConstants'
 import { buildHead } from '~/SEO/buildMetaTags'
 
 const prismic = usePrismic()
@@ -76,7 +76,7 @@ useHead(buildHead({
               class="careers-position__benefits-grid"
             >
               <LazyCareersUIBenefitCard
-                v-for="benefit in employeesBenefits"
+                v-for="benefit in employeesBenefitsWithCorePoints"
                 v-bind="benefit"
                 :key="benefit.title"
               />
