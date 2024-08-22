@@ -40,6 +40,89 @@ export const keyMetrics = [
   },
 ]
 
+export const employeesBenefitsWithCorePoints = [
+  {
+    icon: {
+      name: 'hours-red',
+      alt: 'Hours Icon.',
+      width: 31,
+      height: 30,
+    },
+
+    title: 'Flexible working hours',
+  },
+  {
+    icon: {
+      name: 'culture-red',
+      alt: 'Culture Icon.',
+      width: 24,
+      height: 31,
+    },
+
+    title: 'Remote-first culture',
+  },
+  {
+    icon: {
+      name: 'term-red',
+      alt: 'Docs Icon.',
+      width: 26,
+      height: 30,
+    },
+
+    title: 'Long-term projects',
+  },
+  {
+    icon: {
+      name: 'dollars-red',
+      alt: 'Dollar Icon.',
+      width: 33,
+      height: 31,
+    },
+
+    title: 'Salary in dollars',
+  },
+  {
+    icon: {
+      name: 'community-red',
+      alt: 'Community Icon.',
+      width: 33,
+      height: 31,
+    },
+
+    title: 'Professional communities',
+  },
+  {
+    icon: {
+      name: 'trips',
+      alt: 'Trips Icon.',
+      width: 28,
+      height: 32,
+    },
+
+    title: 'Onsite business trips',
+  },
+  {
+    icon: {
+      name: 'training',
+      alt: 'Training Icon.',
+      width: 39,
+      height: 24,
+    },
+
+    title: 'Training budget',
+  },
+  {
+    icon: {
+      name: 'conferences',
+      alt: 'Microphone Icon.',
+      width: 20,
+      height: 33,
+    },
+
+    title: 'Paid conferences',
+  },
+]
+
 export const employeesBenefits = [
   {
     icon: {
