@@ -49,7 +49,6 @@ jobs:
           NUXT_PUBLIC_SITE_URL=${{ secrets.STAGING_NUXT_PUBLIC_SITE_URL }}
           NITRO_PRESET=${{ secrets.NITRO_PRESET }}
           NODE_SENTRY_LOADER_PATH=${{ secrets.STAGING_NODE_SENTRY_LOADER_PATH }}
-
         cache-from: |
           maddevsio/maddevsio:staging
         tags: maddevsio/maddevsio:staging,maddevsio/maddevsio:${{ env.SHORT_SHA }}
