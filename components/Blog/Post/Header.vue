@@ -21,6 +21,36 @@ const {
   showTag,
 } = props.postHeader
 
+const imageFallback = computed(() => {
+  const queryStartIndex = featuredImage && featuredImage?.url && featuredImage?.url.indexOf('?')
+  return queryStartIndex ? `${ featuredImage?.url.slice(0, queryStartIndex) }?w=200&h=100` : featuredImage?.url
+})
+
+const postImage = ref()
+const isImageLoaded = ref(false)
+
+const handleImageLoad = () => {
+  isImageLoaded.value = true
+}
+
+onMounted(() => {
+  if (postImage.value && postImage.value.$el) {
+    isImageLoaded.value = postImage.value.$el.complete
+  }
+})
+
+watch(postImage, () => {
+  if (postImage.value && postImage.value.$el) {
+    postImage.value.$el.addEventListener('load', handleImageLoad)
+  }
+}, { deep: true })
+
+onUnmounted(() => {
+  if (postImage.value && postImage.value.$el) {
+    postImage.value.$el.removeEventListener('load', handleImageLoad)
+  }
+})
+
 const { isMobile } = useDevice()
 </script>
 <template>
@@ -73,9 +103,10 @@ const { isMobile } = useDevice()
           />
         </div>
       </div>
-      <div class="post-header__featured-image-wrapper">
+      <div v-if="featuredImage && featuredImage.url" class="post-header__featured-image-wrapper">
         <NuxtImg
-          v-if="featuredImage.url"
+          v-show="isImageLoaded"
+          ref="postImage"
           provider="prismic"
           :src="clearImageParamsFromPrismic(featuredImage.url)"
           :alt="title"
@@ -84,6 +115,14 @@ const { isMobile } = useDevice()
           :height="isMobile ? 245 : 534"
           class="post-header__featured-image"
         />
+        <img
+          v-if="!isImageLoaded"
+          :src="imageFallback"
+          :alt="title"
+          :width="isMobile ? 455 : 983"
+          :height="isMobile ? 245 : 534"
+          class="post-header__image-fallback"
+        >
       </div>
     </div>
   </section>
@@ -145,7 +184,7 @@ const { isMobile } = useDevice()
     width: 100%;
   }
 
-  &__featured-image {
+  &__featured-image, &__image-fallback {
     width: 100%;
     height: auto;
     max-height: 534px;

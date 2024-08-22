@@ -1,15 +1,11 @@
 name: Linter CI
-
 on: [pull_request]
-
 jobs:
   build:
     runs-on: ${{ vars.ACTIVE_RUNNER }}
-
     strategy:
       matrix:
         node-version: [18.19.0]
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -17,6 +13,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
+        env:
+          CI: true
+          NODE_PRISMIC_API: ${{ secrets.STAGING_NODE_PRISMIC_API }}
       - run: npm run lint
         env:
           CI: true
