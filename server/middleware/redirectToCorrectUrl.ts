@@ -3,7 +3,7 @@ import { MAD_MARKETING_BACKEND_API } from '~/server/config/envs'
 import { authConfig } from '~/server/config'
 
 export default defineEventHandler(async event => {
-  if (!event.path.startsWith('/api')) {
+  if (!event.path.startsWith('/api') && !event.path.includes('/__nuxt_error')) {
     const url = getRequestURL(event)
     if (url.hostname === 'blog.maddevs.io') {
       if (url.pathname.startsWith('/vacancy/')) { await sendRedirect(event, 'https://maddevs.io/careers/#open-positions', 301) }
