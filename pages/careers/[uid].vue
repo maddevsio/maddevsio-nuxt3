@@ -14,7 +14,7 @@ const { data: vacancyData, error } = await useAsyncData('vacancyData', async () 
   const vacancy = careersService.extractVacancyData(response)
 
   if (!vacancy.released && config.public.ffEnvironment === 'production') {
-    navigateTo('/careers/', {
+    await navigateTo('/careers/', {
       redirectCode: 303,
     })
   }
