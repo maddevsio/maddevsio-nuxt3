@@ -17,7 +17,7 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
 
   const openGraphUrl = `${ config.public.domain }/${ type === 'customer_university' ? 'customer-university' : 'blog' }/${ route.params?.uid }/`
 
-  const { data: blogContentResponseData } = await useAsyncData('blogContentResponseData', async () => {
+  const { data: blogContentResponseData, error } = await useAsyncData('blogContentResponseData', async () => {
     try {
       const postResponse = await blogService.getPostByUID(prismic, route.params.uid as string, type) as BlogPost
 
@@ -46,6 +46,10 @@ export const useBlogContentData = async (type: 'post' | 'customer_university' = 
       showError({ statusMessage: 'Page not found', statusCode: 404 })
     }
   })
+
+  if (error.value) {
+    throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+  }
 
   post.value = blogContentResponseData.value as BlogPost
 

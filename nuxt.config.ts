@@ -89,7 +89,7 @@ export default defineNuxtConfig({
             innerHTML: '(function(l) {if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s = document.getElementsByTagName("script")[0];var b = document.createElement("script");b.type = "text/javascript";b.async = true;b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b, s);})(window.lintrk);',
           }
           : '',
-        process.env.FF_ENVIRONMENT === 'staging'
+        process.env.FF_ENVIRONMENT === 'production'
           ? {
             type: 'text/javascript',
             defer: true,
@@ -97,7 +97,7 @@ export default defineNuxtConfig({
             innerHTML: `
             window.sentryOnLoad = function () {
               Sentry.init({
-                  enabled: ${ process.env.FF_ENVIRONMENT === 'staging' } ,
+                  enabled: ${ process.env.FF_ENVIRONMENT === 'production' } ,
                   environment: "${ process.env.FF_ENVIRONMENT }",
                   tracesSampleRate: 0.02,
                   ignoreErrors: [
@@ -145,12 +145,12 @@ export default defineNuxtConfig({
           `,
           }
           : '',
-        process.env.FF_ENVIRONMENT === 'staging'
+        process.env.FF_ENVIRONMENT === 'production'
           ? {
             type: 'text/javascript',
             defer: true,
             body: true,
-            innerHTML: addSentry(process.env.SENTRY_LOADER_PATH),
+            innerHTML: addSentry(process.env.NODE_SENTRY_LOADER_PATH),
           }
           : '',
       ].filter(Boolean),
@@ -307,8 +307,8 @@ export default defineNuxtConfig({
 
   prismic: {
     endpoint: 'superpupertest',
-    toolbar: false,
-    preview: false,
+    toolbar: process.env.FF_ENVIRONMENT === 'staging',
+    preview: process.env.FF_ENVIRONMENT === 'staging' ? '/preview' : false,
     clientConfig: {
       routes: [
         {
@@ -444,7 +444,7 @@ export default defineNuxtConfig({
 
   hooks: {
     async 'nitro:config'(nitroConfig) {
-      if (process.env.FF_ENVIRONMENT !== 'development') {
+      if (process.env.FF_ENVIRONMENT === 'production') {
         // fetch the routes from our function above
         const slugs = await getPrismicRoutes()
         const correctSlugs = slugs.map((item: any) => item.startsWith('//') ? item.slice(1) : item)

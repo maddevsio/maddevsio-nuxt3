@@ -46,11 +46,11 @@ withDefaults(defineProps<Props>(), {
       <NuxtImg
         loading="lazy"
         provider="prismic"
-        :src="cover.url.replace(/\?.*/, '?auto=compress,format')"
+        :src="cover.url.replace(/\?.*/, '?auto=format')"
         :alt="cover.alt || title"
         width="336"
         height="181"
-        sizes="mobile:336px tablet:336px desktop:336px"
+        sizes="mobile:400px tablet:400px desktop:800px"
         class="article-card__cover"
       />
     </NuxtLink>
