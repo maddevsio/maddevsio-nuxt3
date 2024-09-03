@@ -5765,43 +5765,9 @@ export type TagsDocument<Lang extends string = string> = prismic.PrismicDocument
 >
 
 /**
- * Primary content in *Vacancy → Slice Zone → Text → Primary*
- */
-export interface VacancyDocumentDataBodyTextSlicePrimary {
-	/**
-	 * Text field in *Vacancy → Slice Zone → Text → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Post text...
-	 * - **API ID Path**: vacancy.body[].text.primary.text
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	text: prismic.RichTextField
-}
-
-/**
- * Slice for *Vacancy → Slice Zone*
- */
-export type VacancyDocumentDataBodyTextSlice = prismic.Slice<
-	'text',
-	Simplify<VacancyDocumentDataBodyTextSlicePrimary>,
-	never
->
-
-/**
  * Item content in *Vacancy → Slice Zone → Vacancy text → Items*
  */
 export interface VacancyDocumentDataBodyVacancyTextSliceItem {
-	/**
-	 * Text block icon (Optional) field in *Vacancy → Slice Zone → Vacancy text → Items*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: ☑️ - by default
-	 * - **API ID Path**: vacancy.body[].vacancy_text.items.text_icon
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	text_icon: prismic.KeyTextField
-
 	/**
 	 * Text block title (Optional) field in *Vacancy → Slice Zone → Vacancy text → Items*
 	 *
@@ -5811,18 +5777,6 @@ export interface VacancyDocumentDataBodyVacancyTextSliceItem {
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
 	text_title: prismic.SelectField<
-		| 'Кого и куда мы ищем:'
-		| 'Что нужно будет делать:'
-		| 'Наши ожидания:'
-		| 'Как мы работаем:'
-		| 'Что мы предлагаем:'
-		| 'Требования:'
-		| 'Обязаности:'
-		| 'Условия:'
-		| 'Основные задачи:'
-		| 'Ожидания от кандидата:'
-		| 'Будет плюсом:'
-		| 'Дополнительные преимущества:'
 		| 'Who and where are we looking for:'
 		| 'What will need to do:'
 		| 'Our expectations:'
@@ -5857,11 +5811,7 @@ export type VacancyDocumentDataBodyVacancyTextSlice = prismic.Slice<
 	Simplify<VacancyDocumentDataBodyVacancyTextSliceItem>
 >
 
-type VacancyDocumentDataBodySlice =
-	| KeyPointCardSlice
-	| TextWithBorderSlice
-	| VacancyDocumentDataBodyTextSlice
-	| VacancyDocumentDataBodyVacancyTextSlice
+type VacancyDocumentDataBodySlice = KeyPointCardSlice | TextWithBorderSlice | VacancyDocumentDataBodyVacancyTextSlice
 
 /**
  * Item in *Vacancy → schema.org snippets*
@@ -13820,6 +13770,17 @@ export interface StartScreenSliceMainStartScreenPrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#image
 	 */
 	image: prismic.ImageField<never>
+
+	/**
+	 * Show Button field in *StartScreen → MainStartScreen → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: start_screen.mainStartScreen.primary.showButton
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	showButton: prismic.BooleanField
 }
 
 /**
@@ -14348,9 +14309,107 @@ export type TabsSliceSliceDefaultSlice = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *TabsSlice → Tabs With Rich Text → Primary*
+ */
+export interface TabsSliceSliceTabsWithRichTextPrimary {
+	/**
+	 * Links Color field in *TabsSlice → Tabs With Rich Text → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Please choice links color
+	 * - **API ID Path**: tabs_slice.tabsWithRichText.primary.linksColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	linksColor: prismic.SelectField<'blue' | 'green' | 'red'>
+}
+
+/**
+ * Primary content in *TabsSlice → Items*
+ */
+export interface TabsSliceSliceTabsWithRichTextItem {
+	/**
+	 * Tab Text And Checkmark Color field in *TabsSlice → Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Required to choice.
+	 * - **Default Value**: green-gradient
+	 * - **API ID Path**: tabs_slice.items[].tabTextAndCheckmarkColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	tabTextAndCheckmarkColor: prismic.SelectField<
+		'green-gradient' | 'purple-gradient' | 'pink-gradient' | 'blue-gradient',
+		'filled'
+	>
+
+	/**
+	 * Tab Name field in *TabsSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tabs_slice.items[].tabName
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	tabName: prismic.KeyTextField
+
+	/**
+	 * Tab Description field in *TabsSlice → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tabs_slice.items[].tabDescription
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	tabDescription: prismic.RichTextField
+
+	/**
+	 * Tab Description Second field in *TabsSlice → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tabs_slice.items[].tabDescriptionSecond
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	tabDescriptionSecond: prismic.RichTextField
+
+	/**
+	 * Show Button field in *TabsSlice → Items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: tabs_slice.items[].showButton
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	showButton: prismic.BooleanField
+
+	/**
+	 * Button Text field in *TabsSlice → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: default: Get Started
+	 * - **API ID Path**: tabs_slice.items[].buttonText
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	buttonText: prismic.KeyTextField
+}
+
+/**
+ * Tabs With Rich Text variation for TabsSlice Slice
+ *
+ * - **API ID**: `tabsWithRichText`
+ * - **Description**: TabsSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TabsSliceSliceTabsWithRichText = prismic.SharedSliceVariation<
+	'tabsWithRichText',
+	Simplify<TabsSliceSliceTabsWithRichTextPrimary>,
+	Simplify<TabsSliceSliceTabsWithRichTextItem>
+>
+
+/**
  * Slice variation for *TabsSlice*
  */
-type TabsSliceSliceVariation = TabsSliceSliceDefaultSlice
+type TabsSliceSliceVariation = TabsSliceSliceDefaultSlice | TabsSliceSliceTabsWithRichText
 
 /**
  * TabsSlice Shared Slice
@@ -16827,7 +16886,6 @@ declare module '@prismicio/client' {
 			TagsDocumentDataTagsItem,
 			VacancyDocument,
 			VacancyDocumentData,
-			VacancyDocumentDataBodyTextSlicePrimary,
 			VacancyDocumentDataBodyVacancyTextSliceItem,
 			VacancyDocumentDataBodySlice,
 			VacancyDocumentDataSchemaOrgSnippetsItem,
@@ -17146,8 +17204,11 @@ declare module '@prismicio/client' {
 			TableSliceSliceForCustomPage,
 			TabsSliceSlice,
 			TabsSliceSliceDefaultSliceItem,
+			TabsSliceSliceTabsWithRichTextPrimary,
+			TabsSliceSliceTabsWithRichTextItem,
 			TabsSliceSliceVariation,
 			TabsSliceSliceDefaultSlice,
+			TabsSliceSliceTabsWithRichText,
 			TagCloudSliceSlice,
 			TagCloudSliceSliceDefaultSliceItem,
 			TagCloudSliceSliceVariation,
