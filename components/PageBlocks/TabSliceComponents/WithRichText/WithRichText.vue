@@ -96,6 +96,7 @@ const initIntersectionObserverForSections = () => {
     },
     {
       rootMargin: '0px 0px -5%',
+      threshold: 0.8,
     },
   )
 

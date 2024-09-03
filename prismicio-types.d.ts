@@ -9028,6 +9028,42 @@ type CustomerRatesSliceSliceVariation = CustomerRatesSliceSliceDefaultSlice
 export type CustomerRatesSliceSlice = prismic.SharedSlice<'customer_rates_slice', CustomerRatesSliceSliceVariation>
 
 /**
+ * Item in *CustomerTestimonials → Glassdoor Testimonials → Primary → cards*
+ */
+export interface CustomerTestimonialsSliceGlassdoorTestimonialsPrimaryCardsItem {
+	/**
+	 * rating field in *CustomerTestimonials → Glassdoor Testimonials → Primary → cards*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.cards[].rating
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	rating: prismic.KeyTextField
+
+	/**
+	 * description field in *CustomerTestimonials → Glassdoor Testimonials → Primary → cards*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.cards[].description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	description: prismic.KeyTextField
+
+	/**
+	 * Verified Review field in *CustomerTestimonials → Glassdoor Testimonials → Primary → cards*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.cards[].verifiedReview
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	verifiedReview: prismic.BooleanField
+}
+
+/**
  * Primary content in *CustomerTestimonials → Default slice → Primary*
  */
 export interface CustomerTestimonialsSliceDefaultSlicePrimary {
@@ -9208,6 +9244,95 @@ export type CustomerTestimonialsSliceClutchReviewsWithSlider = prismic.SharedSli
 >
 
 /**
+ * Primary content in *CustomerTestimonials → Glassdoor Testimonials → Primary*
+ */
+export interface CustomerTestimonialsSliceGlassdoorTestimonialsPrimary {
+	/**
+	 * Title field in *CustomerTestimonials → Glassdoor Testimonials → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Review Link field in *CustomerTestimonials → Glassdoor Testimonials → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.reviewLink
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	reviewLink: prismic.LinkField
+
+	/**
+	 * Total Score field in *CustomerTestimonials → Glassdoor Testimonials → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.totalScore
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	totalScore: prismic.KeyTextField
+
+	/**
+	 * Count Reviews field in *CustomerTestimonials → Glassdoor Testimonials → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.countReviews
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	countReviews: prismic.KeyTextField
+
+	/**
+	 * Star Color field in *CustomerTestimonials → Glassdoor Testimonials → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: green
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.starColor
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	starColor: prismic.SelectField<'green' | 'red', 'filled'>
+
+	/**
+	 * Powered by Logo field in *CustomerTestimonials → Glassdoor Testimonials → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.poweredByLogo
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	poweredByLogo: prismic.ImageField<never>
+
+	/**
+	 * cards field in *CustomerTestimonials → Glassdoor Testimonials → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_testimonials.glassdoorTestimonials.primary.cards[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	cards: prismic.GroupField<Simplify<CustomerTestimonialsSliceGlassdoorTestimonialsPrimaryCardsItem>>
+}
+
+/**
+ * Glassdoor Testimonials variation for CustomerTestimonials Slice
+ *
+ * - **API ID**: `glassdoorTestimonials`
+ * - **Description**: CustomerTestimonials
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CustomerTestimonialsSliceGlassdoorTestimonials = prismic.SharedSliceVariation<
+	'glassdoorTestimonials',
+	Simplify<CustomerTestimonialsSliceGlassdoorTestimonialsPrimary>,
+	never
+>
+
+/**
  * Slice variation for *CustomerTestimonials*
  */
 type CustomerTestimonialsSliceVariation =
@@ -9215,6 +9340,7 @@ type CustomerTestimonialsSliceVariation =
 	| CustomerTestimonialsSliceTestimonialsSecondVariation
 	| CustomerTestimonialsSliceClutchReviewsBlack
 	| CustomerTestimonialsSliceClutchReviewsWithSlider
+	| CustomerTestimonialsSliceGlassdoorTestimonials
 
 /**
  * CustomerTestimonials Shared Slice
@@ -17000,11 +17126,14 @@ declare module '@prismicio/client' {
 			CustomerTestimonialsSliceTestimonialsSecondVariationPrimary,
 			CustomerTestimonialsSliceClutchReviewsBlackPrimary,
 			CustomerTestimonialsSliceClutchReviewsWithSliderPrimary,
+			CustomerTestimonialsSliceGlassdoorTestimonialsPrimaryCardsItem,
+			CustomerTestimonialsSliceGlassdoorTestimonialsPrimary,
 			CustomerTestimonialsSliceVariation,
 			CustomerTestimonialsSliceDefaultSlice,
 			CustomerTestimonialsSliceTestimonialsSecondVariation,
 			CustomerTestimonialsSliceClutchReviewsBlack,
 			CustomerTestimonialsSliceClutchReviewsWithSlider,
+			CustomerTestimonialsSliceGlassdoorTestimonials,
 			CustomersCardSliceSlice,
 			CustomersCardSliceSliceDefaultSlicePrimary,
 			CustomersCardSliceSliceDefaultSliceItem,
