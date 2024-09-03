@@ -24,3 +24,11 @@ export interface SendEmailPayload {
     },
   }
 }
+
+export interface SendFeedbackEmail {
+  feedback: string
+  email: string
+  fullName: string
+  token: string
+  subject: string
+}

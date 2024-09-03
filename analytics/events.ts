@@ -7,10 +7,6 @@ export const contactMeClickEvent = new AnalyticsEvent('contact_me_click').setCat
 
 export const contactMeSubmitEvent = new AnalyticsEvent('submit_contact_me').setCategory(EVENT_CATEGORIES.SUBMIT)
 
-export const projectFormClickEvent = new AnalyticsEvent('click_submit_project_form').setCategory(EVENT_CATEGORIES.CLICK)
-
-export const projectFormSubmitEvent = new AnalyticsEvent('submit_your_project').setCategory(EVENT_CATEGORIES.SUBMIT)
-
 export const contactsClickEvent = new AnalyticsEvent('contacts_click').setCategory(EVENT_CATEGORIES.CLICK)
 
 export const careersClickEvent = new AnalyticsEvent('careers_click').setCategory(EVENT_CATEGORIES.CLICK)
@@ -31,8 +27,8 @@ export const submitPostForm = new AnalyticsEvent('submit_post_form').setCategory
 
 export const clickHeaderCta = new AnalyticsEvent('click_header_cta').setCategory(EVENT_CATEGORIES.CLICK)
 
-export const submitOrderProject = new AnalyticsEvent('submit_order_project').setCategory(EVENT_CATEGORIES.SUBMIT)
-
 export const checklistSubmitEvent = new AnalyticsEvent('submit_checklist').setCategory(EVENT_CATEGORIES.SUBMIT)
 
 export const careersSubscriptionSubmitEvent = new AnalyticsEvent('submit_careers_subscription').setCategory(EVENT_CATEGORIES.SUBMIT)
+
+export const feedBackFormSubmitEvent = new AnalyticsEvent('submit_feedback_form').setCategory(EVENT_CATEGORIES.SUBMIT)

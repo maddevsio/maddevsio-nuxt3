@@ -12,6 +12,7 @@ import { SubscribeForm } from '~/components/Widgets/Form/classes/forms/Subscribe
 import { ChecklistForm } from '~/components/Widgets/Form/classes/forms/ChecklistForm'
 import { CareersForm } from '~/components/Widgets/Form/classes/forms/CareersForm'
 import { CareersSubscribeForm } from '~/components/Widgets/Form/classes/forms/CareersSubscribeForm'
+import { FeedbackForm } from '~/components/Widgets/Form/classes/forms/FeedbackForm'
 
 interface FormMakerOptions {
   formLocation?: string
@@ -512,6 +513,59 @@ export class FormMaker {
             objectKeyName: 'submitButton',
             elementId: 'submitButton',
             label: 'Send',
+            type: 'submit',
+          }),
+        )
+        .build(),
+    })
+  }
+
+  feedbackFormMaker() {
+    return new FeedbackForm({
+      formLocation: this.options.formLocation!,
+      emailSubject: this.options.emailSubject!,
+      formID: 'FeedbackForm-jasd212',
+      successMessageTitle: this.options.successMessageTitle,
+      successMessageDescription: this.options.successMessageDescription,
+      formBuilder: this.formBuilder
+        .setFields([
+          new Field({
+            objectKeyName: 'fullName',
+            elementId: 'fullName',
+            type: 'text',
+            name: 'Full name',
+            placeholder: 'Full Name',
+            validationType: 'longText',
+            longTextLimit: 140,
+            required: true,
+          }),
+          new Field({
+            objectKeyName: 'email',
+            elementId: 'email',
+            type: 'email',
+            name: 'Email',
+            placeholder: 'Email',
+            validationType: 'email',
+            required: true,
+          }),
+        ])
+        .addTextarea(
+          new Field({
+            objectKeyName: 'feedback',
+            elementId: 'feedback',
+            type: 'textarea',
+            name: 'feedback',
+            placeholder: 'Your feedback',
+            validationType: 'longText',
+            longTextLimit: 5000,
+            required: true,
+          }),
+        )
+        .addButton(
+          new Button({
+            objectKeyName: 'submitButton',
+            elementId: 'submitButton',
+            label: 'Submit',
             type: 'submit',
           }),
         )

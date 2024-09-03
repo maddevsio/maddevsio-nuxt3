@@ -18,7 +18,7 @@ const { styles } = useStyleFormElement()
 </script>
 <template>
   <div
-    :class="styles['form-success-message']"
+    :class="`${styles['form-success-message']} success-message`"
   >
     <img
       v-if="showImage && imagePath"
