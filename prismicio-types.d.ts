@@ -10133,9 +10133,67 @@ export type FormSliceSliceChecklistForm = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *FormSlice → Feedback Form → Primary*
+ */
+export interface FormSliceSliceFeedbackFormPrimary {
+	/**
+	 * Title field in *FormSlice → Feedback Form → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.feedbackForm.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *FormSlice → Feedback Form → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.feedbackForm.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField
+
+	/**
+	 * Success Message Title field in *FormSlice → Feedback Form → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.feedbackForm.primary.successMessageTitle
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	successMessageTitle: prismic.KeyTextField
+
+	/**
+	 * Success Message Description field in *FormSlice → Feedback Form → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: form_slice.feedbackForm.primary.successMessageDescription
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	successMessageDescription: prismic.KeyTextField
+}
+
+/**
+ * Feedback Form variation for FormSlice Slice
+ *
+ * - **API ID**: `feedbackForm`
+ * - **Description**: FormSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FormSliceSliceFeedbackForm = prismic.SharedSliceVariation<
+	'feedbackForm',
+	Simplify<FormSliceSliceFeedbackFormPrimary>,
+	never
+>
+
+/**
  * Slice variation for *FormSlice*
  */
-type FormSliceSliceVariation = FormSliceSliceDefaultSlice | FormSliceSliceChecklistForm
+type FormSliceSliceVariation = FormSliceSliceDefaultSlice | FormSliceSliceChecklistForm | FormSliceSliceFeedbackForm
 
 /**
  * FormSlice Shared Slice
@@ -17170,9 +17228,11 @@ declare module '@prismicio/client' {
 			FormSliceSlice,
 			FormSliceSliceDefaultSlicePrimary,
 			FormSliceSliceChecklistFormPrimary,
+			FormSliceSliceFeedbackFormPrimary,
 			FormSliceSliceVariation,
 			FormSliceSliceDefaultSlice,
 			FormSliceSliceChecklistForm,
+			FormSliceSliceFeedbackForm,
 			GridLottieSliceSlice,
 			GridLottieSliceSliceDefaultSlicePrimary,
 			GridLottieSliceSliceDefaultSliceItem,
