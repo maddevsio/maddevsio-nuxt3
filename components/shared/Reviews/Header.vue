@@ -17,7 +17,7 @@ defineProps({
   },
   reviewLink: {
     type: Object as PropType<FilledLinkToWebField>,
-    default: '',
+    default: () => ({}),
   },
   starColors: {
     type: String,
