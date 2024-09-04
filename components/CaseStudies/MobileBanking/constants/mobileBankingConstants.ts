@@ -508,7 +508,7 @@ export const teamMobileBanking = [
   },
   {
     name: 'Alexander Krivov',
-    position: 'Lead Designer',
+    position: 'Art Director',
     image: {
       file: 'aleksandr-krivov',
     },
