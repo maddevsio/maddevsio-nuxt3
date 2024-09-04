@@ -135,7 +135,7 @@ useCurrentRoute(setCurrentRoute)
     height: 1px;
     border: 1px none $border-color--red-opacity;
     border-top-style: solid;
-    @media screen and (max-width: 991px) {
+    @media screen and (max-width: 1150px) {
       display: none;
     }
   }
@@ -144,25 +144,25 @@ useCurrentRoute(setCurrentRoute)
 
     &-wrapper {
       display: flex;
-      @media screen and (max-width: 991px) {
+      @media screen and (max-width: 1150px) {
         display: block;
       }
     }
 
     &--left-section {
       width: 66.66%;
-      @media screen and (max-width: 991px) {
+      @media screen and (max-width: 1150px) {
         display: none;
       }
     }
 
     &--right-section {
-      @media screen and (min-width: 992px) {
+      @media screen and (min-width: 1151px) {
         width: 33.33%;
         padding-left: 60px;
         border-left: 1px solid $border-color--grey-05-opacity;
       }
-      @media screen and (min-width: 993px) and (max-width: 1320px) {
+      @media screen and (min-width: 1150px) and (max-width: 1320px) {
         padding-left: 25px;
       }
     }
@@ -184,7 +184,7 @@ useCurrentRoute(setCurrentRoute)
       transition-timing-function: cubic-bezier(1, 0, .52, 1.65);
       transition-duration: 0.7s;
       left: 90px;
-      @media screen and (max-width: 991px) {
+      @media screen and (max-width: 1150px) {
         display: none;
       }
       @media screen and (min-width: 1420px) {
@@ -193,7 +193,7 @@ useCurrentRoute(setCurrentRoute)
     }
 
     &-icons {
-      @media screen and (max-width: 991px) {
+      @media screen and (max-width: 1150px) {
         display: none;
       }
     }
