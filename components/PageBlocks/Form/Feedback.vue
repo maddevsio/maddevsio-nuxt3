@@ -45,10 +45,10 @@ const { successMessageDescription, successMessageTitle } = slice.primary
         <p
           class="feedback-form__disclaimer"
         >
-          By providing your email address, you agree to our<br>
+          By providing your email address, you agree to our <br>
           <NuxtLink to="/privacy/" class="feedback-form__link">
             Privacy Policy
-          </NuxtLink>
+          </NuxtLink>.
         </p>
       </div>
     </div>
@@ -103,6 +103,7 @@ const { successMessageDescription, successMessageTitle } = slice.primary
   }
 
   &__link {
+    display: inline-block;
     color: $bgcolor--venetian-red;
     text-decoration: underline;
   }
@@ -137,6 +138,11 @@ const { successMessageDescription, successMessageTitle } = slice.primary
       position: relative;
       bottom: unset;
       left: unset;
+
+      br {
+        display: none;
+        visibility: hidden;
+      }
     }
   }
 
