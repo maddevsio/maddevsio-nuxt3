@@ -11,5 +11,9 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
       v-if="slice.variation === 'clutchReviewsWithSlider'"
       :slice="slice"
     />
+    <LazyPageBlocksCustomersGlassdoorReviews
+      v-if="slice.variation === 'glassdoorTestimonials'"
+      :slice="slice"
+    />
   </NuxtLazyHydrate>
 </template>

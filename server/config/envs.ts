@@ -97,7 +97,7 @@ export const { USERS_TO_BE_MENTIONED } = process.env
 export const { SITE_URL_FOR_CHECK } = process.env
 export const { SLACK_CHANNEL_ID_FOR_PROD_CHECK } = process.env
 export const { MAD_MARKETING_BACKEND_API } = process.env
-export const { NODE_EMAIL_CONTACT, NODE_EMAIL_CV } = process.env
+export const { NODE_EMAIL_CONTACT, NODE_EMAIL_CV, NODE_EMAIL_HR } = process.env
 export const {
   FF_ENVIRONMENT,
   NODE_EMAIL_MARKETING,
@@ -109,6 +109,7 @@ export const {
   NODE_DOMAIN,
   INTERNAL_BACKEND_ACCESS_TOKEN,
   CIPHER_ALGORITHM,
+  NODE_SENDPULSE__FEEDBACK_TEMPLATE,
 } = process.env
 
 export const MAD_BACKEND_TOKEN = `${ MAD_BACKEND_ACCESS_EMAIL }:${ MAD_BACKEND_ACCESS_TOKEN }`
