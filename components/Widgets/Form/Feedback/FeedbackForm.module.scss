@@ -1,0 +1,64 @@
+@import '../UI/styles/styleFormElements.module';
+
+.feedback-form {
+  margin: 0;
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  &__input-group {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__input-field {
+    width: 49%;
+
+    &--full-width {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  input,
+  textarea {
+    color: $text-color--white-primary;
+
+    &:-webkit-autofill {
+      -webkit-text-fill-color: white !important;
+      -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    @media screen and (max-width: 450px) {
+      font-size: 13px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    gap: 40px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  .form-button {
+    width: auto;
+    flex: 1 1 auto;
+  }
+}
