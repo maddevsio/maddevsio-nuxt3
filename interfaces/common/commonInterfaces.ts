@@ -117,6 +117,7 @@ export interface Author {
     name: string
     position: string
     description: string
+    richDescription: RichTextField
     thumbnail_image: ImageField
     image: ImageField & {
       header: ImageField
@@ -149,6 +150,7 @@ export interface TransformedAuthor {
   name: string
   position: string
   description: string
+  richDescription: RichTextField
   thumbnailImage: ImageField
   image: ImageField & {
     thumbnail: ImageField
