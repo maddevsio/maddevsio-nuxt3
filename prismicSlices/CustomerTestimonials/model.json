@@ -41,7 +41,8 @@
           "type": "Text"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "testimonialsSecondVariation",
@@ -80,7 +81,8 @@
           "type": "Text"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "clutchReviewsBlack",
@@ -108,7 +110,8 @@
           "type": "Text"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "clutchReviewsWithSlider",
@@ -136,7 +139,101 @@
           "type": "Text"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "glassdoorTestimonials",
+      "name": "Glassdoor Testimonials",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CustomerTestimonials",
+      "primary": {
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "reviewLink": {
+          "type": "Link",
+          "config": {
+            "label": "Review Link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        },
+        "totalScore": {
+          "type": "Text",
+          "config": {
+            "label": "Total Score",
+            "placeholder": ""
+          }
+        },
+        "countReviews": {
+          "type": "Text",
+          "config": {
+            "label": "Count Reviews",
+            "placeholder": ""
+          }
+        },
+        "starColor": {
+          "type": "Select",
+          "config": {
+            "label": "Star Color",
+            "placeholder": "",
+            "options": [
+              "green",
+              "red"
+            ],
+            "default_value": "green"
+          }
+        },
+        "poweredByLogo": {
+          "type": "Image",
+          "config": {
+            "label": "Powered by Logo",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "cards": {
+          "type": "Group",
+          "config": {
+            "label": "cards",
+            "repeat": true,
+            "fields": {
+              "rating": {
+                "type": "Text",
+                "config": {
+                  "label": "rating",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "Text",
+                "config": {
+                  "label": "description",
+                  "placeholder": ""
+                }
+              },
+              "verifiedReview": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Verified Review",
+                  "placeholder_false": "No",
+                  "placeholder_true": "Yes",
+                  "default_value": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }

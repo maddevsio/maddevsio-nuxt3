@@ -10,4 +10,8 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
     v-if="slice.variation === 'checklistForm'"
     :slice="slice"
   />
+  <LazyPageBlocksFormFeedback
+    v-if="slice.variation === 'feedbackForm'"
+    :slice="slice"
+  />
 </template>

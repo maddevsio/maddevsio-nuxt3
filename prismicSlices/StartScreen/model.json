@@ -65,7 +65,8 @@
           "type": "Text"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "startScreenImageRightAndButton",
@@ -150,7 +151,8 @@
           "config": {
             "label": "Button Link (optional)",
             "placeholder": "Button will be a link instead of a modal window",
-            "allowTargetBlank": false
+            "allowTargetBlank": false,
+            "select": null
           },
           "type": "Link"
         },
@@ -196,7 +198,8 @@
           "type": "Number"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "startScreenwithButton",
@@ -266,7 +269,8 @@
           "type": "Text"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "expertPage",
@@ -300,7 +304,8 @@
           "type": "Link"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "startScreenWithImage",
@@ -344,7 +349,8 @@
           "config": {
             "label": "Link to page",
             "placeholder": "",
-            "allowTargetBlank": false
+            "allowTargetBlank": false,
+            "select": null
           },
           "type": "Link"
         },
@@ -359,7 +365,8 @@
           "type": "Link"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "mainStartScreen",
@@ -405,9 +412,19 @@
             "thumbnails": []
           },
           "type": "Image"
+        },
+        "showButton": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Button",
+            "placeholder_false": "Hide",
+            "placeholder_true": "Show",
+            "default_value": true
+          }
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "caseStudyStartScreen",
@@ -479,7 +496,8 @@
           "type": "Image"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
       "id": "checklistStartScreenSlice",
@@ -558,7 +576,8 @@
           "type": "Text"
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }

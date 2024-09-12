@@ -50,7 +50,7 @@ export const team = [
   },
   {
     name: 'Aleksandr Krivov',
-    position: 'Lead Designer',
+    position: 'Art Director',
     image: {
       file: 'aleksandr-krivov',
     },

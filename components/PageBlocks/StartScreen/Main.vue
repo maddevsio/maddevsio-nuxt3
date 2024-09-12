@@ -16,6 +16,7 @@ interface IMainStartScreenPropTypes {
       }
     }
     buttonText: string
+    showButton: boolean | null
   }
 }
 
@@ -32,6 +33,7 @@ const reformattedTitle = reformatToHtml(props.slice.primary?.title)
 const reformattedSubtitle = reformatToHtml(props.slice.primary?.subtitle)
 const image = props.slice.primary.image
 const buttonText = props.slice.primary.buttonText || 'Let`s Talk'
+const showButton = props.slice.primary.showButton === null ? true : props.slice.primary.showButton
 
 const showModal = () => {
   if (!modalContactMeRef?.value?.show) { return }
@@ -71,11 +73,14 @@ const { emailSubject } = storeToRefs(useEmailSubjectStore())
           class="main-start-screen__description"
           v-html="reformattedDescription"
         />
-        <SharedUIAnimatedButton @click-emit="showModal">
+        <LazySharedUIAnimatedButton
+          v-if="showButton"
+          @click-emit="showModal"
+        >
           <span class="button-text">
             {{ buttonText }}
           </span>
-        </SharedUIAnimatedButton>
+        </LazySharedUIAnimatedButton>
       </div>
     </div>
     <LazyClientOnly>

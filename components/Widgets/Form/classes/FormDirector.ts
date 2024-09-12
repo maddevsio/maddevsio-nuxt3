@@ -44,4 +44,8 @@ export class FormDirector implements IFormDirector {
   makeCareersSubscribeForm(options: any) {
     return new FormMaker(this.formBuilder, options).careersSubscribeFormMaker()
   }
+
+  makeFeedbackForm(options: any) {
+    return new FormMaker(this.formBuilder, options).feedbackFormMaker()
+  }
 }

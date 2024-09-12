@@ -222,6 +222,7 @@ const replacePhotoUrl = (photoUrl: string) => {
 
     @media screen and (max-width: 1140px) {
       flex-direction: column;
+      align-items: flex-start;
       row-gap: 24px;
     }
 
