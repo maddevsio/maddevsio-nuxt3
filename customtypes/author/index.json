@@ -79,6 +79,15 @@
 				},
 				"type": "Text"
 			},
+			"richDescription": {
+				"type": "StructuredText",
+				"config": {
+					"label": "Rich Description",
+					"placeholder": "Rich text with formatting",
+					"allowTargetBlank": true,
+					"multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item"
+				}
+			},
 			"phoneNumber": {
 				"config": {
 					"label": "phoneNumber",

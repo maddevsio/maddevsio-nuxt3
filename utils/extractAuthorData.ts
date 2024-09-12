@@ -19,6 +19,7 @@ export const extractAuthorData = (author: Author): TransformedAuthor | {} => {
     name: author.data.name,
     position: author.data.position,
     description: author.data?.description,
+    richDescription: author.data?.richDescription,
     thumbnailImage: author.data.thumbnail_image,
     image: author.data.image,
     metaTitle: author.data.meta_title,
