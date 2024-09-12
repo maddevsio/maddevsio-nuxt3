@@ -5825,21 +5825,6 @@ export type VacancyDocumentDataBodyVacancyTextSlice = prismic.Slice<
 type VacancyDocumentDataBodySlice = KeyPointCardSlice | TextWithBorderSlice | VacancyDocumentDataBodyVacancyTextSlice
 
 /**
- * Item in *Vacancy → schema.org snippets*
- */
-export interface VacancyDocumentDataSchemaOrgSnippetsItem {
-	/**
-	 * Single snippet field in *Vacancy → schema.org snippets*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: vacancy.schema_org_snippets[].single_snippet
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	single_snippet: prismic.RichTextField
-}
-
-/**
  * Content for Vacancy documents
  */
 interface VacancyDocumentData {
@@ -5986,18 +5971,7 @@ interface VacancyDocumentData {
 	 * - **Tab**: SEO
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
-	meta_description: prismic.KeyTextField
-
-	/**
-	 * schema.org snippets field in *Vacancy*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: vacancy.schema_org_snippets[]
-	 * - **Tab**: SEO
-	 * - **Documentation**: https://prismic.io/docs/field#group
-	 */
-	schema_org_snippets: prismic.GroupField<Simplify<VacancyDocumentDataSchemaOrgSnippetsItem>> /**
+	meta_description: prismic.KeyTextField /**
 	 * Header Plate Text field in *Vacancy*
 	 *
 	 * - **Field Type**: Text
@@ -17083,7 +17057,6 @@ declare module '@prismicio/client' {
 			VacancyDocumentData,
 			VacancyDocumentDataBodyVacancyTextSliceItem,
 			VacancyDocumentDataBodySlice,
-			VacancyDocumentDataSchemaOrgSnippetsItem,
 			VideoBlockDocument,
 			VideoBlockDocumentData,
 			VideoBlockDocumentDataSlicesSlice,

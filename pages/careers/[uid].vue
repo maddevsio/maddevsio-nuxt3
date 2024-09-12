@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { Taxon, Organization } from 'schema-dts'
 import { CareersService } from '~/components/Careers/classes/CareersService'
 import { employeesBenefitsWithCorePoints } from '~/components/Careers/constants/careersConstants'
 import { buildHead } from '~/SEO/buildMetaTags'
+import { buildWebPageSchema } from '~/utils/schemaOrg/buildWebPageSchema'
+import { buildOrganizationSchema } from '~/utils/schemaOrg/buildOrganizationSchema'
 
 const prismic = usePrismic()
 const config = useRuntimeConfig()
@@ -30,14 +33,12 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
-if (vacancyData.value!.schemaOrgSnippet) {
-  useJsonld(() => vacancyData.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
-    JSON.stringify(snippet!.innerHTML
-      .replace(/\r?\n|\r/g, '')
-      .replace(/<[^>]*>/g, '')
-      .replace(/,(\s*)$/, '$1')),
-  ))))
-}
+useJsonld([
+  buildOrganizationSchema() as Organization & { '@context': 'https://schema.org' },
+  buildWebPageSchema(
+    vacancyData.value?.position || vacancyData.value?.title,
+    vacancyData.value?.metaDescription || vacancyData.value?.subtitle) as Taxon & { '@context': 'https://schema.org' },
+])
 
 // @ts-ignore
 useHead(buildHead({

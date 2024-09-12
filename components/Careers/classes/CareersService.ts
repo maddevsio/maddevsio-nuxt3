@@ -1,8 +1,7 @@
 import type { PrismicPlugin } from '@prismicio/vue'
 import type { Query } from '@prismicio/client'
-import { extractSchemaOrg } from '~/SEO/extractSchemaOrg'
 import type { VacancyDocument } from '~/prismicio-types'
-import type { SchemaOrgSnippet, TransformedVacancy } from '~/interfaces/common/commonInterfaces'
+import type { TransformedVacancy } from '~/interfaces/common/commonInterfaces'
 
 export class CareersService {
   prismic: PrismicPlugin
@@ -52,7 +51,6 @@ export class CareersService {
       metaTitle: vacancy.data.meta_title,
       metaDescription: vacancy.data.meta_description,
       date: formatDate(vacancy.data.date),
-      schemaOrgSnippet: extractSchemaOrg(vacancy.data.schema_org_snippets as SchemaOrgSnippet[]),
       released: vacancy.data.released === null ? true : vacancy.data.released,
     }
   }
