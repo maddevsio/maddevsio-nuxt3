@@ -366,7 +366,6 @@ export interface TransformedVacancy {
   metaTitle: KeyTextField
   metaDescription: KeyTextField
   date: KeyTextField
-  schemaOrgSnippet: ({ type: string; innerHTML: string; } | null)[] | null
   released: boolean
 }
 
