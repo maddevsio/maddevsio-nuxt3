@@ -44,7 +44,7 @@ useJsonld([
 
 // @ts-ignore
 useHead(buildHead({
-  title: vacancyData.value?.position || vacancyData.value?.title || '',
+  title: `${ vacancyData.value?.position || vacancyData.value?.title || '' } | Mad Devs Careers`,
   metaTitle: vacancyData.value?.position || vacancyData.value?.title || '',
   description: metaDescription,
   url: openGraphUrl,
