@@ -2,10 +2,11 @@
 import { buildHead } from '~/SEO/buildMetaTags'
 import { GlossaryService } from '~/components/Glossary/classes/GlossaryService'
 import { extractGlossaryPostData } from '~/components/Glossary/helpers/extractGlossaryPostData'
-import type { GlossaryPage } from '~/interfaces/common/commonInterfaces'
+import type { GlossaryPage, TransformedGlossaryPost } from '~/interfaces/common/commonInterfaces'
 import { extractGlossaryStartScreenData } from '~/components/Glossary/helpers/extractGlossaryStartScreenData'
 import { filterLastGlossaryWords } from '~/components/Glossary/helpers/filterLastGlossaryWords'
 import { extractGlossaryPageData } from '~/components/Glossary/helpers/extractGlossaryPageData'
+import { buildQAPageSchema } from '~/utils/schemaOrg/buildQAPageSchema'
 
 const prismic = usePrismic()
 const route = useRoute()
@@ -15,7 +16,7 @@ const glossaryService = new GlossaryService(prismic, config.public.ffEnvironment
 const { data: glossaryPost, error } = await useAsyncData('glossaryPost', async () => {
   try {
     const glossaryPostData = await glossaryService.getGlossaryPageContent(route.params.uid as string) as GlossaryPage
-    const glossaryPostContent = extractGlossaryPostData(glossaryPostData)
+    const glossaryPostContent = extractGlossaryPostData(glossaryPostData) as TransformedGlossaryPost
     const glossaryPageData = extractGlossaryPageData(glossaryPostData, config.public.domain)
     const glossaryStartScreenData = extractGlossaryStartScreenData(glossaryPostData)
 
@@ -57,14 +58,28 @@ if (error.value) {
 useClearStoresBeforeRouteLeave()
 provide('glossaryService', glossaryService)
 
-if (glossaryPost.value!.glossaryPageData.schemaOrg) {
-  useJsonld(() => glossaryPost.value!.glossaryPageData.schemaOrg!.map(snippet => ({
+const prismicSchema = glossaryPost.value!.glossaryPageData.schemaOrg
+  ? glossaryPost.value!.glossaryPageData.schemaOrg!.map(snippet => ({
     ...JSON.parse(snippet!.innerHTML
       .replace(/\r?\n|\r/g, '')
       .replace(/<[^>]*>/g, '')
       .replace(/,(\s*)$/, '$1')),
-  })))
-}
+  }))
+  : []
+
+const QAPageSchema = prismicSchema.find(snippet => snippet['@type'] === 'QAPage')
+
+const generatedQAPageSchema = buildQAPageSchema({
+  title: glossaryPost.value?.glossaryPostContent?.wordPageTitle,
+  description: glossaryPost.value?.glossaryPostContent?.wordPageDescription,
+  authorName: glossaryPost.value?.glossaryPostContent?.author?.data?.name,
+  pageLink: `https://maddevs.io/glossary/${ glossaryPost.value?.glossaryPostContent?.uid }/`,
+  authorPageLink: `https://maddevs.io/blog/authors/${ glossaryPost.value?.glossaryPostContent?.author?.uid }/`,
+})
+
+const reformattedQAPageSchema = QAPageSchema ? prismicSchema : [...prismicSchema, generatedQAPageSchema]
+
+useJsonld(() => reformattedQAPageSchema)
 
 // @ts-ignore
 useHead(buildHead({
