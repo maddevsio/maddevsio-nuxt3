@@ -117,6 +117,17 @@ interface AuthorDocumentData {
 	description: prismic.KeyTextField
 
 	/**
+	 * Rich Description field in *Author*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Rich text with formatting
+	 * - **API ID Path**: author.richDescription
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	richDescription: prismic.RichTextField
+
+	/**
 	 * phoneNumber field in *Author*
 	 *
 	 * - **Field Type**: Text
@@ -5814,21 +5825,6 @@ export type VacancyDocumentDataBodyVacancyTextSlice = prismic.Slice<
 type VacancyDocumentDataBodySlice = KeyPointCardSlice | TextWithBorderSlice | VacancyDocumentDataBodyVacancyTextSlice
 
 /**
- * Item in *Vacancy → schema.org snippets*
- */
-export interface VacancyDocumentDataSchemaOrgSnippetsItem {
-	/**
-	 * Single snippet field in *Vacancy → schema.org snippets*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: vacancy.schema_org_snippets[].single_snippet
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	single_snippet: prismic.RichTextField
-}
-
-/**
  * Content for Vacancy documents
  */
 interface VacancyDocumentData {
@@ -5956,37 +5952,6 @@ interface VacancyDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#slices
 	 */
 	body: prismic.SliceZone<VacancyDocumentDataBodySlice> /**
-	 * Meta title field in *Vacancy*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: vacancy.meta_title
-	 * - **Tab**: SEO
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	meta_title: prismic.KeyTextField
-
-	/**
-	 * Meta description field in *Vacancy*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: vacancy.meta_description
-	 * - **Tab**: SEO
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	meta_description: prismic.KeyTextField
-
-	/**
-	 * schema.org snippets field in *Vacancy*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: vacancy.schema_org_snippets[]
-	 * - **Tab**: SEO
-	 * - **Documentation**: https://prismic.io/docs/field#group
-	 */
-	schema_org_snippets: prismic.GroupField<Simplify<VacancyDocumentDataSchemaOrgSnippetsItem>> /**
 	 * Header Plate Text field in *Vacancy*
 	 *
 	 * - **Field Type**: Text
@@ -6028,7 +5993,27 @@ interface VacancyDocumentData {
 	 * - **Tab**: Header Plate
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'>
+	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'> /**
+	 * Meta Title field in *Vacancy*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: vacancy.meta_title
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_title: prismic.KeyTextField
+
+	/**
+	 * Meta Description field in *Vacancy*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: vacancy.meta_description
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField
 }
 
 /**
@@ -17072,7 +17057,6 @@ declare module '@prismicio/client' {
 			VacancyDocumentData,
 			VacancyDocumentDataBodyVacancyTextSliceItem,
 			VacancyDocumentDataBodySlice,
-			VacancyDocumentDataSchemaOrgSnippetsItem,
 			VideoBlockDocument,
 			VideoBlockDocumentData,
 			VideoBlockDocumentDataSlicesSlice,

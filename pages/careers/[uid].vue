@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { Taxon, Organization } from 'schema-dts'
 import { CareersService } from '~/components/Careers/classes/CareersService'
 import { employeesBenefitsWithCorePoints } from '~/components/Careers/constants/careersConstants'
 import { buildHead } from '~/SEO/buildMetaTags'
+import { buildWebPageSchema } from '~/utils/schemaOrg/buildWebPageSchema'
+import { buildOrganizationSchema } from '~/utils/schemaOrg/buildOrganizationSchema'
 
 const prismic = usePrismic()
 const config = useRuntimeConfig()
@@ -30,20 +33,20 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
-if (vacancyData.value!.schemaOrgSnippet) {
-  useJsonld(() => vacancyData.value!.schemaOrgSnippet!.map(snippet => JSON.parse(JSON.parse(
-    JSON.stringify(snippet!.innerHTML
-      .replace(/\r?\n|\r/g, '')
-      .replace(/<[^>]*>/g, '')
-      .replace(/,(\s*)$/, '$1')),
-  ))))
-}
+const metaDescription = `We are looking for a ${ vacancyData.value?.position || vacancyData.value?.title } to join the Mad Devs team. If you're interested, apply now and advance your career with us!`
+
+useJsonld([
+  buildOrganizationSchema() as Organization & { '@context': 'https://schema.org' },
+  buildWebPageSchema(
+    vacancyData.value?.position || vacancyData.value?.title,
+    metaDescription) as Taxon & { '@context': 'https://schema.org' },
+])
 
 // @ts-ignore
 useHead(buildHead({
-  title: vacancyData.value?.metaTitle || vacancyData.value?.title || '',
-  metaTitle: vacancyData.value?.metaTitle || vacancyData.value?.title || '',
-  description: vacancyData.value?.metaDescription || vacancyData.value?.subtitle || '',
+  title: `${ vacancyData.value?.position || vacancyData.value?.title || '' } | Mad Devs Careers`,
+  metaTitle: vacancyData.value?.position || vacancyData.value?.title || '',
+  description: metaDescription,
   url: openGraphUrl,
 }))
 </script>
