@@ -143,20 +143,6 @@
 				}
 			}
 		},
-		"SEO": {
-			"meta_title": {
-				"type": "Text",
-				"config": {
-					"label": "Meta title"
-				}
-			},
-			"meta_description": {
-				"type": "Text",
-				"config": {
-					"label": "Meta description"
-				}
-			}
-		},
 		"Header Plate": {
 			"header_plate_text": {
 				"type": "Text",
@@ -183,6 +169,22 @@
 					"options": ["blue", "purple", "orange", "green", "blue-green"],
 					"label": "Header Plate Background Color",
 					"placeholder": "requires choice"
+				}
+			}
+		},
+		"SEO": {
+			"meta_title": {
+				"type": "Text",
+				"config": {
+					"label": "Meta Title",
+					"placeholder": ""
+				}
+			},
+			"meta_description": {
+				"type": "Text",
+				"config": {
+					"label": "Meta Description",
+					"placeholder": ""
 				}
 			}
 		}
