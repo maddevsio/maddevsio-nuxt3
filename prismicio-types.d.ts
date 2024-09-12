@@ -5952,26 +5952,6 @@ interface VacancyDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#slices
 	 */
 	body: prismic.SliceZone<VacancyDocumentDataBodySlice> /**
-	 * Meta title field in *Vacancy*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: vacancy.meta_title
-	 * - **Tab**: SEO
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	meta_title: prismic.KeyTextField
-
-	/**
-	 * Meta description field in *Vacancy*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: vacancy.meta_description
-	 * - **Tab**: SEO
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	meta_description: prismic.KeyTextField /**
 	 * Header Plate Text field in *Vacancy*
 	 *
 	 * - **Field Type**: Text
@@ -6013,7 +5993,27 @@ interface VacancyDocumentData {
 	 * - **Tab**: Header Plate
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'>
+	header_plate_background_color: prismic.SelectField<'blue' | 'purple' | 'orange' | 'green' | 'blue-green'> /**
+	 * Meta Title field in *Vacancy*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: vacancy.meta_title
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_title: prismic.KeyTextField
+
+	/**
+	 * Meta Description field in *Vacancy*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: vacancy.meta_description
+	 * - **Tab**: SEO
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField
 }
 
 /**

@@ -33,18 +33,20 @@ if (error.value) {
 
 useClearStoresBeforeRouteLeave()
 
+const metaDescription = `We are looking for a ${ vacancyData.value?.position || vacancyData.value?.title } to join the Mad Devs team. If you're interested, apply now and advance your career with us!`
+
 useJsonld([
   buildOrganizationSchema() as Organization & { '@context': 'https://schema.org' },
   buildWebPageSchema(
     vacancyData.value?.position || vacancyData.value?.title,
-    vacancyData.value?.metaDescription || vacancyData.value?.subtitle) as Taxon & { '@context': 'https://schema.org' },
+    metaDescription) as Taxon & { '@context': 'https://schema.org' },
 ])
 
 // @ts-ignore
 useHead(buildHead({
-  title: vacancyData.value?.metaTitle || vacancyData.value?.title || '',
-  metaTitle: vacancyData.value?.metaTitle || vacancyData.value?.title || '',
-  description: vacancyData.value?.metaDescription || vacancyData.value?.subtitle || '',
+  title: vacancyData.value?.position || vacancyData.value?.title || '',
+  metaTitle: vacancyData.value?.position || vacancyData.value?.title || '',
+  description: metaDescription,
   url: openGraphUrl,
 }))
 </script>
