@@ -5765,43 +5765,9 @@ export type TagsDocument<Lang extends string = string> = prismic.PrismicDocument
 >
 
 /**
- * Primary content in *Vacancy → Slice Zone → Text → Primary*
- */
-export interface VacancyDocumentDataBodyTextSlicePrimary {
-	/**
-	 * Text field in *Vacancy → Slice Zone → Text → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Post text...
-	 * - **API ID Path**: vacancy.body[].text.primary.text
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	text: prismic.RichTextField
-}
-
-/**
- * Slice for *Vacancy → Slice Zone*
- */
-export type VacancyDocumentDataBodyTextSlice = prismic.Slice<
-	'text',
-	Simplify<VacancyDocumentDataBodyTextSlicePrimary>,
-	never
->
-
-/**
  * Item content in *Vacancy → Slice Zone → Vacancy text → Items*
  */
 export interface VacancyDocumentDataBodyVacancyTextSliceItem {
-	/**
-	 * Text block icon (Optional) field in *Vacancy → Slice Zone → Vacancy text → Items*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: ☑️ - by default
-	 * - **API ID Path**: vacancy.body[].vacancy_text.items.text_icon
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	text_icon: prismic.KeyTextField
-
 	/**
 	 * Text block title (Optional) field in *Vacancy → Slice Zone → Vacancy text → Items*
 	 *
@@ -5811,18 +5777,6 @@ export interface VacancyDocumentDataBodyVacancyTextSliceItem {
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
 	text_title: prismic.SelectField<
-		| 'Кого и куда мы ищем:'
-		| 'Что нужно будет делать:'
-		| 'Наши ожидания:'
-		| 'Как мы работаем:'
-		| 'Что мы предлагаем:'
-		| 'Требования:'
-		| 'Обязаности:'
-		| 'Условия:'
-		| 'Основные задачи:'
-		| 'Ожидания от кандидата:'
-		| 'Будет плюсом:'
-		| 'Дополнительные преимущества:'
 		| 'Who and where are we looking for:'
 		| 'What will need to do:'
 		| 'Our expectations:'
@@ -5857,11 +5811,7 @@ export type VacancyDocumentDataBodyVacancyTextSlice = prismic.Slice<
 	Simplify<VacancyDocumentDataBodyVacancyTextSliceItem>
 >
 
-type VacancyDocumentDataBodySlice =
-	| KeyPointCardSlice
-	| TextWithBorderSlice
-	| VacancyDocumentDataBodyTextSlice
-	| VacancyDocumentDataBodyVacancyTextSlice
+type VacancyDocumentDataBodySlice = KeyPointCardSlice | TextWithBorderSlice | VacancyDocumentDataBodyVacancyTextSlice
 
 /**
  * Item in *Vacancy → schema.org snippets*
@@ -16827,7 +16777,6 @@ declare module '@prismicio/client' {
 			TagsDocumentDataTagsItem,
 			VacancyDocument,
 			VacancyDocumentData,
-			VacancyDocumentDataBodyTextSlicePrimary,
 			VacancyDocumentDataBodyVacancyTextSliceItem,
 			VacancyDocumentDataBodySlice,
 			VacancyDocumentDataSchemaOrgSnippetsItem,

@@ -1,181 +1,172 @@
 {
-  "id": "author",
-  "label": "Author",
-  "repeatable": true,
-  "hash": "313b1e5da75044459522c392d48141a5",
-  "status": true,
-  "format": "custom",
-  "json": {
-    "Main": {
-      "uid": {
-        "type": "UID",
-        "config": {
-          "label": "UID"
-        }
-      },
-      "image": {
-        "type": "Image",
-        "config": {
-          "constraint": {
-            "width": null,
-            "height": null
-          },
-          "thumbnails": [
-            {
-              "name": "thumbnail",
-              "width": 80,
-              "height": 80
-            },
-            {
-              "name": "header",
-              "width": 330,
-              "height": 330
-            },
-            {
-              "name": "author_slice",
-              "width": 136,
-              "height": 136
-            }
-          ],
-          "label": "Image"
-        }
-      },
-      "thumbnail_image": {
-        "type": "Image",
-        "config": {
-          "constraint": {
-            "width": 80,
-            "height": 80
-          },
-          "thumbnails": [],
-          "label": "Small image for author links (80px X 80px)"
-        }
-      },
-      "name": {
-        "type": "Text",
-        "config": {
-          "label": "Name",
-          "placeholder": "For example: Andrew Minkin"
-        }
-      },
-      "firstName": {
-        "config": {
-          "label": "firstName",
-          "placeholder": "For example: Andrew"
-        },
-        "type": "Text"
-      },
-      "lastName": {
-        "config": {
-          "label": "lastName",
-          "placeholder": "For example: Thompson"
-        },
-        "type": "Text"
-      },
-      "description": {
-        "config": {
-          "label": "Description",
-          "placeholder": ""
-        },
-        "type": "Text"
-      },
-      "phoneNumber": {
-        "config": {
-          "label": "phoneNumber",
-          "placeholder": "+996505123456"
-        },
-        "type": "Text"
-      },
-      "position": {
-        "type": "Text",
-        "config": {
-          "label": "Position",
-          "placeholder": "For example: Chief technology officer"
-        }
-      },
-      "company": {
-        "config": {
-          "label": "company",
-          "placeholder": ""
-        },
-        "type": "Text"
-      },
-      "email": {
-        "config": {
-          "label": "email",
-          "placeholder": "myemail@email.com"
-        },
-        "type": "Text"
-      },
-      "location": {
-        "config": {
-          "label": "location",
-          "placeholder": "Malaysia, Kuala Lumpur"
-        },
-        "type": "Text"
-      },
-      "social_networks": {
-        "type": "Group",
-        "config": {
-          "fields": {
-            "network": {
-              "type": "Select",
-              "config": {
-                "label": "Social network",
-                "placeholder": "Choose a social network",
-                "options": [
-                  "Telegram",
-                  "Twitter",
-                  "Facebook",
-                  "Instagram",
-                  "Linkedin",
-                  "Calendar",
-                  "Whatsapp",
-                  "Email"
-                ]
-              }
-            },
-            "link": {
-              "type": "Link",
-              "config": {
-                "allowTargetBlank": true,
-                "label": "Link",
-                "select": null
-              }
-            }
-          },
-          "label": "Social networks"
-        }
-      }
-    },
-    "Meta data": {
-      "meta_title": {
-        "type": "Text",
-        "config": {
-          "label": "Meta title"
-        }
-      },
-      "meta_description": {
-        "type": "Text",
-        "config": {
-          "label": "Meta description"
-        }
-      },
-      "schema_org_snippets": {
-        "type": "Group",
-        "config": {
-          "fields": {
-            "single_snippet": {
-              "type": "StructuredText",
-              "config": {
-                "multi": "preformatted",
-                "label": "Single snippet"
-              }
-            }
-          },
-          "label": "schema.org snippets"
-        }
-      }
-    }
-  }
+	"id": "author",
+	"label": "Author",
+	"repeatable": true,
+	"hash": "313b1e5da75044459522c392d48141a5",
+	"status": true,
+	"format": "custom",
+	"json": {
+		"Main": {
+			"uid": {
+				"type": "UID",
+				"config": {
+					"label": "UID"
+				}
+			},
+			"image": {
+				"type": "Image",
+				"config": {
+					"constraint": {
+						"width": null,
+						"height": null
+					},
+					"thumbnails": [
+						{
+							"name": "thumbnail",
+							"width": 80,
+							"height": 80
+						},
+						{
+							"name": "header",
+							"width": 330,
+							"height": 330
+						},
+						{
+							"name": "author_slice",
+							"width": 136,
+							"height": 136
+						}
+					],
+					"label": "Image"
+				}
+			},
+			"thumbnail_image": {
+				"type": "Image",
+				"config": {
+					"constraint": {
+						"width": 80,
+						"height": 80
+					},
+					"thumbnails": [],
+					"label": "Small image for author links (80px X 80px)"
+				}
+			},
+			"name": {
+				"type": "Text",
+				"config": {
+					"label": "Name",
+					"placeholder": "For example: Andrew Minkin"
+				}
+			},
+			"firstName": {
+				"config": {
+					"label": "firstName",
+					"placeholder": "For example: Andrew"
+				},
+				"type": "Text"
+			},
+			"lastName": {
+				"config": {
+					"label": "lastName",
+					"placeholder": "For example: Thompson"
+				},
+				"type": "Text"
+			},
+			"description": {
+				"config": {
+					"label": "Description",
+					"placeholder": ""
+				},
+				"type": "Text"
+			},
+			"phoneNumber": {
+				"config": {
+					"label": "phoneNumber",
+					"placeholder": "+996505123456"
+				},
+				"type": "Text"
+			},
+			"position": {
+				"type": "Text",
+				"config": {
+					"label": "Position",
+					"placeholder": "For example: Chief technology officer"
+				}
+			},
+			"company": {
+				"config": {
+					"label": "company",
+					"placeholder": ""
+				},
+				"type": "Text"
+			},
+			"email": {
+				"config": {
+					"label": "email",
+					"placeholder": "myemail@email.com"
+				},
+				"type": "Text"
+			},
+			"location": {
+				"config": {
+					"label": "location",
+					"placeholder": "Malaysia, Kuala Lumpur"
+				},
+				"type": "Text"
+			},
+			"social_networks": {
+				"type": "Group",
+				"config": {
+					"fields": {
+						"network": {
+							"type": "Select",
+							"config": {
+								"label": "Social network",
+								"placeholder": "Choose a social network",
+								"options": ["Telegram", "Twitter", "Facebook", "Instagram", "Linkedin", "Calendar", "Whatsapp", "Email"]
+							}
+						},
+						"link": {
+							"type": "Link",
+							"config": {
+								"allowTargetBlank": true,
+								"label": "Link",
+								"select": null
+							}
+						}
+					},
+					"label": "Social networks"
+				}
+			}
+		},
+		"Meta data": {
+			"meta_title": {
+				"type": "Text",
+				"config": {
+					"label": "Meta title"
+				}
+			},
+			"meta_description": {
+				"type": "Text",
+				"config": {
+					"label": "Meta description"
+				}
+			},
+			"schema_org_snippets": {
+				"type": "Group",
+				"config": {
+					"fields": {
+						"single_snippet": {
+							"type": "StructuredText",
+							"config": {
+								"multi": "preformatted",
+								"label": "Single snippet"
+							}
+						}
+					},
+					"label": "schema.org snippets"
+				}
+			}
+		}
+	}
 }
