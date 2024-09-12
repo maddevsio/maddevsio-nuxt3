@@ -117,6 +117,17 @@ interface AuthorDocumentData {
 	description: prismic.KeyTextField
 
 	/**
+	 * Rich Description field in *Author*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Rich text with formatting
+	 * - **API ID Path**: author.richDescription
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	richDescription: prismic.RichTextField
+
+	/**
 	 * phoneNumber field in *Author*
 	 *
 	 * - **Field Type**: Text
