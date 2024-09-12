@@ -47,7 +47,7 @@ useHead(buildHead({
   title: authorData.value?.metaTitle || `${ authorData.value?.name } | Blog`,
   metaTitle: authorData.value?.metaTitle || `${ authorData.value?.name } | Blog`,
   description: authorData.value?.metaDescription || '',
-  url: `${ config.public.domain }/blog/authors/${ route.params.uid }`,
+  url: `${ config.public.domain }/blog/authors/${ route.params.uid }/`,
   image: 'https://maddevs.io/md-blog.png',
   noindex: authorData.value?.noindex,
 }))
@@ -61,6 +61,10 @@ useHead(buildHead({
       :author-image="authorData.image"
       :author-description="authorData.description"
       :content-count="contentCount"
+    />
+    <LazyBlogAuthorRichDescription
+      v-if="authorData && $prismic.asText(authorData.richDescription)"
+      :rich-description="authorData.richDescription"
     />
     <LazyBlogAuthorContent
       :author="authorData"
