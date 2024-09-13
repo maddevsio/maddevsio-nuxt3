@@ -71,7 +71,7 @@ const QAPageSchema = prismicSchema.find(snippet => snippet['@type'] === 'QAPage'
 
 const generatedQAPageSchema = buildQAPageSchema({
   title: glossaryPost.value?.glossaryPostContent?.wordPageTitle,
-  description: glossaryPost.value?.glossaryPostContent?.wordPageDescription,
+  description: prismic.asText(glossaryPost.value?.glossaryPostContent?.wordPageDescription),
   authorName: glossaryPost.value?.glossaryPostContent?.author?.data?.name,
   pageLink: `https://maddevs.io/glossary/${ glossaryPost.value?.glossaryPostContent?.uid }/`,
   authorPageLink: `https://maddevs.io/blog/authors/${ glossaryPost.value?.glossaryPostContent?.author?.uid }/`,
