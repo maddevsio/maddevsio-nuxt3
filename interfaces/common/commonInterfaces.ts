@@ -365,8 +365,6 @@ export interface TransformedVacancy {
   }
   tags: string[]
   slices: VacancyDocumentDataBodySlice[]
-  metaTitle: KeyTextField
-  metaDescription: KeyTextField
   date: KeyTextField
   released: boolean
 }

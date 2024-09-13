@@ -1,8 +1,7 @@
 import type { KeyTextField } from '@prismicio/client'
-import type { RichTextField } from '@prismicio/types'
 export interface QAPageSchemaData {
   title: KeyTextField | undefined
-  description: RichTextField | undefined
+  description: string | null
   authorName: KeyTextField | undefined
   pageLink: string
   authorPageLink: string
