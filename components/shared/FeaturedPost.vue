@@ -97,7 +97,7 @@ const { isMobile } = useDevice()
             :alt="post.data!.featured_image!.alt || 'Image'"
             :width="isMobile ? 410 : 473"
             :height="isMobile ? 210 : 257"
-            sizes="mobile:410px tablet:700px desktop:473px"
+            sizes="mobile:410px tablet:700px desktop:800px"
             loading="lazy"
           />
         </NuxtLink>

@@ -48,8 +48,8 @@ withDefaults(defineProps<Props>(), {
         provider="prismic"
         :src="cover.url.replace(/\?.*/, '?auto=format')"
         :alt="cover.alt || title"
-        width="336"
-        height="181"
+        width="400"
+        height="216"
         sizes="mobile:400px tablet:400px desktop:800px"
         class="article-card__cover"
       />
@@ -90,13 +90,22 @@ withDefaults(defineProps<Props>(), {
   }
 
   &__cover-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 0 0 58%;
     margin-bottom: 16px;
   }
 
   &__cover {
-    width: 100%;
-    height: 100%;
     display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 93%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
     object-fit: cover;
   }
 
