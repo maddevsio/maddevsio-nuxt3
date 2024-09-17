@@ -48,8 +48,6 @@ export class CareersService {
       },
       tags: vacancy.tags,
       slices: vacancy.data.body,
-      metaTitle: vacancy.data.meta_title,
-      metaDescription: vacancy.data.meta_description,
       date: formatDate(vacancy.data.date),
       released: vacancy.data.released === null ? true : vacancy.data.released,
     }
