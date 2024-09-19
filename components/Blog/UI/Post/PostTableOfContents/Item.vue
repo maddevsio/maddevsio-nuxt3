@@ -18,14 +18,16 @@ const {
 } = props.postTableOfContentsItemInstance
 </script>
 <template>
-  <NuxtLink
-    :to="link"
-    :data-id="link"
-    class="table-of-contents__links-link"
-    :class="[{ 'table-of-contents__links-link--active': isActiveLink }, linkColorClass]"
-  >
-    <span class="table-of-contents__links-link-order-number">{{ index + 1 }}.</span> {{ label }}
-  </NuxtLink>
+  <li class="table-of-contents__item">
+    <NuxtLink
+      :to="link"
+      :data-id="link"
+      class="table-of-contents__links-link"
+      :class="[{ 'table-of-contents__links-link--active': isActiveLink }, linkColorClass]"
+    >
+      <span class="table-of-contents__links-link-order-number">{{ index + 1 }}.</span> {{ label }}
+    </NuxtLink>
+  </li>
 </template>
 <style lang="scss" scoped>
 .table-of-contents__links-link {
