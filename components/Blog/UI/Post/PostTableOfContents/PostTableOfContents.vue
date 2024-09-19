@@ -63,11 +63,13 @@ onMounted(() => {
       :class="`table-of-contents__links--${!isVisibleContent ? 'hide' : 'show'}`"
       class="table-of-contents__links"
     >
-      <LazyBlogUIPostPostTableOfContentsItem
-        v-for="(anchor) in anchors"
-        :key="`${anchor.label}-${anchor.index}`"
-        :post-table-of-contents-item-instance="anchor"
-      />
+      <ul>
+        <LazyBlogUIPostPostTableOfContentsItem
+          v-for="(anchor) in anchors"
+          :key="`${anchor.label}-${anchor.index}`"
+          :post-table-of-contents-item-instance="anchor"
+        />
+      </ul>
     </Simplebar>
   </div>
 </template>
