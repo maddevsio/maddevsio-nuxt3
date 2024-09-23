@@ -62,13 +62,13 @@
           "label": "Post With Form"
         }
       },
-      "released" : {
-        "type" : "Boolean",
-        "config" : {
-          "placeholder_false" : "Staging",
-          "placeholder_true" : "Production",
-          "default_value" : true,
-          "label" : "Available at"
+      "released": {
+        "type": "Boolean",
+        "config": {
+          "placeholder_false": "Staging",
+          "placeholder_true": "Production",
+          "default_value": true,
+          "label": "Available at"
         }
       },
       "featured_image": {
@@ -239,6 +239,15 @@
                     },
                     "thumbnails": [],
                     "label": "Image"
+                  }
+                },
+                "initial_size": {
+                  "type": "Boolean",
+                  "config": {
+                    "placeholder_false": "No",
+                    "placeholder_true": "Yes",
+                    "default_value": false,
+                    "label": "Image With Initial Size"
                   }
                 },
                 "caption": {
@@ -674,28 +683,1038 @@
               }
             },
             "awards_slice": {
-              "type": "SharedSlice"
+              "type": "SharedSlice",
+              "id": "awards_slice",
+              "name": "AwardsSlice",
+              "description": "AwardsSlice",
+              "variations": [
+                {
+                  "id": "default-slice",
+                  "name": "Default slice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "AwardsSlice",
+                  "primary": {
+                    "animation": {
+                      "config": {
+                        "label": "Animation list",
+                        "placeholder": "Select aos animation",
+                        "options": [
+                          "fade-up",
+                          "fade-down",
+                          "fade-right",
+                          "fade-left",
+                          "fade-up-right",
+                          "fade-up-left",
+                          "fade-down-righ",
+                          "fade-down-left",
+                          "zoom-in",
+                          "zoom-in-up",
+                          "zoom-in-left",
+                          "zoom-in-right",
+                          "none"
+                        ]
+                      },
+                      "type": "Select"
+                    },
+                    "background": {
+                      "config": {
+                        "label": "Slice Background",
+                        "placeholder": "",
+                        "options": [
+                          "black",
+                          "white"
+                        ],
+                        "default_value": "black"
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {
+                    "image": {
+                      "config": {
+                        "label": "Image",
+                        "constraint": {},
+                        "thumbnails": []
+                      },
+                      "type": "Image"
+                    },
+                    "isBig": {
+                      "config": {
+                        "label": "Big or Little?",
+                        "placeholder_false": "Little",
+                        "placeholder_true": "Big",
+                        "default_value": false
+                      },
+                      "type": "Boolean"
+                    },
+                    "description": {
+                      "config": {
+                        "label": "Description",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/awards_slice/default-slice/30f65a09ae632ecbc2135e8792dedc61f6b19715.png?auto=compress%2Cformat"
+                },
+                {
+                  "id": "certificates",
+                  "name": "Certificates",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "AwardsSlice",
+                  "primary": {
+                    "animation": {
+                      "config": {
+                        "label": "Animation list",
+                        "placeholder": "Select aos animation",
+                        "options": [
+                          "fade-up",
+                          "fade-down",
+                          "fade-right",
+                          "fade-left",
+                          "fade-up-right",
+                          "fade-up-left",
+                          "fade-down-righ",
+                          "fade-down-left",
+                          "zoom-in",
+                          "zoom-in-up",
+                          "zoom-in-left",
+                          "zoom-in-right",
+                          "none"
+                        ]
+                      },
+                      "type": "Select"
+                    },
+                    "background": {
+                      "config": {
+                        "label": "Slice Background",
+                        "placeholder": "",
+                        "options": [
+                          "black",
+                          "white"
+                        ],
+                        "default_value": "black"
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {
+                    "image": {
+                      "config": {
+                        "label": "Image",
+                        "constraint": {},
+                        "thumbnails": []
+                      },
+                      "type": "Image"
+                    },
+                    "link": {
+                      "config": {
+                        "label": "link",
+                        "placeholder": "link",
+                        "allowTargetBlank": false,
+                        "select": null
+                      },
+                      "type": "Link"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+                }
+              ]
             },
             "subscribe_form_slice": {
-              "type": "SharedSlice"
+              "type": "SharedSlice",
+              "id": "subscribe_form_slice",
+              "name": "SubscribeFormSlice",
+              "description": "SubscribeFormSlice",
+              "variations": [
+                {
+                  "id": "default-slice",
+                  "name": "Default slice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "SubscribeFormSlice",
+                  "primary": {
+                    "backgroundColor": {
+                      "config": {
+                        "label": "Background Color",
+                        "placeholder": "Please choice background color",
+                        "options": [
+                          "white",
+                          "black"
+                        ]
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {},
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/subscribe_form_slice/default-slice/38cfdfe600ce95b59d7131384fa05b1ce1247230.png?auto=compress%2Cformat"
+                },
+                {
+                  "id": "subscribeFormDigest",
+                  "name": "SubscribeFormDigest",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "SubscribeFormSlice",
+                  "primary": {
+                    "backgroundColor": {
+                      "config": {
+                        "label": "Background Color",
+                        "placeholder": "Please choice background color",
+                        "options": [
+                          "white",
+                          "black"
+                        ]
+                      },
+                      "type": "Select"
+                    },
+                    "title": {
+                      "config": {
+                        "label": "Title",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "subtitle": {
+                      "config": {
+                        "label": "Subtitle",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "items": {},
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/subscribe_form_slice/subscribeFormDigest/50a41a259ef5850ae950346f81b84ecb3406b2b5.png?auto=compress%2Cformat"
+                }
+              ]
             },
             "post_form": {
-              "type": "SharedSlice"
+              "type": "SharedSlice",
+              "id": "post_form",
+              "name": "PostForm",
+              "description": "PostForm",
+              "variations": [
+                {
+                  "id": "default-slice",
+                  "name": "Default slice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "PostForm",
+                  "primary": {
+                    "title": {
+                      "type": "StructuredText",
+                      "config": {
+                        "single": "heading1",
+                        "label": "Title",
+                        "placeholder": "This is where it all begins..."
+                      }
+                    },
+                    "description": {
+                      "config": {
+                        "label": "Description",
+                        "placeholder": "",
+                        "allowTargetBlank": true,
+                        "single": "paragraph,strong,em,hyperlink"
+                      },
+                      "type": "StructuredText"
+                    },
+                    "buttonText": {
+                      "config": {
+                        "label": "Button Text",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "fieldNamePlaceholder": {
+                      "config": {
+                        "label": "Field Name Placeholder Text",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "fieldCompanyPlaceholder": {
+                      "config": {
+                        "label": "Field Company Placeholder Text",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "fieldEmailPlaceholder": {
+                      "config": {
+                        "label": "Field Email Placeholder Text",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "fieldPhonePlaceholder": {
+                      "config": {
+                        "label": "Field Phone Placeholder Text",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "fieldTextareaPlaceholder": {
+                      "config": {
+                        "label": "Field Textarea Placeholder Text",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "radioButtonGroupDescription": {
+                      "config": {
+                        "label": "Radio Button Group Description",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "items": {
+                    "radioButtonLabel": {
+                      "config": {
+                        "label": "Radio Button Label",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "radioButtonGroupName": {
+                      "config": {
+                        "label": "Radio Button Group Name",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/post_form/default-slice/430552ebdc91c5139ca9af5c22bfebbd55aa437c.png?auto=compress%2Cformat"
+                }
+              ]
             },
             "tech_and_tools_new_slice": {
-              "type": "SharedSlice"
+              "type": "SharedSlice",
+              "id": "tech_and_tools_new_slice",
+              "name": "TechAndToolsNewSlice",
+              "description": "TechAndToolsNewSlice",
+              "variations": [
+                {
+                  "id": "default-slice",
+                  "name": "Default slice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "TechAndToolsNewSlice",
+                  "primary": {
+                    "animation": {
+                      "config": {
+                        "label": "Animation",
+                        "placeholder": "",
+                        "options": [
+                          "fade-up",
+                          "fade-down",
+                          "fade-right",
+                          "fade-left",
+                          "fade-up-right",
+                          "fade-up-left",
+                          "fade-down-right",
+                          "fade-down-left",
+                          "zoom-in",
+                          "zoom-in-down",
+                          "zoom-in-left",
+                          "zoom-in-right",
+                          "none"
+                        ],
+                        "default_value": "fade-up"
+                      },
+                      "type": "Select"
+                    },
+                    "addBorder": {
+                      "config": {
+                        "label": "Add Border To Icons?",
+                        "placeholder_false": "No",
+                        "placeholder_true": "Yes",
+                        "default_value": true
+                      },
+                      "type": "Boolean"
+                    },
+                    "theme": {
+                      "config": {
+                        "label": "Color Theme",
+                        "placeholder": "requires choice",
+                        "options": [
+                          "white",
+                          "black"
+                        ]
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {
+                    "icon": {
+                      "config": {
+                        "label": "SVG Icon",
+                        "constraint": {},
+                        "thumbnails": []
+                      },
+                      "type": "Image"
+                    },
+                    "isBig": {
+                      "config": {
+                        "label": "Big card?",
+                        "placeholder_false": "false",
+                        "placeholder_true": "true",
+                        "default_value": false
+                      },
+                      "type": "Boolean"
+                    },
+                    "title": {
+                      "config": {
+                        "label": "Title",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "description": {
+                      "config": {
+                        "label": "Description",
+                        "placeholder": "if little card don`t filled"
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/tech_and_tools_new_slice/default-slice/5a1a374f4943d254c18c93209b19a1eb0055c11e.png?auto=compress%2Cformat"
+                },
+                {
+                  "id": "threeBigCards",
+                  "name": "ThreeBigCards",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "TechAndToolsNewSlice",
+                  "primary": {
+                    "animation": {
+                      "config": {
+                        "label": "Animation",
+                        "placeholder": "",
+                        "options": [
+                          "fade-up",
+                          "fade-down",
+                          "fade-right",
+                          "fade-left",
+                          "fade-up-right",
+                          "fade-up-left",
+                          "fade-down-right",
+                          "fade-down-left",
+                          "zoom-in",
+                          "zoom-in-down",
+                          "zoom-in-left",
+                          "zoom-in-right",
+                          "none"
+                        ],
+                        "default_value": "fade-up"
+                      },
+                      "type": "Select"
+                    },
+                    "addBorder": {
+                      "config": {
+                        "label": "Add Border To Icons?",
+                        "placeholder_false": "No",
+                        "placeholder_true": "Yes",
+                        "default_value": true
+                      },
+                      "type": "Boolean"
+                    },
+                    "theme": {
+                      "config": {
+                        "label": "Color Theme",
+                        "placeholder": "requires choice",
+                        "options": [
+                          "white",
+                          "black"
+                        ]
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {
+                    "icon": {
+                      "config": {
+                        "label": "SVG Icon",
+                        "constraint": {},
+                        "thumbnails": []
+                      },
+                      "type": "Image"
+                    },
+                    "isBig": {
+                      "config": {
+                        "label": "Big card?",
+                        "placeholder_false": "false",
+                        "placeholder_true": "true",
+                        "default_value": false
+                      },
+                      "type": "Boolean"
+                    },
+                    "title": {
+                      "config": {
+                        "label": "Title",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "description": {
+                      "config": {
+                        "label": "Description",
+                        "placeholder": "if little card don`t filled"
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/tech_and_tools_new_slice/threeBigCards/7b82dd165d04cf17e884c5702b3280481b5def8f.png?auto=compress%2Cformat"
+                },
+                {
+                  "id": "twoBigCards",
+                  "name": "TwoBigCards",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "TechAndToolsNewSlice",
+                  "primary": {
+                    "animation": {
+                      "config": {
+                        "label": "Animation",
+                        "placeholder": "",
+                        "options": [
+                          "fade-up",
+                          "fade-down",
+                          "fade-right",
+                          "fade-left",
+                          "fade-up-right",
+                          "fade-up-left",
+                          "fade-down-right",
+                          "fade-down-left",
+                          "zoom-in",
+                          "zoom-in-down",
+                          "zoom-in-left",
+                          "zoom-in-right",
+                          "none"
+                        ],
+                        "default_value": "fade-up"
+                      },
+                      "type": "Select"
+                    },
+                    "isPostPage": {
+                      "config": {
+                        "label": "Custom Page or Post",
+                        "placeholder_false": "Custom Page",
+                        "placeholder_true": "Post",
+                        "default_value": false
+                      },
+                      "type": "Boolean"
+                    },
+                    "addBorder": {
+                      "config": {
+                        "label": "Add Border To Icons?",
+                        "placeholder_false": "No",
+                        "placeholder_true": "Yes",
+                        "default_value": true
+                      },
+                      "type": "Boolean"
+                    },
+                    "theme": {
+                      "config": {
+                        "label": "Color Theme",
+                        "placeholder": "",
+                        "options": [
+                          "black",
+                          "white"
+                        ]
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {
+                    "icon": {
+                      "config": {
+                        "label": "SVG Icon",
+                        "constraint": {},
+                        "thumbnails": []
+                      },
+                      "type": "Image"
+                    },
+                    "isBig": {
+                      "config": {
+                        "label": "Big card?",
+                        "placeholder_false": "false",
+                        "placeholder_true": "true",
+                        "default_value": false
+                      },
+                      "type": "Boolean"
+                    },
+                    "title": {
+                      "config": {
+                        "label": "Title",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "description": {
+                      "config": {
+                        "label": "Description",
+                        "placeholder": "if little card don`t filled"
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/tech_and_tools_new_slice/twoBigCards/1d1f803dc3edb2db082a5b197692f05ef51dbad9.png?auto=compress%2Cformat"
+                },
+                {
+                  "id": "oneBigCard",
+                  "name": "OneBigCard",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "TechAndToolsNewSlice",
+                  "primary": {
+                    "animation": {
+                      "config": {
+                        "label": "Animation",
+                        "placeholder": "",
+                        "options": [
+                          "fade-up",
+                          "fade-down",
+                          "fade-right",
+                          "fade-left",
+                          "fade-up-right",
+                          "fade-up-left",
+                          "fade-down-right",
+                          "fade-down-left",
+                          "zoom-in",
+                          "zoom-in-down",
+                          "zoom-in-left",
+                          "zoom-in-right",
+                          "none"
+                        ],
+                        "default_value": "fade-up"
+                      },
+                      "type": "Select"
+                    },
+                    "isPostPage": {
+                      "config": {
+                        "label": "Custom Page or Post",
+                        "placeholder_false": "Custom Page",
+                        "placeholder_true": "Post",
+                        "default_value": false
+                      },
+                      "type": "Boolean"
+                    },
+                    "addBorder": {
+                      "config": {
+                        "label": "Add Border To Icons?",
+                        "placeholder_false": "No",
+                        "placeholder_true": "Yes",
+                        "default_value": true
+                      },
+                      "type": "Boolean"
+                    },
+                    "theme": {
+                      "config": {
+                        "label": "Color Theme",
+                        "placeholder": "",
+                        "options": [
+                          "black",
+                          "white"
+                        ]
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {
+                    "icon": {
+                      "config": {
+                        "label": "SVG Icon",
+                        "constraint": {},
+                        "thumbnails": []
+                      },
+                      "type": "Image"
+                    },
+                    "isBig": {
+                      "config": {
+                        "label": "Big card?",
+                        "placeholder_false": "false",
+                        "placeholder_true": "true",
+                        "default_value": false
+                      },
+                      "type": "Boolean"
+                    },
+                    "title": {
+                      "config": {
+                        "label": "Title",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "description": {
+                      "config": {
+                        "label": "Description",
+                        "placeholder": "if little card don`t filled"
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/tech_and_tools_new_slice/oneBigCard/f92f842b738faad286cff1e38de09a48ff71b75a.png?auto=compress%2Cformat"
+                }
+              ]
             },
             "table_slice": {
-              "type": "SharedSlice"
+              "type": "SharedSlice",
+              "id": "table_slice",
+              "name": "TableSlice",
+              "description": "TableSlice",
+              "variations": [
+                {
+                  "id": "default-slice",
+                  "name": "Default slice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "TableSlice",
+                  "primary": {
+                    "tableRich": {
+                      "config": {
+                        "label": "Insert Table HTML Rich",
+                        "placeholder": "",
+                        "allowTargetBlank": true,
+                        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                      },
+                      "type": "StructuredText"
+                    }
+                  },
+                  "items": {},
+                  "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+                },
+                {
+                  "id": "forCustomPage",
+                  "name": "for custom page",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "TableSlice",
+                  "primary": {
+                    "containerSize": {
+                      "config": {
+                        "label": "Container size",
+                        "placeholder": "Select size in px",
+                        "options": [
+                          "1240",
+                          "1026",
+                          "816"
+                        ]
+                      },
+                      "type": "Select"
+                    },
+                    "background": {
+                      "config": {
+                        "label": "Slice background",
+                        "placeholder": "",
+                        "options": [
+                          "black",
+                          "white",
+                          "grey"
+                        ]
+                      },
+                      "type": "Select"
+                    },
+                    "tableRich": {
+                      "config": {
+                        "label": "Insert Table HTML Rich",
+                        "placeholder": "",
+                        "allowTargetBlank": true,
+                        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                      },
+                      "type": "StructuredText"
+                    }
+                  },
+                  "items": {},
+                  "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+                }
+              ]
             },
             "post_authors_slice": {
-              "type": "SharedSlice"
+              "type": "SharedSlice",
+              "id": "post_authors_slice",
+              "name": "PostAuthorsSlice",
+              "description": "PostAuthorsSlice",
+              "variations": [
+                {
+                  "id": "default-slice",
+                  "name": "Default slice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "PostAuthorsSlice",
+                  "primary": {
+                    "author": {
+                      "config": {
+                        "label": "Author",
+                        "customtypes": [
+                          "author"
+                        ],
+                        "select": "document"
+                      },
+                      "type": "Link"
+                    },
+                    "coAuthor": {
+                      "config": {
+                        "label": "coAuthor",
+                        "customtypes": [
+                          "author"
+                        ],
+                        "select": "document"
+                      },
+                      "type": "Link"
+                    }
+                  },
+                  "items": {
+                    "contributorImage": {
+                      "config": {
+                        "label": "contributorImage",
+                        "constraint": {},
+                        "thumbnails": []
+                      },
+                      "type": "Image"
+                    },
+                    "contributorLink": {
+                      "config": {
+                        "label": "contributorLink",
+                        "placeholder": "",
+                        "allowTargetBlank": false,
+                        "select": null
+                      },
+                      "type": "Link"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+                },
+                {
+                  "id": "customizableAuthorsSlice",
+                  "name": "CustomizableAuthorsSlice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "PostAuthorsSlice",
+                  "primary": {
+                    "author": {
+                      "config": {
+                        "label": "Author",
+                        "customtypes": [
+                          "author"
+                        ],
+                        "select": "document"
+                      },
+                      "type": "Link"
+                    },
+                    "coAuthor": {
+                      "config": {
+                        "label": "coAuthor",
+                        "customtypes": [
+                          "author"
+                        ],
+                        "select": "document"
+                      },
+                      "type": "Link"
+                    },
+                    "showTopDivider": {
+                      "config": {
+                        "label": "Show Top Divider",
+                        "placeholder_false": "hide",
+                        "placeholder_true": "show",
+                        "default_value": true
+                      },
+                      "type": "Boolean"
+                    },
+                    "colorTheme": {
+                      "config": {
+                        "label": "Color Theme",
+                        "placeholder": "Default: Dark",
+                        "options": [
+                          "dark",
+                          "light"
+                        ],
+                        "default_value": "dark"
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {},
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/post_authors_slice/customizableAuthorsSlice/570eb2181bca071ea0ecf751840bba42dc157da7.png?auto=compress%2Cformat"
+                }
+              ]
             },
             "accordion_slice": {
-              "type": "SharedSlice"
+              "type": "SharedSlice",
+              "id": "accordion_slice",
+              "name": "AccordionSlice",
+              "description": "AccordionSlice",
+              "variations": [
+                {
+                  "id": "default-slice",
+                  "name": "Default slice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "AccordionSlice",
+                  "primary": {
+                    "mainTitle": {
+                      "type": "StructuredText",
+                      "config": {
+                        "label": "Main Title",
+                        "placeholder": "This is where it all begins...",
+                        "allowTargetBlank": true,
+                        "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+                      }
+                    },
+                    "containerSize": {
+                      "config": {
+                        "label": "Container Size",
+                        "placeholder": "Default 1026",
+                        "options": [
+                          "1026",
+                          "1240",
+                          "816"
+                        ]
+                      },
+                      "type": "Select"
+                    }
+                  },
+                  "items": {
+                    "question": {
+                      "config": {
+                        "label": "Question",
+                        "placeholder": ""
+                      },
+                      "type": "Text"
+                    },
+                    "questionTag": {
+                      "config": {
+                        "label": "Question Title Tag",
+                        "placeholder": "",
+                        "options": [
+                          "h3",
+                          "h2",
+                          "h4",
+                          "h5",
+                          "h6"
+                        ],
+                        "default_value": "h3"
+                      },
+                      "type": "Select"
+                    },
+                    "answer": {
+                      "config": {
+                        "label": "Answer",
+                        "placeholder": "",
+                        "allowTargetBlank": true,
+                        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                      },
+                      "type": "StructuredText"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/accordion_slice/default-slice/eeb5860f66463029f933c6cbfa3538567be67fc5.png?auto=compress%2Cformat"
+                },
+                {
+                  "id": "accordionForPost",
+                  "name": "accordionForPost",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "AccordionSlice",
+                  "primary": {
+                    "mainTitle": {
+                      "type": "StructuredText",
+                      "config": {
+                        "label": "Main Title",
+                        "placeholder": "This is where it all begins...",
+                        "allowTargetBlank": true,
+                        "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+                      }
+                    }
+                  },
+                  "items": {
+                    "question": {
+                      "config": {
+                        "label": "Question",
+                        "placeholder": "",
+                        "allowTargetBlank": true,
+                        "single": "heading3,heading4,heading5,heading6,heading2"
+                      },
+                      "type": "StructuredText"
+                    },
+                    "answer": {
+                      "config": {
+                        "label": "Answer",
+                        "placeholder": "",
+                        "allowTargetBlank": true,
+                        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                      },
+                      "type": "StructuredText"
+                    }
+                  },
+                  "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+                }
+              ]
             },
             "spacer_slice": {
-              "type": "SharedSlice"
+              "type": "SharedSlice",
+              "id": "spacer_slice",
+              "name": "SpacerSlice",
+              "description": "SpacerSlice",
+              "variations": [
+                {
+                  "id": "default-slice",
+                  "name": "Default slice",
+                  "docURL": "...",
+                  "version": "sktwi1xtmkfgx8626",
+                  "description": "SpacerSlice",
+                  "primary": {
+                    "background": {
+                      "config": {
+                        "label": "Background",
+                        "placeholder": "",
+                        "options": [
+                          "white",
+                          "black"
+                        ]
+                      },
+                      "type": "Select"
+                    },
+                    "height": {
+                      "config": {
+                        "label": "Height DEFAULT",
+                        "placeholder": "Example: 100px or 10% or 100vh"
+                      },
+                      "type": "Text"
+                    },
+                    "height-xl": {
+                      "config": {
+                        "label": "Height XL",
+                        "placeholder": "1024px - 1440px"
+                      },
+                      "type": "Text"
+                    },
+                    "height-lg": {
+                      "config": {
+                        "label": "Height LG",
+                        "placeholder": "768px - 1024px"
+                      },
+                      "type": "Text"
+                    },
+                    "height-md": {
+                      "config": {
+                        "label": "Height MD",
+                        "placeholder": "375px - 768px"
+                      },
+                      "type": "Text"
+                    },
+                    "height-sm": {
+                      "config": {
+                        "label": "Height SM",
+                        "placeholder": "320px - 375px"
+                      },
+                      "type": "Text"
+                    }
+                  },
+                  "items": {},
+                  "imageUrl": "https://images.prismic.io/superpupertest/shared-slices/spacer_slice/default-slice/984215bda6395f6e5f4cd7941ef6a719aa4d2bd7.png?auto=compress%2Cformat"
+                }
+              ]
             }
           }
         }
