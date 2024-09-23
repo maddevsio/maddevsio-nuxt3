@@ -10,6 +10,7 @@ export class ImageCaptionBlog implements IImageCaptionBlog {
   zoom: Ref<{ show(): void } | null>
   zoomProperty: string | undefined
   isEnableZoom: boolean
+  initialSize: boolean
   caption: string | RichTextField
   image: ImageField
   imageDimensions: {
@@ -23,9 +24,11 @@ export class ImageCaptionBlog implements IImageCaptionBlog {
     this.zoom = ref(null)
     this.zoomProperty = props.primary?.enablezoom || props.primary?.enable_zoom
     this.isEnableZoom = this.zoomProperty === null ? true : this.zoomProperty === 'enable'
+    this.initialSize = props.primary?.initial_size
     this.imageDimensions = this.getImageDimensions({
       containerSize: Number(props?.containerSize) || this.defaultContainerSize,
       image: props.primary.image,
+      initialSize: this.initialSize,
     })
     this.caption = props.primary.caption
     this.image = props.primary.image
@@ -43,15 +46,20 @@ export class ImageCaptionBlog implements IImageCaptionBlog {
     }
   }
 
-  getImageDimensions({ containerSize, image }: { containerSize: number, image: ImageField }) {
+  getImageDimensions({ containerSize, image, initialSize }: { containerSize: number, image: ImageField, initialSize: boolean }) {
     if (!image?.dimensions) { return { imageHeight: 0, imageWidth: 0 } }
-    const dimensionWidth = image.dimensions.width
-    const dimensionHeight = image.dimensions.height
+    const dimensionWidth = image.dimensions?.width
+    const dimensionHeight = image.dimensions?.height
     const proportion = dimensionWidth / dimensionHeight
-    return {
-      imageHeight: proportion ? (containerSize / proportion).toFixed(3) : dimensionHeight,
-      imageWidth: containerSize,
-    }
+    return initialSize
+      ? {
+        imageWidth: dimensionWidth,
+        imageHeight: dimensionHeight,
+      }
+      : {
+        imageHeight: proportion ? (containerSize / proportion).toFixed(3) : dimensionHeight,
+        imageWidth: containerSize,
+      }
   }
 
   getImage() {
