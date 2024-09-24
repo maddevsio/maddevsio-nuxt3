@@ -7,6 +7,7 @@ export interface ImageCaptionBlogProps {
     enablezoom?: string
     enable_zoom?: string
     image: ImageField
+    initial_size: boolean
     caption: string | RichTextField
   }
   containerSize?: string | number
@@ -22,6 +23,7 @@ export interface IImageCaptionBlog {
   zoom: Ref<{ show(): void } | null>
   zoomProperty: string | undefined
   isEnableZoom: boolean
+  initialSize: boolean
   imageDimensions: {
     imageHeight: number | string
     imageWidth: number
@@ -30,6 +32,6 @@ export interface IImageCaptionBlog {
   image: ImageField
   openModal(): void
   getImage(): ImageField
-  getImageDimensions(props: { containerSize: number, image: ImageField }): ImageDimensions
+  getImageDimensions(props: { containerSize: number, image: ImageField, initialSize: boolean }): ImageDimensions
   getCaption($prismic: PrismicPlugin): string
 }
