@@ -21,6 +21,7 @@ const {
   imageDimensions,
   openModal,
   getCaption,
+  initialSize,
 } = new ImageCaptionBlog({ primary: slice.primary, containerSize })
 const $prismic = usePrismic()
 const addDpr = (imageUrl: string) => {
@@ -48,10 +49,11 @@ const addDpr = (imageUrl: string) => {
               v-if="isEnableZoom"
               ref="zoom"
               class="image-zoom"
+              :class="{'image-zoom--initial': initialSize}"
             >
               <img
                 loading="lazy"
-                :src="image.url"
+                :src="`${image.url}${image.url ? addDpr(image.url) : ''}`"
                 :alt="image.alt || 'Image'"
               >
             </LazyWidgetsModalZoomImage>
@@ -95,6 +97,14 @@ const addDpr = (imageUrl: string) => {
     height: 100%;
     object-fit: contain;
     display: block;
+  }
+
+  &--initial {
+    :deep(img) {
+      width: 50%;
+      height: 50%;
+      margin: auto;
+    }
   }
 }
 </style>
