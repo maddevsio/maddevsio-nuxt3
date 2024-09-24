@@ -36,6 +36,7 @@
     }
 
     &-wrapper {
+      display: flex;
       z-index: 12;
       background-color: $bgcolor--white-primary;
 
