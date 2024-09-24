@@ -82,8 +82,9 @@ if (error.value) {
     position: relative;
 
     &--transparent-bg {
-      -webkit-text-stroke: 1.13333px $bgcolor--white;
+      -webkit-text-stroke: 2px $bgcolor--white;
       color: $text-color--black-oil;
+      paint-order: stroke fill;
     }
   }
 
