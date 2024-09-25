@@ -13,6 +13,7 @@ export const extractCUPost = (cuPost: any[], $prismic: PrismicPlugin) => {
         description: getFirstParagraph(item.cu_post.data.body, 0),
         tag: item.cu_post.tags[0],
         formattedDate: formatDate(item.cu_post.data.date),
+        updatedFormattedDate: item.cu_post.data.updated_date ? formatDate(item.cu_post.data.updated_date) : '',
         readTime: calculateReadTime(item.cu_post, $prismic).readTime,
         cover: item.cu_post.data.featured_image,
         author: extractAuthorData(item.cu_post.data.post_author),
