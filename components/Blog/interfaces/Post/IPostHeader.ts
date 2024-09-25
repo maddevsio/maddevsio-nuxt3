@@ -30,6 +30,7 @@ export interface IPostHeader {
   coAuthor: Author | undefined
   tags: string[]
   date: string
+  updatedDate: string
   readTime: string
   servicePost: boolean
   passData(dataType: string): string

@@ -17,6 +17,7 @@ export class PostHeader implements IPostHeader {
   coAuthor: Author | undefined
   tags: string[]
   date: string
+  updatedDate: string
   readTime: string
   servicePost: boolean
 
@@ -49,6 +50,7 @@ export class PostHeader implements IPostHeader {
     this.coAuthor = postCoAuthor
     this.tags = tags
     this.date = date
+    this.updatedDate = updatedDate
     this.readTime = readTime
     this.servicePost = servicePost
 
@@ -61,6 +63,8 @@ export class PostHeader implements IPostHeader {
     switch (dataType) {
     case 'date':
       return this.date
+    case 'updatedDate':
+      return this.updatedDate
     case 'readTime':
       return this.readTime
     default:

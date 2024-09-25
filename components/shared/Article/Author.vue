@@ -7,9 +7,11 @@ interface Props {
   name: string
   position: string
   date?: string
+  updatedDate?: string
   image: ImageField | undefined
   theme: string
   readTime?: string
+  postType?: string
 }
 
 const { uid, name } = withDefaults(defineProps<Props>(), {
@@ -18,9 +20,11 @@ const { uid, name } = withDefaults(defineProps<Props>(), {
   name: '',
   position: '',
   date: '',
+  updatedDate: '',
   image: undefined,
   theme: 'light',
   readTime: '',
+  postType: '',
 })
 
 const link = linkResolver({ type: 'author', uid })
@@ -66,8 +70,14 @@ const shortName = name.substr(0, 100)
           {{ position }}
         </span>
       </p>
+      <LazyBlogCustomerUniversityPostHeaderDates
+        v-if="postType === 'customer_university'"
+        :date="date"
+        :updated-date="updatedDate"
+        :read-time="readTime"
+      />
       <span
-        v-if="date"
+        v-if="date && postType !== 'customer_university'"
         class="post-author__date"
       >
         {{ date }} <span v-if="readTime" /> {{ readTime || '' }}
@@ -81,12 +91,14 @@ const shortName = name.substr(0, 100)
   display: inline-flex;
   align-items: center;
   overflow: hidden;
+
   &--dark-theme {
     .post-author {
       &__image,
       &__none-image {
         background-color: $bgcolor--black-light;
       }
+
       &__name {
         color: $text-color--white;
         display: flex;
@@ -94,12 +106,14 @@ const shortName = name.substr(0, 100)
       }
     }
   }
+
   &--light-theme {
     .post-author {
       &__image,
       &__none-image {
         background-color: $bgcolor--silver;
       }
+
       &__name {
         color: $text-color--black;
         display: flex;
