@@ -7,6 +7,10 @@ const props = defineProps({
     type: Object as PropType<IPostHeader>,
     default: () => ({}),
   },
+  postType: {
+    type: String,
+    default: '',
+  },
 })
 
 const {
@@ -84,6 +88,8 @@ const { isMobile } = useDevice()
             :image="author.data.image.thumbnail"
             theme="dark"
             :date="passData('date')"
+            :updated-date="passData('updatedDate')"
+            :post-type="postType"
             :read-time="passData('readTime')"
           />
           <SharedArticleAuthor
