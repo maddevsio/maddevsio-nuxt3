@@ -36,6 +36,7 @@ provide('postId', id)
   <div class="blog-post">
     <LazyBlogPostHeader
       :post-header="postComponents.postHeader"
+      :post-type="postType"
     >
       <template
         v-if="postType === 'post'"

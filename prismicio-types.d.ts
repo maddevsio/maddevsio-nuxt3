@@ -1813,11 +1813,11 @@ export interface CustomerUniversityDocumentDataSchemaOrgSnippetsItem {
 }
 
 /**
- * Primary content in *Customer University → Slice zone → Text → Primary*
+ * Primary content in *Customer University → Slice Zone → Text → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyTextSlicePrimary {
 	/**
-	 * Color field in *Customer University → Slice zone → Text → Primary*
+	 * Color field in *Customer University → Slice Zone → Text → Primary*
 	 *
 	 * - **Field Type**: Color
 	 * - **Placeholder**: *None*
@@ -1827,7 +1827,7 @@ export interface CustomerUniversityDocumentDataBodyTextSlicePrimary {
 	color: prismic.ColorField
 
 	/**
-	 * Text field in *Customer University → Slice zone → Text → Primary*
+	 * Text field in *Customer University → Slice Zone → Text → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: Post text...
@@ -1838,7 +1838,7 @@ export interface CustomerUniversityDocumentDataBodyTextSlicePrimary {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyTextSlice = prismic.Slice<
 	'text',
@@ -1847,11 +1847,11 @@ export type CustomerUniversityDocumentDataBodyTextSlice = prismic.Slice<
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Quote → Primary*
+ * Primary content in *Customer University → Slice Zone → Quote → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyQuoteSlicePrimary {
 	/**
-	 * Quotation design field in *Customer University → Slice zone → Quote → Primary*
+	 * Quotation design field in *Customer University → Slice Zone → Quote → Primary*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -1862,7 +1862,7 @@ export interface CustomerUniversityDocumentDataBodyQuoteSlicePrimary {
 	quotation_design: prismic.SelectField<'brackets' | 'border', 'filled'>
 
 	/**
-	 * Quote field in *Customer University → Slice zone → Quote → Primary*
+	 * Quote field in *Customer University → Slice Zone → Quote → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: Post Quote...
@@ -1872,7 +1872,7 @@ export interface CustomerUniversityDocumentDataBodyQuoteSlicePrimary {
 	quote: prismic.RichTextField
 
 	/**
-	 * Name of the author field in *Customer University → Slice zone → Quote → Primary*
+	 * Name of the author field in *Customer University → Slice Zone → Quote → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: John Doe
@@ -1882,7 +1882,7 @@ export interface CustomerUniversityDocumentDataBodyQuoteSlicePrimary {
 	name_of_the_author: prismic.RichTextField
 
 	/**
-	 * Portrait Author field in *Customer University → Slice zone → Quote → Primary*
+	 * Portrait Author field in *Customer University → Slice Zone → Quote → Primary*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -1893,7 +1893,7 @@ export interface CustomerUniversityDocumentDataBodyQuoteSlicePrimary {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyQuoteSlice = prismic.Slice<
 	'quote',
@@ -1902,11 +1902,11 @@ export type CustomerUniversityDocumentDataBodyQuoteSlice = prismic.Slice<
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Image with Caption → Primary*
+ * Primary content in *Customer University → Slice Zone → Image with Caption → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyImageWithCaptionSlicePrimary {
 	/**
-	 * Image field in *Customer University → Slice zone → Image with Caption → Primary*
+	 * Image field in *Customer University → Slice Zone → Image with Caption → Primary*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -1916,7 +1916,7 @@ export interface CustomerUniversityDocumentDataBodyImageWithCaptionSlicePrimary 
 	image: prismic.ImageField<never>
 
 	/**
-	 * Caption field in *Customer University → Slice zone → Image with Caption → Primary*
+	 * Caption field in *Customer University → Slice Zone → Image with Caption → Primary*
 	 *
 	 * - **Field Type**: Title
 	 * - **Placeholder**: Image Caption...
@@ -1926,7 +1926,7 @@ export interface CustomerUniversityDocumentDataBodyImageWithCaptionSlicePrimary 
 	caption: prismic.TitleField
 
 	/**
-	 * Enable zoom field in *Customer University → Slice zone → Image with Caption → Primary*
+	 * Enable zoom field in *Customer University → Slice Zone → Image with Caption → Primary*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -1938,7 +1938,7 @@ export interface CustomerUniversityDocumentDataBodyImageWithCaptionSlicePrimary 
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyImageWithCaptionSlice = prismic.Slice<
 	'image_with_caption',
@@ -1947,11 +1947,11 @@ export type CustomerUniversityDocumentDataBodyImageWithCaptionSlice = prismic.Sl
 >
 
 /**
- * Primary content in *Customer University → Slice zone → List of Articles → Primary*
+ * Primary content in *Customer University → Slice Zone → List of Articles → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyListOfArticlesSlicePrimary {
 	/**
-	 * Title of Section field in *Customer University → Slice zone → List of Articles → Primary*
+	 * Title of Section field in *Customer University → Slice Zone → List of Articles → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: Featured
@@ -1962,11 +1962,11 @@ export interface CustomerUniversityDocumentDataBodyListOfArticlesSlicePrimary {
 }
 
 /**
- * Item content in *Customer University → Slice zone → List of Articles → Items*
+ * Item content in *Customer University → Slice Zone → List of Articles → Items*
  */
 export interface CustomerUniversityDocumentDataBodyListOfArticlesSliceItem {
 	/**
-	 * Articles to link field in *Customer University → Slice zone → List of Articles → Items*
+	 * Articles to link field in *Customer University → Slice Zone → List of Articles → Items*
 	 *
 	 * - **Field Type**: Link
 	 * - **Placeholder**: Selct your article
@@ -1977,7 +1977,7 @@ export interface CustomerUniversityDocumentDataBodyListOfArticlesSliceItem {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyListOfArticlesSlice = prismic.Slice<
 	'list_of_articles',
@@ -1986,11 +1986,11 @@ export type CustomerUniversityDocumentDataBodyListOfArticlesSlice = prismic.Slic
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Team → Primary*
+ * Primary content in *Customer University → Slice Zone → Team → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyTeamSlicePrimary {
 	/**
-	 * Team Section field in *Customer University → Slice zone → Team → Primary*
+	 * Team Section field in *Customer University → Slice Zone → Team → Primary*
 	 *
 	 * - **Field Type**: Title
 	 * - **Placeholder**: Management
@@ -2001,11 +2001,11 @@ export interface CustomerUniversityDocumentDataBodyTeamSlicePrimary {
 }
 
 /**
- * Item content in *Customer University → Slice zone → Team → Items*
+ * Item content in *Customer University → Slice Zone → Team → Items*
  */
 export interface CustomerUniversityDocumentDataBodyTeamSliceItem {
 	/**
-	 * First and LastName field in *Customer University → Slice zone → Team → Items*
+	 * First and LastName field in *Customer University → Slice Zone → Team → Items*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: John Doe
@@ -2015,7 +2015,7 @@ export interface CustomerUniversityDocumentDataBodyTeamSliceItem {
 	first_and_lastname: prismic.RichTextField
 
 	/**
-	 * Position field in *Customer University → Slice zone → Team → Items*
+	 * Position field in *Customer University → Slice Zone → Team → Items*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: Design director
@@ -2025,7 +2025,7 @@ export interface CustomerUniversityDocumentDataBodyTeamSliceItem {
 	position: prismic.RichTextField
 
 	/**
-	 * Portrait field in *Customer University → Slice zone → Team → Items*
+	 * Portrait field in *Customer University → Slice Zone → Team → Items*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -2036,7 +2036,7 @@ export interface CustomerUniversityDocumentDataBodyTeamSliceItem {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyTeamSlice = prismic.Slice<
 	'team',
@@ -2045,11 +2045,11 @@ export type CustomerUniversityDocumentDataBodyTeamSlice = prismic.Slice<
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Image Gallery → Primary*
+ * Primary content in *Customer University → Slice Zone → Image Gallery → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyImageGallerySlicePrimary {
 	/**
-	 * Name of the gallery field in *Customer University → Slice zone → Image Gallery → Primary*
+	 * Name of the gallery field in *Customer University → Slice Zone → Image Gallery → Primary*
 	 *
 	 * - **Field Type**: Title
 	 * - **Placeholder**: My beautiful paintings
@@ -2060,11 +2060,11 @@ export interface CustomerUniversityDocumentDataBodyImageGallerySlicePrimary {
 }
 
 /**
- * Item content in *Customer University → Slice zone → Image Gallery → Items*
+ * Item content in *Customer University → Slice Zone → Image Gallery → Items*
  */
 export interface CustomerUniversityDocumentDataBodyImageGallerySliceItem {
 	/**
-	 * Image captions field in *Customer University → Slice zone → Image Gallery → Items*
+	 * Image captions field in *Customer University → Slice Zone → Image Gallery → Items*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: Images captions
@@ -2074,7 +2074,7 @@ export interface CustomerUniversityDocumentDataBodyImageGallerySliceItem {
 	image_captions: prismic.RichTextField
 
 	/**
-	 * Gallery Image field in *Customer University → Slice zone → Image Gallery → Items*
+	 * Gallery Image field in *Customer University → Slice Zone → Image Gallery → Items*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -2085,7 +2085,7 @@ export interface CustomerUniversityDocumentDataBodyImageGallerySliceItem {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyImageGallerySlice = prismic.Slice<
 	'image_gallery',
@@ -2094,11 +2094,11 @@ export type CustomerUniversityDocumentDataBodyImageGallerySlice = prismic.Slice<
 >
 
 /**
- * Item content in *Customer University → Slice zone → Embed → Items*
+ * Item content in *Customer University → Slice Zone → Embed → Items*
  */
 export interface CustomerUniversityDocumentDataBodyEmbedSliceItem {
 	/**
-	 * Embed field in *Customer University → Slice zone → Embed → Items*
+	 * Embed field in *Customer University → Slice Zone → Embed → Items*
 	 *
 	 * - **Field Type**: Embed
 	 * - **Placeholder**: *None*
@@ -2108,7 +2108,7 @@ export interface CustomerUniversityDocumentDataBodyEmbedSliceItem {
 	embed: prismic.EmbedField
 
 	/**
-	 * Embed title field in *Customer University → Slice zone → Embed → Items*
+	 * Embed title field in *Customer University → Slice Zone → Embed → Items*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: Replaces the incoming title of embed item (Optional field)
@@ -2118,7 +2118,7 @@ export interface CustomerUniversityDocumentDataBodyEmbedSliceItem {
 	embed_title: prismic.KeyTextField
 
 	/**
-	 * Embed description field in *Customer University → Slice zone → Embed → Items*
+	 * Embed description field in *Customer University → Slice Zone → Embed → Items*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: Replaces the incoming description of embed item (Optional field)
@@ -2129,7 +2129,7 @@ export interface CustomerUniversityDocumentDataBodyEmbedSliceItem {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyEmbedSlice = prismic.Slice<
 	'embed',
@@ -2138,11 +2138,11 @@ export type CustomerUniversityDocumentDataBodyEmbedSlice = prismic.Slice<
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Codeblock → Primary*
+ * Primary content in *Customer University → Slice Zone → Codeblock → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyCodeblockSlicePrimary {
 	/**
-	 * Language field in *Customer University → Slice zone → Codeblock → Primary*
+	 * Language field in *Customer University → Slice Zone → Codeblock → Primary*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -2170,7 +2170,7 @@ export interface CustomerUniversityDocumentDataBodyCodeblockSlicePrimary {
 	>
 
 	/**
-	 * Code field in *Customer University → Slice zone → Codeblock → Primary*
+	 * Code field in *Customer University → Slice Zone → Codeblock → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: <Code>
@@ -2181,7 +2181,7 @@ export interface CustomerUniversityDocumentDataBodyCodeblockSlicePrimary {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyCodeblockSlice = prismic.Slice<
 	'codeblock',
@@ -2190,16 +2190,16 @@ export type CustomerUniversityDocumentDataBodyCodeblockSlice = prismic.Slice<
 >
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyDividerSlice = prismic.Slice<'divider', Record<string, never>, never>
 
 /**
- * Primary content in *Customer University → Slice zone → Image with Attributes → Primary*
+ * Primary content in *Customer University → Slice Zone → Image with Attributes → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyImageWithAttributesSlicePrimary {
 	/**
-	 * Image field in *Customer University → Slice zone → Image with Attributes → Primary*
+	 * Image field in *Customer University → Slice Zone → Image with Attributes → Primary*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -2209,7 +2209,7 @@ export interface CustomerUniversityDocumentDataBodyImageWithAttributesSlicePrima
 	image: prismic.ImageField<never>
 
 	/**
-	 * Target attribute field in *Customer University → Slice zone → Image with Attributes → Primary*
+	 * Target attribute field in *Customer University → Slice Zone → Image with Attributes → Primary*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -2220,7 +2220,7 @@ export interface CustomerUniversityDocumentDataBodyImageWithAttributesSlicePrima
 	target: prismic.SelectField<'_blank' | '_self' | '_parent' | '_top', 'filled'>
 
 	/**
-	 * Title attribute field in *Customer University → Slice zone → Image with Attributes → Primary*
+	 * Title attribute field in *Customer University → Slice Zone → Image with Attributes → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: title
@@ -2230,7 +2230,7 @@ export interface CustomerUniversityDocumentDataBodyImageWithAttributesSlicePrima
 	title: prismic.RichTextField
 
 	/**
-	 * URL field in *Customer University → Slice zone → Image with Attributes → Primary*
+	 * URL field in *Customer University → Slice Zone → Image with Attributes → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: https://
@@ -2240,7 +2240,7 @@ export interface CustomerUniversityDocumentDataBodyImageWithAttributesSlicePrima
 	url: prismic.RichTextField
 
 	/**
-	 * Enable zoom field in *Customer University → Slice zone → Image with Attributes → Primary*
+	 * Enable zoom field in *Customer University → Slice Zone → Image with Attributes → Primary*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -2252,7 +2252,7 @@ export interface CustomerUniversityDocumentDataBodyImageWithAttributesSlicePrima
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyImageWithAttributesSlice = prismic.Slice<
 	'image_with_attributes',
@@ -2261,11 +2261,11 @@ export type CustomerUniversityDocumentDataBodyImageWithAttributesSlice = prismic
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Ordered List → Primary*
+ * Primary content in *Customer University → Slice Zone → Ordered List → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyOrderedListSlicePrimary {
 	/**
-	 * list introduction field in *Customer University → Slice zone → Ordered List → Primary*
+	 * list introduction field in *Customer University → Slice Zone → Ordered List → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -2276,11 +2276,11 @@ export interface CustomerUniversityDocumentDataBodyOrderedListSlicePrimary {
 }
 
 /**
- * Item content in *Customer University → Slice zone → Ordered List → Items*
+ * Item content in *Customer University → Slice Zone → Ordered List → Items*
  */
 export interface CustomerUniversityDocumentDataBodyOrderedListSliceItem {
 	/**
-	 * Item field in *Customer University → Slice zone → Ordered List → Items*
+	 * Item field in *Customer University → Slice Zone → Ordered List → Items*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -2291,7 +2291,7 @@ export interface CustomerUniversityDocumentDataBodyOrderedListSliceItem {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyOrderedListSlice = prismic.Slice<
 	'ordered_list',
@@ -2300,11 +2300,11 @@ export type CustomerUniversityDocumentDataBodyOrderedListSlice = prismic.Slice<
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Multicolumn Bordered → Primary*
+ * Primary content in *Customer University → Slice Zone → Multicolumn Bordered → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyDoublecolumnBorderedSlicePrimary {
 	/**
-	 * Left column content field in *Customer University → Slice zone → Multicolumn Bordered → Primary*
+	 * Left column content field in *Customer University → Slice Zone → Multicolumn Bordered → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -2314,7 +2314,7 @@ export interface CustomerUniversityDocumentDataBodyDoublecolumnBorderedSlicePrim
 	left_column: prismic.RichTextField
 
 	/**
-	 * Image field in *Customer University → Slice zone → Multicolumn Bordered → Primary*
+	 * Image field in *Customer University → Slice Zone → Multicolumn Bordered → Primary*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -2325,7 +2325,7 @@ export interface CustomerUniversityDocumentDataBodyDoublecolumnBorderedSlicePrim
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyDoublecolumnBorderedSlice = prismic.Slice<
 	'doublecolumn_bordered',
@@ -2334,11 +2334,11 @@ export type CustomerUniversityDocumentDataBodyDoublecolumnBorderedSlice = prismi
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Github gist → Primary*
+ * Primary content in *Customer University → Slice Zone → Github gist → Primary*
  */
 export interface CustomerUniversityDocumentDataBodyGithubGistSlicePrimary {
 	/**
-	 * Gist id field in *Customer University → Slice zone → Github gist → Primary*
+	 * Gist id field in *Customer University → Slice Zone → Github gist → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: gist id
@@ -2348,7 +2348,7 @@ export interface CustomerUniversityDocumentDataBodyGithubGistSlicePrimary {
 	gist_id: prismic.RichTextField
 
 	/**
-	 * File name field in *Customer University → Slice zone → Github gist → Primary*
+	 * File name field in *Customer University → Slice Zone → Github gist → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: file name
@@ -2359,7 +2359,7 @@ export interface CustomerUniversityDocumentDataBodyGithubGistSlicePrimary {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyGithubGistSlice = prismic.Slice<
 	'github_gist',
@@ -2368,11 +2368,11 @@ export type CustomerUniversityDocumentDataBodyGithubGistSlice = prismic.Slice<
 >
 
 /**
- * Primary content in *Customer University → Slice zone → Section ID → Primary*
+ * Primary content in *Customer University → Slice Zone → Section ID → Primary*
  */
 export interface CustomerUniversityDocumentDataBodySectionIdSlicePrimary {
 	/**
-	 * ID field in *Customer University → Slice zone → Section ID → Primary*
+	 * ID field in *Customer University → Slice Zone → Section ID → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -2383,7 +2383,7 @@ export interface CustomerUniversityDocumentDataBodySectionIdSlicePrimary {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodySectionIdSlice = prismic.Slice<
 	'section_id',
@@ -2392,11 +2392,11 @@ export type CustomerUniversityDocumentDataBodySectionIdSlice = prismic.Slice<
 >
 
 /**
- * Item content in *Customer University → Slice zone → Author → Items*
+ * Item content in *Customer University → Slice Zone → Author → Items*
  */
 export interface CustomerUniversityDocumentDataBodyAuthorSliceItem {
 	/**
-	 * Contributor image field in *Customer University → Slice zone → Author → Items*
+	 * Contributor image field in *Customer University → Slice Zone → Author → Items*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -2406,7 +2406,7 @@ export interface CustomerUniversityDocumentDataBodyAuthorSliceItem {
 	image: prismic.ImageField<never>
 
 	/**
-	 * Contributor link field in *Customer University → Slice zone → Author → Items*
+	 * Contributor link field in *Customer University → Slice Zone → Author → Items*
 	 *
 	 * - **Field Type**: Link
 	 * - **Placeholder**: *None*
@@ -2417,7 +2417,7 @@ export interface CustomerUniversityDocumentDataBodyAuthorSliceItem {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyAuthorSlice = prismic.Slice<
 	'author',
@@ -2426,11 +2426,11 @@ export type CustomerUniversityDocumentDataBodyAuthorSlice = prismic.Slice<
 >
 
 /**
- * Item content in *Customer University → Slice zone → Table of Contents → Items*
+ * Item content in *Customer University → Slice Zone → Table of Contents → Items*
  */
 export interface CustomerUniversityDocumentDataBodyTableOfContentsSliceItem {
 	/**
-	 * lable field in *Customer University → Slice zone → Table of Contents → Items*
+	 * lable field in *Customer University → Slice Zone → Table of Contents → Items*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -2441,7 +2441,7 @@ export interface CustomerUniversityDocumentDataBodyTableOfContentsSliceItem {
 }
 
 /**
- * Slice for *Customer University → Slice zone*
+ * Slice for *Customer University → Slice Zone*
  */
 export type CustomerUniversityDocumentDataBodyTableOfContentsSlice = prismic.Slice<
 	'table_of_contents',
@@ -2529,6 +2529,17 @@ interface CustomerUniversityDocumentData {
 	date: prismic.DateField
 
 	/**
+	 * Updated Date field in *Customer University*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: customer_university.updated_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	updated_date: prismic.DateField
+
+	/**
 	 * Available at field in *Customer University*
 	 *
 	 * - **Field Type**: Boolean
@@ -2585,7 +2596,7 @@ interface CustomerUniversityDocumentData {
 	schema_org_snippets: prismic.GroupField<Simplify<CustomerUniversityDocumentDataSchemaOrgSnippetsItem>>
 
 	/**
-	 * Slice zone field in *Customer University*
+	 * Slice Zone field in *Customer University*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -4883,6 +4894,17 @@ export interface PostDocumentDataBodyImageWithCaptionSlicePrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#image
 	 */
 	image: prismic.ImageField<never>
+
+	/**
+	 * Image With Initial Size field in *Post → Slice Zone → Image with Caption → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: post.body[].image_with_caption.primary.initial_size
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	initial_size: prismic.BooleanField
 
 	/**
 	 * Caption field in *Post → Slice Zone → Image with Caption → Primary*
