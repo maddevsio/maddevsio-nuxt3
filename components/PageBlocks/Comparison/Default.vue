@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { ContactsProps } from '~/components/PageBlocks/Contacts/interfaces/IContacts'
-import { ContactsDefault } from '~/components/PageBlocks/Contacts/classes/ContactsDefault'
 import type { ComparisonDefaultProps } from '~/components/PageBlocks/Comparison/inrefaces/IComparisonDefault'
 import { ComparisonDefault } from '~/components/PageBlocks/Comparison/classes/ComparisonDefault'
 import { useLightbox } from '~/composables/useLightbox'
