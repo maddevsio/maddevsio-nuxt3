@@ -4,7 +4,6 @@ const { slice } = defineProps(getSliceComponentProps(['slice', 'index', 'slices'
 
 <template>
   <section class="comparison-slice">
-    Test
     <LazyPageBlocksComparisonDefault
       v-if="slice.variation === 'default'"
       :slice="slice"
