@@ -1,229 +1,225 @@
 {
-  "id": "case-studies",
-  "label": "Case Studies",
-  "repeatable": true,
-  "json": {
-    "Main": {
-      "uid": {
-        "config": {
-          "label": "UID",
-          "placeholder": ""
-        },
-        "type": "UID"
-      },
-      "title": {
-        "type": "Text",
-        "config": {
-          "label": "Title",
-          "placeholder": "Main title if needed"
-        }
-      },
-      "description": {
-        "type": "Text",
-        "config": {
-          "label": "Description",
-          "placeholder": "Description if needed"
-        }
-      },
-      "image": {
-        "type": "Image",
-        "config": {
-          "constraint": {},
-          "thumbnails": [],
-          "label": "Image"
-        }
-      },
-      "publish_date": {
-        "type": "Timestamp",
-        "config": {
-          "label": "Publish Date"
-        }
-      },
-      "released": {
-        "config": {
-          "label": "Страница доступна на",
-          "placeholder_false": "Стейджинге",
-          "placeholder_true": "Продакшине",
-          "default_value": false
-        },
-        "type": "Boolean"
-      },
-      "body": {
-        "type": "Slices",
-        "fieldset": "Slice zone",
-        "config": {
-          "labels": {},
-          "choices": {
-            "spacer_slice": {
-              "type": "SharedSlice"
-            },
-            "title_and_description": {
-              "type": "SharedSlice"
-            },
-            "customers_slice": {
-              "type": "SharedSlice"
-            },
-            "customer_testimonials": {
-              "type": "SharedSlice"
-            },
-            "divider_slice": {
-              "type": "SharedSlice"
-            },
-            "button_slice": {
-              "type": "SharedSlice"
-            },
-            "customers_card_slice": {
-              "type": "SharedSlice"
-            },
-            "cta_banner_slice": {
-              "type": "SharedSlice"
-            },
-            "tag_cloud_slice": {
-              "type": "SharedSlice"
-            },
-            "start_screen": {
-              "type": "SharedSlice"
-            },
-            "title_and_paragraph_slice": {
-              "type": "SharedSlice"
-            },
-            "image_with_caption": {
-              "type": "SharedSlice"
-            },
-            "tech_and_tools_new_slice": {
-              "type": "SharedSlice"
-            },
-            "process_slice": {
-              "type": "SharedSlice"
-            },
-            "text_list": {
-              "type": "SharedSlice"
-            },
-            "quote_slice": {
-              "type": "SharedSlice"
-            },
-            "team_cards": {
-              "type": "SharedSlice"
-            },
-            "accordion_slice": {
-              "type": "SharedSlice"
-            }
-          }
-        }
-      }
-    },
-    "SEO": {
-      "metaTitle": {
-        "config": {
-          "label": "Meta Title",
-          "placeholder": ""
-        },
-        "type": "Text"
-      },
-      "metaDescription": {
-        "config": {
-          "label": "Meta Description",
-          "placeholder": ""
-        },
-        "type": "Text"
-      },
-      "ogImage": {
-        "config": {
-          "label": "Open Graph Image",
-          "constraint": {
-            "width": 1200,
-            "height": 630
-          },
-          "thumbnails": []
-        },
-        "type": "Image"
-      },
-      "schemaOrgSnippets": {
-        "config": {
-          "label": "schema.org snippets",
-          "fields": {
-            "singleSnippet": {
-              "config": {
-                "label": "Single snippet",
-                "placeholder": "",
-                "allowTargetBlank": true,
-                "single": "preformatted"
-              },
-              "type": "StructuredText"
-            }
-          }
-        },
-        "type": "Group"
-      }
-    },
-    "Header Plate": {
-      "header_plate_text": {
-        "type": "Text",
-        "config": {
-          "label": "Header Plate Text"
-        }
-      },
-      "header_plate_button_text": {
-        "type": "Text",
-        "config": {
-          "label": "Header Plate Button Text"
-        }
-      },
-      "header_plate_link": {
-        "type": "Text",
-        "config": {
-          "label": "Header Plate Link",
-          "placeholder": "/blog/"
-        }
-      },
-      "header_plate_background_color": {
-        "type": "Select",
-        "config": {
-          "options": [
-            "blue",
-            "purple",
-            "orange",
-            "green",
-            "blue-green"
-          ],
-          "label": "Header Plate Background Color",
-          "placeholder": "requires choice"
-        }
-      }
-    },
-    "Case Card Data": {
-      "card_logo": {
-        "type": "Image",
-        "config": {
-          "constraint": {
-            "width": null,
-            "height": null
-          },
-          "thumbnails": [],
-          "label": "Card Logo"
-        }
-      },
-      "card_poster_link": {
-        "type": "Text",
-        "config": {
-          "label": "Card Poster Link"
-        }
-      },
-      "card_video_link": {
-        "type": "Text",
-        "config": {
-          "label": "Card Video Link"
-        }
-      },
-      "card_height": {
-        "type": "Number",
-        "config": {
-          "label": "Card Height",
-          "placeholder": "370, 505 or 632"
-        }
-      }
-    }
-  },
-  "status": true,
-  "format": "custom"
+	"id": "case-studies",
+	"label": "Case Studies",
+	"repeatable": true,
+	"status": true,
+	"format": "custom",
+	"json": {
+		"Main": {
+			"uid": {
+				"config": {
+					"label": "UID",
+					"placeholder": ""
+				},
+				"type": "UID"
+			},
+			"title": {
+				"type": "Text",
+				"config": {
+					"label": "Title",
+					"placeholder": "Main title if needed"
+				}
+			},
+			"description": {
+				"type": "Text",
+				"config": {
+					"label": "Description",
+					"placeholder": "Description if needed"
+				}
+			},
+			"image": {
+				"type": "Image",
+				"config": {
+					"constraint": {},
+					"thumbnails": [],
+					"label": "Image"
+				}
+			},
+			"publish_date": {
+				"type": "Timestamp",
+				"config": {
+					"label": "Publish Date"
+				}
+			},
+			"released": {
+				"config": {
+					"label": "Страница доступна на",
+					"placeholder_false": "Стейджинге",
+					"placeholder_true": "Продакшине",
+					"default_value": false
+				},
+				"type": "Boolean"
+			},
+			"body": {
+				"type": "Slices",
+				"fieldset": "Slice Zone",
+				"config": {
+					"choices": {
+						"comparison_slice": {
+							"type": "SharedSlice"
+						},
+						"spacer_slice": {
+							"type": "SharedSlice"
+						},
+						"title_and_description": {
+							"type": "SharedSlice"
+						},
+						"customers_slice": {
+							"type": "SharedSlice"
+						},
+						"customer_testimonials": {
+							"type": "SharedSlice"
+						},
+						"divider_slice": {
+							"type": "SharedSlice"
+						},
+						"button_slice": {
+							"type": "SharedSlice"
+						},
+						"customers_card_slice": {
+							"type": "SharedSlice"
+						},
+						"cta_banner_slice": {
+							"type": "SharedSlice"
+						},
+						"tag_cloud_slice": {
+							"type": "SharedSlice"
+						},
+						"start_screen": {
+							"type": "SharedSlice"
+						},
+						"title_and_paragraph_slice": {
+							"type": "SharedSlice"
+						},
+						"image_with_caption": {
+							"type": "SharedSlice"
+						},
+						"tech_and_tools_new_slice": {
+							"type": "SharedSlice"
+						},
+						"process_slice": {
+							"type": "SharedSlice"
+						},
+						"text_list": {
+							"type": "SharedSlice"
+						},
+						"quote_slice": {
+							"type": "SharedSlice"
+						},
+						"team_cards": {
+							"type": "SharedSlice"
+						},
+						"accordion_slice": {
+							"type": "SharedSlice"
+						}
+					}
+				}
+			}
+		},
+		"SEO": {
+			"metaTitle": {
+				"config": {
+					"label": "Meta Title",
+					"placeholder": ""
+				},
+				"type": "Text"
+			},
+			"metaDescription": {
+				"config": {
+					"label": "Meta Description",
+					"placeholder": ""
+				},
+				"type": "Text"
+			},
+			"ogImage": {
+				"config": {
+					"label": "Open Graph Image",
+					"constraint": {
+						"width": 1200,
+						"height": 630
+					},
+					"thumbnails": []
+				},
+				"type": "Image"
+			},
+			"schemaOrgSnippets": {
+				"config": {
+					"label": "schema.org snippets",
+					"fields": {
+						"singleSnippet": {
+							"config": {
+								"label": "Single snippet",
+								"placeholder": "",
+								"allowTargetBlank": true,
+								"single": "preformatted"
+							},
+							"type": "StructuredText"
+						}
+					}
+				},
+				"type": "Group"
+			}
+		},
+		"Header Plate": {
+			"header_plate_text": {
+				"type": "Text",
+				"config": {
+					"label": "Header Plate Text"
+				}
+			},
+			"header_plate_button_text": {
+				"type": "Text",
+				"config": {
+					"label": "Header Plate Button Text"
+				}
+			},
+			"header_plate_link": {
+				"type": "Text",
+				"config": {
+					"label": "Header Plate Link",
+					"placeholder": "/blog/"
+				}
+			},
+			"header_plate_background_color": {
+				"type": "Select",
+				"config": {
+					"options": ["blue", "purple", "orange", "green", "blue-green"],
+					"label": "Header Plate Background Color",
+					"placeholder": "requires choice"
+				}
+			}
+		},
+		"Case Card Data": {
+			"card_logo": {
+				"type": "Image",
+				"config": {
+					"constraint": {
+						"width": null,
+						"height": null
+					},
+					"thumbnails": [],
+					"label": "Card Logo"
+				}
+			},
+			"card_poster_link": {
+				"type": "Text",
+				"config": {
+					"label": "Card Poster Link"
+				}
+			},
+			"card_video_link": {
+				"type": "Text",
+				"config": {
+					"label": "Card Video Link"
+				}
+			},
+			"card_height": {
+				"type": "Number",
+				"config": {
+					"label": "Card Height",
+					"placeholder": "370, 505 or 632"
+				}
+			}
+		}
+	}
 }

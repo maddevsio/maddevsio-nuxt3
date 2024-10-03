@@ -12,4 +12,5 @@ export const writeupComponents = defineSliceZoneComponents({
   writeup_text_slice: defineAsyncComponent(() => import('../../../prismicSlices/WriteupTextSlice/index.vue')),
   post_authors_slice: defineAsyncComponent(() => import('../../PageBlocks/Authors/Customizable.vue')),
   table_slice: defineAsyncComponent(() => import('../../../prismicSlices/TableSlice/index.vue')),
+  comparison_slice: defineAsyncComponent(() => import('../../../prismicSlices/ComparisonSlice/index.vue')),
 })
