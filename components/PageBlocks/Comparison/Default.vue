@@ -24,7 +24,7 @@ useLightbox('#lightbox-gallery', {
 </script>
 
 <template>
-  <div class="comparison-default" :style="{...cssVars}">
+  <div :class="`comparison-default comparison-default--${colorTheme}`" :style="{...cssVars}">
     <div class="comparison-default__container container">
       <div id="lightbox-gallery" class="comparison-default__cards">
         <div v-for="card in cards" :key="$prismic.asText(card.content)" class="comparison-default__card">
@@ -55,10 +55,30 @@ useLightbox('#lightbox-gallery', {
 <style lang="scss" scoped>
 .comparison-default {
 
+  &--black {
+    background-color: $bgcolor--black-oil;
+
+    .comparison-default__card-content {
+      color: $text-color--white-primary;
+    }
+  }
+
+  &--white {
+    background-color: $bgcolor--white-primary;
+
+    .comparison-default__card-content {
+      color: $text-color--black-oil;
+    }
+  }
+
   &__card {
-    margin-bottom: 25px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid $border-color--grey-20-percent;
+    margin-bottom: 35px;
 
     &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
       margin-bottom: 0;
     }
   }
@@ -72,7 +92,6 @@ useLightbox('#lightbox-gallery', {
   }
 
   &__card-content {
-    color: $text-color--white-primary;
 
     :deep(pre[class*=language-]) {
       background: transparent !important;
@@ -134,7 +153,7 @@ useLightbox('#lightbox-gallery', {
     :deep(p) {
       @include font('Inter', 17px, 400);
       line-height: 28.22px;
-      margin-bottom: 16px;
+      margin-top: 16px;
 
       &:last-child {
         margin-bottom: 0;
@@ -232,20 +251,16 @@ useLightbox('#lightbox-gallery', {
     :deep(ul),
     :deep(ol) {
       padding-left: 40px;
-      margin-bottom: 16px;
+      margin-top: 16px;
 
       li {
         margin-top: 8px;
         font-size: 14px;
         line-height: 26px;
-
-        &:first-child {
-          margin-top: 0;
-        }
       }
 
       @media screen and (max-width: 690px) {
-        padding: 18px;
+        padding: 0 18px;
       }
     }
 
@@ -272,8 +287,10 @@ useLightbox('#lightbox-gallery', {
 
     &__card {
       padding-right: 35px;
-      border-right: 1px solid $bgcolor--quote-box;
+      border-right: 1px solid $border-color--grey-20-percent;
       margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
 
       &:last-child {
         border: none;
