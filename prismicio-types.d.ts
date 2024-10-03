@@ -652,6 +652,7 @@ export type CareersHomeDocument<Lang extends string = string> = prismic.PrismicD
 >
 
 type CaseStudiesDocumentDataBodySlice =
+	| ComparisonSliceSlice
 	| SpacerSliceSlice
 	| TitleAndDescriptionSlice
 	| CustomersSliceSlice
@@ -747,7 +748,7 @@ interface CaseStudiesDocumentData {
 	released: prismic.BooleanField
 
 	/**
-	 * Slice zone field in *Case Studies*
+	 * Slice Zone field in *Case Studies*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -6087,6 +6088,7 @@ export type VideoBlockDocument<Lang extends string = string> = prismic.PrismicDo
 >
 
 type WriteupDocumentDataBodySlice =
+	| ComparisonSliceSlice
 	| SpacerSliceSlice
 	| TitleAndDescriptionSlice
 	| StartScreenSlice
@@ -6197,7 +6199,7 @@ interface WriteupDocumentData {
 	released: prismic.BooleanField
 
 	/**
-	 * Slice zone field in *Writeup*
+	 * Slice Zone field in *Writeup*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -8107,6 +8109,94 @@ type CertificatesSliceSliceVariation = CertificatesSliceSliceDefaultSlice
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type CertificatesSliceSlice = prismic.SharedSlice<'certificates_slice', CertificatesSliceSliceVariation>
+
+/**
+ * Item in *ComparisonSlice → Default → Primary → Cards*
+ */
+export interface ComparisonSliceSliceDefaultPrimaryCardsItem {
+	/**
+	 * Image field in *ComparisonSlice → Default → Primary → Cards*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: comparison_slice.default.primary.cards[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Content field in *ComparisonSlice → Default → Primary → Cards*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: comparison_slice.default.primary.cards[].content
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	content: prismic.RichTextField
+}
+
+/**
+ * Primary content in *ComparisonSlice → Default → Primary*
+ */
+export interface ComparisonSliceSliceDefaultPrimary {
+	/**
+	 * Color Theme field in *ComparisonSlice → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: requires choice
+	 * - **Default Value**: black
+	 * - **API ID Path**: comparison_slice.default.primary.colorTheme
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	colorTheme: prismic.SelectField<'black' | 'white', 'filled'>
+
+	/**
+	 * Column Number field in *ComparisonSlice → Default → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: comparison_slice.default.primary.columnNumber
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	columnNumber: prismic.NumberField
+
+	/**
+	 * Cards field in *ComparisonSlice → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: comparison_slice.default.primary.cards[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	cards: prismic.GroupField<Simplify<ComparisonSliceSliceDefaultPrimaryCardsItem>>
+}
+
+/**
+ * Default variation for ComparisonSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ComparisonSliceSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ComparisonSliceSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *ComparisonSlice*
+ */
+type ComparisonSliceSliceVariation = ComparisonSliceSliceDefault
+
+/**
+ * ComparisonSlice Shared Slice
+ *
+ * - **API ID**: `comparison_slice`
+ * - **Description**: ComparisonSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ComparisonSliceSlice = prismic.SharedSlice<'comparison_slice', ComparisonSliceSliceVariation>
 
 /**
  * Primary content in *ContactsSlice → Default slice → Primary*
@@ -17155,6 +17245,11 @@ declare module '@prismicio/client' {
 			CertificatesSliceSliceDefaultSliceItem,
 			CertificatesSliceSliceVariation,
 			CertificatesSliceSliceDefaultSlice,
+			ComparisonSliceSlice,
+			ComparisonSliceSliceDefaultPrimaryCardsItem,
+			ComparisonSliceSliceDefaultPrimary,
+			ComparisonSliceSliceVariation,
+			ComparisonSliceSliceDefault,
 			ContactsSliceSlice,
 			ContactsSliceSliceDefaultSlicePrimary,
 			ContactsSliceSliceDefaultSliceItem,
