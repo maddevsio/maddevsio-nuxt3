@@ -12,15 +12,19 @@ const { data: checklistHomePage, error } = await useAsyncData('checklistHomePage
     const checklistMainPageData = await checklistsService.getChecklistsPageContent('checklists')
     const checklistPageContent = checklistsService.extractChecklistMainPageData(checklistMainPageData)
 
+    const { tagCloud } = checklistPageContent
+
+    const tags = tagCloud?.length ? tagCloud[0].items : []
+    const allTag = tags.length && tags[0] ? tags[0].name : ''
+    const { writeAllTagName } = useDynamicTagCloudStore()
+    writeAllTagName(allTag, 'checklists')
+
     const allChecklistMainPageData = await checklistsService.loadChecklistsPagesData(
       4,
       route,
       config.public.ffEnvironment,
+      allTag,
     )
-
-    const { tagCloud } = checklistPageContent
-
-    const tags = tagCloud?.length ? tagCloud[0].items : []
 
     if (!checklistPageContent.released && config.public.ffEnvironment === 'production') {
       showError({ statusMessage: 'Page not found', statusCode: 404 })

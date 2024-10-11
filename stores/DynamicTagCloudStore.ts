@@ -6,6 +6,13 @@ export interface ActiveTag {
   allContent: string
 }
 
+export interface AllTagNames {
+  [key: string]: string
+  caseStudies: string
+  writeUps: string
+  checklists: string
+}
+
 export const useDynamicTagCloudStore = defineStore('DynamicTagCloudStore', () => {
   const activeTag = reactive<ActiveTag>({
     caseStudies: '',
@@ -13,6 +20,16 @@ export const useDynamicTagCloudStore = defineStore('DynamicTagCloudStore', () =>
     checklists: 'Checklist',
     allContent: '',
   })
+
+  const allTagNames = reactive<AllTagNames>({
+    caseStudies: '',
+    writeUps: '',
+    checklists: '',
+  })
+
+  const writeAllTagName = (tag: string, type: string) => {
+    allTagNames[type] = tag
+  }
 
   const updateActiveTag = (tag: string, type: string) => {
     if (type !== 'all') {
@@ -27,5 +44,7 @@ export const useDynamicTagCloudStore = defineStore('DynamicTagCloudStore', () =>
   return {
     activeTag,
     updateActiveTag,
+    writeAllTagName,
+    allTagNames,
   }
 })
