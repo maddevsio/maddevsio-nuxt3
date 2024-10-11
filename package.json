@@ -71,6 +71,7 @@
     "nuxt-lazy-hydrate": "^1.0.0",
     "nuxt-security": "^1.1.1",
     "nuxt-swiper": "^1.2.2",
+    "photoswipe": "^5.4.4",
     "pinia": "^2.1.7",
     "prismjs": "^1.29.0",
     "sass": "^1.69.5",
