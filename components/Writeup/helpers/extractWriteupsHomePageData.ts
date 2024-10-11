@@ -16,6 +16,7 @@ export const extractWriteupsHomePageData = (pageData: WriteupDocument, domain: s
     released: pageData?.data?.released,
     title: pageData?.data?.title,
     description: pageData?.data?.description,
+    titleBeforeCards: pageData?.data?.titleBeforeCards,
     image: pageData?.data?.image,
     headerPlate: pageData?.data?.header_plate_text
       ? {

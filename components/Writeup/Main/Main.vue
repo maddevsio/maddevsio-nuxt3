@@ -5,6 +5,7 @@ import type { ImageField } from '@prismicio/client'
 interface PageContent {
   title: string
   description: string
+  titleBeforeCards: string
   image: ImageField
 }
 
@@ -42,6 +43,6 @@ const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('page', 'writeU
         @change-tag-from-query-params="tagChangedFromQuery"
       />
     </LazySharedHeadStartScreen>
-    <LazyWriteupMainContent />
+    <LazyWriteupMainContent :title-before-cards="pageContent?.titleBeforeCards" />
   </div>
 </template>
