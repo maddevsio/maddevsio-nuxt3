@@ -29,7 +29,6 @@ const props = defineProps({
 })
 
 const modalContactMeRef = ref<{ show(): void } | null>(null)
-const { $getMediaFromS3 } = useMediaFromS3()
 const { emailSubject } = storeToRefs(useEmailSubjectStore())
 
 const getLinksColor = () => {
