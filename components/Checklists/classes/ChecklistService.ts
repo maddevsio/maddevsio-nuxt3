@@ -11,7 +11,6 @@ export class ChecklistService {
   domain: string
   pageName = 'checklistPage'
   mainTagForQuery = 'Checklist'
-  mainTagName = 'All Checklists'
   firstPage = 1
   pageCount = 4
 
@@ -78,8 +77,9 @@ export class ChecklistService {
     }
   }
 
-  async loadChecklistsPagesData(pageSize = this.pageCount, route: any, ffEnvironment: string) {
-    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query)
+  async loadChecklistsPagesData(pageSize = this.pageCount, route: any, ffEnvironment: string, allTag: string) {
+    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query, allTag)
+
     const { tags, page } = queryParams
     return await this.getChecklistsPages({
       tags,

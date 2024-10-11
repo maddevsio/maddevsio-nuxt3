@@ -7,6 +7,7 @@ export const caseStudiesComponents = defineSliceZoneComponents({
   cta_banner_slice: defineAsyncComponent(() => import('../../../prismicSlices/CtaBannerSlice/index.vue')),
   title_and_description: defineAsyncComponent(() => import('../../../prismicSlices/TitleAndDescription/index.vue')),
   horizontal_to_c: defineAsyncComponent(() => import('../../../prismicSlices/HorizontalToC/index.vue')),
+  comparison_slice: defineAsyncComponent(() => import('../../../prismicSlices/ComparisonSlice/index.vue')),
   customers_slice: defineAsyncComponent(() => import('../../../prismicSlices/CustomersSlice/index.vue')),
   customers_card_slice: defineAsyncComponent(() => import('../../../prismicSlices/CustomersCardSlice/index.vue')),
   customer_testimonials: defineAsyncComponent(() => import('../../../prismicSlices/CustomerTestimonials/index.vue')),

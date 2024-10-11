@@ -16,6 +16,7 @@ export const components = defineSliceZoneComponents({
   cards_with_icon: defineAsyncComponent(() => import('./CardsWithIcon/index.vue')),
   case_list_slice: defineAsyncComponent(() => import('./CaseListSlice/index.vue')),
   certificates_slice: defineAsyncComponent(() => import('./CertificatesSlice/index.vue')),
+  comparison_slice: defineAsyncComponent(() => import('./ComparisonSlice/index.vue')),
   contacts_slice: defineAsyncComponent(() => import('./ContactsSlice/index.vue')),
   cta_banner_slice: defineAsyncComponent(() => import('./CtaBannerSlice/index.vue')),
   customer_logo_slice: defineAsyncComponent(() => import('./CustomerLogoSlice/index.vue')),

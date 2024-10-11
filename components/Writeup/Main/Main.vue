@@ -5,8 +5,10 @@ import type { ImageField } from '@prismicio/client'
 interface PageContent {
   title: string
   description: string
+  titleBeforeCards: string
   image: ImageField
 }
+
 defineProps({
   pageContent: {
     type: Object as PropType<PageContent>,
@@ -18,11 +20,14 @@ defineProps({
   },
 
   tags: {
-    type: Array,
+    type: Array as PropType<
+      { name: string, icon: ImageField }[]>,
     default: () => [],
   },
 })
-const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('page', 'writeUps')
+
+const { allTagNames } = useDynamicTagCloudStore()
+const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('page', 'writeUps', allTagNames.writeUps, 'Writeup')
 </script>
 
 <template>
@@ -38,6 +43,6 @@ const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('page', 'writeU
         @change-tag-from-query-params="tagChangedFromQuery"
       />
     </LazySharedHeadStartScreen>
-    <LazyWriteupMainContent />
+    <LazyWriteupMainContent :title-before-cards="pageContent?.titleBeforeCards" />
   </div>
 </template>
