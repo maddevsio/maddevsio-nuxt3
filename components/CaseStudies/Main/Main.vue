@@ -19,7 +19,8 @@ defineProps({
   },
 })
 
-const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('caseStudiesPage', 'caseStudies')
+const { allTagNames } = useDynamicTagCloudStore()
+const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('caseStudiesPage', 'caseStudies', allTagNames.caseStudies, 'Case studies')
 </script>
 <template>
   <div class="case-studies-main">

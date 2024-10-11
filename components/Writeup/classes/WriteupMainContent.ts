@@ -18,7 +18,6 @@ export class WriteupMainContent implements IWriteupMainContent {
   ffEnvironment: string
   pageName = 'page'
   mainTagForQuery = 'Writeup'
-  mainTagName = 'All Write-ups'
   firstPage = 1
   extraIndentFromHeader = 65
 

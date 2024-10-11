@@ -21,16 +21,17 @@ const {
   pageName,
   firstPage,
   mainTagForQuery,
-  mainTagName,
   extraIndentFromHeader,
   getWriteups,
 } = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, config.public.ffEnvironment)
+
+const { allTagNames } = useDynamicTagCloudStore()
 
 const { changePage, getTagsFromRoute } = usePagination({
   router,
   route,
   mainTagForQuery,
-  mainTagName,
+  mainTagName: allTagNames.writeUps,
   pageName,
   activeTag: activeTag.value.writeUps,
   currentPage,

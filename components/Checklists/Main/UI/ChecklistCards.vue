@@ -39,11 +39,13 @@ const loadChecklistCards = async (tags: string[], pageSize: number, page: number
   cards.value = checklistService.transformChecklistDataForCards(checklistPagesData)
 }
 
+const { allTagNames } = useDynamicTagCloudStore()
+
 const { changePage, getTagsFromRoute } = usePagination({
   router,
   route,
   mainTagForQuery: checklistService.mainTagForQuery,
-  mainTagName: checklistService.mainTagName,
+  mainTagName: allTagNames.checklists,
   pageName: checklistService.pageName,
   activeTag: activeTag.value.checklists,
   currentPage: currentPageChecklist,

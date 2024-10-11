@@ -7,6 +7,7 @@ interface PageContent {
   description: string
   image: ImageField
 }
+
 defineProps({
   pageContent: {
     type: Object as PropType<PageContent>,
@@ -18,11 +19,14 @@ defineProps({
   },
 
   tags: {
-    type: Array,
+    type: Array as PropType<
+      { name: string, icon: ImageField }[]>,
     default: () => [],
   },
 })
-const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('page', 'writeUps')
+
+const { allTagNames } = useDynamicTagCloudStore()
+const { tagChangedFromQuery, tagChangedHandler } = useTagChanged('page', 'writeUps', allTagNames.writeUps, 'Writeup')
 </script>
 
 <template>

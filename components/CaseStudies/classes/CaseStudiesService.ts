@@ -10,7 +10,6 @@ export class CaseStudiesService {
   prismic: PrismicPlugin
   pageName = 'caseStudiesPage'
   mainTagForQuery = 'Case studies'
-  mainTagName = 'All Cases'
   firstPage = 1
 
   constructor(prismic: PrismicPlugin) {
@@ -40,7 +39,7 @@ export class CaseStudiesService {
   }
 
   async getCaseStudiesPages({
-    tags = ['Case Studies'],
+    tags = ['Case studies'],
     pageSize = 11,
     page = 1,
     ffEnvironment,
@@ -69,8 +68,8 @@ export class CaseStudiesService {
     }
   }
 
-  async loadCasesPagesData(pageSize = 11, route: any, ffEnvironment: string) {
-    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query)
+  async loadCasesPagesData(pageSize = 11, route: any, ffEnvironment: string, allTag: string) {
+    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query, allTag)
     return await this.getCaseStudiesPages({ ...queryParams, pageSize, ffEnvironment })
   }
 

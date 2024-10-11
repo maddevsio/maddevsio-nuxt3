@@ -47,8 +47,8 @@ export class Writeup {
     return await prismic.client.getByUID('writeup', uid, { fetchLinks })
   }
 
-  async loadWriteupPagesData(prismic: PrismicPlugin, pageSize = 5, route: any) {
-    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query)
+  async loadWriteupPagesData(prismic: PrismicPlugin, pageSize = 5, route: any, allTag: string) {
+    const queryParams = checkParametersForQuery(this.pageName, this.mainTagForQuery, route.query, allTag)
     const { tags, page } = queryParams
     return await this.getWriteupPages(prismic, tags, pageSize, page);
   }
