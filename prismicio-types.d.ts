@@ -6141,6 +6141,17 @@ interface WriteupDocumentData {
 	description: prismic.KeyTextField
 
 	/**
+	 * Title Before Cards field in *Writeup*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: writeup.titleBeforeCards
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	titleBeforeCards: prismic.KeyTextField
+
+	/**
 	 * Image field in *Writeup*
 	 *
 	 * - **Field Type**: Image
@@ -6197,7 +6208,7 @@ interface WriteupDocumentData {
 	released: prismic.BooleanField
 
 	/**
-	 * Slice zone field in *Writeup*
+	 * Slice Zone field in *Writeup*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
