@@ -30,13 +30,8 @@ const handleChangeTag = () => {
   findTag('changed')
 }
 
-const changeTagFromQueryParams = () => {
-  findTag('changeTagFromQueryParams')
-}
-
 const updateActiveState = (tag: string) => {
   activeTag.value = tag as string
-  changeTagFromQueryParams()
 }
 
 if ('tag' in route.query) {

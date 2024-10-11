@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { CaseStudiesService } from '~/components/CaseStudies/classes/CaseStudiesService'
 import { buildHead } from '~/SEO/buildMetaTags'
+import type { TagCloudItem } from '~/interfaces/common/commonInterfaces'
 
 const prismic = usePrismic()
 const route = useRoute()
@@ -22,11 +23,13 @@ const { data: caseStudiesMainPage, error } = await useAsyncData('caseStudiesMain
       pageSize = 5
     }
 
-    const allCasesPagesData = await caseStudiesService.loadCasesPagesData(pageSize, route, config.public.ffEnvironment)
-
     const { tagCloud } = pageContent
 
-    const tags = tagCloud.length ? tagCloud[0].items : []
+    const tags = tagCloud.length ? tagCloud[0].items as TagCloudItem[] : []
+    const allTag = tags.length && tags[0] ? tags[0].name : ''
+    const { writeAllTagName } = useDynamicTagCloudStore()
+    writeAllTagName(allTag, 'caseStudies')
+    const allCasesPagesData = await caseStudiesService.loadCasesPagesData(pageSize, route, config.public.ffEnvironment, allTag)
 
     if (!pageContent.released && config.public.ffEnvironment === 'production') {
       showError({

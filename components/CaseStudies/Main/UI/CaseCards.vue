@@ -64,12 +64,12 @@ const removeAnimationBlockOnLoad = () => {
     })
   }
 }
-
+const { allTagNames } = useDynamicTagCloudStore()
 const { changePage, getTagsFromRoute } = usePagination({
   router,
   route,
   mainTagForQuery: caseStudiesService.mainTagForQuery,
-  mainTagName: caseStudiesService.mainTagName,
+  mainTagName: allTagNames.caseStudies,
   pageName: caseStudiesService.pageName,
   activeTag: dynamicTagStore.activeTag.caseStudies,
   currentPage,

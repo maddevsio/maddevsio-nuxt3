@@ -462,3 +462,8 @@ export interface TransformedGlossaryAuthor {
   position?: string | undefined
   link?: string | undefined
 }
+
+export interface TagCloudItem {
+  name: string
+  icon: ImageField
+}

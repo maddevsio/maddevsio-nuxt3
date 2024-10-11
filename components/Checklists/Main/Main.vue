@@ -19,7 +19,8 @@ defineProps({
   },
 })
 
-const { tagChangedFromQuery, tagChangedHandler, activeTag } = useTagChanged('checklistPage', 'checklists')
+const { allTagNames } = useDynamicTagCloudStore()
+const { tagChangedFromQuery, tagChangedHandler, activeTag } = useTagChanged('checklistPage', 'checklists', allTagNames.checklists, 'Checklist')
 </script>
 <template>
   <section class="checklist-main-page">

@@ -6143,6 +6143,17 @@ interface WriteupDocumentData {
 	description: prismic.KeyTextField
 
 	/**
+	 * Title Before Cards field in *Writeup*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: writeup.titleBeforeCards
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	titleBeforeCards: prismic.KeyTextField
+
+	/**
 	 * Image field in *Writeup*
 	 *
 	 * - **Field Type**: Image

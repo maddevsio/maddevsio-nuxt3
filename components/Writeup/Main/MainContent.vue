@@ -2,6 +2,13 @@
 import { WriteupMainContent } from '~/components/Writeup/classes/WriteupMainContent'
 import type { TransformedWriteups } from '~/components/Writeup/interfaces/IWriteupList'
 
+defineProps({
+  titleBeforeCards: {
+    type: String,
+    default: 'All Write-ups',
+  },
+})
+
 const transformedWriteupsData = inject('transformedWriteupsData')
 const prismic = usePrismic()
 const route = useRoute()
@@ -21,16 +28,17 @@ const {
   pageName,
   firstPage,
   mainTagForQuery,
-  mainTagName,
   extraIndentFromHeader,
   getWriteups,
 } = new WriteupMainContent(transformedWriteupsData as TransformedWriteups, prismic, config.public.ffEnvironment)
+
+const { allTagNames } = useDynamicTagCloudStore()
 
 const { changePage, getTagsFromRoute } = usePagination({
   router,
   route,
   mainTagForQuery,
-  mainTagName,
+  mainTagName: allTagNames.writeUps,
   pageName,
   activeTag: activeTag.value.writeUps,
   currentPage,
@@ -60,7 +68,7 @@ onMounted(() => {
       <h2
         class="writeup-main-content__title"
       >
-        All Write-ups
+        {{ titleBeforeCards }}
       </h2>
       <div
         ref="writeupListRef"
