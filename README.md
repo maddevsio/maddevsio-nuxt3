@@ -38,9 +38,18 @@ $ npm install
 ```bash
 $ npm run dev
 ```
+3. Run the project in production mode
 
-3. The application is available on [localhost:3000](http://localhost:3000)
-4. To improve the application's performance, it is better to run it from the local domain `maddevs.devtest:3000`. This is necessary for the forms to work properly.
+```bash
+$ npm run build
+```
+4. After build you need to launch the project
+
+```bash
+$ npm run start
+```
+5. The application is available on [localhost:3000](http://localhost:3000)
+6To improve the application's performance, it is better to run it from the local domain `maddevs.devtest:3000`. From this domain forms' requests work.
 
 For detailed explanation on how things work, checkout the [Nuxt 3 docs](https://nuxt.com/docs/getting-started/introduction).
 
@@ -112,135 +121,46 @@ A list of additional tools that we use for make our codebase better
 
 A list of environment variables that needed to start the project(required)
 
-| NAME                                   | DESCRIPTION                                                 |
-|----------------------------------------|-------------------------------------------------------------|
-| NODE_SENDPULSE_API_USER_ID             | Sendpulse api user id                                       |
-| NODE_SENDPULSE_API_KEY                 | Sendpulse api key                                           |
-| NODE_EMAIL_HR                          | Email to send messages(cv) to HR department                 |
-| NODE_EMAIL_CONTACT                     | Email to send messages(from leads) to DM department         |
-| NODE_EMAIL_MARKETING                   | Email to send messages to Marketing department              |
-| NODE_EMAIL_CV                          | Email to send messages to CV department                     |
-| NODE_PRISMIC_API                       | Prismic api key                                             |
-| NODE_ATLASSIAN_TOKEN                   | Jira auth token                                             |
-| NODE_ATLASSIAN_EMAIL                   | Jira auth email                                             |
-| NODE_ATLASSIAN_PROJECT_KEY             | Jira auth project key                                       |
-| NODE_ATLASSIAN_API_URL                 | Jira api url                                                |
-| NODE_NODE_ATLASSIAN_EBOOK_PROJECT_KEY  | Jira Ebook key dashboard                                    |
-| NODE_ATLASSIAN_SUBSCRIBERS_PROJECT_KEY | Jira Subscribers key dashboard                              |
-| NODE_JEST_COVERAGE_SLACK_WEBHOOK_URL   | Slack webhook to send coverage                              |
-| NODE_PAGESPEED_SLACK_WEBHOOK_URL       | Slack webhook to send pagespeed info                        |
-| NODE_SENTRY_DSN                        | Sentry DSN                                                  |
-| NODE_SENTRY_DSN_FRONT                  | Sentry DSN for client                                       |
-| SENTRY_ORG                             | Sentry Organization name                                    |
-| SENTRY_PROJECT                         | Sentry project name                                         |
-| SENTRY_AUTH_TOKEN                      | Sentry auth token                                           |
-| NODE_DOMAIN                            | Domain                                                      |
-| FF_ENVIRONMENT                         | Feature flags environment                                   |
-| NODE_ENV                               | Development variant                                         |
-| NODE_HUNTFLOW_API_URL                  | Huntflow api url                                            |
-| NODE_HUNTFLOW_TOKEN                    | Huntflow auth token                                         |
-| NODE_HUNTFLOW_ACCOUNT_ID               | Huntflow auth account                                       |
-| NODE_HUNTFLOW_RESERVE_VACANCY_ID       | Huntflow auth reserve vacancy                               |
-| NODE_CYPRESS_BASE_URL                  | Cypress url                                                 |
-| NODE_AWS_URL                           | AWS url                                                     |
-| NODE_S3_PUBLIC_URL                     | S3 url                                                      |
-| NODE_S3_SECRET_ACCESS_KEY              | S3 secret key                                               |
-| RECAPTCHA_SITE_KEY                     | ReCaptcha site key                                          |
-| RECAPTCHA_SECRET_KEY                   | ReCaptcha secret key                                        |
-| NODE_GA4_KEY                           | GA4 MEASUREMENT ID                                          |
-| NODE_ANALYTICS_UNIVERSAL_KEY           | Universal Analytics Tracking ID                             |
-| FACEBOOK_CODE                          | Access code for FaceBook Pixel                              |
-| LINKEDIN_PIXEL_ID                      | Linkidin identificator                                      |
-| NODE_SMARTLOOK_PROJECT_ID              | Smartlook project id from smartlook account                 |
+| NAME                                  | DESCRIPTION                                                     |
+|---------------------------------------|-----------------------------------------------------------------|
+| NODE_SENDPULSE_API_USER_ID            | Sendpulse api user id                                           |
+| NODE_SENDPULSE_API_KEY                | Sendpulse api key                                               |
+| NODE_SENDPULSE__FEEDBACK_TEMPLAT      | Sendpulse feedback template id for form on rumor managment page |
+| NODE_SENDPULSE_ADDRESSBOOKS_ID        | Sendpulse address book id                                       |
+| NODE_EMAIL_HR                         | Email to send messages(cv) to HR department                     |
+| NODE_EMAIL_CONTACT                    | Email to send messages(from leads) to DM department             |
+| NODE_EMAIL_MARKETING                  | Email to send messages to Marketing department                  |
+| NODE_EMAIL_CV                         | Email to send messages to CV department                         |
+| NODE_PRISMIC_API                      | Prismic api key                                                 |
+| NODE_ATLASSIAN_TOKEN                  | Jira auth token                                                 |
+| NODE_ATLASSIAN_EMAIL                  | Jira auth email                                                 |
+| NODE_ATLASSIAN_PROJECT_KEY            | Jira auth project key                                           |
+| NODE_ATLASSIAN_API_URL                | Jira api url                                                    |
+| NODE_NODE_ATLASSIAN_EBOOK_PROJECT_KEY | Jira Ebook key dashboard                                        |
+| NODE_ATLASSIAN_SUBSCRIBERS_PROJECT_KEY | Jira Subscribers key dashboard                                  |
+| NODE_JEST_COVERAGE_SLACK_WEBHOOK_URL  | Slack webhook to send coverage                                  |
+| NODE_PAGESPEED_SLACK_WEBHOOK_URL      | Slack webhook to send pagespeed info                            |
+| NODE_SENTRY_DSN                       | Sentry DSN                                                      |
+| NODE_SENTRY_DSN_FRONT                 | Sentry DSN for client                                           |
+| NODE_SENTRY_LOADER_PATH               | Sentry loader path for script                                   |
+| SENTRY_ORG                            | Sentry Organization name                                        |
+| SENTRY_PROJECT                        | Sentry project name                                             |
+| SENTRY_AUTH_TOKEN                     | Sentry auth token                                               |
+| NODE_DOMAIN                           | Domain                                                          |
+| FF_ENVIRONMENT                        | Feature flags environment                                       |
+| NODE_ENV                              | Development variant                                             | |
+| NODE_AWS_URL                          | AWS url                                                         |
+| NODE_S3_PUBLIC_URL                    | S3 url                                                          |
+| NODE_S3_SECRET_ACCESS_KEY             | S3 secret key                                                   |
+| RECAPTCHA_SITE_KEY                    | ReCaptcha site key                                              |
+| RECAPTCHA_SECRET_KEY                  | ReCaptcha secret key                                            |
+| NODE_GA4_KEY                          | GA4 MEASUREMENT ID                                              |
+| NODE_ANALYTICS_UNIVERSAL_KEY          | Universal Analytics Tracking ID                                 |
+| FACEBOOK_CODE                         | Access code for FaceBook Pixel                                  |
+| LINKEDIN_PIXEL_ID                     | Linkidin identificator                                          |
+| NODE_SMARTLOOK_PROJECT_ID             | Smartlook project id from smartlook account                     |
+| LINKEDIN_SCRIPT_TURN_ON               | For enabling/disabling linkedin pixel script                    |
 
-[//]: # (### 💻 Dev Radiator envs)
-
-[//]: # (| NAME                                   | DESCRIPTION                                                 |)
-
-[//]: # (|----------------------------------------|-------------------------------------------------------------|)
-
-[//]: # (| NODE_DEV_RADIATOR_CRON_STRING          | Cron string for start dev radiator                          |)
-
-[//]: # (| NODE_DEV_RADIATOR_GH_TOKEN             | Github token for request                                    |)
-
-[//]: # (| NODE_DEV_RADIATOR_SLACK_WEBHOOK        | Slack webhook for send message                              |)
-
-[//]: # (| NODE_DEV_MONGO_PASSWORD                | Cloud MongoDB password                                      |)
-
-[//]: # (| NODE_DEV_MONGO_USERNAME                | Cloud MongoDB username                                      |)
-
-[//]: # (| NODE_DEV_RADIATOR_MONGO                | Cloud MongoDB url connecting                                |)
-
-[//]: # ()
-[//]: # (### 📉 Marketing Radiator envs)
-
-[//]: # (| NAME                                    |                          DESCRIPTION                          |)
-
-[//]: # (|-----------------------------------------|:-------------------------------------------------------------:|)
-
-[//]: # (| RADIATOR_FIRESTORE_AUTH_TYPE            |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_PROJECT_ID           |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_PRIVATE_KEY_ID       |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_PRIVATE_KEY          |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_CLIENT_EMAIL         |                 From firestore auth json file                 |)
-
-[//]: # (| RADIATOR_FIRESTORE_CLIENT_ID            |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_AUTH_URI             |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_TOKEN_URI            |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_AUTH_PROVIDER        |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_CLIENT_CERT_URL      |                                                               |)
-
-[//]: # (| --------------------------------------  | ------------------------------------------------------------- |)
-
-[//]: # (| RADIATOR_AUTH_TYPE                      |                                                               |)
-
-[//]: # (| RADIATOR_AUTH_URI                       |                                                               |)
-
-[//]: # (| RADIATOR_CLIENT_CERT_URL                |                                                               |)
-
-[//]: # (| RADIATOR_CLIENT_EMAIL                   |                                                               |)
-
-[//]: # (| RADIATOR_CLIENT_ID                      |                                                               |)
-
-[//]: # (| RADIATOR_PRIVATE_KEY                    |           From google cloud console auth json file            |)
-
-[//]: # (| RADIATOR_PRIVATE_KEY_ID                 |                                                               |)
-
-[//]: # (| RADIATOR_PROJECT_ID                     |                                                               |)
-
-[//]: # (| RADIATOR_PROVIDER_CERT_URL              |                                                               |)
-
-[//]: # (| RADIATOR_TOKEN_URI                      |                                                               |)
-
-[//]: # (| --------------------------------------  | ------------------------------------------------------------- |)
-
-[//]: # (| RADIATOR_FIRESTORE_ID                   |                     Firestore database ID                     |)
-
-[//]: # (| SLACK_WEBHOOK_URL                       |    Slack webhook for send message from marketing radiator     |)
-
-[//]: # (| SLACK_CHANNEL_ID                        |  Slack channel id where send message from marketing radiator  |)
-
-[//]: # (| RADIATOR_DAILY_DISPATCH_TIME            |      Number when run send report from marketing radiator      |)
-
-[//]: # (| REDDIT_CLIENT_ID                        |             Reddit client id from API app reddit              |)
-
-[//]: # (| REDDIT_CLIENT_SECRET                    |           Reddit client secret from API app reddit            |)
-
-[//]: # (| REDDIT_USER_NAME                        |                    Reddit account username                    |)
-
-[//]: # (| REDDIT_PASSWORD                         |                    Reddit account password                    |)
-
-[//]: # (| RADIATOR_QUORA_USER_ID                  |                     Quora user account ID                     |)
-
-[//]: # (| RADIATOR_GLASSDOOR_API_KEY              |                 API Key from page2api service                 |)
 
 [//]: # (### Production status checker)
 
@@ -304,13 +224,16 @@ Before start working with our team you need to read the document.
 
 ## 🚀 Deploy
 
+### Develop
+To send changes for testing it before deploy, you should merge your branch to the **develop** branch
+
 ### Staging
 
 To send changes to the staging server, you should merge your branch to the **staging** branch
 
 ### Production
 
-To send changes to the staging server, you should merge **staging** branch into **master** branch
+To send changes to the production server, you should merge **staging** branch into **master** branch
 
 [//]: # (## 🚓 Testing)
 
