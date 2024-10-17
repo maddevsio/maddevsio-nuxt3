@@ -19,10 +19,6 @@
 - [😎 AWS S3](#-aws-s3)
 - [🗄 Prismic](#-prismic)
 
-[//]: # (- [🏳️ Feature Flags]&#40;#%EF%B8%8F-feature-flags&#41;)
-[//]: # (- [🔥 SEO-Analyzer]&#40;#-seo-analyzer&#41;)
-[//]: # (- [👐 Additional docs]&#40;#-additional-docs&#41;)
-
 ## ⚡️ Quick development start
 
 To start the project you need to do the following steps:
@@ -75,16 +71,26 @@ A list of main technologies that we use for build our application
 | [Pinia](https://pinia.vuejs.org/)                                   | ^2.1.7   | Intuitive, type safe and flexible Store for Vue                                                                                                        |
 | [mitt](https://www.npmjs.com/package/mitt)                          | ^3.0.1   | Tiny 200b functional event emitter / pubsub.                                                                                                           |
 | [sendpulse-api](https://www.npmjs.com/package/sendpulse-api)        | ^1.1.6   | A simple SendPulse REST client library and example for Node.js. [API Documentation](https://sendpulse.com/api)                                         |
+| [nuxt-swiper](https://www.npmjs.com/package/nuxt-swiper)            | ^1.2.2   | Swiper component for Nuxt.js                                                                                                                           |
+| [vue-recaptcha](https://www.npmjs.com/package/vue-recaptcha)        | ^2.0.3   | A simple Vue.js component for easy integration with Google reCAPTCHA v2 and v3.                                                                       |
 
 #### Additional tools
 
 A list of additional tools that we use for make our codebase better
 
-| Technology                                                        | Version  | Description                                                                 |
-|-------------------------------------------------------------------|----------| --------------------------------------------------------------------------- |
-| [ESLint](https://www.npmjs.com/package/eslint)                    | ^8.56.0  | Pluggable JavaScript linter                                                 |
-| [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) | ^7.106.1 | Application monitoring and error tracking                                   |
-| [Snyk](https://snyk.io/)                                          | ^1.1283.1 | Tool for find and fix security vulnerabilities                              |
+| Technology                                                        | Version   | Description                                                                |
+|-------------------------------------------------------------------|-----------| -------------------------------------------------------------------------- |
+| [ESLint](https://www.npmjs.com/package/eslint)                    | ^8.56.0   | Pluggable JavaScript linter                                                |
+| [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) | ^7.106.1  | Application monitoring and error tracking                                  |
+| [Snyk](https://snyk.io/)                                          | ^1.1283.1 | Tool for find and fix security vulnerabilities                             |
+
+#### Tools for tracking and analytics
+A list of tools that we use for users' tracking and analytics
+
+| Technology                                                        | Version   | Description                                                                |
+|---------------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Smartlook](https://www.smartlook.com/)               |           | Smartlook is a qualitative analytics solution for web and mobile apps      |
+| [GA4](https://analytics.google.com/)                                                |           | Google Analytics 4                                                         |
 
 ### Project structure
 
@@ -161,36 +167,6 @@ A list of environment variables that needed to start the project(required)
 | NODE_SMARTLOOK_PROJECT_ID             | Smartlook project id from smartlook account                     |
 | LINKEDIN_SCRIPT_TURN_ON               | For enabling/disabling linkedin pixel script                    |
 
-
-[//]: # (### Production status checker)
-
-[//]: # (| NAME                                | DESCRIPTION                                                                |)
-
-[//]: # (|-------------------------------------|----------------------------------------------------------------------------|)
-
-[//]: # (| CHECK_PRODUCTION_STATUS_CRON_STRING | Cron string for start checker                                              |)
-
-[//]: # (| SITE_URL_FOR_CHECK                  | Site url for check                                                         |)
-
-[//]: # (| SLACK_CHANNEL_ID_FOR_PROD_CHECK     | Slack channel id where send message from checker                           |)
-
-[//]: # (| USERS_TO_BE_MENTIONED               | Array with objects like [{ "name": "John Doe", :id": "<@slack user id>" }] |)
-
-[//]: # ()
-[//]: # (### Memory usage checker)
-
-[//]: # (| NAME                                | DESCRIPTION                     |)
-
-[//]: # (|-------------------------------------|---------------------------------|)
-
-[//]: # (| CHECK_MEMORY_USAGE_CRON_STRING      | Cron string for start checker   |)
-
-[//]: # (| CHECK_MEMORY_USAGE_WHEN_ALARM_PERC  | Percentage when alarm           |)
-
-[//]: # (| CHECK_MEMORY_USAGE_ENABLED          | true or false                   |)
-
-[//]: # (| CHECK_MEMORY_USAGE_SIZE_MEM         | Total memory size in OS         |)
-
 ## ⚠️ Required variables for building an application
 <font size=3>Without these variables the application will not work correctly</font>
 
@@ -199,7 +175,6 @@ A list of environment variables that needed to start the project(required)
 | NODE_ENV                            | Development variant                                 |
 | NODE_S3_PUBLIC_URL                  | AWS S3 CloudFront public API                        |
 | NODE_DOMAIN                         | Domain                                              |
-| NODE_HUNTFLOW_RESERVE_VACANCY_ID    | Huntflow auth reserve vacancy                       |
 | NODE_EMAIL_HR                       | Email to send messages(cv) to HR department         |
 | NODE_EMAIL_CV                       | Email to send messages to CV department             |
 | NODE_EMAIL_CONTACT                  | Email to send messages(from leads) to DM department |
@@ -234,42 +209,6 @@ To send changes to the staging server, you should merge your branch to the **sta
 ### Production
 
 To send changes to the production server, you should merge **staging** branch into **master** branch
-
-[//]: # (## 🚓 Testing)
-
-[//]: # ()
-[//]: # (### Coverage&#40;unit&#41;)
-
-[//]: # ()
-[//]: # (![Coverage statements]&#40;https://maddevsio.s3.eu-west-1.amazonaws.com/coverage-badges/badge-statements.svg&#41;)
-
-[//]: # (![Coverage branches]&#40;https://maddevsio.s3.eu-west-1.amazonaws.com/coverage-badges/badge-branches.svg&#41;)
-
-[//]: # (![Coverage functions]&#40;https://maddevsio.s3.eu-west-1.amazonaws.com/coverage-badges/badge-functions.svg&#41;)
-
-[//]: # (![Coverage lines]&#40;https://maddevsio.s3.eu-west-1.amazonaws.com/coverage-badges/badge-lines.svg&#41;)
-
-[//]: # ()
-[//]: # (### Commands)
-
-[//]: # ()
-[//]: # (| COMMAND                            | DESCRIPTION                         |)
-
-[//]: # (| ---------------------------------- | ----------------------------------- |)
-
-[//]: # (| `npm run test`                     | Run all tests                       |)
-
-[//]: # (| `npm run test:unit`                | Run all unit-tests                  |)
-
-[//]: # (| `npm run test:unit:node`           | Run only server unit-tests          |)
-
-[//]: # (| `npm run test:unit:browser`        | Run only browser unit-tests         |)
-
-[//]: # (| `npm run test:staging`             | Run tests && send coverage to slack |)
-
-[//]: # (| `npm run test:e2e`                 | Run e2e tests                       |)
-
-[//]: # (| `npm run generate:coverage-badges` | Generate coverage badges            |)
 
 ## ✨ Linting
 
@@ -370,125 +309,6 @@ This variable must contain the url, which will be used to access s3 files.
 | `aws s3 sync --acl public-read ./folder s3://maddevsio/folder/`         | Update files                                                   |
 | `aws s3 sync s3://maddevsio/folder/ ./folder`                           | Downloads all content from s3 /folder to local folder ./folder |
 
-[//]: # (## 🏳️ Feature flags)
-
-[//]: # ()
-[//]: # (We're used feature-flags for display/hide some features on different environments.)
-
-[//]: # ()
-[//]: # (### Create flag)
-
-[//]: # ()
-[//]: # (For create a new feature flag, you need to open `@/featureFlags/config.js` file and add your flag into config with the following syntax:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (export const config = {)
-
-[//]: # (  myFeatureFlag: ["development", "staging"])
-
-[//]: # (};)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (The name of your feature flag should be key in the `config`. Environments where your flag should return true should be value of your flag. It's an array of environments. At the moment we have 3 available environments:)
-
-[//]: # ()
-[//]: # (- `development` - for local development)
-
-[//]: # (- `staging` - for staging&#40;maddevs.co&#41;)
-
-[//]: # (- `production` - for production&#40;maddevs.io&#41;)
-
-[//]: # ()
-[//]: # (### Usage)
-
-[//]: # ()
-[//]: # (#### with `<Feature>` component)
-
-[//]: # ()
-[//]: # (The better option. You can simple use your feature-flag in the templates using globally registered component. Example:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (<Feature flag="myFeatureFlag">Some content</Feature>)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (#### with `featureFlag&#40;&#41;` method)
-
-[//]: # ()
-[//]: # (Also you can use global method in your template:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (<div v-if="featureFlag&#40;'myFeatureFlag'&#41;">Some content</div>)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (or in the component's code:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (export default {)
-
-[//]: # (  methods: {)
-
-[//]: # (    send&#40;&#41; {)
-
-[//]: # (      if &#40;featureFlag&#40;"myFeatureFlag"&#41;&#41; {)
-
-[//]: # (        // ...do something)
-
-[//]: # (      })
-
-[//]: # (    })
-
-[//]: # (  })
-
-[//]: # (};)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (## 🏳️ Feature flags for pages)
-
-[//]: # ()
-[//]: # (### Create flag)
-
-[//]: # ()
-[//]: # (For create a new feature flag for pages, you need to open `router.config.js` file and add your flag into config with the following syntax:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (export const routerConfig = [)
-
-[//]: # (  {)
-
-[//]: # (    path: "/",)
-
-[//]: # (    development: true,)
-
-[//]: # (    staging: true,)
-
-[//]: # (    production: false)
-
-[//]: # (  })
-
-[//]: # (];)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (Then, if a page is unavailable in one of the environments, the page will be removed from the sitemap and a redirect to page 404 will be configured for it.)
 
 ## BEM (Block, Element, Modifier)
 
@@ -553,54 +373,6 @@ Let's not use:
 
 For a detailed study of BEM, visit the website: https://en.bem.info/
 
-[//]: # (## 🔥 SEO-Analyzer)
-
-[//]: # ()
-[//]: # (Github action for checks for errors in the html DOM)
-
-[//]: # ()
-[//]: # (### Running)
-
-[//]: # ()
-[//]: # (To run an analyzer you need to execute the following command:)
-
-[//]: # ()
-[//]: # (```bash)
-
-[//]: # (npm run seo-analyze)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (If you have some problems with SEO you will be notified about that in the console:)
-
-[//]: # ()
-[//]: # (```bash)
-
-[//]: # (████████████████████████████████████████ 100% | ETA: 0s | 233/233)
-
-[//]: # ()
-[//]: # (File: dist/clients/case-studies/namba-food/index.html)
-
-[//]: # (SEO defects found:)
-
-[//]: # (There are 1 <img> tag without alt attribute)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (Otherwise, you should get success result:)
-
-[//]: # ()
-[//]: # (```bash)
-
-[//]: # ( ████████████████████████████████████████ 100% | ETA: 0s | 233/233)
-
-[//]: # ()
-[//]: # ( No any SEO defect found.)
-
-[//]: # (```)
-
 ## 🗄 Prismic
 
 ### Create and push slices to prismic dashboard
@@ -634,8 +406,6 @@ or
 prismic sm --develop
 ```
 
-[Create a new slice in the slices builder dashboard](https://prismic.io/docs/technologies/create-model-component-nuxtjs)
+[How to work with slice machine](https://prismic.io/docs/slice-machine)
 
-[Edit code of created slice in the project filesystem](https://prismic.io/docs/technologies/update-and-style-components-nuxtjs)
-
-[Push created slice to prismic from slices builder dashboard](https://prismic.io/docs/technologies/send-slices-screenshots-prismic-nuxtjs)
+[Learn how to use Prismic with Nuxt 3](https://prismic.io/docs/nuxt3)
