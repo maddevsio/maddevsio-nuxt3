@@ -144,14 +144,8 @@ A list of environment variables that needed to start the project(required)
 | NODE_ATLASSIAN_API_URL                | Jira api url                                                    |
 | NODE_NODE_ATLASSIAN_EBOOK_PROJECT_KEY | Jira Ebook key dashboard                                        |
 | NODE_ATLASSIAN_SUBSCRIBERS_PROJECT_KEY | Jira Subscribers key dashboard                                  |
-| NODE_JEST_COVERAGE_SLACK_WEBHOOK_URL  | Slack webhook to send coverage                                  |
-| NODE_PAGESPEED_SLACK_WEBHOOK_URL      | Slack webhook to send pagespeed info                            |
-| NODE_SENTRY_DSN                       | Sentry DSN                                                      |
 | NODE_SENTRY_DSN_FRONT                 | Sentry DSN for client                                           |
 | NODE_SENTRY_LOADER_PATH               | Sentry loader path for script                                   |
-| SENTRY_ORG                            | Sentry Organization name                                        |
-| SENTRY_PROJECT                        | Sentry project name                                             |
-| SENTRY_AUTH_TOKEN                     | Sentry auth token                                               |
 | NODE_DOMAIN                           | Domain                                                          |
 | FF_ENVIRONMENT                        | Feature flags environment                                       |
 | NODE_ENV                              | Development variant                                             | |
