@@ -125,7 +125,7 @@ const { headerHeight } = storeToRefs(useHeaderStore())
   }
 
   &__list {
-    @include grid(repeat(3, 1fr), auto, 20px, 72px);
+    @include grid(repeat(3, minmax(250px, 1fr)), auto, 20px, 72px);
   }
 
   &__load-more {
@@ -147,7 +147,7 @@ const { headerHeight } = storeToRefs(useHeaderStore())
     }
 
     &__list {
-      @include grid(repeat(2, 1fr), auto, 20px, 56px);
+      @include grid(repeat(2, minmax(200px, 1fr)), auto, 20px, 56px);
     }
 
     :deep(.article-card) {
@@ -174,7 +174,7 @@ const { headerHeight } = storeToRefs(useHeaderStore())
     padding-bottom: 48px;
 
     &__list {
-      @include grid(repeat(1, 1fr), auto, 20px, 56px);
+      @include grid(repeat(1, minmax(200px, 1fr)), auto, 20px, 56px);
     }
 
     :deep(.article-card__cover-wrapper) {
