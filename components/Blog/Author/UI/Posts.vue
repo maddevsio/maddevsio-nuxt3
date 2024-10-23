@@ -121,7 +121,7 @@ const {
   }
 
   &__list {
-    @include grid(repeat(3, 1fr), auto, 20px, 72px);
+    @include grid(repeat(3, minmax(250px, 1fr)), auto, 20px, 72px);
   }
 
   &__load-more {
@@ -143,7 +143,8 @@ const {
     }
 
     &__list {
-      @include grid(repeat(2, 1fr), auto, 20px, 56px);
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+      grid-gap: 56px 20px;
     }
 
     :deep(.article-card) {
@@ -165,7 +166,7 @@ const {
     padding-bottom: 48px;
 
     &__list {
-      @include grid(repeat(1, 1fr), auto, 20px, 56px);
+      grid-template-columns: repeat(1, minmax(200px, 1fr));
     }
 
     :deep(.article-card__cover-wrapper) {
