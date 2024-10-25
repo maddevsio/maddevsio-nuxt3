@@ -19,10 +19,6 @@
 - [😎 AWS S3](#-aws-s3)
 - [🗄 Prismic](#-prismic)
 
-[//]: # (- [🏳️ Feature Flags]&#40;#%EF%B8%8F-feature-flags&#41;)
-[//]: # (- [🔥 SEO-Analyzer]&#40;#-seo-analyzer&#41;)
-[//]: # (- [👐 Additional docs]&#40;#-additional-docs&#41;)
-
 ## ⚡️ Quick development start
 
 To start the project you need to do the following steps:
@@ -38,9 +34,18 @@ $ npm install
 ```bash
 $ npm run dev
 ```
+3. Run the project in production mode
 
-3. The application is available on [localhost:3000](http://localhost:3000)
-4. To improve the application's performance, it is better to run it from the local domain `maddevs.devtest:3000`. This is necessary for the forms to work properly.
+```bash
+$ npm run build
+```
+4. After build you need to launch the project
+
+```bash
+$ npm run start
+```
+5. The application is available on [localhost:3000](http://localhost:3000)
+6To improve the application's performance, it is better to run it from the local domain `maddevs.devtest:3000`. From this domain forms' requests work.
 
 For detailed explanation on how things work, checkout the [Nuxt 3 docs](https://nuxt.com/docs/getting-started/introduction).
 
@@ -66,16 +71,26 @@ A list of main technologies that we use for build our application
 | [Pinia](https://pinia.vuejs.org/)                                   | ^2.1.7   | Intuitive, type safe and flexible Store for Vue                                                                                                        |
 | [mitt](https://www.npmjs.com/package/mitt)                          | ^3.0.1   | Tiny 200b functional event emitter / pubsub.                                                                                                           |
 | [sendpulse-api](https://www.npmjs.com/package/sendpulse-api)        | ^1.1.6   | A simple SendPulse REST client library and example for Node.js. [API Documentation](https://sendpulse.com/api)                                         |
+| [nuxt-swiper](https://www.npmjs.com/package/nuxt-swiper)            | ^1.2.2   | Swiper component for Nuxt.js                                                                                                                           |
+| [vue-recaptcha](https://www.npmjs.com/package/vue-recaptcha)        | ^2.0.3   | A simple Vue.js component for easy integration with Google reCAPTCHA v2 and v3.                                                                       |
 
 #### Additional tools
 
 A list of additional tools that we use for make our codebase better
 
-| Technology                                                        | Version  | Description                                                                 |
-|-------------------------------------------------------------------|----------| --------------------------------------------------------------------------- |
-| [ESLint](https://www.npmjs.com/package/eslint)                    | ^8.56.0  | Pluggable JavaScript linter                                                 |
-| [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) | ^7.106.1 | Application monitoring and error tracking                                   |
-| [Snyk](https://snyk.io/)                                          | ^1.1283.1 | Tool for find and fix security vulnerabilities                              |
+| Technology                                                        | Version   | Description                                                                |
+|-------------------------------------------------------------------|-----------| -------------------------------------------------------------------------- |
+| [ESLint](https://www.npmjs.com/package/eslint)                    | ^8.56.0   | Pluggable JavaScript linter                                                |
+| [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) | ^7.106.1  | Application monitoring and error tracking                                  |
+| [Snyk](https://snyk.io/)                                          | ^1.1283.1 | Tool for find and fix security vulnerabilities                             |
+
+#### Tools for tracking and analytics
+A list of tools that we use for users' tracking and analytics
+
+| Technology                                                        | Version   | Description                                                                |
+|---------------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Smartlook](https://www.smartlook.com/)               |           | Smartlook is a qualitative analytics solution for web and mobile apps      |
+| [GA4](https://analytics.google.com/)                                                |           | Google Analytics 4                                                         |
 
 ### Project structure
 
@@ -112,164 +127,39 @@ A list of additional tools that we use for make our codebase better
 
 A list of environment variables that needed to start the project(required)
 
-| NAME                                   | DESCRIPTION                                                 |
-|----------------------------------------|-------------------------------------------------------------|
-| NODE_SENDPULSE_API_USER_ID             | Sendpulse api user id                                       |
-| NODE_SENDPULSE_API_KEY                 | Sendpulse api key                                           |
-| NODE_EMAIL_HR                          | Email to send messages(cv) to HR department                 |
-| NODE_EMAIL_CONTACT                     | Email to send messages(from leads) to DM department         |
-| NODE_EMAIL_MARKETING                   | Email to send messages to Marketing department              |
-| NODE_EMAIL_CV                          | Email to send messages to CV department                     |
-| NODE_PRISMIC_API                       | Prismic api key                                             |
-| NODE_ATLASSIAN_TOKEN                   | Jira auth token                                             |
-| NODE_ATLASSIAN_EMAIL                   | Jira auth email                                             |
-| NODE_ATLASSIAN_PROJECT_KEY             | Jira auth project key                                       |
-| NODE_ATLASSIAN_API_URL                 | Jira api url                                                |
-| NODE_NODE_ATLASSIAN_EBOOK_PROJECT_KEY  | Jira Ebook key dashboard                                    |
-| NODE_ATLASSIAN_SUBSCRIBERS_PROJECT_KEY | Jira Subscribers key dashboard                              |
-| NODE_JEST_COVERAGE_SLACK_WEBHOOK_URL   | Slack webhook to send coverage                              |
-| NODE_PAGESPEED_SLACK_WEBHOOK_URL       | Slack webhook to send pagespeed info                        |
-| NODE_SENTRY_DSN                        | Sentry DSN                                                  |
-| NODE_SENTRY_DSN_FRONT                  | Sentry DSN for client                                       |
-| SENTRY_ORG                             | Sentry Organization name                                    |
-| SENTRY_PROJECT                         | Sentry project name                                         |
-| SENTRY_AUTH_TOKEN                      | Sentry auth token                                           |
-| NODE_DOMAIN                            | Domain                                                      |
-| FF_ENVIRONMENT                         | Feature flags environment                                   |
-| NODE_ENV                               | Development variant                                         |
-| NODE_HUNTFLOW_API_URL                  | Huntflow api url                                            |
-| NODE_HUNTFLOW_TOKEN                    | Huntflow auth token                                         |
-| NODE_HUNTFLOW_ACCOUNT_ID               | Huntflow auth account                                       |
-| NODE_HUNTFLOW_RESERVE_VACANCY_ID       | Huntflow auth reserve vacancy                               |
-| NODE_CYPRESS_BASE_URL                  | Cypress url                                                 |
-| NODE_AWS_URL                           | AWS url                                                     |
-| NODE_S3_PUBLIC_URL                     | S3 url                                                      |
-| NODE_S3_SECRET_ACCESS_KEY              | S3 secret key                                               |
-| RECAPTCHA_SITE_KEY                     | ReCaptcha site key                                          |
-| RECAPTCHA_SECRET_KEY                   | ReCaptcha secret key                                        |
-| NODE_GA4_KEY                           | GA4 MEASUREMENT ID                                          |
-| NODE_ANALYTICS_UNIVERSAL_KEY           | Universal Analytics Tracking ID                             |
-| FACEBOOK_CODE                          | Access code for FaceBook Pixel                              |
-| LINKEDIN_PIXEL_ID                      | Linkidin identificator                                      |
-| NODE_SMARTLOOK_PROJECT_ID              | Smartlook project id from smartlook account                 |
-
-[//]: # (### 💻 Dev Radiator envs)
-
-[//]: # (| NAME                                   | DESCRIPTION                                                 |)
-
-[//]: # (|----------------------------------------|-------------------------------------------------------------|)
-
-[//]: # (| NODE_DEV_RADIATOR_CRON_STRING          | Cron string for start dev radiator                          |)
-
-[//]: # (| NODE_DEV_RADIATOR_GH_TOKEN             | Github token for request                                    |)
-
-[//]: # (| NODE_DEV_RADIATOR_SLACK_WEBHOOK        | Slack webhook for send message                              |)
-
-[//]: # (| NODE_DEV_MONGO_PASSWORD                | Cloud MongoDB password                                      |)
-
-[//]: # (| NODE_DEV_MONGO_USERNAME                | Cloud MongoDB username                                      |)
-
-[//]: # (| NODE_DEV_RADIATOR_MONGO                | Cloud MongoDB url connecting                                |)
-
-[//]: # ()
-[//]: # (### 📉 Marketing Radiator envs)
-
-[//]: # (| NAME                                    |                          DESCRIPTION                          |)
-
-[//]: # (|-----------------------------------------|:-------------------------------------------------------------:|)
-
-[//]: # (| RADIATOR_FIRESTORE_AUTH_TYPE            |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_PROJECT_ID           |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_PRIVATE_KEY_ID       |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_PRIVATE_KEY          |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_CLIENT_EMAIL         |                 From firestore auth json file                 |)
-
-[//]: # (| RADIATOR_FIRESTORE_CLIENT_ID            |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_AUTH_URI             |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_TOKEN_URI            |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_AUTH_PROVIDER        |                                                               |)
-
-[//]: # (| RADIATOR_FIRESTORE_CLIENT_CERT_URL      |                                                               |)
-
-[//]: # (| --------------------------------------  | ------------------------------------------------------------- |)
-
-[//]: # (| RADIATOR_AUTH_TYPE                      |                                                               |)
-
-[//]: # (| RADIATOR_AUTH_URI                       |                                                               |)
-
-[//]: # (| RADIATOR_CLIENT_CERT_URL                |                                                               |)
-
-[//]: # (| RADIATOR_CLIENT_EMAIL                   |                                                               |)
-
-[//]: # (| RADIATOR_CLIENT_ID                      |                                                               |)
-
-[//]: # (| RADIATOR_PRIVATE_KEY                    |           From google cloud console auth json file            |)
-
-[//]: # (| RADIATOR_PRIVATE_KEY_ID                 |                                                               |)
-
-[//]: # (| RADIATOR_PROJECT_ID                     |                                                               |)
-
-[//]: # (| RADIATOR_PROVIDER_CERT_URL              |                                                               |)
-
-[//]: # (| RADIATOR_TOKEN_URI                      |                                                               |)
-
-[//]: # (| --------------------------------------  | ------------------------------------------------------------- |)
-
-[//]: # (| RADIATOR_FIRESTORE_ID                   |                     Firestore database ID                     |)
-
-[//]: # (| SLACK_WEBHOOK_URL                       |    Slack webhook for send message from marketing radiator     |)
-
-[//]: # (| SLACK_CHANNEL_ID                        |  Slack channel id where send message from marketing radiator  |)
-
-[//]: # (| RADIATOR_DAILY_DISPATCH_TIME            |      Number when run send report from marketing radiator      |)
-
-[//]: # (| REDDIT_CLIENT_ID                        |             Reddit client id from API app reddit              |)
-
-[//]: # (| REDDIT_CLIENT_SECRET                    |           Reddit client secret from API app reddit            |)
-
-[//]: # (| REDDIT_USER_NAME                        |                    Reddit account username                    |)
-
-[//]: # (| REDDIT_PASSWORD                         |                    Reddit account password                    |)
-
-[//]: # (| RADIATOR_QUORA_USER_ID                  |                     Quora user account ID                     |)
-
-[//]: # (| RADIATOR_GLASSDOOR_API_KEY              |                 API Key from page2api service                 |)
-
-[//]: # (### Production status checker)
-
-[//]: # (| NAME                                | DESCRIPTION                                                                |)
-
-[//]: # (|-------------------------------------|----------------------------------------------------------------------------|)
-
-[//]: # (| CHECK_PRODUCTION_STATUS_CRON_STRING | Cron string for start checker                                              |)
-
-[//]: # (| SITE_URL_FOR_CHECK                  | Site url for check                                                         |)
-
-[//]: # (| SLACK_CHANNEL_ID_FOR_PROD_CHECK     | Slack channel id where send message from checker                           |)
-
-[//]: # (| USERS_TO_BE_MENTIONED               | Array with objects like [{ "name": "John Doe", :id": "<@slack user id>" }] |)
-
-[//]: # ()
-[//]: # (### Memory usage checker)
-
-[//]: # (| NAME                                | DESCRIPTION                     |)
-
-[//]: # (|-------------------------------------|---------------------------------|)
-
-[//]: # (| CHECK_MEMORY_USAGE_CRON_STRING      | Cron string for start checker   |)
-
-[//]: # (| CHECK_MEMORY_USAGE_WHEN_ALARM_PERC  | Percentage when alarm           |)
-
-[//]: # (| CHECK_MEMORY_USAGE_ENABLED          | true or false                   |)
-
-[//]: # (| CHECK_MEMORY_USAGE_SIZE_MEM         | Total memory size in OS         |)
+| NAME                                  | DESCRIPTION                                                     |
+|---------------------------------------|-----------------------------------------------------------------|
+| NODE_SENDPULSE_API_USER_ID            | Sendpulse api user id                                           |
+| NODE_SENDPULSE_API_KEY                | Sendpulse api key                                               |
+| NODE_SENDPULSE__FEEDBACK_TEMPLAT      | Sendpulse feedback template id for form on rumor managment page |
+| NODE_SENDPULSE_ADDRESSBOOKS_ID        | Sendpulse address book id                                       |
+| NODE_EMAIL_HR                         | Email to send messages(cv) to HR department                     |
+| NODE_EMAIL_CONTACT                    | Email to send messages(from leads) to DM department             |
+| NODE_EMAIL_MARKETING                  | Email to send messages to Marketing department                  |
+| NODE_EMAIL_CV                         | Email to send messages to CV department                         |
+| NODE_PRISMIC_API                      | Prismic api key                                                 |
+| NODE_ATLASSIAN_TOKEN                  | Jira auth token                                                 |
+| NODE_ATLASSIAN_EMAIL                  | Jira auth email                                                 |
+| NODE_ATLASSIAN_PROJECT_KEY            | Jira auth project key                                           |
+| NODE_ATLASSIAN_API_URL                | Jira api url                                                    |
+| NODE_NODE_ATLASSIAN_EBOOK_PROJECT_KEY | Jira Ebook key dashboard                                        |
+| NODE_ATLASSIAN_SUBSCRIBERS_PROJECT_KEY | Jira Subscribers key dashboard                                  |
+| NODE_SENTRY_DSN_FRONT                 | Sentry DSN for client                                           |
+| NODE_SENTRY_LOADER_PATH               | Sentry loader path for script                                   |
+| NODE_DOMAIN                           | Domain                                                          |
+| FF_ENVIRONMENT                        | Feature flags environment                                       |
+| NODE_ENV                              | Development variant                                             | |
+| NODE_AWS_URL                          | AWS url                                                         |
+| NODE_S3_PUBLIC_URL                    | S3 url                                                          |
+| NODE_S3_SECRET_ACCESS_KEY             | S3 secret key                                                   |
+| RECAPTCHA_SITE_KEY                    | ReCaptcha site key                                              |
+| RECAPTCHA_SECRET_KEY                  | ReCaptcha secret key                                            |
+| NODE_GA4_KEY                          | GA4 MEASUREMENT ID                                              |
+| NODE_ANALYTICS_UNIVERSAL_KEY          | Universal Analytics Tracking ID                                 |
+| FACEBOOK_CODE                         | Access code for FaceBook Pixel                                  |
+| LINKEDIN_PIXEL_ID                     | Linkidin identificator                                          |
+| NODE_SMARTLOOK_PROJECT_ID             | Smartlook project id from smartlook account                     |
+| LINKEDIN_SCRIPT_TURN_ON               | For enabling/disabling linkedin pixel script                    |
 
 ## ⚠️ Required variables for building an application
 <font size=3>Without these variables the application will not work correctly</font>
@@ -279,7 +169,6 @@ A list of environment variables that needed to start the project(required)
 | NODE_ENV                            | Development variant                                 |
 | NODE_S3_PUBLIC_URL                  | AWS S3 CloudFront public API                        |
 | NODE_DOMAIN                         | Domain                                              |
-| NODE_HUNTFLOW_RESERVE_VACANCY_ID    | Huntflow auth reserve vacancy                       |
 | NODE_EMAIL_HR                       | Email to send messages(cv) to HR department         |
 | NODE_EMAIL_CV                       | Email to send messages to CV department             |
 | NODE_EMAIL_CONTACT                  | Email to send messages(from leads) to DM department |
@@ -304,49 +193,16 @@ Before start working with our team you need to read the document.
 
 ## 🚀 Deploy
 
+### Develop
+To send changes for testing it before deploy, you should merge your branch to the **develop** branch
+
 ### Staging
 
 To send changes to the staging server, you should merge your branch to the **staging** branch
 
 ### Production
 
-To send changes to the staging server, you should merge **staging** branch into **master** branch
-
-[//]: # (## 🚓 Testing)
-
-[//]: # ()
-[//]: # (### Coverage&#40;unit&#41;)
-
-[//]: # ()
-[//]: # (![Coverage statements]&#40;https://maddevsio.s3.eu-west-1.amazonaws.com/coverage-badges/badge-statements.svg&#41;)
-
-[//]: # (![Coverage branches]&#40;https://maddevsio.s3.eu-west-1.amazonaws.com/coverage-badges/badge-branches.svg&#41;)
-
-[//]: # (![Coverage functions]&#40;https://maddevsio.s3.eu-west-1.amazonaws.com/coverage-badges/badge-functions.svg&#41;)
-
-[//]: # (![Coverage lines]&#40;https://maddevsio.s3.eu-west-1.amazonaws.com/coverage-badges/badge-lines.svg&#41;)
-
-[//]: # ()
-[//]: # (### Commands)
-
-[//]: # ()
-[//]: # (| COMMAND                            | DESCRIPTION                         |)
-
-[//]: # (| ---------------------------------- | ----------------------------------- |)
-
-[//]: # (| `npm run test`                     | Run all tests                       |)
-
-[//]: # (| `npm run test:unit`                | Run all unit-tests                  |)
-
-[//]: # (| `npm run test:unit:node`           | Run only server unit-tests          |)
-
-[//]: # (| `npm run test:unit:browser`        | Run only browser unit-tests         |)
-
-[//]: # (| `npm run test:staging`             | Run tests && send coverage to slack |)
-
-[//]: # (| `npm run test:e2e`                 | Run e2e tests                       |)
-
-[//]: # (| `npm run generate:coverage-badges` | Generate coverage badges            |)
+To send changes to the production server, you should merge **staging** branch into **master** branch
 
 ## ✨ Linting
 
@@ -447,125 +303,6 @@ This variable must contain the url, which will be used to access s3 files.
 | `aws s3 sync --acl public-read ./folder s3://maddevsio/folder/`         | Update files                                                   |
 | `aws s3 sync s3://maddevsio/folder/ ./folder`                           | Downloads all content from s3 /folder to local folder ./folder |
 
-[//]: # (## 🏳️ Feature flags)
-
-[//]: # ()
-[//]: # (We're used feature-flags for display/hide some features on different environments.)
-
-[//]: # ()
-[//]: # (### Create flag)
-
-[//]: # ()
-[//]: # (For create a new feature flag, you need to open `@/featureFlags/config.js` file and add your flag into config with the following syntax:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (export const config = {)
-
-[//]: # (  myFeatureFlag: ["development", "staging"])
-
-[//]: # (};)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (The name of your feature flag should be key in the `config`. Environments where your flag should return true should be value of your flag. It's an array of environments. At the moment we have 3 available environments:)
-
-[//]: # ()
-[//]: # (- `development` - for local development)
-
-[//]: # (- `staging` - for staging&#40;maddevs.co&#41;)
-
-[//]: # (- `production` - for production&#40;maddevs.io&#41;)
-
-[//]: # ()
-[//]: # (### Usage)
-
-[//]: # ()
-[//]: # (#### with `<Feature>` component)
-
-[//]: # ()
-[//]: # (The better option. You can simple use your feature-flag in the templates using globally registered component. Example:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (<Feature flag="myFeatureFlag">Some content</Feature>)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (#### with `featureFlag&#40;&#41;` method)
-
-[//]: # ()
-[//]: # (Also you can use global method in your template:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (<div v-if="featureFlag&#40;'myFeatureFlag'&#41;">Some content</div>)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (or in the component's code:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (export default {)
-
-[//]: # (  methods: {)
-
-[//]: # (    send&#40;&#41; {)
-
-[//]: # (      if &#40;featureFlag&#40;"myFeatureFlag"&#41;&#41; {)
-
-[//]: # (        // ...do something)
-
-[//]: # (      })
-
-[//]: # (    })
-
-[//]: # (  })
-
-[//]: # (};)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (## 🏳️ Feature flags for pages)
-
-[//]: # ()
-[//]: # (### Create flag)
-
-[//]: # ()
-[//]: # (For create a new feature flag for pages, you need to open `router.config.js` file and add your flag into config with the following syntax:)
-
-[//]: # ()
-[//]: # (```javascript)
-
-[//]: # (export const routerConfig = [)
-
-[//]: # (  {)
-
-[//]: # (    path: "/",)
-
-[//]: # (    development: true,)
-
-[//]: # (    staging: true,)
-
-[//]: # (    production: false)
-
-[//]: # (  })
-
-[//]: # (];)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (Then, if a page is unavailable in one of the environments, the page will be removed from the sitemap and a redirect to page 404 will be configured for it.)
 
 ## BEM (Block, Element, Modifier)
 
@@ -630,54 +367,6 @@ Let's not use:
 
 For a detailed study of BEM, visit the website: https://en.bem.info/
 
-[//]: # (## 🔥 SEO-Analyzer)
-
-[//]: # ()
-[//]: # (Github action for checks for errors in the html DOM)
-
-[//]: # ()
-[//]: # (### Running)
-
-[//]: # ()
-[//]: # (To run an analyzer you need to execute the following command:)
-
-[//]: # ()
-[//]: # (```bash)
-
-[//]: # (npm run seo-analyze)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (If you have some problems with SEO you will be notified about that in the console:)
-
-[//]: # ()
-[//]: # (```bash)
-
-[//]: # (████████████████████████████████████████ 100% | ETA: 0s | 233/233)
-
-[//]: # ()
-[//]: # (File: dist/clients/case-studies/namba-food/index.html)
-
-[//]: # (SEO defects found:)
-
-[//]: # (There are 1 <img> tag without alt attribute)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (Otherwise, you should get success result:)
-
-[//]: # ()
-[//]: # (```bash)
-
-[//]: # ( ████████████████████████████████████████ 100% | ETA: 0s | 233/233)
-
-[//]: # ()
-[//]: # ( No any SEO defect found.)
-
-[//]: # (```)
-
 ## 🗄 Prismic
 
 ### Create and push slices to prismic dashboard
@@ -711,8 +400,6 @@ or
 prismic sm --develop
 ```
 
-[Create a new slice in the slices builder dashboard](https://prismic.io/docs/technologies/create-model-component-nuxtjs)
+[How to work with slice machine](https://prismic.io/docs/slice-machine)
 
-[Edit code of created slice in the project filesystem](https://prismic.io/docs/technologies/update-and-style-components-nuxtjs)
-
-[Push created slice to prismic from slices builder dashboard](https://prismic.io/docs/technologies/send-slices-screenshots-prismic-nuxtjs)
+[Learn how to use Prismic with Nuxt 3](https://prismic.io/docs/nuxt3)
