@@ -10,20 +10,22 @@ defineProps({
 })
 </script>
 <template>
-  <div
-    ref="postFooter"
+  <section
+    class="post-content__recommended-posts"
   >
     <div
-      class="post-content__recommended-posts"
+      class="container"
     >
-      <div class="post-content__recommended-posts-list container">
-        <section
-          v-for="post in recommendedPosts"
-          :key="post.id"
-          class="post-content__recommended-post"
-          data-testid="test-recommended-post"
+      <div class="post-content__wrapper">
+        <h2 class="post-content__title">
+          Latest articles here
+        </h2>
+        <div
+          class="post-content__recommended-posts-list"
         >
           <LazySharedArticleCard
+            v-for="post in recommendedPosts"
+            :key="post.id"
             :uid="post.uid"
             :article-link="linkResolver(post)"
             :title="$prismic.asText(post.data?.title)"
@@ -38,11 +40,12 @@ defineProps({
             :disable-tag-link="post.tags.includes('Cost Optimization')"
             :tag="post.tags[0]"
             color-theme="white"
+            class="post-content__recommended-post"
           />
-        </section>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 <style lang="scss" scoped>
 .post-content {
@@ -51,8 +54,17 @@ defineProps({
     margin-top: 88px;
   }
 
-  &__recommended-posts-list {
+  &__wrapper {
     padding: 100px;
+  }
+
+  &__title {
+    @include font('Inter', 40px, 700);
+    margin-bottom: 40px;
+    color: $text-color--black-oil;
+  }
+
+  &__recommended-posts-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -98,8 +110,11 @@ defineProps({
   }
 
   @media screen and (max-width: 768px) {
+    &__wrapper {
+      padding: 31px 0;
+    }
+
     &__recommended-posts-list {
-      padding: 31px 24px;
       flex-direction: column;
     }
 
