@@ -65,15 +65,12 @@ defineProps({
   }
 
   &__recommended-posts-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+    padding: 100px;
+    @include grid(repeat(3, minmax(200px, 1fr)), auto, 20px, 20px);
     box-sizing: border-box;
   }
 
   &__recommended-post {
-    flex: 1 1 31%;
     border-radius: 3px;
     transition: 0.2s;
     box-sizing: border-box;
@@ -109,17 +106,25 @@ defineProps({
     }
   }
 
+  @media screen and (max-width: 992px) {
+    &__recommended-posts-list {
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+      grid-row-gap: 40px;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     &__wrapper {
       padding: 31px 0;
     }
 
     &__recommended-posts-list {
-      flex-direction: column;
+      display: block;
+      padding: 31px 24px;
     }
 
     &__recommended-post {
-      flex: 1 1 100%;
+      margin-bottom: 40px;
     }
   }
 }
