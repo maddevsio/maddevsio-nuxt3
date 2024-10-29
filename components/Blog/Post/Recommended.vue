@@ -42,6 +42,17 @@ defineProps({
           class="post-content__recommended-post"
         />
       </div>
+      <LazySharedUIButtonPowerCustom
+        is-link
+        link-to-page="/blog/"
+        border-color="#ec1c24"
+        label-color="#ec1c24"
+        hover-background-color="#ec1c24"
+        hover-label-color="#fff"
+        :show-arrow="false"
+        label="Go to blog"
+        class="post-content__button"
+      />
     </div>
   </section>
 </template>
@@ -63,6 +74,15 @@ defineProps({
     line-height: 48px;
     margin-bottom: 40px;
     color: $text-color--black-oil;
+  }
+
+  &__button {
+    margin-top: 50px;
+
+    :deep(a) {
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
 
   &__recommended-posts-list {
@@ -107,6 +127,12 @@ defineProps({
   }
 
   @media screen and (max-width: 992px) {
+    &__title {
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 32px;
+    }
+
     &__recommended-posts-list {
       grid-template-columns: repeat(2, minmax(200px, 1fr));
       grid-row-gap: 40px;
@@ -116,13 +142,12 @@ defineProps({
   @media screen and (max-width: 768px) {
 
     &__title {
-      font-size: 32px;
-      line-height: 40px;
-      margin-bottom: 24px;
+      font-size: 28px;
+      line-height: 32px;
     }
 
     &__container {
-      padding: 31px 24px;
+      padding: 40px 24px;
     }
 
     &__recommended-posts-list {
