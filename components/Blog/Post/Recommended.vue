@@ -14,39 +14,38 @@ defineProps({
     class="post-content__recommended-posts"
   >
     <div
-      class="container"
+      class="post-content__container container"
     >
-      <div class="post-content__wrapper">
-        <h2 class="post-content__title">
-          Latest articles here
-        </h2>
-        <div
-          class="post-content__recommended-posts-list"
-        >
-          <LazySharedArticleCard
-            v-for="post in recommendedPosts"
-            :key="post.id"
-            :uid="post.uid"
-            :article-link="linkResolver(post)"
-            :title="$prismic.asText(post.data?.title)"
-            :description="getFirstParagraph(post.data?.body!, 150)"
-            is-show-author
-            is-show-tag
-            :formatted-date="formatDate(post.data?.date)"
-            :read-time="calculateReadTime(post, $prismic).readTime"
-            :cover="post.data?.featured_image"
-            :author="extractAuthorData(post.data?.post_author!)"
-            :post="post"
-            :disable-tag-link="post.tags.includes('Cost Optimization')"
-            :tag="post.tags[0]"
-            color-theme="white"
-            class="post-content__recommended-post"
-          />
-        </div>
+      <h2 class="post-content__title">
+        Latest articles here
+      </h2>
+      <div
+        class="post-content__recommended-posts-list"
+      >
+        <LazySharedArticleCard
+          v-for="post in recommendedPosts"
+          :key="post.id"
+          :uid="post.uid"
+          :article-link="linkResolver(post)"
+          :title="$prismic.asText(post.data?.title)"
+          :description="getFirstParagraph(post.data?.body!, 150)"
+          is-show-author
+          is-show-tag
+          :formatted-date="formatDate(post.data?.date)"
+          :read-time="calculateReadTime(post, $prismic).readTime"
+          :cover="post.data?.featured_image"
+          :author="extractAuthorData(post.data?.post_author!)"
+          :post="post"
+          :disable-tag-link="post.tags.includes('Cost Optimization')"
+          :tag="post.tags[0]"
+          color-theme="white"
+          class="post-content__recommended-post"
+        />
       </div>
     </div>
   </section>
 </template>
+
 <style lang="scss" scoped>
 .post-content {
   &__recommended-posts {
@@ -54,18 +53,19 @@ defineProps({
     margin-top: 88px;
   }
 
-  &__wrapper {
+  &__container {
     padding: 100px;
+    box-sizing: border-box;
   }
 
   &__title {
     @include font('Inter', 40px, 700);
+    line-height: 48px;
     margin-bottom: 40px;
     color: $text-color--black-oil;
   }
 
   &__recommended-posts-list {
-    padding: 100px;
     @include grid(repeat(3, minmax(200px, 1fr)), auto, 20px, 20px);
     box-sizing: border-box;
   }
@@ -114,13 +114,19 @@ defineProps({
   }
 
   @media screen and (max-width: 768px) {
-    &__wrapper {
-      padding: 31px 0;
+
+    &__title {
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 24px;
+    }
+
+    &__container {
+      padding: 31px 24px;
     }
 
     &__recommended-posts-list {
       display: block;
-      padding: 31px 24px;
     }
 
     &__recommended-post {
