@@ -273,7 +273,7 @@ onUnmounted(() => {
   }
 
   &__list {
-    @include grid(repeat(3, 1fr), auto, 20px, 48px);
+    @include grid(repeat(3, minmax(250px, 1fr)), auto, 20px, 48px);
     margin: 50px 0;
   }
 
@@ -301,7 +301,7 @@ onUnmounted(() => {
 
   @media only screen and (max-width: 991px) {
     &__list {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
       margin-top: 0;
       gap: 32px;
       justify-content: space-between;
@@ -318,7 +318,7 @@ onUnmounted(() => {
 
   @media screen and (max-width: 615px) {
     &__list {
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(1, minmax(200px, 1fr));
     }
 
     :deep(.article-card) {
