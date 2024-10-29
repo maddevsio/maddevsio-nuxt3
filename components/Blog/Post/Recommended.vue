@@ -10,40 +10,53 @@ defineProps({
 })
 </script>
 <template>
-  <div
-    ref="postFooter"
+  <section
+    class="post-content__recommended-posts"
   >
     <div
-      class="post-content__recommended-posts"
+      class="post-content__container container"
     >
-      <div class="post-content__recommended-posts-list container">
-        <section
+      <h2 class="post-content__title">
+        Latest articles here
+      </h2>
+      <div
+        class="post-content__recommended-posts-list"
+      >
+        <LazySharedArticleCard
           v-for="post in recommendedPosts"
           :key="post.id"
+          :uid="post.uid"
+          :article-link="linkResolver(post)"
+          :title="$prismic.asText(post.data?.title)"
+          :description="getFirstParagraph(post.data?.body!, 150)"
+          is-show-author
+          is-show-tag
+          :formatted-date="formatDate(post.data?.date)"
+          :read-time="calculateReadTime(post, $prismic).readTime"
+          :cover="post.data?.featured_image"
+          :author="extractAuthorData(post.data?.post_author!)"
+          :post="post"
+          :disable-tag-link="post.tags.includes('Cost Optimization')"
+          :tag="post.tags[0]"
+          color-theme="white"
           class="post-content__recommended-post"
-          data-testid="test-recommended-post"
-        >
-          <LazySharedArticleCard
-            :uid="post.uid"
-            :article-link="linkResolver(post)"
-            :title="$prismic.asText(post.data?.title)"
-            :description="getFirstParagraph(post.data?.body!, 150)"
-            is-show-author
-            is-show-tag
-            :formatted-date="formatDate(post.data?.date)"
-            :read-time="calculateReadTime(post, $prismic).readTime"
-            :cover="post.data?.featured_image"
-            :author="extractAuthorData(post.data?.post_author!)"
-            :post="post"
-            :disable-tag-link="post.tags.includes('Cost Optimization')"
-            :tag="post.tags[0]"
-            color-theme="white"
-          />
-        </section>
+        />
       </div>
+      <LazySharedUIButtonPowerCustom
+        is-link
+        link-to-page="/blog/"
+        border-color="#ec1c24"
+        label-color="#ec1c24"
+        hover-background-color="#ec1c24"
+        hover-label-color="#fff"
+        :show-arrow="false"
+        label="Go to blog"
+        class="post-content__button"
+      />
     </div>
-  </div>
+  </section>
 </template>
+
 <style lang="scss" scoped>
 .post-content {
   &__recommended-posts {
@@ -51,8 +64,28 @@ defineProps({
     margin-top: 88px;
   }
 
-  &__recommended-posts-list {
+  &__container {
     padding: 100px;
+    box-sizing: border-box;
+  }
+
+  &__title {
+    @include font('Inter', 40px, 700);
+    line-height: 48px;
+    margin-bottom: 40px;
+    color: $text-color--black-oil;
+  }
+
+  &__button {
+    margin-top: 50px;
+
+    :deep(a) {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  &__recommended-posts-list {
     @include grid(repeat(3, minmax(200px, 1fr)), auto, 20px, 20px);
     box-sizing: border-box;
   }
@@ -94,6 +127,12 @@ defineProps({
   }
 
   @media screen and (max-width: 992px) {
+    &__title {
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 32px;
+    }
+
     &__recommended-posts-list {
       grid-template-columns: repeat(2, minmax(200px, 1fr));
       grid-row-gap: 40px;
@@ -101,9 +140,18 @@ defineProps({
   }
 
   @media screen and (max-width: 768px) {
+
+    &__title {
+      font-size: 28px;
+      line-height: 32px;
+    }
+
+    &__container {
+      padding: 40px 24px;
+    }
+
     &__recommended-posts-list {
       display: block;
-      padding: 31px 24px;
     }
 
     &__recommended-post {
